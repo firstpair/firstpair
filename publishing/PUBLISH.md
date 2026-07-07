@@ -19,11 +19,21 @@ human and an AI can collaborate without hiding the handoff.
 publishing/
   PUBLISH.md
   scripts/
+    build-book.sh
     build-firstpair-book.sh
+    check-version-marker.sh
+    ensure-python-env.sh
     md-to-utmac.py
+    publish-versioned-artifacts.sh
+    publish-versioned-blog.sh
+    render-mermaid.mjs
     setup-utmac.sh
+    textpack.py
+  skills/
+    *.md
   tmac/
     fp.tmac
+  QUERYGRAPH_WORKFLOWS.md
 
 proofs/<book>/
   README.md
@@ -85,6 +95,24 @@ Markdown source
 First Pair troff source
   |
   +-- fp.tmac + utmac -> Neatroff PDF
+
+QueryGraph-family book source
+  |
+  +-- Mermaid renderer -> persistent .mmd/.png assets
+  |
+  +-- Pandoc -> Typst PDF
+  |
+  +-- Pandoc -> EPUB3/MOBI
+  |
+  +-- Pandoc -> ms -> groff PDF
+  |
+  +-- VERSION.md -> versioned iCloud/archive delivery
+
+QueryGraph-family blog source
+  |
+  +-- Markdown + local assets -> .textpack
+  |
+  +-- VERSION.md -> versioned ~/icloud/blogs delivery
 ```
 
 Pandoc is the linker. Typst is the contemporary book renderer. Neatroff is the
@@ -200,6 +228,95 @@ neatroff -M ../../.tools/utmac -mu-en -mus -m../../publishing/tmac/fp.tmac \
 Neatroff builds of the Markdown-derived utmac source. They are useful renderer
 checks, but they are not the hand-authored `.FP.*` source.
 
+## QueryGraph-Family Workflows
+
+FirstPair is now the canonical local home for the reusable QueryGraph-family
+publishing helpers. The original `/Users/alexy/src/querygraph/publishing`
+directory remains a useful snapshot, but new shared workflow changes should
+land here first.
+
+The imported comparison map lives at:
+
+```text
+publishing/QUERYGRAPH_WORKFLOWS.md
+```
+
+The imported workflow cards live under:
+
+```text
+publishing/skills/
+```
+
+Use these scripts from FirstPair against a target repo by setting `REPO_ROOT`.
+The scripts keep helper lookup local to FirstPair while reading manuscripts,
+metadata, versions, and validators from the target repo.
+
+Book build, single formatter:
+
+```sh
+REPO_ROOT=/path/to/repo \
+BOOK_ROOT=docs/book \
+BOOK_MANUSCRIPT=docs/book/manuscript.md \
+~/src/firstpair/publishing/scripts/build-book.sh
+```
+
+Book build, Typst plus groff/ms:
+
+```sh
+REPO_ROOT=/path/to/repo \
+BOOK_ROOT=docs/book \
+BOOK_MANUSCRIPT=docs/book/manuscript.md \
+BOOK_FORMATS=typst,troff \
+~/src/firstpair/publishing/scripts/build-book.sh
+```
+
+Book artifact contract check:
+
+```sh
+~/src/firstpair/publishing/scripts/check-version-marker.sh \
+  /path/to/repo/docs/book/dist
+```
+
+Book delivery to iCloud Books:
+
+```sh
+~/src/firstpair/publishing/scripts/publish-versioned-artifacts.sh \
+  /path/to/repo/docs/book/dist "$HOME/icloud/books"
+```
+
+Blog textpack delivery:
+
+```sh
+REPO_ROOT=/path/to/repo \
+BLOG_DOMAIN=querygraph.ai \
+~/src/firstpair/publishing/scripts/publish-versioned-blog.sh \
+  docs/blog/<slug> "$HOME/icloud/blogs"
+```
+
+The `VERSION.md` checker and delivery helper discover all formatter suffixes
+from the manifest. They handle classic QueryGraph fields such as
+`pdf_file_typst` and FirstPair fields such as `pdf_file_firstpair`,
+`pdf_file_neatroff`, `pdf_file_groff`, and `pdf_file_utmac`.
+
+## Usavenice Carryover
+
+The active usavenice pipeline remains book-rooted rather than `docs/book`:
+
+```text
+/Users/alexy/src/venezia/usavenice/book/
+```
+
+Its current runbook establishes several rules this repo preserves:
+
+- use Pandoc as the linker and build both Typst and troff variants;
+- keep persistent Mermaid diagrams and generated `combined.md` inspectable;
+- write `book/dist/VERSION.md` and use it for exact delivery filenames;
+- copy stable bytes to versioned `~/icloud/books` names and verify with `cmp`;
+- run visual QA through the repo's pinned Python environment when image
+  tooling is involved;
+- treat groff `ms` output as a compatibility path while Neatroff/utmac becomes
+  the FirstPair-native classic path.
+
 ## Human-AI Pairing Rules
 
 1. The human owns intent, taste, risk, and publication.
@@ -220,6 +337,10 @@ Before calling a proof book done, run:
 
 ```sh
 proofs/kiffness-loop-lab/build.sh
+publishing/scripts/check-version-marker.sh proofs/kiffness-loop-lab/dist
+bash -n publishing/scripts/*.sh
+python3 -m py_compile publishing/scripts/*.py
+node --check publishing/scripts/render-mermaid.mjs
 git diff --check
 ```
 
