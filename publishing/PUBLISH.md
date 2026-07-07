@@ -19,6 +19,7 @@ human and an AI can collaborate without hiding the handoff.
 publishing/
   PUBLISH.md
   scripts/
+    build-founding-docs.sh
     build-book.sh
     build-firstpair-book.sh
     check-version-marker.sh
@@ -34,6 +35,9 @@ publishing/
   tmac/
     fp.tmac
   QUERYGRAPH_WORKFLOWS.md
+
+fp.tr                     # First Pair founding documents in pure .FP troff
+dist/                     # built founding-document PDF and manifest
 
 proofs/<book>/
   README.md
@@ -95,6 +99,10 @@ Markdown source
 First Pair troff source
   |
   +-- fp.tmac + utmac -> Neatroff PDF
+
+First Pair founding source
+  |
+  +-- fp.tr -> fp.tmac + utmac -> Neatroff PDF
 
 QueryGraph-family book source
   |
@@ -194,6 +202,27 @@ real Libertinus TTF/OTF files to `~/src/neatroff_make/fonts` and run
 `make neat` again.
 
 ## Build A Proof
+
+Build the founding documents:
+
+```sh
+publishing/scripts/build-founding-docs.sh
+```
+
+The script writes:
+
+```text
+dist/fp.pdf
+dist/fp.tr
+dist/fp.log
+dist/VERSION.md
+```
+
+`fp.tr` is the canonical pure troff setting of the two founding documents:
+the First Pair Bell Labs manifesto and the concrete Bell Labs publishing
+workflow.
+
+Build the small proof book:
 
 ```sh
 proofs/kiffness-loop-lab/build.sh
@@ -336,6 +365,8 @@ pretending to be an author, but a pair that can inspect each other's work.
 Before calling a proof book done, run:
 
 ```sh
+publishing/scripts/build-founding-docs.sh
+publishing/scripts/check-version-marker.sh dist
 proofs/kiffness-loop-lab/build.sh
 publishing/scripts/check-version-marker.sh proofs/kiffness-loop-lab/dist
 bash -n publishing/scripts/*.sh
