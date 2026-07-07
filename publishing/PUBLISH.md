@@ -88,7 +88,32 @@ The active local Neatroff source lives at:
 ~/src/neatroff_make
 ```
 
-The build script prefers that tree when it contains:
+Install or refresh that tree through FirstPair, not through individual book
+projects:
+
+```sh
+~/src/firstpair/publishing/scripts/setup-neatroff.sh
+```
+
+The setup script clones or updates `~/src/neatroff_make`, runs `make init` when
+needed, runs `make neat`, and exposes stable user-level wrappers under
+`~/.local/bin`:
+
+```text
+neatroff
+neatpdf
+neatpost
+neateqn
+neatrefer
+neatpic
+neattbl
+neatsoin
+```
+
+It also writes `~/.local/share/firstpair/neatroff.env` for scripts that want to
+import the canonical `NEATROFF_ROOT` and PATH shape.
+
+The build script prefers the `~/src/neatroff_make` tree when it contains:
 
 ```text
 neatroff/roff

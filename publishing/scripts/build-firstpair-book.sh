@@ -13,6 +13,7 @@ version_file="${BOOK_VERSION_FILE:-$book_dir/VERSION}"
 epub_css="${BOOK_EPUB_CSS:-$book_dir/epub.css}"
 utmac_dir="${UTMAC_DIR:-$repo_root/.tools/utmac}"
 neatroff_root="${NEATROFF_ROOT:-$HOME/src/neatroff_make}"
+setup_neatroff="$repo_root/publishing/scripts/setup-neatroff.sh"
 
 mkdir -p "$build_dir" "$dist_dir"
 
@@ -178,6 +179,9 @@ run_utmac_neatroff_pdf() {
 
 build_neatroff_pdf() {
   local log="$dist_dir/$neatroff_stem.log"
+  if ! has_neatroff && [[ -x "$setup_neatroff" ]]; then
+    NEATROFF_ROOT="$neatroff_root" "$setup_neatroff" >/dev/null
+  fi
   if has_neatroff; then
     local utmac_source
     utmac_source="$(prepare_utmac_source)"
