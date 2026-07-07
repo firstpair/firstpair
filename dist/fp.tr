@@ -1,0 +1,791 @@
+.\" First Pair Press founding documents in First Pair troff.
+.\" Build:
+.\"   publishing/scripts/build-founding-docs.sh
+.
+.RH 0
+.FP.AUTHOR "Alexy Khrabrov and Codex"
+.FP.PRESS "First Pair Press"
+.FP.KEYWORDS "First Pair Press Bell Labs troff neatroff utmac publishing manifesto human AI"
+.FP.ID "firstpair-founding-documents"
+.FP.TITLE "First Pair Press Founding Documents"
+.FP.SUBTITLE "The manifesto and the Bell Labs publishing workflow"
+.
+.FP.AI "Source Note"
+This is the canonical pure troff setting of the First Pair founding documents.
+It should stay readable in a terminal and build directly through fp.tmac,
+utmac, and Neatroff.
+.FP.END
+.
+.FP.CHAPTER "I. The First Pair Bell Labs Manifesto"
+.
+.FP.SECTION "We Believe Books Are Software"
+.FP.P
+Books are among humanity's oldest technologies.
+.FP.P
+Software is among its newest.
+.FP.P
+Both are systems for encoding ideas.
+.FP.P
+Software has spent decades learning how to evolve. Books have largely learned
+how to imitate magazines. We believe books deserve better.
+.FP.P
+A book should not be a static artifact. It should be a living system whose
+history, sources, reasoning, and construction are as inspectable as a great
+piece of software.
+.
+.FP.SECTION "Bell Labs Was Never About Telephones"
+.FP.P
+People remember Bell Labs for the transistor, Unix, information theory, C, and
+laser physics.
+.FP.P
+The deeper lesson is that Bell Labs built tools that amplified human thought.
+.FP.P
+Unix was not merely an operating system. It was an operating philosophy.
+.FP.ITEM
+Write programs that do one thing well.
+.FP.ITEM
+Connect them together.
+.FP.ITEM
+Keep interfaces simple.
+.FP.ITEM
+Prefer text over opaque formats.
+.FP.ITEM
+Trust composition over monoliths.
+.FP.P
+Publishing deserves the same philosophy.
+.
+.FP.SECTION "The Book Is Semantic Source"
+.FP.P
+The manuscript is not the final product.
+.FP.P
+It is semantic source.
+.FP.P
+Publishing is compilation.
+.FP.P
+Typography is only one backend among many.
+.FP.P
+The author's job is to express meaning. The toolchain's job is to render that
+meaning beautifully.
+.FP.P
+Source should be:
+.FP.ITEM
+plain text;
+.FP.ITEM
+readable without proprietary software;
+.FP.ITEM
+version controlled;
+.FP.ITEM
+semantically rich;
+.FP.ITEM
+durable for decades.
+.FP.P
+Presentation should always be derived.
+.
+.FP.SECTION "AI Is Another Unix Filter"
+.FP.P
+Artificial intelligence should not replace thinking.
+.FP.P
+It should replace friction.
+.FP.P
+Like every good Unix tool, AI performs one task in a larger pipeline.
+.FP.P
+It can:
+.FP.ITEM
+discover references;
+.FP.ITEM
+verify quotations;
+.FP.ITEM
+propose diagrams;
+.FP.ITEM
+generate indexes;
+.FP.ITEM
+check consistency;
+.FP.ITEM
+compare editions;
+.FP.ITEM
+summarize research;
+.FP.ITEM
+expose uncertainty.
+.FP.P
+Judgment remains human.
+.FP.P
+AI is an assistant, never an authority.
+.
+.FP.SECTION "Every Book Should Be Reproducible"
+.FP.P
+Books should build like software.
+.FP.P
+Given the same manuscript, references, assets, and toolchain, the same book
+should emerge.
+.FP.P
+No hidden formatting.
+.FP.P
+No invisible edits.
+.FP.P
+No proprietary magic.
+.FP.P
+Publishing should become reproducible research.
+.
+.FP.SECTION "Plain Text Is Civilization's Longest-Lived File Format"
+.FP.P
+Stone.
+.FP.P
+Clay.
+.FP.P
+Paper.
+.FP.P
+ASCII.
+.FP.P
+Unicode.
+.FP.P
+Plain text survives revolutions in technology.
+.FP.P
+We choose formats that our grandchildren can still read.
+.
+.FP.SECTION "Many Renderers, One Source"
+.FP.P
+A manuscript should outlive its rendering engine.
+.FP.P
+Today's beautiful formatter may someday disappear.
+.FP.P
+Meaning must not.
+.FP.P
+From one semantic source we should be able to produce:
+.FP.ITEM
+Typst;
+.FP.ITEM
+troff;
+.FP.ITEM
+HTML;
+.FP.ITEM
+EPUB;
+.FP.ITEM
+PDF;
+.FP.ITEM
+print;
+.FP.ITEM
+presentations;
+.FP.ITEM
+future formats not yet invented.
+.FP.P
+Renderers compete.
+.FP.P
+Source endures.
+.
+.FP.SECTION "Pandoc Is Our Linker"
+.FP.P
+Compilers transformed software engineering.
+.FP.P
+Pandoc can play a similar role in publishing.
+.FP.P
+It links semantic source to multiple rendering engines without coupling authors
+to any single implementation.
+.FP.P
+The publishing pipeline becomes:
+.FP.CODE
+Semantic Source
+|
+v
+AI Enrichment
+|
+v
+Reference Resolution
+|
+v
+Diagram Generation
+|
+v
+Pandoc
+|
+v
+Typst / troff / HTML / EPUB / Print
+.FP.END
+.FP.P
+The intermediate representation matters more than any single renderer.
+.
+.FP.SECTION "Troff and Typst"
+.FP.P
+Troff represents the Bell Labs tradition.
+.FP.P
+Typst represents a modern reimagining of programmable typography.
+.FP.P
+Neither is the destination.
+.FP.P
+Both are excellent backends.
+.FP.P
+First Pair Press is committed to ideas, not tools.
+.FP.P
+We choose the renderer that best serves the reader.
+.
+.FP.SECTION "Diagrams Are Programs"
+.FP.P
+Whenever possible, diagrams should be generated from source.
+.FP.P
+Relationships become graphs.
+.FP.P
+Timelines become events.
+.FP.P
+Maps become geometry.
+.FP.P
+Figures become executable knowledge.
+.
+.FP.SECTION "References Are First-Class Citizens"
+.FP.P
+Every important claim deserves provenance.
+.FP.P
+Citations should explain not only where information came from, but why it
+matters.
+.FP.P
+Knowledge should be inspectable.
+.
+.FP.SECTION "We Publish Reasoning"
+.FP.P
+The internet optimizes for conclusions.
+.FP.P
+We optimize for reasoning.
+.FP.P
+Readers should understand not only what we believe, but how we arrived there.
+.FP.P
+Good books teach methods of thought.
+.
+.FP.SECTION "AI-Native Does Not Mean AI-Written"
+.FP.P
+AI-native publishing means embracing computational thinking throughout research,
+editing, verification, accessibility, translation, indexing, and production.
+.FP.P
+Human authors remain responsible for ideas.
+.FP.P
+Machines amplify craftsmanship.
+.
+.FP.SECTION "Small Tools, Loose Coupling"
+.FP.P
+One tool researches.
+.FP.P
+One verifies.
+.FP.P
+One builds indexes.
+.FP.P
+One renders Typst.
+.FP.P
+One renders troff.
+.FP.P
+One generates EPUB.
+.FP.P
+Each tool should be replaceable.
+.FP.P
+The pipeline is more important than any component.
+.
+.FP.SECTION "Books Should Age Gracefully"
+.FP.P
+Every edition should preserve its history.
+.FP.P
+Every correction should be visible.
+.FP.P
+Every revision should be traceable.
+.FP.P
+Knowledge evolves.
+.FP.P
+Books should evolve with it.
+.
+.FP.SECTION "The Library Is a Knowledge Graph"
+.FP.P
+Books should not live in isolation.
+.FP.P
+Ideas, people, places, events, and concepts should connect across the catalog.
+.FP.P
+A publishing house should become an evolving graph of knowledge.
+.
+.FP.SECTION "First Pair"
+.FP.P
+The name "First Pair" has two meanings.
+.FP.P
+The first pair of programmers.
+.FP.P
+The first pair of collaborators.
+.FP.P
+Human and machine.
+.FP.P
+Neither replaces the other.
+.FP.P
+Together they build something neither could create alone.
+.
+.FP.SECTION "The Bell Labs of Books"
+.FP.P
+Our ambition is larger than publishing books.
+.FP.P
+We seek to build the Bell Labs of books.
+.FP.P
+A place where writers, researchers, designers, programmers, historians, and
+intelligent machines create better tools for thinking.
+.FP.P
+Books are not the final product.
+.FP.P
+They are the visible proof that the system works.
+.
+.FP.SECTION "Our Principles"
+.FP.P
+We choose plain text over proprietary formats.
+.FP.P
+We choose semantic structure over visual markup.
+.FP.P
+We choose reproducible builds over manual layout.
+.FP.P
+We choose composable pipelines over monolithic software.
+.FP.P
+We choose open standards over lock-in.
+.FP.P
+We choose transparency over mystique.
+.FP.P
+We choose reasoning over rhetoric.
+.FP.P
+We choose collaboration over automation.
+.FP.P
+We choose enduring ideas over fashionable tools.
+.FP.P
+We are committed not to troff.
+.FP.P
+Not to Typst.
+.FP.P
+Not to Pandoc.
+.FP.P
+We are committed to a philosophy:
+.FP.QUOTE
+Ideas should outlive their implementations.
+.FP.END
+.FP.QUOTE
+Tools should remain replaceable.
+.FP.END
+.FP.QUOTE
+Knowledge should remain permanent.
+.FP.END
+.FP.P
+That is the Bell Labs way.
+.FP.P
+That is the First Pair way.
+.
+.FP.SECTION "The Proof Must Build"
+.FP.P
+A manifesto is not enough.
+.FP.P
+First Pair Press must prove its ideas in working books.
+.FP.P
+The first proof lives in this repository as `proofs/kiffness-loop-lab`. It
+takes a small music-manual idea and builds it as a reproducible human-AI
+publishing artifact:
+.FP.ITEM
+plain Markdown source;
+.FP.ITEM
+AI collaboration notes;
+.FP.ITEM
+Pandoc conversion;
+.FP.ITEM
+Typst PDF;
+.FP.ITEM
+EPUB;
+.FP.ITEM
+Neatroff PDF;
+.FP.ITEM
+groff fallback PDF;
+.FP.ITEM
+utmac troff source and PDF;
+.FP.ITEM
+a VERSION.md artifact manifest.
+.FP.P
+The proof is deliberately modest. It is small enough to inspect and real enough
+to break.
+.FP.P
+That is where trust begins.
+.
+.FP.CHAPTER "II. First Pair Bell Labs"
+.
+.FP.SECTION "The Bell Labs Publishing Philosophy"
+.FP.P
+The original Bell Labs publishing pipeline was not "troff" so much as a
+philosophy:
+.FP.QUOTE
+Write plain text. Everything else is a program.
+.FP.END
+.FP.P
+Every stage was a filter.
+.FP.CODE
+text
+  |
+  +-- refer   (bibliography)
+  |
+  +-- pic     (diagrams)
+  |
+  +-- tbl     (tables)
+  |
+  +-- eqn     (math)
+  |
+  +-- troff
+  |
+  +-- postscript
+  |
+  PDF
+.FP.END
+.FP.P
+The beauty is that every stage is optional.
+.
+.FP.SECTION "A Bell Labs Book"
+.FP.CODE
+\&.TL
+Lighthouse Republics
+
+\&.AU
+Alexy Khrabrov
+
+\&.AI
+First Pair Press
+
+\&.AB
+A short history of the United States and Venice together,
+and their eternal afterlife.
+\&.AE
+
+\&.SH
+The Republic
+
+Venice was never merely a city.
+
+It was an operating system.
+
+Its abstractions outlived its hardware.
+
+\&.PP
+
+America inherited many of them.
+
+\&.IP \(bu
+Federalism
+
+\&.IP \(bu
+Commerce
+
+\&.IP \(bu
+Constitutional abstraction
+
+\&.PP
+
+These ideas are older than nations.
+.FP.END
+.FP.P
+No XML. No YAML. No Markdown. No HTML. Just text.
+.
+.FP.SECTION "Figures"
+.FP.P
+Instead of drawing SVGs, write programs.
+.FP.CODE
+box "Republic"
+
+arrow
+
+box "Empire"
+
+arrow
+
+box "Nation"
+
+arrow
+
+box "Cloud"
+.FP.END
+.FP.P
+Produces:
+.FP.CODE
++---------+
+|Republic |
++---------+
+      |
+      V
++--------+
+|Empire  |
++--------+
+      |
+      V
++--------+
+|Nation  |
++--------+
+      |
+      V
++-------+
+|Cloud  |
++-------+
+.FP.END
+.FP.P
+pic is programmable:
+.FP.CODE
+define lighthouse {
+    circle radius .08
+    line up .3
+    box invis ht .2 wid .2
+}
+
+lighthouse
+
+move right 1
+
+lighthouse
+
+arrow
+.FP.END
+.
+.FP.SECTION "Tables"
+.FP.CODE
+\&.TS
+center box;
+
+l l l.
+
+Republic   Founded   Fate
+Venice     697       Endured
+USA        1776      Ongoing
+\&.TE
+.FP.END
+.
+.FP.SECTION "Equations"
+.FP.CODE
+\&.EQ
+
+Liberty ~= Order + Commerce
+
+\&.EN
+.FP.END
+.FP.P
+or:
+.FP.CODE
+\&.EQ
+
+sum from i=1 to n x sub i
+
+\&.EN
+.FP.END
+.
+.FP.SECTION "References"
+.FP.CODE
+\&.[
+VeniceHistory
+\&.]
+.FP.END
+.FP.P
+Then:
+.FP.CODE
+refer references.bib
+.FP.END
+.FP.P
+Automatic numbering.
+.
+.FP.SECTION "Version Control"
+.FP.P
+Everything is plain text.
+.FP.CODE
+-America inherited Rome.
++America inherited Venice.
+.FP.END
+.FP.P
+instead of:
+.FP.CODE
+Binary file changed.
+.FP.END
+.
+.FP.SECTION "Build System"
+.FP.CODE
+book.pdf: book.ms refs
+    refer refs |
+    pic |
+    tbl |
+    eqn |
+    troff -ms |
+    ps2pdf > book.pdf
+.FP.END
+.
+.FP.SECTION "Why UNIX People Loved This"
+.FP.P
+Each tool does one thing well:
+.FP.ITEM
+eqn -- equations;
+.FP.ITEM
+tbl -- tables;
+.FP.ITEM
+pic -- drawings;
+.FP.ITEM
+troff -- layout.
+.FP.P
+No component knows anything about another.
+.
+.FP.SECTION "Bell Labs Heritage"
+.FP.P
+The original The C Programming Language and many editions of The UNIX
+Programming Environment were produced with ms macros.
+.FP.P
+Brian Kernighan famously preferred writing text over manipulating formatting.
+.FP.P
+The markup disappears while you are writing.
+.
+.FP.SECTION "A Vision for First Pair Press"
+.FP.P
+Rather than merely reviving troff, modernize the Bell Labs pipeline around AI.
+.FP.CODE
+Markdown / Troff hybrid
+        |
+        v
+AI semantic pass
+        |
+        v
+refer
+        |
+        v
+pic (AI-generated diagrams)
+        |
+        v
+tbl
+        |
+        v
+eqn
+        |
+        v
+troff
+        |
+        v
+PDF
+        |
+        +-- EPUB
+        +-- HTML
+        +-- Print
+.FP.END
+.FP.P
+The AI enriches the document with references, diagrams, indexes, glossary
+entries, and consistency checks before handing a semantically rich document to a
+deterministic typesetting engine.
+.
+.FP.SECTION "First Pair Macros"
+.FP.CODE
+\&.FP.TITLE "Lighthouse Republics"
+
+\&.FP.AUTHOR "Alexy Khrabrov"
+
+\&.FP.EPIGRAPH
+The sea remembers every republic.
+\&.FP.END
+
+\&.FP.CHAPTER "The Lagoon"
+
+The lagoon was Venice's first compiler.
+
+\&.FP.QUOTE
+Cities survive by changing their abstractions.
+\&.FP.END
+
+\&.FP.SIDEBAR "Why Lagoons Matter"
+The lagoon acted as both moat and marketplace...
+\&.FP.END
+
+\&.FP.AI "Research Notes"
+Summarize recent scholarship on Venetian naval logistics.
+\&.FP.END
+.FP.END
+.FP.P
+The `.FP.AI` blocks exist only in source. During the build they are resolved
+into finished prose or omitted entirely, leaving the published book free of AI
+scaffolding while preserving the Bell Labs ideal of simple, readable source.
+.
+.FP.SECTION "Core Idea"
+.FP.P
+The combination of classic troff composability with AI-aware semantic macros
+could become the defining publishing system for First Pair Press: AI-native
+books built on timeless UNIX principles.
+.
+.FP.SECTION "The Concrete First Pair Workflow"
+.FP.P
+The proof workflow now lives in this repo rather than only in the manifesto:
+.FP.CODE
+publishing/PUBLISH.md
+publishing/scripts/build-firstpair-book.sh
+publishing/scripts/md-to-utmac.py
+publishing/scripts/setup-utmac.sh
+publishing/tmac/fp.tmac
+proofs/kiffness-loop-lab/
+proofs/kiffness-loop-lab/source.fp.tr
+.FP.END
+.FP.P
+It uses the current local book practice from QueryGraph and usavenice:
+.FP.ITEM
+Pandoc links semantic Markdown to every renderer.
+.FP.ITEM
+Typst builds the modern reader PDF and EPUB.
+.FP.ITEM
+Pandoc ms builds the groff fallback source.
+.FP.ITEM
+A hand-authored `.FP.*` troff source builds the pure First Pair/Bell Labs proof
+through `fp.tmac`, utmac, and Neatroff.
+.FP.ITEM
+Neatroff, from `~/src/neatroff_make`, builds the Bell Labs PDF from the
+generated utmac source.
+.FP.ITEM
+groff remains a compatibility fallback because the usavenice shipping pipeline
+already proves it at book scale.
+.FP.ITEM
+utmac adds a richer macro vocabulary for metadata, headings, notes, summaries,
+and book-like troff source.
+.FP.P
+The proof book is intentionally small: `proofs/kiffness-loop-lab`. It is
+derived from the Kiffness controller-manual workflow, but its main purpose is
+not music instruction. Its purpose is to prove that a human-readable source can
+produce several deterministic book artifacts while leaving enough evidence for
+the next human or AI collaborator to understand what happened.
+.
+.FP.SECTION "What Builds Today"
+.FP.P
+Run:
+.FP.CODE
+proofs/kiffness-loop-lab/build.sh
+.FP.END
+.FP.P
+The build emits:
+.FP.CODE
+firstpair-loop-lab-typst.pdf
+firstpair-loop-lab-typst.epub
+firstpair-loop-lab-firstpair.pdf
+firstpair-loop-lab-firstpair.tr
+firstpair-loop-lab-neatroff.pdf
+firstpair-loop-lab-groff.pdf
+firstpair-loop-lab-utmac.pdf
+firstpair-loop-lab-utmac.tr
+VERSION.md
+.FP.END
+.FP.P
+`firstpair-loop-lab-firstpair.pdf` is the source-level implementation of the
+macro sketch above. It is built from `source.fp.tr`, a hand-authored troff file
+using `.FP.TITLE`, `.FP.CHAPTER`, `.FP.ITEM`, `.FP.SIDEBAR`, and `.FP.AI`. The
+`.FP.AI` blocks remain visible in source and are omitted from the rendered PDF.
+.FP.P
+The utmac path is real, not merely a notation experiment. The setup script
+fetches the current utmac upstream into `.tools/utmac`, runs its makefile so
+generated macros such as `u-idx.tmac` and `u-ref.tmac` exist, and then supports
+both the hand-authored `.FP.*` source and the Markdown-derived `.tr` source
+through Neatroff.
+.
+.FP.SECTION "Human-AI Source Discipline"
+.FP.P
+The AI should not be hidden in the result.
+.FP.P
+It should be visible in the workshop:
+.FP.ITEM
+AI.md says how future agents should reason about the proof.
+.FP.ITEM
+manuscript.md remains readable by a person.
+.FP.ITEM
+source.fp.tr remains readable as direct Bell Labs source.
+.FP.ITEM
+publishing/tmac/fp.tmac is the inspectable First Pair macro layer.
+.FP.ITEM
+generated ms and tr files remain inspectable.
+.FP.ITEM
+VERSION.md records artifact names and page counts.
+.FP.ITEM
+renderer warnings are preserved as logs.
+.FP.P
+The published book should be clean. The build room should be honest.
+.FP.P
+That is the actual First Pair: the human sets intent, the AI removes friction,
+and the text remains durable enough for either one to return.
