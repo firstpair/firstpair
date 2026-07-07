@@ -1,6 +1,7 @@
 .\" Hand-authored First Pair troff source.
 .\" Build path:
-.\"   roff -M .tools/utmac -mu-en -mus -mpublishing/tmac/fp.tmac source.fp.tr | pdf
+.\"   cd proofs/kiffness-loop-lab
+.\"   neatroff -M ../../.tools/utmac -mu-en -mus -m../../publishing/tmac/fp.tmac source.fp.tr | neatpdf
 .\"
 .\" This is not generated from Markdown. It is the proof that First Pair Press
 .\" can author directly in readable troff while using utmac for page craft.
