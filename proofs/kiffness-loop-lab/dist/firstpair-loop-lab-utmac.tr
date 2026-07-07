@@ -1,0 +1,186 @@
+.\" Generated from Markdown by publishing/scripts/md-to-utmac.py
+.DA Alexy Khrabrov and Codex
+.DT First Pair Loop Lab
+.DS A Kiffness-derived proof book for human-AI publishing
+.DK first pair, human ai, reproducible books, bell labs publishing
+.H1 First Pair Loop Lab
+.PQ
+A Kiffness-derived proof book for human-AI publishing
+.H2 Start Here
+.PP
+This proof book is small on purpose.
+.PP
+The source idea comes from the Kiffness controller-manual workflow: teach a
+musician how to turn a compact MIDI controller into an actual practice loop.
+The publishing idea comes from First Pair Press: make the book itself a
+visible collaboration between a human and an AI.
+.PP
+The human brings intention:
+.PI \(bu
+this should feel practical, not ceremonial;
+.PI \(bu
+the reader should know what to do with their hands;
+.PI \(bu
+the source should remain readable years from now;
+.PI \(bu
+the pipeline should explain itself.
+.PP
+The AI brings friction removal:
+.PI \(bu
+convert source into renderer formats;
+.PI \(bu
+check that artifacts were produced;
+.PI \(bu
+preserve exact warnings;
+.PI \(bu
+keep the workflow legible for the next collaborator.
+.PP
+That is the first pair.
+.H2 The Rig
+.PP
+The musical rig is deliberately modest:
+.PI \(bu
+an Akai MPK mini or similar small controller;
+.PI \(bu
+GarageBand or Ableton Live;
+.PI \(bu
+one drum sound;
+.PI \(bu
+one bass sound;
+.PI \(bu
+one chord sound;
+.PI \(bu
+one lead or sample sound.
+.PP
+The publishing rig is equally modest:
+.PI \(bu
+Markdown for the human source;
+.PI \(bu
+Pandoc for structured conversion;
+.PI \(bu
+Typst for the modern PDF;
+.PI \(bu
+EPUB for readers;
+.PI \(bu
+Neatroff for the Bell Labs lineage;
+.PI \(bu
+utmac for a richer macro vocabulary.
+.PP
+Neither rig tries to impress by size. The point is repeatability.
+.H2 A First Loop
+.PP
+Set the tempo to something slow enough to hear your mistakes. Ninety-two
+beats per minute is a good beginner speed.
+.PP
+Make four tracks.
+.PI "1."
+Drums.
+.PI "2."
+Bass.
+.PI "3."
+Chords.
+.PI "4."
+Lead or sample.
+.PP
+Record one bar of drums first. Use the pads if the controller has pads. Use
+the keyboard if it does not. The pattern can be simple: kick on one and
+three, snare on two and four, closed hat on every eighth note.
+.PP
+Now record one bar of bass. Use only the root and fifth. If the song is in A
+minor, that means A and E. Do not chase cleverness. Make the loop stable.
+.PP
+Add two-note chords. A minor can be A and C. F can be F and A. C can be C
+and E. G can be G and B. Two notes are enough to teach the hand what harmony
+feels like.
+.PP
+Finally add a lead sound or a sample. Give it space. One short answer every
+two bars is better than a flood of notes.
+.H2 What The Controller Teaches
+.PP
+A small controller is useful because it refuses to let you hide.
+.PP
+The keys teach pitch. The pads teach rhythm. The knobs teach motion. The
+octave buttons teach range. The transport buttons teach the difference
+between recording and performing.
+.PP
+The beginner mistake is to map everything at once. The better workflow is to
+assign one job at a time:
+.PI \(bu
+keys play notes;
+.PI \(bu
+pads play drums or launch clips;
+.PI \(bu
+knobs shape one filter and one reverb;
+.PI \(bu
+transport starts, stops, and records;
+.PI \(bu
+the computer screen confirms what happened.
+.PP
+When the mapping is boring, the practice becomes musical.
+.H2 What The Publishing Pipeline Teaches
+.PP
+The book pipeline follows the same rule.
+.PP
+Markdown is the keyboard: direct, plain, and expressive.
+.PP
+Pandoc is the hub: it hears the source and sends it to different
+instruments.
+.PP
+Typst is the polished software instrument: fast, modern, and capable of
+elegant pages.
+.PP
+Neatroff is the classic instrument: terse, programmable, and close to the
+Bell Labs tradition.
+.PP
+utmac is the macro layer: it gives troff a more book-like vocabulary, with
+headings, metadata, summaries, links, notes, and typography decisions living
+in plain text.
+.PP
+The result is not one perfect renderer. The result is a system where
+renderers can disagree without threatening the source.
+.H2 How A Human And AI Should Work
+.PP
+The human should write what matters.
+.PP
+The AI should make the workshop easier to use.
+.PP
+A good AI collaborator can draft a table of contents, convert a chapter into
+utmac, notice a missing artifact, or explain why a PDF has warning output. A
+bad AI collaborator hides uncertainty and produces a polished artifact whose
+source nobody can inspect.
+.PP
+First Pair Press chooses the first kind.
+.PP
+For every build, leave evidence:
+.PI \(bu
+the Markdown source;
+.PI \(bu
+the generated .ms source;
+.PI \(bu
+the generated .tr source;
+.PI \(bu
+the Typst PDF;
+.PI \(bu
+the Neatroff PDF;
+.PI \(bu
+the EPUB;
+.PI \(bu
+the VERSION.md manifest;
+.PI \(bu
+the warning log when an engine complains.
+.PP
+That evidence is not bureaucracy. It is trust.
+.H2 The Practice Page
+.PP
+Use this page as a rehearsal.
+.PP
+Read the source. Build the book. Open the PDF. Open the EPUB. Inspect the
+utmac source. Read the log. Then change one sentence and build again.
+.PP
+If the sentence changes everywhere, the pipeline works.
+.PP
+If the source remains clear, the human can keep writing.
+.PP
+If the generated files explain what happened, the AI can keep helping.
+.PP
+That is the whole proof.

@@ -1,0 +1,6 @@
+.DS_Store
+.tools/
+proofs/*/build/
+*.tmp
+__pycache__/
+**/__pycache__/

@@ -1,0 +1,22 @@
+body {
+  font-family: Georgia, serif;
+  line-height: 1.45;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.15;
+}
+
+code,
+pre {
+  font-family: "SFMono-Regular", Menlo, Consolas, monospace;
+  font-size: 0.9em;
+}
+
+blockquote {
+  border-left: 0.16em solid #666;
+  margin-left: 0;
+  padding-left: 1em;
+}

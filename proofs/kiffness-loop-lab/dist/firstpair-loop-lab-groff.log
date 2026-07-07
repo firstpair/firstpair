@@ -1,0 +1,4 @@
+gropdf: warning: The download file in '/opt/homebrew/Cellar/groff/1.24.1/share/groff/1.24.1/font/devpdf' has erroneous entry for 'Times-Bold (TB)'
+gropdf: warning: The download file in '/opt/homebrew/Cellar/groff/1.24.1/share/groff/1.24.1/font/devpdf' has erroneous entry for 'Times-Italic (TI)'
+gropdf: warning: The download file in '/opt/homebrew/Cellar/groff/1.24.1/share/groff/1.24.1/font/devpdf' has erroneous entry for 'Times-Roman (TR)'
+gropdf: warning: The download file in '/opt/homebrew/Cellar/groff/1.24.1/share/groff/1.24.1/font/devpdf' has erroneous entry for 'Courier (CR)'

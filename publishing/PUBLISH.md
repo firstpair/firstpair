@@ -1,0 +1,183 @@
+# First Pair Press Publishing Workflow
+
+This is the working Bell Labs publishing model for First Pair Press. It joins
+three local precedents:
+
+- the First Pair manifesto: books are semantic source, not static artifacts;
+- the QueryGraph publishing contract: stable artifacts, versioned names, and a
+  `VERSION.md` delivery manifest;
+- the usavenice book pipeline: Pandoc as the linker, Typst as the modern PDF
+  path, troff as the classic path, and generated artifacts verified instead of
+  merely hoped for.
+
+The goal is not nostalgia. The goal is a readable, inspectable workshop where a
+human and an AI can collaborate without hiding the handoff.
+
+## Repository Shape
+
+```text
+publishing/
+  PUBLISH.md
+  scripts/
+    build-firstpair-book.sh
+    md-to-utmac.py
+    setup-utmac.sh
+
+proofs/<book>/
+  README.md
+  AI.md
+  VERSION
+  metadata.yaml
+  cover.md
+  manuscript.md
+  epub.css
+  build.sh
+  build/                  # ignored generated intermediates
+  dist/                   # stable and versioned proof artifacts
+```
+
+The proof book is deliberately small. A small book lets the whole toolchain be
+understood by a person, inspected by an AI, rebuilt quickly, and compared across
+engines without burying the reader in ceremony.
+
+## Source Contract
+
+The manuscript is plain Markdown with YAML metadata. It should be pleasant to
+read in a terminal, in a text editor, and through Pandoc.
+
+Every proof book should include:
+
+- `metadata.yaml`: reader-facing title, subtitle, author, publisher, and
+  `title_stem`.
+- `manuscript.md`: the semantic source.
+- `AI.md`: collaboration rules for future agents.
+- `README.md`: human build notes and current artifact inventory.
+- `VERSION`: the book's semantic version.
+
+AI-visible notes are allowed in source support files. They are not allowed to be
+the only place where publishing decisions live. If a choice changes the book,
+the source, script, or runbook must say so.
+
+## Build Graph
+
+```text
+Markdown source
+  |
+  +-- Pandoc -> Typst PDF
+  |
+  +-- Pandoc -> EPUB3
+  |
+  +-- Pandoc -> ms -> Neatroff PDF
+  |
+  +-- Pandoc -> ms -> groff PDF fallback
+  |
+  +-- Pandoc JSON -> utmac .tr -> Neatroff/utmac PDF
+```
+
+Pandoc is the linker. Typst is the contemporary book renderer. Neatroff is the
+Bell Labs lineage rendered with current local tools. groff is retained as the
+shipping-compatible fallback because the usavenice pipeline already proves that
+route for full books with images.
+
+## Neatroff And Utmac
+
+The active local Neatroff source lives at:
+
+```text
+~/src/neatroff_make
+```
+
+The build script prefers that tree when it contains:
+
+```text
+neatroff/roff
+neatpost/pdf
+neatpost/post
+neateqn/eqn
+neatrefer/refer
+troff/pic/pic
+troff/tbl/tbl
+```
+
+If that tree is not built, run:
+
+```sh
+cd ~/src/neatroff_make
+make init
+make neat
+```
+
+The utmac macro set comes from Pierre Jean Fichet's `utmac`. The GitHub repo is
+archived and points to Codeberg as the current upstream, so the setup script
+uses Codeberg by default:
+
+```sh
+publishing/scripts/setup-utmac.sh
+```
+
+That script clones `utmac` into `.tools/utmac`, runs the utmac makefile to
+generate `u-idx.tmac` and `u-ref.tmac`, and leaves the checkout untracked. It
+does not vendor the macro source into this repo.
+
+Current local caveat: Neatroff itself builds and runs. The utmac PDF path also
+emits a PDF, but utmac's default Libertinus font family is not present in the
+local `neatroff_make` font set, so the utmac target can emit font-mount
+warnings. The generated PDF and warning log are kept as proof. The clean next
+step is to add Libertinus TTF/OTF files to `~/src/neatroff_make/fonts` and run
+`make neat` again.
+
+## Build A Proof
+
+```sh
+proofs/kiffness-loop-lab/build.sh
+```
+
+The script writes stable files under `proofs/kiffness-loop-lab/dist/`:
+
+```text
+firstpair-loop-lab-typst.pdf
+firstpair-loop-lab-typst.epub
+firstpair-loop-lab-neatroff.pdf
+firstpair-loop-lab-groff.pdf
+firstpair-loop-lab-utmac.pdf
+firstpair-loop-lab-utmac.tr
+VERSION.md
+```
+
+It also creates versioned symlinks using `<stem> (<version>-<hash>)` names. When
+there is no commit yet, the hash is `draft`.
+
+## Human-AI Pairing Rules
+
+1. The human owns intent, taste, risk, and publication.
+2. The AI may propose structure, generate mechanical conversions, check
+   consistency, and explain uncertainty.
+3. No hidden edits: every transformation must leave source, script, log, or
+   manifest evidence.
+4. Prefer small files with plain names over clever abstractions.
+5. Keep final artifacts boringly reproducible.
+6. If a renderer fails, preserve the exact generated source and error log.
+
+This is the real First Pair: not an author replaced by a tool, and not a tool
+pretending to be an author, but a pair that can inspect each other's work.
+
+## Verification
+
+Before calling a proof book done, run:
+
+```sh
+proofs/kiffness-loop-lab/build.sh
+git diff --check
+```
+
+Useful artifact probes:
+
+```sh
+pdfinfo proofs/kiffness-loop-lab/dist/firstpair-loop-lab-typst.pdf
+pdfinfo proofs/kiffness-loop-lab/dist/firstpair-loop-lab-neatroff.pdf
+unzip -l proofs/kiffness-loop-lab/dist/firstpair-loop-lab-typst.epub | head
+sed -n '1,120p' proofs/kiffness-loop-lab/dist/VERSION.md
+```
+
+Delivery to iCloud Books is intentionally not automatic in this first proof.
+That should be added only after the artifact contract stabilizes.
