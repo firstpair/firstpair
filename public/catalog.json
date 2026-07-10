@@ -120,7 +120,7 @@
       "slug": "invented-enemy",
       "title": "The Invented Enemy",
       "kicker": "Preview edition",
-      "description": "A public preview of the history of Russophobia and the anti-Slavic imagination — front matter, the complete eighteen-chapter table of contents, and the opening chapter, as PDF, EPUB, and hosted web readers.",
+      "description": "A public preview of the history of Russophobia and the anti-Slavic imagination \u2014 front matter, the complete eighteen-chapter table of contents, and the opening chapter, as PDF, EPUB, and hosted web readers.",
       "accent": "#3b4a68",
       "homepage": "/invented-enemy/preview/",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/7f532e7a46b37a2b-invented-enemy-preview.pdf",
@@ -139,7 +139,7 @@
       "slug": "from-1-to-0",
       "title": "From 1 to 0",
       "kicker": "Preview edition",
-      "description": "A public preview of the anti-history of Silicon Valley — Notes on Startups, or How to Lose the Future — with the full plan of the book, the Introduction, and the Anti-Naval Ontology of Failure as PDF, EPUB, and hosted web readers.",
+      "description": "A public preview of the anti-history of Silicon Valley \u2014 Notes on Startups, or How to Lose the Future \u2014 with the full plan of the book, the Introduction, and the Anti-Naval Ontology of Failure as PDF, EPUB, and hosted web readers.",
       "accent": "#8a6d3b",
       "homepage": "/from-1-to-0/preview/",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/from-1-to-0/pdf/5d0add95822763da-from-1-to-0-preview.pdf",
@@ -152,7 +152,8 @@
         "preview",
         "startups",
         "Silicon Valley"
-      ]
+      ],
+      "source": "https://github.com/firstpair/from-1-to-0"
     }
   ]
 }

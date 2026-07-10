@@ -13,7 +13,8 @@ Valley written as the deliberate opposite of *Zero to One*.
 - [Chapter reader](/read/from-1-to-0/chapters/)
 - [Preview manifest](preview/PREVIEW.md)
 
-The book's source repository owns the complete manuscript, the research
-dossiers, the version manifest, and the canonical build scripts. First Pair
-publishes only the preview page, the PDF/EPUB artifact URLs, and the hosted
-web readers.
+The book's source repository —
+[firstpair/from-1-to-0](https://github.com/firstpair/from-1-to-0) — owns the
+complete manuscript, the research dossiers, the version manifest, and the
+canonical build scripts. First Pair publishes only the preview page, the
+PDF/EPUB artifact URLs, and the hosted web readers.
