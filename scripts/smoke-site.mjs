@@ -72,6 +72,7 @@ async function checkReaderBody(book, path) {
     bodyLength: body.length,
     hasBookTitle: body.includes(book.title),
     hasAppShell: body.includes('<div id="app"></div>'),
+    hasLibraryLink: body.includes('First Pair Library') && body.includes('firstpair-library-link'),
   }
 }
 
@@ -117,7 +118,7 @@ const catalogChecks = {
       ),
   readerBodyChecks,
   failedReaderBodies: readerBodyChecks.filter(
-    (result) => !result.ok || !result.hasBookTitle || result.hasAppShell,
+    (result) => !result.ok || !result.hasBookTitle || result.hasAppShell || !result.hasLibraryLink,
   ),
 }
 

@@ -56,6 +56,11 @@ hashes and Blob URLs so unchanged files and chapter packages are skipped.
 `book-uploads/staging/` is ignored and may hold local operational copies, but
 must not be deployed or committed as book payload.
 
+Hosted HTML readers must include a visible link back to the First Pair library.
+Implement that navigation in the FirstPair reader proxy, not by rewriting and
+reuploading every generated HTML artifact. The link should point to `/`, render
+on single-file and chapter HTML pages, and stay hidden in print output.
+
 Create or update `public/<book-stem>/README.md`. The README should briefly
 overview the book, link the Blob-backed PDF and EPUB downloads, link the hosted
 single-file and chapter readers, and point back to the original source

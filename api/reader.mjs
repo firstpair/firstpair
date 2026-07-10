@@ -12,6 +12,43 @@ const hopByHopHeaders = new Set([
   'transfer-encoding',
   'upgrade',
 ])
+const libraryLinkStyle = `<style id="firstpair-library-link-style">
+.firstpair-library-link {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 2147483647;
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid rgba(20, 28, 42, 0.16);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #172033;
+  box-shadow: 0 8px 24px rgba(20, 28, 42, 0.14);
+  font: 600 13px/1.2 system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+}
+.firstpair-library-link:hover {
+  background: #ffffff;
+  color: #0b1220;
+}
+@media (prefers-color-scheme: dark) {
+  .firstpair-library-link {
+    border-color: rgba(255, 255, 255, 0.22);
+    background: rgba(15, 23, 42, 0.88);
+    color: #f8fafc;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+@media print {
+  .firstpair-library-link {
+    display: none !important;
+  }
+}
+</style>`
+const libraryLink = `<a class="firstpair-library-link" href="/" aria-label="Back to First Pair library">&larr; First Pair Library</a>`
 
 function requestPathParts(requestUrl) {
   const url = new URL(requestUrl, 'https://firstpair.org')
@@ -60,7 +97,31 @@ function contentSecurityPolicy() {
   ].join('; ')
 }
 
-function setResponseHeaders(upstream, response) {
+function htmlTarget(url) {
+  return new URL(url).pathname.endsWith('.html')
+}
+
+function injectLibraryLink(html) {
+  if (html.includes('firstpair-library-link')) {
+    return html
+  }
+
+  let nextHtml = html.replace(/<\/head\s*>/i, `${libraryLinkStyle}\n</head>`)
+
+  if (nextHtml === html) {
+    nextHtml = `${libraryLinkStyle}\n${nextHtml}`
+  }
+
+  const withBodyLink = nextHtml.replace(/<body\b([^>]*)>/i, `<body$1>\n${libraryLink}`)
+
+  if (withBodyLink === nextHtml) {
+    return `${libraryLink}\n${nextHtml}`
+  }
+
+  return withBodyLink
+}
+
+function setResponseHeaders(upstream, response, { modifiedHtml = false } = {}) {
   for (const [key, value] of upstream.headers.entries()) {
     const normalizedKey = key.toLowerCase()
 
@@ -69,7 +130,9 @@ function setResponseHeaders(upstream, response) {
       normalizedKey === 'content-disposition' ||
       normalizedKey === 'content-security-policy' ||
       normalizedKey === 'content-encoding' ||
-      normalizedKey === 'content-length'
+      normalizedKey === 'content-length' ||
+      (modifiedHtml &&
+        ['accept-ranges', 'content-range', 'etag', 'last-modified'].includes(normalizedKey))
     ) {
       continue
     }
@@ -79,6 +142,10 @@ function setResponseHeaders(upstream, response) {
 
   response.setHeader('Content-Disposition', 'inline')
   response.setHeader('Content-Security-Policy', contentSecurityPolicy())
+
+  if (modifiedHtml) {
+    response.setHeader('Content-Type', 'text/html; charset=utf-8')
+  }
 }
 
 export default async function handler(request, response) {
@@ -111,11 +178,12 @@ export default async function handler(request, response) {
     return
   }
 
+  const shouldModifyHtml = htmlTarget(target)
   const headers = {
     'accept-encoding': 'identity',
   }
 
-  if (request.headers.range) {
+  if (!shouldModifyHtml && request.headers.range) {
     headers.range = request.headers.range
   }
 
@@ -126,10 +194,16 @@ export default async function handler(request, response) {
   })
 
   response.statusCode = upstream.status
-  setResponseHeaders(upstream, response)
+  setResponseHeaders(upstream, response, { modifiedHtml: shouldModifyHtml && upstream.ok })
 
   if (request.method === 'HEAD' || !upstream.body) {
     response.end()
+    return
+  }
+
+  if (shouldModifyHtml && upstream.ok) {
+    const html = injectLibraryLink(await upstream.text())
+    response.end(html)
     return
   }
 
