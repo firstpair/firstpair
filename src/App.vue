@@ -196,7 +196,13 @@ const fragments = [
       <p v-if="catalogError" class="catalog-error">{{ catalogError }}</p>
 
       <div class="book-grid">
-        <article v-for="book in books" :key="book.slug" class="book-card" :style="{ '--book-accent': book.accent }">
+        <article
+          v-for="book in books"
+          :id="book.slug"
+          :key="book.slug"
+          class="book-card"
+          :style="{ '--book-accent': book.accent }"
+        >
           <div class="book-card__cover">
             <Sparkles :size="24" />
             <span>{{ book.kicker }}</span>

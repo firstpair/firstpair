@@ -28,6 +28,10 @@ function readerRoutes() {
       dest: '/api/reader?path=$1',
     },
     {
+      src: '^/learn(?:/(.*))?$',
+      dest: '/api/reader?path=$1&area=tutorial',
+    },
+    {
       handle: 'filesystem',
     },
     {
@@ -38,12 +42,20 @@ function readerRoutes() {
 }
 
 function readerMap(books) {
-  return books.map((book) => ({
-    slug: book.slug,
-    htmlSource: book.htmlSource,
-    htmlChaptersSource: normalizeIndexUrl(book.htmlChaptersSource),
-    htmlChaptersBase: chapterBase(book.htmlChaptersSource),
-  }))
+  return books.map((book) => {
+    const entry = {
+      slug: book.slug,
+      htmlSource: book.htmlSource,
+      htmlChaptersSource: normalizeIndexUrl(book.htmlChaptersSource),
+      htmlChaptersBase: chapterBase(book.htmlChaptersSource),
+    }
+
+    if (book.tutorialSource) {
+      entry.tutorialSource = book.tutorialSource
+    }
+
+    return entry
+  })
 }
 
 const catalog = JSON.parse(await readFile(catalogPath, 'utf8'))

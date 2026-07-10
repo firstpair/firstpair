@@ -36,6 +36,12 @@
       "html": "book-uploads/staging/sail-rust-book/sail-rust-book.html",
       "htmlChapters": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters"
     },
+    "omnighost": {
+      "pdf": "book-uploads/staging/omnighost/omnighost.pdf",
+      "epub": "book-uploads/staging/omnighost/omnighost.epub",
+      "html": "book-uploads/staging/omnighost/omnighost.html",
+      "htmlChapters": "book-uploads/staging/omnighost/omnighost-chapters"
+    },
     "invented-enemy": {
       "pdf": "book-uploads/staging/invented-enemy/preview/artifacts/main/invented-enemy-preview.pdf",
       "epub": "book-uploads/staging/invented-enemy/preview/artifacts/main/invented-enemy-preview.epub",
@@ -47,6 +53,12 @@
       "epub": "book-uploads/staging/from-1-to-0/from-1-to-0-preview.epub",
       "html": "book-uploads/staging/from-1-to-0/from-1-to-0-preview.html",
       "htmlChapters": "book-uploads/staging/from-1-to-0/from-1-to-0-preview-chapters"
+    },
+    "zucchero": {
+      "pdf": "book-uploads/staging/zucchero/zucchero.pdf",
+      "epub": "book-uploads/staging/zucchero/zucchero.epub",
+      "html": "book-uploads/staging/zucchero/zucchero.html",
+      "htmlChapters": "book-uploads/staging/zucchero/zucchero-chapters"
     }
   }
 }

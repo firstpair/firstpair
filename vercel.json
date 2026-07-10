@@ -8,6 +8,10 @@
       "dest": "/api/reader?path=$1"
     },
     {
+      "src": "^/learn(?:/(.*))?$",
+      "dest": "/api/reader?path=$1&area=tutorial"
+    },
+    {
       "handle": "filesystem"
     },
     {

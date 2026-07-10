@@ -52,7 +52,8 @@ const libraryLink = `<a class="firstpair-library-link" href="/" aria-label="Back
 
 function requestPathParts(requestUrl) {
   const url = new URL(requestUrl, 'https://firstpair.org')
-  const path = url.searchParams.get('path') ?? url.pathname.replace(/^\/(?:api\/reader|read)\/?/, '')
+  const path =
+    url.searchParams.get('path') ?? url.pathname.replace(/^\/(?:api\/reader|read|learn)\/?/, '')
 
   return path
     .split('/')
@@ -60,16 +61,34 @@ function requestPathParts(requestUrl) {
     .map((part) => decodeURIComponent(part))
 }
 
+function requestArea(requestUrl) {
+  const url = new URL(requestUrl, 'https://firstpair.org')
+
+  if (url.searchParams.get('area') === 'tutorial' || url.pathname.startsWith('/learn/')) {
+    return 'tutorial'
+  }
+
+  return null
+}
+
 function encodePathParts(parts) {
   return parts.map((part) => encodeURIComponent(part)).join('/')
 }
 
-function targetUrl(parts, search) {
+function targetUrl(parts, search, areaOverride = null) {
   const [slug, area, ...rest] = parts
   const book = books.get(slug)
 
   if (!book) {
     return null
+  }
+
+  if (areaOverride === 'tutorial') {
+    if (area || !book.tutorialSource) {
+      return null
+    }
+
+    return `${book.tutorialSource}${search}`
   }
 
   if (!area) {
@@ -87,14 +106,22 @@ function targetUrl(parts, search) {
   return `${book.htmlChaptersBase}/${encodePathParts(rest)}${search}`
 }
 
-function contentSecurityPolicy() {
-  return [
+function contentSecurityPolicy(area = null) {
+  const directives = [
     "default-src 'self'",
     "img-src 'self' data:",
     "style-src 'self' 'unsafe-inline'",
     "media-src 'self' data:",
     "font-src 'self' data:",
-  ].join('; ')
+  ]
+
+  if (area === 'tutorial') {
+    // Interactive tutorials are self-contained single-file HTML driven by an
+    // inline script; allow it only on /learn routes.
+    directives.push("script-src 'self' 'unsafe-inline'")
+  }
+
+  return directives.join('; ')
 }
 
 function htmlTarget(url) {
@@ -121,7 +148,7 @@ function injectLibraryLink(html) {
   return withBodyLink
 }
 
-function setResponseHeaders(upstream, response, { modifiedHtml = false } = {}) {
+function setResponseHeaders(upstream, response, { modifiedHtml = false, area = null } = {}) {
   for (const [key, value] of upstream.headers.entries()) {
     const normalizedKey = key.toLowerCase()
 
@@ -169,8 +196,10 @@ export default async function handler(request, response) {
   const url = new URL(request.url, 'https://firstpair.org')
   const upstreamSearch = new URLSearchParams(url.searchParams)
   upstreamSearch.delete('path')
+  upstreamSearch.delete('area')
 
-  const target = targetUrl(parts, upstreamSearch.size ? `?${upstreamSearch}` : '')
+  const area = requestArea(request.url)
+  const target = targetUrl(parts, upstreamSearch.size ? `?${upstreamSearch}` : '', area)
 
   if (!target) {
     response.statusCode = 404
@@ -194,7 +223,7 @@ export default async function handler(request, response) {
   })
 
   response.statusCode = upstream.status
-  setResponseHeaders(upstream, response, { modifiedHtml: shouldModifyHtml && upstream.ok })
+  setResponseHeaders(upstream, response, { modifiedHtml: shouldModifyHtml && upstream.ok, area })
 
   if (request.method === 'HEAD' || !upstream.body) {
     response.end()

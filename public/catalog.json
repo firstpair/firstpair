@@ -117,10 +117,48 @@
       "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/1730f34f3a4fce10/index.html"
     },
     {
+      "slug": "zucchero",
+      "title": "Learn Italian with Zucchero",
+      "kicker": "Finished book",
+      "description": "An Italian study-method article for learning through Zucchero songs, with public-safe song inventory, PDF, EPUB, and hosted web readers.",
+      "accent": "#8b2e25",
+      "source": "https://github.com/alexy/zucchero",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/pdf/3796d823f6cea455-zucchero.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/epub/faee29fdec110ed6-zucchero.epub",
+      "html": "/read/zucchero/",
+      "htmlChapters": "/read/zucchero/chapters/",
+      "tags": [
+        "finished",
+        "Italian",
+        "music"
+      ],
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/html/f2f527d3dcb05c68-zucchero.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/chapters/56d1c56b8a816ac6/index.html"
+    },
+    {
+      "slug": "omnighost",
+      "title": "Omnighost for First Pair Press",
+      "kicker": "Finished book",
+      "description": "The First Pair Press field guide to publishing from Obsidian to Ghost across every blog, with mobile workflows, image publishing, textpack import, and multi-blog distribution.",
+      "accent": "#4d6f8f",
+      "source": "https://github.com/firstpair/omnighost",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/656e1489f74badce-omnighost.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/df3a46f1046fe155-omnighost.epub",
+      "html": "/read/omnighost/",
+      "htmlChapters": "/read/omnighost/chapters/",
+      "tags": [
+        "finished",
+        "publishing",
+        "Obsidian"
+      ],
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/html/2db1ce89d286b4f0-omnighost.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/chapters/b1693cd954ef72b0/index.html"
+    },
+    {
       "slug": "invented-enemy",
       "title": "The Invented Enemy",
       "kicker": "Preview edition",
-      "description": "A public preview of the history of Russophobia and the anti-Slavic imagination \u2014 front matter, the complete eighteen-chapter table of contents, and the opening chapter, as PDF, EPUB, and hosted web readers.",
+      "description": "A public preview of the history of Russophobia and the anti-Slavic imagination — front matter, the complete eighteen-chapter table of contents, and the opening chapter, as PDF, EPUB, and hosted web readers.",
       "accent": "#3b4a68",
       "homepage": "/invented-enemy/preview/",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/7f532e7a46b37a2b-invented-enemy-preview.pdf",
@@ -139,7 +177,7 @@
       "slug": "from-1-to-0",
       "title": "From 1 to 0",
       "kicker": "Preview edition",
-      "description": "A public preview of the anti-history of Silicon Valley \u2014 Notes on Startups, or How to Lose the Future \u2014 with the full plan of the book, the Introduction, and the Anti-Naval Ontology of Failure as PDF, EPUB, and hosted web readers.",
+      "description": "A public preview of the anti-history of Silicon Valley — Notes on Startups, or How to Lose the Future — with the full plan of the book, the Introduction, and the Anti-Naval Ontology of Failure as PDF, EPUB, and hosted web readers.",
       "accent": "#8a6d3b",
       "homepage": "/from-1-to-0/preview/",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/from-1-to-0/pdf/5d0add95822763da-from-1-to-0-preview.pdf",

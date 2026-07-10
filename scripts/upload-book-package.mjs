@@ -383,6 +383,12 @@ for (const field of ['pdf', 'epub', 'html']) {
   units[field] = await uploadFileUnit(manifest, field, source)
 }
 
+const tutorialSource = sourcePath(sourceBook.tutorial)
+
+if (tutorialSource) {
+  units.tutorial = await uploadFileUnit(manifest, 'tutorial', tutorialSource)
+}
+
 const chaptersSource = sourcePath(sourceBook.htmlChapters)
 
 if (!chaptersSource) {
@@ -405,6 +411,11 @@ if (!dryRun) {
   book.htmlChaptersSource = units.htmlChapters.url
   book.html = `/read/${slug}/`
   book.htmlChapters = `/read/${slug}/chapters/`
+
+  if (units.tutorial) {
+    book.tutorialSource = units.tutorial.url
+    book.tutorial = `/learn/${slug}/`
+  }
 
   await mkdir(uploadsDir, { recursive: true })
   await writeFile(`${manifestPath}.tmp`, `${JSON.stringify(manifest, null, 2)}\n`)
