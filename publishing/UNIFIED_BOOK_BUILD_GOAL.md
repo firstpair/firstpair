@@ -89,9 +89,9 @@ APC40 follows once its authoritative local checkout is located.
 | ---: | --- | --- | --- | --- | --- | --- |
 | 1 | `typesec` | `/Users/alexy/src/typesec` | `firstpair` | passed | passed | complete (`888af9e`..`2045a92`) |
 | 2 | `grust` | `/Users/alexy/src/grust` | `firstpair` | passed | passed | complete (`9fa4722`, `5493b69`) |
-| 3 | `lakecat` | `/Users/alexy/src/lakecat` | `firstpair` | pending | pending | pending |
-| 4 | `invented-enemy` | `/Users/alexy/src/russophobia` | non-Git source tree; record changes locally | pending | pending | pending |
-| 5 | `sail-rust-book` | `/Users/alexy/src/book-sources/sail-rust-book` | `firstpair` | pending | pending | pending |
+| 3 | `lakecat` | `/Users/alexy/src/lakecat` | `firstpair` | passed | passed | complete (`a07c773e`, `6108aa39`) |
+| 4 | `invented-enemy` | `/Users/alexy/src/russophobia` | `firstpair` | passed | passed | complete (`7ec9e4d`) |
+| 5 | `sail-rust-book` | `/Users/alexy/src/book-sources/sail-rust-book` | `firstpair` | passed | passed | complete (`08fda92`, `af0cffa`, `344e879`) |
 | 6 | `zucchero` | `/Users/alexy/src/zucchero` | `firstpair` | pending | pending | pending |
 | 7 | `from-1-to-0` | `/Users/alexy/from-1-to-0` | `firstpair` | pending | pending | pending |
 | 8 | `rio-grande` | `/Users/alexy/src/book-sources/rio-grande-history` | `firstpair` | pending | pending | pending |
@@ -171,3 +171,29 @@ This goal is complete only when:
   builder; asdf 3.14.5 plus uv lock `pypdf`. The 29-page PDF, EPUB, MOBI,
   single HTML, 16 chapter pages, manifest/links, visual checks, and publisher
   dry-run (`edition: full`) passed.
+- 2026-07-11: LakeCat migrated on branch `firstpair`. Its source-owned eight
+  diagram renderer and EPUB/PDF/artifact validators now run as shared hooks;
+  automatic iCloud copying was removed from the build. The 56-page PDF, EPUB,
+  MOBI, single HTML, 19 chapter pages, manifest/links, and publisher dry-run
+  (`edition: full`) passed.
+- 2026-07-11: Invented Enemy migrated on branch `firstpair`. Its source-owned
+  asdf 3.12.3 plus uv assembly hook retains the preview ceiling and the Pandoc
+  reader flags that prevent dash rules from becoming narrow tables. The
+  11-page preview and 211-page full PDF, EPUB, HTML/chapter packages,
+  manifests, links, and shared verifiers passed. Publisher dry-run from the
+  repository root selected `book/dist-preview` with `edition: preview`; no
+  full-publication flag or delivery action was used.
+- 2026-07-11: Sail migrated on branch `firstpair`. The source-owned preparation
+  hook stages twenty chapters, renders 76 SVG diagrams, adds stable chapter
+  anchors, and rewrites source Markdown navigation for EPUB/HTML. Mandatory PDF
+  geometry checks found two legacy-clipped right-edge sequence labels on pages
+  34 and 215; the renderer now turns rightmost self-calls inward, and both
+  pages were visually rechecked. The corrected 303-page PDF, EPUB, MOBI,
+  single HTML, 20 chapter pages plus index, manifest/links, and parent-root
+  publisher dry-run (`edition: full`) passed. Existing dirty legacy binaries
+  and unrelated Sail code-book output remain untouched.
+- 2026-07-11: Publisher discovery now prefers dist paths declared by the
+  canonical `book.build.json`, covering nested book roots such as Sail's. The
+  shared verifier now checks relative HTML/EPUB resources and rejects leaked
+  source `.md` links. Both behaviors have regression fixtures, and the complete
+  Typst/Neatroff/preview-full fixture matrix passes.

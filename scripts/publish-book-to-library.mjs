@@ -63,6 +63,7 @@ function usage() {
 Publishes a built book directory into the First Pair library.
 
 The input may be a dist directory or a repo/book directory containing one of:
+  book.build.json (the configured dist is preferred)
   dist/
   build/dist/
   book/
@@ -251,12 +252,37 @@ async function scoreDistCandidate(path) {
   return { path, score }
 }
 
+async function configuredDistCandidates(inputDir, wantFull) {
+  let config
+  try {
+    config = JSON.parse(await readFile(join(inputDir, 'book.build.json'), 'utf8'))
+  } catch (error) {
+    if (error?.code === 'ENOENT') return []
+    throw new Error(`could not read book.build.json under ${inputDir}: ${error.message}`)
+  }
+
+  const candidates = []
+  if (config.editions) {
+    const order = wantFull ? ['full', 'preview'] : ['preview', 'full']
+    for (const edition of order) {
+      const override = config.editions[edition]
+      if (!override) continue
+      const bookRoot = override.bookRoot ?? config.bookRoot ?? '.'
+      candidates.push(resolve(inputDir, override.dist ?? config.dist ?? join(bookRoot, 'dist')))
+    }
+  } else {
+    const bookRoot = config.bookRoot ?? '.'
+    candidates.push(resolve(inputDir, config.dist ?? join(bookRoot, 'dist')))
+  }
+  return candidates
+}
+
 async function resolveDistDir(inputDir, wantFull, slug) {
   // Prefer the safe edition by default: dist-preview unless --full is passed.
   // A book may split its output into dist-preview/ and dist-full/ (each a
   // publish-complete dir). Fall back to a generic dist/ for books that don't.
   const editionDirs = wantFull ? ['dist-full', 'dist-preview'] : ['dist-preview', 'dist-full']
-  const ordered = []
+  const ordered = await configuredDistCandidates(inputDir, wantFull)
 
   for (const base of [inputDir, join(inputDir, 'book')]) {
     for (const dir of editionDirs) {

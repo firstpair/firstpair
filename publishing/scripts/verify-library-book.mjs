@@ -3,6 +3,7 @@
 import { spawnSync } from 'node:child_process'
 import { lstatSync, readFileSync, readdirSync, readlinkSync, statSync } from 'node:fs'
 import { basename, dirname, join, resolve } from 'node:path'
+import { posix } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
@@ -85,6 +86,31 @@ function stripMarkup(text) {
     .trim()
 }
 
+function localResourceTarget(value) {
+  if (!value || value.startsWith('#') || value.startsWith('/') || value.startsWith('//')) return null
+  if (/^[A-Za-z][A-Za-z0-9+.-]*:/.test(value)) return null
+  const withoutSuffix = value.split(/[?#]/, 1)[0]
+  if (!withoutSuffix) return null
+  try {
+    return decodeURIComponent(withoutSuffix)
+  } catch {
+    return withoutSuffix
+  }
+}
+
+function resourceReferences(text) {
+  return [...text.matchAll(/\b(?:src|href)=["']([^"']+)["']/gi)].map((match) => match[1])
+}
+
+function verifyHtmlResources(text, path, label) {
+  for (const reference of resourceReferences(text)) {
+    const target = localResourceTarget(reference)
+    if (!target) continue
+    if (/\.md$/i.test(target)) failures.push(`${label} links to source Markdown: ${reference}`)
+    else if (!present(resolve(dirname(path), target))) failures.push(`${label} has a missing local resource: ${reference}`)
+  }
+}
+
 function verifyHtml(path, label, minimumWords = 30) {
   if (!present(path)) {
     failures.push(`missing ${label}: ${basename(path)}`)
@@ -97,6 +123,7 @@ function verifyHtml(path, label, minimumWords = 30) {
   if (/\b(?:src|href)=["'](?:file:\/\/\/|\/Users\/[^/]+\/)/i.test(text)) {
     failures.push(`${label} leaks a local absolute resource link`)
   }
+  verifyHtmlResources(text, path, label)
 }
 
 let marker
@@ -169,12 +196,23 @@ if (marker.epub_file && present(join(distDir, marker.epub_file))) {
         if (!pattern.test(opf)) failures.push(`EPUB metadata/package is missing ${label}`)
       }
     }
+    const entrySet = new Set(entries)
     const contentEntries = entries.filter((entry) => /\.(xhtml|html)$/i.test(entry))
     if (contentEntries.length === 0) failures.push('EPUB contains no XHTML content')
     let wordCount = 0
     for (const entry of contentEntries) {
-      wordCount += stripMarkup(command('unzip', ['-p', epubPath, entry])).split(/\s+/).filter(Boolean).length
-      if (wordCount >= 30) break
+      const content = command('unzip', ['-p', epubPath, entry])
+      wordCount += stripMarkup(content).split(/\s+/).filter(Boolean).length
+      for (const reference of resourceReferences(content)) {
+        const target = localResourceTarget(reference)
+        if (!target) continue
+        if (/\.md$/i.test(target)) {
+          failures.push(`EPUB content links to source Markdown: ${reference}`)
+          continue
+        }
+        const archivePath = posix.normalize(posix.join(posix.dirname(entry), target))
+        if (!entrySet.has(archivePath)) failures.push(`EPUB content has a missing resource: ${reference}`)
+      }
     }
     if (wordCount < 30) failures.push('EPUB contains too little readable text')
   } catch (error) {
