@@ -7,8 +7,8 @@ redistribute complete copyrighted song lyrics.
 
 ## Current Public Editions
 
-- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/pdf/6b458e40b40a7357-zucchero.pdf)
-- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/epub/746d262cda31386e-zucchero.epub)
+- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/pdf/4a3445eaecf16a08-zucchero.pdf)
+- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/epub/b5c853f6e5fc4e1f-zucchero.epub)
 - [Read online](/read/zucchero/)
 - [Chapter reader](/read/zucchero/chapters/)
 - [Library entry](https://firstpair.org/#zucchero)

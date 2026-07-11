@@ -142,8 +142,8 @@
       "description": "An Italian study-method article for learning through Zucchero songs, with public-safe song inventory, PDF, EPUB, and hosted web readers.",
       "accent": "#8b2e25",
       "source": "https://github.com/alexy/zucchero",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/pdf/6b458e40b40a7357-zucchero.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/epub/746d262cda31386e-zucchero.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/pdf/4a3445eaecf16a08-zucchero.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/epub/b5c853f6e5fc4e1f-zucchero.epub",
       "html": "/read/zucchero/",
       "htmlChapters": "/read/zucchero/chapters/",
       "tags": [
@@ -151,8 +151,8 @@
         "Italian",
         "music"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/html/8d1e36f3c8b3d734-zucchero.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/chapters/0e5e30f25166544e/index.html"
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/html/8a3227cb87d1bdbc-zucchero.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/chapters/c9803e76b7f16ba8/index.html"
     },
     {
       "slug": "omnighost",
