@@ -1,7 +1,7 @@
 # Unified Book Build Goal
 
 Started: 2026-07-11
-Status: active
+Status: complete
 Branch convention: `firstpair` in every participating Git repository
 
 ## Objective
@@ -76,6 +76,9 @@ source-repository migration.
 - [x] Normalize legacy stable/versioned manifest aliases.
 - [x] Honor `primary_format`/`public_format` for dual-format packages.
 - [x] Fix suffixed PDF iteration in the marker checker and artifact publisher.
+- [x] Register optional tutorial artifacts from `VERSION.md` in publisher plans.
+- [x] Run chapter-resource rewriting through the asdf/uv-managed Python and
+      normalize generated text resources.
 - [x] Document the shared invocation and migration contract in `PUBLISH.md`.
 - [x] Run FirstPair syntax, fixture, unit, catalog, and production-build checks.
 
@@ -83,7 +86,8 @@ source-repository migration.
 
 The order deliberately starts with the closest existing builds, establishes the
 preview/full reference early, then handles custom Python and dual-format books.
-APC40 follows once its authoritative local checkout is located.
+The authoritative APC40 checkout was cloned from `alexy/music` into
+`/Users/alexy/src/music` after no usable local Git checkout was found.
 
 | Order | Catalog slug | Source repository | Branch | Shared build | Verification | Status |
 | ---: | --- | --- | --- | --- | --- | --- |
@@ -97,7 +101,7 @@ APC40 follows once its authoritative local checkout is located.
 | 8 | `rio-grande` | `/Users/alexy/src/book-sources/rio-grande-history` | `firstpair` | passed | passed | complete (`f8409f1`, `e3f2013`, `b46ca96`) |
 | 9 | `omnighost` | `/Users/alexy/src/omnighost` | `firstpair` | passed | passed | complete (`7e35022`, `c742fd5`) |
 | 10 | `lighthouse-republics` | `/Users/alexy/src/venezia/usavenice` | `firstpair` | passed | passed | complete (`cf11416`, `37c0da3`) |
-| 11 | `apc40-mk2-ableton-start` | authoritative checkout to be resolved from `alexy/music` | `firstpair` | pending | pending | pending |
+| 11 | `apc40-mk2-ableton-start` | `/Users/alexy/src/music` | `firstpair` | passed | passed | complete (`dbffee0`, `b8a51ec`) |
 
 If the Sail book root is itself a nested Git repository, branch and record the
 actual owning repository rather than assuming the parent path. If a named source
@@ -247,3 +251,20 @@ This goal is complete only when:
   heavy payloads remain ignored while both `VERSION.md` manifests are tracked.
   The final publisher dry-run selected `book/dist-preview`, reported
   `edition: preview` and stamp `2.1.0-cf114169`, and performed no delivery.
+- 2026-07-11: APC40 MK2 migrated on branch `firstpair` in a fresh authoritative
+  checkout at `/Users/alexy/src/music`. Its root configuration and thin nested
+  wrapper regenerate 21 source-owned SVG plates, then build a 54-page Typst
+  PDF, EPUB, MOBI, single-file HTML, 30-page chapter reader, manifests, and
+  stable/versioned links. The existing interactive Ableton tutorial is copied
+  byte-for-byte into the publish-complete dist and registered automatically in
+  the publisher plan. Shared checks and representative visual inspection of
+  the cover, contents, diagrams, tables, body, and final page passed. The final
+  dry-run resolved `edition: full`, stamp `0.2.0-dbffee0f`, and every artifact,
+  including the tutorial, without delivery.
+- 2026-07-11: Final audit confirmed all eleven catalog source repositories and
+  FirstPair are on local branch `firstpair`. Pre-existing unrelated dirty work
+  remains untouched in the affected repositories. The complete unified fixture
+  matrix, `check:catalog` for all eleven slugs, production Vue build, local
+  preview smoke test, shell/Node syntax checks, and `git diff --check` passed.
+  No branch was pushed, and no artifact was uploaded, deployed, published, or
+  copied to iCloud.
