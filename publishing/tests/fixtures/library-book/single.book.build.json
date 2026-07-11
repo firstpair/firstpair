@@ -12,6 +12,7 @@
   "edition": "full",
   "primaryFormat": "typst",
   "mobi": false,
+  "tutorial": "tutorial.html",
   "pandoc": {
     "reader": "markdown+smart",
     "tocDepth": 2

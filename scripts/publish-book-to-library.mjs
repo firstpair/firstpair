@@ -1068,7 +1068,7 @@ async function buildPlan(inputDir, options) {
     preferredStable: [`${slug}.html`, `${version.title_stem}.html`, `${metadata.title_stem}.html`],
   })
   const chapters = await resolveChaptersDir(distDir, version, slug)
-  const tutorial = await resolveTutorial(inputDir, distDir, options.tutorial)
+  const tutorial = await resolveTutorial(inputDir, distDir, options.tutorial ?? version.tutorial_file)
 
   return {
     inputDir,

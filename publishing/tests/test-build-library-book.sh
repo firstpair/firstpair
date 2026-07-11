@@ -26,6 +26,8 @@ grep -q '^html_title: FirstPair Build Fixture$' "$work/dist-dual/VERSION.md"
 grep -q '^pdf_file_troff: firstpair-build-fixture-troff.pdf$' "$work/dist-dual/VERSION.md"
 grep -q '^edition: preview$' "$work/dist-preview/VERSION.md"
 grep -q '^edition: full$' "$work/dist-full/VERSION.md"
+grep -q '^tutorial_file: tutorial.html$' "$work/dist-single/VERSION.md"
+cmp -s "$work/tutorial.html" "$work/dist-single/tutorial.html"
 
 mkdir -p "$work/resolution-book" \
   "$work/resolution-config/nested/sail/book" \
@@ -60,6 +62,8 @@ node "$firstpair_root/scripts/publish-book-to-library.mjs" \
 
 grep -q '"edition": "full"' "$work/book-plan.json"
 grep -q '/resolution-book/book"' "$work/book-plan.json"
+grep -q '"source": ".*/resolution-book/book/tutorial.html"' "$work/book-plan.json"
+grep -q 'book-uploads/staging/firstpair-build-fixture/tutorial.html' "$work/book-plan.json"
 grep -q '/resolution-config/nested/sail/book"' "$work/config-plan.json"
 grep -q '/docs/books/firstpair-build-fixture/dist"' "$work/multi-plan.json"
 
