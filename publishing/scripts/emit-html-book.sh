@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_root="$(cd "${REPO_ROOT:-.}" && pwd)"
 book_root="${BOOK_ROOT:-docs/book}"
 book_dir="$repo_root/$book_root"
@@ -163,13 +164,13 @@ if [[ "${BOOK_HTML_SPLIT:-1}" != "0" ]]; then
   if [[ -f "$chunk_css" ]]; then
     cp "$chunk_css" "$html_chapters_dir/book.css"
   fi
-  python3 - "$html_chapters_dir" <<'PY'
+  python_bin="$("$script_dir/ensure-python-env.sh" "$script_dir/../python")"
+  "$python_bin" - "$html_chapters_dir" <<'PY'
 from __future__ import annotations
 
 import hashlib
 import html
 import re
-import shutil
 import sys
 from pathlib import Path
 from urllib.parse import unquote, urlparse
@@ -194,8 +195,16 @@ def local_path(url: str) -> Path | None:
     return None
 
 
-def asset_name(path: Path) -> str:
-    digest = hashlib.sha256(path.read_bytes()).hexdigest()[:12]
+def asset_bytes(path: Path) -> bytes:
+    data = path.read_bytes()
+    if path.suffix.lower() in {".css", ".csv", ".js", ".json", ".svg", ".txt", ".xml"}:
+        text = data.decode("utf-8")
+        data = re.sub(r"[ \t]+(?=\r?$)", "", text, flags=re.MULTILINE).encode("utf-8")
+    return data
+
+
+def asset_name(path: Path, data: bytes) -> str:
+    digest = hashlib.sha256(data).hexdigest()[:12]
     return f"{digest}-{path.name}"
 
 
@@ -205,10 +214,11 @@ def rewrite(match: re.Match[str]) -> str:
     if path is None:
         return match.group(0)
     asset_dir.mkdir(exist_ok=True)
-    name = asset_name(path)
+    data = asset_bytes(path)
+    name = asset_name(path, data)
     target = asset_dir / name
     if not target.exists():
-        shutil.copy2(path, target)
+        target.write_bytes(data)
     return f'{attr}="assets/{name}"'
 
 
@@ -219,7 +229,8 @@ for html_file in chapter_dir.glob("*.html"):
         html_file.write_text(rewritten, encoding="utf-8")
 PY
   find "$html_chapters_dir" -type f \
-    \( -name '*.html' -o -name '*.css' \) \
+    \( -name '*.html' -o -name '*.css' -o -name '*.csv' -o -name '*.js' \
+       -o -name '*.json' -o -name '*.svg' -o -name '*.txt' -o -name '*.xml' \) \
     -exec perl -pi -e 's/[ \t]+$//' {} +
   find "$dist_dir" -maxdepth 1 -name "$title_stem (*)-chapters" -exec rm -rf {} +
   ln -s "$(basename "$html_chapters_dir")" "$html_chapters_link"

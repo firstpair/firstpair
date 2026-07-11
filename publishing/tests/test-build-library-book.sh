@@ -8,6 +8,10 @@ work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
 cp -R "$fixture_source/." "$work/"
+printf '%s  \n%s\n' \
+  '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20">' \
+  '<text x="2" y="14">fixture</text></svg>' > "$work/fixture.svg"
+printf '\n![Fixture diagram](fixture.svg)\n' >> "$work/manuscript.md"
 
 "$builder" --repo-root "$work" --config single.book.build.json
 "$builder" --repo-root "$work" --config dual.book.build.json
@@ -15,11 +19,14 @@ cp -R "$fixture_source/." "$work/"
 
 for dist in dist-single dist-dual dist-preview dist-full; do
   "$firstpair_root/publishing/scripts/verify-library-book.sh" "$work/$dist"
-  if grep -RInE '[[:blank:]]+$' "$work/$dist" --include='*.html' --include='*.css'; then
-    echo "generated HTML/CSS contains trailing whitespace: $dist" >&2
+  if grep -RInE '[[:blank:]]+$' "$work/$dist" \
+    --include='*.html' --include='*.css' --include='*.svg'; then
+    echo "generated HTML/CSS/SVG contains trailing whitespace: $dist" >&2
     exit 1
   fi
 done
+
+find "$work/dist-single/firstpair-build-fixture-chapters" -type f -name '*.svg' | grep -q .
 
 grep -q '^primary_format: typst$' "$work/dist-dual/VERSION.md"
 grep -q '^html_title: FirstPair Build Fixture$' "$work/dist-dual/VERSION.md"
