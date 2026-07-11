@@ -18,4 +18,4 @@ First Pair owns the public catalog and delivery URLs.
 
 - Original project repository: [lakehq/sail](https://github.com/lakehq/sail)
 - Upstream documentation: [docs](https://github.com/lakehq/sail/tree/main/docs)
-- Public artifact archive used for this delivery: [alexy/books](https://github.com/alexy/books), `sail-rust-book/`
+- Book source repository: [firstpair/sail-rust-book](https://github.com/firstpair/sail-rust-book)

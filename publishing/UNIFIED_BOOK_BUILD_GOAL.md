@@ -98,7 +98,7 @@ The authoritative APC40 checkout was cloned from `alexy/music` into
 | 5 | `sail-rust-book` | `/Users/alexy/src/book-sources/sail-rust-book` | `firstpair` | passed | passed | complete (`08fda92`, `af0cffa`, `344e879`) |
 | 6 | `zucchero` | `/Users/alexy/src/zucchero` | `firstpair` | passed | passed | complete (`42791a2`, `31e876d`) |
 | 7 | `from-1-to-0` | `/Users/alexy/from-1-to-0` | `firstpair` | passed | passed | complete (`7d20d75`, `e669830`) |
-| 8 | `rio-grande` | `/Users/alexy/src/book-sources/rio-grande-history` | `firstpair` | passed | passed | complete (`f8409f1`, `e3f2013`, `b46ca96`) |
+| 8 | `rio-grande` | `/Users/alexy/src/rio-grande` | `main` | passed | passed | complete (`f8409f1`, `e3f2013`, `b46ca96`, `9a3844c`) |
 | 9 | `omnighost` | `/Users/alexy/src/omnighost` | `firstpair` | passed | passed | complete (`7e35022`, `c742fd5`) |
 | 10 | `lighthouse-republics` | `/Users/alexy/src/venezia/usavenice` | `firstpair` | passed | passed | complete (`cf11416`, `37c0da3`) |
 | 11 | `apc40-mk2-ableton-start` | `/Users/alexy/src/music` | `firstpair` | passed | passed | complete (`dbffee0`, `b8a51ec`) |
