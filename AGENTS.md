@@ -56,6 +56,23 @@ hashes and Blob URLs so unchanged files and chapter packages are skipped.
 `book-uploads/staging/` is ignored and may hold local operational copies, but
 must not be deployed or committed as book payload.
 
+The general delivery command is:
+
+```sh
+npm run library:publish -- /absolute/path/to/book-or-dist --slug <book-stem>
+```
+
+The command accepts a dist directory or a book/repository directory containing a
+known dist layout, refreshes `book-uploads/staging/<book-stem>/`, updates the
+upload source map and catalog entry, uploads that single book package, syncs the
+reader map, writes `public/<book-stem>/README.md`, copies versioned PDF/EPUB
+files to `~/icloud/books`, runs the catalog/build/smoke checks, deploys to
+Vercel production, and verifies that the live `firstpair.org` catalog points at
+the new Blob URLs. Use `--dry-run` before first-time packages, `--stage-only`
+when only the ignored staging package and source map should be prepared, and
+`--no-deploy` when the package should be uploaded without changing the live
+site.
+
 Hosted HTML readers must include a visible link back to the First Pair library.
 Implement that navigation in the FirstPair reader proxy, not by rewriting and
 reuploading every generated HTML artifact. The link should point to `/`, render

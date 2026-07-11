@@ -9,6 +9,7 @@
     "prod:build": "vue-tsc -b && vite build --outDir dist-prod",
     "preview": "vite preview --host 127.0.0.1 --port 5183 --strictPort --outDir dist-prod",
     "check:catalog": "node scripts/check-public-catalog.mjs",
+    "library:publish": "node scripts/publish-book-to-library.mjs",
     "books:upload": "node scripts/upload-book-package.mjs",
     "readers:sync": "node scripts/sync-reader-routes.mjs",
     "smoke:site": "node scripts/smoke-site.mjs"

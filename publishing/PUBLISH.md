@@ -313,6 +313,20 @@ Book delivery to iCloud Books:
   /path/to/repo/docs/book/dist "$HOME/icloud/books"
 ```
 
+Public library delivery, including staging, Blob upload, catalog sync, reader
+routes, README generation, versioned iCloud copies, site verification,
+production deployment, and a live catalog check:
+
+```sh
+cd ~/src/firstpair
+npm run library:publish -- /path/to/repo/docs/book/dist --slug <book-stem>
+```
+
+Use `--dry-run` to inspect the resolved artifact paths without writing, and
+`--stage-only` to refresh only `book-uploads/staging/<book-stem>/` plus
+`book-uploads/book-package-sources.json`. Use `--no-deploy` when you want the
+Blob upload and local catalog update without changing `firstpair.org`.
+
 Blog textpack delivery:
 
 ```sh
