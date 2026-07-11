@@ -392,8 +392,10 @@ function ensureSymlink(targetName, linkPath) {
 
 function buildEpub(config, context) {
   const output = join(context.distDir, `${context.stem}.epub`)
-  const sources = context.renderedCover ? [context.renderedCover, context.manuscript] : [context.manuscript]
   const epub = config.epub ?? {}
+  const sources = context.renderedCover && epub.includeRenderedCover !== false
+    ? [context.renderedCover, context.manuscript]
+    : [context.manuscript]
   const args = [
     ...sources,
     '-o', output,

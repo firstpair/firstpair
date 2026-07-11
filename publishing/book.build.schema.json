@@ -74,6 +74,7 @@
       "type": "object",
       "properties": {
         "titlePage": { "type": "boolean" },
+        "includeRenderedCover": { "type": "boolean" },
         "coverImage": { "type": "string" },
         "args": { "type": "array", "items": { "type": "string" } }
       },

@@ -220,6 +220,10 @@ configuration surface. Command-line flags select or override an edition;
 environment variables remain available to hooks and legacy scripts but do not
 duplicate the build configuration.
 
+When an HTML cover and EPUB thumbnail use the same image, set
+`epub.coverImage` and `epub.includeRenderedCover: false`. The image remains the
+canonical EPUB cover without duplicating the rendered HTML cover in the spine.
+
 A source wrapper should only locate its repository and delegate:
 
 ```sh
