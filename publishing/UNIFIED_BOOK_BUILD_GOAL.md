@@ -225,3 +225,13 @@ This goal is complete only when:
   byte-identical. FirstPair also gained `epub.includeRenderedCover: false` so
   an HTML cover can coexist with a canonical EPUB cover without a duplicate
   spine entry; the complete fixture matrix remains green.
+- 2026-07-11: Omnighost migrated on branch `firstpair` while unrelated plugin
+  documentation changes remained untouched. The unified package replaces the
+  legacy renderer-specific `obsidian-*` artifacts with a stable
+  renderer-neutral EPUB/MOBI/HTML package, a 25-page primary Typst PDF, and a
+  19-page secondary source-built Neatroff PDF. Its source hook translates
+  Pandoc ms headings to utmac, wraps no-fill literals, and preserves the custom
+  title page; both PDFs passed rendered geometry and visual checks, the repaired
+  EPUB passed its source validator, and the publisher dry-run resolved the full
+  `docs/book/dist` package without delivery. The shared Neatroff runner now
+  executes beside generated source files so utmac sidecars remain portable.
