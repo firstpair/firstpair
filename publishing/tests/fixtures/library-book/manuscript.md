@@ -12,6 +12,13 @@ distinguish a real document from an empty conversion result.
 | Manuscript | Source repository |
 | Artifact shape | FirstPair |
 
+An example may document an operator's local command without turning it into a
+resource URL:
+
+```sh
+cd /Users/example/src/book
+```
+
 # Closing
 
 The second chapter gives the chunked HTML writer a genuine navigation target.

@@ -462,6 +462,7 @@ function writeManifest(config, context, variants) {
     ['epub_file', `${context.stem}.epub`],
     ['html_file', `${context.stem}.html`],
     ['html_chapters_dir', `${context.stem}-chapters`],
+    ['html_title', context.title],
     ['pdf_link', `${context.versionedStem}.pdf`],
     ['epub_link', `${context.versionedStem}.epub`],
     ['html_link', `${context.versionedStem}.html`],

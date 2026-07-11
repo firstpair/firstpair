@@ -88,7 +88,7 @@ APC40 follows once its authoritative local checkout is located.
 | Order | Catalog slug | Source repository | Branch | Shared build | Verification | Status |
 | ---: | --- | --- | --- | --- | --- | --- |
 | 1 | `typesec` | `/Users/alexy/src/typesec` | `firstpair` | passed | passed | complete (`888af9e`..`2045a92`) |
-| 2 | `grust` | `/Users/alexy/src/grust` | `firstpair` | pending | pending | pending |
+| 2 | `grust` | `/Users/alexy/src/grust` | `firstpair` | passed | passed | complete (`9fa4722`, `5493b69`) |
 | 3 | `lakecat` | `/Users/alexy/src/lakecat` | `firstpair` | pending | pending | pending |
 | 4 | `invented-enemy` | `/Users/alexy/src/russophobia` | non-Git source tree; record changes locally | pending | pending | pending |
 | 5 | `sail-rust-book` | `/Users/alexy/src/book-sources/sail-rust-book` | `firstpair` | pending | pending | pending |
@@ -166,3 +166,8 @@ This goal is complete only when:
   Grust's code-heavy pages 6, 7, and 26. Narrow median code lines are accepted
   only when the page still occupies the normal text measure; a synthetic
   60-line narrow-column PDF remains a required failing regression fixture.
+- 2026-07-11: Grust migrated on branch `firstpair`. Its source-owned seven
+  diagram/cover prebuild and EPUB/page-label hooks now run through the shared
+  builder; asdf 3.14.5 plus uv lock `pypdf`. The 29-page PDF, EPUB, MOBI,
+  single HTML, 16 chapter pages, manifest/links, visual checks, and publisher
+  dry-run (`edition: full`) passed.

@@ -94,7 +94,9 @@ function verifyHtml(path, label, minimumWords = 30) {
   if (!/<html\b/i.test(text)) failures.push(`${label} has no html element: ${basename(path)}`)
   if (!/<title\b[^>]*>[^<]+/i.test(text)) failures.push(`${label} has no document title: ${basename(path)}`)
   if (stripMarkup(text).split(/\s+/).length < minimumWords) failures.push(`${label} contains too little readable text`)
-  if (/file:\/\/\/|\/Users\/[^/]+\//.test(text)) failures.push(`${label} leaks a local absolute path`)
+  if (/\b(?:src|href)=["'](?:file:\/\/\/|\/Users\/[^/]+\/)/i.test(text)) {
+    failures.push(`${label} leaks a local absolute resource link`)
+  }
 }
 
 let marker

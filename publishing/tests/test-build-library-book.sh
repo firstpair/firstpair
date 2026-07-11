@@ -22,6 +22,7 @@ for dist in dist-single dist-dual dist-preview dist-full; do
 done
 
 grep -q '^primary_format: typst$' "$work/dist-dual/VERSION.md"
+grep -q '^html_title: FirstPair Build Fixture$' "$work/dist-dual/VERSION.md"
 grep -q '^pdf_file_troff: firstpair-build-fixture-troff.pdf$' "$work/dist-dual/VERSION.md"
 grep -q '^edition: preview$' "$work/dist-preview/VERSION.md"
 grep -q '^edition: full$' "$work/dist-full/VERSION.md"
