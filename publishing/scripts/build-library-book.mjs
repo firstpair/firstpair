@@ -287,6 +287,13 @@ function buildTypstPdf(variant, config, context) {
   const output = join(context.distDir, `${variant.stem}.pdf`)
   const body = join(context.tmpDir, `${variant.name}.body.pdf`)
   const pdfConfig = config.pdf ?? {}
+  // Swappable image cover (the mechanism from venezia/usavenice): when
+  // pdf.coverImage is set, prepend the image as a full-page cover. The cover is
+  // rendered with typst directly (typst compile --root /) so an absolute image
+  // path resolves — pandoc's typst path sandbox confines images to a temp root
+  // and cannot reach a repo file. Optional pdf.coverWidth/coverHeight/coverFit
+  // tune the cover page (default 6in x 9.6in, contain).
+  const coverImage = pdfConfig.coverImage ? resolvePath(pdfConfig.coverImage, context) : null
   const args = [
     context.manuscript,
     '-o', body,
@@ -299,7 +306,20 @@ function buildTypstPdf(variant, config, context) {
   ]
   runPandoc(args, config, context)
 
-  if (context.renderedCover && pdfConfig.separateCover !== false) {
+  if (coverImage) {
+    const width = pdfConfig.coverWidth ?? '6in'
+    const height = pdfConfig.coverHeight ?? '9.6in'
+    const fit = pdfConfig.coverFit ?? 'contain'
+    const coverTyp = join(context.tmpDir, `${variant.name}.cover.typ`)
+    writeFileSync(
+      coverTyp,
+      `#set page(width: ${width}, height: ${height}, margin: 0pt)\n` +
+        `#align(center + horizon)[#image("${coverImage}", width: 100%, height: 100%, fit: "${fit}")]\n`,
+    )
+    const coverPdf = join(context.tmpDir, `${variant.name}.cover.pdf`)
+    run('typst', ['compile', '--root', '/', coverTyp, coverPdf], { cwd: context.repoRoot })
+    run('pdfunite', [coverPdf, body, output], { cwd: context.repoRoot })
+  } else if (context.renderedCover && pdfConfig.separateCover !== false) {
     const coverPdf = join(context.tmpDir, `${variant.name}.cover.pdf`)
     runPandoc([
       context.renderedCover,
