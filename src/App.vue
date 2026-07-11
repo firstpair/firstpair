@@ -15,12 +15,48 @@ import {
   UserRound,
 } from '@lucide/vue'
 
+const libraryShelfConfig = [
+  {
+    id: 'history',
+    label: 'History',
+    deck: 'Historical previews and arguments from Venice to Russophobia.',
+  },
+  {
+    id: 'music',
+    label: 'Music',
+    deck: 'Practical music guides and listening-led learning books.',
+  },
+  {
+    id: 'technology',
+    label: 'Technology',
+    deck: 'Books about software, startups, and technical culture.',
+  },
+  {
+    id: 'publishing',
+    label: 'Publishing',
+    deck: 'First Pair Press tooling and field guides.',
+  },
+  {
+    id: 'querygraph',
+    label: 'QueryGraph',
+    deck: 'The graph, catalog, security, and data systems bookshelf.',
+  },
+  {
+    id: 'other',
+    label: 'Other',
+    deck: 'Uncategorized books and tutorials.',
+  },
+] as const
+
+type LibraryShelfId = (typeof libraryShelfConfig)[number]['id']
+
 type Book = {
   slug: string
   title: string
   kicker: string
   description: string
   accent: string
+  shelf?: LibraryShelfId
   source?: string
   homepage?: string
   pdf: string
@@ -56,6 +92,11 @@ const filters = computed(() => [
   { id: 'tutorials' as const, label: 'Learn', count: tutorialCount.value },
 ])
 
+const knownLibraryShelfIds = new Set<string>(libraryShelfConfig.map((shelf) => shelf.id))
+
+const bookShelf = (book: Book): LibraryShelfId =>
+  book.shelf && knownLibraryShelfIds.has(book.shelf) ? book.shelf : 'other'
+
 const filteredBooks = computed(() => {
   switch (activeFilter.value) {
     case 'finished':
@@ -68,6 +109,19 @@ const filteredBooks = computed(() => {
       return books.value
   }
 })
+
+const libraryShelves = computed(() =>
+  libraryShelfConfig
+    .map((shelf) => ({
+      ...shelf,
+      books: filteredBooks.value.filter((book) => bookShelf(book) === shelf.id),
+    }))
+    .filter((shelf) => shelf.books.length > 0),
+)
+
+const shelfLinks = computed(() =>
+  libraryShelfConfig.filter((shelf) => books.value.some((book) => bookShelf(book) === shelf.id)),
+)
 
 onMounted(async () => {
   try {
@@ -156,6 +210,16 @@ const fragments = [
             <LinkIcon :size="16" />
           </a>
         </div>
+        <nav v-if="shelfLinks.length" class="shelf-shortcuts" aria-label="Browse library shelves">
+          <span>Shelves</span>
+          <a
+            v-for="shelf in shelfLinks"
+            :key="shelf.id"
+            :href="`#library-shelf-${shelf.id}`"
+          >
+            {{ shelf.label }}
+          </a>
+        </nav>
       </div>
 
       <div class="press-stage" aria-label="Animated human and AI coauthorship">
@@ -221,8 +285,8 @@ const fragments = [
       </div>
     </section>
 
-    <section id="books" class="library-section" aria-labelledby="books-title">
-      <div class="section-heading">
+    <section id="books" class="library-area" aria-labelledby="books-title">
+      <div class="library-heading">
         <p class="eyebrow">Library</p>
         <h2 id="books-title">Public books and previews, beautifully typeset.</h2>
       </div>
@@ -246,52 +310,73 @@ const fragments = [
 
       <p v-if="catalogError" class="catalog-error">{{ catalogError }}</p>
 
-      <div class="book-grid">
-        <article
-          v-for="book in filteredBooks"
-          :id="book.slug"
-          :key="book.slug"
-          class="book-card"
-          :style="{ '--book-accent': book.accent }"
+      <div v-if="libraryShelves.length" class="library-shelves">
+        <div
+          v-for="shelf in libraryShelves"
+          :key="shelf.id"
+          class="library-shelf"
+          :aria-labelledby="`library-shelf-${shelf.id}`"
         >
-          <div class="book-card__cover">
-            <Sparkles :size="24" />
-            <span>{{ book.kicker }}</span>
-            <strong>{{ book.title }}</strong>
-          </div>
-          <div class="book-card__body">
+          <div class="library-shelf__heading">
             <div>
-              <p class="book-kicker">{{ book.kicker }}</p>
-              <h3>{{ book.title }}</h3>
-              <p>{{ book.description }}</p>
+              <p class="eyebrow">Shelf</p>
+              <h3 :id="`library-shelf-${shelf.id}`">{{ shelf.label }}</h3>
             </div>
-            <div class="tag-row">
-              <span v-for="tag in book.tags" :key="tag">{{ tag }}</span>
-            </div>
-            <div class="book-links">
-              <a v-if="book.homepage" :href="book.homepage">Preview</a>
-              <a :href="book.pdf">PDF</a>
-              <a :href="book.epub">EPUB</a>
-              <a :href="book.html" target="_blank" rel="noopener noreferrer">Read</a>
-              <a :href="book.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
-              <a
-                v-if="book.tutorial"
-                class="book-link--learn"
-                :href="book.tutorial"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <GraduationCap :size="15" />
-                Learn
-              </a>
-              <a v-if="book.source" :href="book.source" target="_blank" rel="noreferrer">
-                Source
-                <ExternalLink :size="14" />
-              </a>
-            </div>
+            <span class="library-shelf__count">
+              {{ shelf.books.length }} {{ shelf.books.length === 1 ? 'title' : 'titles' }}
+            </span>
           </div>
-        </article>
+          <p class="library-shelf__deck">{{ shelf.deck }}</p>
+
+          <div class="book-grid">
+            <article
+              v-for="book in shelf.books"
+              :id="book.slug"
+              :key="book.slug"
+              class="book-card"
+              :style="{ '--book-accent': book.accent }"
+            >
+              <div class="book-card__cover">
+                <Sparkles :size="24" />
+                <span>{{ book.kicker }}</span>
+                <strong>{{ book.title }}</strong>
+              </div>
+              <div class="book-card__body">
+                <div>
+                  <p class="book-kicker">{{ book.kicker }}</p>
+                  <h3>{{ book.title }}</h3>
+                  <p>{{ book.description }}</p>
+                </div>
+                <div class="tag-row">
+                  <span v-for="tag in book.tags" :key="tag">{{ tag }}</span>
+                </div>
+                <div class="book-links">
+                  <a v-if="book.homepage" :href="book.homepage">Preview</a>
+                  <a :href="book.pdf">PDF</a>
+                  <a :href="book.epub">EPUB</a>
+                  <a :href="book.html" target="_blank" rel="noopener noreferrer">Read</a>
+                  <a :href="book.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
+                  <a
+                    v-if="book.tutorial"
+                    class="book-link--learn"
+                    :href="book.tutorial"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <GraduationCap :size="15" />
+                    Learn
+                  </a>
+                  <a v-if="book.source" :href="book.source" target="_blank" rel="noreferrer">
+                    Source
+                    <ExternalLink :size="14" />
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
       </div>
+      <p v-else-if="books.length" class="catalog-error">No books match this filter.</p>
     </section>
   </main>
 </template>

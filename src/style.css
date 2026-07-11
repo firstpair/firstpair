@@ -163,6 +163,32 @@ h1 {
   flex-wrap: wrap;
 }
 
+.shelf-shortcuts {
+  margin-top: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  color: #4d554d;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.shelf-shortcuts span {
+  color: #436b5f;
+  font-size: 12px;
+  font-weight: 950;
+  text-transform: uppercase;
+}
+
+.shelf-shortcuts a {
+  padding: 6px 8px;
+  border: 1px solid rgba(23, 23, 20, 0.12);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.58);
+  color: #2f352f;
+}
+
 .primary-link,
 .secondary-link,
 .book-links a {
@@ -532,18 +558,18 @@ h1 {
   border-left: 1px solid rgba(23, 23, 20, 0.12);
 }
 
-.library-section {
+.library-area {
   padding: clamp(46px, 6vw, 78px) clamp(18px, 5vw, 72px) 84px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.36), transparent 18rem),
     rgba(246, 247, 240, 0.46);
 }
 
-.section-heading {
+.library-heading {
   max-width: 720px;
 }
 
-.section-heading h2 {
+.library-heading h2 {
   margin-top: 8px;
   color: #151512;
   font-family: Georgia, "Times New Roman", serif;
@@ -551,8 +577,53 @@ h1 {
   line-height: 0.96;
 }
 
-.book-grid {
+.library-shelves {
   margin-top: 34px;
+  display: grid;
+  gap: clamp(42px, 5vw, 64px);
+}
+
+.library-shelf {
+  min-width: 0;
+}
+
+.library-shelf__heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding-bottom: 13px;
+  border-bottom: 1px solid rgba(23, 23, 20, 0.15);
+}
+
+.library-shelf__heading h3 {
+  margin-top: 5px;
+  color: #151512;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 42px;
+  line-height: 1;
+}
+
+.library-shelf__count {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border: 1px solid rgba(23, 23, 20, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #40473f;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.library-shelf__deck {
+  margin-top: 12px;
+  max-width: 620px;
+  color: #4a5049;
+  line-height: 1.5;
+}
+
+.book-grid {
+  margin-top: 22px;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
@@ -794,8 +865,12 @@ h1 {
     font-size: 76px;
   }
 
-  .section-heading h2 {
+  .library-heading h2 {
     font-size: 52px;
+  }
+
+  .library-shelf__heading h3 {
+    font-size: 38px;
   }
 
   .hero {
@@ -882,9 +957,23 @@ h1 {
     width: 100%;
   }
 
-  .section-heading h2 {
+  .shelf-shortcuts {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .library-heading h2 {
     font-size: 39px;
     line-height: 1;
+  }
+
+  .library-shelf__heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .library-shelf__heading h3 {
+    font-size: 34px;
   }
 
   .press-stage {

@@ -47,8 +47,14 @@ const staleReaderMap = []
 const invalidSourceUrls = []
 const invalidTutorialRoutes = []
 const invalidPreviewSources = []
+const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
+const invalidShelves = []
 
 for (const book of catalog.books) {
+  if (book.shelf && !validShelves.has(book.shelf)) {
+    invalidShelves.push({ slug: book.slug, shelf: book.shelf })
+  }
+
   if ((book.homepage || book.tags?.includes('preview')) && book.source) {
     invalidPreviewSources.push({ slug: book.slug, source: book.source })
   }
@@ -135,6 +141,7 @@ if (
   invalidReaderRoutes.length ||
   invalidTutorialRoutes.length ||
   invalidPreviewSources.length ||
+  invalidShelves.length ||
   staleReaderMap.length ||
   invalidSourceUrls.length ||
   !hasReaderProxyRoute ||
@@ -152,6 +159,7 @@ if (
         invalidReaderRoutes,
         invalidTutorialRoutes,
         invalidPreviewSources,
+        invalidShelves,
         staleReaderMap,
         invalidSourceUrls,
         hasReaderProxyRoute,
