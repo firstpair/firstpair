@@ -94,7 +94,7 @@ APC40 follows once its authoritative local checkout is located.
 | 5 | `sail-rust-book` | `/Users/alexy/src/book-sources/sail-rust-book` | `firstpair` | passed | passed | complete (`08fda92`, `af0cffa`, `344e879`) |
 | 6 | `zucchero` | `/Users/alexy/src/zucchero` | `firstpair` | passed | passed | complete (`42791a2`, `31e876d`) |
 | 7 | `from-1-to-0` | `/Users/alexy/from-1-to-0` | `firstpair` | passed | passed | complete (`7d20d75`, `e669830`) |
-| 8 | `rio-grande` | `/Users/alexy/src/book-sources/rio-grande-history` | `firstpair` | pending | pending | pending |
+| 8 | `rio-grande` | `/Users/alexy/src/book-sources/rio-grande-history` | `firstpair` | passed | passed | complete (`f8409f1`, `e3f2013`, `b46ca96`) |
 | 9 | `omnighost` | `/Users/alexy/src/omnighost` | `firstpair` | pending | pending | pending |
 | 10 | `lighthouse-republics` | `/Users/alexy/src/venezia/usavenice` | `firstpair` | pending | pending | pending |
 | 11 | `apc40-mk2-ableton-start` | authoritative checkout to be resolved from `alexy/music` | `firstpair` | pending | pending | pending |
@@ -214,3 +214,14 @@ This goal is complete only when:
   The corrected 7-page preview and 59-page full PDFs, EPUBs, 7-page preview and
   11-page full HTML readers, manifests/links, and preview-safe publisher
   dry-run all passed. The unrelated `PROMPTS.md` change remains untouched.
+- 2026-07-11: Rio Grande migrated on branch `firstpair`. Its asdf 3.12.3 plus
+  uv/pypdf hook wraps the existing Python editor, regenerates the authoritative
+  manuscript without tracked changes, and creates a source-owned 765-word
+  preview (1.76 percent) with complete placeholder navigation. Custom
+  Pandoc/Typst PDF hooks preserve the facsimile cover, coauthor page, A5 size,
+  exact title/author metadata, and 26 full-edition bookmarks. The 13-page
+  preview and 172-page full PDF, EPUB, full MOBI, HTML readers, manifests, and
+  preview-safe dry-run passed. Legacy tracked PDF/EPUB/MOBI hashes remained
+  byte-identical. FirstPair also gained `epub.includeRenderedCover: false` so
+  an HTML cover can coexist with a canonical EPUB cover without a duplicate
+  spine entry; the complete fixture matrix remains green.
