@@ -11,12 +11,10 @@
     "check:catalog": "node scripts/check-public-catalog.mjs",
     "books:upload": "node scripts/upload-book-package.mjs",
     "readers:sync": "node scripts/sync-reader-routes.mjs",
-    "smoke:site": "node scripts/smoke-site.mjs",
-    "check:deployed": "node node_modules/@querygraph/verdun/scripts/public/check-deployed.mjs"
+    "smoke:site": "node scripts/smoke-site.mjs"
   },
   "dependencies": {
     "@lucide/vue": "^1.17.0",
-    "@querygraph/verdun": "file:../verdun",
     "@vercel/blob": "^2.6.1",
     "vue": "3.5.38"
   },

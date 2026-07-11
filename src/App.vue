@@ -116,6 +116,15 @@ const fragments = [
       <nav class="nav-links" aria-label="Primary">
         <a href="#books">Books</a>
         <a href="#sources">Sources</a>
+        <a
+          href="https://firstpair.press/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="First Pair Press blog: the story of First Pair Press and every book"
+        >
+          Story
+          <ExternalLink :size="14" />
+        </a>
         <a href="https://github.com/firstpair/firstpair" target="_blank" rel="noreferrer">
           GitHub
           <ExternalLink :size="14" />
