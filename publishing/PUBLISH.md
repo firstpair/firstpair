@@ -168,6 +168,10 @@ neatsoin
 It also writes `~/.local/share/firstpair/neatroff.env` for scripts that want to
 import the canonical `NEATROFF_ROOT` and PATH shape.
 
+The Node-side rendering dependency, Mermaid CLI, is pinned in `package-lock.json`.
+Shared hooks prefer FirstPair's `node_modules/.bin`, so diagram builds do not
+depend on an unversioned global `mmdc`.
+
 The build script prefers the `~/src/neatroff_make` tree when it contains:
 
 ```text
@@ -233,6 +237,8 @@ The shared builder owns:
 - Pandoc/Typst PDF, EPUB3, single-file HTML, chapter HTML, and optional MOBI;
 - source-pinned utmac/Neatroff PDF variants;
 - stable and versioned artifact links plus key-value `VERSION.md`;
+- a compatibility `kindle_link` using the version-only catalog name when that
+  differs from the hash-stamped delivery link;
 - mandatory PDF geometry/raster checks and EPUB/HTML package checks; and
 - the final `check-version-marker.sh` gate.
 

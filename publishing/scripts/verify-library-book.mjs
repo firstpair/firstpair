@@ -125,6 +125,7 @@ if (marker.edition && !['preview', 'full'].includes(marker.edition)) {
 
 verifyVersionedPair(marker, 'pdf_file', 'pdf_link')
 verifyVersionedPair(marker, 'epub_file', 'epub_link')
+if (marker.kindle_link) verifyVersionedPair(marker, 'epub_file', 'kindle_link')
 verifyVersionedPair(marker, 'html_file', 'html_link')
 
 for (const key of Object.keys(marker).filter((key) => key.startsWith('pdf_file_'))) {

@@ -21,9 +21,14 @@ value_for() {
 
 first_value_for() {
   local key
+  local value
   for key in "$@"; do
-    value_for "$key"
-  done | awk 'NF { print; exit }'
+    value="$(value_for "$key")"
+    if [[ -n "$value" ]]; then
+      printf '%s\n' "$value"
+      return
+    fi
+  done
 }
 
 suffixes_for() {

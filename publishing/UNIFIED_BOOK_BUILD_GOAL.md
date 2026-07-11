@@ -87,7 +87,7 @@ APC40 follows once its authoritative local checkout is located.
 
 | Order | Catalog slug | Source repository | Branch | Shared build | Verification | Status |
 | ---: | --- | --- | --- | --- | --- | --- |
-| 1 | `typesec` | `/Users/alexy/src/typesec` | `firstpair` | pending | pending | pending |
+| 1 | `typesec` | `/Users/alexy/src/typesec` | `firstpair` | passed | passed | complete (`888af9e`, `41a31f5`) |
 | 2 | `grust` | `/Users/alexy/src/grust` | `firstpair` | pending | pending | pending |
 | 3 | `lakecat` | `/Users/alexy/src/lakecat` | `firstpair` | pending | pending | pending |
 | 4 | `invented-enemy` | `/Users/alexy/src/russophobia` | non-Git source tree; record changes locally | pending | pending | pending |
@@ -154,3 +154,11 @@ This goal is complete only when:
 - 2026-07-11: FirstPair JSON, shell, and Node syntax checks, `git diff --check`,
   `npm run test:book-build`, `npm run check:catalog`, and `npm run prod:build`
   passed. Homebrew formulae from the lock are pinned locally.
+- 2026-07-11: TypeSec migrated on branch `firstpair`. Its 36-page PDF, repaired
+  EPUB metadata, MOBI, single-file HTML, 20-page chapter reader, manifest,
+  versioned links, shared verifier, and publisher dry-run (`edition: full`) all
+  passed. Unrelated announcement post/textpack changes remain untouched.
+- 2026-07-11: Shared output normalization now strips Pandoc-generated trailing
+  HTML/CSS whitespace. Mermaid CLI 11.15.0 is npm-lock-pinned and preferred by
+  source hooks. The manifest/link contract also preserves version-only Kindle
+  EPUB aliases alongside hash-stamped delivery aliases.

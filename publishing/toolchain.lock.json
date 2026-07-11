@@ -69,6 +69,9 @@
     "helperVersion": "3.12.3",
     "policy": "Each Python-owning source repository pins Python in .tool-versions and locks dependencies with uv.lock."
   },
+  "nodePackages": {
+    "@mermaid-js/mermaid-cli": "11.15.0"
+  },
   "neatroff": {
     "root": {
       "repository": "https://github.com/aligrudi/neatroff_make.git",

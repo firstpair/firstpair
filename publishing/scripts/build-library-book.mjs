@@ -138,6 +138,7 @@ function hookEnvironment(config, context, extra = {}) {
   }
   return {
     ...process.env,
+    PATH: `${join(firstpairRoot, 'node_modules', '.bin')}:${process.env.PATH ?? ''}`,
     TMPDIR: context.tmpDir,
     CALIBRE_CONFIG_DIRECTORY: join(context.tmpDir, 'calibre-config'),
     ...configured,
@@ -456,6 +457,7 @@ function writeManifest(config, context, variants) {
     ['toolchain_lock', relative(context.repoRoot, join(firstpairRoot, 'publishing', 'toolchain.lock.json'))],
     ['primary_format', context.primaryFormat],
     ['kindle_name', context.kindleName],
+    ['kindle_link', `${context.kindleName}.epub`],
     ['pdf_file', `${context.stem}.pdf`],
     ['epub_file', `${context.stem}.epub`],
     ['html_file', `${context.stem}.html`],
@@ -602,6 +604,7 @@ function buildEdition(config, baseContext, distOverride) {
 
     ensureSymlink(`${preliminary.stem}.pdf`, join(preliminary.distDir, `${preliminary.versionedStem}.pdf`))
     ensureSymlink(`${preliminary.stem}.epub`, join(preliminary.distDir, `${preliminary.versionedStem}.epub`))
+    ensureSymlink(`${preliminary.stem}.epub`, join(preliminary.distDir, `${preliminary.kindleName}.epub`))
     ensureSymlink(`${preliminary.stem}.html`, join(preliminary.distDir, `${preliminary.versionedStem}.html`))
     ensureSymlink(`${preliminary.stem}-chapters`, join(preliminary.distDir, `${preliminary.versionedStem}-chapters`))
     for (const variant of variants) {

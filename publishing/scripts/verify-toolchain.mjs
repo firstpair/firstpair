@@ -55,6 +55,23 @@ for (const [name, specification] of Object.entries(lock.homebrew.casks)) {
   checkVersion('cask', name, specification)
 }
 
+for (const [name, expected] of Object.entries(lock.nodePackages ?? {})) {
+  const command = name === '@mermaid-js/mermaid-cli'
+    ? join(dirname(dirname(scriptDir)), 'node_modules', '.bin', 'mmdc')
+    : null
+  if (!command) {
+    failures.push(`no verifier configured for Node package ${name}`)
+    continue
+  }
+  const result = run(command, ['--version'])
+  const output = `${result.stdout ?? ''}${result.stderr ?? ''}`.trim()
+  if (result.status !== 0 || output !== expected) {
+    failures.push(`Node package ${name}: expected ${expected}, got ${output || 'missing'}`)
+  } else if (!quiet) {
+    console.log(`Node package ${name}: ${expected}`)
+  }
+}
+
 for (const command of lock.requiredCommands) {
   const result = run('/usr/bin/env', ['sh', '-c', `command -v "$1" >/dev/null 2>&1`, 'sh', command])
   if (result.status !== 0) {
