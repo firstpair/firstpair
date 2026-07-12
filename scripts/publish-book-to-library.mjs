@@ -775,7 +775,15 @@ function catalogEntryFromPlan(plan, existing = {}) {
     entry.shelf = plan.explicit.shelf ? plan.shelf : (existing.shelf ?? plan.shelf)
   }
 
-  if (source) {
+  // check:catalog forbids a `source` field on preview entries (those with a
+  // homepage or a 'preview' tag). Omit it for the preview edition so a preview
+  // publish passes the catalog check.
+  const isPreviewListing =
+    plan.edition === 'preview' ||
+    Boolean(existing.homepage) ||
+    (entry.tags ?? []).includes('preview')
+
+  if (source && !isPreviewListing) {
     entry.source = source
   } else {
     delete entry.source
