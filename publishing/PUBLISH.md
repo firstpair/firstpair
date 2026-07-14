@@ -285,6 +285,13 @@ npm run library:publish -- /path/to/source-repo \
 The dry-run output includes both `distDir` and `edition`. Publishing a full
 edition over a preview remains guarded by `--full` and explicit human approval.
 
+For `--vault` deliveries, a source repository may provide
+`scripts/check-obsidian-vault.py`. The publisher invokes that validator against
+the resolved vault before returning a dry-run plan or creating staging files.
+Repositories with `pyproject.toml` and `uv.lock` run through the locked uv
+project; readable or executable standalone validators use `python3` or their
+own shebang. A nonzero result stops publication before ZIP creation.
+
 Run the shared regression fixtures with:
 
 ```sh

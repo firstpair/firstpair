@@ -109,6 +109,14 @@ derivative with Pandoc for Blob upload. Store `/read/<book-stem>/guide/` in the
 catalog's `vaultGuide` field and the backing HTML Blob URL in
 `vaultGuideSource`; do not expose the raw Markdown Blob as the reader link.
 
+Before resolving even a dry-run vault plan, look for the source repository's
+`scripts/check-obsidian-vault.py`. If present, `library:publish` must run it
+against the resolved vault and fail closed before staging or ZIP creation. A
+repository with both `pyproject.toml` and `uv.lock` is validated through its
+locked uv project; an executable or readable standalone validator is invoked
+directly or with `python3`. Repositories without a source-owned validator keep
+the structural `Home.md` plus `_data/units.jsonl` compatibility check.
+
 Create or update `public/<book-stem>/README.md`. The README should briefly
 overview the book, link the Blob-backed PDF and EPUB downloads, link the hosted
 single-file and chapter readers, and point back to the original source

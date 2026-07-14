@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict'
 import { spawn } from 'node:child_process'
 import {
+  access,
   copyFile,
   mkdir,
   mkdtemp,
@@ -81,6 +82,8 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
   const vault = join(fixtureBook, 'dist-obsidian', 'Fixture Book Vault')
   const vaultData = join(vault, 'Fixture Book', '_data')
   const guide = join(fixtureBook, 'docs', 'OBSIDIAN-VAULT.md')
+  const validator = join(fixtureBook, 'scripts', 'check-obsidian-vault.py')
+  const stageDir = join(harness, 'book-uploads', 'staging', 'fixture-book')
 
   await Promise.all([
     mkdir(join(harness, 'scripts'), { recursive: true }),
@@ -91,6 +94,7 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     mkdir(chapters, { recursive: true }),
     mkdir(vaultData, { recursive: true }),
     mkdir(dirname(guide), { recursive: true }),
+    mkdir(dirname(validator), { recursive: true }),
   ])
   await Promise.all([
     copyFile(
@@ -117,6 +121,14 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     copyFile(
       join(repoRoot, 'publishing', 'assets', 'vault-guide.css'),
       join(harness, 'publishing', 'assets', 'vault-guide.css'),
+    ),
+    copyFile(
+      join(repoRoot, 'publishing', 'python', 'pyproject.toml'),
+      join(fixtureBook, 'pyproject.toml'),
+    ),
+    copyFile(
+      join(repoRoot, 'publishing', 'python', 'uv.lock'),
+      join(fixtureBook, 'uv.lock'),
     ),
   ])
   await Promise.all([
@@ -149,9 +161,25 @@ html_chapters_dir: fixture-book-chapters
     writeFile(join(vault, 'Home.md'), '# Fixture vault\n'),
     writeFile(join(vaultData, 'units.jsonl'), '{"id":"fixture-1"}\n'),
     writeFile(guide, '# Fixture Book Vault\n\nOpen `Home.md`.\n'),
+    writeFile(
+      validator,
+      `#!/usr/bin/env python3
+from pathlib import Path
+import sys
+
+vault = Path(sys.argv[1])
+if (vault / "TAMPERED").exists():
+    print("tampered vault fixture", file=sys.stderr)
+    raise SystemExit(23)
+if not (vault / "Home.md").is_file():
+    print("missing fixture Home.md", file=sys.stderr)
+    raise SystemExit(24)
+print("fixture source-owned vault validation passed")
+`,
+    ),
   ])
 
-  const staged = await run(process.execPath, [
+  const vaultPublishArgs = [
     join(harness, 'scripts', 'publish-book-to-library.mjs'),
     fixtureBook,
     '--slug',
@@ -167,9 +195,25 @@ html_chapters_dir: fixture-book-chapters
     '--no-build',
     '--no-smoke',
     '--no-deploy',
-  ])
+  ]
+
+  await writeFile(join(vault, 'TAMPERED'), 'fixture tamper marker\n')
+  let tamperedError = null
+
+  try {
+    await run(process.execPath, [...vaultPublishArgs, '--dry-run'])
+  } catch (error) {
+    tamperedError = error
+  }
+
+  assert(tamperedError, 'tampered source-owned vault unexpectedly passed validation')
+  assert.match(tamperedError.message, /tampered vault fixture/)
+  assert.match(tamperedError.message, /source-owned vault validation failed \(23\)/)
+  await assert.rejects(access(stageDir))
+  await rm(join(vault, 'TAMPERED'))
+
+  const staged = await run(process.execPath, vaultPublishArgs)
   const plan = JSON.parse(staged.stdout.toString('utf8'))
-  const stageDir = join(harness, 'book-uploads', 'staging', 'fixture-book')
   const rawGuide = join(stageDir, 'fixture-book-vault-guide (1.2.3-deadbeef).md')
   const htmlGuide = join(stageDir, 'fixture-book-vault-guide (1.2.3-deadbeef).html')
   const vaultZip = join(stageDir, 'fixture-book-full-vault (1.2.3-deadbeef).zip')
@@ -179,6 +223,8 @@ html_chapters_dir: fixture-book-chapters
 
   assert.equal(plan.artifacts.vault.guideMarkdown, 'fixture-book-vault-guide (1.2.3-deadbeef).md')
   assert.equal(plan.artifacts.vault.guideHtml, 'fixture-book-vault-guide (1.2.3-deadbeef).html')
+  assert.equal(plan.artifacts.vault.validation.runner, 'uv')
+  assert.equal(plan.artifacts.vault.validation.validator, validator)
   assert.equal(await readFile(rawGuide, 'utf8'), await readFile(guide, 'utf8'))
   assert.match(await readFile(htmlGuide, 'utf8'), /<h1[^>]*>Fixture Book Vault<\/h1>/)
   assert.match(sourceMap.vaultGuideMarkdown, /\.md$/)
@@ -342,7 +388,12 @@ html_chapters_dir: fixture-book-chapters
     globalThis.fetch = originalFetch
   }
 
-  console.log('Vault-guide render, stage, upload, route, and proxy fixtures passed')
+  await rm(validator)
+  const compatibilityDryRun = await run(process.execPath, [...vaultPublishArgs, '--dry-run'])
+  const compatibilityPlan = JSON.parse(compatibilityDryRun.stdout.toString('utf8'))
+  assert.equal(compatibilityPlan.artifacts.vault.validation, null)
+
+  console.log('Vault-guide validation, render, stage, upload, route, and proxy fixtures passed')
 } finally {
   await rm(work, { recursive: true, force: true })
 }

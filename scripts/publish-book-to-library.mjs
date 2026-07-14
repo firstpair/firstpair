@@ -1,5 +1,6 @@
 import { spawn } from 'node:child_process'
 import { createHash } from 'node:crypto'
+import { constants as fsConstants } from 'node:fs'
 import {
   access,
   copyFile,
@@ -104,6 +105,8 @@ Options:
                             book, together with the raw Markdown guide. The
                             guide is also embedded in the vault as README.md
                             and rendered to standalone HTML for /read/.../guide/.
+                            A source-owned check-obsidian-vault.py runs first,
+                            including for --dry-run, when the source provides it.
   --vault-dir <dir>         Explicit vault directory (implies --vault).
   --vault-guide <file>      Explicit vault guide (default: a docs/*VAULT*.md).
   --icloud-dir <dir>        Defaults to "$HOME/icloud/books".
@@ -1050,6 +1053,147 @@ async function isProperVault(dir) {
   return false
 }
 
+function ancestorCandidates(path, limit = 6) {
+  const candidates = []
+  let current = resolve(path)
+
+  for (let depth = 0; depth < limit; depth += 1) {
+    candidates.push(current)
+    const parent = dirname(current)
+
+    if (parent === current) {
+      break
+    }
+
+    current = parent
+  }
+
+  return candidates
+}
+
+async function sourceRepositoryRoot(inputDir, distDir, vaultDir) {
+  const gitRoots = []
+
+  for (const candidate of [inputDir, distDir, vaultDir]) {
+    const gitRoot = await commandOutput(
+      'git',
+      ['-C', candidate, 'rev-parse', '--show-toplevel'],
+    ).catch(() => null)
+
+    if (gitRoot && !gitRoots.includes(resolve(gitRoot))) {
+      gitRoots.push(resolve(gitRoot))
+    }
+  }
+
+  for (const gitRoot of gitRoots) {
+    if (await exists(join(gitRoot, 'scripts', 'check-obsidian-vault.py'))) {
+      return gitRoot
+    }
+  }
+
+  if (gitRoots[0]) {
+    return gitRoots[0]
+  }
+
+  const candidates = [
+    ...new Set(
+      [inputDir, distDir, vaultDir].flatMap((candidate) => ancestorCandidates(candidate)),
+    ),
+  ]
+
+  for (const candidate of candidates) {
+    if (await exists(join(candidate, 'scripts', 'check-obsidian-vault.py'))) {
+      return candidate
+    }
+  }
+
+  return resolve(inputDir)
+}
+
+async function validateSourceOwnedVault(inputDir, distDir, vaultDir) {
+  const sourceRoot = await sourceRepositoryRoot(inputDir, distDir, vaultDir)
+  const validator = join(sourceRoot, 'scripts', 'check-obsidian-vault.py')
+  const validatorStat = await stat(validator).catch(() => null)
+
+  if (!validatorStat) {
+    return null
+  }
+
+  if (!validatorStat.isFile()) {
+    throw new Error(`source-owned vault validator is not a regular file: ${validator}`)
+  }
+
+  const readable = await access(validator, fsConstants.R_OK).then(
+    () => true,
+    () => false,
+  )
+  const executable = await access(validator, fsConstants.X_OK).then(
+    () => true,
+    () => false,
+  )
+
+  if (!readable && !executable) {
+    throw new Error(`source-owned vault validator is not readable or executable: ${validator}`)
+  }
+
+  const pinnedUvProject =
+    (await exists(join(sourceRoot, 'pyproject.toml'))) &&
+    (await exists(join(sourceRoot, 'uv.lock')))
+  let command
+  let args
+  let runner
+
+  if (pinnedUvProject) {
+    command = 'uv'
+    args = [
+      'run',
+      '--project',
+      sourceRoot,
+      '--locked',
+      '--no-dev',
+      'python',
+      validator,
+      vaultDir,
+    ]
+    runner = 'uv'
+  } else if (executable) {
+    command = validator
+    args = [vaultDir]
+    runner = 'executable'
+  } else {
+    command = 'python3'
+    args = [validator, vaultDir]
+    runner = 'python3'
+  }
+
+  const display = [command, ...args].join(' ')
+  console.error(`$ ${display}`)
+  const { code } = await runProcess(command, args, {
+    cwd: sourceRoot,
+    env: {
+      ...process.env,
+      FIRSTPAIR_VAULT_VALIDATION: '1',
+      PYTHONDONTWRITEBYTECODE: '1',
+    },
+    stdio: 'pipe',
+    onStdout: (chunk) => process.stderr.write(chunk),
+    onStderr: (chunk) => process.stderr.write(chunk),
+  })
+
+  if (code !== 0) {
+    throw new Error(
+      `source-owned vault validation failed (${code}) for ${vaultDir}\n` +
+        `validator: ${validator}`,
+    )
+  }
+
+  return {
+    validator,
+    sourceRoot,
+    runner,
+  }
+}
+
 async function discoverVaultDir(bookDir, edition) {
   const base = join(bookDir, 'dist-obsidian')
   let entries
@@ -1128,6 +1272,7 @@ async function resolveVault(inputDir, distDir, edition, version, slug, options) 
   if (options['vault-dir'] && !(await isProperVault(dir))) {
     throw new Error(`--vault-dir is not a proper editorial vault: ${dir}`)
   }
+  const validation = await validateSourceOwnedVault(inputDir, distDir, dir)
   const stamp = firstValue(version.version_stamp, version.version) ?? 'current'
   const zipName = `${slug}-${edition}-vault (${stamp}).zip`
 
@@ -1143,7 +1288,7 @@ async function resolveVault(inputDir, distDir, edition, version, slug, options) 
     guideHtmlName = `${slug}-vault-guide (${stamp}).html`
   }
 
-  return { dir, zipName, guideSource, guideName, guideHtmlName }
+  return { dir, zipName, guideSource, guideName, guideHtmlName, validation }
 }
 
 // Zip the vault directory into destinationZip. Uses the system `zip` so the
@@ -1660,6 +1805,7 @@ function printablePlan(
             zip: plan.vault.zipName,
             guideMarkdown: plan.vault.guideName,
             guideHtml: plan.vault.guideHtmlName,
+            validation: plan.vault.validation,
           }
         : null,
       cover: plan.cover

@@ -60,6 +60,12 @@ archive, and uses Pandoc to make a self-contained HTML derivative for the
 hosted guide route. The catalog records the route as `vaultGuide` and the Blob
 URL as `vaultGuideSource`; readers never need to render a raw Markdown Blob.
 
+Source repositories may own a strict `scripts/check-obsidian-vault.py` gate.
+When present, the publisher runs it against the resolved vault before dry-run
+planning, staging, or ZIP creation, using the repository's locked uv project
+when available. Validation failure stops publication; packages without that
+script retain the lightweight structural compatibility check.
+
 ## The Method
 
 First Pair treats a book as a living system rather than a frozen file.
