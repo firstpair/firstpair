@@ -118,6 +118,14 @@ derivative with Pandoc for Blob upload. Store `/read/<book-stem>/guide/` in the
 catalog's `vaultGuide` field and the backing HTML Blob URL in
 `vaultGuideSource`; do not expose the raw Markdown Blob as the reader link.
 
+Before regenerating, editing, validating with write-capable tools, zipping, or
+otherwise programmatically touching an Obsidian vault directory, ask the user to
+close that vault in Obsidian and wait for confirmation. Obsidian may keep
+workspace, plugin, and index files open or rewrite them in the background;
+writing the vault while it is open can race those writes and poison the
+generated edition. Once confirmed closed, regenerate the vault from source, then
+validate it before staging or publishing.
+
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it
 against the resolved vault and fail closed before staging or ZIP creation. A
