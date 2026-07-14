@@ -2,7 +2,7 @@
 title: "Announcing Sail Rust Book"
 subtitle: "A source-linked First Pair edition for Rust, Arrow, DataFusion, and Sail"
 date: 2026-07-14
-author: "First Pair Press"
+author: "Alexy Khrabrov ∈ LakeSail Team"
 slug: "announcing-sail-rust-book"
 canonical_url: "https://firstpair.press/announcing-sail-rust-book"
 header_image: "assets/sail-rust-book-headboard.png"
@@ -12,6 +12,7 @@ tags:
   - sail
   - rust
   - datafusion
+  - lakesail
   - obsidian
   - publishing
 ---
@@ -23,6 +24,25 @@ tags:
 First Pair Press is publishing *Sail Rust Book*, a codebase-first guide to Sail,
 Rust, Apache Arrow, Apache DataFusion, Spark Connect, distributed execution,
 lakehouse storage, testing, and extension design.
+
+I am grateful to Shehab Amin and Heran Lin for creating Sail and for bringing
+me in as Head of Ecosystems. I am wildly excited to be back in a Spark
+ecosystem that is free of the JVM.
+
+For the first time in 15 years, I ran a Spark shell and the familiar ASCII logo
+came up, but there was no JVM anywhere: not on the client, and not on the
+server.
+
+![Spark shell running on Rust without a JVM.](assets/spark-rust.png)
+
+That moment says a lot about why Sail matters. It keeps the Spark mental model
+and ecosystem surface while moving the implementation into Rust, Arrow, and
+DataFusion. The result feels familiar at the shell and radically different
+underneath.
+
+Thank you to the whole LakeSail team for making this possible. The LakeSail
+platform has just launched, and we will be shipping fast. Watch
+[lakesail.com](https://lakesail.com/) for updates daily.
 
 The new edition is built against the current Sail checkout and release window.
 It is not just a polished export of a manuscript. It is a reproducible
