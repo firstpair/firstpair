@@ -108,4 +108,6 @@ if "$firstpair_root/publishing/scripts/check-pdf-layout.mjs" \
 fi
 grep -q 'one-word column' "$work/narrow-column.log"
 
+node "$firstpair_root/publishing/tests/test-vault-guide-workflow.mjs"
+
 echo "Unified library book fixtures passed"

@@ -88,11 +88,19 @@ function targetUrl(parts, search, areaOverride = null) {
       return null
     }
 
-    return `${book.tutorialSource}${search}`
+    return { url: `${book.tutorialSource}${search}`, kind: 'html', book }
   }
 
   if (!area) {
-    return `${book.htmlSource}${search}`
+    return { url: `${book.htmlSource}${search}`, kind: 'html', book }
+  }
+
+  if (area === 'guide') {
+    if (rest.length > 0 || !book.vaultGuideSource) {
+      return null
+    }
+
+    return { url: `${book.vaultGuideSource}${search}`, kind: 'html', book }
   }
 
   if (area !== 'chapters') {
@@ -100,10 +108,14 @@ function targetUrl(parts, search, areaOverride = null) {
   }
 
   if (rest.length === 0) {
-    return `${book.htmlChaptersSource}${search}`
+    return { url: `${book.htmlChaptersSource}${search}`, kind: 'html', book }
   }
 
-  return `${book.htmlChaptersBase}/${encodePathParts(rest)}${search}`
+  return {
+    url: `${book.htmlChaptersBase}/${encodePathParts(rest)}${search}`,
+    kind: 'html',
+    book,
+  }
 }
 
 function contentSecurityPolicy(area = null) {
@@ -207,7 +219,7 @@ export default async function handler(request, response) {
     return
   }
 
-  const shouldModifyHtml = htmlTarget(target)
+  const shouldModifyHtml = target.kind === 'html' && htmlTarget(target.url)
   const headers = {
     'accept-encoding': 'identity',
   }
@@ -216,14 +228,17 @@ export default async function handler(request, response) {
     headers.range = request.headers.range
   }
 
-  const upstream = await fetch(target, {
+  const upstream = await fetch(target.url, {
     method: request.method,
     headers,
     redirect: 'follow',
   })
 
   response.statusCode = upstream.status
-  setResponseHeaders(upstream, response, { modifiedHtml: shouldModifyHtml && upstream.ok, area })
+  setResponseHeaders(upstream, response, {
+    modifiedHtml: shouldModifyHtml && upstream.ok,
+    area,
+  })
 
   if (request.method === 'HEAD' || !upstream.body) {
     response.end()

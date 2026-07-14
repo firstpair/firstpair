@@ -19,6 +19,9 @@ const checks = await page.evaluate(() => {
     hasEpubLink: links.some((href) => href.endsWith('.epub')),
     hasHostedHtmlLink: links.some((href) => href.startsWith('/read/')),
     hasHostedChaptersLink: links.some((href) => href.startsWith('/read/') && href.includes('/chapters/')),
+    hasHostedVaultGuideLink: links.some(
+      (href) => href.startsWith('/read/') && href.endsWith('/guide/'),
+    ),
     hasExternalHtmlDownloadLink: links.some(
       (href) => href.includes('public.blob.vercel-storage.com/books/') && href.includes('/html/'),
     ),
@@ -87,8 +90,20 @@ const isLocalTarget = /^https?:\/\/(127\.0\.0\.1|localhost)(:\d+)?\//.test(targe
 const paths = catalog.books.flatMap((book) => {
   const htmlPath = isLocalTarget ? book.htmlSource : book.html
   const chaptersPath = isLocalTarget ? book.htmlChaptersSource : book.htmlChapters
+  const guidePath = isLocalTarget
+    ? (book.vaultGuideSource ?? book.vaultGuide)
+    : book.vaultGuide
 
-  return [book.homepage, book.pdf, book.epub, htmlPath, chaptersPath].filter(Boolean)
+  return [
+    book.homepage,
+    book.pdf,
+    book.epub,
+    htmlPath,
+    chaptersPath,
+    book.cover,
+    book.vault,
+    guidePath,
+  ].filter(Boolean)
 })
 const results = []
 
@@ -97,12 +112,16 @@ for (const path of paths) {
 }
 
 const sampleReaderBook = catalog.books.find((book) => book.slug === 'lighthouse-republics') ?? catalog.books[0]
+const sampleGuideBook = catalog.books.find((book) => book.vaultGuideSource)
 const readerBodyChecks =
   isLocalTarget || !sampleReaderBook
     ? []
     : [
         await checkReaderBody(sampleReaderBook, sampleReaderBook.html),
         await checkReaderBody(sampleReaderBook, sampleReaderBook.htmlChapters),
+        ...(sampleGuideBook
+          ? [await checkReaderBody(sampleGuideBook, sampleGuideBook.vaultGuide)]
+          : []),
       ]
 
 const catalogChecks = {
@@ -120,6 +139,7 @@ const catalogChecks = {
   failedReaderBodies: readerBodyChecks.filter(
     (result) => !result.ok || !result.hasBookTitle || result.hasAppShell || !result.hasLibraryLink,
   ),
+  hostedVaultGuideCount: catalog.books.filter((book) => book.vaultGuideSource).length,
 }
 
 if (checks.title !== 'First Pair') {
@@ -136,6 +156,10 @@ if (checks.hasExternalHtmlDownloadLink || checks.hasExternalChapterDownloadLink)
 
 if (!checks.readerLinksOpenInNewTabs) {
   throw new Error(`HTML reader links should open in new tabs: ${JSON.stringify(checks)}`)
+}
+
+if (catalogChecks.hostedVaultGuideCount > 0 && !checks.hasHostedVaultGuideLink) {
+  throw new Error(`Missing hosted vault-guide link: ${JSON.stringify(checks)}`)
 }
 
 if (checks.cardCount < 6 || checks.stageWidth < 300 || checks.stageHeight < 400) {

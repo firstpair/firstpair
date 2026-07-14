@@ -5,6 +5,7 @@ import {
   copyFile,
   cp,
   lstat,
+  mkdtemp,
   mkdir,
   readFile,
   readdir,
@@ -14,7 +15,7 @@ import {
   stat,
   writeFile,
 } from 'node:fs/promises'
-import { homedir } from 'node:os'
+import { homedir, tmpdir } from 'node:os'
 import {
   basename,
   dirname,
@@ -26,6 +27,7 @@ import {
   sep,
 } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { renderVaultGuide } from './render-vault-guide.mjs'
 
 const scriptDir = dirname(fileURLToPath(import.meta.url))
 const root = dirname(scriptDir)
@@ -99,7 +101,9 @@ Options:
                             vault for the preview edition, the non-preview
                             vault for the full edition), zips it to a
                             versioned name, and copies it to iCloud beside the
-                            book, together with a copy of its guide.
+                            book, together with the raw Markdown guide. The
+                            guide is also embedded in the vault as README.md
+                            and rendered to standalone HTML for /read/.../guide/.
   --vault-dir <dir>         Explicit vault directory (implies --vault).
   --vault-guide <file>      Explicit vault guide (default: a docs/*VAULT*.md).
   --icloud-dir <dir>        Defaults to "$HOME/icloud/books".
@@ -198,8 +202,10 @@ async function writeJsonAtomic(path, value) {
 
 function parseKeyValue(text) {
   const values = {}
+  const lines = text.split(/\r?\n/)
 
-  for (const line of text.split(/\r?\n/)) {
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index]
     const trimmed = line.trim()
 
     if (!trimmed || trimmed.startsWith('#')) {
@@ -212,7 +218,37 @@ function parseKeyValue(text) {
       continue
     }
 
-    values[match[1].trim()] = cleanScalar(match[2])
+    const key = match[1].trim()
+    const scalar = cleanScalar(match[2])
+
+    if (scalar === '>' || scalar === '|') {
+      const block = []
+      let cursor = index + 1
+
+      while (cursor < lines.length && (!lines[cursor].trim() || /^\s+/.test(lines[cursor]))) {
+        block.push(lines[cursor])
+        cursor += 1
+      }
+
+      const indents = block
+        .filter((blockLine) => blockLine.trim())
+        .map((blockLine) => /^\s*/.exec(blockLine)[0].length)
+      const indent = indents.length ? Math.min(...indents) : 0
+      const normalized = block.map((blockLine) => blockLine.slice(indent))
+
+      values[key] = scalar === '|'
+        ? normalized.join('\n').trim()
+        : normalized
+            .join('\n')
+            .trim()
+            .split(/\n{2,}/)
+            .map((paragraph) => paragraph.replace(/\s*\n\s*/g, ' '))
+            .join('\n\n')
+      index = cursor - 1
+      continue
+    }
+
+    values[key] = scalar
   }
 
   return values
@@ -766,13 +802,27 @@ function upsertCatalogEntry(catalog, entry) {
 
 function catalogEntryFromPlan(plan, existing = {}) {
   const source = plan.explicit.source ? plan.source : (existing.source ?? plan.source)
+  const existingTags = Array.isArray(existing.tags) ? existing.tags : []
+  const existingIsPreview =
+    Boolean(existing.homepage) ||
+    /preview/i.test(existing.kicker ?? '') ||
+    existingTags.some((tag) => String(tag).toLowerCase() === 'preview')
+  const replacesPreview = plan.edition === 'full' && existingIsPreview
+  const tags = replacesPreview && !plan.explicit.tags
+    ? [...new Set([
+        ...plan.tags,
+        ...existingTags.filter((tag) => String(tag).toLowerCase() !== 'preview'),
+      ])]
+    : (plan.explicit.tags ? plan.tags : (existing.tags ?? plan.tags))
   const entry = {
     slug: plan.slug,
     title: plan.explicit.title ? plan.title : (existing.title ?? plan.title),
-    kicker: plan.explicit.kicker ? plan.kicker : (existing.kicker ?? plan.kicker),
+    kicker: plan.explicit.kicker || replacesPreview
+      ? plan.kicker
+      : (existing.kicker ?? plan.kicker),
     description: plan.explicit.description
       ? plan.description
-      : (existing.description ?? plan.description),
+      : (replacesPreview ? plan.description : (existing.description ?? plan.description)),
     accent: plan.explicit.accent ? plan.accent : (existing.accent ?? plan.accent),
     pdf: existing.pdf ?? '',
     epub: existing.epub ?? '',
@@ -780,7 +830,9 @@ function catalogEntryFromPlan(plan, existing = {}) {
     htmlChapters: `/read/${plan.slug}/chapters/`,
     htmlSource: existing.htmlSource ?? '',
     htmlChaptersSource: existing.htmlChaptersSource ?? '',
-    tags: plan.explicit.tags ? plan.tags : (existing.tags ?? plan.tags),
+    tags: plan.edition === 'full'
+      ? tags.filter((tag) => String(tag).toLowerCase() !== 'preview')
+      : tags,
   }
 
   if (plan.shelf) {
@@ -792,17 +844,21 @@ function catalogEntryFromPlan(plan, existing = {}) {
   // publish passes the catalog check.
   const isPreviewListing =
     plan.edition === 'preview' ||
-    Boolean(existing.homepage) ||
-    (entry.tags ?? []).includes('preview')
+    (!replacesPreview && Boolean(existing.homepage)) ||
+    (entry.tags ?? []).some((tag) => String(tag).toLowerCase() === 'preview')
 
   if (source && !isPreviewListing) {
     entry.source = source
   } else {
-    delete entry.source
+    // upsertCatalogEntry merges over the previous record, so an explicit
+    // undefined is required to clear a stale full-edition source on preview.
+    entry.source = undefined
   }
 
   if (existing.homepage) {
-    entry.homepage = existing.homepage
+    // Likewise, replacing a preview must actively clear its static landing
+    // page instead of merely omitting homepage from the incoming object.
+    entry.homepage = replacesPreview ? undefined : existing.homepage
   }
 
   return entry
@@ -810,6 +866,10 @@ function catalogEntryFromPlan(plan, existing = {}) {
 
 function readmeFor(plan, catalogEntry) {
   const source = catalogEntry.source ?? plan.source
+  const vaultLinks =
+    catalogEntry.vault || catalogEntry.vaultGuide
+      ? `${catalogEntry.vault ? `- [Download the Obsidian vault](${catalogEntry.vault})\n` : ''}${catalogEntry.vaultGuide ? `- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})\n` : ''}`
+      : ''
   const sourceText = source
     ? `\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts:\n\n[${source}](${source})\n`
     : '\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts. Record the upstream URL in\n`public/catalog.json` when it becomes available.\n'
@@ -825,6 +885,7 @@ ${catalogEntry.description}
 - [Read online](/read/${plan.slug}/)
 - [Chapter reader](/read/${plan.slug}/chapters/)
 ${plan.tutorial ? `- [Interactive tutorial](/learn/${plan.slug}/)\n` : ''}
+${vaultLinks}
 ${sourceText}`
 }
 
@@ -833,9 +894,39 @@ function readmeWithUpdatedLinks(plan, catalogEntry, existingText) {
     return readmeFor(plan, catalogEntry)
   }
 
+  if (
+    plan.edition === 'full' &&
+    /Preview landing page|Preview PDF|Read preview online|publishes only the preview/i.test(
+      existingText,
+    )
+  ) {
+    return readmeFor(plan, catalogEntry)
+  }
+
   let text = existingText
   text = text.replace(/(\[[^\]]*PDF[^\]]*\]\()([^)]+)(\))/i, `$1${catalogEntry.pdf}$3`)
   text = text.replace(/(\[[^\]]*EPUB[^\]]*\]\()([^)]+)(\))/i, `$1${catalogEntry.epub}$3`)
+  const vaultLinks = []
+  if (catalogEntry.vault) {
+    vaultLinks.push(`- [Download the Obsidian vault](${catalogEntry.vault})`)
+  }
+  if (catalogEntry.vaultGuide) {
+    vaultLinks.push(`- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})`)
+  }
+  if (vaultLinks.length) {
+    const block = `${vaultLinks.join('\n')}\n`
+    if (/\[[^\]]*(?:Obsidian vault|vault guide)[^\]]*\]\(/i.test(text)) {
+      text = text.replace(
+        /(?:- \[[^\]]*(?:Obsidian vault|vault guide)[^\]]*\]\([^)]+\)\n?)+/i,
+        block,
+      )
+    } else {
+      text = text.replace(
+        /(- \[Chapter reader\]\([^)]+\)\n)/i,
+        `$1${block}`,
+      )
+    }
+  }
 
   return text === existingText ? readmeFor(plan, catalogEntry) : text
 }
@@ -883,7 +974,12 @@ async function refreshSourceMap(plan, dryRun) {
   if (plan.vault) {
     sources.books[plan.slug].vault = repoRelative(join(plan.stageDir, plan.vault.zipName))
     if (plan.vault.guideName) {
-      sources.books[plan.slug].vaultGuide = repoRelative(join(plan.stageDir, plan.vault.guideName))
+      sources.books[plan.slug].vaultGuideMarkdown = repoRelative(
+        join(plan.stageDir, plan.vault.guideName),
+      )
+      sources.books[plan.slug].vaultGuideHtml = repoRelative(
+        join(plan.stageDir, plan.vault.guideHtmlName),
+      )
     }
   }
 
@@ -1037,20 +1133,22 @@ async function resolveVault(inputDir, distDir, edition, version, slug, options) 
 
   let guideSource = null
   let guideName = null
+  let guideHtmlName = null
   const guide = options['vault-guide']
     ? resolve(isAbsolute(options['vault-guide']) ? options['vault-guide'] : join(inputDir, options['vault-guide']))
     : await discoverVaultGuide(inputDir, bookDir)
   if (guide && (await exists(guide))) {
     guideSource = guide
-    guideName = `${slug}-vault-guide (${stamp})${extname(guide)}`
+    guideName = `${slug}-vault-guide (${stamp}).md`
+    guideHtmlName = `${slug}-vault-guide (${stamp}).html`
   }
 
-  return { dir, zipName, guideSource, guideName }
+  return { dir, zipName, guideSource, guideName, guideHtmlName }
 }
 
 // Zip the vault directory into destinationZip. Uses the system `zip` so the
 // archive opens as a plain folder; volatile Obsidian state is excluded.
-async function zipVault(vaultDir, destinationZip) {
+async function zipVault(vaultDir, destinationZip, guideSource = null) {
   await rm(destinationZip, { force: true })
   await mkdir(dirname(destinationZip), { recursive: true })
   const { code } = await runProcess(
@@ -1073,6 +1171,55 @@ async function zipVault(vaultDir, destinationZip) {
   if (code !== 0) {
     throw new Error(`zip failed (${code}) for vault: ${vaultDir}`)
   }
+
+  if (!guideSource) {
+    return
+  }
+
+  // Do not mutate the generated vault merely to include its publication
+  // guide. Add the canonical Markdown as <vault>/README.md from a temporary
+  // mirror, then extract and byte-check that member before delivery.
+  const temporaryRoot = await mkdtemp(join(tmpdir(), 'firstpair-vault-guide-'))
+  const vaultRootName = basename(vaultDir)
+  const temporaryVaultRoot = join(temporaryRoot, vaultRootName)
+  const archiveGuide = `${vaultRootName}/README.md`
+
+  try {
+    await mkdir(temporaryVaultRoot, { recursive: true })
+    await copyFile(guideSource, join(temporaryVaultRoot, 'README.md'))
+
+    const { code: appendCode } = await runProcess(
+      'zip',
+      ['-r', '-q', '-X', destinationZip, vaultRootName],
+      { cwd: temporaryRoot, stdio: 'inherit' },
+    )
+
+    if (appendCode !== 0) {
+      throw new Error(`zip failed (${appendCode}) while embedding vault guide: ${guideSource}`)
+    }
+
+    const verifyRoot = join(temporaryRoot, 'verify')
+    const { code: extractCode } = await runProcess(
+      'unzip',
+      ['-q', '-o', destinationZip, archiveGuide, '-d', verifyRoot],
+      { stdio: 'inherit' },
+    )
+
+    if (extractCode !== 0) {
+      throw new Error(`could not verify embedded vault guide: ${archiveGuide}`)
+    }
+
+    const [sourceBytes, archiveBytes] = await Promise.all([
+      readFile(guideSource),
+      readFile(join(verifyRoot, vaultRootName, 'README.md')),
+    ])
+
+    if (!sourceBytes.equals(archiveBytes)) {
+      throw new Error(`embedded vault guide did not match source: ${archiveGuide}`)
+    }
+  } finally {
+    await rm(temporaryRoot, { recursive: true, force: true })
+  }
 }
 
 // Stage the cover and (when requested) the vault zip and its guide into the
@@ -1087,9 +1234,19 @@ async function stageCompanions(plan, dryRun) {
     await copyFile(plan.cover.sourcePath, join(plan.stageDir, plan.cover.stableName))
   }
   if (plan.vault) {
-    await zipVault(plan.vault.dir, join(plan.stageDir, plan.vault.zipName))
+    await zipVault(
+      plan.vault.dir,
+      join(plan.stageDir, plan.vault.zipName),
+      plan.vault.guideSource,
+    )
     if (plan.vault.guideName) {
       await copyFile(plan.vault.guideSource, join(plan.stageDir, plan.vault.guideName))
+      await renderVaultGuide({
+        source: plan.vault.guideSource,
+        destination: join(plan.stageDir, plan.vault.guideHtmlName),
+        title: `${plan.title} — Obsidian Vault Guide`,
+        resourcePaths: [plan.vault.dir],
+      })
     }
   }
 }
@@ -1098,9 +1255,17 @@ async function stageCompanions(plan, dryRun) {
 async function copyCompanionsToIcloud(plan, dryRun) {
   const delivered = []
   if (plan.vault) {
-    delivered.push({ role: 'vault', path: join(plan.icloudDir, plan.vault.zipName) })
+    delivered.push({
+      role: 'vault',
+      source: join(plan.stageDir, plan.vault.zipName),
+      path: join(plan.icloudDir, plan.vault.zipName),
+    })
     if (plan.vault.guideName) {
-      delivered.push({ role: 'guide', path: join(plan.icloudDir, plan.vault.guideName) })
+      delivered.push({
+        role: 'guide-markdown',
+        source: join(plan.stageDir, plan.vault.guideName),
+        path: join(plan.icloudDir, plan.vault.guideName),
+      })
     }
   }
   if (dryRun || !plan.copyIcloud) {
@@ -1109,10 +1274,15 @@ async function copyCompanionsToIcloud(plan, dryRun) {
   if (delivered.length && !(await exists(plan.icloudDir))) {
     throw new Error(`iCloud Books destination does not exist: ${plan.icloudDir}`)
   }
-  if (plan.vault) {
-    await copyFile(join(plan.stageDir, plan.vault.zipName), join(plan.icloudDir, plan.vault.zipName))
-    if (plan.vault.guideName) {
-      await copyFile(join(plan.stageDir, plan.vault.guideName), join(plan.icloudDir, plan.vault.guideName))
+  for (const delivery of delivered) {
+    await copyFile(delivery.source, delivery.path)
+    const [sourceBytes, deliveredBytes] = await Promise.all([
+      readFile(delivery.source),
+      readFile(delivery.path),
+    ])
+
+    if (!sourceBytes.equals(deliveredBytes)) {
+      throw new Error(`iCloud companion copy did not match source: ${delivery.path}`)
     }
   }
   return delivered
@@ -1241,8 +1411,27 @@ async function runLiveCatalogCheck(plan) {
   }
 
   const liveUrl = 'https://firstpair.org/catalog.json'
+  const comparedFields = [
+    'title',
+    'kicker',
+    'description',
+    'accent',
+    'shelf',
+    'source',
+    'homepage',
+    'tags',
+    'pdf',
+    'epub',
+    'htmlSource',
+    'htmlChaptersSource',
+    'cover',
+    'vault',
+    'vaultGuide',
+    'vaultGuideSource',
+  ]
   const deadline = Date.now() + 3 * 60 * 1000
   let lastLiveBook = null
+  let lastGuideCheck = null
 
   while (Date.now() < deadline) {
     const response = await fetch(`${liveUrl}?t=${Date.now()}`, {
@@ -1254,13 +1443,40 @@ async function runLiveCatalogCheck(plan) {
       const liveBook = liveCatalog.books.find((book) => book.slug === plan.slug)
       lastLiveBook = liveBook
 
-      if (
-        liveBook?.pdf === localBook.pdf &&
-        liveBook?.epub === localBook.epub &&
-        liveBook?.htmlSource === localBook.htmlSource &&
-        liveBook?.htmlChaptersSource === localBook.htmlChaptersSource
-      ) {
-        console.error(`live catalog matches local entry for ${plan.slug}`)
+      const fieldsMatch = liveBook && comparedFields.every(
+        (field) => JSON.stringify(liveBook[field] ?? null) === JSON.stringify(localBook[field] ?? null),
+      )
+
+      if (fieldsMatch) {
+        if (localBook.vaultGuideSource) {
+          const guideResponse = await fetch(
+            new URL(localBook.vaultGuide, 'https://firstpair.org').href,
+            { cache: 'no-store' },
+          ).catch(() => null)
+          const guideBody = guideResponse?.ok ? await guideResponse.text() : ''
+          lastGuideCheck = {
+            status: guideResponse?.status ?? null,
+            contentType: guideResponse?.headers.get('content-type') ?? null,
+            contentDisposition: guideResponse?.headers.get('content-disposition') ?? null,
+            rendered: /<h1\b/i.test(guideBody),
+            hasLibraryLink:
+              guideBody.includes('First Pair Library') &&
+              guideBody.includes('firstpair-library-link'),
+          }
+
+          if (
+            !guideResponse?.ok ||
+            !lastGuideCheck.contentType?.includes('text/html') ||
+            /^attachment\b/i.test(lastGuideCheck.contentDisposition ?? '') ||
+            !lastGuideCheck.rendered ||
+            !lastGuideCheck.hasLibraryLink
+          ) {
+            await new Promise((resolveWait) => setTimeout(resolveWait, 5000))
+            continue
+          }
+        }
+
+        console.error(`live catalog and hosted readers match local entry for ${plan.slug}`)
         return
       }
     }
@@ -1271,18 +1487,11 @@ async function runLiveCatalogCheck(plan) {
   throw new Error(
     `live catalog did not update for ${plan.slug} within 180s\n${JSON.stringify(
       {
-        expected: {
-          pdf: localBook.pdf,
-          epub: localBook.epub,
-          htmlSource: localBook.htmlSource,
-          htmlChaptersSource: localBook.htmlChaptersSource,
-        },
-        actual: lastLiveBook && {
-          pdf: lastLiveBook.pdf,
-          epub: lastLiveBook.epub,
-          htmlSource: lastLiveBook.htmlSource,
-          htmlChaptersSource: lastLiveBook.htmlChaptersSource,
-        },
+        expected: Object.fromEntries(comparedFields.map((field) => [field, localBook[field]])),
+        actual:
+          lastLiveBook &&
+          Object.fromEntries(comparedFields.map((field) => [field, lastLiveBook[field]])),
+        guideCheck: lastGuideCheck,
       },
       null,
       2,
@@ -1319,9 +1528,13 @@ async function buildPlan(inputDir, options) {
   const subtitle = firstValue(version.subtitle, metadata.subtitle)
   const description = firstValue(
     options.description,
+    version.description,
+    metadata.description,
     `${subtitle ? `${title}: ${subtitle}` : title}, delivered as PDF, EPUB, and hosted web readers.`,
   )
-  const tags = options.tags.length ? [...new Set(options.tags)] : ['finished']
+  const tags = options.tags.length
+    ? [...new Set(options.tags)]
+    : [edition === 'preview' ? 'preview' : 'finished']
   const pdf = await resolveFileArtifact({
     distDir,
     version,
@@ -1397,7 +1610,13 @@ async function buildPlan(inputDir, options) {
   }
 }
 
-function printablePlan(plan, sourceMap = null, icloudCopies = [], vaultCopies = []) {
+function printablePlan(
+  plan,
+  sourceMap = null,
+  icloudCopies = [],
+  vaultCopies = [],
+  catalogEntry = null,
+) {
   return {
     slug: plan.slug,
     shelf: plan.shelf,
@@ -1407,6 +1626,7 @@ function printablePlan(plan, sourceMap = null, icloudCopies = [], vaultCopies = 
     stageDir: repoRelative(plan.stageDir),
     publicDir: repoRelative(plan.publicDir),
     source: plan.source,
+    catalogEntry,
     artifacts: {
       pdf: {
         source: plan.pdf.sourcePath,
@@ -1436,7 +1656,8 @@ function printablePlan(plan, sourceMap = null, icloudCopies = [], vaultCopies = 
         ? {
             source: plan.vault.dir,
             zip: plan.vault.zipName,
-            guide: plan.vault.guideName,
+            guideMarkdown: plan.vault.guideName,
+            guideHtml: plan.vault.guideHtmlName,
           }
         : null,
       cover: plan.cover
@@ -1491,7 +1712,11 @@ async function main() {
   const gateEntry = gateCatalog.books.find((book) => book.slug === plan.slug)
   const existingIsPreview = Boolean(
     gateEntry &&
-      (/preview/i.test(gateEntry.kicker ?? '') || (gateEntry.homepage ?? '').includes('/preview/')),
+      (
+        /preview/i.test(gateEntry.kicker ?? '') ||
+        Boolean(gateEntry.homepage) ||
+        gateEntry.tags?.some((tag) => String(tag).toLowerCase() === 'preview')
+      ),
   )
 
   if (plan.edition === 'full' && existingIsPreview && !options.full) {
@@ -1513,11 +1738,13 @@ async function main() {
     return
   }
 
-  await refreshCatalog(plan, dryRun)
+  const catalogEntry = await refreshCatalog(plan, dryRun)
 
   if (dryRun) {
     const vaultPreview = await copyCompanionsToIcloud(plan, dryRun)
-    console.log(JSON.stringify(printablePlan(plan, sourceMap, [], vaultPreview), null, 2))
+    console.log(
+      JSON.stringify(printablePlan(plan, sourceMap, [], vaultPreview, catalogEntry), null, 2),
+    )
     return
   }
 

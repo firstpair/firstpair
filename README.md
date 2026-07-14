@@ -33,8 +33,8 @@ sources shaped them, and what the public edition is meant to do.
 - `public/<book-stem>/README.md` documents each public book package.
 - `public/<book-stem>/preview/` holds static landing pages and manifests for
   preview editions.
-- `reader-map.mjs` maps hosted reader routes to Blob-backed single-file and
-  chapter HTML packages.
+- `reader-map.mjs` maps hosted reader routes to Blob-backed single-file,
+  chapter, tutorial, and rendered vault-guide HTML packages.
 - `book-uploads/book-package-sources.json` records the local package source for
   each catalog slug.
 - `book-uploads/blob-manifest.json` records uploaded hashes and Blob URLs so
@@ -43,14 +43,22 @@ sources shaped them, and what the public edition is meant to do.
   scripts used across First Pair work.
 
 Heavy book payloads do not live in deployable `public/`. PDF, EPUB, single HTML,
-and chapter HTML packages are uploaded to Vercel Blob one title at a time.
+chapter HTML, companion vaults, and rendered vault guides are uploaded to
+Vercel Blob one title at a time.
 `firstpair.org` exposes PDF and EPUB as downloads and HTML through hosted reader
 routes:
 
 ```text
 /read/<book-stem>/
 /read/<book-stem>/chapters/
+/read/<book-stem>/guide/
 ```
+
+When `library:publish` is run with `--vault`, it keeps the canonical Markdown
+guide in staging and iCloud, embeds the same bytes as `README.md` in the vault
+archive, and uses Pandoc to make a self-contained HTML derivative for the
+hosted guide route. The catalog records the route as `vaultGuide` and the Blob
+URL as `vaultGuideSource`; readers never need to render a raw Markdown Blob.
 
 ## The Method
 
@@ -87,6 +95,7 @@ A full public delivery usually includes:
 - EPUB download
 - hosted single-file HTML reader
 - hosted chapter reader
+- optional downloadable Obsidian vault and hosted rendered vault guide
 - `public/<book-stem>/README.md`
 - catalog metadata in `public/catalog.json`
 - Blob upload records in `book-uploads/blob-manifest.json`
@@ -102,6 +111,10 @@ npm run library:publish -- /absolute/path/to/book-or-dist --slug <book-stem>
 Use `--dry-run` to inspect artifact resolution, `--stage-only` to refresh only
 local staging and the source map, and `--no-deploy` when the package should be
 uploaded without changing production.
+
+Add `--vault` when the source book has a validated vault under
+`dist-obsidian/`; use `--vault-dir` and `--vault-guide` only when discovery
+cannot select the intended vault and Markdown guide unambiguously.
 
 Before a public change is considered done, the normal checks are:
 

@@ -403,10 +403,30 @@ if (vaultSource) {
   units.vault = await uploadFileUnit(manifest, 'vault', vaultSource)
 }
 
-const vaultGuideSource = sourcePath(sourceBook.vaultGuide)
+const vaultGuideHtmlSource = sourcePath(sourceBook.vaultGuideHtml)
+const vaultGuideMarkdownSource = sourcePath(sourceBook.vaultGuideMarkdown)
+const legacyVaultGuideSource = sourcePath(sourceBook.vaultGuide)
 
-if (vaultGuideSource) {
-  units.vaultGuide = await uploadFileUnit(manifest, 'vault-guide', vaultGuideSource)
+if (vaultGuideHtmlSource) {
+  if (!vaultGuideHtmlSource.path.toLowerCase().endsWith('.html')) {
+    throw new Error(`vaultGuideHtml must point to rendered HTML for ${slug}`)
+  }
+
+  if (!vaultGuideMarkdownSource) {
+    throw new Error(`vaultGuideMarkdown is required beside vaultGuideHtml for ${slug}`)
+  }
+
+  if (!vaultGuideMarkdownSource.path.toLowerCase().endsWith('.md')) {
+    throw new Error(`vaultGuideMarkdown must point to Markdown for ${slug}`)
+  }
+
+  await stat(vaultGuideMarkdownSource.path)
+  units.vaultGuide = await uploadFileUnit(manifest, 'vault-guide', vaultGuideHtmlSource)
+} else if (legacyVaultGuideSource) {
+  // Migration compatibility for packages staged before rendered guides were
+  // introduced. A fresh library:publish --vault run replaces this with the
+  // hosted route + HTML source contract below.
+  units.vaultGuide = await uploadFileUnit(manifest, 'vault-guide', legacyVaultGuideSource)
 }
 
 const chaptersSource = sourcePath(sourceBook.htmlChapters)
@@ -446,7 +466,12 @@ if (!dryRun) {
   }
 
   if (units.vaultGuide) {
-    book.vaultGuide = units.vaultGuide.url
+    if (vaultGuideHtmlSource) {
+      book.vaultGuide = `/read/${slug}/guide/`
+      book.vaultGuideSource = units.vaultGuide.url
+    } else {
+      book.vaultGuide = units.vaultGuide.url
+    }
   }
 
   await mkdir(uploadsDir, { recursive: true })

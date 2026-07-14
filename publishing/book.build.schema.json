@@ -63,6 +63,10 @@
       "type": "object",
       "properties": {
         "separateCover": { "type": "boolean" },
+        "coverImage": { "type": "string" },
+        "coverWidth": { "type": "string" },
+        "coverHeight": { "type": "string" },
+        "coverFit": { "enum": ["cover", "contain", "stretch"] },
         "includeInHeader": { "type": "array", "items": { "type": "string" } },
         "variables": { "type": "object" },
         "args": { "type": "array", "items": { "type": "string" } },

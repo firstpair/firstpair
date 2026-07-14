@@ -46,6 +46,7 @@ const invalidReaderRoutes = []
 const staleReaderMap = []
 const invalidSourceUrls = []
 const invalidTutorialRoutes = []
+const invalidVaultGuideRoutes = []
 const invalidPreviewSources = []
 const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
@@ -79,6 +80,48 @@ for (const book of catalog.books) {
     }
   }
 
+  // New vault guides use the reader proxy just like book HTML. Legacy
+  // Markdown Blob links remain valid during migration, but any entry with a
+  // vaultGuideSource must expose the canonical hosted route.
+  if (book.vaultGuide || book.vaultGuideSource) {
+    if (book.vaultGuideSource) {
+      if (book.vaultGuide !== `/read/${book.slug}/guide/`) {
+        invalidVaultGuideRoutes.push({
+          slug: book.slug,
+          field: 'vaultGuide',
+          path: book.vaultGuide,
+        })
+      }
+
+      if (!book.vaultGuideSource.startsWith('https://')) {
+        invalidSourceUrls.push({
+          slug: book.slug,
+          field: 'vaultGuideSource',
+          url: book.vaultGuideSource,
+        })
+      } else if (
+        !URL.canParse(book.vaultGuideSource) ||
+        !new URL(book.vaultGuideSource).pathname.toLowerCase().endsWith('.html')
+      ) {
+        invalidVaultGuideRoutes.push({
+          slug: book.slug,
+          field: 'vaultGuideSource',
+          path: book.vaultGuideSource,
+        })
+      }
+    } else if (!book.vaultGuide?.startsWith('https://')) {
+      invalidVaultGuideRoutes.push({
+        slug: book.slug,
+        field: 'vaultGuide',
+        path: book.vaultGuide,
+      })
+    }
+  }
+
+  if (book.vault && !book.vault.startsWith('https://')) {
+    invalidSourceUrls.push({ slug: book.slug, field: 'vault', url: book.vault })
+  }
+
   for (const field of ['htmlSource', 'htmlChaptersSource']) {
     if (!book[field]?.startsWith('https://')) {
       invalidSourceUrls.push({ slug: book.slug, field, url: book[field] })
@@ -90,13 +133,15 @@ for (const book of catalog.books) {
 
   const readerMapEntry = readerMapEntries.get(book.slug)
   const expectedTutorialSource = book.tutorialSource ?? undefined
+  const expectedVaultGuideSource = book.vaultGuideSource ?? undefined
 
   if (
     !readerMapEntry ||
     readerMapEntry.htmlSource !== book.htmlSource ||
     readerMapEntry.htmlChaptersSource !== expectedChaptersIndex ||
     readerMapEntry.htmlChaptersBase !== expectedChaptersBase ||
-    (readerMapEntry.tutorialSource ?? undefined) !== expectedTutorialSource
+    (readerMapEntry.tutorialSource ?? undefined) !== expectedTutorialSource ||
+    (readerMapEntry.vaultGuideSource ?? undefined) !== expectedVaultGuideSource
   ) {
     staleReaderMap.push({
       slug: book.slug,
@@ -105,6 +150,7 @@ for (const book of catalog.books) {
         htmlChaptersSource: expectedChaptersIndex,
         htmlChaptersBase: expectedChaptersBase,
         tutorialSource: expectedTutorialSource,
+        vaultGuideSource: expectedVaultGuideSource,
       },
       actual: readerMapEntry,
     })
@@ -140,6 +186,7 @@ if (
   missingLocalPaths.length ||
   invalidReaderRoutes.length ||
   invalidTutorialRoutes.length ||
+  invalidVaultGuideRoutes.length ||
   invalidPreviewSources.length ||
   invalidShelves.length ||
   staleReaderMap.length ||
@@ -158,6 +205,7 @@ if (
         missingLocalPaths,
         invalidReaderRoutes,
         invalidTutorialRoutes,
+        invalidVaultGuideRoutes,
         invalidPreviewSources,
         invalidShelves,
         staleReaderMap,

@@ -70,6 +70,7 @@ type Book = {
   cover?: string
   vault?: string
   vaultGuide?: string
+  vaultGuideSource?: string
   tags: string[]
 }
 

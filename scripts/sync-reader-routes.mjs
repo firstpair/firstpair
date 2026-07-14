@@ -13,6 +13,10 @@ function hostedChaptersPath(slug) {
   return `/read/${slug}/chapters/`
 }
 
+function hostedGuidePath(slug) {
+  return `/read/${slug}/guide/`
+}
+
 function normalizeIndexUrl(url) {
   return url.endsWith('/index.html') ? url : `${url.replace(/\/$/, '')}/index.html`
 }
@@ -52,6 +56,10 @@ function readerMap(books) {
 
     if (book.tutorialSource) {
       entry.tutorialSource = book.tutorialSource
+    }
+
+    if (book.vaultGuideSource) {
+      entry.vaultGuideSource = book.vaultGuideSource
     }
 
     return entry
@@ -102,6 +110,12 @@ for (const book of catalog.books) {
 
   if (book.tutorialSource?.startsWith('https://')) {
     book.tutorial = `/learn/${book.slug}/`
+  }
+
+  if (book.vaultGuideSource?.startsWith('https://')) {
+    book.vaultGuide = hostedGuidePath(book.slug)
+  } else if (book.vaultGuide?.startsWith('/read/')) {
+    throw new Error(`missing external vaultGuideSource for ${book.slug}`)
   }
 }
 

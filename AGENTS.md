@@ -38,6 +38,7 @@ routes on `firstpair.org`:
 ```text
 /read/<book-stem>/
 /read/<book-stem>/chapters/
+/read/<book-stem>/guide/
 ```
 
 Record both the hosted reader routes and the backing Blob source URLs in
@@ -98,7 +99,15 @@ anything live.
 Hosted HTML readers must include a visible link back to the First Pair library.
 Implement that navigation in the FirstPair reader proxy, not by rewriting and
 reuploading every generated HTML artifact. The link should point to `/`, render
-on single-file and chapter HTML pages, and stay hidden in print output.
+on single-file, chapter, and rendered vault-guide HTML pages, and stay hidden
+in print output.
+
+When `--vault` includes a Markdown guide, preserve that source as a versioned
+regular file in staging and `~/icloud/books`, embed the same bytes as
+`README.md` at the vault archive root, and render a self-contained HTML
+derivative with Pandoc for Blob upload. Store `/read/<book-stem>/guide/` in the
+catalog's `vaultGuide` field and the backing HTML Blob URL in
+`vaultGuideSource`; do not expose the raw Markdown Blob as the reader link.
 
 Create or update `public/<book-stem>/README.md`. The README should briefly
 overview the book, link the Blob-backed PDF and EPUB downloads, link the hosted
