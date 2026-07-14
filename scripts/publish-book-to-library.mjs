@@ -1616,6 +1616,7 @@ function printablePlan(
   icloudCopies = [],
   vaultCopies = [],
   catalogEntry = null,
+  dryRun = false,
 ) {
   return {
     slug: plan.slug,
@@ -1626,6 +1627,7 @@ function printablePlan(
     stageDir: repoRelative(plan.stageDir),
     publicDir: repoRelative(plan.publicDir),
     source: plan.source,
+    dryRun,
     catalogEntry,
     artifacts: {
       pdf: {
@@ -1672,13 +1674,13 @@ function printablePlan(
     vaultCopies: vaultCopies.map((copy) => copy.path),
     actions: {
       stageOnly: plan.stageOnly,
-      upload: !plan.stageOnly,
-      copyIcloud: plan.copyIcloud && !plan.stageOnly,
-      deliverVault: Boolean(plan.vault) && !plan.stageOnly,
-      checkCatalog: plan.runCheck && !plan.stageOnly,
-      prodBuild: plan.runBuild && !plan.stageOnly,
-      smoke: plan.runSmoke && !plan.stageOnly,
-      productionDeploy: plan.runDeploy && !plan.stageOnly,
+      upload: !dryRun && !plan.stageOnly,
+      copyIcloud: !dryRun && plan.copyIcloud && !plan.stageOnly,
+      deliverVault: !dryRun && Boolean(plan.vault) && !plan.stageOnly,
+      checkCatalog: !dryRun && plan.runCheck && !plan.stageOnly,
+      prodBuild: !dryRun && plan.runBuild && !plan.stageOnly,
+      smoke: !dryRun && plan.runSmoke && !plan.stageOnly,
+      productionDeploy: !dryRun && plan.runDeploy && !plan.stageOnly,
     },
   }
 }
@@ -1734,7 +1736,7 @@ async function main() {
   const sourceMap = await refreshSourceMap(plan, dryRun)
 
   if (plan.stageOnly) {
-    console.log(JSON.stringify(printablePlan(plan, sourceMap), null, 2))
+    console.log(JSON.stringify(printablePlan(plan, sourceMap, [], [], null, dryRun), null, 2))
     return
   }
 
@@ -1743,7 +1745,11 @@ async function main() {
   if (dryRun) {
     const vaultPreview = await copyCompanionsToIcloud(plan, dryRun)
     console.log(
-      JSON.stringify(printablePlan(plan, sourceMap, [], vaultPreview, catalogEntry), null, 2),
+      JSON.stringify(
+        printablePlan(plan, sourceMap, [], vaultPreview, catalogEntry, dryRun),
+        null,
+        2,
+      ),
     )
     return
   }

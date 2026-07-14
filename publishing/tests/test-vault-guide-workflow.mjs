@@ -241,6 +241,9 @@ html_chapters_dir: fixture-book-chapters
   ])
   const fullPlan = JSON.parse(fullDryRun.stdout.toString('utf8'))
 
+  assert.equal(fullPlan.dryRun, true)
+  assert.equal(fullPlan.actions.upload, false)
+  assert.equal(fullPlan.actions.productionDeploy, false)
   assert.equal(fullPlan.catalogEntry.kicker, 'Finished book')
   assert.equal(
     fullPlan.catalogEntry.description,
