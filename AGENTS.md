@@ -5,6 +5,15 @@ book-specific source repositories as the authority for manuscripts, metadata,
 versions, and built artifacts; FirstPair owns the public catalog, preview
 pages, and object-storage delivery URLs.
 
+## Content Ownership
+
+Do not deposit project-owned editorial content in FirstPair unless the user
+explicitly names an exception. Announcements, blog posts, textpacks, pitch
+packets, manuscript excerpts, and their assets belong in the specific project
+or book source repository that owns the work. FirstPair may hold First Pair
+house content, public catalog/readme surfaces, upload manifests, reader route
+maps, and generated deployment metadata needed to publish or host those sources.
+
 ## Public Book Delivery
 
 Public books have one lightweight metadata directory under `public/`. Use the
