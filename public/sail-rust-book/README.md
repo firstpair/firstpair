@@ -6,11 +6,11 @@ web readers, and an Obsidian Vault.
 
 ## Current Public Editions
 
-- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/4b0e3c74798d945d-sail-rust-book.pdf)
-- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/e7e97c4f79c8c8ff-sail-rust-book.epub)
+- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/55411812b95df7be-sail-rust-book.pdf)
+- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/4a4a33868db92ba9-sail-rust-book.epub)
 - [Read online](/read/sail-rust-book/)
 - [Chapter reader](/read/sail-rust-book/chapters/)
-- [Download the Obsidian vault](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/808baed2385167d0-sail-rust-book-full-vault%20%282026.07.14.1-ad4488e3%29.zip)
+- [Download the Obsidian vault](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault%20%282026.07.14.1-e0a4bf42%29.zip)
 - [Read the Obsidian vault guide](/read/sail-rust-book/guide/)
 
 The source repositories own manuscripts, metadata, versions, and build logic.

@@ -133,8 +133,8 @@
       "accent": "#4f5e46",
       "shelf": "querygraph",
       "source": "https://github.com/lakehq/sail",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/4b0e3c74798d945d-sail-rust-book.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/e7e97c4f79c8c8ff-sail-rust-book.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/55411812b95df7be-sail-rust-book.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/4a4a33868db92ba9-sail-rust-book.epub",
       "html": "/read/sail-rust-book/",
       "htmlChapters": "/read/sail-rust-book/chapters/",
       "tags": [
@@ -145,11 +145,11 @@
         "obsidian",
         "first-pair"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/html/26923fc510dfa74a-sail-rust-book.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/index.html",
-      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/808baed2385167d0-sail-rust-book-full-vault%20%282026.07.14.1-ad4488e3%29.zip",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/html/1661d0a2f66c9668-sail-rust-book.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
+      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault%20%282026.07.14.1-e0a4bf42%29.zip",
       "vaultGuide": "/read/sail-rust-book/guide/",
-      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault-guide/f111e876d615c17f-sail-rust-book-vault-guide%20%282026.07.14.1-ad4488e3%29.html",
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault-guide/b8191eb19c0c8e8f-sail-rust-book-vault-guide%20%282026.07.14.1-e0a4bf42%29.html",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png"
     },
     {

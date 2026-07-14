@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-14T21:33:42.964Z",
+  "updatedAt": "2026-07-14T23:35:39.165Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-10T03:46:00.383Z",
@@ -888,35 +888,35 @@
       }
     },
     "sail-rust-book": {
-      "updatedAt": "2026-07-14T21:33:42.963Z",
+      "updatedAt": "2026-07-14T23:35:39.164Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book.pdf",
-          "sha256": "4b0e3c74798d945d986efb0f2842a916cd533db10d2d08a5c3c2344862b200d5",
-          "size": 9071801,
-          "pathname": "books/sail-rust-book/pdf/4b0e3c74798d945d-sail-rust-book.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/4b0e3c74798d945d-sail-rust-book.pdf",
-          "skipped": true
+          "sha256": "55411812b95df7be8a3c6f4242954dc7c8c0fb3fd26d1b0df5725f1632f47d57",
+          "size": 9057280,
+          "pathname": "books/sail-rust-book/pdf/55411812b95df7be-sail-rust-book.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/55411812b95df7be-sail-rust-book.pdf",
+          "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book.epub",
-          "sha256": "e7e97c4f79c8c8ffee90e8f0d625658bdd0dd72e2275abba851c52fffc1c3282",
-          "size": 5478962,
-          "pathname": "books/sail-rust-book/epub/e7e97c4f79c8c8ff-sail-rust-book.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/e7e97c4f79c8c8ff-sail-rust-book.epub",
-          "skipped": true
+          "sha256": "4a4a33868db92ba9e2df3fa9adb8658dd0863b8fb58cfb27a0dc7e0af89eb08b",
+          "size": 5478573,
+          "pathname": "books/sail-rust-book/epub/4a4a33868db92ba9-sail-rust-book.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/4a4a33868db92ba9-sail-rust-book.epub",
+          "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book.html",
-          "sha256": "26923fc510dfa74a96104734140037326fa866d5f09ed106b294f02f37aecbb0",
-          "size": 1374412,
-          "pathname": "books/sail-rust-book/html/26923fc510dfa74a-sail-rust-book.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/html/26923fc510dfa74a-sail-rust-book.html",
-          "skipped": true
+          "sha256": "1661d0a2f66c9668ec56d19b152169a00cf6fc66e69798ca3d3f036104f71d11",
+          "size": 1372438,
+          "pathname": "books/sail-rust-book/html/1661d0a2f66c9668-sail-rust-book.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/html/1661d0a2f66c9668-sail-rust-book.html",
+          "skipped": false
         },
         "cover": {
           "kind": "cover",
@@ -925,50 +925,50 @@
           "size": 5156465,
           "pathname": "books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "vault": {
           "kind": "vault",
-          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-full-vault (2026.07.14.1-ad4488e3).zip",
-          "sha256": "808baed2385167d04fa1c3a1958075ee156280f0a199beba659be086f64814d9",
-          "size": 25044875,
-          "pathname": "books/sail-rust-book/vault/808baed2385167d0-sail-rust-book-full-vault (2026.07.14.1-ad4488e3).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/808baed2385167d0-sail-rust-book-full-vault%20%282026.07.14.1-ad4488e3%29.zip",
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-full-vault (2026.07.14.1-e0a4bf42).zip",
+          "sha256": "03660772c365b0b5c74b224193dd083028b71840429ad9360e6ddf7081cd815e",
+          "size": 25044447,
+          "pathname": "books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault (2026.07.14.1-e0a4bf42).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault%20%282026.07.14.1-e0a4bf42%29.zip",
           "skipped": false
         },
         "vaultGuide": {
           "kind": "vault-guide",
-          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-vault-guide (2026.07.14.1-ad4488e3).html",
-          "sha256": "f111e876d615c17f3e2f8f62bb81791b9138c177524f3e87995df138ec870668",
-          "size": 4937,
-          "pathname": "books/sail-rust-book/vault-guide/f111e876d615c17f-sail-rust-book-vault-guide (2026.07.14.1-ad4488e3).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault-guide/f111e876d615c17f-sail-rust-book-vault-guide%20%282026.07.14.1-ad4488e3%29.html",
-          "skipped": true
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-vault-guide (2026.07.14.1-e0a4bf42).html",
+          "sha256": "b8191eb19c0c8e8fdc318496cda0d4202876301a80944420e0ea2db6067dae26",
+          "size": 7640,
+          "pathname": "books/sail-rust-book/vault-guide/b8191eb19c0c8e8f-sail-rust-book-vault-guide (2026.07.14.1-e0a4bf42).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault-guide/b8191eb19c0c8e8f-sail-rust-book-vault-guide%20%282026.07.14.1-e0a4bf42%29.html",
+          "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters",
-          "sha256": "f1026c44a7185c34058fd71d2dc6bfd51630f37bd617f14110fa329fb00602e9",
-          "pathnamePrefix": "books/sail-rust-book/chapters/f1026c44a7185c34",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/index.html",
-          "skipped": true,
+          "sha256": "f92c8f33b9e0cb05c5f8f200d404e963cb9d9cdd9b3dce72d412636fc92f5b28",
+          "pathnamePrefix": "books/sail-rust-book/chapters/f92c8f33b9e0cb05",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
+          "skipped": false,
           "files": [
             {
               "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/book.css",
               "relativePath": "book.css",
               "sha256": "490316d51f96969752e01f59dcc5e9eb404a966cf4d4f3e953e9767b3ec52f2e",
               "size": 1001,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/book.css",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "c343e06ee1c7ef3b7118e578dd1be92cdce3b468b78a45a50ca3cf267090f902",
-              "size": 12565,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-001.html",
+              "sha256": "3b7056f466125b0cd1a053337159e297d1082d294ec57fb0263118fd599443ce",
+              "size": 10239,
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-001.html",
               "skipped": false
             },
             {
@@ -976,8 +976,8 @@
               "relativePath": "chapter-002.html",
               "sha256": "c423b6d10ee1e6449159fa3fb704d58f8a99830c1336f10e0cadda7f3754c5f3",
               "size": 26983,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-002.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-002.html",
               "skipped": false
             },
             {
@@ -985,8 +985,8 @@
               "relativePath": "chapter-003.html",
               "sha256": "e5e059bb0f71c173dafbf016f8ae9a18741c6410df893b28375bb0ea99005f94",
               "size": 52507,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-003.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-003.html",
               "skipped": false
             },
             {
@@ -994,8 +994,8 @@
               "relativePath": "chapter-004.html",
               "sha256": "44d3114eb7abc0211c26a6a15c66cc301e77930f89d71f0452ab7aad4044439b",
               "size": 56835,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-004.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-004.html",
               "skipped": false
             },
             {
@@ -1003,8 +1003,8 @@
               "relativePath": "chapter-005.html",
               "sha256": "a28b4dbb107f1a99ccd95037b52aa3642867406da855d441c48735cd210fc612",
               "size": 57872,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-005.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-005.html",
               "skipped": false
             },
             {
@@ -1012,8 +1012,8 @@
               "relativePath": "chapter-006.html",
               "sha256": "5098fcf5a3a20874d970f04dc6651841ccb9b0464b33536be196e7e885cc880b",
               "size": 61935,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-006.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-006.html",
               "skipped": false
             },
             {
@@ -1021,8 +1021,8 @@
               "relativePath": "chapter-007.html",
               "sha256": "10ba7d7840407c5a2a3a4173f227d4269b3a6b63752fa05c10dfdf27f4cd5982",
               "size": 79779,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-007.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-007.html",
               "skipped": false
             },
             {
@@ -1030,8 +1030,8 @@
               "relativePath": "chapter-008.html",
               "sha256": "02dc69b513b0af2b31d7151df15ddcfd671719e974507329633a9ce4ba092f0a",
               "size": 77647,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-008.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-008.html",
               "skipped": false
             },
             {
@@ -1039,8 +1039,8 @@
               "relativePath": "chapter-009.html",
               "sha256": "3a2a97c679043bdbaa7ad6fa08d85c87063abd8e5fdd35566ff7b89d4f8c68a4",
               "size": 90712,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-009.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-009.html",
               "skipped": false
             },
             {
@@ -1048,8 +1048,8 @@
               "relativePath": "chapter-010.html",
               "sha256": "e82a447035d48fe0539535be422062d532e58e14aca692ba9878aee5df9f5131",
               "size": 44146,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-010.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-010.html",
               "skipped": false
             },
             {
@@ -1057,8 +1057,8 @@
               "relativePath": "chapter-011.html",
               "sha256": "3d874157e580150a06a80f17f63bff63a7d0c9123462faad332d432781d2be1f",
               "size": 67195,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-011.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-011.html",
               "skipped": false
             },
             {
@@ -1066,8 +1066,8 @@
               "relativePath": "chapter-012.html",
               "sha256": "8a0d56ad04b62c102b04c878b4896cc29e4dbaaab935d4da03bd750d96978154",
               "size": 70404,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-012.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-012.html",
               "skipped": false
             },
             {
@@ -1075,8 +1075,8 @@
               "relativePath": "chapter-013.html",
               "sha256": "3e7da1849b1ba2014caa5c02a82420513a6d41ed420eb7b590a345071a5a8827",
               "size": 74642,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-013.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-013.html",
               "skipped": false
             },
             {
@@ -1084,8 +1084,8 @@
               "relativePath": "chapter-014.html",
               "sha256": "0474ad99d564d211a055eca2c139cac65ee517716b6609787da5bf0b4200eccc",
               "size": 116732,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-014.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-014.html",
               "skipped": false
             },
             {
@@ -1093,8 +1093,8 @@
               "relativePath": "chapter-015.html",
               "sha256": "34c2bc447005e0afa24eefa741067a6369dfccbd90a4f46dfc08015c3f1d1ec6",
               "size": 22714,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-015.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-015.html",
               "skipped": false
             },
             {
@@ -1102,8 +1102,8 @@
               "relativePath": "chapter-016.html",
               "sha256": "cb0e4a5e04035b1df7288feca76dbf0723b7affb01145459e340630dbf49ef4f",
               "size": 18542,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-016.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-016.html",
               "skipped": false
             },
             {
@@ -1111,8 +1111,8 @@
               "relativePath": "chapter-017.html",
               "sha256": "f63e65b72d3eeaa576a47a9555dd04b1ee86094105f41979243e916c1fe906e9",
               "size": 21857,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-017.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-017.html",
               "skipped": false
             },
             {
@@ -1120,8 +1120,8 @@
               "relativePath": "chapter-018.html",
               "sha256": "6217ebb5f3085fb35ce8012d55cc92a46ef5d750badc923d69bbe2123ca4bdc8",
               "size": 11986,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-018.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-018.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-018.html",
               "skipped": false
             },
             {
@@ -1129,8 +1129,8 @@
               "relativePath": "chapter-019.html",
               "sha256": "899b57138296828ed6f86350c09ccf4ba2f70abd77dd35f3a664224b72caa961",
               "size": 11801,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-019.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-019.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-019.html",
               "skipped": false
             },
             {
@@ -1138,8 +1138,8 @@
               "relativePath": "chapter-020.html",
               "sha256": "88a3dda889eaab11baed3db27bcf25a482f18565df9c206c2d4b07b7f55d70b9",
               "size": 12599,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-020.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-020.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-020.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-020.html",
               "skipped": false
             },
             {
@@ -1147,8 +1147,8 @@
               "relativePath": "chapter-021.html",
               "sha256": "be3f27261841249962fdb248f56b1c368b3dbee5fc936c7191edf3c35af5861a",
               "size": 18054,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/chapter-021.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/chapter-021.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-021.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-021.html",
               "skipped": false
             },
             {
@@ -1156,8 +1156,8 @@
               "relativePath": "diagrams/01-diagram-01.svg",
               "sha256": "9bf261e0211af5f23e853f6c96261c025c75db959d779005b543e1262f153feb",
               "size": 7053,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1165,8 +1165,8 @@
               "relativePath": "diagrams/01-diagram-02.svg",
               "sha256": "a5107708f77a4af4fd947561a9485f696b0048772df68231f495a023b17307c8",
               "size": 5774,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1174,8 +1174,8 @@
               "relativePath": "diagrams/01-diagram-03.svg",
               "sha256": "d932b34edc81be57ce95811a5332b5cff1965cf0e07a0adc97eb0e31ab5ad7d6",
               "size": 3774,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1183,8 +1183,8 @@
               "relativePath": "diagrams/01-diagram-04.svg",
               "sha256": "b30f6573e8002ae4484feb770f9bf2b186e2bfdd4c31f380daf051d7362ca8c2",
               "size": 5432,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/01-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1192,8 +1192,8 @@
               "relativePath": "diagrams/02-diagram-01.svg",
               "sha256": "9f3cad875e97760cb32694d002c2d7ef04727d6cce16449843cbc76d4a798753",
               "size": 2761,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/02-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/02-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1201,8 +1201,8 @@
               "relativePath": "diagrams/02-diagram-02.svg",
               "sha256": "2d6b61e2dd79c0b96cd744d6c6384ae32e4b624928c7366df8e6ef210c21a4ca",
               "size": 3152,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/02-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/02-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1210,8 +1210,8 @@
               "relativePath": "diagrams/02-diagram-03.svg",
               "sha256": "e17175e4cd5ca17fd30cc545c7cbee5f53ab552d95501f970f143affb94512ab",
               "size": 3802,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/02-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/02-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1219,8 +1219,8 @@
               "relativePath": "diagrams/03-diagram-01.svg",
               "sha256": "43a101bda10ded98cf5c41a0ce3fd278f73283e824abda32dec122df0c908a33",
               "size": 3668,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1228,8 +1228,8 @@
               "relativePath": "diagrams/03-diagram-02.svg",
               "sha256": "0b8f6d744f19087559a66804d8b1ad7d342ac83e14e3c8821db2c77304902566",
               "size": 4145,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1237,8 +1237,8 @@
               "relativePath": "diagrams/03-diagram-03.svg",
               "sha256": "4963bb013fe59df85ca4113aedd6b2deea025813f3585f26689e150b65f27e81",
               "size": 3716,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1246,8 +1246,8 @@
               "relativePath": "diagrams/03-diagram-04.svg",
               "sha256": "f3cdd477de5407117e124c130b6bac38e3070d977ce015115c14df3220562cb7",
               "size": 2414,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1255,8 +1255,8 @@
               "relativePath": "diagrams/03-diagram-05.svg",
               "sha256": "6a70b32c3c6b5f0959bee75afeb129257b1637cc3d3d063d275173c0f98885eb",
               "size": 4662,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1264,8 +1264,8 @@
               "relativePath": "diagrams/03-diagram-06.svg",
               "sha256": "fd88b1d850260c49bc70e326b5544ee8808f15248f8cf32eb6946258df901c69",
               "size": 4410,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/03-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1273,8 +1273,8 @@
               "relativePath": "diagrams/04-diagram-01.svg",
               "sha256": "ca2ad4f7ba1407ea8350e70882d7df63a2b138653f7d2e632009042985480c24",
               "size": 4047,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1282,8 +1282,8 @@
               "relativePath": "diagrams/04-diagram-02.svg",
               "sha256": "bfc04d4f1cc0c5b4d3b4d47ac8ba6baa5122d094551c1d0df425922cd7eef013",
               "size": 4999,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1291,8 +1291,8 @@
               "relativePath": "diagrams/04-diagram-03.svg",
               "sha256": "94ea0ffac433b309d0422672e8f12cb9d231a0ffcd80bf827094da89ba158102",
               "size": 2838,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1300,8 +1300,8 @@
               "relativePath": "diagrams/04-diagram-04.svg",
               "sha256": "dcfad12ca0de77fee491d0ecc1f891083741f3f454abf4345f7485cf5f1adf44",
               "size": 2752,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1309,8 +1309,8 @@
               "relativePath": "diagrams/04-diagram-05.svg",
               "sha256": "3790d17d0767b9ef3b8f8330826a35dccfa0a26b8aa0359af4cbb0b54df1cf29",
               "size": 4170,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/04-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1318,8 +1318,8 @@
               "relativePath": "diagrams/05-diagram-01.svg",
               "sha256": "60a3bfdb6c8a221522d265cd3476538ec6240d7a09d044695c775ed0105f0f49",
               "size": 4556,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1327,8 +1327,8 @@
               "relativePath": "diagrams/05-diagram-02.svg",
               "sha256": "20568fddb14274b67c3b520bed5bcd189ba5604f4635441b1bb77d57d48fa42b",
               "size": 2308,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1336,8 +1336,8 @@
               "relativePath": "diagrams/05-diagram-03.svg",
               "sha256": "798ef2a4a9a0708fb53ab01299e5eb4601751855d96b5da9d61c7ebaf12d8a7a",
               "size": 4391,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1345,8 +1345,8 @@
               "relativePath": "diagrams/05-diagram-04.svg",
               "sha256": "4e015ab76a50f71d7c4a4c01e24a8b2569133771a9a2b555f3613e663330c1bb",
               "size": 2614,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1354,8 +1354,8 @@
               "relativePath": "diagrams/05-diagram-05.svg",
               "sha256": "ba19f5373f3502795f275e50168189d07086ec186915f0556ae74785d0096de6",
               "size": 5613,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1363,8 +1363,8 @@
               "relativePath": "diagrams/05-diagram-06.svg",
               "sha256": "1f4ad2ff965d7eca445fd68194e2fd0ec90c73a8fbe17857236b5d9c3ac1ae92",
               "size": 2845,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1372,8 +1372,8 @@
               "relativePath": "diagrams/05-diagram-07.svg",
               "sha256": "1d93a8cd238717af0112e440ad15d09c671d57f1bd63e291942d2ee83bf606e8",
               "size": 5683,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-07.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/05-diagram-07.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-07.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-07.svg",
               "skipped": false
             },
             {
@@ -1381,8 +1381,8 @@
               "relativePath": "diagrams/06-diagram-01.svg",
               "sha256": "103e3cbe633b47e9bf3b87367f5467732d6660c882206b9fb8f01a316a3bc3c8",
               "size": 4580,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1390,8 +1390,8 @@
               "relativePath": "diagrams/06-diagram-02.svg",
               "sha256": "ff680a8d30b09ee69d875d4b6ff0013d9a1805c5dba39a824e0f2dafe589ea92",
               "size": 2859,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1399,8 +1399,8 @@
               "relativePath": "diagrams/06-diagram-03.svg",
               "sha256": "79e2095a8d120e8a8ee986034635274b4772eaf7ab03ad229f56168764216df1",
               "size": 2821,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1408,8 +1408,8 @@
               "relativePath": "diagrams/06-diagram-04.svg",
               "sha256": "82a44439617932683d2947653cb18f7da28aa6c0fbe1add34a4ffb093b521b97",
               "size": 2432,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1417,8 +1417,8 @@
               "relativePath": "diagrams/06-diagram-05.svg",
               "sha256": "396a275afecc7d18f7073ca6616520ab133f11201b69b2cdfb4464e63faadd05",
               "size": 2919,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/06-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1426,8 +1426,8 @@
               "relativePath": "diagrams/07-diagram-01.svg",
               "sha256": "a566b9e6d075f1738fcc4ae5e57a729b52d54e74c0f3593af96d60a609b3dca6",
               "size": 3610,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1435,8 +1435,8 @@
               "relativePath": "diagrams/07-diagram-02.svg",
               "sha256": "854c7b08bf16265e4ae974d139b5d3bd4a144e686ee7278c2c8950af0bf463e9",
               "size": 2984,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1444,8 +1444,8 @@
               "relativePath": "diagrams/07-diagram-03.svg",
               "sha256": "79ef2e059a3940d83722cb54c6478bf27a815411d2dfd91639f9e8669929bcb2",
               "size": 2777,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1453,8 +1453,8 @@
               "relativePath": "diagrams/07-diagram-04.svg",
               "sha256": "853adf0ae19864f783dafad4792af7d16a20f3ef5808b38841012793d4f5d807",
               "size": 2760,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1462,8 +1462,8 @@
               "relativePath": "diagrams/07-diagram-05.svg",
               "sha256": "70c25befc38f640687b654242e75dbcf2870a31450a6722774a989ab6180b98c",
               "size": 1890,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1471,8 +1471,8 @@
               "relativePath": "diagrams/07-diagram-06.svg",
               "sha256": "9b347309046871283eb648e747fb6198a5c047c0980d48da2e16c9b06337bca8",
               "size": 2566,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1480,8 +1480,8 @@
               "relativePath": "diagrams/07-diagram-07.svg",
               "sha256": "ad1638a8e7f0521ebda8115c2611bc7b0a2a3591a8cf0b5524fcdadaa6166e19",
               "size": 2789,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-07.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-07.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-07.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-07.svg",
               "skipped": false
             },
             {
@@ -1489,8 +1489,8 @@
               "relativePath": "diagrams/07-diagram-08.svg",
               "sha256": "62b3a2dabcb22888982d447f11f2b3c09ad0104d4259c09329646aafb074adc8",
               "size": 3237,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-08.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-08.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-08.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-08.svg",
               "skipped": false
             },
             {
@@ -1498,8 +1498,8 @@
               "relativePath": "diagrams/07-diagram-09.svg",
               "sha256": "1896c21132ca44fb65759161fe423d30c5fa86db5030c9f05e81ac707c97bd29",
               "size": 2294,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-09.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/07-diagram-09.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-09.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-09.svg",
               "skipped": false
             },
             {
@@ -1507,8 +1507,8 @@
               "relativePath": "diagrams/08-diagram-01.svg",
               "sha256": "96e305dc719125eb4e0e0a1c18efc4bdc0d45b7bf2e71c88cabcd41df55a90dc",
               "size": 2476,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1516,8 +1516,8 @@
               "relativePath": "diagrams/08-diagram-02.svg",
               "sha256": "9ba8e05ca8499bbc4b6ce1c3035fae4ffce40a0636c51cef78e8ced6efacae5e",
               "size": 5081,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1525,8 +1525,8 @@
               "relativePath": "diagrams/08-diagram-03.svg",
               "sha256": "fcf94de93e981fb12e1f812808669b582275461e30ac52ef97cb0a312a017651",
               "size": 3698,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1534,8 +1534,8 @@
               "relativePath": "diagrams/08-diagram-04.svg",
               "sha256": "bbcede1faac0abf45b21b66c9c48c652e6b4d4da6ba3799d71eb4ea363b5d428",
               "size": 3391,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1543,8 +1543,8 @@
               "relativePath": "diagrams/08-diagram-05.svg",
               "sha256": "2663d582a63b117460e6264541b8121855631a28b7975dbfdbea86302847ccc4",
               "size": 5432,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1552,8 +1552,8 @@
               "relativePath": "diagrams/08-diagram-06.svg",
               "sha256": "4fb4f3c3cee809c4cc057263750d2c0ff47c8acd0b27e6a213d1f0aabfcb760c",
               "size": 9992,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/08-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1561,8 +1561,8 @@
               "relativePath": "diagrams/09-diagram-01.svg",
               "sha256": "8af96cf3c4896a84245784c78b26f2aa0a1a801df4cd2c1cb42dcbfa3664ef8b",
               "size": 5130,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1570,8 +1570,8 @@
               "relativePath": "diagrams/09-diagram-02.svg",
               "sha256": "fe525476b8a99f0fc793305a23a28b7c66e08508c4d912335a857b553e37f195",
               "size": 3003,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1579,8 +1579,8 @@
               "relativePath": "diagrams/09-diagram-03.svg",
               "sha256": "057e27dad5917a4f439eb0da15a1d792b4e72c94c20e8f1adba704cb4a66a924",
               "size": 2872,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1588,8 +1588,8 @@
               "relativePath": "diagrams/09-diagram-04.svg",
               "sha256": "bbb24540dc1b8eccf63628208378f71a9631ee0407db3e9aab4b3ea2ff24044a",
               "size": 2344,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1597,8 +1597,8 @@
               "relativePath": "diagrams/09-diagram-05.svg",
               "sha256": "5d50c71c2f8b3dfa0d4e53f6dba10206e03f24731ab19e131acf7d5e73761600",
               "size": 4880,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1606,8 +1606,8 @@
               "relativePath": "diagrams/09-diagram-06.svg",
               "sha256": "98578c968e37f39659ff0fa3c57d7fc8845dfae3f74eb5bcbeacf28f3b6efd6d",
               "size": 2017,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1615,8 +1615,8 @@
               "relativePath": "diagrams/09-diagram-07.svg",
               "sha256": "7b2ee500943fd052d59ae799674336964093fc459d2462bcdac5fedd3882577f",
               "size": 5038,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-07.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/09-diagram-07.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-07.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-07.svg",
               "skipped": false
             },
             {
@@ -1624,8 +1624,8 @@
               "relativePath": "diagrams/10-diagram-01.svg",
               "sha256": "fa952b2dfaafc91ab5986a1047caa3ab3136b1b2eb34d0421a9161d77a2d719a",
               "size": 4176,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1633,8 +1633,8 @@
               "relativePath": "diagrams/10-diagram-02.svg",
               "sha256": "bf51cffad7b01da4484f54be2c490345001e0c380c4e60fd5cd24a23068a5c24",
               "size": 3213,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1642,8 +1642,8 @@
               "relativePath": "diagrams/10-diagram-03.svg",
               "sha256": "07801567a46b06289f1aefc4b767853e9aaca813a0bc648c389e59d51b2343db",
               "size": 1992,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1651,8 +1651,8 @@
               "relativePath": "diagrams/10-diagram-04.svg",
               "sha256": "f396a5b99cebd2e8657c9481e94ad955641957974dfe01fd9080a36ee3fa86e9",
               "size": 5449,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1660,8 +1660,8 @@
               "relativePath": "diagrams/10-diagram-05.svg",
               "sha256": "ed2f8be0ca979586a108cc21d235222a456b48bb794ca609eb7046c442612c97",
               "size": 3501,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1669,8 +1669,8 @@
               "relativePath": "diagrams/10-diagram-06.svg",
               "sha256": "49181fc52be9770b6494c240e0647b8d2061faf7ff57a470cfa6e9a0d5e42e62",
               "size": 2025,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1678,8 +1678,8 @@
               "relativePath": "diagrams/10-diagram-07.svg",
               "sha256": "98896ff9e57365062846f13a18c2f61a1903c823bf392d4109935bd5889fbb6c",
               "size": 3078,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-07.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-07.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-07.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-07.svg",
               "skipped": false
             },
             {
@@ -1687,8 +1687,8 @@
               "relativePath": "diagrams/10-diagram-08.svg",
               "sha256": "34692c7df66f45a47a70fc659967ffaba7b74cf78a05138daa4eb53e18e2af9d",
               "size": 2081,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-08.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-08.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-08.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-08.svg",
               "skipped": false
             },
             {
@@ -1696,8 +1696,8 @@
               "relativePath": "diagrams/10-diagram-09.svg",
               "sha256": "6a162e035150d0dab75f8aadab486131e29661beaa90882c56432e375e85a944",
               "size": 2904,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-09.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/10-diagram-09.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-09.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-09.svg",
               "skipped": false
             },
             {
@@ -1705,8 +1705,8 @@
               "relativePath": "diagrams/11-diagram-01.svg",
               "sha256": "d8ab21de5c3ea4098f7dd9117af5695a95900ecfbb671047a5362d673fa60d40",
               "size": 6293,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1714,8 +1714,8 @@
               "relativePath": "diagrams/11-diagram-02.svg",
               "sha256": "f91c6833a29ad6febff69132ce8c68513566a10bf906420a6c48d33e78351b84",
               "size": 4232,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1723,8 +1723,8 @@
               "relativePath": "diagrams/11-diagram-03.svg",
               "sha256": "55848ec38d63d2a55fa443ae2b48767ba50e5c8e1eeae5a24a4180c1adcc9235",
               "size": 3612,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1732,8 +1732,8 @@
               "relativePath": "diagrams/11-diagram-04.svg",
               "sha256": "b8d28a71530d05f4db7fd39473a44bf0cc6a343a9d1c945ef40af00a343d63f4",
               "size": 2782,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1741,8 +1741,8 @@
               "relativePath": "diagrams/11-diagram-05.svg",
               "sha256": "8cb88011e943614f95eadda348c12926e963027a4d633ff3434d535ad73102e0",
               "size": 4057,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1750,8 +1750,8 @@
               "relativePath": "diagrams/11-diagram-06.svg",
               "sha256": "2f68d0f1d84a5f20b4b4041a87cbed2f71270015e6a8f9349ab32370ab0ced4f",
               "size": 3280,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-06.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/11-diagram-06.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-06.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-06.svg",
               "skipped": false
             },
             {
@@ -1759,8 +1759,8 @@
               "relativePath": "diagrams/12-diagram-01.svg",
               "sha256": "296013f45f7668e6f76283fb6035d55cf641553d0dd11ed7efb80990049d552f",
               "size": 5576,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1768,8 +1768,8 @@
               "relativePath": "diagrams/12-diagram-02.svg",
               "sha256": "7dfbce31361bff1874ae1a766d00cfa0f6585b136827130d01b7360d4ff5c2fe",
               "size": 6477,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1777,8 +1777,8 @@
               "relativePath": "diagrams/12-diagram-03.svg",
               "sha256": "c5ebc10c73fa53c82cf569e4849b76b7314bd53355e6c58651c2dc53d8098b9e",
               "size": 5998,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1786,8 +1786,8 @@
               "relativePath": "diagrams/12-diagram-04.svg",
               "sha256": "306208923610a369c3d89b40e51b9847cbc94b9f9a0a44c4528ed131bc3a6aea",
               "size": 3172,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-04.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-04.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-04.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-04.svg",
               "skipped": false
             },
             {
@@ -1795,8 +1795,8 @@
               "relativePath": "diagrams/12-diagram-05.svg",
               "sha256": "ef61c44fad1c5c4ff35852c4b9745f91253528747aea22e8b168dae3d7ef1e1f",
               "size": 4167,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-05.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/12-diagram-05.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-05.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-05.svg",
               "skipped": false
             },
             {
@@ -1804,8 +1804,8 @@
               "relativePath": "diagrams/13-diagram-01.svg",
               "sha256": "8bbfe7ded93f1c092840bc50d50ef465d09fb012d33a6d434028d8cd767296a8",
               "size": 6681,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/13-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/13-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1813,8 +1813,8 @@
               "relativePath": "diagrams/13-diagram-02.svg",
               "sha256": "d624d3fe78566fd515cd446f5ad027b13d04ab6e8b3589a11def462ae3541fa0",
               "size": 5775,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/13-diagram-02.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/13-diagram-02.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-02.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-02.svg",
               "skipped": false
             },
             {
@@ -1822,8 +1822,8 @@
               "relativePath": "diagrams/13-diagram-03.svg",
               "sha256": "bf946928335b3b34acafae287234798883893406a58b7604c921a2442017c14c",
               "size": 5526,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/13-diagram-03.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/13-diagram-03.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-03.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-03.svg",
               "skipped": false
             },
             {
@@ -1831,8 +1831,8 @@
               "relativePath": "diagrams/14-diagram-01.svg",
               "sha256": "8f500c8e923746b9e326701b51312764c95f6f3f7314ececc08a028b716079c6",
               "size": 4275,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/14-diagram-01.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/diagrams/14-diagram-01.svg",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/14-diagram-01.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/14-diagram-01.svg",
               "skipped": false
             },
             {
@@ -1840,8 +1840,8 @@
               "relativePath": "index.html",
               "sha256": "04487429749ce5519fd9e5291d20e61e771f735bfdd2b51e2e09421a04ce12a1",
               "size": 68595,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/index.html",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
               "skipped": false
             },
             {
@@ -1849,8 +1849,8 @@
               "relativePath": "sitemap.json",
               "sha256": "7d338774f367aa9b3d66175b633030978a07db09c70157f70271e127e02c95f8",
               "size": 75010,
-              "pathname": "books/sail-rust-book/chapters/f1026c44a7185c34/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f1026c44a7185c34/sitemap.json",
+              "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/sitemap.json",
               "skipped": false
             }
           ]
@@ -4654,6 +4654,36 @@
       "pathname": "books/querygraph/cover/d56a81bcbdca6dfd-querygraph-cover.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/d56a81bcbdca6dfd-querygraph-cover.png",
       "size": 3285581
+    },
+    "55411812b95df7be8a3c6f4242954dc7c8c0fb3fd26d1b0df5725f1632f47d57:9057280": {
+      "pathname": "books/sail-rust-book/pdf/55411812b95df7be-sail-rust-book.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/pdf/55411812b95df7be-sail-rust-book.pdf",
+      "size": 9057280
+    },
+    "4a4a33868db92ba9e2df3fa9adb8658dd0863b8fb58cfb27a0dc7e0af89eb08b:5478573": {
+      "pathname": "books/sail-rust-book/epub/4a4a33868db92ba9-sail-rust-book.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/epub/4a4a33868db92ba9-sail-rust-book.epub",
+      "size": 5478573
+    },
+    "1661d0a2f66c9668ec56d19b152169a00cf6fc66e69798ca3d3f036104f71d11:1372438": {
+      "pathname": "books/sail-rust-book/html/1661d0a2f66c9668-sail-rust-book.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/html/1661d0a2f66c9668-sail-rust-book.html",
+      "size": 1372438
+    },
+    "63b7dd0c5d66abdddae7c05f23e1b43fe997928fe9427d6ced7ad2e3d97640df:5156465": {
+      "pathname": "books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png",
+      "size": 5156465
+    },
+    "03660772c365b0b5c74b224193dd083028b71840429ad9360e6ddf7081cd815e:25044447": {
+      "pathname": "books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault (2026.07.14.1-e0a4bf42).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault%20%282026.07.14.1-e0a4bf42%29.zip",
+      "size": 25044447
+    },
+    "b8191eb19c0c8e8fdc318496cda0d4202876301a80944420e0ea2db6067dae26:7640": {
+      "pathname": "books/sail-rust-book/vault-guide/b8191eb19c0c8e8f-sail-rust-book-vault-guide (2026.07.14.1-e0a4bf42).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault-guide/b8191eb19c0c8e8f-sail-rust-book-vault-guide%20%282026.07.14.1-e0a4bf42%29.html",
+      "size": 7640
     }
   },
   "chapterPackages": {
@@ -10764,6 +10794,912 @@
           "size": 13551,
           "pathname": "books/querygraph/chapters/7dcdc8af985c4e42/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/7dcdc8af985c4e42/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "f92c8f33b9e0cb05c5f8f200d404e963cb9d9cdd9b3dce72d412636fc92f5b28": {
+      "pathnamePrefix": "books/sail-rust-book/chapters/f92c8f33b9e0cb05",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "490316d51f96969752e01f59dcc5e9eb404a966cf4d4f3e953e9767b3ec52f2e",
+          "size": 1001,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "3b7056f466125b0cd1a053337159e297d1082d294ec57fb0263118fd599443ce",
+          "size": 10239,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "c423b6d10ee1e6449159fa3fb704d58f8a99830c1336f10e0cadda7f3754c5f3",
+          "size": 26983,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "e5e059bb0f71c173dafbf016f8ae9a18741c6410df893b28375bb0ea99005f94",
+          "size": 52507,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "44d3114eb7abc0211c26a6a15c66cc301e77930f89d71f0452ab7aad4044439b",
+          "size": 56835,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "a28b4dbb107f1a99ccd95037b52aa3642867406da855d441c48735cd210fc612",
+          "size": 57872,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "5098fcf5a3a20874d970f04dc6651841ccb9b0464b33536be196e7e885cc880b",
+          "size": 61935,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "10ba7d7840407c5a2a3a4173f227d4269b3a6b63752fa05c10dfdf27f4cd5982",
+          "size": 79779,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "02dc69b513b0af2b31d7151df15ddcfd671719e974507329633a9ce4ba092f0a",
+          "size": 77647,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "3a2a97c679043bdbaa7ad6fa08d85c87063abd8e5fdd35566ff7b89d4f8c68a4",
+          "size": 90712,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "e82a447035d48fe0539535be422062d532e58e14aca692ba9878aee5df9f5131",
+          "size": 44146,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "3d874157e580150a06a80f17f63bff63a7d0c9123462faad332d432781d2be1f",
+          "size": 67195,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "8a0d56ad04b62c102b04c878b4896cc29e4dbaaab935d4da03bd750d96978154",
+          "size": 70404,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "3e7da1849b1ba2014caa5c02a82420513a6d41ed420eb7b590a345071a5a8827",
+          "size": 74642,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "0474ad99d564d211a055eca2c139cac65ee517716b6609787da5bf0b4200eccc",
+          "size": 116732,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "34c2bc447005e0afa24eefa741067a6369dfccbd90a4f46dfc08015c3f1d1ec6",
+          "size": 22714,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "cb0e4a5e04035b1df7288feca76dbf0723b7affb01145459e340630dbf49ef4f",
+          "size": 18542,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "f63e65b72d3eeaa576a47a9555dd04b1ee86094105f41979243e916c1fe906e9",
+          "size": 21857,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "6217ebb5f3085fb35ce8012d55cc92a46ef5d750badc923d69bbe2123ca4bdc8",
+          "size": 11986,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "899b57138296828ed6f86350c09ccf4ba2f70abd77dd35f3a664224b72caa961",
+          "size": 11801,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-020.html",
+          "relativePath": "chapter-020.html",
+          "sha256": "88a3dda889eaab11baed3db27bcf25a482f18565df9c206c2d4b07b7f55d70b9",
+          "size": 12599,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-020.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-020.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/chapter-021.html",
+          "relativePath": "chapter-021.html",
+          "sha256": "be3f27261841249962fdb248f56b1c368b3dbee5fc936c7191edf3c35af5861a",
+          "size": 18054,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-021.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/chapter-021.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/01-diagram-01.svg",
+          "relativePath": "diagrams/01-diagram-01.svg",
+          "sha256": "9bf261e0211af5f23e853f6c96261c025c75db959d779005b543e1262f153feb",
+          "size": 7053,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/01-diagram-02.svg",
+          "relativePath": "diagrams/01-diagram-02.svg",
+          "sha256": "a5107708f77a4af4fd947561a9485f696b0048772df68231f495a023b17307c8",
+          "size": 5774,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/01-diagram-03.svg",
+          "relativePath": "diagrams/01-diagram-03.svg",
+          "sha256": "d932b34edc81be57ce95811a5332b5cff1965cf0e07a0adc97eb0e31ab5ad7d6",
+          "size": 3774,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/01-diagram-04.svg",
+          "relativePath": "diagrams/01-diagram-04.svg",
+          "sha256": "b30f6573e8002ae4484feb770f9bf2b186e2bfdd4c31f380daf051d7362ca8c2",
+          "size": 5432,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/01-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/02-diagram-01.svg",
+          "relativePath": "diagrams/02-diagram-01.svg",
+          "sha256": "9f3cad875e97760cb32694d002c2d7ef04727d6cce16449843cbc76d4a798753",
+          "size": 2761,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/02-diagram-02.svg",
+          "relativePath": "diagrams/02-diagram-02.svg",
+          "sha256": "2d6b61e2dd79c0b96cd744d6c6384ae32e4b624928c7366df8e6ef210c21a4ca",
+          "size": 3152,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/02-diagram-03.svg",
+          "relativePath": "diagrams/02-diagram-03.svg",
+          "sha256": "e17175e4cd5ca17fd30cc545c7cbee5f53ab552d95501f970f143affb94512ab",
+          "size": 3802,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/02-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/03-diagram-01.svg",
+          "relativePath": "diagrams/03-diagram-01.svg",
+          "sha256": "43a101bda10ded98cf5c41a0ce3fd278f73283e824abda32dec122df0c908a33",
+          "size": 3668,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/03-diagram-02.svg",
+          "relativePath": "diagrams/03-diagram-02.svg",
+          "sha256": "0b8f6d744f19087559a66804d8b1ad7d342ac83e14e3c8821db2c77304902566",
+          "size": 4145,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/03-diagram-03.svg",
+          "relativePath": "diagrams/03-diagram-03.svg",
+          "sha256": "4963bb013fe59df85ca4113aedd6b2deea025813f3585f26689e150b65f27e81",
+          "size": 3716,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/03-diagram-04.svg",
+          "relativePath": "diagrams/03-diagram-04.svg",
+          "sha256": "f3cdd477de5407117e124c130b6bac38e3070d977ce015115c14df3220562cb7",
+          "size": 2414,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/03-diagram-05.svg",
+          "relativePath": "diagrams/03-diagram-05.svg",
+          "sha256": "6a70b32c3c6b5f0959bee75afeb129257b1637cc3d3d063d275173c0f98885eb",
+          "size": 4662,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/03-diagram-06.svg",
+          "relativePath": "diagrams/03-diagram-06.svg",
+          "sha256": "fd88b1d850260c49bc70e326b5544ee8808f15248f8cf32eb6946258df901c69",
+          "size": 4410,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/03-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/04-diagram-01.svg",
+          "relativePath": "diagrams/04-diagram-01.svg",
+          "sha256": "ca2ad4f7ba1407ea8350e70882d7df63a2b138653f7d2e632009042985480c24",
+          "size": 4047,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/04-diagram-02.svg",
+          "relativePath": "diagrams/04-diagram-02.svg",
+          "sha256": "bfc04d4f1cc0c5b4d3b4d47ac8ba6baa5122d094551c1d0df425922cd7eef013",
+          "size": 4999,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/04-diagram-03.svg",
+          "relativePath": "diagrams/04-diagram-03.svg",
+          "sha256": "94ea0ffac433b309d0422672e8f12cb9d231a0ffcd80bf827094da89ba158102",
+          "size": 2838,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/04-diagram-04.svg",
+          "relativePath": "diagrams/04-diagram-04.svg",
+          "sha256": "dcfad12ca0de77fee491d0ecc1f891083741f3f454abf4345f7485cf5f1adf44",
+          "size": 2752,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/04-diagram-05.svg",
+          "relativePath": "diagrams/04-diagram-05.svg",
+          "sha256": "3790d17d0767b9ef3b8f8330826a35dccfa0a26b8aa0359af4cbb0b54df1cf29",
+          "size": 4170,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/04-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-01.svg",
+          "relativePath": "diagrams/05-diagram-01.svg",
+          "sha256": "60a3bfdb6c8a221522d265cd3476538ec6240d7a09d044695c775ed0105f0f49",
+          "size": 4556,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-02.svg",
+          "relativePath": "diagrams/05-diagram-02.svg",
+          "sha256": "20568fddb14274b67c3b520bed5bcd189ba5604f4635441b1bb77d57d48fa42b",
+          "size": 2308,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-03.svg",
+          "relativePath": "diagrams/05-diagram-03.svg",
+          "sha256": "798ef2a4a9a0708fb53ab01299e5eb4601751855d96b5da9d61c7ebaf12d8a7a",
+          "size": 4391,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-04.svg",
+          "relativePath": "diagrams/05-diagram-04.svg",
+          "sha256": "4e015ab76a50f71d7c4a4c01e24a8b2569133771a9a2b555f3613e663330c1bb",
+          "size": 2614,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-05.svg",
+          "relativePath": "diagrams/05-diagram-05.svg",
+          "sha256": "ba19f5373f3502795f275e50168189d07086ec186915f0556ae74785d0096de6",
+          "size": 5613,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-06.svg",
+          "relativePath": "diagrams/05-diagram-06.svg",
+          "sha256": "1f4ad2ff965d7eca445fd68194e2fd0ec90c73a8fbe17857236b5d9c3ac1ae92",
+          "size": 2845,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/05-diagram-07.svg",
+          "relativePath": "diagrams/05-diagram-07.svg",
+          "sha256": "1d93a8cd238717af0112e440ad15d09c671d57f1bd63e291942d2ee83bf606e8",
+          "size": 5683,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-07.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/05-diagram-07.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/06-diagram-01.svg",
+          "relativePath": "diagrams/06-diagram-01.svg",
+          "sha256": "103e3cbe633b47e9bf3b87367f5467732d6660c882206b9fb8f01a316a3bc3c8",
+          "size": 4580,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/06-diagram-02.svg",
+          "relativePath": "diagrams/06-diagram-02.svg",
+          "sha256": "ff680a8d30b09ee69d875d4b6ff0013d9a1805c5dba39a824e0f2dafe589ea92",
+          "size": 2859,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/06-diagram-03.svg",
+          "relativePath": "diagrams/06-diagram-03.svg",
+          "sha256": "79e2095a8d120e8a8ee986034635274b4772eaf7ab03ad229f56168764216df1",
+          "size": 2821,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/06-diagram-04.svg",
+          "relativePath": "diagrams/06-diagram-04.svg",
+          "sha256": "82a44439617932683d2947653cb18f7da28aa6c0fbe1add34a4ffb093b521b97",
+          "size": 2432,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/06-diagram-05.svg",
+          "relativePath": "diagrams/06-diagram-05.svg",
+          "sha256": "396a275afecc7d18f7073ca6616520ab133f11201b69b2cdfb4464e63faadd05",
+          "size": 2919,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/06-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-01.svg",
+          "relativePath": "diagrams/07-diagram-01.svg",
+          "sha256": "a566b9e6d075f1738fcc4ae5e57a729b52d54e74c0f3593af96d60a609b3dca6",
+          "size": 3610,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-02.svg",
+          "relativePath": "diagrams/07-diagram-02.svg",
+          "sha256": "854c7b08bf16265e4ae974d139b5d3bd4a144e686ee7278c2c8950af0bf463e9",
+          "size": 2984,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-03.svg",
+          "relativePath": "diagrams/07-diagram-03.svg",
+          "sha256": "79ef2e059a3940d83722cb54c6478bf27a815411d2dfd91639f9e8669929bcb2",
+          "size": 2777,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-04.svg",
+          "relativePath": "diagrams/07-diagram-04.svg",
+          "sha256": "853adf0ae19864f783dafad4792af7d16a20f3ef5808b38841012793d4f5d807",
+          "size": 2760,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-05.svg",
+          "relativePath": "diagrams/07-diagram-05.svg",
+          "sha256": "70c25befc38f640687b654242e75dbcf2870a31450a6722774a989ab6180b98c",
+          "size": 1890,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-06.svg",
+          "relativePath": "diagrams/07-diagram-06.svg",
+          "sha256": "9b347309046871283eb648e747fb6198a5c047c0980d48da2e16c9b06337bca8",
+          "size": 2566,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-07.svg",
+          "relativePath": "diagrams/07-diagram-07.svg",
+          "sha256": "ad1638a8e7f0521ebda8115c2611bc7b0a2a3591a8cf0b5524fcdadaa6166e19",
+          "size": 2789,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-07.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-07.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-08.svg",
+          "relativePath": "diagrams/07-diagram-08.svg",
+          "sha256": "62b3a2dabcb22888982d447f11f2b3c09ad0104d4259c09329646aafb074adc8",
+          "size": 3237,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-08.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-08.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/07-diagram-09.svg",
+          "relativePath": "diagrams/07-diagram-09.svg",
+          "sha256": "1896c21132ca44fb65759161fe423d30c5fa86db5030c9f05e81ac707c97bd29",
+          "size": 2294,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-09.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/07-diagram-09.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/08-diagram-01.svg",
+          "relativePath": "diagrams/08-diagram-01.svg",
+          "sha256": "96e305dc719125eb4e0e0a1c18efc4bdc0d45b7bf2e71c88cabcd41df55a90dc",
+          "size": 2476,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/08-diagram-02.svg",
+          "relativePath": "diagrams/08-diagram-02.svg",
+          "sha256": "9ba8e05ca8499bbc4b6ce1c3035fae4ffce40a0636c51cef78e8ced6efacae5e",
+          "size": 5081,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/08-diagram-03.svg",
+          "relativePath": "diagrams/08-diagram-03.svg",
+          "sha256": "fcf94de93e981fb12e1f812808669b582275461e30ac52ef97cb0a312a017651",
+          "size": 3698,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/08-diagram-04.svg",
+          "relativePath": "diagrams/08-diagram-04.svg",
+          "sha256": "bbcede1faac0abf45b21b66c9c48c652e6b4d4da6ba3799d71eb4ea363b5d428",
+          "size": 3391,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/08-diagram-05.svg",
+          "relativePath": "diagrams/08-diagram-05.svg",
+          "sha256": "2663d582a63b117460e6264541b8121855631a28b7975dbfdbea86302847ccc4",
+          "size": 5432,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/08-diagram-06.svg",
+          "relativePath": "diagrams/08-diagram-06.svg",
+          "sha256": "4fb4f3c3cee809c4cc057263750d2c0ff47c8acd0b27e6a213d1f0aabfcb760c",
+          "size": 9992,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/08-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-01.svg",
+          "relativePath": "diagrams/09-diagram-01.svg",
+          "sha256": "8af96cf3c4896a84245784c78b26f2aa0a1a801df4cd2c1cb42dcbfa3664ef8b",
+          "size": 5130,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-02.svg",
+          "relativePath": "diagrams/09-diagram-02.svg",
+          "sha256": "fe525476b8a99f0fc793305a23a28b7c66e08508c4d912335a857b553e37f195",
+          "size": 3003,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-03.svg",
+          "relativePath": "diagrams/09-diagram-03.svg",
+          "sha256": "057e27dad5917a4f439eb0da15a1d792b4e72c94c20e8f1adba704cb4a66a924",
+          "size": 2872,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-04.svg",
+          "relativePath": "diagrams/09-diagram-04.svg",
+          "sha256": "bbb24540dc1b8eccf63628208378f71a9631ee0407db3e9aab4b3ea2ff24044a",
+          "size": 2344,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-05.svg",
+          "relativePath": "diagrams/09-diagram-05.svg",
+          "sha256": "5d50c71c2f8b3dfa0d4e53f6dba10206e03f24731ab19e131acf7d5e73761600",
+          "size": 4880,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-06.svg",
+          "relativePath": "diagrams/09-diagram-06.svg",
+          "sha256": "98578c968e37f39659ff0fa3c57d7fc8845dfae3f74eb5bcbeacf28f3b6efd6d",
+          "size": 2017,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/09-diagram-07.svg",
+          "relativePath": "diagrams/09-diagram-07.svg",
+          "sha256": "7b2ee500943fd052d59ae799674336964093fc459d2462bcdac5fedd3882577f",
+          "size": 5038,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-07.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/09-diagram-07.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-01.svg",
+          "relativePath": "diagrams/10-diagram-01.svg",
+          "sha256": "fa952b2dfaafc91ab5986a1047caa3ab3136b1b2eb34d0421a9161d77a2d719a",
+          "size": 4176,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-02.svg",
+          "relativePath": "diagrams/10-diagram-02.svg",
+          "sha256": "bf51cffad7b01da4484f54be2c490345001e0c380c4e60fd5cd24a23068a5c24",
+          "size": 3213,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-03.svg",
+          "relativePath": "diagrams/10-diagram-03.svg",
+          "sha256": "07801567a46b06289f1aefc4b767853e9aaca813a0bc648c389e59d51b2343db",
+          "size": 1992,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-04.svg",
+          "relativePath": "diagrams/10-diagram-04.svg",
+          "sha256": "f396a5b99cebd2e8657c9481e94ad955641957974dfe01fd9080a36ee3fa86e9",
+          "size": 5449,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-05.svg",
+          "relativePath": "diagrams/10-diagram-05.svg",
+          "sha256": "ed2f8be0ca979586a108cc21d235222a456b48bb794ca609eb7046c442612c97",
+          "size": 3501,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-06.svg",
+          "relativePath": "diagrams/10-diagram-06.svg",
+          "sha256": "49181fc52be9770b6494c240e0647b8d2061faf7ff57a470cfa6e9a0d5e42e62",
+          "size": 2025,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-07.svg",
+          "relativePath": "diagrams/10-diagram-07.svg",
+          "sha256": "98896ff9e57365062846f13a18c2f61a1903c823bf392d4109935bd5889fbb6c",
+          "size": 3078,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-07.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-07.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-08.svg",
+          "relativePath": "diagrams/10-diagram-08.svg",
+          "sha256": "34692c7df66f45a47a70fc659967ffaba7b74cf78a05138daa4eb53e18e2af9d",
+          "size": 2081,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-08.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-08.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/10-diagram-09.svg",
+          "relativePath": "diagrams/10-diagram-09.svg",
+          "sha256": "6a162e035150d0dab75f8aadab486131e29661beaa90882c56432e375e85a944",
+          "size": 2904,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-09.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/10-diagram-09.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/11-diagram-01.svg",
+          "relativePath": "diagrams/11-diagram-01.svg",
+          "sha256": "d8ab21de5c3ea4098f7dd9117af5695a95900ecfbb671047a5362d673fa60d40",
+          "size": 6293,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/11-diagram-02.svg",
+          "relativePath": "diagrams/11-diagram-02.svg",
+          "sha256": "f91c6833a29ad6febff69132ce8c68513566a10bf906420a6c48d33e78351b84",
+          "size": 4232,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/11-diagram-03.svg",
+          "relativePath": "diagrams/11-diagram-03.svg",
+          "sha256": "55848ec38d63d2a55fa443ae2b48767ba50e5c8e1eeae5a24a4180c1adcc9235",
+          "size": 3612,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/11-diagram-04.svg",
+          "relativePath": "diagrams/11-diagram-04.svg",
+          "sha256": "b8d28a71530d05f4db7fd39473a44bf0cc6a343a9d1c945ef40af00a343d63f4",
+          "size": 2782,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/11-diagram-05.svg",
+          "relativePath": "diagrams/11-diagram-05.svg",
+          "sha256": "8cb88011e943614f95eadda348c12926e963027a4d633ff3434d535ad73102e0",
+          "size": 4057,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/11-diagram-06.svg",
+          "relativePath": "diagrams/11-diagram-06.svg",
+          "sha256": "2f68d0f1d84a5f20b4b4041a87cbed2f71270015e6a8f9349ab32370ab0ced4f",
+          "size": 3280,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-06.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/11-diagram-06.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/12-diagram-01.svg",
+          "relativePath": "diagrams/12-diagram-01.svg",
+          "sha256": "296013f45f7668e6f76283fb6035d55cf641553d0dd11ed7efb80990049d552f",
+          "size": 5576,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/12-diagram-02.svg",
+          "relativePath": "diagrams/12-diagram-02.svg",
+          "sha256": "7dfbce31361bff1874ae1a766d00cfa0f6585b136827130d01b7360d4ff5c2fe",
+          "size": 6477,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/12-diagram-03.svg",
+          "relativePath": "diagrams/12-diagram-03.svg",
+          "sha256": "c5ebc10c73fa53c82cf569e4849b76b7314bd53355e6c58651c2dc53d8098b9e",
+          "size": 5998,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/12-diagram-04.svg",
+          "relativePath": "diagrams/12-diagram-04.svg",
+          "sha256": "306208923610a369c3d89b40e51b9847cbc94b9f9a0a44c4528ed131bc3a6aea",
+          "size": 3172,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-04.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-04.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/12-diagram-05.svg",
+          "relativePath": "diagrams/12-diagram-05.svg",
+          "sha256": "ef61c44fad1c5c4ff35852c4b9745f91253528747aea22e8b168dae3d7ef1e1f",
+          "size": 4167,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-05.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/12-diagram-05.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/13-diagram-01.svg",
+          "relativePath": "diagrams/13-diagram-01.svg",
+          "sha256": "8bbfe7ded93f1c092840bc50d50ef465d09fb012d33a6d434028d8cd767296a8",
+          "size": 6681,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/13-diagram-02.svg",
+          "relativePath": "diagrams/13-diagram-02.svg",
+          "sha256": "d624d3fe78566fd515cd446f5ad027b13d04ab6e8b3589a11def462ae3541fa0",
+          "size": 5775,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-02.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-02.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/13-diagram-03.svg",
+          "relativePath": "diagrams/13-diagram-03.svg",
+          "sha256": "bf946928335b3b34acafae287234798883893406a58b7604c921a2442017c14c",
+          "size": 5526,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-03.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/13-diagram-03.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/diagrams/14-diagram-01.svg",
+          "relativePath": "diagrams/14-diagram-01.svg",
+          "sha256": "8f500c8e923746b9e326701b51312764c95f6f3f7314ececc08a028b716079c6",
+          "size": 4275,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/14-diagram-01.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/diagrams/14-diagram-01.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "04487429749ce5519fd9e5291d20e61e771f735bfdd2b51e2e09421a04ce12a1",
+          "size": 68595,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-rust-book/sail-rust-book-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "7d338774f367aa9b3d66175b633030978a07db09c70157f70271e127e02c95f8",
+          "size": 75010,
+          "pathname": "books/sail-rust-book/chapters/f92c8f33b9e0cb05/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/chapters/f92c8f33b9e0cb05/sitemap.json",
           "skipped": false
         }
       ]
