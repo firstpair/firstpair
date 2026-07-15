@@ -5,6 +5,7 @@ import {
   BookOpen,
   Braces,
   BrainCircuit,
+  ChevronDown,
   ExternalLink,
   GraduationCap,
   Library,
@@ -16,6 +17,11 @@ import {
 } from '@lucide/vue'
 
 const libraryShelfConfig = [
+  {
+    id: 'querygraph',
+    label: 'QueryGraph',
+    deck: 'The graph, catalog, security, and data systems bookshelf.',
+  },
   {
     id: 'history',
     label: 'History',
@@ -35,11 +41,6 @@ const libraryShelfConfig = [
     id: 'publishing',
     label: 'Publishing',
     deck: 'First Pair Press tooling and field guides.',
-  },
-  {
-    id: 'querygraph',
-    label: 'QueryGraph',
-    deck: 'The graph, catalog, security, and data systems bookshelf.',
   },
   {
     id: 'other',
@@ -87,6 +88,7 @@ const books = ref<Book[]>([])
 const catalogError = ref('')
 const activeFilter = ref<LibraryFilter>('all')
 const routePath = ref(window.location.pathname)
+const openShelfIds = ref<LibraryShelfId[]>(['querygraph'])
 
 const catalogUrl = computed(() => `${import.meta.env.BASE_URL}catalog.json`)
 const previewCount = computed(() => books.value.filter((book) => book.homepage).length)
@@ -136,6 +138,21 @@ const libraryShelves = computed(() =>
 const shelfLinks = computed(() =>
   libraryShelfConfig.filter((shelf) => books.value.some((book) => bookShelf(book) === shelf.id)),
 )
+
+const isShelfOpen = (shelfId: LibraryShelfId): boolean =>
+  openShelfIds.value.includes(shelfId)
+
+function openShelf(shelfId: LibraryShelfId) {
+  if (!isShelfOpen(shelfId)) {
+    openShelfIds.value = [...openShelfIds.value, shelfId]
+  }
+}
+
+function toggleShelf(shelfId: LibraryShelfId) {
+  openShelfIds.value = isShelfOpen(shelfId)
+    ? openShelfIds.value.filter((id) => id !== shelfId)
+    : [...openShelfIds.value, shelfId]
+}
 
 const selectedBookSlug = computed(() => {
   const match = /^\/books\/([^/]+)\/?$/.exec(routePath.value)
@@ -383,6 +400,7 @@ const fragments = [
             v-for="shelf in shelfLinks"
             :key="shelf.id"
             :href="`#library-shelf-${shelf.id}`"
+            @click="openShelf(shelf.id)"
           >
             {{ shelf.label }}
           </a>
@@ -478,7 +496,7 @@ const fragments = [
       <p v-if="catalogError" class="catalog-error">{{ catalogError }}</p>
 
       <div v-if="libraryShelves.length" class="library-shelves">
-        <div
+        <section
           v-for="shelf in libraryShelves"
           :key="shelf.id"
           class="library-shelf"
@@ -489,83 +507,104 @@ const fragments = [
               <p class="eyebrow">Shelf</p>
               <h3 :id="`library-shelf-${shelf.id}`">{{ shelf.label }}</h3>
             </div>
-            <span class="library-shelf__count">
-              {{ shelf.books.length }} {{ shelf.books.length === 1 ? 'title' : 'titles' }}
-            </span>
-          </div>
-          <p class="library-shelf__deck">{{ shelf.deck }}</p>
-
-          <div class="book-grid">
-            <article
-              v-for="book in shelf.books"
-              :id="book.slug"
-              :key="book.slug"
-              class="book-card"
-              :style="{ '--book-accent': book.accent }"
-            >
-              <component
-                :is="bookPageHref(book) ? 'a' : 'div'"
-                class="book-card__cover"
-                :class="{ 'book-card__cover--image': book.cover }"
-                :href="bookPageHref(book)"
-                @click="navigateInApp($event, bookPageHref(book))"
+            <div class="library-shelf__actions">
+              <span class="library-shelf__count">
+                {{ shelf.books.length }} {{ shelf.books.length === 1 ? 'title' : 'titles' }}
+              </span>
+              <button
+                type="button"
+                class="library-shelf__toggle"
+                :aria-expanded="isShelfOpen(shelf.id)"
+                :aria-controls="`library-shelf-content-${shelf.id}`"
+                :aria-label="`${isShelfOpen(shelf.id) ? 'Close' : 'Open'} ${shelf.label} shelf`"
+                @click="toggleShelf(shelf.id)"
               >
-                <img v-if="book.cover" :src="book.cover" :alt="`${book.title} cover`" loading="lazy" />
-                <template v-else>
-                  <Sparkles :size="24" />
-                  <span>{{ book.kicker }}</span>
-                  <strong>{{ book.title }}</strong>
-                </template>
-              </component>
-              <div class="book-card__body">
-                <div>
-                  <p class="book-kicker">{{ book.kicker }}</p>
-                  <h3>
-                    <a
-                      v-if="bookPageHref(book)"
-                      :href="bookPageHref(book)"
-                      @click="navigateInApp($event, bookPageHref(book))"
-                    >
-                      {{ book.title }}
-                    </a>
-                    <template v-else>{{ book.title }}</template>
-                  </h3>
-                  <p v-if="book.author" class="book-author">By {{ book.author }}</p>
-                  <p>{{ book.description }}</p>
-                </div>
-                <div class="tag-row">
-                  <span v-for="tag in book.tags" :key="tag">{{ tag }}</span>
-                </div>
-                <div class="book-links">
-                  <a :href="bookDetailHref(book)" @click="navigateInApp($event, bookDetailHref(book))">
-                    Book page
-                  </a>
-                  <a v-if="book.homepage" :href="book.homepage">Preview</a>
-                  <a :href="stableDeliverableHref(book, 'pdf')">PDF</a>
-                  <a :href="stableDeliverableHref(book, 'epub')">EPUB</a>
-                  <a :href="book.html" target="_blank" rel="noopener noreferrer">Read</a>
-                  <a :href="book.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
-                  <a v-if="book.vault" :href="stableDeliverableHref(book, 'vault')" download>Vault</a>
-                  <a v-if="book.vaultGuide" :href="book.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
-                  <a
-                    v-if="book.tutorial"
-                    class="book-link--learn"
-                    :href="book.tutorial"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <GraduationCap :size="15" />
-                    Learn
-                  </a>
-                  <a v-if="book.source" :href="book.source" target="_blank" rel="noreferrer">
-                    Source
-                    <ExternalLink :size="14" />
-                  </a>
-                </div>
-              </div>
-            </article>
+                <span>{{ isShelfOpen(shelf.id) ? 'Close' : 'Open' }}</span>
+                <ChevronDown :size="16" aria-hidden="true" />
+              </button>
+            </div>
           </div>
-        </div>
+          <div
+            v-show="isShelfOpen(shelf.id)"
+            :id="`library-shelf-content-${shelf.id}`"
+            class="library-shelf__content"
+            role="region"
+            :aria-labelledby="`library-shelf-${shelf.id}`"
+          >
+            <p class="library-shelf__deck">{{ shelf.deck }}</p>
+
+            <div class="book-grid">
+              <article
+                v-for="book in shelf.books"
+                :id="book.slug"
+                :key="book.slug"
+                class="book-card"
+                :style="{ '--book-accent': book.accent }"
+              >
+                <component
+                  :is="bookPageHref(book) ? 'a' : 'div'"
+                  class="book-card__cover"
+                  :class="{ 'book-card__cover--image': book.cover }"
+                  :href="bookPageHref(book)"
+                  @click="navigateInApp($event, bookPageHref(book))"
+                >
+                  <img v-if="book.cover" :src="book.cover" :alt="`${book.title} cover`" loading="lazy" />
+                  <template v-else>
+                    <Sparkles :size="24" />
+                    <span>{{ book.kicker }}</span>
+                    <strong>{{ book.title }}</strong>
+                  </template>
+                </component>
+                <div class="book-card__body">
+                  <div>
+                    <p class="book-kicker">{{ book.kicker }}</p>
+                    <h3>
+                      <a
+                        v-if="bookPageHref(book)"
+                        :href="bookPageHref(book)"
+                        @click="navigateInApp($event, bookPageHref(book))"
+                      >
+                        {{ book.title }}
+                      </a>
+                      <template v-else>{{ book.title }}</template>
+                    </h3>
+                    <p v-if="book.author" class="book-author">By {{ book.author }}</p>
+                    <p>{{ book.description }}</p>
+                  </div>
+                  <div class="tag-row">
+                    <span v-for="tag in book.tags" :key="tag">{{ tag }}</span>
+                  </div>
+                  <div class="book-links">
+                    <a :href="bookDetailHref(book)" @click="navigateInApp($event, bookDetailHref(book))">
+                      Book page
+                    </a>
+                    <a v-if="book.homepage" :href="book.homepage">Preview</a>
+                    <a :href="stableDeliverableHref(book, 'pdf')">PDF</a>
+                    <a :href="stableDeliverableHref(book, 'epub')">EPUB</a>
+                    <a :href="book.html" target="_blank" rel="noopener noreferrer">Read</a>
+                    <a :href="book.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
+                    <a v-if="book.vault" :href="stableDeliverableHref(book, 'vault')" download>Vault</a>
+                    <a v-if="book.vaultGuide" :href="book.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
+                    <a
+                      v-if="book.tutorial"
+                      class="book-link--learn"
+                      :href="book.tutorial"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <GraduationCap :size="15" />
+                      Learn
+                    </a>
+                    <a v-if="book.source" :href="book.source" target="_blank" rel="noreferrer">
+                      Source
+                      <ExternalLink :size="14" />
+                    </a>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
       </div>
       <p v-else-if="books.length" class="catalog-error">No books match this filter.</p>
     </section>

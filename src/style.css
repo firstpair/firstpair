@@ -716,7 +716,7 @@ h1 {
 .library-shelves {
   margin-top: 34px;
   display: grid;
-  gap: clamp(42px, 5vw, 64px);
+  gap: clamp(20px, 3vw, 32px);
 }
 
 .library-shelf {
@@ -725,7 +725,7 @@ h1 {
 
 .library-shelf__heading {
   display: flex;
-  align-items: end;
+  align-items: center;
   justify-content: space-between;
   gap: 18px;
   padding-bottom: 13px;
@@ -749,6 +749,52 @@ h1 {
   color: #40473f;
   font-size: 12px;
   font-weight: 950;
+}
+
+.library-shelf__actions,
+.library-shelf__toggle {
+  display: inline-flex;
+  align-items: center;
+}
+
+.library-shelf__actions {
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.library-shelf__toggle {
+  min-height: 34px;
+  padding: 0 10px;
+  justify-content: center;
+  gap: 6px;
+  border: 1px solid rgba(23, 23, 20, 0.16);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.82);
+  color: #30372f;
+  font-size: 12px;
+  font-weight: 950;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease;
+}
+
+.library-shelf__toggle:hover {
+  border-color: rgba(23, 23, 20, 0.28);
+  background: #ffffff;
+}
+
+.library-shelf__toggle:focus-visible {
+  outline: 3px solid rgba(67, 107, 95, 0.32);
+  outline-offset: 2px;
+}
+
+.library-shelf__toggle svg {
+  transition: transform 0.16s ease;
+}
+
+.library-shelf__toggle[aria-expanded='true'] svg {
+  transform: rotate(180deg);
 }
 
 .library-shelf__deck {
