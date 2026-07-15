@@ -37,9 +37,9 @@ export const deliverableBooks = [
   {
     "slug": "lakecat",
     "title": "LakeCat",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/3a2ea25f6992be8a-lakecat.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/62b42cfb37c667e3-lakecat.epub",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png"
   },
   {
     "slug": "sail-rust-book",
@@ -64,8 +64,9 @@ export const deliverableBooks = [
   {
     "slug": "invented-enemy",
     "title": "The Invented Enemy",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/685f8693d81b03b1-invented-enemy-preview.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/171724983ea32f2e-invented-enemy-preview.epub"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/258a7ac764c5eda4-invented-enemy-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/a3e0f5f0f870e304-invented-enemy-preview.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/cover/5317c69e782bb5d1-invented-enemy-cover.png"
   },
   {
     "slug": "from-1-to-0",
