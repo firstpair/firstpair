@@ -170,6 +170,7 @@ function setResponseHeaders(upstream, response, { modifiedHtml = false, area = n
       normalizedKey === 'content-security-policy' ||
       normalizedKey === 'content-encoding' ||
       normalizedKey === 'content-length' ||
+      (modifiedHtml && normalizedKey === 'cache-control') ||
       (modifiedHtml &&
         ['accept-ranges', 'content-range', 'etag', 'last-modified'].includes(normalizedKey))
     ) {
@@ -184,6 +185,7 @@ function setResponseHeaders(upstream, response, { modifiedHtml = false, area = n
 
   if (modifiedHtml) {
     response.setHeader('Content-Type', 'text/html; charset=utf-8')
+    response.setHeader('Cache-Control', 'public, max-age=0, must-revalidate')
   }
 }
 
