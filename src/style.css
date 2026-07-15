@@ -617,6 +617,15 @@ h1 {
   line-height: 1.42;
 }
 
+.book-detail__copy p.book-detail__author {
+  margin-top: 10px;
+  color: rgba(255, 253, 246, 0.84);
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .book-detail__primary,
 .book-detail__links {
   display: flex;
@@ -849,15 +858,14 @@ a.book-card__cover:hover strong {
 .book-card__cover--image img {
   display: block;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   object-position: center top;
 }
 
-/* Give cards that carry real cover art a taller cover row so the portrait
-   artwork reads as a cover rather than a cropped strip. */
+/* Preserve the full portrait so author and publisher marks remain visible. */
 .book-card:has(.book-card__cover--image) {
-  grid-template-rows: minmax(340px, auto) minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr);
 }
 
 .book-card__cover span {
@@ -902,6 +910,14 @@ a.book-card__cover:hover strong {
   margin-top: 10px;
   color: #4a5049;
   line-height: 1.5;
+}
+
+.book-card__body p.book-author {
+  margin-top: 7px;
+  color: #72513e;
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
 }
 
 .tag-row {

@@ -160,6 +160,7 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
       `description: >-
   A complete fixture book whose folded YAML description
   must survive the preview-to-full transition.
+author: Fixture Author
 `,
     ),
     writeFile(
@@ -316,6 +317,7 @@ print("fixture source-owned vault validation passed")
   assert.equal(fullPlan.actions.upload, false)
   assert.equal(fullPlan.actions.productionDeploy, false)
   assert.equal(fullPlan.catalogEntry.kicker, 'Finished book')
+  assert.equal(fullPlan.catalogEntry.author, 'Fixture Author')
   assert.equal(
     fullPlan.catalogEntry.description,
     'A complete fixture book whose folded YAML description must survive the preview-to-full transition.',
