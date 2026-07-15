@@ -15,6 +15,7 @@ import {
   Sparkles,
   UserRound,
 } from '@lucide/vue'
+import { isPreviewBook } from './library-status.js'
 
 const libraryShelfConfig = [
   {
@@ -91,7 +92,7 @@ const routePath = ref(window.location.pathname)
 const openShelfIds = ref<LibraryShelfId[]>(['querygraph'])
 
 const catalogUrl = computed(() => `${import.meta.env.BASE_URL}catalog.json`)
-const previewCount = computed(() => books.value.filter((book) => book.homepage).length)
+const previewCount = computed(() => books.value.filter(isPreviewBook).length)
 const finishedCount = computed(() => books.value.length - previewCount.value)
 const tutorialCount = computed(() => books.value.filter((book) => book.tutorial).length)
 
@@ -116,9 +117,9 @@ const bookShelf = (book: Book): LibraryShelfId =>
 const filteredBooks = computed(() => {
   switch (activeFilter.value) {
     case 'finished':
-      return books.value.filter((book) => !book.homepage)
+      return books.value.filter((book) => !isPreviewBook(book))
     case 'previews':
-      return books.value.filter((book) => book.homepage)
+      return books.value.filter(isPreviewBook)
     case 'tutorials':
       return books.value.filter((book) => book.tutorial)
     default:

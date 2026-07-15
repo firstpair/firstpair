@@ -91,5 +91,13 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-iggy/pdf/767926d9bf53fe18-sail-iggy-connector.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-iggy/epub/d85cc0737025c019-sail-iggy-connector.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-iggy/cover/8459d3ce676a70d4-sail-iggy-cover.png"
+  },
+  {
+    "slug": "cicero-on-himself",
+    "title": "Cicero on Himself",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e0498f0b0e18be34-cicero-on-himself-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/c338eb3400b8eccd-cicero-on-himself-preview.epub",
+    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/4bcc9a23c4b8b6eb-cicero-on-himself-preview-vault%20%282.0.0-sol-dd45853a%29.zip",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png"
   }
 ]

@@ -104,6 +104,16 @@
       "htmlChapters": "book-uploads/staging/sail-iggy/sail-iggy-connector-chapters",
       "cover": "book-uploads/staging/sail-iggy/sail-iggy-cover.png",
       "headboard": "book-uploads/staging/sail-iggy/sail-iggy-headboard.png"
+    },
+    "cicero-on-himself": {
+      "pdf": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.pdf",
+      "epub": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.epub",
+      "html": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.html",
+      "htmlChapters": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters",
+      "cover": "book-uploads/staging/cicero-on-himself/cicero-on-himself-cover.png",
+      "vault": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-dd45853a).zip",
+      "vaultGuideMarkdown": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-dd45853a).md",
+      "vaultGuideHtml": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-dd45853a).html"
     }
   }
 }

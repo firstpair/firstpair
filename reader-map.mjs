@@ -79,5 +79,12 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-iggy/html/b8c32286e2573ebe-sail-iggy-connector.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-iggy/chapters/5349761fc2537370/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-iggy/chapters/5349761fc2537370"
+  },
+  {
+    "slug": "cicero-on-himself",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/1a30f00248cd3228-cicero-on-himself-preview.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7",
+    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide%20%282.0.0-sol-dd45853a%29.html"
   }
 ]

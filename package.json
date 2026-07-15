@@ -13,6 +13,7 @@
     "books:upload": "node scripts/upload-book-package.mjs",
     "readers:sync": "node scripts/sync-reader-routes.mjs",
     "smoke:site": "node scripts/smoke-site.mjs",
+    "test:library-status": "node --test tests/library-status.test.mjs",
     "test:book-build": "publishing/tests/test-build-library-book.sh",
     "test:vault-guide": "node publishing/tests/test-vault-guide-workflow.mjs"
   },
