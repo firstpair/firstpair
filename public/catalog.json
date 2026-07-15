@@ -49,8 +49,8 @@
       "slug": "rio-grande",
       "title": "Rio Grande",
       "kicker": "Preview edition",
-      "description": "A public preview of the revised English reading edition, with cover, front matter, contents, and prefatory opening in PDF, EPUB, and browser editions.",
-      "accent": "#1f6f68",
+      "description": "Assis Brasil's account of the Rio-Grandense Republic, translated by Alexy Khrabrov with firstpair.press. The public preview includes the facsimile cover, front matter, contents, and prefatory opening.",
+      "accent": "#173f37",
       "shelf": "history",
       "homepage": "/rio-grande/preview/",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf",
@@ -63,7 +63,9 @@
         "translation"
       ],
       "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/b010ffb13fdb76e4-historia_riograndense_brasil-alexy-preview.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/index.html"
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/index.html",
+      "cover": "/rio-grande/preview/assets/rio-grande-cover.png",
+      "headboard": "/rio-grande/rio-grande-headboard.png"
     },
     {
       "slug": "typesec",

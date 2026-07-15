@@ -40,6 +40,9 @@ public/<book-stem>/preview/
   index.html
   README.md
   PREVIEW.md
+  assets/
+    <book-stem>-cover.<ext>
+    <book-stem>-headboard.<ext>  # optional wide detail-page art
 ```
 
 Do not place public preview artifacts in `public/books/`. Do not keep duplicate
@@ -56,6 +59,13 @@ public/catalog.json
 ```
 
 The Vue site reads the library from that catalog.
+
+Keep the canonical visual assets in the source repository. Declare the card
+cover with `epub.coverImage` (or another supported cover field) and optional
+wide detail art with top-level `headboardImage` in `book.build.json`.
+`library:publish` stages and uploads both images and records their Blob URLs in
+the catalog. A static preview page may keep lightweight local copies under its
+`assets/` directory so the package remains portable before upload.
 
 ## Source Repositories
 

@@ -16,6 +16,7 @@
     "title": { "type": "string" },
     "subtitle": { "type": "string" },
     "author": { "type": "string" },
+    "headboardImage": { "type": "string" },
     "edition": { "enum": ["preview", "full"] },
     "defaultEdition": { "enum": ["preview", "full", "both"] },
     "version": {

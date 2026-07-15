@@ -9,22 +9,25 @@ Dedicated preview URL:
 /rio-grande/preview/
 ```
 
-The package is intentionally limited. It contains the historical cover image,
-title/front matter, the full table of contents, and the prefatory opening text.
-It does not contain the complete book.
+The package is intentionally limited. It contains the original facsimile title
+page with a First Pair Press translator overprint, title/front matter, the full
+table of contents, and the prefatory opening text. It does not contain the
+complete book.
 
 ## Included Files
 
 - PDF preview:
-  `https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf`
+  `/rio-grande/pdf/`
 - EPUB preview:
-  `https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub`
+  `/rio-grande/epub/`
 - Online reader:
   `/read/rio-grande/`
 - Chapter reader:
   `/read/rio-grande/chapters/`
 - Cover asset:
   `assets/rio-grande-cover.png`
+- Lagoon headboard:
+  `../rio-grande-headboard.png`
 - Detailed preview manifest:
   `PREVIEW.md`
 

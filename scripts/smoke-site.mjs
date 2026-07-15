@@ -139,6 +139,7 @@ const paths = catalog.books.flatMap((book) => {
     htmlPath,
     chaptersPath,
     book.cover,
+    book.headboard,
     book.vault,
     guidePath,
     ...stableDeliverables,

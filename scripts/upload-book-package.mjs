@@ -397,6 +397,12 @@ if (coverSource) {
   units.cover = await uploadFileUnit(manifest, 'cover', coverSource)
 }
 
+const headboardSource = sourcePath(sourceBook.headboard)
+
+if (headboardSource) {
+  units.headboard = await uploadFileUnit(manifest, 'headboard', headboardSource)
+}
+
 const vaultSource = sourcePath(sourceBook.vault)
 
 if (vaultSource) {
@@ -459,6 +465,10 @@ if (!dryRun) {
 
   if (units.cover) {
     book.cover = units.cover.url
+  }
+
+  if (units.headboard) {
+    book.headboard = units.headboard.url
   }
 
   if (units.vault) {

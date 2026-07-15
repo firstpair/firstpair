@@ -83,6 +83,8 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
   const vaultData = join(vault, 'Fixture Book', '_data')
   const guide = join(fixtureBook, 'docs', 'OBSIDIAN-VAULT.md')
   const validator = join(fixtureBook, 'scripts', 'check-obsidian-vault.py')
+  const cover = join(fixtureBook, 'assets', 'cover.png')
+  const headboard = join(fixtureBook, 'assets', 'headboard.png')
   const stageDir = join(harness, 'book-uploads', 'staging', 'fixture-book')
 
   await Promise.all([
@@ -95,6 +97,7 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     mkdir(vaultData, { recursive: true }),
     mkdir(dirname(guide), { recursive: true }),
     mkdir(dirname(validator), { recursive: true }),
+    mkdir(dirname(cover), { recursive: true }),
   ])
   await Promise.all([
     copyFile(
@@ -134,6 +137,24 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
   await Promise.all([
     writeFile(join(harness, 'public', 'catalog.json'), '{"books":[]}\n'),
     writeFile(join(harness, 'book-uploads', 'book-package-sources.json'), '{"books":{}}\n'),
+    writeFile(
+      join(fixtureBook, 'FIRSTPAIR.md'),
+      '# FirstPair Library Contract\n\nslug: fixture-book\nshelf: other\n',
+    ),
+    writeFile(
+      join(fixtureBook, 'book.build.json'),
+      `${JSON.stringify({
+        schemaVersion: 1,
+        bookRoot: '.',
+        metadata: 'metadata.yaml',
+        version: '1.2.3',
+        dist: 'dist',
+        headboardImage: 'assets/headboard.png',
+        epub: { coverImage: 'assets/cover.png' },
+      }, null, 2)}\n`,
+    ),
+    writeFile(cover, 'fixture cover\n'),
+    writeFile(headboard, 'fixture headboard\n'),
     writeFile(
       join(fixtureBook, 'metadata.yaml'),
       `description: >-
@@ -225,6 +246,10 @@ print("fixture source-owned vault validation passed")
   assert.equal(plan.artifacts.vault.guideHtml, 'fixture-book-vault-guide (1.2.3-deadbeef).html')
   assert.equal(plan.artifacts.vault.validation.runner, 'uv')
   assert.equal(plan.artifacts.vault.validation.validator, validator)
+  assert.equal(plan.artifacts.cover.source, cover)
+  assert.equal(plan.artifacts.headboard.source, headboard)
+  assert.match(sourceMap.cover, /fixture-book-cover\.png$/)
+  assert.match(sourceMap.headboard, /fixture-book-headboard\.png$/)
   assert.equal(await readFile(rawGuide, 'utf8'), await readFile(guide, 'utf8'))
   assert.match(await readFile(htmlGuide, 'utf8'), /<h1[^>]*>Fixture Book Vault<\/h1>/)
   assert.match(sourceMap.vaultGuideMarkdown, /\.md$/)

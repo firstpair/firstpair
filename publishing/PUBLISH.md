@@ -237,6 +237,13 @@ When an HTML cover and EPUB thumbnail use the same image, set
 `epub.coverImage` and `epub.includeRenderedCover: false`. The image remains the
 canonical EPUB cover without duplicating the rendered HTML cover in the spine.
 
+Source repositories may also set a top-level `headboardImage` for the wide
+book-detail hero. `library:publish` discovers the cover and headboard from
+`book.build.json`, stages both beside the edition artifacts, uploads each as a
+content-addressed Blob unit, and updates the catalog's `cover` and `headboard`
+fields. The cover drives library cards; the headboard drives the detail-page
+hero and should be a wide image with enough quiet contrast for overlaid text.
+
 A source wrapper should only locate its repository and delegate:
 
 ```sh
@@ -421,9 +428,9 @@ Book delivery to iCloud Books:
   /path/to/repo/docs/book/dist "$HOME/icloud/books"
 ```
 
-Public library delivery, including staging, Blob upload, catalog sync, reader
-routes, README generation, versioned iCloud copies, site verification,
-production deployment, and a live catalog check:
+Public library delivery, including staging, cover/headboard discovery, Blob
+upload, catalog sync, reader routes, README generation, versioned iCloud
+copies, site verification, production deployment, and a live catalog check:
 
 ```sh
 cd ~/src/firstpair

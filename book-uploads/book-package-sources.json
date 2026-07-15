@@ -17,10 +17,12 @@
       "vaultGuide": "book-uploads/staging/lighthouse-republics/lighthouse-republics-vault-guide (4.0.0-deb590f3).md"
     },
     "rio-grande": {
-      "pdf": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview.pdf",
-      "epub": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview.epub",
-      "html": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview.html",
-      "htmlChapters": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters"
+      "pdf": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.pdf",
+      "epub": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.epub",
+      "html": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.html",
+      "htmlChapters": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters",
+      "cover": "book-uploads/staging/rio-grande/rio-grande-cover.png",
+      "headboard": "book-uploads/staging/rio-grande/rio-grande-headboard.png"
     },
     "typesec": {
       "pdf": "book-uploads/staging/typesec/typesec.pdf",

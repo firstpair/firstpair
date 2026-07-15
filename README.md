@@ -3,7 +3,8 @@
 This repository is the public library and publishing method for First Pair
 Press. It powers [firstpair.org](https://firstpair.org), records the public
 catalog, hosts preview pages, maps hosted reader routes, and preserves the
-delivery manifests for Blob-backed PDF, EPUB, and HTML editions.
+delivery manifests for Blob-backed PDF, EPUB, HTML, cover, and headboard
+assets.
 
 The book-specific source repositories remain the authority for manuscripts,
 metadata, version manifests, editorial history, and source builds. This
@@ -43,8 +44,8 @@ sources shaped them, and what the public edition is meant to do.
   scripts used across First Pair work.
 
 Heavy book payloads do not live in deployable `public/`. PDF, EPUB, single HTML,
-chapter HTML, companion vaults, and rendered vault guides are uploaded to
-Vercel Blob one title at a time.
+chapter HTML, cover and headboard images, companion vaults, and rendered vault
+guides are uploaded to Vercel Blob one title at a time.
 `firstpair.org` exposes PDF and EPUB as downloads and HTML through hosted reader
 routes:
 
@@ -101,6 +102,7 @@ A full public delivery usually includes:
 - EPUB download
 - hosted single-file HTML reader
 - hosted chapter reader
+- library-card cover and optional wide book-detail headboard
 - optional downloadable Obsidian vault and hosted rendered vault guide
 - `public/<book-stem>/README.md`
 - catalog metadata in `public/catalog.json`

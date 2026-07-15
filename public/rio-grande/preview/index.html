@@ -25,10 +25,7 @@
       body {
         margin: 0;
         min-width: 320px;
-        background:
-          linear-gradient(180deg, rgba(244, 246, 244, 0.96), rgba(229, 234, 229, 0.96)),
-          linear-gradient(112deg, rgba(93, 24, 34, 0.12), transparent 48%),
-          linear-gradient(290deg, rgba(21, 80, 88, 0.12), transparent 42%);
+        background: linear-gradient(180deg, #f8f6ee, #e8eee9);
       }
 
       a {
@@ -57,12 +54,19 @@
       }
 
       .hero {
-        min-height: 72vh;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(230px, 350px);
-        gap: clamp(30px, 6vw, 82px);
-        align-items: center;
-        padding: clamp(34px, 7vw, 82px) 0 38px;
+        width: 100vw;
+        min-height: 68svh;
+        margin-left: calc(50% - 50vw);
+        padding: clamp(44px, 7vw, 84px) max(20px, calc((100vw - 1120px) / 2));
+        display: flex;
+        align-items: flex-end;
+        background:
+          linear-gradient(90deg, rgba(12, 17, 15, 0.91) 0%, rgba(12, 17, 15, 0.7) 46%, rgba(12, 17, 15, 0.12) 78%),
+          url("../rio-grande-headboard.png") center / cover no-repeat;
+      }
+
+      .hero-copy {
+        max-width: 770px;
       }
 
       .eyebrow {
@@ -77,7 +81,7 @@
       h1 {
         margin: 0;
         max-width: 780px;
-        color: #14130f;
+        color: #fff8e6;
         font-family: Georgia, "Times New Roman", serif;
         font-size: clamp(42px, 7vw, 86px);
         font-weight: 700;
@@ -88,14 +92,14 @@
       .lede {
         margin: 24px 0 0;
         max-width: 680px;
-        color: #303933;
+        color: rgba(255, 248, 230, 0.9);
         font-size: clamp(18px, 2vw, 22px);
         line-height: 1.52;
       }
 
       .cover {
-        width: min(100%, 350px);
-        justify-self: end;
+        width: min(100%, 280px);
+        justify-self: start;
         padding: 12px;
         border: 1px solid rgba(24, 23, 19, 0.16);
         border-radius: 8px;
@@ -111,7 +115,7 @@
       }
 
       .notice {
-        margin: 0 0 30px;
+        margin: 0;
         padding: 16px 18px;
         border-left: 4px solid #7c2635;
         background: rgba(255, 255, 255, 0.78);
@@ -142,8 +146,16 @@
 
       .actions a.secondary {
         border: 1px solid rgba(24, 23, 19, 0.18);
-        background: rgba(255, 255, 255, 0.76);
+        background: rgba(255, 248, 230, 0.94);
         color: #181713;
+      }
+
+      .edition-intro {
+        display: grid;
+        grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
+        gap: clamp(26px, 5vw, 60px);
+        align-items: center;
+        padding: 42px 0 28px;
       }
 
       .section-heading {
@@ -232,17 +244,14 @@
       @media (max-width: 820px) {
         .hero,
         .artifact-row,
-        .docs {
+        .docs,
+        .edition-intro {
           grid-template-columns: 1fr;
         }
 
         .hero {
-          min-height: auto;
-        }
-
-        .cover {
-          justify-self: start;
-          max-width: 280px;
+          min-height: 66svh;
+          background-position: 62% center;
         }
 
         .download-set {
@@ -259,32 +268,36 @@
       </div>
 
       <section class="hero" aria-labelledby="title">
-        <div>
+        <div class="hero-copy">
           <p class="eyebrow">Rio Grande reading edition</p>
           <h1 id="title">History of the Rio-Grandense Republic</h1>
           <p class="lede">
-            A limited preview of the revised English reading edition of Assis
-            Brasil's account of the Rio-Grandense Republic.
+            Assis Brasil's account of the Rio-Grandense Republic, translated
+            by Alexy Khrabrov with firstpair.press.
           </p>
           <div class="actions" aria-label="Primary reading and download links">
-            <a href="https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf">PDF Preview</a>
-            <a href="https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub">EPUB Preview</a>
+            <a href="/rio-grande/pdf/">PDF Preview</a>
+            <a href="/rio-grande/epub/">EPUB Preview</a>
             <a href="/read/rio-grande/" target="_blank" rel="noopener noreferrer">Read Preview</a>
             <a href="/read/rio-grande/chapters/" target="_blank" rel="noopener noreferrer">Chapter reader</a>
             <a class="secondary" href="PREVIEW.md">Manifest</a>
           </div>
         </div>
-        <div class="cover" aria-label="Historical cover image">
-          <img src="assets/rio-grande-cover.png" alt="Historical title page for Historia da Republica Riograndense">
-        </div>
       </section>
 
-      <p class="notice">
-        This is not the complete book. The preview includes the cover,
-        title/front matter, full table of contents, and the prefatory opening:
-        770 words, or 2.05 percent of the 37,640-word main body. Chapter I is
-        not included because it would exceed the 10 percent preview ceiling.
-      </p>
+      <section class="edition-intro" aria-label="Preview boundary and cover">
+        <div class="cover" aria-label="Historical cover image">
+          <img src="assets/rio-grande-cover.png" alt="Historical title page with First Pair Press translator overprint">
+        </div>
+        <p class="notice">
+          This is not the complete book. The preview includes the original
+          facsimile title page, a high-contrast First Pair Press translator
+          overprint, front matter, the full table of contents, and the
+          prefatory opening: 765 words, or 1.76 percent of the 43,410-word
+          manuscript. Chapter I is not included because it would exceed the
+          10 percent preview ceiling.
+        </p>
+      </section>
 
       <section aria-labelledby="formats">
         <div class="section-heading">
@@ -300,8 +313,8 @@
             </p>
           </div>
           <div class="download-set">
-            <a href="https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf">PDF</a>
-            <a href="https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub">EPUB</a>
+            <a href="/rio-grande/pdf/">PDF</a>
+            <a href="/rio-grande/epub/">EPUB</a>
             <a href="/read/rio-grande/" target="_blank" rel="noopener noreferrer">Read</a>
             <a href="/read/rio-grande/chapters/" target="_blank" rel="noopener noreferrer">Chapter reader</a>
           </div>

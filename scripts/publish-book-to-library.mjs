@@ -986,6 +986,12 @@ async function refreshSourceMap(plan, dryRun) {
     sources.books[plan.slug].cover = repoRelative(join(plan.stageDir, plan.cover.stableName))
   }
 
+  if (plan.headboard) {
+    sources.books[plan.slug].headboard = repoRelative(
+      join(plan.stageDir, plan.headboard.stableName),
+    )
+  }
+
   if (plan.vault) {
     sources.books[plan.slug].vault = repoRelative(join(plan.stageDir, plan.vault.zipName))
     if (plan.vault.guideName) {
@@ -1379,16 +1385,18 @@ async function zipVault(vaultDir, destinationZip, guideSource = null) {
   }
 }
 
-// Stage the cover and (when requested) the vault zip and its guide into the
-// staging directory BEFORE the source map and upload run, so the Blob
-// uploader publishes them like any other artifact and the catalog gains
-// their public URLs. Runs after refreshStaging (which resets stageDir).
+// Stage source-owned visual companions and (when requested) the vault package
+// before the source-map and upload run. Runs after refreshStaging, which resets
+// stageDir.
 async function stageCompanions(plan, dryRun) {
   if (dryRun) {
     return
   }
   if (plan.cover) {
     await copyFile(plan.cover.sourcePath, join(plan.stageDir, plan.cover.stableName))
+  }
+  if (plan.headboard) {
+    await copyFile(plan.headboard.sourcePath, join(plan.stageDir, plan.headboard.stableName))
   }
   if (plan.vault) {
     await zipVault(
@@ -1468,6 +1476,15 @@ async function coverNamesFromBuildConfig(inputDir, distDir) {
     .map((name) => resolveConfiguredAssetPath(name, inputDir, distDir))
 }
 
+async function headboardNamesFromBuildConfig(inputDir, distDir) {
+  const config = await readJson(join(inputDir, 'book.build.json'), null)
+  if (!config?.headboardImage) {
+    return []
+  }
+
+  return [resolveConfiguredAssetPath(config.headboardImage, inputDir, distDir)]
+}
+
 const browserImageExtensions = new Set([
   '.avif',
   '.gif',
@@ -1501,6 +1518,31 @@ async function resolveCover(inputDir, distDir, metadata, slug) {
       await exists(candidate)
     ) {
       return { sourcePath: candidate, stableName: `${slug}-cover${extname(candidate)}` }
+    }
+  }
+  return null
+}
+
+async function resolveHeadboard(inputDir, distDir, metadata, slug) {
+  const named = [
+    metadata.headboard_image,
+    metadata.headboard,
+    ...(await headboardNamesFromBuildConfig(inputDir, distDir)),
+  ].filter(Boolean)
+  const candidates = []
+  for (const name of named) {
+    candidates.push(
+      isAbsolute(name) ? name : join(inputDir, name),
+      join(dirname(distDir), name),
+    )
+  }
+  candidates.push(join(distDir, 'headboard.png'), join(dirname(distDir), 'headboard.png'))
+  for (const candidate of candidates) {
+    if (
+      browserImageExtensions.has(extname(candidate).toLowerCase()) &&
+      await exists(candidate)
+    ) {
+      return { sourcePath: candidate, stableName: `${slug}-headboard${extname(candidate)}` }
     }
   }
   return null
@@ -1625,6 +1667,7 @@ async function runLiveCatalogCheck(plan) {
     'htmlSource',
     'htmlChaptersSource',
     'cover',
+    'headboard',
     'vault',
     'vaultGuide',
     'vaultGuideSource',
@@ -1766,6 +1809,7 @@ async function buildPlan(inputDir, options) {
   const tutorial = await resolveTutorial(inputDir, distDir, options.tutorial ?? version.tutorial_file)
   const vault = await resolveVault(inputDir, distDir, edition, version, slug, options)
   const cover = await resolveCover(inputDir, distDir, metadata, slug)
+  const headboard = await resolveHeadboard(inputDir, distDir, metadata, slug)
 
   return {
     inputDir,
@@ -1788,6 +1832,7 @@ async function buildPlan(inputDir, options) {
     tutorial,
     vault,
     cover,
+    headboard,
     stageDir: join(root, 'book-uploads', 'staging', slug),
     publicDir: join(root, 'public', slug),
     icloudDir: resolve(options['icloud-dir'] ?? join(homedir(), 'icloud', 'books')),
@@ -1867,6 +1912,12 @@ function printablePlan(
         ? {
             source: plan.cover.sourcePath,
             staged: repoRelative(join(plan.stageDir, plan.cover.stableName)),
+          }
+        : null,
+      headboard: plan.headboard
+        ? {
+            source: plan.headboard.sourcePath,
+            staged: repoRelative(join(plan.stageDir, plan.headboard.stableName)),
           }
         : null,
     },
