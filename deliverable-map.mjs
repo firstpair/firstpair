@@ -23,8 +23,8 @@ export const deliverableBooks = [
   {
     "slug": "typesec",
     "title": "TypeSec",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/f9ddeaf07d158937-typesec.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/b1a3fa73f4624767-typesec.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/8ed98e4de5d0e0ee-typesec.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/e0036e0c6988d707-typesec.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/cover/6f32ffe53a48c2e0-typesec-cover.png"
   },
   {

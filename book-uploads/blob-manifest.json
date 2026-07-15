@@ -1,27 +1,27 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-15T08:16:14.366Z",
+  "updatedAt": "2026-07-15T08:19:45.317Z",
   "books": {
     "typesec": {
-      "updatedAt": "2026-07-15T00:30:30.125Z",
+      "updatedAt": "2026-07-15T08:19:45.316Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/typesec/typesec.pdf",
-          "sha256": "f9ddeaf07d1589379206b48624094470ea3124057cc781dd64f4e33e7b770c1f",
-          "size": 2950748,
-          "pathname": "books/typesec/pdf/f9ddeaf07d158937-typesec.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/f9ddeaf07d158937-typesec.pdf",
+          "sha256": "8ed98e4de5d0e0ee3e6ad0a9ff366f4e2030913be71a00b4ce70695e342d5c5c",
+          "size": 2950746,
+          "pathname": "books/typesec/pdf/8ed98e4de5d0e0ee-typesec.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/8ed98e4de5d0e0ee-typesec.pdf",
           "skipped": true
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/typesec/typesec.epub",
-          "sha256": "b1a3fa73f4624767e780176ff0051b0f0495f9c9203c061258d6a759d50a58e6",
+          "sha256": "e0036e0c6988d707ee9f18af83085de4c29a7e5d826edf4bd31a8b420a7845c7",
           "size": 2488105,
-          "pathname": "books/typesec/epub/b1a3fa73f4624767-typesec.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/b1a3fa73f4624767-typesec.epub",
+          "pathname": "books/typesec/epub/e0036e0c6988d707-typesec.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/e0036e0c6988d707-typesec.epub",
           "skipped": true
         },
         "html": {
@@ -40,6 +40,15 @@
           "size": 2041421,
           "pathname": "books/typesec/cover/6f32ffe53a48c2e0-typesec-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/cover/6f32ffe53a48c2e0-typesec-cover.png",
+          "skipped": true
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/typesec/typesec-headboard.png",
+          "sha256": "fc1fc78b9688cacfaa423a87bfe0a24dad2660a097724d3e8581c75abbf57159",
+          "size": 2990639,
+          "pathname": "books/typesec/headboard/fc1fc78b9688cacf-typesec-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/headboard/fc1fc78b9688cacf-typesec-headboard.png",
           "skipped": true
         },
         "htmlChapters": {
@@ -5010,6 +5019,21 @@
       "pathname": "books/rio-grande/epub/514491d02c636d4d-historia_riograndense_brasil-alexy-preview.epub",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/514491d02c636d4d-historia_riograndense_brasil-alexy-preview.epub",
       "size": 536665
+    },
+    "8ed98e4de5d0e0ee3e6ad0a9ff366f4e2030913be71a00b4ce70695e342d5c5c:2950746": {
+      "pathname": "books/typesec/pdf/8ed98e4de5d0e0ee-typesec.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/8ed98e4de5d0e0ee-typesec.pdf",
+      "size": 2950746
+    },
+    "e0036e0c6988d707ee9f18af83085de4c29a7e5d826edf4bd31a8b420a7845c7:2488105": {
+      "pathname": "books/typesec/epub/e0036e0c6988d707-typesec.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/e0036e0c6988d707-typesec.epub",
+      "size": 2488105
+    },
+    "fc1fc78b9688cacfaa423a87bfe0a24dad2660a097724d3e8581c75abbf57159:2990639": {
+      "pathname": "books/typesec/headboard/fc1fc78b9688cacf-typesec-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/headboard/fc1fc78b9688cacf-typesec-headboard.png",
+      "size": 2990639
     }
   },
   "chapterPackages": {

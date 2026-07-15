@@ -29,7 +29,8 @@
       "epub": "book-uploads/staging/typesec/typesec.epub",
       "html": "book-uploads/staging/typesec/typesec.html",
       "htmlChapters": "book-uploads/staging/typesec/typesec-chapters",
-      "cover": "book-uploads/staging/typesec/typesec-cover.png"
+      "cover": "book-uploads/staging/typesec/typesec-cover.png",
+      "headboard": "book-uploads/staging/typesec/typesec-headboard.png"
     },
     "grust": {
       "pdf": "book-uploads/staging/grust/grust.pdf",
