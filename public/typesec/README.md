@@ -5,8 +5,8 @@ the First Pair library as PDF, EPUB, and hosted web readers.
 
 ## Current Public Editions
 
-- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/7a4d8faa319200d7-typesec.pdf)
-- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/5cc093e7cb4a19bc-typesec.epub)
+- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/pdf/f9ddeaf07d158937-typesec.pdf)
+- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/typesec/epub/b1a3fa73f4624767-typesec.epub)
 - [Read online](/read/typesec/)
 - [Chapter reader](/read/typesec/chapters/)
 

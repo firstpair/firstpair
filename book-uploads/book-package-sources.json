@@ -26,19 +26,22 @@
       "pdf": "book-uploads/staging/typesec/typesec.pdf",
       "epub": "book-uploads/staging/typesec/typesec.epub",
       "html": "book-uploads/staging/typesec/typesec.html",
-      "htmlChapters": "book-uploads/staging/typesec/typesec-chapters"
+      "htmlChapters": "book-uploads/staging/typesec/typesec-chapters",
+      "cover": "book-uploads/staging/typesec/typesec-cover.png"
     },
     "grust": {
       "pdf": "book-uploads/staging/grust/grust.pdf",
       "epub": "book-uploads/staging/grust/grust.epub",
       "html": "book-uploads/staging/grust/grust.html",
-      "htmlChapters": "book-uploads/staging/grust/grust-chapters"
+      "htmlChapters": "book-uploads/staging/grust/grust-chapters",
+      "cover": "book-uploads/staging/grust/grust-cover.png"
     },
     "lakecat": {
       "pdf": "book-uploads/staging/lakecat/lakecat.pdf",
       "epub": "book-uploads/staging/lakecat/lakecat.epub",
       "html": "book-uploads/staging/lakecat/lakecat.html",
-      "htmlChapters": "book-uploads/staging/lakecat/lakecat-chapters"
+      "htmlChapters": "book-uploads/staging/lakecat/lakecat-chapters",
+      "cover": "book-uploads/staging/lakecat/lakecat-cover.png"
     },
     "sail-rust-book": {
       "pdf": "book-uploads/staging/sail-rust-book/sail-rust-book.pdf",
