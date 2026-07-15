@@ -21,7 +21,7 @@ disposable virtual environment; do not add Pillow to the book build merely for
 this optional cover operation.
 
 ```sh
-python3 cover/make-publisher-mask.py
+python3 logo/make-publisher-mask.py
 ```
 
 The defaults reproduce the current treatment:
@@ -40,10 +40,10 @@ Choose a tint already present in the cover and adjust opacity before changing
 the extraction threshold. For example:
 
 ```sh
-python3 cover/make-publisher-mask.py \
+python3 logo/make-publisher-mask.py \
   --color '#b8c1c8' \
   --max-alpha 82 \
-  --tint-out cover/firstpair-publisher-silver.png
+  --tint-out logo/firstpair-publisher-silver.png
 ```
 
 Useful starting points:
@@ -77,7 +77,7 @@ Pillow placement example:
 from PIL import Image
 
 cover = Image.open("cover.png").convert("RGBA")
-mark = Image.open("cover/firstpair-publisher-bronze.png").convert("RGBA")
+mark = Image.open("logo/firstpair-publisher-bronze.png").convert("RGBA")
 width = round(cover.width * 0.26)
 height = round(mark.height * width / mark.width)
 mark = mark.resize((width, height), Image.Resampling.LANCZOS)

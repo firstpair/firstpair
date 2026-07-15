@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="340" viewBox="0 0 1800 340" role="img" aria-labelledby="title desc">
+  <title id="title">First Pair Press abstract capsule logo</title>
+  <desc id="desc">A tight capsule mark containing the words First Pair Press above three bisected circles.</desc>
+  <defs>
+    <clipPath id="capsuleClip">
+      <rect x="14" y="14" width="1772" height="312" rx="156" ry="156"/>
+    </clipPath>
+    <clipPath id="leftCircle">
+      <circle cx="170" cy="222" r="88"/>
+    </clipPath>
+    <clipPath id="centerCircle">
+      <circle cx="900" cy="222" r="88"/>
+    </clipPath>
+    <clipPath id="rightCircle">
+      <circle cx="1630" cy="222" r="88"/>
+    </clipPath>
+    <linearGradient id="caseSheen" x1="14" y1="14" x2="1786" y2="326" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8f5ec"/>
+      <stop offset="0.22" stop-color="#efe6d2"/>
+      <stop offset="0.52" stop-color="#9f978b"/>
+      <stop offset="0.78" stop-color="#5f5e60"/>
+      <stop offset="1" stop-color="#242428"/>
+    </linearGradient>
+    <linearGradient id="drawerShade" x1="520" y1="0" x2="1786" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1f2024" stop-opacity="0.06"/>
+      <stop offset="0.42" stop-color="#1f2024" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#1f2024" stop-opacity="0.44"/>
+    </linearGradient>
+    <filter id="softShadow" x="-8%" y="-18%" width="116%" height="140%">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#000000" flood-opacity="0.28"/>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="340" fill="none"/>
+  <g filter="url(#softShadow)">
+    <rect x="14" y="14" width="1772" height="312" rx="156" ry="156" fill="url(#caseSheen)"/>
+    <rect x="24" y="24" width="1752" height="292" rx="146" ry="146" fill="#ece6d8" opacity="0.72"/>
+    <g clip-path="url(#capsuleClip)">
+      <rect x="520" y="14" width="1266" height="312" fill="url(#drawerShade)"/>
+      <rect x="14" y="14" width="1772" height="312" fill="none" stroke="#0e0e0f" stroke-width="16"/>
+    </g>
+  </g>
+
+  <text
+    x="900"
+    y="101"
+    text-anchor="middle"
+    font-family="'Avenir Next Condensed', 'Arial Black', Impact, sans-serif"
+    font-size="72"
+    font-weight="900"
+    textLength="1480"
+    lengthAdjust="spacingAndGlyphs"
+    fill="#111112">FIRST PAIR PRESS</text>
+
+  <g>
+    <circle cx="170" cy="222" r="88" fill="#f7f5ef" stroke="#111112" stroke-width="13"/>
+    <g clip-path="url(#leftCircle)">
+      <rect x="82" y="134" width="88" height="176" fill="#f7f5ef"/>
+      <rect x="170" y="134" width="88" height="176" fill="#050505"/>
+    </g>
+    <line x1="170" y1="138" x2="170" y2="306" stroke="#111112" stroke-width="8"/>
+    <circle cx="170" cy="222" r="88" fill="none" stroke="#111112" stroke-width="13"/>
+
+    <circle cx="900" cy="222" r="88" fill="#1b1b1f" stroke="#111112" stroke-width="13"/>
+    <g clip-path="url(#centerCircle)" opacity="1">
+      <polygon points="776,346 1024,98 1024,346" fill="#050505"/>
+      <polygon points="776,346 1024,98 776,98" fill="#d8d3c7"/>
+    </g>
+    <line x1="840" y1="282" x2="960" y2="162" stroke="#111112" stroke-width="8"/>
+    <circle cx="900" cy="222" r="88" fill="none" stroke="#111112" stroke-width="13"/>
+
+    <circle cx="1630" cy="222" r="88" fill="#1b1b1f" stroke="#111112" stroke-width="13"/>
+    <g clip-path="url(#rightCircle)" opacity="1">
+      <rect x="1542" y="134" width="176" height="88" fill="#aaa79e"/>
+      <rect x="1542" y="222" width="176" height="88" fill="#050505"/>
+    </g>
+    <line x1="1550" y1="222" x2="1710" y2="222" stroke="#111112" stroke-width="8"/>
+    <circle cx="1630" cy="222" r="88" fill="none" stroke="#111112" stroke-width="13"/>
+  </g>
+</svg>
