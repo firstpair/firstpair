@@ -54,11 +54,16 @@ const invalidTutorialRoutes = []
 const invalidVaultGuideRoutes = []
 const invalidPreviewSources = []
 const invalidPostUrls = []
+const invalidAuthors = []
 const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
 const staleDeliverableMap = []
 
 for (const book of catalog.books) {
+  if (book.author !== undefined && (typeof book.author !== 'string' || !book.author.trim())) {
+    invalidAuthors.push({ slug: book.slug, author: book.author })
+  }
+
   if (book.shelf && !validShelves.has(book.shelf)) {
     invalidShelves.push({ slug: book.slug, shelf: book.shelf })
   }
@@ -235,6 +240,7 @@ if (
   invalidVaultGuideRoutes.length ||
   invalidPreviewSources.length ||
   invalidPostUrls.length ||
+  invalidAuthors.length ||
   invalidShelves.length ||
   staleReaderMap.length ||
   staleDeliverableMap.length ||
@@ -257,6 +263,7 @@ if (
         invalidVaultGuideRoutes,
         invalidPreviewSources,
         invalidPostUrls,
+        invalidAuthors,
         invalidShelves,
         staleReaderMap,
         staleDeliverableMap,

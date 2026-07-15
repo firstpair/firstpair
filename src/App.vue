@@ -53,6 +53,7 @@ type LibraryShelfId = (typeof libraryShelfConfig)[number]['id']
 type Book = {
   slug: string
   title: string
+  author?: string
   kicker: string
   description: string
   accent: string
@@ -262,6 +263,7 @@ const fragments = [
         <div class="book-detail__copy">
           <p class="eyebrow">{{ selectedBook.kicker }}</p>
           <h1 :id="`book-detail-${selectedBook.slug}`">{{ selectedBook.title }}</h1>
+          <p v-if="selectedBook.author" class="book-detail__author">By {{ selectedBook.author }}</p>
           <p>{{ selectedBook.description }}</p>
           <div class="book-detail__primary">
             <a :href="stableDeliverableHref(selectedBook, 'pdf')">PDF</a>
@@ -523,10 +525,12 @@ const fragments = [
                       v-if="bookPageHref(book)"
                       :href="bookPageHref(book)"
                       @click="navigateInApp($event, bookPageHref(book))"
-                      >{{ book.title }}</a
                     >
+                      {{ book.title }}
+                    </a>
                     <template v-else>{{ book.title }}</template>
                   </h3>
+                  <p v-if="book.author" class="book-author">By {{ book.author }}</p>
                   <p>{{ book.description }}</p>
                 </div>
                 <div class="tag-row">

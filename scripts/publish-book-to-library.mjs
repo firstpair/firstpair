@@ -822,6 +822,7 @@ function catalogEntryFromPlan(plan, existing = {}) {
   const entry = {
     slug: plan.slug,
     title: plan.explicit.title ? plan.title : (existing.title ?? plan.title),
+    author: plan.author || existing.author || undefined,
     kicker: plan.explicit.kicker || replacesPreview
       ? plan.kicker
       : (existing.kicker ?? plan.kicker),
@@ -1655,6 +1656,7 @@ async function runLiveCatalogCheck(plan) {
   const liveUrl = 'https://firstpair.org/catalog.json'
   const comparedFields = [
     'title',
+    'author',
     'kicker',
     'description',
     'accent',
@@ -1768,6 +1770,7 @@ async function buildPlan(inputDir, options) {
   const slug = slugify(contractSlug ?? version.title_stem ?? metadata.title_stem ?? stem)
   const shelf = options.shelf ?? firstpair.shelf
   const title = firstValue(options.title, version.html_title, version.title, metadata.title, titleFromSlug(slug))
+  const author = firstValue(version.author, metadata.author)
   const subtitle = firstValue(version.subtitle, metadata.subtitle)
   const description = firstValue(
     options.description,
@@ -1820,6 +1823,7 @@ async function buildPlan(inputDir, options) {
     slug,
     shelf,
     title,
+    author,
     description,
     source,
     kicker: options.kicker ?? (edition === 'preview' ? 'Preview edition' : 'Finished book'),
@@ -1867,6 +1871,7 @@ function printablePlan(
     slug: plan.slug,
     shelf: plan.shelf,
     title: plan.title,
+    author: plan.author,
     distDir: plan.distDir,
     edition: plan.edition,
     stageDir: repoRelative(plan.stageDir),
