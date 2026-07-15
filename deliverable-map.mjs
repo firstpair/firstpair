@@ -60,8 +60,9 @@ export const deliverableBooks = [
   {
     "slug": "omnighost",
     "title": "Omnighost for First Pair Press",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/656e1489f74badce-omnighost.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/df3a46f1046fe155-omnighost.epub"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/2ee115c053fd9d4b-omnighost.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/75a274baefd95ca9-omnighost.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/cover/a67a3d7b4d1f5612-omnighost-cover.png"
   },
   {
     "slug": "invented-enemy",

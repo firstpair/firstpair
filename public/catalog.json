@@ -195,8 +195,8 @@
       "accent": "#4d6f8f",
       "shelf": "publishing",
       "source": "https://github.com/firstpair/omnighost",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/656e1489f74badce-omnighost.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/df3a46f1046fe155-omnighost.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/2ee115c053fd9d4b-omnighost.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/75a274baefd95ca9-omnighost.epub",
       "html": "/read/omnighost/",
       "htmlChapters": "/read/omnighost/chapters/",
       "tags": [
@@ -204,8 +204,11 @@
         "publishing",
         "Obsidian"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/html/2db1ce89d286b4f0-omnighost.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/chapters/b1693cd954ef72b0/index.html"
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/html/68f40c6e035a98bf-omnighost.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/chapters/50baf0e39202b36d/index.html",
+      "author": "Alexy Khrabrov",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/cover/a67a3d7b4d1f5612-omnighost-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/headboard/40f6c4ba81c74147-omnighost-headboard.png"
     },
     {
       "slug": "invented-enemy",

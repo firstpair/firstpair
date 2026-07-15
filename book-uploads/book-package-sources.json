@@ -62,7 +62,9 @@
       "pdf": "book-uploads/staging/omnighost/omnighost.pdf",
       "epub": "book-uploads/staging/omnighost/omnighost.epub",
       "html": "book-uploads/staging/omnighost/omnighost.html",
-      "htmlChapters": "book-uploads/staging/omnighost/omnighost-chapters"
+      "htmlChapters": "book-uploads/staging/omnighost/omnighost-chapters",
+      "cover": "book-uploads/staging/omnighost/omnighost-cover.png",
+      "headboard": "book-uploads/staging/omnighost/omnighost-headboard.png"
     },
     "invented-enemy": {
       "pdf": "book-uploads/staging/invented-enemy/invented-enemy-preview.pdf",
