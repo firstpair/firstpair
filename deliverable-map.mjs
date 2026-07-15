@@ -38,9 +38,9 @@ export const deliverableBooks = [
   {
     "slug": "lakecat",
     "title": "LakeCat",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/3a2ea25f6992be8a-lakecat.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/62b42cfb37c667e3-lakecat.epub",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png"
   },
   {
     "slug": "sail-rust-book",

@@ -116,13 +116,14 @@
     {
       "slug": "lakecat",
       "title": "LakeCat",
+      "author": "Alexy Khrabrov",
       "kicker": "Finished book",
       "description": "The Iceberg-compatible catalog foundation for QueryGraph, delivered as public PDF, EPUB, and hosted web readers.",
       "accent": "#2f667d",
       "shelf": "querygraph",
       "source": "https://github.com/querygraph/lakecat",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/3a2ea25f6992be8a-lakecat.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/62b42cfb37c667e3-lakecat.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
       "html": "/read/lakecat/",
       "htmlChapters": "/read/lakecat/chapters/",
       "tags": [
@@ -130,9 +131,9 @@
         "Iceberg",
         "catalog"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/html/43cdca3fe3a7ce74-lakecat.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/index.html",
-      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png"
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/html/cc37b3faa4cebaf6-lakecat.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/index.html",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png"
     },
     {
       "slug": "sail-rust-book",

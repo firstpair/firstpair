@@ -638,60 +638,60 @@
       }
     },
     "lakecat": {
-      "updatedAt": "2026-07-15T00:30:33.724Z",
+      "updatedAt": "2026-07-15T07:45:04.093Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/lakecat/lakecat.pdf",
-          "sha256": "3a2ea25f6992be8a31f4e25b6f1351ee699e7a3f48cdd60edda7509f6d25f98e",
-          "size": 4432888,
-          "pathname": "books/lakecat/pdf/3a2ea25f6992be8a-lakecat.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/3a2ea25f6992be8a-lakecat.pdf",
-          "skipped": true
+          "sha256": "471a962cadd4c07cc0da200e14ad09e34789c6d0716e453e942de38917d85d8f",
+          "size": 4450390,
+          "pathname": "books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+          "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/lakecat/lakecat.epub",
-          "sha256": "62b42cfb37c667e3bfdcea6014400fbf9a9a973862c233542d370b1e3792499e",
-          "size": 3375281,
-          "pathname": "books/lakecat/epub/62b42cfb37c667e3-lakecat.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/62b42cfb37c667e3-lakecat.epub",
-          "skipped": true
+          "sha256": "f72e568f937c7c164460827c674072bc7cbb844cd995755a3c35a3ab5489b17b",
+          "size": 3385381,
+          "pathname": "books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
+          "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/lakecat/lakecat.html",
-          "sha256": "43cdca3fe3a7ce74edb3f6e0dfe8be4d817f96c3c7fbef542c8ce0824eae0bf7",
-          "size": 4680744,
-          "pathname": "books/lakecat/html/43cdca3fe3a7ce74-lakecat.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/html/43cdca3fe3a7ce74-lakecat.html",
-          "skipped": true
+          "sha256": "cc37b3faa4cebaf64e2f11a4b036bcf4b7154259724c8fa595ec1d4af1d6078a",
+          "size": 4694260,
+          "pathname": "books/lakecat/html/cc37b3faa4cebaf6-lakecat.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/html/cc37b3faa4cebaf6-lakecat.html",
+          "skipped": false
         },
         "cover": {
           "kind": "cover",
           "localPath": "book-uploads/staging/lakecat/lakecat-cover.png",
-          "sha256": "703fd6bca355dfb17fadb6f99beaebc6644a7467e8da99f69273a51bb800281a",
-          "size": 2414141,
-          "pathname": "books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png",
-          "skipped": true
+          "sha256": "d8061182e9ec10fb5ba8acb1166e24ef54dae6ae2d310477954b45ee003f4cd4",
+          "size": 2424279,
+          "pathname": "books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png",
+          "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/lakecat/lakecat-chapters",
-          "sha256": "56df88b15b8141a0e859cbffe527850bc9a296d721d5323dbe12016ab448233b",
-          "pathnamePrefix": "books/lakecat/chapters/56df88b15b8141a0",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/index.html",
-          "skipped": true,
+          "sha256": "e47deab42d9c2ac3086f707702ee38e2c90828ef2ec47f049908dbe31401ba52",
+          "pathnamePrefix": "books/lakecat/chapters/e47deab42d9c2ac3",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/index.html",
+          "skipped": false,
           "files": [
             {
-              "localPath": "book-uploads/staging/lakecat/lakecat-chapters/assets/703fd6bca355-lakecat-cover.png",
-              "relativePath": "assets/703fd6bca355-lakecat-cover.png",
-              "sha256": "703fd6bca355dfb17fadb6f99beaebc6644a7467e8da99f69273a51bb800281a",
-              "size": 2414141,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/assets/703fd6bca355-lakecat-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/assets/703fd6bca355-lakecat-cover.png",
+              "localPath": "book-uploads/staging/lakecat/lakecat-chapters/assets/d8061182e9ec-lakecat-cover.png",
+              "relativePath": "assets/d8061182e9ec-lakecat-cover.png",
+              "sha256": "d8061182e9ec10fb5ba8acb1166e24ef54dae6ae2d310477954b45ee003f4cd4",
+              "size": 2424279,
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/assets/d8061182e9ec-lakecat-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/assets/d8061182e9ec-lakecat-cover.png",
               "skipped": false
             },
             {
@@ -699,17 +699,17 @@
               "relativePath": "book.css",
               "sha256": "fa7412333ea5157a46e7eab42729b0507d871e11f1f1f1e37d10b1fe6101896b",
               "size": 616,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/book.css",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "154cc6b5454888435ce2becf0817e20de33365468f070f44327f8866f6b7bbcb",
+              "sha256": "e77ba8bd889440af6301434fee6578455131d27850e0bb764283daeed306cbb7",
               "size": 2221,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-001.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-001.html",
               "skipped": false
             },
             {
@@ -717,8 +717,8 @@
               "relativePath": "chapter-002.html",
               "sha256": "3570cd975f27cd4860df1729363bb926217ace2171431dcda4773ee0796e4aa3",
               "size": 4557,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-002.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-002.html",
               "skipped": false
             },
             {
@@ -726,8 +726,8 @@
               "relativePath": "chapter-003.html",
               "sha256": "789e682b6c4201f20e88f5298353340b99323140bdc44cc293554df828e4b52b",
               "size": 6262,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-003.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-003.html",
               "skipped": false
             },
             {
@@ -735,8 +735,8 @@
               "relativePath": "chapter-004.html",
               "sha256": "b00276f99ac7cc521f42895c30cb3920c8549cb54aa1404d093ceb362420e81f",
               "size": 6795,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-004.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-004.html",
               "skipped": false
             },
             {
@@ -744,8 +744,8 @@
               "relativePath": "chapter-005.html",
               "sha256": "f3d7aad9fd61100282e9df6efb7bae2586dc2decd3dc10cc7f3178ead69f6886",
               "size": 4577,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-005.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-005.html",
               "skipped": false
             },
             {
@@ -753,8 +753,8 @@
               "relativePath": "chapter-006.html",
               "sha256": "75c919f63de0e6ef56b66f1092c36f115cdf529339ac784ecf5f921f0c076d9d",
               "size": 6650,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-006.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-006.html",
               "skipped": false
             },
             {
@@ -762,8 +762,8 @@
               "relativePath": "chapter-007.html",
               "sha256": "d57e794c3415767ae3c2184bca7e722ca01d9e5f461278da9e6218ac554d3de8",
               "size": 4869,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-007.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-007.html",
               "skipped": false
             },
             {
@@ -771,8 +771,8 @@
               "relativePath": "chapter-008.html",
               "sha256": "50d7e0f61ca69622b7ecb32c216ad86f59c8476e22b97ba76809338470503893",
               "size": 19064,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-008.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-008.html",
               "skipped": false
             },
             {
@@ -780,8 +780,8 @@
               "relativePath": "chapter-009.html",
               "sha256": "0c77e61dd16d2d4f6c5eb9cae5dd8acb61e84e2c3043f7240de6c6aa82b376df",
               "size": 15722,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-009.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-009.html",
               "skipped": false
             },
             {
@@ -789,8 +789,8 @@
               "relativePath": "chapter-010.html",
               "sha256": "d4da39ac5fe5a25530958cc46c29092db8d7771f165880a89bee1477800752b2",
               "size": 17238,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-010.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-010.html",
               "skipped": false
             },
             {
@@ -798,8 +798,8 @@
               "relativePath": "chapter-011.html",
               "sha256": "83be220c66e6941e6dd68ab61926deb070b669bf0f41e7937079e98d8ede3ebc",
               "size": 47408,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-011.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-011.html",
               "skipped": false
             },
             {
@@ -807,8 +807,8 @@
               "relativePath": "chapter-012.html",
               "sha256": "bf9b1b184e64a56532f1f256b84d8be5181debefaca6f0a340cd01056358d0b3",
               "size": 9043,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-012.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-012.html",
               "skipped": false
             },
             {
@@ -816,8 +816,8 @@
               "relativePath": "chapter-013.html",
               "sha256": "e61966c60ec6896dc92876f122c0dd7ed342eb0c6f647537833a29ffd6890062",
               "size": 23329,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-013.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-013.html",
               "skipped": false
             },
             {
@@ -825,8 +825,8 @@
               "relativePath": "chapter-014.html",
               "sha256": "43a37ccf935704c24de6dab12adbd1a2f0bcc35377d153e452f66f4618379e1f",
               "size": 24240,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-014.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-014.html",
               "skipped": false
             },
             {
@@ -834,8 +834,8 @@
               "relativePath": "chapter-015.html",
               "sha256": "3688cedd642fad4d4c609dc3823f222d0e44c87162e5b3730b84a82f51d5ea61",
               "size": 7558,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-015.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-015.html",
               "skipped": false
             },
             {
@@ -843,8 +843,8 @@
               "relativePath": "chapter-016.html",
               "sha256": "49e66a3588e0d82249d954987dba79318b5179f4a37e4534918c7d77d9c6cc51",
               "size": 5371,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-016.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-016.html",
               "skipped": false
             },
             {
@@ -852,8 +852,8 @@
               "relativePath": "chapter-017.html",
               "sha256": "0a0696a45b65834280cf277993748cbf6696313d53765fabcfdcc26f4c040b8b",
               "size": 4939,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-017.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-017.html",
               "skipped": false
             },
             {
@@ -861,8 +861,8 @@
               "relativePath": "chapter-018.html",
               "sha256": "35c57a33ae0ec8f22a953a2ec4b69c482fcb6f913248fae167a482ba987c556c",
               "size": 5864,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-018.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-018.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-018.html",
               "skipped": false
             },
             {
@@ -870,8 +870,8 @@
               "relativePath": "chapter-019.html",
               "sha256": "5817e7c7b856f357bd3ba2e6774194354a5e58afadc40be0b2c873a68c455d83",
               "size": 5421,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/chapter-019.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/chapter-019.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-019.html",
               "skipped": false
             },
             {
@@ -879,8 +879,8 @@
               "relativePath": "diagrams/diagram-01.png",
               "sha256": "4fde94d07844dee30f9fdee4f8effefbb37a41f0c9d78c9633b07de04ff29d5b",
               "size": 70104,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-01.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-01.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-01.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-01.png",
               "skipped": false
             },
             {
@@ -888,8 +888,8 @@
               "relativePath": "diagrams/diagram-02.png",
               "sha256": "0349c7e2b8dc449fed0bf41ad1d0fcf4dc1c7cc9bfb47b75d3eff7727a6752a1",
               "size": 46165,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-02.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-02.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-02.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-02.png",
               "skipped": false
             },
             {
@@ -897,8 +897,8 @@
               "relativePath": "diagrams/diagram-03.png",
               "sha256": "9b0d521701c0ea95a68228d02746b6d417a35382b2f6d7fbc41f6da9f8087a5b",
               "size": 146972,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-03.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-03.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-03.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-03.png",
               "skipped": false
             },
             {
@@ -906,8 +906,8 @@
               "relativePath": "diagrams/diagram-04.png",
               "sha256": "aba4ede339cba79c5d12210bd37897ce07d5706248ad5eccd91b56930e571e34",
               "size": 116886,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-04.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-04.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-04.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-04.png",
               "skipped": false
             },
             {
@@ -915,8 +915,8 @@
               "relativePath": "diagrams/diagram-05.png",
               "sha256": "f378f3cbb0e9616f50c84f90567f4ae0d8b45f0cf325e85ac95dfe2b8ded2a25",
               "size": 112777,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-05.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-05.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-05.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-05.png",
               "skipped": false
             },
             {
@@ -924,8 +924,8 @@
               "relativePath": "diagrams/diagram-06.png",
               "sha256": "7a68e9990cfc43458edd2c90929304c1a4874685af019c10e518bd9cd856ca0a",
               "size": 100218,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-06.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-06.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-06.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-06.png",
               "skipped": false
             },
             {
@@ -933,8 +933,8 @@
               "relativePath": "diagrams/diagram-07.png",
               "sha256": "9f7e6f69b4f2c38cb1817c80d2c0cf7b33b89f95b7e6cf87b551b6b8cf6e2bd4",
               "size": 117810,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-07.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-07.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-07.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-07.png",
               "skipped": false
             },
             {
@@ -942,8 +942,8 @@
               "relativePath": "diagrams/diagram-08.png",
               "sha256": "63ad1dd40620a9d03d9ba9d3d522a4d853c3e188699876751e466d4c57898fa3",
               "size": 247955,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-08.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/diagrams/diagram-08.png",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-08.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-08.png",
               "skipped": false
             },
             {
@@ -951,8 +951,8 @@
               "relativePath": "index.html",
               "sha256": "4bd5d3ab25bdbba66d0639b10884ecc6e592e9b51514ea73557631f9f15b4d1c",
               "size": 13044,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/index.html",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/index.html",
               "skipped": false
             },
             {
@@ -960,8 +960,8 @@
               "relativePath": "sitemap.json",
               "sha256": "c1eb71ba8c938eb06a3781ee3f8f0fddab2bad262ad8c5dd9b03d79b031da199",
               "size": 11573,
-              "pathname": "books/lakecat/chapters/56df88b15b8141a0/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/sitemap.json",
+              "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/sitemap.json",
               "skipped": false
             }
           ]
@@ -4908,6 +4908,26 @@
       "pathname": "books/zucchero/epub/5e273a9fb516868e-zucchero.epub",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/epub/5e273a9fb516868e-zucchero.epub",
       "size": 5481368
+    },
+    "471a962cadd4c07cc0da200e14ad09e34789c6d0716e453e942de38917d85d8f:4450390": {
+      "pathname": "books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/pdf/471a962cadd4c07c-lakecat.pdf",
+      "size": 4450390
+    },
+    "f72e568f937c7c164460827c674072bc7cbb844cd995755a3c35a3ab5489b17b:3385381": {
+      "pathname": "books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/epub/f72e568f937c7c16-lakecat.epub",
+      "size": 3385381
+    },
+    "cc37b3faa4cebaf64e2f11a4b036bcf4b7154259724c8fa595ec1d4af1d6078a:4694260": {
+      "pathname": "books/lakecat/html/cc37b3faa4cebaf6-lakecat.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/html/cc37b3faa4cebaf6-lakecat.html",
+      "size": 4694260
+    },
+    "d8061182e9ec10fb5ba8acb1166e24ef54dae6ae2d310477954b45ee003f4cd4:2424279": {
+      "pathname": "books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/d8061182e9ec10fb-lakecat-cover.png",
+      "size": 2424279
     }
   },
   "chapterPackages": {
@@ -13605,6 +13625,291 @@
           "pathname": "books/zucchero/chapters/bc2a4be38ec2ae3b/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/zucchero/chapters/bc2a4be38ec2ae3b/sitemap.json",
           "skipped": true
+        }
+      ]
+    },
+    "e47deab42d9c2ac3086f707702ee38e2c90828ef2ec47f049908dbe31401ba52": {
+      "pathnamePrefix": "books/lakecat/chapters/e47deab42d9c2ac3",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/assets/d8061182e9ec-lakecat-cover.png",
+          "relativePath": "assets/d8061182e9ec-lakecat-cover.png",
+          "sha256": "d8061182e9ec10fb5ba8acb1166e24ef54dae6ae2d310477954b45ee003f4cd4",
+          "size": 2424279,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/assets/d8061182e9ec-lakecat-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/assets/d8061182e9ec-lakecat-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "fa7412333ea5157a46e7eab42729b0507d871e11f1f1f1e37d10b1fe6101896b",
+          "size": 616,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "e77ba8bd889440af6301434fee6578455131d27850e0bb764283daeed306cbb7",
+          "size": 2221,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "3570cd975f27cd4860df1729363bb926217ace2171431dcda4773ee0796e4aa3",
+          "size": 4557,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "789e682b6c4201f20e88f5298353340b99323140bdc44cc293554df828e4b52b",
+          "size": 6262,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "b00276f99ac7cc521f42895c30cb3920c8549cb54aa1404d093ceb362420e81f",
+          "size": 6795,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "f3d7aad9fd61100282e9df6efb7bae2586dc2decd3dc10cc7f3178ead69f6886",
+          "size": 4577,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "75c919f63de0e6ef56b66f1092c36f115cdf529339ac784ecf5f921f0c076d9d",
+          "size": 6650,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "d57e794c3415767ae3c2184bca7e722ca01d9e5f461278da9e6218ac554d3de8",
+          "size": 4869,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "50d7e0f61ca69622b7ecb32c216ad86f59c8476e22b97ba76809338470503893",
+          "size": 19064,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "0c77e61dd16d2d4f6c5eb9cae5dd8acb61e84e2c3043f7240de6c6aa82b376df",
+          "size": 15722,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "d4da39ac5fe5a25530958cc46c29092db8d7771f165880a89bee1477800752b2",
+          "size": 17238,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "83be220c66e6941e6dd68ab61926deb070b669bf0f41e7937079e98d8ede3ebc",
+          "size": 47408,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "bf9b1b184e64a56532f1f256b84d8be5181debefaca6f0a340cd01056358d0b3",
+          "size": 9043,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "e61966c60ec6896dc92876f122c0dd7ed342eb0c6f647537833a29ffd6890062",
+          "size": 23329,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "43a37ccf935704c24de6dab12adbd1a2f0bcc35377d153e452f66f4618379e1f",
+          "size": 24240,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "3688cedd642fad4d4c609dc3823f222d0e44c87162e5b3730b84a82f51d5ea61",
+          "size": 7558,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "49e66a3588e0d82249d954987dba79318b5179f4a37e4534918c7d77d9c6cc51",
+          "size": 5371,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "0a0696a45b65834280cf277993748cbf6696313d53765fabcfdcc26f4c040b8b",
+          "size": 4939,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "35c57a33ae0ec8f22a953a2ec4b69c482fcb6f913248fae167a482ba987c556c",
+          "size": 5864,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "5817e7c7b856f357bd3ba2e6774194354a5e58afadc40be0b2c873a68c455d83",
+          "size": 5421,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-01.png",
+          "relativePath": "diagrams/diagram-01.png",
+          "sha256": "4fde94d07844dee30f9fdee4f8effefbb37a41f0c9d78c9633b07de04ff29d5b",
+          "size": 70104,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-01.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-01.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-02.png",
+          "relativePath": "diagrams/diagram-02.png",
+          "sha256": "0349c7e2b8dc449fed0bf41ad1d0fcf4dc1c7cc9bfb47b75d3eff7727a6752a1",
+          "size": 46165,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-02.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-02.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-03.png",
+          "relativePath": "diagrams/diagram-03.png",
+          "sha256": "9b0d521701c0ea95a68228d02746b6d417a35382b2f6d7fbc41f6da9f8087a5b",
+          "size": 146972,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-03.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-03.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-04.png",
+          "relativePath": "diagrams/diagram-04.png",
+          "sha256": "aba4ede339cba79c5d12210bd37897ce07d5706248ad5eccd91b56930e571e34",
+          "size": 116886,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-04.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-04.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-05.png",
+          "relativePath": "diagrams/diagram-05.png",
+          "sha256": "f378f3cbb0e9616f50c84f90567f4ae0d8b45f0cf325e85ac95dfe2b8ded2a25",
+          "size": 112777,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-05.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-05.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-06.png",
+          "relativePath": "diagrams/diagram-06.png",
+          "sha256": "7a68e9990cfc43458edd2c90929304c1a4874685af019c10e518bd9cd856ca0a",
+          "size": 100218,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-06.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-06.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-07.png",
+          "relativePath": "diagrams/diagram-07.png",
+          "sha256": "9f7e6f69b4f2c38cb1817c80d2c0cf7b33b89f95b7e6cf87b551b6b8cf6e2bd4",
+          "size": 117810,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-07.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-07.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/diagrams/diagram-08.png",
+          "relativePath": "diagrams/diagram-08.png",
+          "sha256": "63ad1dd40620a9d03d9ba9d3d522a4d853c3e188699876751e466d4c57898fa3",
+          "size": 247955,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-08.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/diagrams/diagram-08.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "4bd5d3ab25bdbba66d0639b10884ecc6e592e9b51514ea73557631f9f15b4d1c",
+          "size": 13044,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat/lakecat-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "c1eb71ba8c938eb06a3781ee3f8f0fddab2bad262ad8c5dd9b03d79b031da199",
+          "size": 11573,
+          "pathname": "books/lakecat/chapters/e47deab42d9c2ac3/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/e47deab42d9c2ac3/sitemap.json",
+          "skipped": false
         }
       ]
     }
