@@ -1460,13 +1460,23 @@ async function coverNamesFromBuildConfig(inputDir, distDir) {
 
   return [
     config.coverImage,
-    config.cover,
     config.pdf?.coverImage,
     config.epub?.coverImage,
+    config.cover,
   ]
     .filter(Boolean)
     .map((name) => resolveConfiguredAssetPath(name, inputDir, distDir))
 }
+
+const browserImageExtensions = new Set([
+  '.avif',
+  '.gif',
+  '.jpeg',
+  '.jpg',
+  '.png',
+  '.svg',
+  '.webp',
+])
 
 async function resolveCover(inputDir, distDir, metadata, slug) {
   const named = [
@@ -1483,7 +1493,13 @@ async function resolveCover(inputDir, distDir, metadata, slug) {
   }
   candidates.push(join(distDir, 'cover.png'), join(dirname(distDir), 'cover.png'))
   for (const candidate of candidates) {
-    if (await exists(candidate)) {
+    // `book.build.json#cover` is often a Markdown front-matter fragment used
+    // to render the book body. It is not a library-card image. Prefer the
+    // explicit PDF/EPUB cover images above and refuse non-image fallbacks.
+    if (
+      browserImageExtensions.has(extname(candidate).toLowerCase()) &&
+      await exists(candidate)
+    ) {
       return { sourcePath: candidate, stableName: `${slug}-cover${extname(candidate)}` }
     }
   }
