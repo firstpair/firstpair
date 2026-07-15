@@ -14,9 +14,9 @@ export const readerBooks = [
   },
   {
     "slug": "rio-grande",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/b010ffb13fdb76e4-historia_riograndense_brasil-alexy-preview.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/23a7a1a0ca5e3621-historia_riograndense_brasil-alexy-preview.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd"
   },
   {
     "slug": "typesec",

@@ -24,7 +24,7 @@ contents remain navigable without exposing the complete text.
 
 | Edition | Purpose | PDF | EPUB | Reader | Chapters | Source commit | Notes |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Alexy Preview | Revised English reading-edition preview. | [PDF](/rio-grande/pdf/) | [EPUB](/rio-grande/epub/) | [Read](/read/rio-grande/) | [Chapter reader](/read/rio-grande/chapters/) | `8d889b9b6550d1fd0d1888d348a6252a21703778` plus the current cover/workflow changes | Built from the source manuscript through the unified First Pair builder. |
+| Alexy Preview | Revised English reading-edition preview. | [PDF](/rio-grande/pdf/) | [EPUB](/rio-grande/epub/) | [Read](/read/rio-grande/) | [Chapter reader](/read/rio-grande/chapters/) | `de27c4d81cad5dd9c4105ed57df58e151c913a05` | Built from the source manuscript through the unified First Pair builder. |
 
 ## Style And Rosetta Status
 
@@ -36,26 +36,25 @@ not have corresponding style branches or aligned comparison sources.
 
 | Artifact | Format | Size | SHA-256 |
 | --- | --- | ---: | --- |
-| `/rio-grande/pdf/` | PDF | 1,046,847 bytes | `fe548ea81a13e4e65049961007430cb40bec48cf272fbbff2ba7a7557240696d` |
-| `/rio-grande/epub/` | EPUB | 536,686 bytes | `43cb6625d356dac546bf53ac8f158e96808a55699728d4efc024af2224765fce` |
+| `/rio-grande/pdf/` | PDF | 1,046,847 bytes | `5d95448bc5795bdcd52457856ddf3ad42aa2f9600c9fea6ec15a86eaf4dcc431` |
+| `/rio-grande/epub/` | EPUB | 536,687 bytes | `b4c2ca36846cb22df384b8972626870400313b329ceae6fd1d811400b43387ee` |
 | `/read/rio-grande/` | Hosted HTML reader | 719,434 bytes | `23a7a1a0ca5e362161ef55a9030b8a4ca67662b3fbd7c5e8bbf6f0b447bda068` |
 | `/read/rio-grande/chapters/` | Hosted chapter reader | 21 files | Built from the same preview manuscript |
 | `assets/rio-grande-cover.png` | PNG | 520,603 bytes | `9db814bb2ab3f2ed70940174a2396d976b2a2e9f79768f04af2c8405067e9379` |
 | `../rio-grande-headboard.png` | PNG | 2,627,574 bytes | `bf89685da3dd5521d02bd0948da4fb560142ddb3e25819f7cb00fe0f4149f526` |
 
-The checksums above describe the locally built and staged `2026.07.15`
-package. The stable public routes continue to serve the previous uploaded
-payloads until the next explicit First Pair publication.
+The checksums above describe the built, staged, and published `2026.07.15`
+package. The stable public routes serve these content-addressed payloads.
 
 ## Source And Package State
 
 | Item | Value |
 | --- | --- |
-| Source base commit | `8d889b9b6550d1fd0d1888d348a6252a21703778` plus current working-tree changes |
-| First Pair site base commit | `b8a26933cdcbde940cc07e3aa7ae1bad7922c577` plus current working-tree changes |
+| Source commit | `de27c4d81cad5dd9c4105ed57df58e151c913a05` |
+| First Pair workflow commit | `18cdcdd5fc34b2273b997b3c23822ab3638942cc` plus generated publication state |
 | Source inputs | Source manuscript, original facsimile PDF title page, deterministic cover renderer, and generated lagoon headboard |
 | Preview package URL | `/rio-grande/preview/` |
-| Expected production URL after deployment | `https://firstpair.org/rio-grande/preview/` |
+| Production URL | `https://firstpair.org/rio-grande/preview/` |
 
 ## Validation
 
@@ -73,9 +72,9 @@ payloads until the next explicit First Pair publication.
 | Local path leak scan | Passed after package creation |
 | First Pair site build | Passed after package creation |
 | Publisher dry-run | Passed: preview, cover, and headboard resolved with every outward action disabled |
-| Local staging | Passed: PDF, EPUB, HTML, chapters, cover, and headboard staged; no upload or iCloud copy performed |
-| Public artifact upload | Pending explicit publication |
-| Public URL check | Pending after the next First Pair site deployment |
+| Local staging | Passed: PDF, EPUB, HTML, chapters, cover, and headboard staged |
+| Public artifact upload | Passed: content-addressed PDF, EPUB, HTML, chapters, cover, and headboard uploaded |
+| Public URL check | Passed: production preview, stable downloads, and hosted readers verified |
 
-Publishing is separate from package preparation. Do not describe the production
-URL as live until the First Pair site has been deployed and checked.
+The preview is live in the First Pair library. The complete book remains
+private and was not selected by the publisher.

@@ -53,8 +53,8 @@
       "accent": "#173f37",
       "shelf": "history",
       "homepage": "/rio-grande/preview/",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/5d95448bc5795bdc-historia_riograndense_brasil-alexy-preview.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/b4c2ca36846cb22d-historia_riograndense_brasil-alexy-preview.epub",
       "html": "/read/rio-grande/",
       "htmlChapters": "/read/rio-grande/chapters/",
       "tags": [
@@ -62,10 +62,10 @@
         "history",
         "translation"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/b010ffb13fdb76e4-historia_riograndense_brasil-alexy-preview.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/index.html",
-      "cover": "/rio-grande/preview/assets/rio-grande-cover.png",
-      "headboard": "/rio-grande/rio-grande-headboard.png"
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/23a7a1a0ca5e3621-historia_riograndense_brasil-alexy-preview.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/cover/9db814bb2ab3f2ed-rio-grande-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/headboard/bf89685da3dd5521-rio-grande-headboard.png"
     },
     {
       "slug": "typesec",

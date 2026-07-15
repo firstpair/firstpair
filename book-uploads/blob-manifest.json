@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-15T00:30:33.726Z",
+  "updatedAt": "2026-07-15T07:46:38.401Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T00:30:30.125Z",
@@ -1930,105 +1930,249 @@
       }
     },
     "rio-grande": {
-      "updatedAt": "2026-07-10T03:46:00.016Z",
+      "updatedAt": "2026-07-15T07:46:38.401Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
-          "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview.pdf",
-          "sha256": "ab811cfd364fe6bfef7aa15fc577c2aeddbcf8e5fea417614d2c1d0dd3c8fe3b",
-          "size": 1195617,
-          "pathname": "books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf",
-          "skipped": true
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.pdf",
+          "sha256": "5d95448bc5795bdcd52457856ddf3ad42aa2f9600c9fea6ec15a86eaf4dcc431",
+          "size": 1046847,
+          "pathname": "books/rio-grande/pdf/5d95448bc5795bdc-historia_riograndense_brasil-alexy-preview.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/5d95448bc5795bdc-historia_riograndense_brasil-alexy-preview.pdf",
+          "skipped": false
         },
         "epub": {
           "kind": "epub",
-          "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview.epub",
-          "sha256": "96c66ac959f1d904d3a760946b32ac34da697b08af0437ce4b32b52f63b19945",
-          "size": 568608,
-          "pathname": "books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub",
-          "skipped": true
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.epub",
+          "sha256": "b4c2ca36846cb22df384b8972626870400313b329ceae6fd1d811400b43387ee",
+          "size": 536687,
+          "pathname": "books/rio-grande/epub/b4c2ca36846cb22d-historia_riograndense_brasil-alexy-preview.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/b4c2ca36846cb22d-historia_riograndense_brasil-alexy-preview.epub",
+          "skipped": false
         },
         "html": {
           "kind": "html",
-          "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview.html",
-          "sha256": "b010ffb13fdb76e46a3530ff6b74a01ec69129bc8bf06cf3ce4b5a5aa7bdc5bf",
-          "size": 744369,
-          "pathname": "books/rio-grande/html/b010ffb13fdb76e4-historia_riograndense_brasil-alexy-preview.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/b010ffb13fdb76e4-historia_riograndense_brasil-alexy-preview.html",
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.html",
+          "sha256": "23a7a1a0ca5e362161ef55a9030b8a4ca67662b3fbd7c5e8bbf6f0b447bda068",
+          "size": 719434,
+          "pathname": "books/rio-grande/html/23a7a1a0ca5e3621-historia_riograndense_brasil-alexy-preview.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/23a7a1a0ca5e3621-historia_riograndense_brasil-alexy-preview.html",
+          "skipped": true
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/rio-grande/rio-grande-cover.png",
+          "sha256": "9db814bb2ab3f2ed70940174a2396d976b2a2e9f79768f04af2c8405067e9379",
+          "size": 520603,
+          "pathname": "books/rio-grande/cover/9db814bb2ab3f2ed-rio-grande-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/cover/9db814bb2ab3f2ed-rio-grande-cover.png",
+          "skipped": true
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/rio-grande/rio-grande-headboard.png",
+          "sha256": "bf89685da3dd5521d02bd0948da4fb560142ddb3e25819f7cb00fe0f4149f526",
+          "size": 2627574,
+          "pathname": "books/rio-grande/headboard/bf89685da3dd5521-rio-grande-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/headboard/bf89685da3dd5521-rio-grande-headboard.png",
           "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
-          "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters",
-          "sha256": "9403b1f5b300e2e443502956b23e96561a04cfd21ed685c2acb44f2ff5b3ad5d",
-          "pathnamePrefix": "books/rio-grande/chapters/9403b1f5b300e2e4",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/index.html",
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters",
+          "sha256": "2fdb3feefb8c27fdd3682c0603ce4f3a258047acf0affb98fcbadd1afc98770d",
+          "pathnamePrefix": "books/rio-grande/chapters/2fdb3feefb8c27fd",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
           "skipped": true,
           "files": [
             {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/chapter-001.html",
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/book/historia_riograndense_brasil-cover.png",
+              "relativePath": "book/historia_riograndense_brasil-cover.png",
+              "sha256": "9db814bb2ab3f2ed70940174a2396d976b2a2e9f79768f04af2c8405067e9379",
+              "size": 520603,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/book/historia_riograndense_brasil-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/book/historia_riograndense_brasil-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "d631f102df48d334b040a1daa3930d9c14182671e3f7c2670d0494a47f2be0d0",
-              "size": 5007,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/chapter-001.html",
+              "sha256": "d69bf8309850ffec70496c700cd58072946dca724cf39b5025d588471e49ad54",
+              "size": 5750,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-001.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/chapter-002.html",
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "35e0925715b0c167ba0bb2d1ef7d111f25cccf240c7f540c9f834fdf152379e1",
-              "size": 5410,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/chapter-002.html",
+              "sha256": "d53f3dbe1d051ba6e22f10c0de703a1d0dfc6788594d11df298eb5fd47f0aed8",
+              "size": 5496,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-002.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/chapter-003.html",
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "7d0349f9905e2769028d5017d241ff53494542ed823cc839996e6d3ca7c2711f",
-              "size": 5361,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/chapter-003.html",
+              "sha256": "9efe4818d626c6bbd71bdd8704a63c65ac0b9cef1847fbc9ba7280c1f9ff60f7",
+              "size": 9656,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-003.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/chapter-004.html",
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "9e8cade62de7c5a794cf1a06ce9b1a336b5273e6a2d5368b8f20d674569d30ca",
-              "size": 9444,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/chapter-004.html",
+              "sha256": "5291e5d02fe32a680533c4814cd2d5fbb8e8807d2e733925fde8020dc5da192d",
+              "size": 5123,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-004.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/index.html",
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "9eca6f2be48863dd2da3036b533a536a700ba34538bd26e974b05e7f477bd098",
+              "size": 5667,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "2fdccecf8e6502cfc53c5acc5675468d7aeea28d8b1fef98e6857abe651384c5",
+              "size": 5443,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "1073b496d9caa1983c52c91e7f27d6a47fdfdebe5effa9b233d0f9ec3c3e82f6",
+              "size": 5452,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "f61f85ee5d559ca84cb5fd0f7a11bbd3914579147c5b1a036298d0d38a2c66bb",
+              "size": 5447,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "140ea62996692068dd911f4314a392ab902d10b6f232440df021bebcdf56140e",
+              "size": 5436,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "1f4dbb5ae34544ed7bcc7cf20f0dae3faed178cd1401f0198ada5abbf25d6969",
+              "size": 5447,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "07e36d178963f6b9bb3e4215547acc965959a0d0aaa629d27a76f90f097b965b",
+              "size": 5438,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "67fa4a4029871df79624ea7bfaa2ef54ea4247369cc3b9c83fde6c9f81e3df0a",
+              "size": 5446,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "b8b7b197561501b8bf2547b7ebadeb5a30195d363dae172c6680083ec34b4dc0",
+              "size": 5201,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "9ce9f044078072087f8c241120b22cdd979ac8dc41f40d0df6315da8e7b69b26",
+              "size": 5485,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "8bd8d75762940bf65cfebe8c828d6aab6958bd1b81f20345195c1a7cc8e6a641",
+              "size": 5533,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "340d7ccd2fe6073fd41109ac05778f96c0895f16ea9c4e09ce94fa687840bfde",
+              "size": 6003,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-017.html",
+              "relativePath": "chapter-017.html",
+              "sha256": "9ce54155540c36c6b4bab7a056ebd5f827d9da9846532da10fb449ea04322dfa",
+              "size": 8800,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-017.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-018.html",
+              "relativePath": "chapter-018.html",
+              "sha256": "32cfddeba59b2366604ef755c383a87331a29d02ed940dd82e665446b74d94db",
+              "size": 5088,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-018.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "6593b2babd4293c94e7c5dfefec46865cb24e0a7ea8eb55601ed4335d9b0167a",
-              "size": 4987,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/index.html",
+              "sha256": "fa426550a1181ade0bfe5e3f154cf3731de15629dde5daa7647f8ba84730d212",
+              "size": 10977,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/media/file0.png",
-              "relativePath": "media/file0.png",
-              "sha256": "4ae020738758e72bf6102b9affaa2bba0e88b2638670eea9ba55c515dd58945f",
-              "size": 551309,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/media/file0.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/media/file0.png",
-              "skipped": false
-            },
-            {
-              "localPath": "book-uploads/staging/rio-grande/preview/artifacts/alexy/historia_riograndense_brasil-alexy-preview-chapters/sitemap.json",
+              "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "938c76fbe0e7f1894435dfc28dc11e74f42ccfaa815bac68356dd7fcd128031d",
-              "size": 575,
-              "pathname": "books/rio-grande/chapters/9403b1f5b300e2e4/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/9403b1f5b300e2e4/sitemap.json",
+              "sha256": "c16960919a07d253ccdecc228eeaca186bc34d754ebbb12d021dbe001fda9fc1",
+              "size": 7102,
+              "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/sitemap.json",
               "skipped": false
             }
           ]
@@ -4816,6 +4960,41 @@
       "pathname": "books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/cover/703fd6bca355dfb1-lakecat-cover.png",
       "size": 2414141
+    },
+    "fe548ea81a13e4e65049961007430cb40bec48cf272fbbff2ba7a7557240696d:1046847": {
+      "pathname": "books/rio-grande/pdf/fe548ea81a13e4e6-historia_riograndense_brasil-alexy-preview.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/fe548ea81a13e4e6-historia_riograndense_brasil-alexy-preview.pdf",
+      "size": 1046847
+    },
+    "43cb6625d356dac546bf53ac8f158e96808a55699728d4efc024af2224765fce:536686": {
+      "pathname": "books/rio-grande/epub/43cb6625d356dac5-historia_riograndense_brasil-alexy-preview.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/43cb6625d356dac5-historia_riograndense_brasil-alexy-preview.epub",
+      "size": 536686
+    },
+    "23a7a1a0ca5e362161ef55a9030b8a4ca67662b3fbd7c5e8bbf6f0b447bda068:719434": {
+      "pathname": "books/rio-grande/html/23a7a1a0ca5e3621-historia_riograndense_brasil-alexy-preview.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/html/23a7a1a0ca5e3621-historia_riograndense_brasil-alexy-preview.html",
+      "size": 719434
+    },
+    "9db814bb2ab3f2ed70940174a2396d976b2a2e9f79768f04af2c8405067e9379:520603": {
+      "pathname": "books/rio-grande/cover/9db814bb2ab3f2ed-rio-grande-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/cover/9db814bb2ab3f2ed-rio-grande-cover.png",
+      "size": 520603
+    },
+    "bf89685da3dd5521d02bd0948da4fb560142ddb3e25819f7cb00fe0f4149f526:2627574": {
+      "pathname": "books/rio-grande/headboard/bf89685da3dd5521-rio-grande-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/headboard/bf89685da3dd5521-rio-grande-headboard.png",
+      "size": 2627574
+    },
+    "5d95448bc5795bdcd52457856ddf3ad42aa2f9600c9fea6ec15a86eaf4dcc431:1046847": {
+      "pathname": "books/rio-grande/pdf/5d95448bc5795bdc-historia_riograndense_brasil-alexy-preview.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/5d95448bc5795bdc-historia_riograndense_brasil-alexy-preview.pdf",
+      "size": 1046847
+    },
+    "b4c2ca36846cb22df384b8972626870400313b329ceae6fd1d811400b43387ee:536687": {
+      "pathname": "books/rio-grande/epub/b4c2ca36846cb22d-historia_riograndense_brasil-alexy-preview.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/b4c2ca36846cb22d-historia_riograndense_brasil-alexy-preview.epub",
+      "size": 536687
     }
   },
   "chapterPackages": {
@@ -12651,6 +12830,201 @@
           "size": 11573,
           "pathname": "books/lakecat/chapters/56df88b15b8141a0/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat/chapters/56df88b15b8141a0/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "2fdb3feefb8c27fdd3682c0603ce4f3a258047acf0affb98fcbadd1afc98770d": {
+      "pathnamePrefix": "books/rio-grande/chapters/2fdb3feefb8c27fd",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/book/historia_riograndense_brasil-cover.png",
+          "relativePath": "book/historia_riograndense_brasil-cover.png",
+          "sha256": "9db814bb2ab3f2ed70940174a2396d976b2a2e9f79768f04af2c8405067e9379",
+          "size": 520603,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/book/historia_riograndense_brasil-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/book/historia_riograndense_brasil-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "d69bf8309850ffec70496c700cd58072946dca724cf39b5025d588471e49ad54",
+          "size": 5750,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "d53f3dbe1d051ba6e22f10c0de703a1d0dfc6788594d11df298eb5fd47f0aed8",
+          "size": 5496,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "9efe4818d626c6bbd71bdd8704a63c65ac0b9cef1847fbc9ba7280c1f9ff60f7",
+          "size": 9656,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "5291e5d02fe32a680533c4814cd2d5fbb8e8807d2e733925fde8020dc5da192d",
+          "size": 5123,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "9eca6f2be48863dd2da3036b533a536a700ba34538bd26e974b05e7f477bd098",
+          "size": 5667,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "2fdccecf8e6502cfc53c5acc5675468d7aeea28d8b1fef98e6857abe651384c5",
+          "size": 5443,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "1073b496d9caa1983c52c91e7f27d6a47fdfdebe5effa9b233d0f9ec3c3e82f6",
+          "size": 5452,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "f61f85ee5d559ca84cb5fd0f7a11bbd3914579147c5b1a036298d0d38a2c66bb",
+          "size": 5447,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "140ea62996692068dd911f4314a392ab902d10b6f232440df021bebcdf56140e",
+          "size": 5436,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "1f4dbb5ae34544ed7bcc7cf20f0dae3faed178cd1401f0198ada5abbf25d6969",
+          "size": 5447,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "07e36d178963f6b9bb3e4215547acc965959a0d0aaa629d27a76f90f097b965b",
+          "size": 5438,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "67fa4a4029871df79624ea7bfaa2ef54ea4247369cc3b9c83fde6c9f81e3df0a",
+          "size": 5446,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "b8b7b197561501b8bf2547b7ebadeb5a30195d363dae172c6680083ec34b4dc0",
+          "size": 5201,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "9ce9f044078072087f8c241120b22cdd979ac8dc41f40d0df6315da8e7b69b26",
+          "size": 5485,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "8bd8d75762940bf65cfebe8c828d6aab6958bd1b81f20345195c1a7cc8e6a641",
+          "size": 5533,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "340d7ccd2fe6073fd41109ac05778f96c0895f16ea9c4e09ce94fa687840bfde",
+          "size": 6003,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "9ce54155540c36c6b4bab7a056ebd5f827d9da9846532da10fb449ea04322dfa",
+          "size": 8800,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "32cfddeba59b2366604ef755c383a87331a29d02ed940dd82e665446b74d94db",
+          "size": 5088,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "fa426550a1181ade0bfe5e3f154cf3731de15629dde5daa7647f8ba84730d212",
+          "size": 10977,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "c16960919a07d253ccdecc228eeaca186bc34d754ebbb12d021dbe001fda9fc1",
+          "size": 7102,
+          "pathname": "books/rio-grande/chapters/2fdb3feefb8c27fd/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/chapters/2fdb3feefb8c27fd/sitemap.json",
           "skipped": false
         }
       ]

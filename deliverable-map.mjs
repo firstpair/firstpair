@@ -16,9 +16,9 @@ export const deliverableBooks = [
   {
     "slug": "rio-grande",
     "title": "Rio Grande",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/ab811cfd364fe6bf-historia_riograndense_brasil-alexy-preview.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/96c66ac959f1d904-historia_riograndense_brasil-alexy-preview.epub",
-    "cover": "/rio-grande/preview/assets/rio-grande-cover.png"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/pdf/5d95448bc5795bdc-historia_riograndense_brasil-alexy-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/epub/b4c2ca36846cb22d-historia_riograndense_brasil-alexy-preview.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rio-grande/cover/9db814bb2ab3f2ed-rio-grande-cover.png"
   },
   {
     "slug": "typesec",
