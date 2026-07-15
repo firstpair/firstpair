@@ -12,6 +12,10 @@
       "dest": "/api/reader?path=$1&area=tutorial"
     },
     {
+      "src": "^/([A-Za-z0-9-]+)/(pdf|epub|vault|cover)/?$",
+      "dest": "/api/deliverable?slug=$1&format=$2"
+    },
+    {
       "handle": "filesystem"
     },
     {

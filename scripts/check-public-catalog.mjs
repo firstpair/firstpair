@@ -14,10 +14,15 @@ const routeDestinations = new Map(
 const hasReaderProxyRoute = routeDestinations.get('^/read(?:/(.*))?$') === '/api/reader?path=$1'
 const hasTutorialProxyRoute =
   routeDestinations.get('^/learn(?:/(.*))?$') === '/api/reader?path=$1&area=tutorial'
+const hasDeliverableProxyRoute =
+  routeDestinations.get('^/([A-Za-z0-9-]+)/(pdf|epub|vault|cover)/?$') ===
+  '/api/deliverable?slug=$1&format=$2'
 const hasFilesystemRoute = (vercel.routes ?? []).some((route) => route.handle === 'filesystem')
 const hasAppFallbackRoute = routeDestinations.get('^/(.*)$') === '/index.html'
 const { readerBooks } = await import('../reader-map.mjs')
+const { deliverableBooks } = await import('../deliverable-map.mjs')
 const readerMapEntries = new Map(readerBooks.map((book) => [book.slug, book]))
+const deliverableMapEntries = new Map(deliverableBooks.map((book) => [book.slug, book]))
 const catalogSlugs = new Set(catalog.books.map((book) => book.slug))
 const publicEntries = await readdir(publicDir)
 const publicBookSlugs = []
@@ -48,8 +53,10 @@ const invalidSourceUrls = []
 const invalidTutorialRoutes = []
 const invalidVaultGuideRoutes = []
 const invalidPreviewSources = []
+const invalidPostUrls = []
 const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
+const staleDeliverableMap = []
 
 for (const book of catalog.books) {
   if (book.shelf && !validShelves.has(book.shelf)) {
@@ -122,6 +129,24 @@ for (const book of catalog.books) {
     invalidSourceUrls.push({ slug: book.slug, field: 'vault', url: book.vault })
   }
 
+  if (book.headboard) {
+    if (book.headboard.startsWith('/')) {
+      const publicPath = join(publicDir, book.headboard.replace(/^\/+/, ''))
+
+      try {
+        await stat(publicPath)
+      } catch {
+        missingLocalPaths.push({ slug: book.slug, field: 'headboard', path: book.headboard })
+      }
+    } else if (!book.headboard.startsWith('https://')) {
+      invalidSourceUrls.push({ slug: book.slug, field: 'headboard', url: book.headboard })
+    }
+  }
+
+  if (book.post && !book.post.startsWith('https://firstpair.press/')) {
+    invalidPostUrls.push({ slug: book.slug, post: book.post })
+  }
+
   for (const field of ['htmlSource', 'htmlChaptersSource']) {
     if (!book[field]?.startsWith('https://')) {
       invalidSourceUrls.push({ slug: book.slug, field, url: book[field] })
@@ -153,6 +178,27 @@ for (const book of catalog.books) {
         vaultGuideSource: expectedVaultGuideSource,
       },
       actual: readerMapEntry,
+    })
+  }
+
+  const deliverableMapEntry = deliverableMapEntries.get(book.slug)
+  const expectedDeliverables = {
+    slug: book.slug,
+    title: book.title,
+    pdf: book.pdf,
+    epub: book.epub,
+    ...(book.vault ? { vault: book.vault } : {}),
+    ...(book.cover ? { cover: book.cover } : {}),
+  }
+
+  if (
+    !deliverableMapEntry ||
+    JSON.stringify(deliverableMapEntry) !== JSON.stringify(expectedDeliverables)
+  ) {
+    staleDeliverableMap.push({
+      slug: book.slug,
+      expected: expectedDeliverables,
+      actual: deliverableMapEntry,
     })
   }
 
@@ -188,11 +234,14 @@ if (
   invalidTutorialRoutes.length ||
   invalidVaultGuideRoutes.length ||
   invalidPreviewSources.length ||
+  invalidPostUrls.length ||
   invalidShelves.length ||
   staleReaderMap.length ||
+  staleDeliverableMap.length ||
   invalidSourceUrls.length ||
   !hasReaderProxyRoute ||
   !hasTutorialProxyRoute ||
+  !hasDeliverableProxyRoute ||
   !hasFilesystemRoute ||
   !hasAppFallbackRoute
 ) {
@@ -207,11 +256,14 @@ if (
         invalidTutorialRoutes,
         invalidVaultGuideRoutes,
         invalidPreviewSources,
+        invalidPostUrls,
         invalidShelves,
         staleReaderMap,
+        staleDeliverableMap,
         invalidSourceUrls,
         hasReaderProxyRoute,
         hasTutorialProxyRoute,
+        hasDeliverableProxyRoute,
         hasFilesystemRoute,
         hasAppFallbackRoute,
       },

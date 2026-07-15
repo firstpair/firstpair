@@ -15,8 +15,11 @@ const checks = await page.evaluate(() => {
 
   return {
     title: document.title,
-    hasPdfLink: links.some((href) => href.endsWith('.pdf')),
-    hasEpubLink: links.some((href) => href.endsWith('.epub')),
+    hasPdfLink: links.some((href) => /\/pdf\/?$/.test(href) || href.endsWith('.pdf')),
+    hasEpubLink: links.some((href) => /\/epub\/?$/.test(href) || href.endsWith('.epub')),
+    hasStablePdfLink: links.some((href) => /\/pdf\/?$/.test(href)),
+    hasStableEpubLink: links.some((href) => /\/epub\/?$/.test(href)),
+    hasBookPageLink: links.some((href) => href.startsWith('/books/')),
     hasHostedHtmlLink: links.some((href) => href.startsWith('/read/')),
     hasHostedChaptersLink: links.some((href) => href.startsWith('/read/') && href.includes('/chapters/')),
     hasHostedVaultGuideLink: links.some(
@@ -28,12 +31,39 @@ const checks = await page.evaluate(() => {
     hasExternalChapterDownloadLink: links.some(
       (href) => href.includes('public.blob.vercel-storage.com/books/') && href.includes('/chapters/'),
     ),
+    hasExternalPdfDownloadLink: links.some(
+      (href) => href.includes('public.blob.vercel-storage.com/books/') && href.includes('/pdf/'),
+    ),
+    hasExternalEpubDownloadLink: links.some(
+      (href) => href.includes('public.blob.vercel-storage.com/books/') && href.includes('/epub/'),
+    ),
     readerLinksOpenInNewTabs: readerLinks.every(
       (link) => link.target === '_blank' && link.relList.contains('noopener'),
     ),
     cardCount,
     stageWidth: Math.round(stage?.width ?? 0),
     stageHeight: Math.round(stage?.height ?? 0),
+  }
+})
+
+await page.goto(new URL('/books/sail-rust-book/', target).href, { waitUntil: 'networkidle' })
+
+const bookPageChecks = await page.evaluate(() => {
+  const links = [...document.querySelectorAll('a')].map((link) => link.getAttribute('href') ?? '')
+  const hero = document.querySelector('.book-detail__hero')?.getAttribute('style') ?? ''
+
+  return {
+    hasBookDetail: Boolean(document.querySelector('.book-detail')),
+    title: document.querySelector('h1')?.textContent?.trim() ?? '',
+    hasHeadboard: hero.includes('sail-rust-book-headboard.png'),
+    hasDescription: (document.querySelector('.book-detail__copy p:not(.eyebrow)')?.textContent ?? '').includes('Sail'),
+    hasStablePdfLink: links.includes('/sail-rust-book/pdf/'),
+    hasStableEpubLink: links.includes('/sail-rust-book/epub/'),
+    hasStableVaultLink: links.includes('/sail-rust-book/vault/'),
+    hasReaderLink: links.includes('/read/sail-rust-book/'),
+    hasChapterLink: links.includes('/read/sail-rust-book/chapters/'),
+    hasVaultGuideLink: links.includes('/read/sail-rust-book/guide/'),
+    hasPostLink: links.includes('https://firstpair.press/announcing-sail-rust-book'),
   }
 })
 
@@ -93,6 +123,14 @@ const paths = catalog.books.flatMap((book) => {
   const guidePath = isLocalTarget
     ? (book.vaultGuideSource ?? book.vaultGuide)
     : book.vaultGuide
+  const stableDeliverables = isLocalTarget
+    ? []
+    : [
+        `/${book.slug}/pdf/`,
+        `/${book.slug}/epub/`,
+        book.vault ? `/${book.slug}/vault/` : null,
+        book.cover ? `/${book.slug}/cover/` : null,
+      ].filter(Boolean)
 
   return [
     book.homepage,
@@ -103,6 +141,7 @@ const paths = catalog.books.flatMap((book) => {
     book.cover,
     book.vault,
     guidePath,
+    ...stableDeliverables,
   ].filter(Boolean)
 })
 const results = []
@@ -150,12 +189,36 @@ if (!checks.hasPdfLink || !checks.hasEpubLink || !checks.hasHostedHtmlLink || !c
   throw new Error(`Missing book artifact links: ${JSON.stringify(checks)}`)
 }
 
+if (!checks.hasStablePdfLink || !checks.hasStableEpubLink || !checks.hasBookPageLink) {
+  throw new Error(`Missing stable library links: ${JSON.stringify(checks)}`)
+}
+
 if (checks.hasExternalHtmlDownloadLink || checks.hasExternalChapterDownloadLink) {
   throw new Error(`HTML reader links should stay on firstpair.org routes: ${JSON.stringify(checks)}`)
 }
 
+if (checks.hasExternalPdfDownloadLink || checks.hasExternalEpubDownloadLink) {
+  throw new Error(`PDF/EPUB links should use stable FirstPair routes: ${JSON.stringify(checks)}`)
+}
+
 if (!checks.readerLinksOpenInNewTabs) {
   throw new Error(`HTML reader links should open in new tabs: ${JSON.stringify(checks)}`)
+}
+
+if (
+  !bookPageChecks.hasBookDetail ||
+  bookPageChecks.title !== 'Sail Rust Book' ||
+  !bookPageChecks.hasHeadboard ||
+  !bookPageChecks.hasDescription ||
+  !bookPageChecks.hasStablePdfLink ||
+  !bookPageChecks.hasStableEpubLink ||
+  !bookPageChecks.hasStableVaultLink ||
+  !bookPageChecks.hasReaderLink ||
+  !bookPageChecks.hasChapterLink ||
+  !bookPageChecks.hasVaultGuideLink ||
+  !bookPageChecks.hasPostLink
+) {
+  throw new Error(`Book detail page smoke failed: ${JSON.stringify(bookPageChecks)}`)
 }
 
 if (catalogChecks.hostedVaultGuideCount > 0 && !checks.hasHostedVaultGuideLink) {
@@ -184,4 +247,4 @@ if (catalogChecks.failedReaderBodies.length > 0) {
   )
 }
 
-console.log(JSON.stringify({ ...checks, ...catalogChecks }, null, 2))
+console.log(JSON.stringify({ ...checks, bookPageChecks, ...catalogChecks }, null, 2))

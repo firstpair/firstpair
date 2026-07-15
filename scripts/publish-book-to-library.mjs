@@ -869,11 +869,15 @@ function catalogEntryFromPlan(plan, existing = {}) {
   return entry
 }
 
+function stableDeliverablePath(slug, format) {
+  return `/${slug}/${format}/`
+}
+
 function readmeFor(plan, catalogEntry) {
   const source = catalogEntry.source ?? plan.source
   const vaultLinks =
     catalogEntry.vault || catalogEntry.vaultGuide
-      ? `${catalogEntry.vault ? `- [Download the Obsidian vault](${catalogEntry.vault})\n` : ''}${catalogEntry.vaultGuide ? `- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})\n` : ''}`
+      ? `${catalogEntry.vault ? `- [Download the Obsidian vault](${stableDeliverablePath(plan.slug, 'vault')})\n` : ''}${catalogEntry.vaultGuide ? `- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})\n` : ''}`
       : ''
   const sourceText = source
     ? `\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts:\n\n[${source}](${source})\n`
@@ -885,8 +889,8 @@ ${catalogEntry.description}
 
 ## Current Public Editions
 
-- [PDF](${catalogEntry.pdf})
-- [EPUB](${catalogEntry.epub})
+- [PDF](${stableDeliverablePath(plan.slug, 'pdf')})
+- [EPUB](${stableDeliverablePath(plan.slug, 'epub')})
 - [Read online](/read/${plan.slug}/)
 - [Chapter reader](/read/${plan.slug}/chapters/)
 ${plan.tutorial ? `- [Interactive tutorial](/learn/${plan.slug}/)\n` : ''}
@@ -909,11 +913,17 @@ function readmeWithUpdatedLinks(plan, catalogEntry, existingText) {
   }
 
   let text = existingText
-  text = text.replace(/(\[[^\]]*PDF[^\]]*\]\()([^)]+)(\))/i, `$1${catalogEntry.pdf}$3`)
-  text = text.replace(/(\[[^\]]*EPUB[^\]]*\]\()([^)]+)(\))/i, `$1${catalogEntry.epub}$3`)
+  text = text.replace(
+    /(\[[^\]]*PDF[^\]]*\]\()([^)]+)(\))/i,
+    `$1${stableDeliverablePath(plan.slug, 'pdf')}$3`,
+  )
+  text = text.replace(
+    /(\[[^\]]*EPUB[^\]]*\]\()([^)]+)(\))/i,
+    `$1${stableDeliverablePath(plan.slug, 'epub')}$3`,
+  )
   const vaultLinks = []
   if (catalogEntry.vault) {
-    vaultLinks.push(`- [Download the Obsidian vault](${catalogEntry.vault})`)
+    vaultLinks.push(`- [Download the Obsidian vault](${stableDeliverablePath(plan.slug, 'vault')})`)
   }
   if (catalogEntry.vaultGuide) {
     vaultLinks.push(`- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})`)

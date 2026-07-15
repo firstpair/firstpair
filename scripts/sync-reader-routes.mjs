@@ -3,6 +3,7 @@ import { readFile, writeFile } from 'node:fs/promises'
 const root = new URL('..', import.meta.url).pathname
 const catalogPath = `${root}/public/catalog.json`
 const readerMapPath = `${root}/reader-map.mjs`
+const deliverableMapPath = `${root}/deliverable-map.mjs`
 const vercelPath = `${root}/vercel.json`
 
 function hostedHtmlPath(slug) {
@@ -36,6 +37,10 @@ function readerRoutes() {
       dest: '/api/reader?path=$1&area=tutorial',
     },
     {
+      src: '^/([A-Za-z0-9-]+)/(pdf|epub|vault|cover)/?$',
+      dest: '/api/deliverable?slug=$1&format=$2',
+    },
+    {
       handle: 'filesystem',
     },
     {
@@ -60,6 +65,27 @@ function readerMap(books) {
 
     if (book.vaultGuideSource) {
       entry.vaultGuideSource = book.vaultGuideSource
+    }
+
+    return entry
+  })
+}
+
+function deliverableMap(books) {
+  return books.map((book) => {
+    const entry = {
+      slug: book.slug,
+      title: book.title,
+      pdf: book.pdf,
+      epub: book.epub,
+    }
+
+    if (book.vault) {
+      entry.vault = book.vault
+    }
+
+    if (book.cover) {
+      entry.cover = book.cover
     }
 
     return entry
@@ -129,6 +155,10 @@ await writeFile(
   readerMapPath,
   `export const readerBooks = ${JSON.stringify(readerMap(catalog.books), null, 2)}\n`,
 )
+await writeFile(
+  deliverableMapPath,
+  `export const deliverableBooks = ${JSON.stringify(deliverableMap(catalog.books), null, 2)}\n`,
+)
 await writeFile(vercelPath, `${JSON.stringify(vercel, null, 2)}\n`)
 
 console.log(
@@ -136,6 +166,7 @@ console.log(
     {
       books: catalog.books.map((book) => book.slug),
       readerRouteCount: vercel.routes.length,
+      deliverableCount: catalog.books.length,
     },
     null,
     2,

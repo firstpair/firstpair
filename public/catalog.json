@@ -150,7 +150,9 @@
       "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault/03660772c365b0b5-sail-rust-book-full-vault%20%282026.07.14.1-e0a4bf42%29.zip",
       "vaultGuide": "/read/sail-rust-book/guide/",
       "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/vault-guide/b8191eb19c0c8e8f-sail-rust-book-vault-guide%20%282026.07.14.1-e0a4bf42%29.html",
-      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png"
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-rust-book/cover/63b7dd0c5d66abdd-sail-rust-book-cover.png",
+      "headboard": "/sail-rust-book/sail-rust-book-headboard.png",
+      "post": "https://firstpair.press/announcing-sail-rust-book"
     },
     {
       "slug": "zucchero",

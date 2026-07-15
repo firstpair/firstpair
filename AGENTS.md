@@ -32,6 +32,11 @@ shared rules.
 - Regenerate derived editions from source, then run the source-owned validators
   and FirstPair checks before staging, uploading, or publishing. A failed
   validator is a stop condition, not something to route around.
+- Use stable FirstPair deliverable routes in reader-facing prose:
+  `/<book-stem>/pdf/`, `/<book-stem>/epub/`, and, when present,
+  `/<book-stem>/vault/`. Raw Vercel Blob URLs belong in `public/catalog.json`,
+  `book-uploads/blob-manifest.json`, and generated route maps, not in blog
+  posts, public README text, or long-lived external links.
 - Treat Vercel deployments, Blob uploads, iCloud delivery, and full-edition
   releases as outward-facing actions. Use dry-runs when the target is unclear,
   and require explicit user confirmation before replacing a public preview with
@@ -169,8 +174,8 @@ directly or with `python3`. Repositories without a source-owned validator keep
 the structural `Home.md` plus `_data/units.jsonl` compatibility check.
 
 Create or update `public/<book-stem>/README.md`. The README should briefly
-overview the book, link the Blob-backed PDF and EPUB downloads, link the hosted
-single-file and chapter readers, and point back to the original source
+overview the book, link the stable PDF and EPUB deliverable routes, link the
+hosted single-file and chapter readers, and point back to the original source
 repository that owns the manuscript, metadata, version manifest, and builds.
 
 Deliver the same PDF and EPUB to `~/icloud/books` as regular files carrying

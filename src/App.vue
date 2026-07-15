@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch } from 'vue'
 import {
   ArrowRight,
   BookOpen,
@@ -68,6 +68,8 @@ type Book = {
   tutorial?: string
   tutorialSource?: string
   cover?: string
+  headboard?: string
+  post?: string
   vault?: string
   vaultGuide?: string
   vaultGuideSource?: string
@@ -83,6 +85,7 @@ type LibraryFilter = 'all' | 'finished' | 'previews' | 'tutorials'
 const books = ref<Book[]>([])
 const catalogError = ref('')
 const activeFilter = ref<LibraryFilter>('all')
+const routePath = ref(window.location.pathname)
 
 const catalogUrl = computed(() => `${import.meta.env.BASE_URL}catalog.json`)
 const previewCount = computed(() => books.value.filter((book) => book.homepage).length)
@@ -96,11 +99,11 @@ const filters = computed(() => [
   { id: 'tutorials' as const, label: 'Learn', count: tutorialCount.value },
 ])
 
-// The book page: a preview homepage (an internal route, opened same-tab)
-// when present, otherwise the hosted reader (a /read/ route, which the site
-// convention — and the smoke test — require to open in a new tab).
-const bookPageHref = (book: Book): string | undefined => book.homepage || book.html || undefined
-const bookPageNewTab = (book: Book): boolean => !book.homepage && Boolean(book.html)
+const bookDetailHref = (book: Book): string => `/books/${book.slug}/`
+const bookPageHref = (book: Book): string => bookDetailHref(book)
+const stableDeliverableHref = (book: Book, format: 'pdf' | 'epub' | 'vault' | 'cover'): string =>
+  `/${book.slug}/${format}/`
+const bookHeroImage = (book: Book): string => book.headboard ?? book.cover ?? ''
 
 const knownLibraryShelfIds = new Set<string>(libraryShelfConfig.map((shelf) => shelf.id))
 
@@ -133,7 +136,44 @@ const shelfLinks = computed(() =>
   libraryShelfConfig.filter((shelf) => books.value.some((book) => bookShelf(book) === shelf.id)),
 )
 
+const selectedBookSlug = computed(() => {
+  const match = /^\/books\/([^/]+)\/?$/.exec(routePath.value)
+  return match ? decodeURIComponent(match[1]) : null
+})
+
+const selectedBook = computed(() =>
+  selectedBookSlug.value ? books.value.find((book) => book.slug === selectedBookSlug.value) : null,
+)
+
+function updateRoute() {
+  routePath.value = window.location.pathname
+}
+
+function navigateInApp(event: MouseEvent, href: string) {
+  if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+    return
+  }
+
+  const url = new URL(href, window.location.origin)
+
+  if (url.origin !== window.location.origin) {
+    return
+  }
+
+  event.preventDefault()
+  window.history.pushState({}, '', `${url.pathname}${url.search}${url.hash}`)
+  routePath.value = window.location.pathname
+
+  if (url.hash) {
+    requestAnimationFrame(() => document.querySelector(url.hash)?.scrollIntoView())
+  } else {
+    window.scrollTo({ top: 0, behavior: 'auto' })
+  }
+}
+
 onMounted(async () => {
+  window.addEventListener('popstate', updateRoute)
+
   try {
     const response = await fetch(catalogUrl.value)
 
@@ -147,6 +187,14 @@ onMounted(async () => {
     catalogError.value = 'The library catalog is temporarily unavailable.'
     console.error(error)
   }
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('popstate', updateRoute)
+})
+
+watch(selectedBook, (book) => {
+  document.title = book ? `${book.title} - First Pair` : 'First Pair'
 })
 
 const sources = [
@@ -173,13 +221,13 @@ const fragments = [
 <template>
   <main class="site-shell">
     <header class="topbar" aria-label="First Pair">
-      <a class="brand" href="/">
+      <a class="brand" href="/" @click="navigateInApp($event, '/')">
         <span class="brand-mark"><Library :size="18" /></span>
         <span>firstpair.org</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
-        <a href="#books">Books</a>
-        <a href="#sources">Sources</a>
+        <a href="/#books" @click="navigateInApp($event, '/#books')">Books</a>
+        <a href="/#sources" @click="navigateInApp($event, '/#sources')">Sources</a>
         <a
           href="https://firstpair.press/"
           target="_blank"
@@ -196,6 +244,113 @@ const fragments = [
       </nav>
     </header>
 
+    <section
+      v-if="selectedBook"
+      class="book-detail"
+      :style="{ '--book-accent': selectedBook.accent }"
+      :aria-labelledby="`book-detail-${selectedBook.slug}`"
+    >
+      <a class="book-detail__back" href="/#books" @click="navigateInApp($event, '/#books')">
+        Back to library
+      </a>
+
+      <div
+        class="book-detail__hero"
+        :class="{ 'book-detail__hero--image': bookHeroImage(selectedBook) }"
+        :style="bookHeroImage(selectedBook) ? { backgroundImage: `linear-gradient(90deg, rgba(12, 16, 19, 0.84), rgba(12, 16, 19, 0.54), rgba(12, 16, 19, 0.18)), url('${bookHeroImage(selectedBook)}')` } : undefined"
+      >
+        <div class="book-detail__copy">
+          <p class="eyebrow">{{ selectedBook.kicker }}</p>
+          <h1 :id="`book-detail-${selectedBook.slug}`">{{ selectedBook.title }}</h1>
+          <p>{{ selectedBook.description }}</p>
+          <div class="book-detail__primary">
+            <a :href="stableDeliverableHref(selectedBook, 'pdf')">PDF</a>
+            <a :href="stableDeliverableHref(selectedBook, 'epub')">EPUB</a>
+            <a :href="selectedBook.html" target="_blank" rel="noopener noreferrer">Read online</a>
+            <a :href="selectedBook.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="book-detail__body">
+        <section class="book-detail__section" aria-labelledby="book-detail-formats">
+          <div>
+            <p class="eyebrow">Formats</p>
+            <h2 id="book-detail-formats">Current public editions</h2>
+          </div>
+          <div class="book-detail__links">
+            <a :href="stableDeliverableHref(selectedBook, 'pdf')">PDF</a>
+            <a :href="stableDeliverableHref(selectedBook, 'epub')">EPUB</a>
+            <a :href="selectedBook.html" target="_blank" rel="noopener noreferrer">Hosted HTML</a>
+            <a :href="selectedBook.htmlChapters" target="_blank" rel="noopener noreferrer">Chapter HTML</a>
+            <a
+              v-if="selectedBook.vault"
+              :href="stableDeliverableHref(selectedBook, 'vault')"
+              download
+            >
+              Obsidian Vault
+            </a>
+            <a
+              v-if="selectedBook.vaultGuide"
+              :href="selectedBook.vaultGuide"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Vault guide
+            </a>
+            <a
+              v-if="selectedBook.tutorial"
+              :href="selectedBook.tutorial"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Learn
+            </a>
+            <a
+              v-if="selectedBook.cover"
+              :href="stableDeliverableHref(selectedBook, 'cover')"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Cover
+            </a>
+          </div>
+        </section>
+
+        <section class="book-detail__section" aria-labelledby="book-detail-context">
+          <div>
+            <p class="eyebrow">Context</p>
+            <h2 id="book-detail-context">Sources and story</h2>
+          </div>
+          <div class="book-detail__links">
+            <a
+              v-if="selectedBook.post"
+              :href="selectedBook.post"
+              target="_blank"
+              rel="noreferrer"
+            >
+              FirstPair.press post
+              <ExternalLink :size="14" />
+            </a>
+            <a
+              v-if="selectedBook.source"
+              :href="selectedBook.source"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Source
+              <ExternalLink :size="14" />
+            </a>
+            <a v-if="selectedBook.homepage" :href="selectedBook.homepage">Preview page</a>
+          </div>
+          <div class="tag-row">
+            <span v-for="tag in selectedBook.tags" :key="tag">{{ tag }}</span>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <template v-else>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow">First Pair Press</p>
@@ -351,8 +506,7 @@ const fragments = [
                 class="book-card__cover"
                 :class="{ 'book-card__cover--image': book.cover }"
                 :href="bookPageHref(book)"
-                :target="bookPageNewTab(book) ? '_blank' : undefined"
-                :rel="bookPageNewTab(book) ? 'noopener noreferrer' : undefined"
+                @click="navigateInApp($event, bookPageHref(book))"
               >
                 <img v-if="book.cover" :src="book.cover" :alt="`${book.title} cover`" loading="lazy" />
                 <template v-else>
@@ -368,8 +522,7 @@ const fragments = [
                     <a
                       v-if="bookPageHref(book)"
                       :href="bookPageHref(book)"
-                      :target="bookPageNewTab(book) ? '_blank' : undefined"
-                      :rel="bookPageNewTab(book) ? 'noopener noreferrer' : undefined"
+                      @click="navigateInApp($event, bookPageHref(book))"
                       >{{ book.title }}</a
                     >
                     <template v-else>{{ book.title }}</template>
@@ -380,12 +533,15 @@ const fragments = [
                   <span v-for="tag in book.tags" :key="tag">{{ tag }}</span>
                 </div>
                 <div class="book-links">
+                  <a :href="bookDetailHref(book)" @click="navigateInApp($event, bookDetailHref(book))">
+                    Book page
+                  </a>
                   <a v-if="book.homepage" :href="book.homepage">Preview</a>
-                  <a :href="book.pdf">PDF</a>
-                  <a :href="book.epub">EPUB</a>
+                  <a :href="stableDeliverableHref(book, 'pdf')">PDF</a>
+                  <a :href="stableDeliverableHref(book, 'epub')">EPUB</a>
                   <a :href="book.html" target="_blank" rel="noopener noreferrer">Read</a>
                   <a :href="book.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
-                  <a v-if="book.vault" :href="book.vault" download>Vault</a>
+                  <a v-if="book.vault" :href="stableDeliverableHref(book, 'vault')" download>Vault</a>
                   <a v-if="book.vaultGuide" :href="book.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
                   <a
                     v-if="book.tutorial"
@@ -409,5 +565,6 @@ const fragments = [
       </div>
       <p v-else-if="books.length" class="catalog-error">No books match this filter.</p>
     </section>
+    </template>
   </main>
 </template>
