@@ -96,9 +96,9 @@ export const deliverableBooks = [
   {
     "slug": "cicero-on-himself",
     "title": "Cicero on Himself",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/49355773e1e1d3bf-cicero-on-himself-preview.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/3531cedd8c9376cf-cicero-on-himself-preview.epub",
-    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/7cc276e94867d086-cicero-on-himself-preview-vault%20%282.0.0-sol-9e8141d6%29.zip",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
+    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault%20%282.0.0-sol-2996266c%29.zip",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png"
   }
 ]

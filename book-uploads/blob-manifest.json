@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-16T18:41:15.868Z",
+  "updatedAt": "2026-07-16T20:57:07.708Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4468,25 +4468,25 @@
       }
     },
     "cicero-on-himself": {
-      "updatedAt": "2026-07-16T18:04:41.907Z",
+      "updatedAt": "2026-07-16T20:57:07.708Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.pdf",
-          "sha256": "49355773e1e1d3bf1185cd5cf2598cb678cfe5588ce24c627ab731007117af20",
+          "sha256": "e35f31d4f970650e5a01963a81cdacacc71754798b9dbc99409bceb281bbe923",
           "size": 5280501,
-          "pathname": "books/cicero-on-himself/pdf/49355773e1e1d3bf-cicero-on-himself-preview.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/49355773e1e1d3bf-cicero-on-himself-preview.pdf",
+          "pathname": "books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.epub",
-          "sha256": "3531cedd8c9376cfb823fd292554f06c52cb4e8dd8c30a8ba606c4dcb77b96e0",
-          "size": 4391365,
-          "pathname": "books/cicero-on-himself/epub/3531cedd8c9376cf-cicero-on-himself-preview.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/3531cedd8c9376cf-cicero-on-himself-preview.epub",
+          "sha256": "381b67f42b56c426db2c16158b916e9d3349fbbc293c91ee286fa9d10fc9dc6c",
+          "size": 4391369,
+          "pathname": "books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
           "skipped": false
         },
         "html": {
@@ -4509,20 +4509,20 @@
         },
         "vault": {
           "kind": "vault",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-9e8141d6).zip",
-          "sha256": "7cc276e94867d0860a22499ed0180c869e6c84722bb0614f4f86b8f7be7b67e6",
-          "size": 149589471,
-          "pathname": "books/cicero-on-himself/vault/7cc276e94867d086-cicero-on-himself-preview-vault (2.0.0-sol-9e8141d6).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/7cc276e94867d086-cicero-on-himself-preview-vault%20%282.0.0-sol-9e8141d6%29.zip",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-2996266c).zip",
+          "sha256": "f4bc85faeddf8d1f8091b610a4b9ad33e7746b55ae306de4524609436e04d162",
+          "size": 149624203,
+          "pathname": "books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault (2.0.0-sol-2996266c).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault%20%282.0.0-sol-2996266c%29.zip",
           "skipped": false
         },
         "vaultGuide": {
           "kind": "vault-guide",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-9e8141d6).html",
-          "sha256": "bc7a5cb2f012ddad46323da0a71571bfc1de9598cfa48fc28fac8e6c8a90503a",
-          "size": 29116,
-          "pathname": "books/cicero-on-himself/vault-guide/bc7a5cb2f012ddad-cicero-on-himself-vault-guide (2.0.0-sol-9e8141d6).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/bc7a5cb2f012ddad-cicero-on-himself-vault-guide%20%282.0.0-sol-9e8141d6%29.html",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
+          "sha256": "61fd021b30fc554a6788bf974f8cf5639d58783be9021b1ce38a922cf7a32b35",
+          "size": 32882,
+          "pathname": "books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html",
           "skipped": false
         },
         "htmlChapters": {
@@ -5450,6 +5450,26 @@
       "pathname": "books/invented-enemy/headboard/96115345658a786c-invented-enemy-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/headboard/96115345658a786c-invented-enemy-headboard.png",
       "size": 2779341
+    },
+    "e35f31d4f970650e5a01963a81cdacacc71754798b9dbc99409bceb281bbe923:5280501": {
+      "pathname": "books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
+      "size": 5280501
+    },
+    "381b67f42b56c426db2c16158b916e9d3349fbbc293c91ee286fa9d10fc9dc6c:4391369": {
+      "pathname": "books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
+      "size": 4391369
+    },
+    "f4bc85faeddf8d1f8091b610a4b9ad33e7746b55ae306de4524609436e04d162:149624203": {
+      "pathname": "books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault (2.0.0-sol-2996266c).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault%20%282.0.0-sol-2996266c%29.zip",
+      "size": 149624203
+    },
+    "61fd021b30fc554a6788bf974f8cf5639d58783be9021b1ce38a922cf7a32b35:32882": {
+      "pathname": "books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html",
+      "size": 32882
     }
   },
   "chapterPackages": {

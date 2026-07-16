@@ -311,8 +311,8 @@
       "kicker": "Preview edition",
       "description": "The complete Proem of Cicero on Himself, with a companion bilingual source vault that lets readers move from Latin or English quotation to its witness.",
       "accent": "#476a7c",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/49355773e1e1d3bf-cicero-on-himself-preview.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/3531cedd8c9376cf-cicero-on-himself-preview.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
       "html": "/read/cicero-on-himself/",
       "htmlChapters": "/read/cicero-on-himself/chapters/",
       "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/928c8357a4a3d802-cicero-on-himself-preview.html",
@@ -324,9 +324,9 @@
       ],
       "shelf": "history",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png",
-      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/7cc276e94867d086-cicero-on-himself-preview-vault%20%282.0.0-sol-9e8141d6%29.zip",
+      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault%20%282.0.0-sol-2996266c%29.zip",
       "vaultGuide": "/read/cicero-on-himself/guide/",
-      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/bc7a5cb2f012ddad-cicero-on-himself-vault-guide%20%282.0.0-sol-9e8141d6%29.html"
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html"
     }
   ]
 }
