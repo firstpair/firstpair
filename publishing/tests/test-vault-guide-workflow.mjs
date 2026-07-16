@@ -794,6 +794,8 @@ print("fixture source-owned vault validation passed")
     assert.match(responseHeaders.get('content-type'), /text\/html/)
     assert.match(response.body, /firstpair-library-link/)
     assert.match(response.body, /First Pair Library/)
+    assert.match(response.body, /@media \(max-width: 640px\)/)
+    assert.match(response.body, /position: static/)
   } finally {
     globalThis.fetch = originalFetch
   }

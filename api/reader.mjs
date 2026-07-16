@@ -34,6 +34,15 @@ const libraryLinkStyle = `<style id="firstpair-library-link-style">
   background: #ffffff;
   color: #0b1220;
 }
+@media (max-width: 640px) {
+  .firstpair-library-link {
+    position: static;
+    display: flex;
+    width: max-content;
+    max-width: calc(100% - 24px);
+    margin: 12px 12px 20px;
+  }
+}
 @media (prefers-color-scheme: dark) {
   .firstpair-library-link {
     border-color: rgba(255, 255, 255, 0.22);
