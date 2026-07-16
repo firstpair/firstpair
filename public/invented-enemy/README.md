@@ -4,8 +4,8 @@ A public preview of the history of Russophobia and the anti-Slavic imagination â
 
 ## Current Public Editions
 
-- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/685f8693d81b03b1-invented-enemy-preview.pdf)
-- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/171724983ea32f2e-invented-enemy-preview.epub)
+- [PDF](/invented-enemy/pdf/)
+- [EPUB](/invented-enemy/epub/)
 - [Read online](/read/invented-enemy/)
 - [Chapter reader](/read/invented-enemy/chapters/)
 

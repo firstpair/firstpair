@@ -70,7 +70,9 @@
       "pdf": "book-uploads/staging/invented-enemy/invented-enemy-preview.pdf",
       "epub": "book-uploads/staging/invented-enemy/invented-enemy-preview.epub",
       "html": "book-uploads/staging/invented-enemy/invented-enemy-preview.html",
-      "htmlChapters": "book-uploads/staging/invented-enemy/invented-enemy-preview-chapters"
+      "htmlChapters": "book-uploads/staging/invented-enemy/invented-enemy-preview-chapters",
+      "cover": "book-uploads/staging/invented-enemy/invented-enemy-cover.png",
+      "headboard": "book-uploads/staging/invented-enemy/invented-enemy-headboard.png"
     },
     "from-1-to-0": {
       "pdf": "book-uploads/staging/from-1-to-0/from-1-to-0.pdf",
