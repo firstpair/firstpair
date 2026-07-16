@@ -1310,58 +1310,41 @@ async function resolveVault(inputDir, distDir, edition, version, slug, options) 
   return { dir, zipName, guideSource, guideName, guideHtmlName, validation }
 }
 
-// Zip the vault directory into destinationZip. Uses the system `zip` so the
-// archive opens as a plain folder; volatile Obsidian state is excluded.
+// Archive the vault through Python's standard library. Apple /usr/bin/zip does
+// not consistently support its documented UTF-8 switch; the helper writes a
+// stable root, sorted members, fixed metadata, and UTF-8 flags while preserving
+// the existing volatile-state exclusions.
 async function zipVault(vaultDir, destinationZip, guideSource = null) {
   await rm(destinationZip, { force: true })
   await mkdir(dirname(destinationZip), { recursive: true })
+  const archiver = join(scriptDir, 'archive-vault.py')
+  const archiveArgs = [archiver, '--vault', vaultDir, '--output', destinationZip]
+  if (guideSource) archiveArgs.push('--guide', guideSource)
   const { code } = await runProcess(
-    'zip',
-    [
-      '-r',
-      '-q',
-      '-X',
-      destinationZip,
-      basename(vaultDir),
-      '-x',
-      '*.DS_Store',
-      '-x',
-      '*/.git/*',
-      '-x',
-      '*/workspace.json',
-    ],
-    { cwd: dirname(vaultDir), stdio: 'inherit' },
+    'python3',
+    archiveArgs,
+    {
+      cwd: dirname(vaultDir),
+      env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' },
+      stdio: 'inherit',
+    },
   )
   if (code !== 0) {
-    throw new Error(`zip failed (${code}) for vault: ${vaultDir}`)
+    throw new Error(`vault archiver failed (${code}) for vault: ${vaultDir}`)
   }
 
   if (!guideSource) {
     return
   }
 
-  // Do not mutate the generated vault merely to include its publication
-  // guide. Add the canonical Markdown as <vault>/README.md from a temporary
-  // mirror, then extract and byte-check that member before delivery.
+  // Do not mutate the generated vault merely to include its publication guide.
+  // The helper writes it as <vault>/README.md; independently extract and
+  // byte-check that member before delivery.
   const temporaryRoot = await mkdtemp(join(tmpdir(), 'firstpair-vault-guide-'))
   const vaultRootName = basename(vaultDir)
-  const temporaryVaultRoot = join(temporaryRoot, vaultRootName)
   const archiveGuide = `${vaultRootName}/README.md`
 
   try {
-    await mkdir(temporaryVaultRoot, { recursive: true })
-    await copyFile(guideSource, join(temporaryVaultRoot, 'README.md'))
-
-    const { code: appendCode } = await runProcess(
-      'zip',
-      ['-r', '-q', '-X', destinationZip, vaultRootName],
-      { cwd: temporaryRoot, stdio: 'inherit' },
-    )
-
-    if (appendCode !== 0) {
-      throw new Error(`zip failed (${appendCode}) while embedding vault guide: ${guideSource}`)
-    }
-
     const verifyRoot = join(temporaryRoot, 'verify')
     const { code: extractCode } = await runProcess(
       'unzip',

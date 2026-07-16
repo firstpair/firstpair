@@ -95,6 +95,8 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     mkdir(join(harness, 'public'), { recursive: true }),
     mkdir(chapters, { recursive: true }),
     mkdir(vaultData, { recursive: true }),
+    mkdir(join(vault, '.git'), { recursive: true }),
+    mkdir(join(vault, '.obsidian'), { recursive: true }),
     mkdir(dirname(guide), { recursive: true }),
     mkdir(dirname(validator), { recursive: true }),
     mkdir(dirname(cover), { recursive: true }),
@@ -103,6 +105,10 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     copyFile(
       join(repoRoot, 'scripts', 'publish-book-to-library.mjs'),
       join(harness, 'scripts', 'publish-book-to-library.mjs'),
+    ),
+    copyFile(
+      join(repoRoot, 'scripts', 'archive-vault.py'),
+      join(harness, 'scripts', 'archive-vault.py'),
     ),
     copyFile(
       join(repoRoot, 'scripts', 'render-vault-guide.mjs'),
@@ -181,6 +187,10 @@ html_chapters_dir: fixture-book-chapters
     writeFile(join(dist, 'fixture-book.html'), '<!doctype html><title>Fixture Book</title>\n'),
     writeFile(join(chapters, 'index.html'), '<!doctype html><title>Fixture chapters</title>\n'),
     writeFile(join(vault, 'Home.md'), '# Fixture vault\n'),
+    writeFile(join(vault, 'Cicero’s résumé.md'), '# Unicode filename fixture\n'),
+    writeFile(join(vault, '.DS_Store'), 'volatile finder state\n'),
+    writeFile(join(vault, '.git', 'config'), 'private repository state\n'),
+    writeFile(join(vault, '.obsidian', 'workspace.json'), '{"volatile":true}\n'),
     writeFile(join(vaultData, 'units.jsonl'), '{"id":"fixture-1"}\n'),
     writeFile(guide, '# Fixture Book Vault\n\nOpen `Home.md`.\n'),
     writeFile(
@@ -262,6 +272,38 @@ print("fixture source-owned vault validation passed")
     'Fixture Book Vault/README.md',
   ])
   assert.deepEqual(archivedGuide.stdout, await readFile(guide))
+
+  const archiveEntries = JSON.parse(
+    (
+      await run('python3', [
+        '-c',
+        'import json,sys,zipfile; z=zipfile.ZipFile(sys.argv[1]); print(json.dumps([{"name": i.filename, "flag_bits": i.flag_bits, "date_time": i.date_time} for i in z.infolist()], ensure_ascii=False))',
+        vaultZip,
+      ])
+    ).stdout.toString('utf8'),
+  )
+  const unicodeArchiveEntry = archiveEntries.find((entry) => entry.name.includes('résumé'))
+  assert(unicodeArchiveEntry)
+  assert.equal(unicodeArchiveEntry.name, 'Fixture Book Vault/Cicero’s résumé.md')
+  assert.notEqual(unicodeArchiveEntry.flag_bits & 0x800, 0)
+  assert.equal(archiveEntries[0].name, 'Fixture Book Vault/')
+  assert.equal(new Set(archiveEntries.map((entry) => entry.name)).size, archiveEntries.length)
+  assert(archiveEntries.every((entry) => entry.date_time.join('-') === '1980-1-1-0-0-0'))
+  assert(!archiveEntries.some((entry) => entry.name.endsWith('/.DS_Store')))
+  assert(!archiveEntries.some((entry) => entry.name.includes('/.git/')))
+  assert(!archiveEntries.some((entry) => entry.name.endsWith('/workspace.json')))
+
+  const repeatedVaultZip = join(work, 'fixture-vault-repeat.zip')
+  await run('python3', [
+    join(harness, 'scripts', 'archive-vault.py'),
+    '--vault',
+    vault,
+    '--output',
+    repeatedVaultZip,
+    '--guide',
+    guide,
+  ])
+  assert.deepEqual(await readFile(repeatedVaultZip), await readFile(vaultZip))
 
   await symlink(join(repoRoot, 'node_modules'), join(harness, 'node_modules'), 'dir')
   await mkdir(join(harness, 'public', 'fixture-book'), { recursive: true })
