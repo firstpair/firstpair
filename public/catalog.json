@@ -308,12 +308,12 @@
       "kicker": "Preview edition",
       "description": "The complete Proem of Cicero on Himself, with a companion bilingual source vault that lets readers move from Latin or English quotation to its witness.",
       "accent": "#476a7c",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e0498f0b0e18be34-cicero-on-himself-preview.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/c338eb3400b8eccd-cicero-on-himself-preview.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/a57ac2a4fa39e24e-cicero-on-himself-preview.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/ffff29088cc96c85-cicero-on-himself-preview.epub",
       "html": "/read/cicero-on-himself/",
       "htmlChapters": "/read/cicero-on-himself/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/1a30f00248cd3228-cicero-on-himself-preview.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/e89392c1f373a4c6-cicero-on-himself-preview.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
       "tags": [
         "preview",
         "history",
@@ -321,9 +321,9 @@
       ],
       "shelf": "history",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png",
-      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/4bcc9a23c4b8b6eb-cicero-on-himself-preview-vault%20%282.0.0-sol-dd45853a%29.zip",
+      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/e0df67f373eceea1-cicero-on-himself-preview-vault%20%282.0.0-sol-7bd08d85%29.zip",
       "vaultGuide": "/read/cicero-on-himself/guide/",
-      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide%20%282.0.0-sol-dd45853a%29.html"
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/67878ea0108e1770-cicero-on-himself-vault-guide%20%282.0.0-sol-7bd08d85%29.html"
     }
   ]
 }

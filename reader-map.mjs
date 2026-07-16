@@ -82,9 +82,9 @@ export const readerBooks = [
   },
   {
     "slug": "cicero-on-himself",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/1a30f00248cd3228-cicero-on-himself-preview.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7",
-    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide%20%282.0.0-sol-dd45853a%29.html"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/e89392c1f373a4c6-cicero-on-himself-preview.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0",
+    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/67878ea0108e1770-cicero-on-himself-vault-guide%20%282.0.0-sol-7bd08d85%29.html"
   }
 ]

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-15T20:38:56.616Z",
+  "updatedAt": "2026-07-16T08:18:00.508Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4450,34 +4450,34 @@
       }
     },
     "cicero-on-himself": {
-      "updatedAt": "2026-07-15T20:38:56.615Z",
+      "updatedAt": "2026-07-16T08:18:00.506Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.pdf",
-          "sha256": "e0498f0b0e18be34d6db8306c74f7fc6ba9921995fe50da2872ff9c57c95aad1",
-          "size": 5280272,
-          "pathname": "books/cicero-on-himself/pdf/e0498f0b0e18be34-cicero-on-himself-preview.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e0498f0b0e18be34-cicero-on-himself-preview.pdf",
+          "sha256": "a57ac2a4fa39e24e364263d574b8720166c6647676e08f2b7f770484e6b974a0",
+          "size": 5280303,
+          "pathname": "books/cicero-on-himself/pdf/a57ac2a4fa39e24e-cicero-on-himself-preview.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/a57ac2a4fa39e24e-cicero-on-himself-preview.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.epub",
-          "sha256": "c338eb3400b8eccd6ca6bd9580121a107e30ef16a3f27fd08006bfdb7094773d",
+          "sha256": "ffff29088cc96c859923f2af4c6a0bee3fda07429cf7150e48275ec7085af98d",
           "size": 4391318,
-          "pathname": "books/cicero-on-himself/epub/c338eb3400b8eccd-cicero-on-himself-preview.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/c338eb3400b8eccd-cicero-on-himself-preview.epub",
+          "pathname": "books/cicero-on-himself/epub/ffff29088cc96c85-cicero-on-himself-preview.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/ffff29088cc96c85-cicero-on-himself-preview.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.html",
-          "sha256": "1a30f00248cd322836e27213e113f88bf60be39512c093f4996ad39208e78306",
+          "sha256": "e89392c1f373a4c6239623a049768eaa7459d0c6be16bdec2074e90d07acf74a",
           "size": 5874732,
-          "pathname": "books/cicero-on-himself/html/1a30f00248cd3228-cicero-on-himself-preview.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/1a30f00248cd3228-cicero-on-himself-preview.html",
+          "pathname": "books/cicero-on-himself/html/e89392c1f373a4c6-cicero-on-himself-preview.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/e89392c1f373a4c6-cicero-on-himself-preview.html",
           "skipped": false
         },
         "cover": {
@@ -4487,32 +4487,32 @@
           "size": 2896263,
           "pathname": "books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "vault": {
           "kind": "vault",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-dd45853a).zip",
-          "sha256": "4bcc9a23c4b8b6eb537c2d393e8b756f72f74ff722edb30b0cc8e09ac8872fee",
-          "size": 150060953,
-          "pathname": "books/cicero-on-himself/vault/4bcc9a23c4b8b6eb-cicero-on-himself-preview-vault (2.0.0-sol-dd45853a).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/4bcc9a23c4b8b6eb-cicero-on-himself-preview-vault%20%282.0.0-sol-dd45853a%29.zip",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-7bd08d85).zip",
+          "sha256": "e0df67f373eceea176c9e621406b367f70c2dee8e2894cc461f3e54bc4d1c792",
+          "size": 149585891,
+          "pathname": "books/cicero-on-himself/vault/e0df67f373eceea1-cicero-on-himself-preview-vault (2.0.0-sol-7bd08d85).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/e0df67f373eceea1-cicero-on-himself-preview-vault%20%282.0.0-sol-7bd08d85%29.zip",
           "skipped": false
         },
         "vaultGuide": {
           "kind": "vault-guide",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-dd45853a).html",
-          "sha256": "a2976c1ed05d7017be6328f9bcb3d877969f5ea665d8eff92cbb0b0e83b61dbc",
-          "size": 26037,
-          "pathname": "books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide (2.0.0-sol-dd45853a).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide%20%282.0.0-sol-dd45853a%29.html",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-7bd08d85).html",
+          "sha256": "67878ea0108e1770e7b6f211ddfcdc0805bc583b0a65a8ae4488857718c0bd53",
+          "size": 26583,
+          "pathname": "books/cicero-on-himself/vault-guide/67878ea0108e1770-cicero-on-himself-vault-guide (2.0.0-sol-7bd08d85).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/67878ea0108e1770-cicero-on-himself-vault-guide%20%282.0.0-sol-7bd08d85%29.html",
           "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters",
-          "sha256": "ca3e8c13b00504b79d13e8943b8d79e3bceac9a13e04e73a7a03196f6084f736",
-          "pathnamePrefix": "books/cicero-on-himself/chapters/ca3e8c13b00504b7",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/index.html",
+          "sha256": "b56b429f662a89a02c46a2f8c556dd9116e1dd7a97acf4e1d41c8a13bb12e12c",
+          "pathnamePrefix": "books/cicero-on-himself/chapters/b56b429f662a89a0",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
           "skipped": false,
           "files": [
             {
@@ -4520,8 +4520,8 @@
               "relativePath": "book.css",
               "sha256": "c528f29512499f0971437c220395f06681b3145f1f3048daaa2296fa62d798c2",
               "size": 1153,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/book.css",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/book.css",
               "skipped": false
             },
             {
@@ -4529,80 +4529,80 @@
               "relativePath": "book/images/epub/01-cicero-portrait.jpg",
               "sha256": "2ff29b1470db65800b7f8ab871012338489c6afd5912cfd62a20224ac50445b9",
               "size": 1491920,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/book/images/epub/01-cicero-portrait.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/book/images/epub/01-cicero-portrait.jpg",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/book/images/epub/01-cicero-portrait.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/book/images/epub/01-cicero-portrait.jpg",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "a414ce368144eae7b9c2c6dd52ca649f73dabeaf63be09b6f49f998797bfaf3c",
+              "sha256": "f167d8adcd014eac0fcd2f2a4881f804586f41bd03734f8f09d326c1ddc5f415",
               "size": 2528,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-001.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "32b081d3d9ff40e0ddd8e148d82b26d5e20421e858674eced525b7a72b0c363e",
+              "sha256": "9b4a26a5e318e624a7c2bab79beebf7baea003511f7c280ff4319a4f79e45281",
               "size": 2500,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-002.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "8f3c4bd16689173e195c92434d9aaa2038d278037e549528f051999900c7b110",
+              "sha256": "ee8af712f837396d569ee47dada2be68aec336a597ebed85c710bd8eaaa107eb",
               "size": 2924,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-003.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "94eb96c3fbb297c7a09611e63addcab49ddbcbfa3b5e18a8b9dfff488f24a7dc",
+              "sha256": "570a291b1aa50991444e1c3cb3fe6bb10c3ccefe5f74e15ced5a12a1122235ed",
               "size": 3600,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-004.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "0ee018ff51da419e7b289ae5b8a531bb7f1c61e06101b71d6775f8f6b33c2392",
+              "sha256": "87beca6e864c928d22cdeb84d2bae09f8486d34f1699fe06c4ffa89911232935",
               "size": 2542,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-005.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "6a778ccb739c85a47b8dd1494a24204a1ce106788bdd296bcdc9d9b3e10d2f5c",
+              "sha256": "ee74a0f1484759330ed1dae8122d5ca14ca3b8496d05d5c08d37d46a31240ecd",
               "size": 7282,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-006.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "161b8149c0347120c167de2000fd97963e973152ce55b5417e8e868cf80fe1f4",
+              "sha256": "218aecc2eb234b7b1f324721eaa2dfb26ba25c97aff64c870ebb8a6489385d0b",
               "size": 2490,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-007.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "8f86daa3ab8091108c413ad9b2dd2ae52fd0a1d45f46b32521d75bea1245956f",
+              "sha256": "14ba6afbf9b8bbc1c911fb60b31360329979d41cca516fb116541fdd2f37239a",
               "size": 14493,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/chapter-008.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-008.html",
               "skipped": false
             },
             {
@@ -4610,17 +4610,17 @@
               "relativePath": "cover/cicero-on-himself-diagonal.png",
               "sha256": "2eabf238ba3ca67f03829901c24c19752f82ea3f090dfaf8669572d94f8a7328",
               "size": 2896263,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/cover/cicero-on-himself-diagonal.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/cover/cicero-on-himself-diagonal.png",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/cover/cicero-on-himself-diagonal.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/cover/cicero-on-himself-diagonal.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "8f725a92548bdb3246f571cf60f8a8f7e95ee6362a5617abefeca0c8d5362059",
+              "sha256": "e33929fb2adb2cd4b5e8b1c9b2720dd9d0bbe8edb1f0fc0cbefc408b3cd64be3",
               "size": 3492,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/index.html",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
               "skipped": false
             },
             {
@@ -4628,8 +4628,8 @@
               "relativePath": "sitemap.json",
               "sha256": "8beef74bbc9e04654cac38d74ec4c07c9088d008fc09a0a07b89aded72c7aa9f",
               "size": 1557,
-              "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/sitemap.json",
+              "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/sitemap.json",
               "skipped": false
             }
           ]
@@ -5337,6 +5337,31 @@
       "pathname": "books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide (2.0.0-sol-dd45853a).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/a2976c1ed05d7017-cicero-on-himself-vault-guide%20%282.0.0-sol-dd45853a%29.html",
       "size": 26037
+    },
+    "a57ac2a4fa39e24e364263d574b8720166c6647676e08f2b7f770484e6b974a0:5280303": {
+      "pathname": "books/cicero-on-himself/pdf/a57ac2a4fa39e24e-cicero-on-himself-preview.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/a57ac2a4fa39e24e-cicero-on-himself-preview.pdf",
+      "size": 5280303
+    },
+    "ffff29088cc96c859923f2af4c6a0bee3fda07429cf7150e48275ec7085af98d:4391318": {
+      "pathname": "books/cicero-on-himself/epub/ffff29088cc96c85-cicero-on-himself-preview.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/ffff29088cc96c85-cicero-on-himself-preview.epub",
+      "size": 4391318
+    },
+    "e89392c1f373a4c6239623a049768eaa7459d0c6be16bdec2074e90d07acf74a:5874732": {
+      "pathname": "books/cicero-on-himself/html/e89392c1f373a4c6-cicero-on-himself-preview.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/e89392c1f373a4c6-cicero-on-himself-preview.html",
+      "size": 5874732
+    },
+    "e0df67f373eceea176c9e621406b367f70c2dee8e2894cc461f3e54bc4d1c792:149585891": {
+      "pathname": "books/cicero-on-himself/vault/e0df67f373eceea1-cicero-on-himself-preview-vault (2.0.0-sol-7bd08d85).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/e0df67f373eceea1-cicero-on-himself-preview-vault%20%282.0.0-sol-7bd08d85%29.zip",
+      "size": 149585891
+    },
+    "67878ea0108e1770e7b6f211ddfcdc0805bc583b0a65a8ae4488857718c0bd53:26583": {
+      "pathname": "books/cicero-on-himself/vault-guide/67878ea0108e1770-cicero-on-himself-vault-guide (2.0.0-sol-7bd08d85).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/67878ea0108e1770-cicero-on-himself-vault-guide%20%282.0.0-sol-7bd08d85%29.html",
+      "size": 26583
     }
   },
   "chapterPackages": {
@@ -14633,6 +14658,129 @@
           "size": 1557,
           "pathname": "books/cicero-on-himself/chapters/ca3e8c13b00504b7/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/ca3e8c13b00504b7/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "b56b429f662a89a02c46a2f8c556dd9116e1dd7a97acf4e1d41c8a13bb12e12c": {
+      "pathnamePrefix": "books/cicero-on-himself/chapters/b56b429f662a89a0",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "c528f29512499f0971437c220395f06681b3145f1f3048daaa2296fa62d798c2",
+          "size": 1153,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/book/images/epub/01-cicero-portrait.jpg",
+          "relativePath": "book/images/epub/01-cicero-portrait.jpg",
+          "sha256": "2ff29b1470db65800b7f8ab871012338489c6afd5912cfd62a20224ac50445b9",
+          "size": 1491920,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/book/images/epub/01-cicero-portrait.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/book/images/epub/01-cicero-portrait.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "f167d8adcd014eac0fcd2f2a4881f804586f41bd03734f8f09d326c1ddc5f415",
+          "size": 2528,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "9b4a26a5e318e624a7c2bab79beebf7baea003511f7c280ff4319a4f79e45281",
+          "size": 2500,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "ee8af712f837396d569ee47dada2be68aec336a597ebed85c710bd8eaaa107eb",
+          "size": 2924,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "570a291b1aa50991444e1c3cb3fe6bb10c3ccefe5f74e15ced5a12a1122235ed",
+          "size": 3600,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "87beca6e864c928d22cdeb84d2bae09f8486d34f1699fe06c4ffa89911232935",
+          "size": 2542,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "ee74a0f1484759330ed1dae8122d5ca14ca3b8496d05d5c08d37d46a31240ecd",
+          "size": 7282,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "218aecc2eb234b7b1f324721eaa2dfb26ba25c97aff64c870ebb8a6489385d0b",
+          "size": 2490,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "14ba6afbf9b8bbc1c911fb60b31360329979d41cca516fb116541fdd2f37239a",
+          "size": 14493,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/cover/cicero-on-himself-diagonal.png",
+          "relativePath": "cover/cicero-on-himself-diagonal.png",
+          "sha256": "2eabf238ba3ca67f03829901c24c19752f82ea3f090dfaf8669572d94f8a7328",
+          "size": 2896263,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/cover/cicero-on-himself-diagonal.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/cover/cicero-on-himself-diagonal.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "e33929fb2adb2cd4b5e8b1c9b2720dd9d0bbe8edb1f0fc0cbefc408b3cd64be3",
+          "size": 3492,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "8beef74bbc9e04654cac38d74ec4c07c9088d008fc09a0a07b89aded72c7aa9f",
+          "size": 1557,
+          "pathname": "books/cicero-on-himself/chapters/b56b429f662a89a0/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/b56b429f662a89a0/sitemap.json",
           "skipped": false
         }
       ]
