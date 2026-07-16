@@ -201,6 +201,10 @@ BLOG_TAGS=querygraph,release \
 ~/src/firstpair/publishing/scripts/publish-versioned-blog.sh docs/blog/<slug>
 ```
 
+The builder versions the source post and referenced local assets first, embeds
+the resulting Git commit and a portable payload SHA-256 for Omnighost import,
+then computes the delivery filename stamp from the post-build repository state.
+
 It writes:
 
 ```yaml

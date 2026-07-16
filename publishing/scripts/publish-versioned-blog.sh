@@ -60,12 +60,8 @@ if [[ -z "$version" ]]; then
   version="0.0.0"
 fi
 
-githash="$(git -C "$repo_root" rev-parse --short=6 HEAD 2>/dev/null || echo nogit)"
-version_stamp="${BLOG_VERSION_STAMP:-$version-$githash}"
 dist_dir="$post_dir/dist"
 stable="$dist_dir/$name.textpack"
-versioned="$dist_dir/$name ($version_stamp).textpack"
-marker="$dist_dir/VERSION.md"
 
 textpack_args=(
   "$script_dir/textpack.py"
@@ -86,6 +82,13 @@ if [[ -n "${BLOG_RENDER:-}" ]]; then
 fi
 
 python3 "${textpack_args[@]}"
+
+# textpack.py may have just committed the post and its referenced assets. Derive
+# the delivery filename only afterward so it carries the same repository state.
+githash="$(git -C "$repo_root" rev-parse --short=6 HEAD 2>/dev/null || echo nogit)"
+version_stamp="${BLOG_VERSION_STAMP:-$version-$githash}"
+versioned="$dist_dir/$name ($version_stamp).textpack"
+marker="$dist_dir/VERSION.md"
 
 rm -f "$post_dir/dist/$name ("*").textpack"
 ln -s "$(basename "$stable")" "$versioned"

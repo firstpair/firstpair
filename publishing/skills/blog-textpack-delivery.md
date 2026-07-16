@@ -18,5 +18,11 @@ REPO_ROOT=/path/to/repo \
 ~/src/firstpair/publishing/scripts/publish-versioned-blog.sh docs/blog/<slug>
 ```
 
+The builder Git-versions the source Markdown and referenced local assets before
+packaging, then embeds that commit and a portable payload SHA-256 in the pack.
+An untouched Omnighost import inherits the source commit; after publication,
+its next sync is a no-op. Git failures fall back to hash-only provenance, and
+the delivery script derives its filename stamp after the builder has committed.
+
 The `.textpack` is the handoff unit for Ulysses and Omnighost. It carries
 Markdown, bundled images, and Ghost routing metadata in `info.json`.

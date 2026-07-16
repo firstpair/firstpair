@@ -451,6 +451,11 @@ BLOG_DOMAIN=querygraph.ai \
   docs/blog/<slug> "$HOME/icloud/blogs"
 ```
 
+The textpack builder safely commits the source Markdown and referenced local
+assets before packaging, embeds that Git commit plus a portable payload digest,
+and falls back to hash-only provenance when Git is unavailable or unsafe. The
+delivery helper derives its versioned filename after that source commit.
+
 The `VERSION.md` checker and delivery helper discover all formatter suffixes
 from the manifest. They handle classic QueryGraph fields such as
 `pdf_file_typst` and FirstPair fields such as `pdf_file_firstpair`,
