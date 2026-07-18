@@ -1633,6 +1633,28 @@ async function copyIcloud(plan, dryRun) {
     }
 
     if (!dryRun) {
+      const existing = await stat(destination.path).catch(() => null)
+      if (existing?.isFile() && existing.size === (await stat(destination.source)).size) {
+        try {
+          const [sourceBytes, destinationBytes] = await Promise.all([
+            readFile(destination.source),
+            readFile(destination.path),
+          ])
+          if (sourceBytes.equals(destinationBytes)) {
+            console.error(`iCloud delivery already present: ${basename(destination.path)}`)
+            continue
+          }
+        } catch (error) {
+          // iCloud can leave an immutable versioned artifact as a dataless
+          // placeholder. Its name and exact byte count identify this delivery;
+          // do not overwrite it merely to re-copy an unchanged release.
+          if (destination.versioned && error?.code === 'EPERM') {
+            console.error(`iCloud delivery already present (dataless): ${basename(destination.path)}`)
+            continue
+          }
+          throw error
+        }
+      }
       await copyFile(destination.source, destination.path)
       const sourceBytes = await readFile(destination.source)
       const destinationBytes = await readFile(destination.path)
