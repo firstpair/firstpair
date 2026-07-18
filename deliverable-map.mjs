@@ -109,5 +109,12 @@ export const deliverableBooks = [
     "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault/88903346d14ce31c-verdun-full-vault%20%280.1.0-verdun-0ba88210%29.zip",
     "mobileVault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/mobile-vault/8eee5ff304ca6587-verdun-full-mobile-vault%20%280.1.0-verdun-0ba88210%29.zip",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/cover/7bfa504c7d93472d-verdun-cover.png"
+  },
+  {
+    "slug": "suffix",
+    "title": "Suffix",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/pdf/76b1c484ad6fda39-suffix.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/epub/2b077d4f409dd6b5-suffix.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/cover/b5928afb6181382a-suffix-cover.png"
   }
 ]

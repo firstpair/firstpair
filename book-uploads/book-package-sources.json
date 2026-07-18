@@ -128,6 +128,14 @@
       "vaultGuideMarkdown": "book-uploads/staging/verdun/verdun-vault-guide (0.1.0-verdun-0ba88210).md",
       "vaultGuideHtml": "book-uploads/staging/verdun/verdun-vault-guide (0.1.0-verdun-0ba88210).html",
       "mobileVault": "book-uploads/staging/verdun/verdun-full-mobile-vault (0.1.0-verdun-0ba88210).zip"
+    },
+    "suffix": {
+      "pdf": "book-uploads/staging/suffix/suffix.pdf",
+      "epub": "book-uploads/staging/suffix/suffix.epub",
+      "html": "book-uploads/staging/suffix/suffix.html",
+      "htmlChapters": "book-uploads/staging/suffix/suffix-chapters",
+      "cover": "book-uploads/staging/suffix/suffix-cover.png",
+      "headboard": "book-uploads/staging/suffix/suffix-headboard.png"
     }
   }
 }

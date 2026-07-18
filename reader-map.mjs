@@ -93,5 +93,11 @@ export const readerBooks = [
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc",
     "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault-guide/2aeec38f675014d8-verdun-vault-guide%20%280.1.0-verdun-0ba88210%29.html"
+  },
+  {
+    "slug": "suffix",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/html/6e652fe3db275d8e-suffix.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba"
   }
 ]

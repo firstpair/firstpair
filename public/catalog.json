@@ -356,6 +356,27 @@
       "mobileVault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/mobile-vault/8eee5ff304ca6587-verdun-full-mobile-vault%20%280.1.0-verdun-0ba88210%29.zip",
       "vaultGuide": "/read/verdun/guide/",
       "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault-guide/2aeec38f675014d8-verdun-vault-guide%20%280.1.0-verdun-0ba88210%29.html"
+    },
+    {
+      "slug": "suffix",
+      "title": "Suffix",
+      "author": "Alexy Khrabrov",
+      "kicker": "Finished book",
+      "description": "Suffix: Durable Links on Domains You Own, delivered as PDF, EPUB, and hosted web readers.",
+      "accent": "#7c5147",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/pdf/76b1c484ad6fda39-suffix.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/epub/2b077d4f409dd6b5-suffix.epub",
+      "html": "/read/suffix/",
+      "htmlChapters": "/read/suffix/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/html/6e652fe3db275d8e-suffix.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/index.html",
+      "tags": [
+        "finished"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/alexy/curtail",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/cover/b5928afb6181382a-suffix-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/headboard/6a6f7553eac6d02d-suffix-headboard.png"
     }
   ]
 }
