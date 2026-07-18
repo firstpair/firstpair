@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-18T16:59:21.142Z",
+  "updatedAt": "2026-07-18T19:17:50.851Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4655,34 +4655,34 @@
       }
     },
     "verdun": {
-      "updatedAt": "2026-07-18T16:59:21.142Z",
+      "updatedAt": "2026-07-18T19:17:50.850Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/verdun/verdun.pdf",
-          "sha256": "c9f974e193f4fac21519d3a66c6b4cde732e24c0d127caef707fadd83fb8aa28",
-          "size": 3709522,
-          "pathname": "books/verdun/pdf/c9f974e193f4fac2-verdun.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/pdf/c9f974e193f4fac2-verdun.pdf",
-          "skipped": false
+          "sha256": "2cd632b95c0f86e6493eee4497e52400c94f21a71e4c5d8ff70a410cb73f1deb",
+          "size": 3711201,
+          "pathname": "books/verdun/pdf/2cd632b95c0f86e6-verdun.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/pdf/2cd632b95c0f86e6-verdun.pdf",
+          "skipped": true
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/verdun/verdun.epub",
-          "sha256": "f6ffe72842b3881a96f0f57fe621930b2dc0fa410b2eae8cc0430385f58fa6f2",
-          "size": 2983535,
-          "pathname": "books/verdun/epub/f6ffe72842b3881a-verdun.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/epub/f6ffe72842b3881a-verdun.epub",
-          "skipped": false
+          "sha256": "e172d279320ca63a430ce524e4ed963af1e7dbad3dfe1079f7dd59beb9760ee6",
+          "size": 2983986,
+          "pathname": "books/verdun/epub/e172d279320ca63a-verdun.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/epub/e172d279320ca63a-verdun.epub",
+          "skipped": true
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/verdun/verdun.html",
-          "sha256": "468298039c8a7ccae50e80a1697bf019769ecae03fa0168b63d4d384c6245f6b",
-          "size": 14027,
-          "pathname": "books/verdun/html/468298039c8a7cca-verdun.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/html/468298039c8a7cca-verdun.html",
+          "sha256": "9c69c52e2463cb4ecc7c647fd8bcf10de18bce5814de7f128962508a3f2b5635",
+          "size": 14984,
+          "pathname": "books/verdun/html/9c69c52e2463cb4e-verdun.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/html/9c69c52e2463cb4e-verdun.html",
           "skipped": true
         },
         "cover": {
@@ -4692,7 +4692,7 @@
           "size": 3037414,
           "pathname": "books/verdun/cover/f6d1e79923147a17-verdun-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/cover/f6d1e79923147a17-verdun-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "headboard": {
           "kind": "headboard",
@@ -4706,19 +4706,19 @@
         "vault": {
           "kind": "vault",
           "localPath": "book-uploads/staging/verdun/verdun-full-vault (0.1.0-verdun-0ba88210).zip",
-          "sha256": "88903346d14ce31c9078889f6f2029cf1b0b6379cae6369a295bda05a520d959",
-          "size": 545822,
-          "pathname": "books/verdun/vault/88903346d14ce31c-verdun-full-vault (0.1.0-verdun-0ba88210).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault/88903346d14ce31c-verdun-full-vault%20%280.1.0-verdun-0ba88210%29.zip",
-          "skipped": true
+          "sha256": "7fe0098e0e6c64e971125f31faf5c6996847064a44cdb890f007ba0b4ef5ee71",
+          "size": 553841,
+          "pathname": "books/verdun/vault/7fe0098e0e6c64e9-verdun-full-vault (0.1.0-verdun-0ba88210).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault/7fe0098e0e6c64e9-verdun-full-vault%20%280.1.0-verdun-0ba88210%29.zip",
+          "skipped": false
         },
         "mobileVault": {
           "kind": "mobile-vault",
           "localPath": "book-uploads/staging/verdun/verdun-full-mobile-vault (0.1.0-verdun-0ba88210).zip",
-          "sha256": "8eee5ff304ca6587052a7d12ff60c6588cc1ffb08760f4c95eb50df500376de5",
-          "size": 18369,
-          "pathname": "books/verdun/mobile-vault/8eee5ff304ca6587-verdun-full-mobile-vault (0.1.0-verdun-0ba88210).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/mobile-vault/8eee5ff304ca6587-verdun-full-mobile-vault%20%280.1.0-verdun-0ba88210%29.zip",
+          "sha256": "1c7142a895cf64cc53ba87494e63cc8805c34cfab85c1b8fc9491824a089ad27",
+          "size": 18827,
+          "pathname": "books/verdun/mobile-vault/1c7142a895cf64cc-verdun-full-mobile-vault (0.1.0-verdun-0ba88210).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/mobile-vault/1c7142a895cf64cc-verdun-full-mobile-vault%20%280.1.0-verdun-0ba88210%29.zip",
           "skipped": true
         },
         "vaultGuide": {
@@ -4733,9 +4733,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/verdun/verdun-chapters",
-          "sha256": "1a9de6b75724ddbc045de64a5bb0f4216bb60b9774e08791fadb06a68aeadbf4",
-          "pathnamePrefix": "books/verdun/chapters/1a9de6b75724ddbc",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/index.html",
+          "sha256": "e11f1c8d6a96099de31eeed70338eab3c3a8d76a52b0de8df76643a4d714b92c",
+          "pathnamePrefix": "books/verdun/chapters/e11f1c8d6a96099d",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/index.html",
           "skipped": true,
           "files": [
             {
@@ -4743,8 +4743,8 @@
               "relativePath": "book.css",
               "sha256": "d094ac4c516a5fdbdc440e0329c2ed7b6332ace4265004e7d61ee99580ff5707",
               "size": 222,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/book.css",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/book.css",
               "skipped": false
             },
             {
@@ -4752,8 +4752,8 @@
               "relativePath": "chapter-001.html",
               "sha256": "4489eb85950f9bae11bfd0ae11c973bc292fdaf20e9960b20835f2e8a06d8803",
               "size": 2459,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-001.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-001.html",
               "skipped": false
             },
             {
@@ -4761,8 +4761,8 @@
               "relativePath": "chapter-002.html",
               "sha256": "061f02687fa302d61166ce1c484b2ed9b34e65c3a0e74183122a58f27ed1e922",
               "size": 3657,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-002.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-002.html",
               "skipped": false
             },
             {
@@ -4770,8 +4770,8 @@
               "relativePath": "chapter-003.html",
               "sha256": "030478f1109a70be5bf7fc979fec1fdd1fe03ce80234c0f8b8ef6f40cfc61b9f",
               "size": 4179,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-003.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-003.html",
               "skipped": false
             },
             {
@@ -4779,8 +4779,8 @@
               "relativePath": "chapter-004.html",
               "sha256": "2bd90d08c1f120275fa4cff558e2bcb6c0ed6d1038cf442142228e409b013831",
               "size": 3677,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-004.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-004.html",
               "skipped": false
             },
             {
@@ -4788,17 +4788,17 @@
               "relativePath": "chapter-005.html",
               "sha256": "5223c4f2ba33371038de0f32dbb87dc4c9c34f9245151d119df66a4052747638",
               "size": 3866,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-005.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "f7c5ba86c4400b06289eb9897ecb649223a03ad0d58cede436c496e8add09f96",
-              "size": 3704,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-006.html",
+              "sha256": "837ecbf2bd73142fd041d119ece6eb6c52c2cf6ca3155557c2271a0e9bdce2a2",
+              "size": 4651,
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-006.html",
               "skipped": false
             },
             {
@@ -4806,8 +4806,8 @@
               "relativePath": "chapter-007.html",
               "sha256": "fb0ddde2e6aa5294c1dea44019a1136b775883193f5c68abac9985659b11b88d",
               "size": 3425,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-007.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-007.html",
               "skipped": false
             },
             {
@@ -4815,8 +4815,8 @@
               "relativePath": "chapter-008.html",
               "sha256": "bb3dc7030107c76cdc013cf86b27cd146012166e5c956eef6394c4ab5da8e3db",
               "size": 3397,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-008.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-008.html",
               "skipped": false
             },
             {
@@ -4824,8 +4824,8 @@
               "relativePath": "chapter-009.html",
               "sha256": "4774a4fc0e1db92ec9aa56d80ee3f034e2b2cc107735e5455dd0906f114515b7",
               "size": 2958,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/chapter-009.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-009.html",
               "skipped": false
             },
             {
@@ -4833,8 +4833,8 @@
               "relativePath": "index.html",
               "sha256": "7ef023860079cd6bad6a5ff7ee5101bba77159d97f25487c7936d66e64501e80",
               "size": 3690,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/index.html",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/index.html",
               "skipped": false
             },
             {
@@ -4842,8 +4842,8 @@
               "relativePath": "sitemap.json",
               "sha256": "b2d057a3897d29a24888a4f7de1129a49225c38bb48837d1fadcbe027fcb533f",
               "size": 1884,
-              "pathname": "books/verdun/chapters/1a9de6b75724ddbc/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/1a9de6b75724ddbc/sitemap.json",
+              "pathname": "books/verdun/chapters/e11f1c8d6a96099d/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/sitemap.json",
               "skipped": false
             }
           ]
@@ -4851,34 +4851,34 @@
       }
     },
     "suffix": {
-      "updatedAt": "2026-07-18T04:56:32.505Z",
+      "updatedAt": "2026-07-18T19:16:50.540Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/suffix/suffix.pdf",
-          "sha256": "76b1c484ad6fda39dde87168a527d6da57d3e79e90a8521a3a0bf5058e148b4b",
-          "size": 2912959,
-          "pathname": "books/suffix/pdf/76b1c484ad6fda39-suffix.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/pdf/76b1c484ad6fda39-suffix.pdf",
+          "sha256": "293dc9fa15113d5d5a804be56bb5f047ac281db8bd75019182b4903c09b55f88",
+          "size": 2913623,
+          "pathname": "books/suffix/pdf/293dc9fa15113d5d-suffix.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/pdf/293dc9fa15113d5d-suffix.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/suffix/suffix.epub",
-          "sha256": "2b077d4f409dd6b57db08fa4254637019b57e4ed824d74a0c02e86e5cfa08a15",
-          "size": 2228183,
-          "pathname": "books/suffix/epub/2b077d4f409dd6b5-suffix.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/epub/2b077d4f409dd6b5-suffix.epub",
+          "sha256": "e8fbcbbe7ab83000d6aeb8c5fdbb0be81047c222547092a07d1242a78bd7b426",
+          "size": 2228382,
+          "pathname": "books/suffix/epub/e8fbcbbe7ab83000-suffix.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/epub/e8fbcbbe7ab83000-suffix.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/suffix/suffix.html",
-          "sha256": "6e652fe3db275d8e725ce760186222948fc46fa4f19c7f66beb7f2603ca05e24",
-          "size": 55242,
-          "pathname": "books/suffix/html/6e652fe3db275d8e-suffix.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/html/6e652fe3db275d8e-suffix.html",
+          "sha256": "3a2a51d60563f85de773903d88884e893514ed796af831b962b93462e9c6d83d",
+          "size": 55729,
+          "pathname": "books/suffix/html/3a2a51d60563f85d-suffix.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/html/3a2a51d60563f85d-suffix.html",
           "skipped": false
         },
         "cover": {
@@ -4902,9 +4902,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/suffix/suffix-chapters",
-          "sha256": "890dc590fcc4eebad2e41af4ff18cd9e3a2f21a7e898d4d89607d49e8d7b8dae",
-          "pathnamePrefix": "books/suffix/chapters/890dc590fcc4eeba",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/index.html",
+          "sha256": "e3d2fc022b85f9b2158c03ad9c244ae1600005b9c8bcddf3c5a1ab64ccf96c87",
+          "pathnamePrefix": "books/suffix/chapters/e3d2fc022b85f9b2",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/index.html",
           "skipped": false,
           "files": [
             {
@@ -4912,8 +4912,8 @@
               "relativePath": "book.css",
               "sha256": "31055ef179070a5e667809c3e744086aad4c73447a64b305ebe861da39699ee8",
               "size": 458,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/book.css",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/book.css",
               "skipped": false
             },
             {
@@ -4921,8 +4921,8 @@
               "relativePath": "chapter-001.html",
               "sha256": "163f3105399ef2b6b1c511f39de98f6d8f1ca977af01757cdc5fcbd79f992e29",
               "size": 2362,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/chapter-001.html",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-001.html",
               "skipped": false
             },
             {
@@ -4930,8 +4930,8 @@
               "relativePath": "chapter-002.html",
               "sha256": "761429fe169d49ff946ee057a470dfc99b14c6e00255d0fb4f0510cf4714370a",
               "size": 5719,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/chapter-002.html",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-002.html",
               "skipped": false
             },
             {
@@ -4939,8 +4939,8 @@
               "relativePath": "chapter-003.html",
               "sha256": "a203ab6cd9d7676fe44d8fc8e3e235ec4ae45f57d294dca61c5b6d50394980d2",
               "size": 9240,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/chapter-003.html",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-003.html",
               "skipped": false
             },
             {
@@ -4948,17 +4948,17 @@
               "relativePath": "chapter-004.html",
               "sha256": "37d972873e7124a8fdf356f9da9d0467ee330550d24798b1b2bf40dfbf81cf7a",
               "size": 12712,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/chapter-004.html",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "dfadd9a012cf6be2cdf11770e896c022cbbc92c83567013a4b27203e3109150a",
-              "size": 29816,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/chapter-005.html",
+              "sha256": "7bff78b305a226dee834de10ed29edd9828426e6d1c556e82bfef480ae540cb1",
+              "size": 30293,
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-005.html",
               "skipped": false
             },
             {
@@ -4966,8 +4966,8 @@
               "relativePath": "chapter-006.html",
               "sha256": "0c21c8bf92fbf974d6da0ba53be1ef8a9d8414b936f477b7e1f4d984451e7f96",
               "size": 13171,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/chapter-006.html",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-006.html",
               "skipped": false
             },
             {
@@ -4975,8 +4975,8 @@
               "relativePath": "index.html",
               "sha256": "4abd42ba256cab9674098ffd6980e5e9183d661d4e7a16b0eedd751eacefaf33",
               "size": 5818,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/index.html",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/index.html",
               "skipped": false
             },
             {
@@ -4984,8 +4984,8 @@
               "relativePath": "sitemap.json",
               "sha256": "30ec969236493d2d523cdcd11a3b1a9c0406c60894fa90a6821bc270f3030b2a",
               "size": 7675,
-              "pathname": "books/suffix/chapters/890dc590fcc4eeba/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/sitemap.json",
+              "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/sitemap.json",
               "skipped": false
             }
           ]
@@ -5888,6 +5888,51 @@
       "pathname": "books/verdun/cover/f6d1e79923147a17-verdun-cover.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/cover/f6d1e79923147a17-verdun-cover.png",
       "size": 3037414
+    },
+    "2cd632b95c0f86e6493eee4497e52400c94f21a71e4c5d8ff70a410cb73f1deb:3711201": {
+      "pathname": "books/verdun/pdf/2cd632b95c0f86e6-verdun.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/pdf/2cd632b95c0f86e6-verdun.pdf",
+      "size": 3711201
+    },
+    "e172d279320ca63a430ce524e4ed963af1e7dbad3dfe1079f7dd59beb9760ee6:2983986": {
+      "pathname": "books/verdun/epub/e172d279320ca63a-verdun.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/epub/e172d279320ca63a-verdun.epub",
+      "size": 2983986
+    },
+    "9c69c52e2463cb4ecc7c647fd8bcf10de18bce5814de7f128962508a3f2b5635:14984": {
+      "pathname": "books/verdun/html/9c69c52e2463cb4e-verdun.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/html/9c69c52e2463cb4e-verdun.html",
+      "size": 14984
+    },
+    "1369b6db3035b9055bc32e71cca044095ae5beb4cd6b7cb7f038ef5889054651:553523": {
+      "pathname": "books/verdun/vault/1369b6db3035b905-verdun-full-vault (0.1.0-verdun-0ba88210).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault/1369b6db3035b905-verdun-full-vault%20%280.1.0-verdun-0ba88210%29.zip",
+      "size": 553523
+    },
+    "1c7142a895cf64cc53ba87494e63cc8805c34cfab85c1b8fc9491824a089ad27:18827": {
+      "pathname": "books/verdun/mobile-vault/1c7142a895cf64cc-verdun-full-mobile-vault (0.1.0-verdun-0ba88210).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/mobile-vault/1c7142a895cf64cc-verdun-full-mobile-vault%20%280.1.0-verdun-0ba88210%29.zip",
+      "size": 18827
+    },
+    "293dc9fa15113d5d5a804be56bb5f047ac281db8bd75019182b4903c09b55f88:2913623": {
+      "pathname": "books/suffix/pdf/293dc9fa15113d5d-suffix.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/pdf/293dc9fa15113d5d-suffix.pdf",
+      "size": 2913623
+    },
+    "e8fbcbbe7ab83000d6aeb8c5fdbb0be81047c222547092a07d1242a78bd7b426:2228382": {
+      "pathname": "books/suffix/epub/e8fbcbbe7ab83000-suffix.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/epub/e8fbcbbe7ab83000-suffix.epub",
+      "size": 2228382
+    },
+    "3a2a51d60563f85de773903d88884e893514ed796af831b962b93462e9c6d83d:55729": {
+      "pathname": "books/suffix/html/3a2a51d60563f85d-suffix.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/html/3a2a51d60563f85d-suffix.html",
+      "size": 55729
+    },
+    "7fe0098e0e6c64e971125f31faf5c6996847064a44cdb890f007ba0b4ef5ee71:553841": {
+      "pathname": "books/verdun/vault/7fe0098e0e6c64e9-verdun-full-vault (0.1.0-verdun-0ba88210).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/vault/7fe0098e0e6c64e9-verdun-full-vault%20%280.1.0-verdun-0ba88210%29.zip",
+      "size": 553841
     }
   },
   "chapterPackages": {
@@ -16024,6 +16069,207 @@
           "size": 7675,
           "pathname": "books/suffix/chapters/890dc590fcc4eeba/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/890dc590fcc4eeba/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "e11f1c8d6a96099de31eeed70338eab3c3a8d76a52b0de8df76643a4d714b92c": {
+      "pathnamePrefix": "books/verdun/chapters/e11f1c8d6a96099d",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "d094ac4c516a5fdbdc440e0329c2ed7b6332ace4265004e7d61ee99580ff5707",
+          "size": 222,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "4489eb85950f9bae11bfd0ae11c973bc292fdaf20e9960b20835f2e8a06d8803",
+          "size": 2459,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "061f02687fa302d61166ce1c484b2ed9b34e65c3a0e74183122a58f27ed1e922",
+          "size": 3657,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "030478f1109a70be5bf7fc979fec1fdd1fe03ce80234c0f8b8ef6f40cfc61b9f",
+          "size": 4179,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "2bd90d08c1f120275fa4cff558e2bcb6c0ed6d1038cf442142228e409b013831",
+          "size": 3677,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "5223c4f2ba33371038de0f32dbb87dc4c9c34f9245151d119df66a4052747638",
+          "size": 3866,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "837ecbf2bd73142fd041d119ece6eb6c52c2cf6ca3155557c2271a0e9bdce2a2",
+          "size": 4651,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "fb0ddde2e6aa5294c1dea44019a1136b775883193f5c68abac9985659b11b88d",
+          "size": 3425,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "bb3dc7030107c76cdc013cf86b27cd146012166e5c956eef6394c4ab5da8e3db",
+          "size": 3397,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "4774a4fc0e1db92ec9aa56d80ee3f034e2b2cc107735e5455dd0906f114515b7",
+          "size": 2958,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "7ef023860079cd6bad6a5ff7ee5101bba77159d97f25487c7936d66e64501e80",
+          "size": 3690,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/verdun/verdun-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "b2d057a3897d29a24888a4f7de1129a49225c38bb48837d1fadcbe027fcb533f",
+          "size": 1884,
+          "pathname": "books/verdun/chapters/e11f1c8d6a96099d/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/verdun/chapters/e11f1c8d6a96099d/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "e3d2fc022b85f9b2158c03ad9c244ae1600005b9c8bcddf3c5a1ab64ccf96c87": {
+      "pathnamePrefix": "books/suffix/chapters/e3d2fc022b85f9b2",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "31055ef179070a5e667809c3e744086aad4c73447a64b305ebe861da39699ee8",
+          "size": 458,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "163f3105399ef2b6b1c511f39de98f6d8f1ca977af01757cdc5fcbd79f992e29",
+          "size": 2362,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "761429fe169d49ff946ee057a470dfc99b14c6e00255d0fb4f0510cf4714370a",
+          "size": 5719,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "a203ab6cd9d7676fe44d8fc8e3e235ec4ae45f57d294dca61c5b6d50394980d2",
+          "size": 9240,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "37d972873e7124a8fdf356f9da9d0467ee330550d24798b1b2bf40dfbf81cf7a",
+          "size": 12712,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "7bff78b305a226dee834de10ed29edd9828426e6d1c556e82bfef480ae540cb1",
+          "size": 30293,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "0c21c8bf92fbf974d6da0ba53be1ef8a9d8414b936f477b7e1f4d984451e7f96",
+          "size": 13171,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "4abd42ba256cab9674098ffd6980e5e9183d661d4e7a16b0eedd751eacefaf33",
+          "size": 5818,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/suffix/suffix-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "30ec969236493d2d523cdcd11a3b1a9c0406c60894fa90a6821bc270f3030b2a",
+          "size": 7675,
+          "pathname": "books/suffix/chapters/e3d2fc022b85f9b2/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/chapters/e3d2fc022b85f9b2/sitemap.json",
           "skipped": false
         }
       ]
