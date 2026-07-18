@@ -1258,8 +1258,13 @@ async function discoverVaultDir(bookDir, edition) {
   return null
 }
 
-async function discoverVaultGuide(inputDir, bookDir) {
+async function discoverVaultGuide(inputDir, bookDir, edition) {
+  const veniceGuide = edition === 'preview'
+    ? 'VENICE-PREVIEW-VAULT.md'
+    : 'VENICE-VAULT.md'
   const explicit = [
+    join(inputDir, 'docs', veniceGuide),
+    join(bookDir, 'docs', veniceGuide),
     join(inputDir, 'docs', 'OBSIDIAN-VAULT.md'),
     join(bookDir, 'docs', 'OBSIDIAN-VAULT.md'),
   ]
@@ -1311,7 +1316,7 @@ async function resolveVault(inputDir, distDir, edition, version, slug, options) 
   let guideHtmlName = null
   const guide = options['vault-guide']
     ? resolve(isAbsolute(options['vault-guide']) ? options['vault-guide'] : join(inputDir, options['vault-guide']))
-    : await discoverVaultGuide(inputDir, bookDir)
+    : await discoverVaultGuide(inputDir, bookDir, edition)
   if (guide && (await exists(guide))) {
     guideSource = guide
     guideName = `${slug}-vault-guide (${stamp}).md`
