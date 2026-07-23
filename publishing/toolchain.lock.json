@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-11",
+  "generatedAt": "2026-07-23",
   "homebrew": {
     "formulae": {
       "asdf": {
-        "version": "0.18.0",
+        "version": "0.20.0",
         "command": "asdf",
         "args": ["--version"]
       },
@@ -19,27 +19,27 @@
         "args": ["--version"]
       },
       "node": {
-        "version": "26.3.1",
+        "version": "26.5.0",
         "command": "node",
         "args": ["--version"]
       },
       "pandoc": {
-        "version": "3.9.0.2",
+        "version": "3.10",
         "command": "pandoc",
         "args": ["--version"]
       },
       "poppler": {
-        "version": "26.06.0",
+        "version": "26.07.0",
         "command": "pdfinfo",
         "args": ["-v"]
       },
       "typst": {
-        "version": "0.14.2",
+        "version": "0.15.0",
         "command": "typst",
         "args": ["--version"]
       },
       "uv": {
-        "version": "0.11.14",
+        "version": "0.11.28",
         "command": "uv",
         "args": ["--version"]
       }
