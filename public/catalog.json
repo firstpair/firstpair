@@ -379,6 +379,27 @@
       "source": "https://github.com/alexy/curtail",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/cover/b5928afb6181382a-suffix-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/headboard/6a6f7553eac6d02d-suffix-headboard.png"
+    },
+    {
+      "slug": "rgbdns",
+      "title": "DNS from First Principles",
+      "author": "Alexy Khrabrov",
+      "kicker": "Finished book",
+      "description": "A ground-up explanation of DNS followed by a guided tour of rgbdns, a memory-safe Rust reimplementation of the djbdns suite.",
+      "accent": "#52734d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/pdf/58a92b2f7f152354-rgbdns.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/1ff6b7552d119421-rgbdns.epub",
+      "html": "/read/rgbdns/",
+      "htmlChapters": "/read/rgbdns/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/html/9dc5a706501685d3-rgbdns.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e283ad22eafbf972/index.html",
+      "tags": [
+        "finished"
+      ],
+      "shelf": "technology",
+      "source": "https://github.com/querygraph/rgbdns",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png"
     }
   ]
 }

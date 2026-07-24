@@ -135,6 +135,14 @@
       "htmlChapters": "book-uploads/staging/suffix/suffix-chapters",
       "cover": "book-uploads/staging/suffix/suffix-cover.png",
       "headboard": "book-uploads/staging/suffix/suffix-headboard.png"
+    },
+    "rgbdns": {
+      "pdf": "book-uploads/staging/rgbdns/rgbdns.pdf",
+      "epub": "book-uploads/staging/rgbdns/rgbdns.epub",
+      "html": "book-uploads/staging/rgbdns/rgbdns.html",
+      "htmlChapters": "book-uploads/staging/rgbdns/rgbdns-chapters",
+      "cover": "book-uploads/staging/rgbdns/rgbdns-cover.png",
+      "headboard": "book-uploads/staging/rgbdns/rgbdns-headboard.png"
     }
   }
 }
