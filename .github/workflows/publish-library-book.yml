@@ -17,6 +17,14 @@ on:
         required: true
         default: false
         type: boolean
+      vault_dir:
+        description: Optional source-relative Obsidian vault directory
+        required: false
+        type: string
+      vault_guide:
+        description: Optional source-relative Markdown vault guide
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -69,6 +77,12 @@ jobs:
           )
           if [[ "$PUBLISH_FULL" == "true" ]]; then
             args+=(--full)
+          fi
+          if [[ -n "${{ inputs.vault_dir }}" ]]; then
+            args+=(--vault-dir "$GITHUB_WORKSPACE/source/${{ inputs.vault_dir }}")
+          fi
+          if [[ -n "${{ inputs.vault_guide }}" ]]; then
+            args+=(--vault-guide "$GITHUB_WORKSPACE/source/${{ inputs.vault_guide }}")
           fi
           npm run library:publish -- "${args[@]}"
 
