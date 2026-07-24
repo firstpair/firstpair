@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-24T00:08:21.191Z",
+  "updatedAt": "2026-07-24T23:01:08.705Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4984,7 +4984,7 @@
       }
     },
     "rgbdns": {
-      "updatedAt": "2026-07-24T00:08:21.191Z",
+      "updatedAt": "2026-07-24T23:01:08.705Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -5032,13 +5032,31 @@
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png",
           "skipped": true
         },
+        "vault": {
+          "kind": "vault",
+          "localPath": "book-uploads/staging/rgbdns/rgbdns-full-vault (0.1.1-9f1ed2df).zip",
+          "sha256": "fc6974d09af94c1f8f7d424a7f32bd0b4c753a53377a84928f1d2e929201581e",
+          "size": 7013921,
+          "pathname": "books/rgbdns/vault/fc6974d09af94c1f-rgbdns-full-vault (0.1.1-9f1ed2df).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault/fc6974d09af94c1f-rgbdns-full-vault%20%280.1.1-9f1ed2df%29.zip",
+          "skipped": false
+        },
+        "vaultGuide": {
+          "kind": "vault-guide",
+          "localPath": "book-uploads/staging/rgbdns/rgbdns-vault-guide (0.1.1-9f1ed2df).html",
+          "sha256": "c08943856c33cf4b3c27293faa52c61a31665485443a4d2489fcbaf59eedabba",
+          "size": 7474,
+          "pathname": "books/rgbdns/vault-guide/c08943856c33cf4b-rgbdns-vault-guide (0.1.1-9f1ed2df).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault-guide/c08943856c33cf4b-rgbdns-vault-guide%20%280.1.1-9f1ed2df%29.html",
+          "skipped": false
+        },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/rgbdns/rgbdns-chapters",
           "sha256": "e283ad22eafbf972093b3e0e0b7cda280b44579771a24d1b0704ee4fc75b4b81",
           "pathnamePrefix": "books/rgbdns/chapters/e283ad22eafbf972",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e283ad22eafbf972/index.html",
-          "skipped": false,
+          "skipped": true,
           "files": [
             {
               "localPath": "book-uploads/staging/rgbdns/rgbdns-chapters/book.css",
@@ -6255,6 +6273,16 @@
       "pathname": "books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png",
       "size": 3600010
+    },
+    "fc6974d09af94c1f8f7d424a7f32bd0b4c753a53377a84928f1d2e929201581e:7013921": {
+      "pathname": "books/rgbdns/vault/fc6974d09af94c1f-rgbdns-full-vault (0.1.1-9f1ed2df).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault/fc6974d09af94c1f-rgbdns-full-vault%20%280.1.1-9f1ed2df%29.zip",
+      "size": 7013921
+    },
+    "c08943856c33cf4b3c27293faa52c61a31665485443a4d2489fcbaf59eedabba:7474": {
+      "pathname": "books/rgbdns/vault-guide/c08943856c33cf4b-rgbdns-vault-guide (0.1.1-9f1ed2df).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault-guide/c08943856c33cf4b-rgbdns-vault-guide%20%280.1.1-9f1ed2df%29.html",
+      "size": 7474
     }
   },
   "chapterPackages": {

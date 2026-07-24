@@ -396,11 +396,14 @@
       "tags": [
         "finished"
       ],
-      "shelf": "querygraph",
+      "shelf": "technology",
       "source": "https://github.com/querygraph/rgbdns",
       "post": "https://firstpair.press/announcing-rgbdns",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png",
+      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault/fc6974d09af94c1f-rgbdns-full-vault%20%280.1.1-9f1ed2df%29.zip",
+      "vaultGuide": "/read/rgbdns/guide/",
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault-guide/c08943856c33cf4b-rgbdns-vault-guide%20%280.1.1-9f1ed2df%29.html"
     }
   ]
 }

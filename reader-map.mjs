@@ -104,6 +104,7 @@ export const readerBooks = [
     "slug": "rgbdns",
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/html/9dc5a706501685d3-rgbdns.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e283ad22eafbf972/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e283ad22eafbf972"
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e283ad22eafbf972",
+    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault-guide/c08943856c33cf4b-rgbdns-vault-guide%20%280.1.1-9f1ed2df%29.html"
   }
 ]
