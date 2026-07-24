@@ -80,6 +80,7 @@ jobs:
           git add \
             public \
             reader-map.mjs \
+            deliverable-map.mjs \
             book-uploads/blob-manifest.json \
             book-uploads/book-package-sources.json
           if git diff --cached --quiet; then

@@ -61,8 +61,8 @@ export const deliverableBooks = [
   {
     "slug": "omnighost",
     "title": "Omnighost for First Pair Press",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/2ee115c053fd9d4b-omnighost.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/75a274baefd95ca9-omnighost.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/pdf/cb0906d33ee72ffe-omnighost.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/epub/dcc2e5597c9e67a5-omnighost.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/omnighost/cover/a67a3d7b4d1f5612-omnighost-cover.png"
   },
   {
@@ -117,5 +117,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/pdf/293dc9fa15113d5d-suffix.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/epub/e8fbcbbe7ab83000-suffix.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/suffix/cover/b5928afb6181382a-suffix-cover.png"
+  },
+  {
+    "slug": "rgbdns",
+    "title": "DNS from First Principles",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/pdf/58a92b2f7f152354-rgbdns.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/1ff6b7552d119421-rgbdns.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png"
   }
 ]
