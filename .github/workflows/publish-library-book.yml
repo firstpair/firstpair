@@ -63,6 +63,11 @@ jobs:
         env:
           PUPPETEER_SKIP_DOWNLOAD: "true"
 
+      - name: Install document renderer
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes pandoc
+
       - name: Upload and prepare production catalog
         working-directory: firstpair
         env:
