@@ -8,9 +8,9 @@ A ground-up explanation of DNS followed by a guided tour of rgbdns, a memory-saf
 - [EPUB](/rgbdns/epub/)
 - [Read online](/read/rgbdns/)
 - [Chapter reader](/read/rgbdns/chapters/)
+
 - [Download the Obsidian vault](/rgbdns/vault/)
 - [Read the Obsidian vault guide](/read/rgbdns/guide/)
-
 
 
 The source repository owns the manuscript, metadata, version manifest, build
