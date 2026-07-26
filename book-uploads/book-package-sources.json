@@ -142,7 +142,10 @@
       "html": "book-uploads/staging/rgbdns/rgbdns.html",
       "htmlChapters": "book-uploads/staging/rgbdns/rgbdns-chapters",
       "cover": "book-uploads/staging/rgbdns/rgbdns-cover.png",
-      "headboard": "book-uploads/staging/rgbdns/rgbdns-headboard.png"
+      "headboard": "book-uploads/staging/rgbdns/rgbdns-headboard.png",
+      "vault": "book-uploads/staging/rgbdns/rgbdns-full-vault (0.1.1-bf49cc49).zip",
+      "vaultGuideMarkdown": "book-uploads/staging/rgbdns/rgbdns-vault-guide (0.1.1-bf49cc49).md",
+      "vaultGuideHtml": "book-uploads/staging/rgbdns/rgbdns-vault-guide (0.1.1-bf49cc49).html"
     }
   }
 }
