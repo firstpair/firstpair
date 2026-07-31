@@ -121,8 +121,8 @@ export const deliverableBooks = [
   {
     "slug": "rgbdns",
     "title": "DNS from First Principles",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/pdf/acfc985031bfad7a-rgbdns.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/498443783052beee-rgbdns.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/pdf/061865acb775f0b6-rgbdns.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/7500af662276e933-rgbdns.epub",
     "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault/5340fe1513ef1509-rgbdns-full-vault%20%280.1.1-bf49cc49%29.zip",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png"
   },
