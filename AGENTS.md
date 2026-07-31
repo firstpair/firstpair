@@ -25,10 +25,16 @@ shared rules.
   point to `FIRSTPAIR.md` and `~/src/firstpair` instead of duplicating the full
   publishing workflow.
 - Before regenerating, editing, validating with write-capable tools, zipping, or
-  otherwise programmatically touching any Obsidian vault directory, ask the user
-  to close that vault in Obsidian and wait for confirmation. Do not mutate an
-  open vault; Obsidian can rewrite workspace, plugin, and index files in the
-  background and race generated output.
+  otherwise programmatically touching any Obsidian vault directory, first run a
+  read-only main-process check (`pgrep -x Obsidian` on macOS, or the platform
+  equivalent). If no Obsidian process is running, the closed-vault gate is
+  satisfied; proceed without asking the user to type or confirm `closed`. If
+  Obsidian is running, ask the user to quit it fully, then repeat the process
+  check before touching the vault. A text confirmation does not override a
+  positive process check. If process state cannot be determined reliably, fail
+  closed and request explicit confirmation. Do not mutate an open vault;
+  Obsidian can rewrite workspace, plugin, and index files in the background and
+  race generated output.
 - Regenerate derived editions from source, then run the source-owned validators
   and FirstPair checks before staging, uploading, or publishing. A failed
   validator is a stop condition, not something to route around.
@@ -417,12 +423,16 @@ Do not connect the full evidence vault to a phone; derive the mobile product
 directly from canonical source instead.
 
 Before regenerating, editing, validating with write-capable tools, zipping, or
-otherwise programmatically touching an Obsidian vault directory, ask the user to
-close that vault in Obsidian and wait for confirmation. Obsidian may keep
-workspace, plugin, and index files open or rewrite them in the background;
-writing the vault while it is open can race those writes and poison the
-generated edition. Once confirmed closed, regenerate the vault from source, then
-validate it before staging or publishing.
+otherwise programmatically touching an Obsidian vault directory, run the
+read-only main-process gate first (`pgrep -x Obsidian` on macOS, or the platform
+equivalent). No matching process satisfies the gate without a user message; do
+not ask the user to type or confirm `closed`. If Obsidian is running, ask the
+user to quit it fully and repeat the check before continuing. If the process
+state is indeterminate, fail closed and request explicit confirmation. Obsidian
+may keep workspace, plugin, and index files open or rewrite them in the
+background; writing the vault while it is open can race those writes and poison
+the generated edition. Once the gate passes, regenerate the vault from source,
+then validate it before staging or publishing.
 
 For compact device editions, follow
 `publishing/skills/obsidian-mobile-vault.md`. Treat the mobile vault as a
@@ -467,7 +477,10 @@ When composing edition descriptions, do not append an editor or translator
 credit already embedded in the title. Source-owned tests and validators must
 reject repeated semicolon segments and repeated role-plus-contributor credits
 across canonical passage rows, plugin JSON, full notes, and compact mobile
-notes.
+notes. Normalize contributor identity separately from display text, including
+punctuation, spacing, and trailing `et al.` variants. After a repair, rebuild
+every retained generated vault, scan the actual Markdown and JSON payloads, and
+inspect the affected source note after Obsidian reports **Fully synced**.
 
 When a book project discovers a reusable improvement to full-vault structure,
 mobile derivation, Reader interaction, first-open behavior, source navigation,

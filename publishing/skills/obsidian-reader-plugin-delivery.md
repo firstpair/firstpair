@@ -68,8 +68,8 @@ unreadable in Restricted mode.
     heading attributes such as `{.unnumbered}` and
     `{.unnumbered .unlisted}` from both static Reader notes and page Markdown
     embedded in the Reader index; Obsidian otherwise displays them literally.
-    Preserve braces that are ordinary prose rather than recognized heading
-    attributes.
+    Do the same for source-specific IDs such as `{#anthology-a03}`. Preserve
+    braces that are ordinary prose rather than recognized heading attributes.
 
 ## Source Navigation Contract
 
@@ -103,6 +103,50 @@ unreadable in Restricted mode.
    and contributor. Reject repeated semicolon segments and repeated contributor
    credits in the canonical corpus, generated JSON indexes, full notes, and
    compact mobile notes; do not repair only the visible Markdown.
+8. For a source anthology, translate canonical Pandoc IDs to the visible
+   Obsidian heading before emitting a citation. The generated source note must
+   omit the `{#...}` text, and a citation must use the exact heading target;
+   opening the top of a long anthology is not successful navigation.
+9. When a Reader follows an anthology citation, do not let native hash handling
+   mark the whole destination section. Open the source note without the hash,
+   wait for preview rendering, locate the matching heading with a bounded
+   retry, scroll it into view, and apply the Reader's highlight class to that
+   heading only. Offer this as the default **Highlight only the linked
+   anthology title** setting, alongside an independent **Open source anthology
+   in a new tab** setting. Preserve both preferences in plugin `data.json`.
+
+## Bibliographic Integrity Gate
+
+1. Preserve the source title as display text, but compare contributor identity
+   through a separate normalized key. Ignore case, spacing, punctuation,
+   diacritics, and a trailing `et al.` for identity matching so a title credit
+   such as `chiefly translated by C. D. Yonge` is not followed by a second
+   structured credit for `C. D. Yonge et al.`. Do not rewrite the displayed
+   title or erase a genuinely different editor or translator.
+2. Make the bibliography composer fail closed when its completed description
+   contains an exact repeated semicolon segment or repeats the same role and
+   contributor. Apply that invariant to automatic alignments, curated
+   replacements, unresolved clusters, plugin-index rows, and rendered notes.
+3. Test both the known embedded-credit case and a deliberately malformed
+   repeated-credit fixture. Then generate the entire bilingual publication in
+   memory and report its work, passage, gap, and note counts with zero findings.
+4. After changing composition, close Obsidian and rebuild every retained full,
+   preview, mobile, or candidate vault tree. A source test cannot prove that an
+   older generated tree or connected Sync product is clean.
+5. Scan the actual generated `.md`, `.json`, and `.jsonl` files. Parse edition
+   fields structurally and also run a literal adjacent-credit search so the
+   audit covers canonical rows, plugin payloads, full source notes, and compact
+   mobile notes. Report files and bibliography values checked, not only a
+   passing exit code.
+6. Reopen the connected vault, wait for indexing and **Fully synced**, and
+   inspect the exact source note and edition line that exposed the defect. The
+   visible credit must occur once after Sync; a clean local build alone is not
+   deployment evidence.
+
+Validated Cicero example: five retained vault trees, 5,893 Markdown or JSON
+files, and 147,383 bibliography values scanned with zero repetitions, followed
+by a live Winstedt source-note check after **Fully synced**. Preserve this
+method, not those title-specific counts.
 
 ## Plugin Package And Performance
 
@@ -128,8 +172,9 @@ unreadable in Restricted mode.
    their jumps. Load and normalize indexes once and cache them until the
    configured path changes.
 5. Provide settings for Reader rail position, quote-index path, minimum fuzzy
-   confidence, and opening a source in the same leaf or a new tab. Preserve the
-   Reader's `data.json` across generated-vault refreshes.
+   confidence, title-only anthology highlighting, and opening a source in the
+   same leaf or a new tab. Preserve the Reader's `data.json` across generated-
+   vault refreshes.
 6. Install the package under `.obsidian/plugins/<plugin-id>/`, but leave the
    distributed `community-plugins.json` empty. Readers inspect and enable the
    plugin deliberately; core-only reading works immediately.
@@ -183,6 +228,13 @@ its local note target at phone width. Then verify Back restores the exact
 footnote marker and prior positions after Top, TOC, Up, Previous, and Next.
 Exercise repeated LIFO returns, the history bound, cross-page rerenders, and the
 invariant that Back restoration does not create another history entry.
+
+For anthology navigation, include at least one non-initial entry such as A3.
+Assert that the generated note has no visible `{#anthology-...}` text, the
+citation targets the exact visible heading, title-only mode highlights that
+heading without highlighting the surrounding source block, and new-tab mode
+leaves the originating Reader page intact. Test both settings after a full
+plugin reload on iOS.
 
 Serve visual fixtures from the plugin root, not from a nested test directory,
 so relative assets such as `../styles.css` resolve exactly as they do in the

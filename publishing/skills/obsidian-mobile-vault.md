@@ -15,8 +15,13 @@ package.
 1. Confirm the source repository, generated mobile-vault path, local Obsidian
    vault path, and dedicated Obsidian Sync remote. Never attach the compact
    vault to the complete vault's remote.
-2. Ask the user to close the generated and local mobile vaults before a full
-   rebuild. Wait for confirmation before writing either directory.
+2. Run a read-only main-process check first (`pgrep -x Obsidian` on macOS, or
+   the platform equivalent). If no Obsidian process is running, treat the
+   closed-vault gate as satisfied and do not ask the user to type or confirm
+   `closed`. If Obsidian is running, ask the user to quit it fully and repeat
+   the check before writing the generated or local mobile vault. If process
+   state cannot be determined reliably, fail closed and request explicit
+   confirmation.
 3. Derive the payload from canonical source. Include the complete continuous
    Reader sequence, the exact bilingual passages reached by its quotations,
    the canonical cover, compact derivatives of every selected Reader image, a
@@ -86,6 +91,24 @@ package.
     volatile workspace aliases and their aggregate-byte effect; it must retain
     exact Reader, source, plugin, illustration, link, count, size-limit, and
     individual-hash checks.
+
+## Anthology Links On Mobile
+
+When canonical book Markdown uses Pandoc identifiers such as
+`### A3. Title {#anthology-a03}`, translate them during mobile derivation:
+
+1. Remove every renderer-only `{#anthology-...}` attribute from the generated
+   anthology note; Obsidian displays it as prose and cannot route to it as an
+   anchor.
+2. Build a canonical-ID-to-visible-heading map from the anthology source, then
+   emit Reader citations as ordinary Obsidian heading links, for example
+   `[[Source Anthology#A3. Title|Anthology A3]]`. Never point a mobile link at
+   the Pandoc identifier.
+3. Validate both sides: the generated anthology contains no Pandoc anthology
+   attributes, and representative A-series citations resolve to the expected
+   visible heading. A link that merely opens the anthology's top is broken.
+4. Keep the anthology as one static, readable note; its reader-facing text
+   cites titles, editions, and public references, never local source paths.
 
 The product manifest should bind at least the edition, Reader page count,
 bilingual passage count, illustration count, plugin version, plugin hashes,
