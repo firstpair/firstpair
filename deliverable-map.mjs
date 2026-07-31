@@ -132,5 +132,13 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/pdf/ef4fee83086aa5c4-moshpit-guide.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/epub/1f5a6ac34db7da2a-moshpit-guide.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/cover/818c7a47fcd21634-moshpit-guide-cover.png"
+  },
+  {
+    "slug": "rosetta",
+    "title": "Rosetta: Comparative Voice Engineering as Editorial Method",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/pdf/24ce43f00031a6ab-rosetta.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
+    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault%20%281.0.0-1b19ff01%29.zip",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/cover/3398240f429a98d1-rosetta-cover.png"
   }
 ]

@@ -112,5 +112,12 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/html/24ec255586913088-moshpit-guide.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4"
+  },
+  {
+    "slug": "rosetta",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/html/8ea2da1f2c1f7734-rosetta.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb",
+    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide%20%281.0.0-1b19ff01%29.html"
   }
 ]

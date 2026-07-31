@@ -154,6 +154,17 @@
       "htmlChapters": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters",
       "cover": "book-uploads/staging/moshpit-guide/moshpit-guide-cover.png",
       "headboard": "book-uploads/staging/moshpit-guide/moshpit-guide-headboard.png"
+    },
+    "rosetta": {
+      "pdf": "book-uploads/staging/rosetta/rosetta.pdf",
+      "epub": "book-uploads/staging/rosetta/rosetta.epub",
+      "html": "book-uploads/staging/rosetta/rosetta.html",
+      "htmlChapters": "book-uploads/staging/rosetta/rosetta-chapters",
+      "cover": "book-uploads/staging/rosetta/rosetta-cover.png",
+      "headboard": "book-uploads/staging/rosetta/rosetta-headboard.png",
+      "vault": "book-uploads/staging/rosetta/rosetta-full-vault (1.0.0-1b19ff01).zip",
+      "vaultGuideMarkdown": "book-uploads/staging/rosetta/rosetta-vault-guide (1.0.0-1b19ff01).md",
+      "vaultGuideHtml": "book-uploads/staging/rosetta/rosetta-vault-guide (1.0.0-1b19ff01).html"
     }
   }
 }
