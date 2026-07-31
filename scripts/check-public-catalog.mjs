@@ -55,6 +55,7 @@ const invalidVaultGuideRoutes = []
 const invalidPreviewSources = []
 const invalidPostUrls = []
 const invalidAuthors = []
+const validPostOrigins = new Set(['https://firstpair.press', 'https://querygraph.ai'])
 const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
 const staleDeliverableMap = []
@@ -152,7 +153,10 @@ for (const book of catalog.books) {
     }
   }
 
-  if (book.post && !book.post.startsWith('https://firstpair.press/')) {
+  if (
+    book.post &&
+    (!URL.canParse(book.post) || !validPostOrigins.has(new URL(book.post).origin))
+  ) {
     invalidPostUrls.push({ slug: book.slug, post: book.post })
   }
 

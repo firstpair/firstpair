@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T18:07:36.683Z",
+  "updatedAt": "2026-07-31T20:17:32.858Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -5599,6 +5599,292 @@
           ]
         }
       }
+    },
+    "rosetta": {
+      "updatedAt": "2026-07-31T20:17:32.858Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/rosetta/rosetta.pdf",
+          "sha256": "24ce43f00031a6abf480f42f6a320ba186f50944c9c10ec443d92653050338f3",
+          "size": 1476678,
+          "pathname": "books/rosetta/pdf/24ce43f00031a6ab-rosetta.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/pdf/24ce43f00031a6ab-rosetta.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/rosetta/rosetta.epub",
+          "sha256": "c7df52472dfa205badc21668611efa5fd22e9f7c7f4afb9f5d869f16529b167b",
+          "size": 1308577,
+          "pathname": "books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/rosetta/rosetta.html",
+          "sha256": "8ea2da1f2c1f77341b93cb84286b8c600bb859ad0613e22b93e89d806b18406a",
+          "size": 1937771,
+          "pathname": "books/rosetta/html/8ea2da1f2c1f7734-rosetta.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/html/8ea2da1f2c1f7734-rosetta.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/rosetta/rosetta-cover.png",
+          "sha256": "3398240f429a98d17a6cd2cb78865399e2e16660da2c011d2aa800c246fc3fe4",
+          "size": 7661149,
+          "pathname": "books/rosetta/cover/3398240f429a98d1-rosetta-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/cover/3398240f429a98d1-rosetta-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/rosetta/rosetta-headboard.png",
+          "sha256": "3910d22ce74c3d70891110b18a113e65cd8cfb43c51024abdd25ef7ada62f835",
+          "size": 4469019,
+          "pathname": "books/rosetta/headboard/3910d22ce74c3d70-rosetta-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/headboard/3910d22ce74c3d70-rosetta-headboard.png",
+          "skipped": false
+        },
+        "vault": {
+          "kind": "vault",
+          "localPath": "book-uploads/staging/rosetta/rosetta-full-vault (1.0.0-1b19ff01).zip",
+          "sha256": "5ba253974806ce2bebefa94422e7ff8e420a4306c4dab0cede745f887c2bbb41",
+          "size": 17413454,
+          "pathname": "books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault (1.0.0-1b19ff01).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault%20%281.0.0-1b19ff01%29.zip",
+          "skipped": false
+        },
+        "vaultGuide": {
+          "kind": "vault-guide",
+          "localPath": "book-uploads/staging/rosetta/rosetta-vault-guide (1.0.0-1b19ff01).html",
+          "sha256": "b22d3b031520e2eae33bb851351adec1c1d3e1f1405e787bdd573931f0598b90",
+          "size": 67842,
+          "pathname": "books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide (1.0.0-1b19ff01).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide%20%281.0.0-1b19ff01%29.html",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters",
+          "sha256": "5bf315bcd27171eb2933a8f7df7ed10d069bb11ad5d013e629ea5a9bba17d9dd",
+          "pathnamePrefix": "books/rosetta/chapters/5bf315bcd27171eb",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-01-voice-lineage.png",
+              "relativePath": "assets/fig-01-voice-lineage.png",
+              "sha256": "9e3efda50b12057a4bb0cddb0a767ac001ebcee812f18ae78683f40abc74fed9",
+              "size": 243598,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-01-voice-lineage.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-01-voice-lineage.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-02-lighthouse-kindle.png",
+              "relativePath": "assets/fig-02-lighthouse-kindle.png",
+              "sha256": "a12a98cd2f0d695fe82e72956779603a4a14f0b8e252bcfd6e47221d32385b7e",
+              "size": 293242,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-02-lighthouse-kindle.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-02-lighthouse-kindle.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-03-lighthouse-obsidian-desktop.png",
+              "relativePath": "assets/fig-03-lighthouse-obsidian-desktop.png",
+              "sha256": "78cb1f3111dde93695b642e097c3130fc75124c2db7b47455b63b94b26f59feb",
+              "size": 315550,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-03-lighthouse-obsidian-desktop.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-03-lighthouse-obsidian-desktop.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-04-method-pipeline.png",
+              "relativePath": "assets/fig-04-method-pipeline.png",
+              "sha256": "9efccecd0f17d07cb06a2963206f7dcfaf172f47c1c77ff30acdb3b69af0680c",
+              "size": 194673,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-04-method-pipeline.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-04-method-pipeline.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-05-russian-kindle.png",
+              "relativePath": "assets/fig-05-russian-kindle.png",
+              "sha256": "41b9b5bf408818041cc8ee66613730f1027ad01b6398a99c59c5637259393219",
+              "size": 183614,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-05-russian-kindle.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-05-russian-kindle.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-06-invented-obsidian-mobile.png",
+              "relativePath": "assets/fig-06-invented-obsidian-mobile.png",
+              "sha256": "edaeb6bd72bdf15dff37e7bf51eb5408c892453dc2830617ecc217ca5c1f0457",
+              "size": 174923,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-06-invented-obsidian-mobile.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-06-invented-obsidian-mobile.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "a29a83ab08be5dc49cc33bd972231b495bd84b40d9edef8681d84b778fd84cdb",
+              "size": 451,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "326132b24d5fa8e2b621542815765a59134a86ef612a967f19744739103eb513",
+              "size": 3080,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "11641e94c2cf356d4925766e08a01cee7b9e363b422483181a79f4f318fc1418",
+              "size": 5686,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "b13013bb811c22cd7680249b118e2aed156eb9489a7f0e3a2331bdf3e14d118a",
+              "size": 4621,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "05a8f8d7b62bbc6a322c2ad107ee4e0662219bd8e318c60b5ed972122f9440b5",
+              "size": 8389,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "724974cba2a7ac59eb930fbc7459c05a64871af1fa3570609b75a8bdbeab4e7d",
+              "size": 6001,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "ff401a52f77ef58fa815528dfb6e2458f5374cb8c09d209879aa593bc0664843",
+              "size": 8696,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "90e5fc1a14536e5df40d3ea0f5cba602775e0ea5fcc9f86f022a47632094ffc5",
+              "size": 8738,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "63cd8e0f710b298a32bef6104a096a19cfb1888b970ef69f6a2d54f6ab43a78d",
+              "size": 6641,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "8b23c95d0d0e7482169270d09880aefb04c95d3b386f88fbebbcb94e3d39da5a",
+              "size": 7466,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "0c43660597c357a247fc7e082386a7148344a45bfc30355cf867bfe9f66edacd",
+              "size": 12180,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "cb3f36a7247edf9c084dae176086c91bb6fb4b26e5713a6c08f35e4589170048",
+              "size": 6910,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "693ca7026de2d2a8f348a6d68f1e9a685c7a1254450d2d7ac1b7ccf559078ea9",
+              "size": 7092,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "07ada3258892a5aabb60507f00e0ceea0ab1718ae61576153d2bde4b4a985fb2",
+              "size": 4438,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "c85e52e602fb4f3138ab0d2a761d61bf8de615cff34fdb6e0c574e551e27e59e",
+              "size": 4912,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "ea937ce82708f56569efa93c4110a2a64a7ee02c05e354edbd4992e61fa15bec",
+              "size": 5406,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/rosetta/rosetta-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "862383b60749dff50112404823ecc100f1501ef4656466c2b2a1ee54850bc958",
+              "size": 7349,
+              "pathname": "books/rosetta/chapters/5bf315bcd27171eb/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -6641,6 +6927,41 @@
       "pathname": "books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png",
       "size": 4787427
+    },
+    "24ce43f00031a6abf480f42f6a320ba186f50944c9c10ec443d92653050338f3:1476678": {
+      "pathname": "books/rosetta/pdf/24ce43f00031a6ab-rosetta.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/pdf/24ce43f00031a6ab-rosetta.pdf",
+      "size": 1476678
+    },
+    "c7df52472dfa205badc21668611efa5fd22e9f7c7f4afb9f5d869f16529b167b:1308577": {
+      "pathname": "books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
+      "size": 1308577
+    },
+    "8ea2da1f2c1f77341b93cb84286b8c600bb859ad0613e22b93e89d806b18406a:1937771": {
+      "pathname": "books/rosetta/html/8ea2da1f2c1f7734-rosetta.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/html/8ea2da1f2c1f7734-rosetta.html",
+      "size": 1937771
+    },
+    "3398240f429a98d17a6cd2cb78865399e2e16660da2c011d2aa800c246fc3fe4:7661149": {
+      "pathname": "books/rosetta/cover/3398240f429a98d1-rosetta-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/cover/3398240f429a98d1-rosetta-cover.png",
+      "size": 7661149
+    },
+    "3910d22ce74c3d70891110b18a113e65cd8cfb43c51024abdd25ef7ada62f835:4469019": {
+      "pathname": "books/rosetta/headboard/3910d22ce74c3d70-rosetta-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/headboard/3910d22ce74c3d70-rosetta-headboard.png",
+      "size": 4469019
+    },
+    "5ba253974806ce2bebefa94422e7ff8e420a4306c4dab0cede745f887c2bbb41:17413454": {
+      "pathname": "books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault (1.0.0-1b19ff01).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault%20%281.0.0-1b19ff01%29.zip",
+      "size": 17413454
+    },
+    "b22d3b031520e2eae33bb851351adec1c1d3e1f1405e787bdd573931f0598b90:67842": {
+      "pathname": "books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide (1.0.0-1b19ff01).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide%20%281.0.0-1b19ff01%29.html",
+      "size": 67842
     },
     "061865acb775f0b604d69ed55d7a03670e71bad84887a4287c96ffb603c98234:3689174": {
       "pathname": "books/rgbdns/pdf/061865acb775f0b6-rgbdns.pdf",
@@ -17836,6 +18157,219 @@
           "size": 5735,
           "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "5bf315bcd27171eb2933a8f7df7ed10d069bb11ad5d013e629ea5a9bba17d9dd": {
+      "pathnamePrefix": "books/rosetta/chapters/5bf315bcd27171eb",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-01-voice-lineage.png",
+          "relativePath": "assets/fig-01-voice-lineage.png",
+          "sha256": "9e3efda50b12057a4bb0cddb0a767ac001ebcee812f18ae78683f40abc74fed9",
+          "size": 243598,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-01-voice-lineage.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-01-voice-lineage.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-02-lighthouse-kindle.png",
+          "relativePath": "assets/fig-02-lighthouse-kindle.png",
+          "sha256": "a12a98cd2f0d695fe82e72956779603a4a14f0b8e252bcfd6e47221d32385b7e",
+          "size": 293242,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-02-lighthouse-kindle.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-02-lighthouse-kindle.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-03-lighthouse-obsidian-desktop.png",
+          "relativePath": "assets/fig-03-lighthouse-obsidian-desktop.png",
+          "sha256": "78cb1f3111dde93695b642e097c3130fc75124c2db7b47455b63b94b26f59feb",
+          "size": 315550,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-03-lighthouse-obsidian-desktop.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-03-lighthouse-obsidian-desktop.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-04-method-pipeline.png",
+          "relativePath": "assets/fig-04-method-pipeline.png",
+          "sha256": "9efccecd0f17d07cb06a2963206f7dcfaf172f47c1c77ff30acdb3b69af0680c",
+          "size": 194673,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-04-method-pipeline.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-04-method-pipeline.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-05-russian-kindle.png",
+          "relativePath": "assets/fig-05-russian-kindle.png",
+          "sha256": "41b9b5bf408818041cc8ee66613730f1027ad01b6398a99c59c5637259393219",
+          "size": 183614,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-05-russian-kindle.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-05-russian-kindle.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/assets/fig-06-invented-obsidian-mobile.png",
+          "relativePath": "assets/fig-06-invented-obsidian-mobile.png",
+          "sha256": "edaeb6bd72bdf15dff37e7bf51eb5408c892453dc2830617ecc217ca5c1f0457",
+          "size": 174923,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/assets/fig-06-invented-obsidian-mobile.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/assets/fig-06-invented-obsidian-mobile.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "a29a83ab08be5dc49cc33bd972231b495bd84b40d9edef8681d84b778fd84cdb",
+          "size": 451,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "326132b24d5fa8e2b621542815765a59134a86ef612a967f19744739103eb513",
+          "size": 3080,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "11641e94c2cf356d4925766e08a01cee7b9e363b422483181a79f4f318fc1418",
+          "size": 5686,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "b13013bb811c22cd7680249b118e2aed156eb9489a7f0e3a2331bdf3e14d118a",
+          "size": 4621,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "05a8f8d7b62bbc6a322c2ad107ee4e0662219bd8e318c60b5ed972122f9440b5",
+          "size": 8389,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "724974cba2a7ac59eb930fbc7459c05a64871af1fa3570609b75a8bdbeab4e7d",
+          "size": 6001,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "ff401a52f77ef58fa815528dfb6e2458f5374cb8c09d209879aa593bc0664843",
+          "size": 8696,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "90e5fc1a14536e5df40d3ea0f5cba602775e0ea5fcc9f86f022a47632094ffc5",
+          "size": 8738,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "63cd8e0f710b298a32bef6104a096a19cfb1888b970ef69f6a2d54f6ab43a78d",
+          "size": 6641,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "8b23c95d0d0e7482169270d09880aefb04c95d3b386f88fbebbcb94e3d39da5a",
+          "size": 7466,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "0c43660597c357a247fc7e082386a7148344a45bfc30355cf867bfe9f66edacd",
+          "size": 12180,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "cb3f36a7247edf9c084dae176086c91bb6fb4b26e5713a6c08f35e4589170048",
+          "size": 6910,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "693ca7026de2d2a8f348a6d68f1e9a685c7a1254450d2d7ac1b7ccf559078ea9",
+          "size": 7092,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "07ada3258892a5aabb60507f00e0ceea0ab1718ae61576153d2bde4b4a985fb2",
+          "size": 4438,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "c85e52e602fb4f3138ab0d2a761d61bf8de615cff34fdb6e0c574e551e27e59e",
+          "size": 4912,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "ea937ce82708f56569efa93c4110a2a64a7ee02c05e354edbd4992e61fa15bec",
+          "size": 5406,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/rosetta/rosetta-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "862383b60749dff50112404823ecc100f1501ef4656466c2b2a1ee54850bc958",
+          "size": 7349,
+          "pathname": "books/rosetta/chapters/5bf315bcd27171eb/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/sitemap.json",
           "skipped": false
         }
       ]

@@ -398,7 +398,7 @@
       ],
       "shelf": "technology",
       "source": "https://github.com/querygraph/rgbdns",
-      "post": "https://firstpair.press/announcing-rgbdns",
+      "post": "https://querygraph.ai/announcing-rgbdns/",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/headboard/6dc2a467d3cd4bdd-rgbdns-headboard.png",
       "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault/5340fe1513ef1509-rgbdns-full-vault%20%280.1.1-bf49cc49%29.zip",
@@ -430,6 +430,33 @@
       "source": "https://github.com/alexy/moshpit",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/cover/818c7a47fcd21634-moshpit-guide-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png"
+    },
+    {
+      "slug": "rosetta",
+      "title": "Rosetta: Comparative Voice Engineering as Editorial Method",
+      "author": "First Pair Editorial Research",
+      "kicker": "Scholarly article",
+      "description": "How First Pair developed comparative voice engineering, LitVoice, and Rosetta across Lighthouse Republics and the Russian translation of The Invented Enemy.",
+      "accent": "#8a4f3d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/pdf/24ce43f00031a6ab-rosetta.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
+      "html": "/read/rosetta/",
+      "htmlChapters": "/read/rosetta/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/html/8ea2da1f2c1f7734-rosetta.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
+      "tags": [
+        "finished",
+        "scholarly-article",
+        "editorial-method",
+        "rosetta"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/firstpair/firstpair",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/cover/3398240f429a98d1-rosetta-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/headboard/3910d22ce74c3d70-rosetta-headboard.png",
+      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault%20%281.0.0-1b19ff01%29.zip",
+      "vaultGuide": "/read/rosetta/guide/",
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide%20%281.0.0-1b19ff01%29.html"
     }
   ]
 }

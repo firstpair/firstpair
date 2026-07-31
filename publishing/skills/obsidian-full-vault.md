@@ -37,9 +37,14 @@ than leaving the Reader for a previously open note.
 2. Require a clean, committed source tree when Git blobs, source lines, or
    commit identity enter the vault manifest. Read LFS-managed bytes from the
    verified worktree and reject unresolved pointer text.
-3. Ask the user to close every generated or local instance of the vault. Wait
-   for confirmation before replacing content, resetting workspace state,
-   validating with write-capable tools, zipping, staging, or publishing.
+3. Run a read-only main-process check first (`pgrep -x Obsidian` on macOS, or
+   the platform equivalent). If no Obsidian process is running, treat the
+   closed-vault gate as satisfied and do not ask the user to type or confirm
+   `closed`. If Obsidian is running, ask the user to quit it fully and repeat
+   the check before replacing content, resetting workspace state, validating
+   with write-capable tools, zipping, staging, or publishing. If process state
+   cannot be determined reliably, fail closed and request explicit
+   confirmation.
 4. Build an outer vault root with a regular `Home.md`. Make **Open the Reader**
    the first and most prominent route. Keep the book, guide, Reader, audit
    edition, source, visual, research, and machine-data layers discoverable from

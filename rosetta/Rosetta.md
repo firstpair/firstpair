@@ -809,9 +809,13 @@ reviewed and committed as a new edition before Rosetta regeneration.
 
 ## 13. Build, update, and validation
 
-Close any target vault and wait for Obsidian to finish before regeneration or
-an in-place update. An open vault can rewrite workspace or plugin files while a
-builder is reading them.
+Run a read-only Obsidian main-process check before regeneration or an in-place
+update (`pgrep -x Obsidian` on macOS, or the platform equivalent). If no process
+is running, the closed-vault gate is satisfied and no one needs to type or
+confirm `closed`. If Obsidian is running, quit it fully and repeat the check
+before touching the vault; if process state cannot be determined reliably,
+request explicit confirmation and fail closed until it is received. An open
+vault can rewrite workspace or plugin files while a builder is reading them.
 
 ### Enemy complete Rosetta
 
