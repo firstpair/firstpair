@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-23",
+  "generatedAt": "2026-07-31",
   "homebrew": {
     "formulae": {
       "asdf": {
@@ -34,12 +34,12 @@
         "args": ["-v"]
       },
       "typst": {
-        "version": "0.15.0",
+        "version": "0.15.1",
         "command": "typst",
         "args": ["--version"]
       },
       "uv": {
-        "version": "0.11.28",
+        "version": "0.11.32",
         "command": "uv",
         "args": ["--version"]
       }
