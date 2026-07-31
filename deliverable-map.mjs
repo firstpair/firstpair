@@ -125,5 +125,12 @@ export const deliverableBooks = [
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/7500af662276e933-rgbdns.epub",
     "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/vault/5340fe1513ef1509-rgbdns-full-vault%20%280.1.1-bf49cc49%29.zip",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png"
+  },
+  {
+    "slug": "moshpit-guide",
+    "title": "Moshpit: A Guide to Agent Development with Mosh, Tmux and Ghostty",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/pdf/ef4fee83086aa5c4-moshpit-guide.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/epub/1f5a6ac34db7da2a-moshpit-guide.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/cover/818c7a47fcd21634-moshpit-guide-cover.png"
   }
 ]
