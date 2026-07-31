@@ -146,6 +146,14 @@
       "vault": "book-uploads/staging/rgbdns/rgbdns-full-vault (0.1.1-bf49cc49).zip",
       "vaultGuideMarkdown": "book-uploads/staging/rgbdns/rgbdns-vault-guide (0.1.1-bf49cc49).md",
       "vaultGuideHtml": "book-uploads/staging/rgbdns/rgbdns-vault-guide (0.1.1-bf49cc49).html"
+    },
+    "moshpit-guide": {
+      "pdf": "book-uploads/staging/moshpit-guide/moshpit-guide.pdf",
+      "epub": "book-uploads/staging/moshpit-guide/moshpit-guide.epub",
+      "html": "book-uploads/staging/moshpit-guide/moshpit-guide.html",
+      "htmlChapters": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters",
+      "cover": "book-uploads/staging/moshpit-guide/moshpit-guide-cover.png",
+      "headboard": "book-uploads/staging/moshpit-guide/moshpit-guide-headboard.png"
     }
   }
 }
