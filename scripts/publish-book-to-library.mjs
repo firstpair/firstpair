@@ -121,6 +121,8 @@ Options:
   --no-deploy               Skip Vercel production deploy and live check.
   --smoke                   Run smoke test even if --no-build is set.
   --dry-run                 Show the resolved plan without writing or uploading.
+                            Dry-runs do not require a clean, pushed Git state;
+                            every mutating run does, for source and FirstPair.
   --verbose                 Pass --verbose to the Blob uploader.
 `)
 }
@@ -789,6 +791,34 @@ async function runChecked(command, args, options = {}) {
   if (code !== 0) {
     throw new Error(`command failed (${code}): ${display}`)
   }
+}
+
+async function requireCleanPushedPublishingRepos(inputDir) {
+  const sourceRoot = await commandOutput(
+    'git',
+    ['-C', inputDir, 'rev-parse', '--show-toplevel'],
+  ).catch(() => null)
+
+  if (!sourceRoot) {
+    throw new Error(
+      `book source is not inside a Git repository: ${inputDir}\n` +
+        'Commit and push the source repository before publishing.',
+    )
+  }
+
+  const repositories = [...new Set([resolve(sourceRoot), resolve(root)])]
+  const args = [join(root, 'publishing', 'scripts', 'git_publish_preflight.py')]
+
+  if (process.env.GITHUB_ACTIONS === 'true') {
+    args.push('--allow-detached-ci-checkout')
+  }
+
+  args.push(...repositories)
+  await runChecked('python3', args, {
+    stdio: 'pipe',
+    onStdout: (chunk) => process.stderr.write(chunk),
+    onStderr: (chunk) => process.stderr.write(chunk),
+  })
 }
 
 function upsertCatalogEntry(catalog, entry) {
@@ -2050,8 +2080,13 @@ async function main() {
     throw new Error(`book directory does not exist: ${inputDir}`)
   }
 
-  const plan = await buildPlan(inputDir, options)
   const dryRun = Boolean(options['dry-run'])
+
+  if (!dryRun) {
+    await requireCleanPushedPublishingRepos(inputDir)
+  }
+
+  const plan = await buildPlan(inputDir, options)
 
   // Safety gate: never replace a preview listing with the full edition unless
   // --full is passed. See AGENTS.md ("Preview → full publishing").

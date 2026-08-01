@@ -28,11 +28,13 @@ publishing/
     build-firstpair-book.sh
     check-version-marker.sh
     ensure-python-env.sh
+    git_publish_preflight.py
     md-to-utmac.py
     publish-versioned-artifacts.sh
     publish-versioned-blog.sh
     render-mermaid.mjs
     setup-utmac.sh
+    stamp-versioned-blog.sh
     textpack.py
   skills/
     *.md
@@ -455,6 +457,14 @@ cd ~/src/firstpair
 npm run library:publish -- /path/to/repo/docs/book/dist --slug <book-stem>
 ```
 
+Every mutating publication requires both the owning book repository and
+FirstPair to be clean and exactly at their configured remote upstreams. The
+publisher runs `publishing/scripts/git_publish_preflight.py` against both before
+writing anything. Commit and push the completed book build first; after the
+publisher changes FirstPair metadata, commit and push that scoped result too.
+`--dry-run` is intentionally exempt so it can diagnose artifact resolution
+without publishing or writing.
+
 Use `--dry-run` to inspect the resolved artifact paths without writing, and
 `--stage-only` to refresh only `book-uploads/staging/<book-stem>/` plus
 `book-uploads/book-package-sources.json`. Use `--no-deploy` when you want the
@@ -465,14 +475,29 @@ Blog textpack delivery:
 ```sh
 REPO_ROOT=/path/to/repo \
 BLOG_DOMAIN=querygraph.ai \
+~/src/firstpair/publishing/scripts/stamp-versioned-blog.sh \
+  docs/blog/<slug>
+
+git add docs/blog/<slug>/dist
+git commit -m "Stamp <slug> blog textpack"
+git push
+
+REPO_ROOT=/path/to/repo \
 ~/src/firstpair/publishing/scripts/publish-versioned-blog.sh \
   docs/blog/<slug> "$HOME/icloud/blogs"
 ```
 
-The textpack builder safely commits the source Markdown and referenced local
-assets before packaging, embeds that Git commit plus a portable payload digest,
-and falls back to hash-only provenance when Git is unavailable or unsafe. The
-delivery helper derives its versioned filename after that source commit.
+Begin blog work only from a clean, pushed owning repository. After editing,
+commit and push the source Markdown and every referenced local asset before
+invoking the textpack flow. The builder fails closed unless those inputs match
+the clean remote HEAD, then embeds the newest pushed commit that changed any
+bundled input and still matches all bundled inputs, plus a portable payload
+digest. This source identity and the deterministic archive bytes survive a
+later pack-only commit. The builder neither commits nor pushes and never falls
+back to hash-only provenance. The delivery helper derives its versioned
+filename from the embedded source commit. Commit and push the textpack, marker,
+and versioned link before invoking the delivery helper. The helper requires
+that clean, pushed, tracked handoff and never rebuilds it.
 
 The `VERSION.md` checker and delivery helper discover all formatter suffixes
 from the manifest. They handle classic QueryGraph fields such as

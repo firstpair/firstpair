@@ -32,77 +32,79 @@ else
     name="$stem"
   fi
 fi
-
 if [[ ! -f "$post_file" ]]; then
   echo "post not found: $post_file" >&2
   exit 2
 fi
 
-version="${BLOG_VERSION:-}"
-if [[ -z "$version" && -f "$repo_root/Cargo.toml" ]]; then
-  version="$(
-    awk '
-      /^\[workspace\.package\]/ { in_workspace_package = 1; next }
-      /^\[package\]/ { in_package = 1; next }
-      /^\[/ { in_workspace_package = 0; in_package = 0 }
-      (in_workspace_package || in_package) && /^version[[:space:]]*=/ {
-        gsub(/"/, "", $3)
-        print $3
-        exit
-      }
-    ' "$repo_root/Cargo.toml"
-  )"
-fi
-if [[ -z "$version" && -f "$repo_root/package.json" ]]; then
-  version="$(node -p "require('$repo_root/package.json').version")"
-fi
-if [[ -z "$version" ]]; then
-  version="0.0.0"
-fi
+python3 "$script_dir/git_publish_preflight.py" "$repo_root"
 
 dist_dir="$post_dir/dist"
 stable="$dist_dir/$name.textpack"
-
-textpack_args=(
-  "$script_dir/textpack.py"
-  "$post_file"
-  --name "$name"
-  --blog "${BLOG_DOMAIN:-querygraph.ai}"
-  --slug "${BLOG_SLUG:-$name}"
-  --out "$stable"
-)
-if [[ -n "${BLOG_TAGS:-}" ]]; then
-  textpack_args+=(--tags "$BLOG_TAGS")
-fi
-if [[ -n "${BLOG_EXCERPT:-}" ]]; then
-  textpack_args+=(--excerpt "$BLOG_EXCERPT")
-fi
-if [[ -n "${BLOG_RENDER:-}" ]]; then
-  textpack_args+=(--render)
-fi
-
-python3 "${textpack_args[@]}"
-
-# textpack.py may have just committed the post and its referenced assets. Derive
-# the delivery filename only afterward so it carries the same repository state.
-githash="$(git -C "$repo_root" rev-parse --short=6 HEAD 2>/dev/null || echo nogit)"
-version_stamp="${BLOG_VERSION_STAMP:-$version-$githash}"
-versioned="$dist_dir/$name ($version_stamp).textpack"
 marker="$dist_dir/VERSION.md"
+if [[ ! -f "$stable" || ! -f "$marker" ]]; then
+  echo "stamped textpack handoff is incomplete; run stamp-versioned-blog.sh, commit, and push first" >&2
+  exit 1
+fi
 
-rm -f "$post_dir/dist/$name ("*").textpack"
-ln -s "$(basename "$stable")" "$versioned"
+marker_value() {
+  awk -F ': ' -v key="$1" '$1 == key { sub(/^[^:]*:[[:space:]]*/, ""); print; exit }' "$marker"
+}
 
-{
-  printf 'blog_name: %s\n' "$name"
-  printf 'blog_domain: %s\n' "${BLOG_DOMAIN:-querygraph.ai}"
-  printf 'slug: %s\n' "${BLOG_SLUG:-$name}"
-  printf 'version_stamp: %s\n' "$version_stamp"
-  printf 'built_at: %s\n' "$(date -u +%F)"
-  printf 'textpack_file: %s.textpack\n' "$name"
-  printf 'textpack_link: %s (%s).textpack\n' "$name" "$version_stamp"
-} > "$marker"
+textpack_file="$(marker_value textpack_file)"
+textpack_link="$(marker_value textpack_link)"
+version_stamp="$(marker_value version_stamp)"
+if [[ "$textpack_file" != "$name.textpack" ]]; then
+  echo "VERSION.md textpack_file does not name the stable pack: $textpack_file" >&2
+  exit 1
+fi
+if [[ -z "$version_stamp" || "$textpack_link" != "$name ($version_stamp).textpack" ]]; then
+  echo "VERSION.md has an invalid versioned textpack link" >&2
+  exit 1
+fi
+versioned="$dist_dir/$textpack_link"
+if [[ ! -L "$versioned" || "$(readlink "$versioned")" != "$(basename "$stable")" ]]; then
+  echo "versioned textpack link is missing or does not target $(basename "$stable")" >&2
+  exit 1
+fi
 
-cp -L "$stable" "$publish_dir/$name ($version_stamp).textpack"
-cmp -s "$stable" "$publish_dir/$name ($version_stamp).textpack"
-echo "published: $publish_dir/$name ($version_stamp).textpack"
+for artifact in "$stable" "$marker" "$versioned"; do
+  relative="${artifact#"$repo_root"/}"
+  if [[ "$relative" == "$artifact" ]] || ! git -C "$repo_root" ls-files --error-unmatch -- "$relative" >/dev/null 2>&1; then
+    echo "stamped handoff is not committed at HEAD: $artifact" >&2
+    exit 1
+  fi
+done
+
+source_commit="$(
+  python3 - "$stable" <<'PY'
+import json
+import re
+import sys
+import zipfile
+
+with zipfile.ZipFile(sys.argv[1]) as archive:
+    info_names = [name for name in archive.namelist() if name.endswith(".textbundle/info.json")]
+    if len(info_names) != 1:
+        raise SystemExit("textpack must contain exactly one info.json")
+    info = json.loads(archive.read(info_names[0]))
+commit = info.get("omnighost", {}).get("provenance", {}).get("gitCommit", "")
+if not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", commit):
+    raise SystemExit("textpack provenance has no valid full gitCommit")
+print(commit)
+PY
+)"
+if ! git -C "$repo_root" merge-base --is-ancestor "$source_commit" HEAD; then
+  echo "embedded source commit is not in the pushed handoff history: $source_commit" >&2
+  exit 1
+fi
+if [[ "$version_stamp" != *-"${source_commit:0:6}" ]]; then
+  echo "VERSION.md version stamp does not end in the embedded source hash" >&2
+  exit 1
+fi
+
+unzip -t "$stable" >/dev/null
+destination="$publish_dir/$textpack_link"
+cp -L "$stable" "$destination"
+cmp -s "$stable" "$destination"
+echo "published: $destination"

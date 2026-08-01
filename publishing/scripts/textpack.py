@@ -26,10 +26,9 @@ Usage:
     --render          re-render stale diagrams/*.mmd to PNG with mmdc first
 
 The source post is never modified: reflow and the diagrams/->assets/ rewrite
-apply only to the bundled copy. Before packaging, the source post and referenced
-images are safely committed to Git when possible; unrelated staged work is
-preserved and nothing is pushed. The pack falls back to a validated payload
-SHA-256 when Git is unavailable or unsafe. Mermaid sources live in
+apply only to the bundled copy. Before packaging, the owning repository must be
+clean and its HEAD must match the configured remote upstream. The pack records
+that pushed commit and a validated payload SHA-256. Mermaid sources live in
 <post-dir>/diagrams/ (one .mmd per diagram, PNG committed next to it).
 """
 
@@ -43,6 +42,11 @@ import subprocess
 import sys
 import tempfile
 import zipfile
+
+from git_publish_preflight import (
+    GitPublishPreflightError,
+    require_clean_pushed_repo,
+)
 
 INFO_TYPE = "net.daringfireball.markdown"
 PROVENANCE_SCHEMA = "omnighost-textpack-v1"
@@ -68,15 +72,6 @@ def git_run(repo: str, *args: str) -> subprocess.CompletedProcess[str]:
         )
     except (OSError, subprocess.TimeoutExpired) as error:
         return subprocess.CompletedProcess(command, 124, "", str(error))
-
-
-def first_line(result: subprocess.CompletedProcess[str]) -> str:
-    text = result.stderr.strip() or result.stdout.strip()
-    return text.splitlines()[0][:240] if text else ""
-
-
-def warn_git(reason: str) -> None:
-    print(f"WARNING: source Git version unavailable ({reason}); embedding payload SHA only", file=sys.stderr)
 
 
 def file_digest(path: str) -> bytes:
@@ -115,139 +110,53 @@ def source_paths_for_textpack(post_path: str) -> list[str]:
     return sorted(paths)
 
 
-def ensure_git_version(paths: list[str], name: str) -> str | None:
-    """Commit only exact textpack inputs, preserving unrelated and partial staging."""
-    if shutil.which("git") is None:
-        warn_git("git executable not found")
-        return None
+def require_git_version(paths: list[str]) -> str:
+    """Require pushed inputs and return their stable source-changing commit."""
     before = {path: file_digest(path) for path in paths}
-    repository = git_run(os.path.dirname(paths[0]), "rev-parse", "--show-toplevel")
-    if repository.returncode != 0:
-        warn_git("not inside a Git repository")
-        return None
-    repo = os.path.realpath(repository.stdout.strip())
+    try:
+        state = require_clean_pushed_repo(os.path.dirname(paths[0]))
+    except GitPublishPreflightError as error:
+        sys.exit(f"Git publish preflight failed: {error}")
 
     relative: list[str] = []
     for path in paths:
-        rel = os.path.relpath(os.path.realpath(path), repo).replace(os.sep, "/")
+        rel = os.path.relpath(os.path.realpath(path), state.root).replace(os.sep, "/")
         if rel == ".." or rel.startswith("../") or os.path.isabs(rel):
-            warn_git("a bundled input is outside the source repository")
-            return None
+            sys.exit("Git publish preflight failed: a bundled input is outside the repository")
         relative.append(rel)
 
-    git_dir_result = git_run(repo, "rev-parse", "--absolute-git-dir")
-    if git_dir_result.returncode != 0:
-        warn_git("could not inspect repository state")
-        return None
-    git_dir = git_dir_result.stdout.strip()
-    busy_paths = [
-        "index.lock", "MERGE_HEAD", "CHERRY_PICK_HEAD", "REVERT_HEAD",
-        "BISECT_LOG", "rebase-merge", "rebase-apply", "sequencer",
-    ]
-    if any(os.path.exists(os.path.join(git_dir, state)) for state in busy_paths):
-        warn_git("repository is busy")
-        return None
-    if git_run(repo, "symbolic-ref", "-q", "HEAD").returncode != 0:
-        warn_git("detached HEAD")
-        return None
-    conflicts = git_run(repo, "ls-files", "--unmerged", "--", *relative)
-    if conflicts.returncode != 0 or conflicts.stdout.strip():
-        warn_git("a bundled input has unresolved conflicts")
-        return None
-
-    head = git_run(repo, "rev-parse", "--verify", "HEAD")
-    has_head = head.returncode == 0
-    worktree_blobs: dict[str, str] = {}
-    head_matches: dict[str, bool] = {}
-    for absolute, rel in zip(paths, relative):
-        worktree = git_run(repo, "hash-object", f"--path={rel}", "--", absolute)
-        if worktree.returncode != 0:
-            warn_git("could not hash a bundled input")
-            return None
-        worktree_blobs[rel] = worktree.stdout.strip()
-        head_blob = git_run(repo, "rev-parse", "--verify", f"HEAD:{rel}") if has_head else None
-        head_matches[rel] = bool(
-            head_blob and head_blob.returncode == 0 and head_blob.stdout.strip() == worktree_blobs[rel]
-        )
-
-    if all(head_matches.values()):
-        if any(file_digest(path) != before[path] for path in paths):
-            warn_git("a bundled input changed during versioning")
-            return None
-        return head.stdout.strip().lower()
-
-    for rel in relative:
-        staged = git_run(repo, "diff", "--cached", "--quiet", "--", rel)
-        if staged.returncode not in (0, 1):
-            warn_git("could not inspect staged source state")
-            return None
-        if staged.returncode == 1:
-            index_blob = git_run(repo, "rev-parse", "--verify", f":{rel}")
-            if index_blob.returncode != 0 or index_blob.stdout.strip() != worktree_blobs[rel]:
-                warn_git(f"partially staged input: {rel}")
-                return None
-
-    intent_paths: list[str] = []
-    for rel in relative:
-        tracked = git_run(repo, "ls-files", "--error-unmatch", "--", rel)
-        if tracked.returncode == 0:
-            continue
-        ignored = git_run(repo, "check-ignore", "-q", "--", rel)
-        if ignored.returncode == 0:
-            warn_git(f"ignored input: {rel}")
-            return None
-        if ignored.returncode != 1:
-            warn_git("could not inspect ignored source state")
-            return None
-        intent_paths.append(rel)
-
-    user_name = git_run(repo, "config", "--get", "user.name")
-    user_email = git_run(repo, "config", "--get", "user.email")
-    if not user_name.stdout.strip() or not user_email.stdout.strip():
-        warn_git("Git identity is not configured")
-        return None
-    if any(file_digest(path) != before[path] for path in paths):
-        warn_git("a bundled input changed during versioning")
-        return None
-
-    if intent_paths:
-        intent = git_run(repo, "add", "--intent-to-add", "--", *intent_paths)
-        if intent.returncode != 0:
-            warn_git(first_line(intent) or "could not add new inputs")
-            return None
-    safe_name = re.sub(r"[\r\n]+", " ", name)[:160] or "textpack"
-    committed = git_run(
-        repo,
-        "commit",
-        "--only",
-        "-m",
-        f"Build {safe_name} textpack with Omnighost",
+    history = git_run(
+        state.root,
+        "log",
+        "--full-history",
+        "--topo-order",
+        "--format=%H",
         "--",
         *relative,
     )
-    if committed.returncode != 0:
-        if intent_paths:
-            git_run(repo, "reset", "-q", "--", *intent_paths)
-        warn_git(first_line(committed) or "commit failed")
-        return None
+    if history.returncode != 0:
+        sys.exit("Git publish preflight failed: could not inspect bundled-input history")
+    candidates = list(dict.fromkeys(history.stdout.splitlines()))
+    source_commit = next(
+        (
+            candidate.lower()
+            for candidate in candidates
+            if re.fullmatch(r"(?:[0-9a-fA-F]{40}|[0-9a-fA-F]{64})", candidate)
+            and git_commit_matches_sources(candidate, paths)
+        ),
+        None,
+    )
+    if not source_commit:
+        sys.exit(
+            "Git publish preflight failed: every post and referenced asset must be "
+            "tracked together in a pushed source revision matching the current files"
+        )
+    if any(file_digest(path) != before[path] for path in paths):
+        sys.exit("Git publish preflight failed: a bundled input changed during verification")
+    return source_commit
 
-    commit = git_run(repo, "rev-parse", "--verify", "HEAD")
-    if commit.returncode != 0 or any(file_digest(path) != before[path] for path in paths):
-        warn_git("source changed after the Git commit")
-        return None
-    commit_id = commit.stdout.strip().lower()
-    if not re.fullmatch(r"(?:[0-9a-f]{40}|[0-9a-f]{64})", commit_id):
-        warn_git("Git returned an invalid commit id")
-        return None
-    if not git_commit_matches_sources(commit_id, paths):
-        warn_git("committed source does not match the textpack inputs")
-        return None
-    return commit_id
 
-
-def git_commit_matches_sources(commit: str | None, paths: list[str]) -> bool:
-    if commit is None:
-        return False
+def git_commit_matches_sources(commit: str, paths: list[str]) -> bool:
     repository = git_run(os.path.dirname(paths[0]), "rev-parse", "--show-toplevel")
     if repository.returncode != 0:
         return False
@@ -301,6 +210,18 @@ def reflow(markdown: str) -> str:
     return "\n".join(out).rstrip("\n") + "\n"
 
 
+def write_deterministic_zip_entry(
+    archive: zipfile.ZipFile,
+    name: str,
+    data: bytes,
+) -> None:
+    info = zipfile.ZipInfo(name, date_time=(1980, 1, 1, 0, 0, 0))
+    info.compress_type = zipfile.ZIP_DEFLATED
+    info.create_system = 3
+    info.external_attr = (0o100644 & 0xFFFF) << 16
+    archive.writestr(info, data)
+
+
 def render_diagrams(post_dir: str) -> None:
     """Render stale diagrams/*.mmd to PNG with mmdc (white bg, 2x)."""
     ddir = os.path.join(post_dir, "diagrams")
@@ -321,7 +242,7 @@ def render_diagrams(post_dir: str) -> None:
 
 def build(post_path: str, name: str, blog: str, slug: str, tags: list[str],
           excerpt: str, out: str, do_reflow: bool,
-          source_git_commit: str | None) -> tuple[str, str | None]:
+          source_git_commit: str) -> tuple[str, str]:
     post_dir = os.path.dirname(post_path)
     source_post_bytes = read_bytes(post_path)
     text = source_post_bytes.decode("utf-8").replace("\r\n", "\n").replace("\r", "\n")
@@ -371,12 +292,11 @@ def build(post_path: str, name: str, blog: str, slug: str, tags: list[str],
         file_digest(path) == hashlib.sha256(data).digest()
         for path, data in captured_sources.items()
     )
-    if source_git_commit and (
+    if (
         not git_commit_matches_sources(source_git_commit, source_paths)
         or not captured_sources_still_current
     ):
-        warn_git("source changed after it was versioned")
-        source_git_commit = None
+        sys.exit("Git publish preflight failed: source changed after verification")
     asset_manifest = [
         {"name": base, "sha256": hashlib.sha256(data).hexdigest()}
         for base, data in asset_data.items()
@@ -406,8 +326,7 @@ def build(post_path: str, name: str, blog: str, slug: str, tags: list[str],
         "schema": PROVENANCE_SCHEMA,
         "payloadSha256": hashlib.sha256(payload_json).hexdigest(),
     }
-    if source_git_commit:
-        omnighost["provenance"]["gitCommit"] = source_git_commit
+    omnighost["provenance"]["gitCommit"] = source_git_commit
     info["omnighost"] = omnighost
 
     output_dir = os.path.dirname(os.path.abspath(out))
@@ -419,22 +338,25 @@ def build(post_path: str, name: str, blog: str, slug: str, tags: list[str],
     )
     os.close(descriptor)
     try:
-        with tempfile.TemporaryDirectory() as scratch:
-            tb = os.path.join(scratch, f"{name}.textbundle")
-            os.makedirs(os.path.join(tb, "assets"), exist_ok=True)
-            with open(os.path.join(tb, "text.markdown"), "wb") as f:
-                f.write(markdown_bytes)
-            with open(os.path.join(tb, "info.json"), "w", encoding="utf-8", newline="\n") as f:
-                json.dump(info, f, indent=2)
-            for base, data in asset_data.items():
-                with open(os.path.join(tb, "assets", base), "wb") as f:
-                    f.write(data)
-
-            with zipfile.ZipFile(temporary_out, "w", zipfile.ZIP_DEFLATED) as z:
-                for root, _, files in os.walk(tb):
-                    for fn in sorted(files):
-                        path = os.path.join(root, fn)
-                        z.write(path, os.path.relpath(path, scratch))
+        bundle_root = f"{name}.textbundle"
+        info_bytes = json.dumps(info, indent=2).encode("utf-8")
+        with zipfile.ZipFile(temporary_out, "w") as archive:
+            write_deterministic_zip_entry(
+                archive,
+                f"{bundle_root}/text.markdown",
+                markdown_bytes,
+            )
+            write_deterministic_zip_entry(
+                archive,
+                f"{bundle_root}/info.json",
+                info_bytes,
+            )
+            for base, data in sorted(asset_data.items()):
+                write_deterministic_zip_entry(
+                    archive,
+                    f"{bundle_root}/assets/{base}",
+                    data,
+                )
 
         # The zip's top-level entry must be <name>.textbundle/ for Ulysses.
         with zipfile.ZipFile(temporary_out) as z:
@@ -485,7 +407,7 @@ def main() -> None:
         render_diagrams(post_dir)
 
     source_paths = source_paths_for_textpack(post)
-    source_git_commit = ensure_git_version(source_paths, name)
+    source_git_commit = require_git_version(source_paths)
     built, embedded_git_commit = build(
         post,
         name,

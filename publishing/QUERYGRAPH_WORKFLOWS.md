@@ -27,8 +27,10 @@ local conventions.
 | `~/src/firstpair/publishing/scripts/build-book.sh` | Configurable Typst/troff book build | TypeSec/LakeCat/QueryGraph/OmniGhost `docs/book/build.sh` variants |
 | `~/src/firstpair/publishing/scripts/render-mermaid.mjs` | Persistent Mermaid `.mmd` + `.png` renderer | LakeCat and QueryGraph diagram renderers |
 | `~/src/firstpair/publishing/scripts/textpack.py` | Ulysses/Omnighost `.textpack` builder | TypeSec and OmniGhost `scripts/textpack.py` |
+| `~/src/firstpair/publishing/scripts/git_publish_preflight.py` | Clean, pushed repository gate for blog and book publication | Ad hoc `git status` and ahead/behind checks |
+| `~/src/firstpair/publishing/scripts/stamp-versioned-blog.sh` | Deterministic textpack, versioned link, and marker preparation | Former build half of the combined blog-delivery helper |
 | `~/src/firstpair/publishing/scripts/publish-versioned-artifacts.sh` | Book artifact copy to `~/icloud/books` | Ad hoc repo-local copy steps |
-| `~/src/firstpair/publishing/scripts/publish-versioned-blog.sh` | Blog textpack build + versioned copy to `~/icloud/blogs` | Emerging centralized blog delivery workflow |
+| `~/src/firstpair/publishing/scripts/publish-versioned-blog.sh` | Verified copy of a committed, pushed textpack handoff to `~/icloud/blogs` | Former combined build-and-copy workflow |
 | `~/src/firstpair/publishing/scripts/check-version-marker.sh` | `VERSION.md` stable/versioned artifact check | Repeated manual `readlink`, `cmp`, and filename checks |
 | `~/src/firstpair/publishing/skills/obsidian-full-vault.md` | Complete desktop Reader plus rights-safe evidence-vault workflow | Cicero full-vault Reader, provenance graph, source policy, workspace, and validator findings |
 | `~/src/firstpair/publishing/skills/obsidian-mobile-vault.md` | Compact, separately synced mobile Reader vault workflow | Cicero mobile-vault size, source, image, startup, and selective-sync findings |
@@ -174,7 +176,7 @@ Common validation blockers:
 | `typesec` | `docs/blog/<name>/post.md` | `scripts/textpack.py` | Markdown, `info.json`, local images | Emerging `~/icloud/blogs` | Omnighost import or Ulysses |
 | `omnighost` | Any post file or post directory | `scripts/textpack.py` | Same as TypeSec, with Omnighost metadata | Import into Obsidian vault | Omnighost sync to Ghost |
 | `slavapost` | `edited/`, `publish-ready/` | None | Plain Markdown with local images | Manual | Ulysses publishes to Ghost |
-| Central workflow | `docs/blog/<slug>/post.md` | `publishing/scripts/textpack.py` plus `publish-versioned-blog.sh` | Versioned `.textpack` | `~/icloud/blogs` | Omnighost import or Ulysses |
+| Central workflow | `docs/blog/<slug>/post.md` | `textpack.py` via `stamp-versioned-blog.sh`, then `publish-versioned-blog.sh` | Versioned `.textpack` | `~/icloud/blogs` | Omnighost import or Ulysses |
 
 Textpack zip layout:
 
@@ -196,17 +198,29 @@ def to_asset(match):
     return f"![{alt}](assets/{base})"
 ```
 
-Central blog delivery command:
+Central blog stamp-and-delivery sequence:
 
 ```sh
+REPO_ROOT="$PWD" \
 BLOG_DOMAIN=querygraph.ai \
 BLOG_TAGS=querygraph,release \
-~/src/firstpair/publishing/scripts/publish-versioned-blog.sh docs/blog/<slug>
+~/src/firstpair/publishing/scripts/stamp-versioned-blog.sh docs/blog/<slug>
+
+git add docs/blog/<slug>/dist
+git commit -m "Stamp <slug> blog textpack"
+git push
+
+REPO_ROOT="$PWD" \
+~/src/firstpair/publishing/scripts/publish-versioned-blog.sh \
+  docs/blog/<slug> "$HOME/icloud/blogs"
 ```
 
-The builder versions the source post and referenced local assets first, embeds
-the resulting Git commit and a portable payload SHA-256 for Omnighost import,
-then computes the delivery filename stamp from the post-build repository state.
+Start from a clean, pushed repository. After writing, commit and push the post
+and referenced local assets. The stamper then embeds the newest pushed commit
+whose tree matches those inputs plus a portable payload SHA-256, and writes
+deterministic archive bytes. Commit and push the pack, versioned link, and
+marker. The delivery command accepts only that clean, pushed, tracked handoff;
+it never rebuilds it.
 
 It writes:
 
@@ -300,6 +314,11 @@ Blog textpack delivery:
 ```sh
 REPO_ROOT=/path/to/repo \
 BLOG_DOMAIN=querygraph.ai \
+~/src/firstpair/publishing/scripts/stamp-versioned-blog.sh \
+  docs/blog/<slug>
+
+# Commit and push docs/blog/<slug>/dist, then deliver the clean handoff.
+REPO_ROOT=/path/to/repo \
 ~/src/firstpair/publishing/scripts/publish-versioned-blog.sh \
   docs/blog/<slug> "$HOME/icloud/blogs"
 ```

@@ -49,6 +49,14 @@ shared rules.
   a full book.
 - Preserve unrelated user or generated worktree changes. Stage, commit, and push
   only the files that belong to the requested change.
+- Start blog writing and book-publication work only from repositories whose
+  worktrees are clean and whose current commits are present at their configured
+  upstreams. After editing a post and its assets, commit and push them before
+  building or stamping its textpack. Before any non-dry-run book publication,
+  both the owning source repository and FirstPair must pass the same gate.
+  `publishing/scripts/git_publish_preflight.py` is the canonical check. Do not
+  weaken this rule to "the relevant files are clean," accept an ahead local
+  branch, or substitute a hash-only artifact.
 
 ## Content Ownership
 
@@ -62,42 +70,26 @@ maps, and generated deployment metadata needed to publish or host those sources.
 ## Git-Versioned Blog Textpacks
 
 The current Omnighost textpack format is `omnighost-textpack-v1`. A conforming
-pack records a portable payload SHA-256 and, when the source can be committed
-safely, the full Git commit in `info.json` under `omnighost.provenance`. An
-untouched imported note inherits that commit through publication; its next sync
-can report `Unchanged` without rotating the version.
+pack records both a portable payload SHA-256 and the full pushed source commit
+in `info.json` under `omnighost.provenance`. An untouched imported note inherits
+that commit through publication; its next sync can report `Unchanged` without
+rotating the version. Hash-only packs are not publishable.
 
-Creating this Git-stamped format is permission-sensitive because the builder
-may make a real commit in the project that owns the post:
+The clean-and-pushed sequence is mandatory:
 
 1. Work from the owning project's real repository, not from FirstPair or an
-   archive checkout. Identify the Markdown post and every referenced local
-   image or asset that will enter the pack.
-2. Before running either textpack command, ask the project owner explicitly for
-   permission to commit those exact source contents so the pack can be stamped
-   with their Git hash. List the paths or clearly describe their scope. A request
-   to build, refresh, copy, or deliver a textpack does not by itself authorize
-   this source commit; wait for an affirmative answer.
-3. Explain that the builder commits only the post and referenced assets,
-   preserves unrelated staged changes, and never pushes. Permission to make the
-   source commit does not authorize a push or an iCloud/public delivery; those
-   actions still require their own authorization.
-4. Once authorized, run the current builder from the owning repository. For
-   the standard `docs/blog/<slug>/post.md` layout:
-
-```sh
-cd /absolute/path/to/project
-python3 ~/src/firstpair/publishing/scripts/textpack.py \
-  docs/blog/<slug> \
-  --blog example.com \
-  --slug <slug> \
-  --tags tag-one,tag-two \
-  --excerpt "Short summary"
-```
-
-This writes `docs/blog/<slug>/dist/<slug>.textpack`. If the owner has also
-authorized delivery to iCloud, use the centralized versioned-delivery wrapper
-instead:
+   archive checkout. Before writing or updating the post, finish and push any
+   existing work so the complete repository is clean and at its configured
+   upstream.
+2. Edit the canonical Markdown post and every local image or asset that will
+   enter the pack. Then commit and push those exact finished source changes.
+   Obtain the needed commit/push authorization when it is not already explicit.
+3. Run `publishing/scripts/git_publish_preflight.py` or let the builder run it.
+   The check fails closed for untracked, modified, or staged files; unfinished
+   Git operations; detached local HEADs; missing upstreams; ahead, behind, or
+   diverged branches; and a remote branch whose commit is not exactly HEAD.
+4. Only after that gate passes, stamp the pack and version marker from the
+   owning repository. For the standard `docs/blog/<slug>/post.md` layout:
 
 ```sh
 cd /absolute/path/to/project
@@ -105,17 +97,34 @@ REPO_ROOT="$PWD" \
 BLOG_DOMAIN=example.com \
 BLOG_TAGS=tag-one,tag-two \
 BLOG_EXCERPT="Short summary" \
+~/src/firstpair/publishing/scripts/stamp-versioned-blog.sh \
+  docs/blog/<slug>
+```
+
+This writes the stable textpack, its source-hash versioned link, and
+`dist/VERSION.md`. Verify them, then commit and push all three. Only from that
+new clean and pushed handoff may the delivery wrapper copy the pack to iCloud:
+
+```sh
+cd /absolute/path/to/project
+REPO_ROOT="$PWD" \
+BLOG_DOMAIN=example.com \
 ~/src/firstpair/publishing/scripts/publish-versioned-blog.sh \
   docs/blog/<slug> "$HOME/icloud/blogs"
 ```
 
-Both commands invoke `~/src/firstpair/publishing/scripts/textpack.py`, which
-commits the exact source inputs when needed, embeds the resulting full commit
-plus the payload SHA-256, and writes the archive atomically. The delivery
-wrapper derives the versioned filename only after that commit, so the filename's
-short hash and the pack's full `gitCommit` describe the same repository state.
-If Git is unavailable or unsafe, the pack remains verifiable through its
-payload digest but is hash-only and must not be described as Git-versioned.
+The stamping command invokes `~/src/firstpair/publishing/scripts/textpack.py`, which
+verifies the clean remote state, requires every bundled input to match the
+pushed HEAD, and writes the archive atomically. Provenance uses the newest
+commit in that pushed history which changed any bundled input and whose tree
+matches all bundled inputs. This keeps the source identity stable across a
+later pack-only commit. ZIP entry ordering, timestamps, and modes are
+deterministic, so an unchanged clean rebuild is byte-identical. The builder
+never commits or pushes. The delivery wrapper does not rebuild or alter the
+handoff: it independently requires the repository to be clean and pushed,
+requires the pack, marker, and versioned link to be tracked at HEAD, validates
+the embedded source commit, and only then copies the versioned pack. Delivery
+to iCloud or a public service still requires the appropriate authorization.
 
 After building, verify the source commit, provenance block, archive, and
 repository state:
@@ -136,8 +145,10 @@ cmp -s docs/blog/<slug>/dist/<slug>.textpack \
 ```
 
 Confirm that the provenance schema is `omnighost-textpack-v1`, `payloadSha256`
-is present, `gitCommit` is a full commit when Git stamping was authorized and
-successful, and unrelated worktree/index state remains intact.
+and a full `gitCommit` are present, that the embedded commit equals the pushed
+source-changing revision used for the build, and that the generated outputs are
+then committed and pushed without unrelated changes. Rebuilding after that
+pack-only commit must preserve both `gitCommit` and the complete archive bytes.
 
 ## Public Book Delivery
 
@@ -196,6 +207,17 @@ The general delivery command is:
 ```sh
 npm run library:publish -- /absolute/path/to/book-or-dist --slug <book-stem>
 ```
+
+Before a non-dry-run invocation, commit and push all work in both the book's
+owning source repository and FirstPair. The publisher runs the canonical Git
+preflight against both repositories before it stages, uploads, copies, or
+changes catalog metadata. A dirty repository, missing upstream, local/remote
+commit mismatch, or local detached HEAD is a stop condition. `--dry-run` remains
+available for resolving a plan before that gate because it does not publish or
+write. In the GitHub Actions path, the full-history `actions/checkout` inputs
+are treated as exact remote checkouts and are checked against fetched `origin`
+branches. After local publication changes FirstPair-owned metadata, commit and
+push that scoped result before starting another publication.
 
 For remote publishing without a trusted local press workstation, use the
 manually dispatched GitHub Actions workflow **Publish Library Book** in this

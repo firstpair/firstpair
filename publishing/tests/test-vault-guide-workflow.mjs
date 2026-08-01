@@ -6,6 +6,7 @@ import {
   copyFile,
   mkdir,
   mkdtemp,
+  realpath,
   readFile,
   rm,
   symlink,
@@ -42,6 +43,23 @@ function run(command, args) {
       }
     })
   })
+}
+
+async function initializePushedRepository(repository, remote) {
+  await run('git', ['init', '--bare', remote])
+  await run('git', ['init', '--initial-branch=main', repository])
+  await run('git', ['-C', repository, 'config', 'user.name', 'FirstPair Test'])
+  await run('git', [
+    '-C',
+    repository,
+    'config',
+    'user.email',
+    'firstpair-test@example.invalid',
+  ])
+  await run('git', ['-C', repository, 'add', '--all'])
+  await run('git', ['-C', repository, 'commit', '-m', 'Create clean publisher fixture'])
+  await run('git', ['-C', repository, 'remote', 'add', 'origin', remote])
+  await run('git', ['-C', repository, 'push', '--set-upstream', 'origin', 'main'])
 }
 
 try {
@@ -211,6 +229,7 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     mkdir(join(harness, 'scripts'), { recursive: true }),
     mkdir(join(harness, 'api'), { recursive: true }),
     mkdir(join(harness, 'publishing', 'assets'), { recursive: true }),
+    mkdir(join(harness, 'publishing', 'scripts'), { recursive: true }),
     mkdir(join(harness, 'book-uploads'), { recursive: true }),
     mkdir(join(harness, 'public'), { recursive: true }),
     mkdir(chapters, { recursive: true }),
@@ -251,6 +270,10 @@ Open \`Home.md\`, then use [[Book Map|the book map]].
     copyFile(
       join(repoRoot, 'publishing', 'assets', 'vault-guide.css'),
       join(harness, 'publishing', 'assets', 'vault-guide.css'),
+    ),
+    copyFile(
+      join(repoRoot, 'publishing', 'scripts', 'git_publish_preflight.py'),
+      join(harness, 'publishing', 'scripts', 'git_publish_preflight.py'),
     ),
     copyFile(
       join(repoRoot, 'publishing', 'python', 'pyproject.toml'),
@@ -373,6 +396,9 @@ print("fixture source-owned vault validation passed")
   await assert.rejects(access(stageDir))
   await rm(join(vault, 'TAMPERED'))
 
+  await initializePushedRepository(fixtureBook, join(work, 'fixture-origin.git'))
+  await initializePushedRepository(harness, join(work, 'firstpair-origin.git'))
+
   const staged = await run(process.execPath, vaultPublishArgs)
   const plan = JSON.parse(staged.stdout.toString('utf8'))
   const rawGuide = join(stageDir, 'fixture-book-vault-guide (1.2.3-deadbeef).md')
@@ -385,7 +411,10 @@ print("fixture source-owned vault validation passed")
   assert.equal(plan.artifacts.vault.guideMarkdown, 'fixture-book-vault-guide (1.2.3-deadbeef).md')
   assert.equal(plan.artifacts.vault.guideHtml, 'fixture-book-vault-guide (1.2.3-deadbeef).html')
   assert.equal(plan.artifacts.vault.validation.runner, 'uv')
-  assert.equal(plan.artifacts.vault.validation.validator, validator)
+  assert.equal(
+    await realpath(plan.artifacts.vault.validation.validator),
+    await realpath(validator),
+  )
   assert.equal(plan.artifacts.cover.source, cover)
   assert.equal(plan.artifacts.headboard.source, headboard)
   assert.match(sourceMap.cover, /fixture-book-cover\.png$/)

@@ -649,27 +649,35 @@ copy.
 Venice exposes a different review contract because its panes represent edition
 history rather than three candidates for one immediately composed translation.
 
-On desktop:
+In the complete desktop vault and its bounded preview derivation:
 
 - Edition chips show or hide panes globally; visibility is a reading setting,
   not an editorial judgment.
 - **prefer this** is mutually exclusive across the panes of one fragment and
   records the whole-fragment winner.
 - A compact editing note records an imperative instruction for that fragment.
-- **Sentence choices** is page-local and hidden by default. Its sentence
-  preference boxes are independent rather than mutually exclusive because
-  split and fused editions do not guarantee one-to-one sentence alignment.
-- Selecting a phrase wholly inside one sentence opens **Prefer this** and
-  **Ungrammatical**. Clicking an existing mark changes or clears its category.
+- **Sentence & words** is page-local and hidden by default. It reveals an
+  independent preference and **Words** button for every nonempty sentence or
+  heading unit. Sentence preferences are not forced into mutually exclusive
+  cross-pane groups because split and fused editions do not guarantee
+  one-to-one sentence alignment.
+- Inside **Words**, **Whole sentence** selects the complete unit, adjacent
+  word checkboxes select one contiguous phrase, and **Only** selects one word.
+- A selection can be marked **Good**, **Bad**, or **Edit**. Saved phrases may
+  overlap, nest, or cross-overlap and remain independently addressable.
+- An existing Edit reopens its stacked correction variants. **Save & replace**
+  changes the preferred wording in place; **Save next** appends another
+  timestamped option; one checkbox identifies the preferred variant retained
+  in the digest.
+- A heading unit carries the **Heading** badge, so a structural title can be
+  reviewed without confusing it with repeated navigation context.
 
-Venice currently records phrase judgments, not replacement variants. A desired
-rewrite belongs in the fragment's editing-note field or in the next-edition
-pass driven by the exported digest. Venice also rejects overlapping phrase
-annotations inside the same sentence; that constraint is implementation-
-specific, not a general Rosetta rule.
-
-Mobile shares the sentence and phrase controls, but whole-fragment preference
-and editing-note entry remain desktop controls in the present Venice profile.
+The peer **Review** view lists only touched pages, links each card back to its
+Reader fragment, and renders the deterministic decision digest. Venice records
+evidence and replacement proposals but does not compose a manuscript from
+conceptual lineages whose source units can split, fuse, repeat, or move. Its
+mobile vault remains a separately built horizontal reading product; do not
+infer desktop decision persistence from mobile layout alone.
 
 ## 9. Enemy Review and R-first assembly
 
@@ -741,12 +749,17 @@ is an explicit instruction digest for a separate edition pass:
    not affect the ledger.
 3. For each changed fragment, choose the preferred whole pane and add a compact
    imperative note when the choice needs qualification.
-4. Reveal **Sentence choices** only where sentence-level evidence helps. More
+4. Reveal **Sentence & words** only where sentence-level evidence helps. More
    than one edition's sentence may be preferred in the same fragment.
-5. Select exact phrases and mark them **Prefer this** or **Ungrammatical**.
-6. Run **Export editing instructions digest** to regenerate
+5. Open **Words**, select an exact word, contiguous phrase, or **Whole
+   sentence**, and mark it **Good**, **Bad**, or **Edit**. Start another
+   selection whenever a second or overlapping phrase needs its own record.
+6. For an Edit, use **Save & replace** to update its preferred wording or
+   **Save next** to retain several variants, then check the preferred one.
+7. Open **Review** to inspect every touched page and its digest entry.
+8. Run **Export editing instructions digest** to regenerate
    `Preferences/EDITING-INSTRUCTIONS.md` from the structured ledger.
-7. Use that digest verbatim as editorial input to the next-edition pass, review
+9. Use that digest verbatim as editorial input to the next-edition pass, review
    the resulting manuscript, then rebuild the Venice Rosetta against a new
    immutable edition identity.
 
@@ -761,7 +774,7 @@ source manuscripts:
 | Profile | Structured state | Human-readable output |
 |---|---|---|
 | Enemy | `Preferences/translation-triptych-decisions.json` plus `.sha256` sidecar | `Preferences/TRANSLATION-EDITING-INSTRUCTIONS.md` |
-| Venice | `Preferences/triptych-decisions.json` | `Preferences/EDITING-INSTRUCTIONS.md` |
+| Venice | `Preferences/triptych-decisions.json` plus `.sha256` sidecar | `Preferences/EDITING-INSTRUCTIONS.md` |
 
 Enemy writes are serialized and validated. JSON and the integrity sidecar are
 written to temporary files, read back, validated, and installed with rollback
@@ -777,11 +790,15 @@ archive the JSON, sidecar, and digest under `Preferences/archive/` before
 starting an empty review for the new source identity. Missing or empty choice
 files reset silently and are not presented as archive candidates.
 
-The Venice ledger stores whole-fragment preferences and notes, independent
-sentence preferences, and quote-and-context phrase selectors. Generated
-sentence fingerprints are checked before controls attach, so changed text
-cannot silently inherit a judgment. The digest is regenerated on each change
-and can also be rebuilt explicitly with the export command.
+The Venice v4 ledger stores whole-fragment preferences and notes, independent
+sentence preferences, Good/Bad/Edit phrase selectors, correction histories,
+preferred variants, project identity, and exact source-content identity. Its
+JSON, integrity sidecar, and deterministic digest are committed as one checked
+transaction with rollback. Generated pane hashes, sentence fingerprints,
+Unicode word-token maps, and per-page target digests are checked before
+controls attach, so changed text cannot silently inherit a judgment. The digest
+is regenerated on each change and can also be rebuilt explicitly with the
+export command.
 
 ## 12. Outputs and source promotion
 
@@ -883,11 +900,7 @@ python3 scripts/bundle_translation_triptych_plugin.py --check
 From `~/src/venezia/usavenice`:
 
 ```sh
-uv run --no-dev python scripts/bundle-lighthouse-triptych.py
-uv run --no-dev python scripts/build-obsidian-vault.py
-uv run --no-dev python scripts/build-obsidian-triptychs.py
-uv run --no-dev python scripts/check-obsidian-vault.py \
-  "book/dist-obsidian/Lighthouse Republics Vault"
+uv run --no-dev python scripts/build-obsidian-editorial-vault.py
 
 uv run --no-dev python scripts/build-obsidian-mobile-vault.py
 uv run --no-dev python scripts/check-obsidian-mobile-vault.py
@@ -897,6 +910,11 @@ uv run --no-dev python scripts/check-obsidian-vault.py \
   "book/dist-obsidian/Lighthouse Republics Preview Vault"
 ```
 
+The complete desktop command renders the base graph, triptychs, Reader/Review
+routes and index, and bundled plugin in one sibling stage, strict-validates the
+complete stage, then installs it through one backup/rollback transaction. Do
+not substitute the individual base, triptych, and validator component commands
+as a delivery sequence: a later failure would expose an incomplete live vault.
 The desktop and mobile builders preserve their private `.obsidian/` and
 `Preferences/` directories across regeneration. The public Preview Vault is a
 clean replacement build and must contain no private preference state.
