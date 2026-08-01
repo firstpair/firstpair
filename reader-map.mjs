@@ -109,9 +109,9 @@ export const readerBooks = [
   },
   {
     "slug": "moshpit-guide",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/html/24ec255586913088-moshpit-guide.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/html/1aa5335644b8c882-moshpit-guide.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387"
   },
   {
     "slug": "rosetta",

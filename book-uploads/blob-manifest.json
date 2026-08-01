@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-07-31T20:17:32.858Z",
+  "updatedAt": "2026-08-01T00:39:53.292Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -5387,34 +5387,34 @@
       }
     },
     "moshpit-guide": {
-      "updatedAt": "2026-07-31T18:07:36.683Z",
+      "updatedAt": "2026-08-01T00:39:53.291Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide.pdf",
-          "sha256": "ef4fee83086aa5c4ee0f3e2fffa5ed58040005401e7dd72d935e8d8783bc5bc5",
-          "size": 8774988,
-          "pathname": "books/moshpit-guide/pdf/ef4fee83086aa5c4-moshpit-guide.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/pdf/ef4fee83086aa5c4-moshpit-guide.pdf",
+          "sha256": "ea9eb45e7a95d7d85e1422674d6dd777dacbd39d2539e5b357c101e996666b2d",
+          "size": 8776859,
+          "pathname": "books/moshpit-guide/pdf/ea9eb45e7a95d7d8-moshpit-guide.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/pdf/ea9eb45e7a95d7d8-moshpit-guide.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide.epub",
-          "sha256": "1f5a6ac34db7da2af1b1d78fc25759fbff6bdc4c697357b50209ea4c91dfe5f4",
-          "size": 5995705,
-          "pathname": "books/moshpit-guide/epub/1f5a6ac34db7da2a-moshpit-guide.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/epub/1f5a6ac34db7da2a-moshpit-guide.epub",
+          "sha256": "b0490b86668a8b4ab9ab0ff42f42ef7c701fea5604dbfb2ea73d7d882c648f8b",
+          "size": 5996214,
+          "pathname": "books/moshpit-guide/epub/b0490b86668a8b4a-moshpit-guide.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/epub/b0490b86668a8b4a-moshpit-guide.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide.html",
-          "sha256": "24ec255586913088b197107a7042c0be92da981565767640afabde3f00b03578",
-          "size": 281951,
-          "pathname": "books/moshpit-guide/html/24ec255586913088-moshpit-guide.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/html/24ec255586913088-moshpit-guide.html",
+          "sha256": "1aa5335644b8c882cc3af68a6177cef0501ff419504859f2c45fe455a8867cc2",
+          "size": 283503,
+          "pathname": "books/moshpit-guide/html/1aa5335644b8c882-moshpit-guide.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/html/1aa5335644b8c882-moshpit-guide.html",
           "skipped": false
         },
         "cover": {
@@ -5424,7 +5424,7 @@
           "size": 5805607,
           "pathname": "books/moshpit-guide/cover/818c7a47fcd21634-moshpit-guide-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/cover/818c7a47fcd21634-moshpit-guide-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "headboard": {
           "kind": "headboard",
@@ -5433,14 +5433,14 @@
           "size": 4787427,
           "pathname": "books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png",
-          "skipped": false
+          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters",
-          "sha256": "fa3ac05e60ddc1f44dd8f0cada6e943816c101975c4afa528016353b4c7e767c",
-          "pathnamePrefix": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/index.html",
+          "sha256": "852229cb2bc20387553540c7e4bedcc4a309e66bae0e98e945550ba9a022ac79",
+          "pathnamePrefix": "books/moshpit-guide/chapters/852229cb2bc20387",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/index.html",
           "skipped": false,
           "files": [
             {
@@ -5448,8 +5448,8 @@
               "relativePath": "assets/information-flow.png",
               "sha256": "5ae9e2bcc5a2d3dc65f9e074e4f8033bec5f63dc035f7289586239fefc50149d",
               "size": 48971,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/information-flow.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/information-flow.png",
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/information-flow.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/information-flow.png",
               "skipped": false
             },
             {
@@ -5457,8 +5457,8 @@
               "relativePath": "assets/screenshot-ghostty.png",
               "sha256": "8431e467daf0ee91e00eaf0b4406221460850cb8d75e225c6ff658e34aaa2d3c",
               "size": 35889,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/screenshot-ghostty.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/screenshot-ghostty.png",
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-ghostty.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-ghostty.png",
               "skipped": false
             },
             {
@@ -5466,8 +5466,8 @@
               "relativePath": "assets/screenshot-session.png",
               "sha256": "cf0ec5ab5c095d7074cc4bbadd35845d2d8c51630342074555af44fe18d9cfb0",
               "size": 48074,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/screenshot-session.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/screenshot-session.png",
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-session.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-session.png",
               "skipped": false
             },
             {
@@ -5475,116 +5475,116 @@
               "relativePath": "assets/screenshot-tmux-copy.png",
               "sha256": "39b5905a31fcdceba444111bc27ac1dfbae8d90a616a6d7046e1c74d7622b49b",
               "size": 51295,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/screenshot-tmux-copy.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/assets/screenshot-tmux-copy.png",
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-tmux-copy.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-tmux-copy.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "3a6bd9b5a90634ab12424739a2301f7285f8ff06183aa4c1b73e9d3534ae4456",
-              "size": 6590,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-001.html",
+              "sha256": "0dc70ab8ebf5b6a0640988b95864ff22d6cee3075126d6d9082f39a340a96a32",
+              "size": 6636,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "cc03b76c8a7ae7c3714628d3358fca6a88f07cab9cc263181cb8f3bac4364f2f",
-              "size": 11900,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-002.html",
+              "sha256": "2cc7ebaf4161080ccb1e52b0f49f6f7ac173d7773e4ef5b6f060a89baa27858c",
+              "size": 11946,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "accc9381b603e9e6ef4ec7a2887af81b7f93b21ceb03e68b896e3cd79c759256",
-              "size": 12448,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-003.html",
+              "sha256": "d7cb5f4715268e5928ee1fd687be747a325b8760be6719d75738a4baee689dcd",
+              "size": 13984,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "9e044e550ee4e82d4dfec8cf824e1a5943d1f6046d79f5f1d57cce7f193f6def",
-              "size": 16468,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-004.html",
+              "sha256": "1adf19b6d9a6569692db151ae9a68735272c42e74b528af32267d1e947e77044",
+              "size": 16514,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "315987712082e691cbdeb4a6669d57f7ff59cebf01458e848a9ccc42965abf9e",
-              "size": 12096,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-005.html",
+              "sha256": "5842615e4318288edd3d00e92d89b1854a39dfcd8ca560ccef7b40cd9619e911",
+              "size": 12142,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "1826316c79ebc7ba85b069d4211a6a474d8e723a2bc3ec1de692b1ce17284c37",
-              "size": 5989,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-006.html",
+              "sha256": "cf363837c1169bbb3d5ef07083dfa37b7673f9f1377f619a1ac7943ca80898a4",
+              "size": 6035,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "aab6bb03c30c61cb61943278f4f5ddaed9447c17fb3e94ab9839a9b5ee481b7c",
-              "size": 7186,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-007.html",
+              "sha256": "f42e782cdea86dc15025e3f242279dc268dff20024404a50c18a7108d4874967",
+              "size": 7232,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "01a63258d8e168d13231c4478ac13b9e2ef946dc93765957798930b8d23d74a5",
-              "size": 10404,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-008.html",
+              "sha256": "501f8a6665c8bb93fbba6c2ee86088be1748fdf63d33a5e1e44c77f01235325a",
+              "size": 10450,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "464fa6b2318207a6269ec260086f541317ef38a4ef97b29f2b0a668a037102a1",
-              "size": 6313,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-009.html",
+              "sha256": "0d94893a439a2df754a2e95f6338eabd1cd02b4223a1003e3ae6d0ffe954b878",
+              "size": 6359,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "072893fb3d120599136a31d0229f23f6f320d27997cf4c4fad0de21df7e227e3",
-              "size": 6039,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-010.html",
+              "sha256": "ce4ff2d6dd6e9613779dde03485b5db9ac235d04cc781336ab378f25e5869de2",
+              "size": 6085,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "8ea25292a841fd7ad76e4ddb3ba40afc2f1868f2574a7b1f57dff26053620eaa",
-              "size": 5576,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/chapter-011.html",
+              "sha256": "4436ef55812c47f4ff002ee3f3e2459b72438fcb395e5401178ce9ec2d8006f8",
+              "size": 5622,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "29c2c322e83307301b4067a31e87f6ed6d5069e32cc7a4387996e7012fcc4d88",
-              "size": 9086,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/index.html",
+              "sha256": "477fd82b15aca3198bd27fab4912a6b1e0803f2597dc102404ab612ac3f52cc2",
+              "size": 9132,
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/index.html",
               "skipped": false
             },
             {
@@ -5592,8 +5592,8 @@
               "relativePath": "sitemap.json",
               "sha256": "8fb83cdb0713129acdaf6995cdd8d752cf965279d505fb653e27638349528a0f",
               "size": 5735,
-              "pathname": "books/moshpit-guide/chapters/fa3ac05e60ddc1f4/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/fa3ac05e60ddc1f4/sitemap.json",
+              "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/sitemap.json",
               "skipped": false
             }
           ]
@@ -6977,6 +6977,21 @@
       "pathname": "books/rgbdns/html/d68c5160120d54cc-rgbdns.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/html/d68c5160120d54cc-rgbdns.html",
       "size": 226084
+    },
+    "ea9eb45e7a95d7d85e1422674d6dd777dacbd39d2539e5b357c101e996666b2d:8776859": {
+      "pathname": "books/moshpit-guide/pdf/ea9eb45e7a95d7d8-moshpit-guide.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/pdf/ea9eb45e7a95d7d8-moshpit-guide.pdf",
+      "size": 8776859
+    },
+    "b0490b86668a8b4ab9ab0ff42f42ef7c701fea5604dbfb2ea73d7d882c648f8b:5996214": {
+      "pathname": "books/moshpit-guide/epub/b0490b86668a8b4a-moshpit-guide.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/epub/b0490b86668a8b4a-moshpit-guide.epub",
+      "size": 5996214
+    },
+    "1aa5335644b8c882cc3af68a6177cef0501ff419504859f2c45fe455a8867cc2:283503": {
+      "pathname": "books/moshpit-guide/html/1aa5335644b8c882-moshpit-guide.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/html/1aa5335644b8c882-moshpit-guide.html",
+      "size": 283503
     }
   },
   "chapterPackages": {
@@ -18700,6 +18715,165 @@
           "size": 18520,
           "pathname": "books/rgbdns/chapters/a3139c86a73e2723/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/a3139c86a73e2723/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "852229cb2bc20387553540c7e4bedcc4a309e66bae0e98e945550ba9a022ac79": {
+      "pathnamePrefix": "books/moshpit-guide/chapters/852229cb2bc20387",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/assets/information-flow.png",
+          "relativePath": "assets/information-flow.png",
+          "sha256": "5ae9e2bcc5a2d3dc65f9e074e4f8033bec5f63dc035f7289586239fefc50149d",
+          "size": 48971,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/information-flow.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/information-flow.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/assets/screenshot-ghostty.png",
+          "relativePath": "assets/screenshot-ghostty.png",
+          "sha256": "8431e467daf0ee91e00eaf0b4406221460850cb8d75e225c6ff658e34aaa2d3c",
+          "size": 35889,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-ghostty.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-ghostty.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/assets/screenshot-session.png",
+          "relativePath": "assets/screenshot-session.png",
+          "sha256": "cf0ec5ab5c095d7074cc4bbadd35845d2d8c51630342074555af44fe18d9cfb0",
+          "size": 48074,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-session.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-session.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/assets/screenshot-tmux-copy.png",
+          "relativePath": "assets/screenshot-tmux-copy.png",
+          "sha256": "39b5905a31fcdceba444111bc27ac1dfbae8d90a616a6d7046e1c74d7622b49b",
+          "size": 51295,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-tmux-copy.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/assets/screenshot-tmux-copy.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "0dc70ab8ebf5b6a0640988b95864ff22d6cee3075126d6d9082f39a340a96a32",
+          "size": 6636,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "2cc7ebaf4161080ccb1e52b0f49f6f7ac173d7773e4ef5b6f060a89baa27858c",
+          "size": 11946,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "d7cb5f4715268e5928ee1fd687be747a325b8760be6719d75738a4baee689dcd",
+          "size": 13984,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "1adf19b6d9a6569692db151ae9a68735272c42e74b528af32267d1e947e77044",
+          "size": 16514,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "5842615e4318288edd3d00e92d89b1854a39dfcd8ca560ccef7b40cd9619e911",
+          "size": 12142,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "cf363837c1169bbb3d5ef07083dfa37b7673f9f1377f619a1ac7943ca80898a4",
+          "size": 6035,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "f42e782cdea86dc15025e3f242279dc268dff20024404a50c18a7108d4874967",
+          "size": 7232,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "501f8a6665c8bb93fbba6c2ee86088be1748fdf63d33a5e1e44c77f01235325a",
+          "size": 10450,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "0d94893a439a2df754a2e95f6338eabd1cd02b4223a1003e3ae6d0ffe954b878",
+          "size": 6359,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "ce4ff2d6dd6e9613779dde03485b5db9ac235d04cc781336ab378f25e5869de2",
+          "size": 6085,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "4436ef55812c47f4ff002ee3f3e2459b72438fcb395e5401178ce9ec2d8006f8",
+          "size": 5622,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "477fd82b15aca3198bd27fab4912a6b1e0803f2597dc102404ab612ac3f52cc2",
+          "size": 9132,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/moshpit-guide/moshpit-guide-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "8fb83cdb0713129acdaf6995cdd8d752cf965279d505fb653e27638349528a0f",
+          "size": 5735,
+          "pathname": "books/moshpit-guide/chapters/852229cb2bc20387/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/chapters/852229cb2bc20387/sitemap.json",
           "skipped": false
         }
       ]
