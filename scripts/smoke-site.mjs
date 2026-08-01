@@ -2,13 +2,14 @@ import { chromium } from '@playwright/test'
 
 const target = process.env.FIRSTPAIR_SITE_URL ?? 'http://127.0.0.1:5183/'
 const queryGraphStoryUrl = 'https://firstpair.press/announcing-querygraph-stack'
+const rosettaStoryUrl = 'https://firstpair.press/comparative-voice-engineering-firstpair/'
 
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
 await page.goto(target, { waitUntil: 'networkidle' })
 await page.screenshot({ path: 'dist-prod/firstpair-site-smoke.png', fullPage: true })
 
-const checks = await page.evaluate((storyUrl) => {
+const checks = await page.evaluate(({ queryGraphStoryUrl, rosettaStoryUrl }) => {
   const links = [...document.querySelectorAll('a')].map((link) => link.getAttribute('href') ?? '')
   const readerLinks = [...document.querySelectorAll('a[href^="/read/"]')]
   const stage = document.querySelector('.press-stage')?.getBoundingClientRect()
@@ -17,6 +18,14 @@ const checks = await page.evaluate((storyUrl) => {
     (card) => card.querySelector('h3')?.textContent?.trim() === 'The QueryGraph Stack',
   )
   const queryGraphCardLinks = [...(queryGraphCard?.querySelectorAll('.book-links a') ?? [])].map(
+    (link) => link.getAttribute('href') ?? '',
+  )
+  const rosettaCard = [...document.querySelectorAll('.book-card')].find(
+    (card) =>
+      card.querySelector('h3')?.textContent?.trim() ===
+      'Rosetta: Comparative Voice Engineering as Editorial Method',
+  )
+  const rosettaCardLinks = [...(rosettaCard?.querySelectorAll('.book-links a') ?? [])].map(
     (link) => link.getAttribute('href') ?? '',
   )
 
@@ -47,12 +56,13 @@ const checks = await page.evaluate((storyUrl) => {
     readerLinksOpenInNewTabs: readerLinks.every(
       (link) => link.target === '_blank' && link.relList.contains('noopener'),
     ),
-    hasQueryGraphStoryCardLink: queryGraphCardLinks.includes(storyUrl),
+    hasQueryGraphStoryCardLink: queryGraphCardLinks.includes(queryGraphStoryUrl),
+    hasRosettaStoryCardLink: rosettaCardLinks.includes(rosettaStoryUrl),
     cardCount,
     stageWidth: Math.round(stage?.width ?? 0),
     stageHeight: Math.round(stage?.height ?? 0),
   }
-}, queryGraphStoryUrl)
+}, { queryGraphStoryUrl, rosettaStoryUrl })
 
 await page.goto(new URL('/books/sail-rust-book/', target).href, { waitUntil: 'networkidle' })
 
@@ -86,6 +96,18 @@ const queryGraphBookPageChecks = await page.evaluate((storyUrl) => {
     hasPostLink: links.includes(storyUrl),
   }
 }, queryGraphStoryUrl)
+
+await page.goto(new URL('/books/rosetta/', target).href, { waitUntil: 'networkidle' })
+
+const rosettaBookPageChecks = await page.evaluate((storyUrl) => {
+  const links = [...document.querySelectorAll('a')].map((link) => link.getAttribute('href') ?? '')
+
+  return {
+    hasBookDetail: Boolean(document.querySelector('.book-detail')),
+    title: document.querySelector('h1')?.textContent?.trim() ?? '',
+    hasPostLink: links.includes(storyUrl),
+  }
+}, rosettaStoryUrl)
 
 await browser.close()
 
@@ -155,6 +177,7 @@ const paths = catalog.books.flatMap((book) => {
 
   return [
     book.homepage,
+    book.post,
     book.pdf,
     book.epub,
     htmlPath,
@@ -232,6 +255,10 @@ if (!checks.hasQueryGraphStoryCardLink) {
   throw new Error(`QueryGraph library card is missing its story link: ${JSON.stringify(checks)}`)
 }
 
+if (!checks.hasRosettaStoryCardLink) {
+  throw new Error(`Rosetta library card is missing its story link: ${JSON.stringify(checks)}`)
+}
+
 if (
   !bookPageChecks.hasBookDetail ||
   bookPageChecks.title !== 'Sail Rust Book' ||
@@ -255,6 +282,16 @@ if (
 ) {
   throw new Error(
     `QueryGraph book detail page smoke failed: ${JSON.stringify(queryGraphBookPageChecks)}`,
+  )
+}
+
+if (
+  !rosettaBookPageChecks.hasBookDetail ||
+  rosettaBookPageChecks.title !== 'Rosetta: Comparative Voice Engineering as Editorial Method' ||
+  !rosettaBookPageChecks.hasPostLink
+) {
+  throw new Error(
+    `Rosetta book detail page smoke failed: ${JSON.stringify(rosettaBookPageChecks)}`,
   )
 }
 
@@ -285,5 +322,9 @@ if (catalogChecks.failedReaderBodies.length > 0) {
 }
 
 console.log(
-  JSON.stringify({ ...checks, bookPageChecks, queryGraphBookPageChecks, ...catalogChecks }, null, 2),
+  JSON.stringify(
+    { ...checks, bookPageChecks, queryGraphBookPageChecks, rosettaBookPageChecks, ...catalogChecks },
+    null,
+    2,
+  ),
 )
