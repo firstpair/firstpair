@@ -266,19 +266,20 @@
       "kicker": "Finished book",
       "description": "The QueryGraph Stack: The Definitive Guide to the Governed Semantic Lakehouse, delivered as PDF, EPUB, and hosted web readers.",
       "accent": "#7a6a3e",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/02c983636be0c471-querygraph-stack.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/367634aa816ebecb-querygraph-stack.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/9c125deb5dbcc045-querygraph.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/536e2815ed236760-querygraph.epub",
       "html": "/read/querygraph/",
       "htmlChapters": "/read/querygraph/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/html/79e412b36cc52a12-querygraph-stack.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/7dcdc8af985c4e42/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/html/c213e7f61f0f1216-querygraph.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/c55774c57a5e627f/index.html",
       "tags": [
         "finished"
       ],
       "shelf": "querygraph",
-      "source": "https://github.com/querygraph/qg-rust",
+      "source": "https://github.com/querygraph/querygraph",
       "post": "https://firstpair.press/announcing-querygraph-stack",
-      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/d56a81bcbdca6dfd-querygraph-cover.png"
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/d56a81bcbdca6dfd-querygraph-cover.png",
+      "author": "Alexy Khrabrov and Slava Tykhonov"
     },
     {
       "slug": "sail-iggy",

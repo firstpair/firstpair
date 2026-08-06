@@ -92,11 +92,10 @@
       "headboard": "book-uploads/staging/zucchero/zucchero-headboard.png"
     },
     "querygraph": {
-      "pdf": "book-uploads/staging/querygraph/querygraph-stack.pdf",
-      "epub": "book-uploads/staging/querygraph/querygraph-stack.epub",
-      "html": "book-uploads/staging/querygraph/querygraph-stack.html",
-      "htmlChapters": "book-uploads/staging/querygraph/querygraph-stack-chapters",
-      "cover": "book-uploads/staging/querygraph/querygraph-cover.png"
+      "pdf": "book-uploads/staging/querygraph/querygraph.pdf",
+      "epub": "book-uploads/staging/querygraph/querygraph.epub",
+      "html": "book-uploads/staging/querygraph/querygraph.html",
+      "htmlChapters": "book-uploads/staging/querygraph/querygraph-chapters"
     },
     "sail-iggy": {
       "pdf": "book-uploads/staging/sail-iggy/sail-iggy-connector.pdf",

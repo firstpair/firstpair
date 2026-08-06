@@ -4,8 +4,8 @@ The QueryGraph Stack: The Definitive Guide to the Governed Semantic Lakehouse, d
 
 ## Current Public Editions
 
-- [PDF](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/02c983636be0c471-querygraph-stack.pdf)
-- [EPUB](https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/367634aa816ebecb-querygraph-stack.epub)
+- [PDF](/querygraph/pdf/)
+- [EPUB](/querygraph/epub/)
 - [Read online](/read/querygraph/)
 - [Chapter reader](/read/querygraph/chapters/)
 
