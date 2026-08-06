@@ -172,6 +172,14 @@
       "htmlChapters": "book-uploads/staging/marciana/marciana-chapters",
       "cover": "book-uploads/staging/marciana/marciana-cover.png",
       "headboard": "book-uploads/staging/marciana/marciana-headboard.png"
+    },
+    "adversarial-cognition": {
+      "pdf": "book-uploads/staging/adversarial-cognition/adversarial-cognition.pdf",
+      "epub": "book-uploads/staging/adversarial-cognition/adversarial-cognition.epub",
+      "html": "book-uploads/staging/adversarial-cognition/adversarial-cognition.html",
+      "htmlChapters": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters",
+      "cover": "book-uploads/staging/adversarial-cognition/adversarial-cognition-cover.png",
+      "headboard": "book-uploads/staging/adversarial-cognition/adversarial-cognition-headboard.png"
     }
   }
 }
