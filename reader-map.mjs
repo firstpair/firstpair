@@ -122,8 +122,8 @@ export const readerBooks = [
   },
   {
     "slug": "marciana",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/8961b81dc7743056-marciana.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/bf174aaba59d64a1/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/bf174aaba59d64a1"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/f955d89c5f693278-marciana.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b"
   }
 ]

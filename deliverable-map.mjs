@@ -144,8 +144,8 @@ export const deliverableBooks = [
   {
     "slug": "marciana",
     "title": "Marciana",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/ff0dae71d6f652e2-marciana.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/661868890370fbfa-marciana.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/55b35a743a823c26-marciana.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/6908c512eaa04609-marciana.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/cover/540f3857bae5d609-marciana-cover.png"
   }
 ]
