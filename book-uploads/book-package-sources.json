@@ -165,6 +165,14 @@
       "vault": "book-uploads/staging/rosetta/rosetta-full-vault (1.0.0-1b19ff01).zip",
       "vaultGuideMarkdown": "book-uploads/staging/rosetta/rosetta-vault-guide (1.0.0-1b19ff01).md",
       "vaultGuideHtml": "book-uploads/staging/rosetta/rosetta-vault-guide (1.0.0-1b19ff01).html"
+    },
+    "marciana": {
+      "pdf": "book-uploads/staging/marciana/marciana.pdf",
+      "epub": "book-uploads/staging/marciana/marciana.epub",
+      "html": "book-uploads/staging/marciana/marciana.html",
+      "htmlChapters": "book-uploads/staging/marciana/marciana-chapters",
+      "cover": "book-uploads/staging/marciana/marciana-cover.png",
+      "headboard": "book-uploads/staging/marciana/marciana-headboard.png"
     }
   }
 }

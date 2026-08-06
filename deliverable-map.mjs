@@ -140,5 +140,12 @@ export const deliverableBooks = [
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/epub/c7df52472dfa205b-rosetta.epub",
     "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault%20%281.0.0-1b19ff01%29.zip",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/cover/3398240f429a98d1-rosetta-cover.png"
+  },
+  {
+    "slug": "marciana",
+    "title": "Marciana",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/ff0dae71d6f652e2-marciana.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/661868890370fbfa-marciana.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/cover/540f3857bae5d609-marciana-cover.png"
   }
 ]

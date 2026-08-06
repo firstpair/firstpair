@@ -119,5 +119,11 @@ export const readerBooks = [
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/chapters/5bf315bcd27171eb",
     "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide%20%281.0.0-1b19ff01%29.html"
+  },
+  {
+    "slug": "marciana",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/8961b81dc7743056-marciana.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/bf174aaba59d64a1/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/bf174aaba59d64a1"
   }
 ]

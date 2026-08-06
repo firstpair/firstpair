@@ -458,6 +458,27 @@
       "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault/5ba253974806ce2b-rosetta-full-vault%20%281.0.0-1b19ff01%29.zip",
       "vaultGuide": "/read/rosetta/guide/",
       "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rosetta/vault-guide/b22d3b031520e2ea-rosetta-vault-guide%20%281.0.0-1b19ff01%29.html"
+    },
+    {
+      "slug": "marciana",
+      "title": "Marciana",
+      "author": "Alexy Khrabrov",
+      "kicker": "Finished book",
+      "description": "Marciana: Governed Memory for the QueryGraph Semantic Stack, delivered as PDF, EPUB, and hosted web readers.",
+      "accent": "#755a7f",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/ff0dae71d6f652e2-marciana.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/661868890370fbfa-marciana.epub",
+      "html": "/read/marciana/",
+      "htmlChapters": "/read/marciana/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/8961b81dc7743056-marciana.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/bf174aaba59d64a1/index.html",
+      "tags": [
+        "finished"
+      ],
+      "shelf": "querygraph",
+      "source": "https://github.com/querygraph/marciana",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/cover/540f3857bae5d609-marciana-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/headboard/8a907f90a5a1b0de-marciana-headboard.png"
     }
   ]
 }
