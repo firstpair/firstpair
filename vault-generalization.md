@@ -149,6 +149,10 @@ Each product must record:
 - For legacy native builders that still emit workspace aliases, FirstPair
   preserves them through native validation, removes the three volatile/private
   aliases at the composition boundary, and then installs the canonical seed.
+- Generalized publication discovery for compact mobile Readers: a product may
+  use the shared root manifest or a title-owned child mobile manifest, paired
+  with a mobile library, reader index, or unit ledger. The title's validator
+  still supplies the semantic proof before any archive is staged.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.

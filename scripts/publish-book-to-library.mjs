@@ -1117,7 +1117,7 @@ async function isProperVault(dir) {
 // ledger. It remains a distinct product, so require its source-owned manifest
 // instead of treating it as a reduced desktop vault.
 async function isProperMobileVault(dir) {
-  if (!(await exists(join(dir, 'Home.md'))) || !(await exists(join(dir, 'MOBILE-VAULT.json')))) {
+  if (!(await exists(join(dir, 'Home.md')))) {
     return false
   }
   let entries
@@ -1126,9 +1126,16 @@ async function isProperMobileVault(dir) {
   } catch {
     return false
   }
+  const rootManifest = await exists(join(dir, 'MOBILE-VAULT.json'))
   for (const entry of entries) {
     if (!entry.isDirectory()) continue
-    if (await exists(join(dir, entry.name, '_data', 'mobile-library.json'))) return true
+    const data = join(dir, entry.name, '_data')
+    const sourceManifest = await exists(join(data, 'mobile-manifest.json'))
+    const readerLedger =
+      (await exists(join(data, 'mobile-library.json'))) ||
+      (await exists(join(data, 'reader.json'))) ||
+      (await exists(join(data, 'units.jsonl')))
+    if ((rootManifest || sourceManifest) && readerLedger) return true
   }
   return false
 }
