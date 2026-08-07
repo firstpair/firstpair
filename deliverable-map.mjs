@@ -151,8 +151,8 @@ export const deliverableBooks = [
   {
     "slug": "adversarial-cognition",
     "title": "Adversarial Cognition",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/pdf/336d3e4e1a82fc70-adversarial-cognition.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/epub/a240da3853357691-adversarial-cognition.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/pdf/98382e815156acbc-adversarial-cognition.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/epub/41062fdfa509b962-adversarial-cognition.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/cover/1d23b97dc652439f-adversarial-cognition-cover.png"
   }
 ]

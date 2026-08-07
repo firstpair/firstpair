@@ -128,8 +128,8 @@ export const readerBooks = [
   },
   {
     "slug": "adversarial-cognition",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/e78cad9c63a3a345-adversarial-cognition.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/351ded1c4f5ccd57/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/351ded1c4f5ccd57"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/bbcb40c3dc20d774-adversarial-cognition.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b"
   }
 ]
