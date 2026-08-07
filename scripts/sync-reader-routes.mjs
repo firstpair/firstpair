@@ -41,6 +41,10 @@ function readerRoutes() {
       dest: '/api/deliverable?slug=$1&format=$2',
     },
     {
+      src: '^/obsidian/?$',
+      dest: '/obsidian/index.html',
+    },
+    {
       handle: 'filesystem',
     },
     {

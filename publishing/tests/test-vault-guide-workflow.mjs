@@ -766,7 +766,7 @@ print("fixture source-owned vault validation passed")
       2,
     )}\n`,
   )
-  await writeFile(join(harness, 'vercel.json'), '{}\n')
+  await copyFile(join(repoRoot, 'vercel.json'), join(harness, 'vercel.json'))
 
   const upload = await run(process.execPath, [
     join(harness, 'scripts', 'upload-book-package.mjs'),
