@@ -8,12 +8,18 @@ from .guides import compose_guide
 from .inventory import inventory
 
 
-def _command(arguments: tuple[str, ...], *, output: Path, guide: Path) -> list[str]:
-    replacements = {"{output}": str(output), "{guide}": str(guide)}
+def _command(
+    arguments: tuple[str, ...], *, output: Path, guide: Path, product: str
+) -> list[str]:
+    replacements = {
+        "{output}": str(output),
+        "{guide}": str(guide),
+        "{product}": product,
+    }
     return [
         argument.replace("{output}", replacements["{output}"]).replace(
             "{guide}", replacements["{guide}"]
-        )
+        ).replace("{product}", replacements["{product}"])
         for argument in arguments
     ]
 
@@ -29,7 +35,12 @@ def build_native_candidate(root: Path, config, projection, source_revision: str)
     )
     try:
         subprocess.run(
-            _command(driver.build, output=root, guide=guide),
+            _command(
+                driver.build,
+                output=root,
+                guide=guide,
+                product=projection.product.name,
+            ),
             cwd=config.repo_root,
             check=True,
         )
@@ -39,7 +50,12 @@ def build_native_candidate(root: Path, config, projection, source_revision: str)
         (root / "Guide.md").write_text(complete_guide, encoding="utf-8")
         (root / "README.md").write_text(complete_guide, encoding="utf-8")
         subprocess.run(
-            _command(driver.validate, output=root, guide=guide),
+            _command(
+                driver.validate,
+                output=root,
+                guide=guide,
+                product=projection.product.name,
+            ),
             cwd=config.repo_root,
             check=True,
         )

@@ -137,8 +137,8 @@ class VaultConfigTests(unittest.TestCase):
         path = self.write_config(
             sourceCommit="HEAD",
             nativeDriver={
-                "build": [sys.executable, "scripts/build.py", "{output}"],
-                "validate": [sys.executable, "scripts/check.py", "{output}"],
+                "build": [sys.executable, "scripts/build.py", "{output}", "{product}"],
+                "validate": [sys.executable, "scripts/check.py", "{output}", "{product}"],
             },
         )
         subprocess.run(["git", "init", "-q", "--initial-branch=main", str(self.root)], check=True)
