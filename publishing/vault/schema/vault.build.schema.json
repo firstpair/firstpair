@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://firstpair.org/schemas/vault.build.schema.json",
+  "title": "FirstPair vault build",
+  "type": "object",
+  "required": ["schemaVersion", "slug", "title", "profile", "sourceCommit", "reader", "products"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "schemaVersion": { "const": 1 },
+    "repoRoot": { "type": "string" },
+    "slug": { "type": "string", "minLength": 1 },
+    "title": { "type": "string", "minLength": 1 },
+    "profile": { "enum": ["code", "history", "triptych"] },
+    "sourceCommit": { "type": "string", "minLength": 7 },
+    "plugin": { "type": "boolean" },
+    "reader": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "source"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "source": { "type": "string" },
+          "preview": { "type": "boolean" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "source"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string" },
+          "source": { "type": "string" },
+          "label": { "type": "string" },
+          "rights": { "enum": ["redistributable", "metadata-only", "restricted"] },
+          "referencedBy": { "type": "array", "items": { "type": "string" } },
+          "metadata": { "type": "object" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "collections": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "kind", "source"],
+        "properties": {
+          "id": { "type": "string" },
+          "kind": { "type": "string" },
+          "source": { "type": "string" },
+          "include": { "type": "array", "items": { "type": "string" } },
+          "exclude": { "type": "array", "items": { "type": "string" } },
+          "rights": { "enum": ["redistributable", "metadata-only", "restricted"] },
+          "referencedBy": { "type": "array", "items": { "type": "string" } }
+        },
+        "additionalProperties": false
+      }
+    },
+    "products": {
+      "type": "object",
+      "minProperties": 1,
+      "properties": {
+        "desktop": { "$ref": "#/$defs/product" },
+        "mobile": { "$ref": "#/$defs/product" },
+        "preview": { "$ref": "#/$defs/product" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "product": {
+      "type": "object",
+      "required": ["output"],
+      "properties": {
+        "output": { "type": "string" },
+        "edition": { "enum": ["full", "preview"] },
+        "maxFiles": { "type": "integer", "minimum": 1 },
+        "maxBytes": { "type": "integer", "minimum": 1 }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

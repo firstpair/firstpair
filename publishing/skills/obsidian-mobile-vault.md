@@ -12,6 +12,12 @@ source maps, not by pruning the generated full vault. This avoids carrying
 desktop workspace state, archival files, and audit-only links into the phone
 package.
 
+The shared FirstPair framework models mobile as a product projection over the
+same canonical Reader and evidence targets used by desktop. Preview is a single
+responsive desktop/mobile product with its own disclosure closure; do not fork
+separate phone and desktop preview builders. See
+`publishing/VAULT-CONSTRUCTION.md`.
+
 1. Confirm the source repository, generated mobile-vault path, local Obsidian
    vault path, and dedicated Obsidian Sync remote. Never attach the compact
    vault to the complete vault's remote.

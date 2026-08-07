@@ -30,6 +30,13 @@ than leaving the Reader for a previously open note.
 
 ## Build Workflow
 
+For new or migrated titles, use the shared compatibility-first framework in
+`publishing/vault/` and the migration gate in
+`publishing/VAULT-CONSTRUCTION.md`. Keep an existing title-owned builder and
+published vault intact until a separately named candidate passes differential
+QA, the profile and title validators, visual Reader review, and explicit
+replacement approval.
+
 1. Confirm the real source repository, exact edition, source commit, generated
    vault path, and public boundary. A complete evidence vault does not authorize
    publication of a complete book over a preview; retain the publisher's

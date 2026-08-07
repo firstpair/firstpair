@@ -1,5 +1,12 @@
 # Skill: Obsidian Reader, Setup, and Plugin Delivery
 
+New and migrated books use the standard package at
+`publishing/vault/plugin/firstpair-reader/`. Title-specific behavior should be
+expressed through versioned indexes, manifest capabilities, styles, or a
+documented extension contract. Do not fork the core Reader for ordinary labels,
+colors, source maps, code maps, or target data. Existing plugins remain the
+baseline until the candidate passes `publishing/VAULT-CONSTRUCTION.md`.
+
 Use when designing, installing, validating, or updating the optional Obsidian
 Reader for a full, preview, or mobile First Pair vault.
 

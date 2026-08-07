@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://firstpair.org/schemas/vault.qa.schema.json",
+  "title": "FirstPair vault differential QA contract",
+  "type": "object",
+  "properties": {
+    "schema": { "const": "firstpair-vault-qa-v1" },
+    "minimums": {
+      "type": "object",
+      "properties": {
+        "files": { "type": "integer", "minimum": 0 },
+        "bytes": { "type": "integer", "minimum": 0 },
+        "markdown": { "type": "integer", "minimum": 0 },
+        "images": { "type": "integer", "minimum": 0 }
+      },
+      "additionalProperties": false
+    },
+    "semanticMinimums": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "baselineMetrics": {
+      "type": "object",
+      "additionalProperties": { "type": "integer", "minimum": 0 }
+    },
+    "manifestNotLessThan": { "type": "array", "items": { "type": "string" } },
+    "requiredPaths": { "type": "array", "items": { "type": "string" } },
+    "requiredGlobs": { "type": "array", "items": { "type": "string" } },
+    "forbiddenGlobs": { "type": "array", "items": { "type": "string" } },
+    "reviewPaths": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+vault_root="$(cd "$script_dir/../vault" && pwd)"
+PYTHONPATH="$vault_root${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m firstpair_vault.cli "$@"
