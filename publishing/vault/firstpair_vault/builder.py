@@ -14,6 +14,7 @@ from .config import load_config
 from .guides import compose_guide
 from .inventory import inventory
 from .model import Projection
+from .native import build_native_candidate
 from .profiles import validate_collection_kinds, validate_evidence
 from .projection import project
 from .revisions import require_clean_worktree, resolve_source_commit
@@ -190,10 +191,13 @@ def build_vault(config_path: Path, product_name: str) -> dict[str, object]:
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=f".{destination.name}-", dir=destination.parent) as temporary:
         candidate = Path(temporary) / destination.name
-        candidate.mkdir()
-        _write_projection(candidate, projection, config, source_revision)
-        manifest = _manifest(candidate, config, projection, source_revision)
-        (candidate / "VAULT-MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+        if config.native_driver:
+            manifest = build_native_candidate(candidate, config, projection, source_revision)
+        else:
+            candidate.mkdir()
+            _write_projection(candidate, projection, config, source_revision)
+            manifest = _manifest(candidate, config, projection, source_revision)
+            (candidate / "VAULT-MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
         scanned = inventory(candidate)
         if scanned.critical_broken_links or scanned.unsafe_paths:
             raise RuntimeError(

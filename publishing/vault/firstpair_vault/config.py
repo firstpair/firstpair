@@ -5,7 +5,7 @@ from pathlib import Path
 import re
 from typing import Any
 
-from .model import EvidenceCollection, EvidenceTarget, PRODUCTS, PROFILES, Product, ReaderPage, VaultConfig
+from .model import EvidenceCollection, EvidenceTarget, NativeDriver, PRODUCTS, PROFILES, Product, ReaderPage, VaultConfig
 
 
 class ConfigError(ValueError):
@@ -25,6 +25,15 @@ def _text(value: Any, label: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ConfigError(f"{label} must be a non-empty string")
     return value.strip()
+
+
+def _command(value: Any, label: str) -> tuple[str, ...]:
+    if not isinstance(value, list) or not value:
+        raise ConfigError(f"{label} must be a non-empty string array")
+    command = tuple(_text(item, f"{label}[{index}]") for index, item in enumerate(value))
+    if not any("{output}" in item for item in command):
+        raise ConfigError(f"{label} must contain an {{output}} argument")
+    return command
 
 
 def _source(root: Path, value: Any, label: str) -> Path:
@@ -145,6 +154,14 @@ def load_config(path: Path) -> VaultConfig:
         raise ConfigError("products must not be empty")
 
     guide = _object(raw.get("guide", {}), "guide")
+    driver_raw = raw.get("nativeDriver")
+    native_driver = None
+    if driver_raw is not None:
+        driver = _object(driver_raw, "nativeDriver")
+        native_driver = NativeDriver(
+            build=_command(driver.get("build"), "nativeDriver.build"),
+            validate=_command(driver.get("validate"), "nativeDriver.validate"),
+        )
     source_commit = _text(raw.get("sourceCommit"), "sourceCommit")
     if source_commit != "HEAD" and not COMMIT_RE.fullmatch(source_commit):
         raise ConfigError("sourceCommit must be HEAD or an exact 40-character lowercase Git commit")
@@ -165,4 +182,5 @@ def load_config(path: Path) -> VaultConfig:
             if guide.get("bookSpecific")
             else None
         ),
+        native_driver=native_driver,
     )

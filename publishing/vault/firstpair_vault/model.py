@@ -49,6 +49,12 @@ class Product:
 
 
 @dataclass(frozen=True)
+class NativeDriver:
+    build: tuple[str, ...]
+    validate: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class VaultConfig:
     config_path: Path
     repo_root: Path
@@ -62,6 +68,7 @@ class VaultConfig:
     products: dict[str, Product]
     plugin: bool
     book_guide: Path | None
+    native_driver: NativeDriver | None
 
 
 @dataclass(frozen=True)

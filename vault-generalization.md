@@ -133,6 +133,11 @@ Each product must record:
   committed configurations may request `sourceCommit: "HEAD"`; the clean build
   resolves and records the exact 40-character revision in the guide and
   manifest. Exact external pins remain supported.
+- Added a shell-free native-driver boundary for rich existing vault builders.
+  FirstPair supplies a transactional candidate path and complete guide, invokes
+  the title producer and validator as argument arrays, enforces shared privacy
+  and link rules, and records a concrete FirstPair candidate manifest. This
+  retains title semantics while centralizing construction policy.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.
@@ -150,8 +155,9 @@ Each product must record:
 - Inventorying title-specific builders, validators, plugins, guides, source
   rights, product boundaries, and clean-repository constraints for all seven
   published vault titles.
-- Designing the v2 compatibility and typed-extension contracts needed to retain
-  the richer existing title behavior.
+- Sail's committed adoption contract is landed at `1580d67`. Its first
+  candidate run found and is resolving strict-validator issues in illustrative
+  handbook links and tab-bearing generated source excerpts.
 
 ### Blockers and preserved state
 

@@ -13,6 +13,7 @@ VAULT_PACKAGE = Path(__file__).resolve().parents[1] / "vault"
 sys.path.insert(0, str(VAULT_PACKAGE))
 
 from firstpair_vault.compare import compare_vaults  # noqa: E402
+from firstpair_vault.builder import build_vault  # noqa: E402
 from firstpair_vault.config import ConfigError, load_config  # noqa: E402
 from firstpair_vault.inventory import inventory  # noqa: E402
 from firstpair_vault.guides import compose_guide  # noqa: E402
@@ -90,6 +91,68 @@ class VaultConfigTests(unittest.TestCase):
         guide = compose_guide(config, project(config, "desktop"), source_revision=revision)
         self.assertIn(f"Source revision: `{revision}`", guide)
         self.assertNotIn("Source revision: `HEAD`", guide)
+
+    def test_parses_a_thin_native_driver_without_shell_commands(self) -> None:
+        config = load_config(
+            self.write_config(
+                nativeDriver={
+                    "build": ["python3", "scripts/build.py", "{output}"],
+                    "validate": ["python3", "scripts/check.py", "{output}"],
+                }
+            )
+        )
+        self.assertIsNotNone(config.native_driver)
+        self.assertEqual("python3", config.native_driver.build[0])
+
+    def test_rejects_a_native_driver_without_an_output_placeholder(self) -> None:
+        path = self.write_config(
+            nativeDriver={
+                "build": ["python3", "scripts/build.py"],
+                "validate": ["python3", "scripts/check.py", "{output}"],
+            }
+        )
+        with self.assertRaises(ConfigError):
+            load_config(path)
+
+    def test_native_driver_builds_validates_and_installs_the_complete_guide(self) -> None:
+        scripts = self.root / "scripts"
+        scripts.mkdir()
+        (scripts / "build.py").write_text(
+            "from pathlib import Path\n"
+            "import sys\n"
+            "root = Path(sys.argv[1])\n"
+            "root.mkdir(parents=True)\n"
+            "(root / 'Home.md').write_text('# Home\\n')\n",
+            encoding="utf-8",
+        )
+        (scripts / "check.py").write_text(
+            "from pathlib import Path\n"
+            "import sys\n"
+            "root = Path(sys.argv[1])\n"
+            "assert (root / 'Home.md').is_file()\n"
+            "assert 'firstpair-vault-guide-v2' in (root / 'Guide.md').read_text()\n"
+            "assert (root / 'Guide.md').read_bytes() == (root / 'README.md').read_bytes()\n",
+            encoding="utf-8",
+        )
+        path = self.write_config(
+            sourceCommit="HEAD",
+            nativeDriver={
+                "build": [sys.executable, "scripts/build.py", "{output}"],
+                "validate": [sys.executable, "scripts/check.py", "{output}"],
+            },
+        )
+        subprocess.run(["git", "init", "-q", "--initial-branch=main", str(self.root)], check=True)
+        subprocess.run(["git", "-C", str(self.root), "config", "user.name", "Vault Test"], check=True)
+        subprocess.run(
+            ["git", "-C", str(self.root), "config", "user.email", "vault@example.invalid"],
+            check=True,
+        )
+        subprocess.run(["git", "-C", str(self.root), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(self.root), "commit", "-q", "-m", "fixture"], check=True)
+        manifest = build_vault(path, "desktop")
+        candidate = self.root / "candidate" / "desktop"
+        self.assertEqual("firstpair-native-vault-manifest-v1", manifest["schema"])
+        self.assertTrue((candidate / "FIRSTPAIR-VAULT-MANIFEST.json").is_file())
 
     def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
         config = load_config(self.write_config())

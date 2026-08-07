@@ -45,10 +45,11 @@ not the FirstPair edition or anyone else’s vault.
 
 ## Notes, links, and the graph
 
-Every `.md` file is readable Markdown. Links written as `[[Note title]]` point
-to another note in the vault. A link such as `[[Source#Passage]]` points to a
-heading or reviewed block inside a note. Standard web links open an external
-site and may require a network connection.
+Every `.md` file is readable Markdown. Obsidian links put a note title inside
+double square brackets; adding a heading after a hash points to a specific
+passage. The links already present in the book are clickable—you do not need to
+type this syntax to begin reading. Standard web links open an external site and
+may require a network connection.
 
 Open **Backlinks** to see which chapters, claims, or excerpts refer to the
 current note. Open **Local graph** to see its immediate neighborhood. The full
