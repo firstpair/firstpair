@@ -35,10 +35,20 @@ def parser() -> argparse.ArgumentParser:
 def main() -> int:
     args = parser().parse_args()
     if args.command == "plan":
-        names = ("desktop", "mobile", "preview") if args.product == "all" else (args.product,)
+        config = load_config(args.config)
+        names = (
+            tuple(name for name in ("desktop", "mobile", "preview") if name in config.products)
+            if args.product == "all"
+            else (args.product,)
+        )
         result = {"products": [plan_vault(args.config, name) for name in names]}
     elif args.command == "build":
-        names = ("desktop", "mobile", "preview") if args.product == "all" else (args.product,)
+        config = load_config(args.config)
+        names = (
+            tuple(name for name in ("desktop", "mobile", "preview") if name in config.products)
+            if args.product == "all"
+            else (args.product,)
+        )
         result = {"products": [build_vault(args.config, name) for name in names]}
     elif args.command == "snapshot":
         result = baseline_contract(args.baseline)

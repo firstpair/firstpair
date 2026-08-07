@@ -114,6 +114,17 @@ class VaultConfigTests(unittest.TestCase):
         with self.assertRaises(ConfigError):
             load_config(path)
 
+    def test_a_title_may_declare_only_the_products_it_publishes(self) -> None:
+        config = load_config(
+            self.write_config(
+                products={
+                    "mobile": {"output": "candidate/mobile"},
+                    "preview": {"output": "candidate/preview", "edition": "preview"},
+                }
+            )
+        )
+        self.assertEqual({"mobile", "preview"}, set(config.products))
+
     def test_native_driver_builds_validates_and_installs_the_complete_guide(self) -> None:
         scripts = self.root / "scripts"
         scripts.mkdir()
