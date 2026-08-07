@@ -124,8 +124,8 @@ A simple personal note might contain:
 ```markdown
 # Questions about chapter 4
 
-- Revisit [[Reader/004 - Chapter title]].
-- Compare with [[Sources/Primary source#Relevant passage]].
+- Revisit the relevant Reader chapter.
+- Compare it with the linked primary-source passage.
 ```
 
 Tags, bookmarks, highlights, Canvas files, and ordinary Markdown notes remain

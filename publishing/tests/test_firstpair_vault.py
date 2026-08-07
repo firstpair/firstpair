@@ -15,7 +15,7 @@ sys.path.insert(0, str(VAULT_PACKAGE))
 from firstpair_vault.compare import compare_vaults  # noqa: E402
 from firstpair_vault.builder import build_vault  # noqa: E402
 from firstpair_vault.config import ConfigError, load_config  # noqa: E402
-from firstpair_vault.inventory import inventory  # noqa: E402
+from firstpair_vault.inventory import inventory, linkable_markdown  # noqa: E402
 from firstpair_vault.guides import compose_guide  # noqa: E402
 from firstpair_vault.projection import project  # noqa: E402
 
@@ -171,6 +171,13 @@ class VaultConfigTests(unittest.TestCase):
 
 
 class VaultComparisonTests(unittest.TestCase):
+    def test_link_inventory_ignores_fenced_and_inline_code(self) -> None:
+        text = "[[Real]]\n`[[Inline syntax]]`\n```toml\n[[package]]\n```\n"
+        linkable = linkable_markdown(text)
+        self.assertIn("[[Real]]", linkable)
+        self.assertNotIn("Inline syntax", linkable)
+        self.assertNotIn("package", linkable)
+
     def test_candidate_must_not_regress_declared_contract(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)

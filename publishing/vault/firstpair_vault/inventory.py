@@ -8,6 +8,29 @@ from pathlib import Path
 
 WIKI_LINK = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]")
 MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\((?!https?://|mailto:|obsidian:)([^)#]+)(?:#[^)]+)?\)")
+INLINE_CODE = re.compile(r"`[^`\n]*`")
+FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
+
+
+def linkable_markdown(text: str) -> str:
+    """Remove code surfaces whose syntax can resemble Markdown links."""
+
+    lines: list[str] = []
+    closing: str | None = None
+    for line in text.splitlines():
+        match = FENCE.match(line)
+        if match:
+            marker = match.group(1)[0]
+            if closing is None:
+                closing = marker
+            elif closing == marker:
+                closing = None
+            lines.append("")
+        elif closing is None:
+            lines.append(INLINE_CODE.sub("", line))
+        else:
+            lines.append("")
+    return "\n".join(lines)
 
 
 @dataclass(frozen=True)
@@ -59,7 +82,7 @@ def inventory(root: Path) -> Inventory:
         total += path.stat().st_size
         if path.suffix.lower() == ".md":
             markdown += 1
-            text = path.read_text(encoding="utf-8", errors="replace")
+            text = linkable_markdown(path.read_text(encoding="utf-8", errors="replace"))
             for target in WIKI_LINK.findall(text):
                 target_path = Path(target)
                 relative_target = (path.parent / target_path).resolve()

@@ -158,6 +158,9 @@ Each product must record:
 - Sail's committed adoption contract is landed at `1580d67`. Its first
   candidate run found and is resolving strict-validator issues in illustrative
   handbook links and tab-bearing generated source excerpts.
+- Shared link inventory now excludes fenced and inline code from link parsing,
+  preventing Cargo, Rust, Python, and documentation syntax from being counted
+  as broken Obsidian navigation while retaining all real Markdown links.
 
 ### Blockers and preserved state
 
