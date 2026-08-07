@@ -158,6 +158,11 @@ Each product must record:
   every post-composition file, byte total, source revision, product, and native
   validator command. Publication verifies that seal instead of incorrectly
   rerunning a title byte-count validator after shared files were added.
+- Added a closed-Obsidian visual fallback gate. It renders each candidate's
+  actual Home and complete Guide at 1440-pixel desktop and 390-pixel phone
+  widths, captures full-page evidence, and rejects missing entry navigation,
+  missing heading structure, or horizontal overflow. Native plugin suites
+  remain responsible for title-specific interactive surfaces.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.
