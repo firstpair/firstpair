@@ -140,6 +140,7 @@ def load_config(path: Path) -> VaultConfig:
     if not products:
         raise ConfigError("products must not be empty")
 
+    guide = _object(raw.get("guide", {}), "guide")
     return VaultConfig(
         config_path=config_path,
         repo_root=repo_root,
@@ -152,4 +153,9 @@ def load_config(path: Path) -> VaultConfig:
         collections=tuple(collections),
         products=products,
         plugin=bool(raw.get("plugin", True)),
+        book_guide=(
+            _source(repo_root, guide.get("bookSpecific"), "guide.bookSpecific")
+            if guide.get("bookSpecific")
+            else None
+        ),
     )

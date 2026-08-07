@@ -96,6 +96,12 @@ replacement approval.
     let FirstPair render the hosted guide. Do not maintain three drifting guide
     copies.
 
+For a migrated title, “one canonical guide” means the deterministic composition
+defined in `publishing/VAULT-CONSTRUCTION.md`: shared handbook, desktop product
+module, profile module, and the book-owned fragment. The generated complete
+manual is embedded byte-for-byte as root `README.md` and `Guide.md`; do not copy
+and hand-edit the shared sections in the title repository.
+
 ## First-Open Setup
 
 Create a deterministic `.obsidian/workspace-first-open.json` owned by source.

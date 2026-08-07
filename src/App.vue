@@ -248,6 +248,7 @@ const fragments = [
       <nav class="nav-links" aria-label="Primary">
         <a href="/#books" @click="navigateInApp($event, '/#books')">Books</a>
         <a href="/#sources" @click="navigateInApp($event, '/#sources')">Sources</a>
+        <a href="/obsidian/">Obsidian guide</a>
         <a
           href="https://firstpair.press/"
           target="_blank"

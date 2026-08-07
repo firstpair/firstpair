@@ -109,6 +109,19 @@ const rosettaBookPageChecks = await page.evaluate((storyUrl) => {
   }
 }, rosettaStoryUrl)
 
+await page.goto(new URL('/obsidian/', target).href, { waitUntil: 'networkidle' })
+const obsidianGuideChecks = await page.evaluate(() => ({
+  title: document.title,
+  hasInstall: document.body.textContent?.includes('Install Obsidian') ?? false,
+  hasReader: document.body.textContent?.includes('The FirstPair Reader') ?? false,
+  hasOmnighost: [...document.querySelectorAll('a')].some(
+    (link) => link.getAttribute('href') === 'https://firstpair.org/read/omnighost/',
+  ),
+  hasLibrary: [...document.querySelectorAll('a')].some(
+    (link) => link.getAttribute('href') === 'https://firstpair.org/',
+  ),
+}))
+
 await browser.close()
 
 async function checkUrl(path) {
@@ -260,6 +273,16 @@ if (!checks.hasRosettaStoryCardLink) {
 }
 
 if (
+  obsidianGuideChecks.title !== 'The FirstPair Guide to Reading Books in Obsidian' ||
+  !obsidianGuideChecks.hasInstall ||
+  !obsidianGuideChecks.hasReader ||
+  !obsidianGuideChecks.hasOmnighost ||
+  !obsidianGuideChecks.hasLibrary
+) {
+  throw new Error(`Obsidian guide is incomplete: ${JSON.stringify(obsidianGuideChecks)}`)
+}
+
+if (
   !bookPageChecks.hasBookDetail ||
   bookPageChecks.title !== 'Sail Rust Book' ||
   !bookPageChecks.hasHeadboard ||
@@ -323,7 +346,14 @@ if (catalogChecks.failedReaderBodies.length > 0) {
 
 console.log(
   JSON.stringify(
-    { ...checks, bookPageChecks, queryGraphBookPageChecks, rosettaBookPageChecks, ...catalogChecks },
+    {
+      ...checks,
+      bookPageChecks,
+      queryGraphBookPageChecks,
+      rosettaBookPageChecks,
+      obsidianGuideChecks,
+      ...catalogChecks,
+    },
     null,
     2,
   ),

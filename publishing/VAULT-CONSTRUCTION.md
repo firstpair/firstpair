@@ -150,3 +150,32 @@ candidate merely because it built successfully.
 
 Old builders remain available as independent baseline producers for at least
 one complete release cycle after a title migrates.
+
+## Layered Vault Guides
+
+Every generated product includes a complete first-use manual as both root
+`README.md` and `Guide.md`. The source is assembled from four layers:
+
+1. the canonical FirstPair Obsidian handbook in
+   `publishing/vault/guides/master.md`;
+2. exactly one product module: desktop, mobile, or preview;
+3. exactly one profile module: code, history, or triptych;
+4. an optional book-owned `guide.bookSpecific` Markdown fragment.
+
+The complete generated guide quotes the common instructions rather than
+requiring a new user to follow several links while setting up Obsidian. It also
+links to the maintained web handbook at `/obsidian/` and to the hosted
+Omnighost book for the separate Obsidian-to-Ghost publishing workflow.
+
+Generate a reviewable guide without touching a vault:
+
+```sh
+~/src/firstpair/publishing/scripts/firstpair-vault guide \
+  vault.build.json --product preview --output build/preview-vault-guide.md
+```
+
+Guide QA must verify installation, first-open, static Reader, optional plugin,
+evidence navigation, personal notes, update safety, troubleshooting, the
+selected product/profile sections, book-specific instructions, source revision,
+and stable FirstPair links. A title's old guide remains published until the new
+complete guide passes this content gate and human first-time-user review.

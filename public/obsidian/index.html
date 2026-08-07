@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10.1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>The FirstPair Guide to Reading Books in Obsidian</title>
+  <style>
+
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; }
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; }
+code span.at { color: #7d9029; }
+code span.bn { color: #40a070; }
+code span.bu { color: #008000; }
+code span.cf { color: #007020; font-weight: bold; }
+code span.ch { color: #4070a0; }
+code span.cn { color: #880000; }
+code span.co { color: #60a0b0; font-style: italic; }
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; }
+code span.do { color: #ba2121; font-style: italic; }
+code span.dt { color: #902000; }
+code span.dv { color: #40a070; }
+code span.er { color: #ff0000; font-weight: bold; }
+code span.ex { }
+code span.fl { color: #40a070; }
+code span.fu { color: #06287e; }
+code span.im { color: #008000; font-weight: bold; }
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; }
+code span.kw { color: #007020; font-weight: bold; }
+code span.op { color: #666666; }
+code span.ot { color: #007020; }
+code span.pp { color: #bc7a00; }
+code span.sc { color: #4070a0; }
+code span.ss { color: #bb6688; }
+code span.st { color: #4070a0; }
+code span.va { color: #19177c; }
+code span.vs { color: #4070a0; }
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; }
+</style>
+  <style type="text/css">:root {
+color-scheme: light dark;
+font-family: Georgia, "Times New Roman", serif;
+line-height: 1.6;
+background: #f5f1e8;
+color: #29251f;
+}
+body {
+box-sizing: border-box;
+max-width: 52rem;
+margin: 0 auto;
+padding: 4.75rem 2rem 6rem;
+background: #fffdf8;
+box-shadow: 0 0 0 1px rgb(74 63 49 / 10%);
+}
+h1,
+h2,
+h3,
+h4 {
+color: #30271e;
+font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+line-height: 1.2;
+text-wrap: balance;
+}
+h1 {
+margin-top: 0;
+font-size: clamp(2rem, 6vw, 3.25rem);
+}
+h2 {
+margin-top: 2.75rem;
+padding-top: 0.75rem;
+border-top: 1px solid rgb(74 63 49 / 18%);
+}
+a {
+color: #7d3f17;
+text-underline-offset: 0.16em;
+}
+code,
+pre {
+font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+code {
+overflow-wrap: anywhere;
+}
+pre {
+overflow-x: auto;
+padding: 1rem;
+border: 1px solid rgb(74 63 49 / 16%);
+border-radius: 0.5rem;
+background: #f2ede3;
+}
+table {
+display: block;
+width: max-content;
+max-width: 100%;
+overflow-x: auto;
+border-collapse: collapse;
+}
+th,
+td {
+padding: 0.45rem 0.65rem;
+border: 1px solid rgb(74 63 49 / 20%);
+text-align: left;
+vertical-align: top;
+}
+blockquote {
+margin-left: 0;
+padding-left: 1rem;
+border-left: 0.25rem solid #b66b36;
+color: #574b40;
+}
+img {
+max-width: 100%;
+height: auto;
+}
+@media (max-width: 40rem) {
+body {
+padding: 4.5rem 1.1rem 4rem;
+}
+}
+@media (prefers-color-scheme: dark) {
+:root {
+background: #171512;
+color: #ede5d8;
+}
+body {
+background: #201d19;
+box-shadow: 0 0 0 1px rgb(255 255 255 / 8%);
+}
+h1,
+h2,
+h3,
+h4 {
+color: #fff8ea;
+}
+a {
+color: #e8a66e;
+}
+pre {
+border-color: rgb(255 255 255 / 12%);
+background: #171512;
+}
+th,
+td {
+border-color: rgb(255 255 255 / 14%);
+}
+blockquote {
+color: #cfc2b2;
+}
+}
+@media print {
+:root,
+body {
+background: #fff;
+color: #000;
+}
+body {
+max-width: none;
+padding: 0;
+box-shadow: none;
+}
+}
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">The FirstPair Guide to Reading Books in Obsidian</h1>
+</header>
+<p><a href="https://firstpair.org/">← First Pair library</a></p>
+<section id="the-firstpair-guide-to-reading-books-in-obsidian" class="level1">
+<h1>The FirstPair Guide to Reading Books in Obsidian</h1>
+<p>An Obsidian vault is a folder of ordinary Markdown notes, images,
+indexes, and optional local plugins. FirstPair uses the format because a
+book can remain a linear reading experience while also becoming a
+navigable body of evidence: chapters connect to code, quotations connect
+to sources, and parallel editions can be compared without hiding their
+provenance.</p>
+<p>You own the downloaded files. The book remains readable without an
+account, without a network connection, and without enabling any
+community plugin.</p>
+<section id="install-obsidian" class="level2">
+<h2>Install Obsidian</h2>
+<ol type="1">
+<li>Visit <a href="https://obsidian.md/download">obsidian.md/download</a> and install
+the application for macOS, Windows, Linux, iOS, or Android.</li>
+<li>Launch Obsidian. Creating an Obsidian account is optional for local
+reading. An account is needed only for paid services such as Obsidian
+Sync or Publish.</li>
+<li>Download the vault ZIP from the book’s FirstPair page.</li>
+<li>Extract the ZIP completely. Do not open or edit files while they are
+still inside the archive.</li>
+<li>In Obsidian choose <strong>Open folder as vault</strong>, select the
+extracted outer folder containing <code>Home.md</code>, and approve
+opening it as a vault.</li>
+</ol>
+<p>Keep the ZIP until you have verified the vault. It is a clean
+recovery copy.</p>
+</section>
+<section id="your-first-five-minutes" class="level2">
+<h2>Your first five minutes</h2>
+<p>The vault should open at <code>Home.md</code>. If it does not, select
+<code>Home.md</code> in the Files pane. Choose <strong>Open the
+Reader</strong> to begin the book in canonical order. If the optional
+Reader plugin is disabled, the static Reader notes provide the same text
+with ordinary Previous, Up, Top, TOC, and Next links.</p>
+<p>Obsidian has four useful regions:</p>
+<ul>
+<li>the <strong>Files</strong> pane lists the notes and evidence
+included in the vault;</li>
+<li>the central pane displays the current note or Reader view;</li>
+<li>the <strong>Outline</strong> shows headings in the current
+note;</li>
+<li>backlinks, Search, and Graph reveal relationships among notes.</li>
+</ul>
+<p>You cannot damage the published source by exploring. Links, Search,
+and Graph only change what you are viewing. Editing a note changes your
+extracted copy, not the FirstPair edition or anyone else’s vault.</p>
+</section>
+<section id="notes-links-and-the-graph" class="level2">
+<h2>Notes, links, and the graph</h2>
+<p>Every <code>.md</code> file is readable Markdown. Links written as
+<code>[[Note title]]</code> point to another note in the vault. A link
+such as <code>[[Source#Passage]]</code> points to a heading or reviewed
+block inside a note. Standard web links open an external site and may
+require a network connection.</p>
+<p>Open <strong>Backlinks</strong> to see which chapters, claims, or
+excerpts refer to the current note. Open <strong>Local graph</strong> to
+see its immediate neighborhood. The full Graph is useful for
+orientation, but it is not the intended way to read the book: the Reader
+is the human route, while the graph is an audit and discovery route.</p>
+<p>Use Search for names, phrases, symbols, source locators, or
+filenames. Quoted search terms find an exact phrase. Obsidian search can
+also restrict paths, for example <code>path:Sources</code> or
+<code>path:Code</code>.</p>
+</section>
+<section id="the-firstpair-reader" class="level2">
+<h2>The FirstPair Reader</h2>
+<p>FirstPair vaults include a continuous Reader and a complete static
+Markdown fallback. The standard Reader navigation rail is:</p>
+<p><strong>Previous | Up | Back | Top | TOC | Next</strong></p>
+<ul>
+<li><strong>Previous</strong> and <strong>Next</strong> follow canonical
+book order.</li>
+<li><strong>Up</strong> leaves the current page for the Reader’s
+containing part or Home.</li>
+<li><strong>Back</strong> restores the previous position inside the
+Reader, including the position before a footnote, source jump, Top, TOC,
+Previous, or Next action.</li>
+<li><strong>Top</strong> returns to the true beginning of the page,
+including a leading plate or cover.</li>
+<li><strong>TOC</strong> opens the Reader contents.</li>
+</ul>
+<p>Back is Reader-local history. It does not behave like a browser Back
+button and will not send you into unrelated notes you happened to open
+earlier.</p>
+</section>
+<section id="optional-local-plugins" class="level2">
+<h2>Optional local plugins</h2>
+<p>The distributed vault is useful with Obsidian’s core features alone.
+FirstPair may include an inspectable local Reader plugin under
+<code>.obsidian/plugins/</code>, but community plugins are disabled on
+first open. This is deliberate consent, not an error.</p>
+<p>To enable it:</p>
+<ol type="1">
+<li>Open <strong>Settings → Community plugins</strong>.</li>
+<li>Read and accept Obsidian’s restricted-mode explanation if you are
+comfortable enabling local code.</li>
+<li>Confirm that the plugin is named <strong>FirstPair Reader</strong>
+or the title’s documented compatibility plugin.</li>
+<li>Enable it, then use the book icon or <strong>Open Reader</strong>
+command.</li>
+</ol>
+<p>FirstPair’s standard plugin is offline, collects no telemetry, and
+reads only the local Reader and evidence indexes. The static Reader
+remains the recovery path if a plugin is disabled or incompatible with a
+future Obsidian release.</p>
+</section>
+<section id="reading-evidence-safely" class="level2">
+<h2>Reading evidence safely</h2>
+<p>Evidence links should take you to a local, identified target: a code
+file or range, historical passage, anthology entry, image, claim record,
+or aligned triptych row. Exact links are curated during publication. A
+missing target is a book defect worth reporting; it should not be
+repaired by silently searching the web and assuming the closest result
+is equivalent.</p>
+<p>External source links identify public repositories, archives, DOI
+records, or institutional pages. A vault may describe restricted
+research material without including its bytes. This preserves
+bibliographic and audit identity without claiming redistribution rights
+FirstPair does not possess.</p>
+</section>
+<section id="make-personal-notes-without-fighting-updates" class="level2">
+<h2>Make personal notes without fighting updates</h2>
+<p>Treat generated Reader, source, code, and <code>_data</code> files as
+edition material. Put your own durable notes in a clearly named folder
+such as <code>My Notes/</code>. Link to published notes from there
+instead of inserting annotations directly into generated machine
+indexes.</p>
+<p>A simple personal note might contain:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Questions about chapter 4</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Revisit [<span class="co">[</span><span class="ot">Reader/004 - Chapter title</span><span class="co">]</span>].</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Compare with [<span class="co">[</span><span class="ot">Sources/Primary source#Relevant passage</span><span class="co">]</span>].</span></code></pre></div>
+<p>Tags, bookmarks, highlights, Canvas files, and ordinary Markdown
+notes remain local to your copy unless you deliberately sync or share
+them.</p>
+</section>
+<section id="desktop-mobile-and-preview-vaults" class="level2">
+<h2>Desktop, mobile, and preview vaults</h2>
+<p>FirstPair may publish three products from the same canonical
+book:</p>
+<ul>
+<li>a <strong>desktop vault</strong> with the complete permitted
+evidence or source tree;</li>
+<li>a <strong>mobile vault</strong> with the full Reader and the exact
+closure of cited, compact evidence needed on a phone or tablet;</li>
+<li>a <strong>preview vault</strong> containing only the disclosed
+preview Reader and its evidence closure. The preview is responsive and
+is the same package on desktop and mobile.</li>
+</ul>
+<p>These are separate products, not folders to merge. Do not connect
+desktop and mobile vaults to the same Obsidian Sync remote. Their file
+sets and size limits are intentionally different.</p>
+</section>
+<section id="sync-and-backup" class="level2">
+<h2>Sync and backup</h2>
+<p>Local reading needs no sync service. To use Obsidian Sync, create a
+distinct remote for the specific vault product. On every device enable
+the categories required by the guide: Markdown, images, other file
+types, vault configuration, the active community-plugin list, and
+installed community plugins. A “Fully synced” badge covers only
+categories enabled on that device.</p>
+<p>Back up personal notes separately. Obsidian Sync is synchronization,
+not a substitute for a versioned backup. The original downloaded ZIP is
+a recovery copy of the published edition but does not contain
+annotations created later.</p>
+</section>
+<section id="updating-a-firstpair-vault" class="level2">
+<h2>Updating a FirstPair vault</h2>
+<p>Do not extract a new edition over an open vault. Quit Obsidian
+completely and keep the old folder until the new one opens correctly.
+The safest update is:</p>
+<ol type="1">
+<li>Download and verify the new versioned ZIP.</li>
+<li>Quit Obsidian on every device that can write the local folder.</li>
+<li>Extract the new edition beside the old one.</li>
+<li>Open it as a separate vault and verify <code>Home.md</code>, the
+Reader, evidence links, images, and plugin version.</li>
+<li>Copy only your clearly separated personal notes or use a reviewed
+migration tool supplied for that title.</li>
+<li>Retain the old vault until the replacement has survived a full
+restart and, when applicable, a complete Sync cycle.</li>
+</ol>
+<p>Never copy <code>.obsidian/workspace.json</code>, caches, search
+indexes, or generated <code>_data</code> from an old release into a new
+one.</p>
+</section>
+<section id="troubleshooting" class="level2">
+<h2>Troubleshooting</h2>
+<p>If the vault opens as a single file, return to Obsidian’s vault
+switcher and choose <strong>Open folder as vault</strong>. Select the
+folder containing <code>Home.md</code>.</p>
+<p>If the Reader plugin is absent, use the static Reader links first.
+Then confirm that the plugin directory exists, community plugins have
+been consciously enabled, and the vault has finished syncing all file
+types.</p>
+<p>If images are missing on mobile, enable image synchronization on both
+devices. If Reader indexes or plugin files are missing, enable
+<strong>Sync all other types</strong> and plugin/configuration
+synchronization on both devices, restart, and wait for indexing to
+settle.</p>
+<p>If a quotation, code excerpt, or triptych link opens the wrong place,
+record the book version, page, visible link label, and destination. Do
+not edit the generated target index as a permanent repair; report the
+mapping so the next edition can be reproducibly corrected.</p>
+</section>
+<section id="publishing-with-omnighost" class="level2">
+<h2>Publishing with Omnighost</h2>
+<p>Reading a FirstPair vault and publishing from Obsidian are separate
+activities. If you want to develop and publish essays from an Obsidian
+editorial workflow, read <a href="https://firstpair.org/read/omnighost/"><em>Omnighost for First
+Pair Press</em></a>. It covers the FirstPair Obsidian-to-Ghost workflow,
+portable textpacks, images, mobile use, provenance, and multi-blog
+delivery.</p>
+</section>
+<section id="a-durable-mental-model" class="level2">
+<h2>A durable mental model</h2>
+<p>The Reader is the book. Files and Search are the library. Backlinks
+and Graph are the map. Evidence targets are the audit trail. Your
+personal notes are your work, and should live in a clearly separate
+place. With those boundaries, an Obsidian vault remains approachable for
+a first-time reader while retaining the depth needed by programmers,
+historians, editors, and reviewers.</p>
+</section>
+</section>
+</body>
+</html>

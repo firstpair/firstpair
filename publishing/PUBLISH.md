@@ -411,6 +411,14 @@ and enforces the reusable publication contract; it does not copy a title's
 research graph into a compact vault or mutate a connected Sync vault during
 normal library publication.
 
+New and migrated vaults use the generalized framework documented in
+[`VAULT-CONSTRUCTION.md`](VAULT-CONSTRUCTION.md). Its layered guide generator
+combines the canonical FirstPair Obsidian handbook, the selected desktop/mobile/
+preview product notes, the code/history/triptych profile notes, and one small
+book-owned fragment. The resulting `README.md` and `Guide.md` are complete
+first-use manuals. The maintained site handbook is generated from the same
+canonical source at `/obsidian/`; Omnighost remains the deeper publishing guide.
+
 The older environment-configured `build-book.sh` remains a compatibility path
 for repositories not yet migrated. New and migrated library books use
 `book.build.json` plus `build-library-book.sh`.

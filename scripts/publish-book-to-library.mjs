@@ -1344,6 +1344,32 @@ async function discoverVaultGuide(inputDir, bookDir, edition) {
   return null
 }
 
+async function validateCompleteVaultGuide(path) {
+  const text = await readFile(path, 'utf8')
+  if (!text.includes('<!-- firstpair-vault-guide-v2 -->')) return
+  const required = [
+    'Install Obsidian',
+    'Your first five minutes',
+    'The FirstPair Reader',
+    'Optional local plugins',
+    'Desktop, mobile, and preview vaults',
+    'Updating a FirstPair vault',
+    'Troubleshooting',
+    'Instructions specific to this book',
+    'Build identity',
+  ]
+  const missing = required.filter((heading) => !text.includes(heading))
+  if (missing.length) {
+    throw new Error(`complete vault guide is missing required sections: ${missing.join(', ')}`)
+  }
+  if (!text.includes('https://firstpair.org/obsidian/')) {
+    throw new Error('complete vault guide must link to the FirstPair Obsidian handbook')
+  }
+  if (!text.includes('https://firstpair.org/read/omnighost/')) {
+    throw new Error('complete vault guide must link to Omnighost')
+  }
+}
+
 async function resolveVault(inputDir, distDir, edition, version, slug, options) {
   const wantVault = Boolean(options.vault || options['vault-dir'])
   if (!wantVault) {
@@ -1371,8 +1397,11 @@ async function resolveVault(inputDir, distDir, edition, version, slug, options) 
   let guideHtmlName = null
   const guide = options['vault-guide']
     ? resolve(isAbsolute(options['vault-guide']) ? options['vault-guide'] : join(inputDir, options['vault-guide']))
-    : await discoverVaultGuide(inputDir, bookDir, edition)
+    : (await exists(join(dir, 'Guide.md')))
+      ? join(dir, 'Guide.md')
+      : await discoverVaultGuide(inputDir, bookDir, edition)
   if (guide && (await exists(guide))) {
+    await validateCompleteVaultGuide(guide)
     guideSource = guide
     guideName = `${slug}-vault-guide (${stamp}).md`
     guideHtmlName = `${slug}-vault-guide (${stamp}).html`

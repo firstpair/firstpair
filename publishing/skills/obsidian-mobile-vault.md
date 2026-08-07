@@ -122,6 +122,11 @@ cover hash, Reader and quote-index hashes, illustration-index hash, total file
 count, and total bytes. The source-owned validator is the release gate;
 FirstPair must not infer mobile completeness from a ZIP listing.
 
+The mobile guide must be generated from the shared handbook, mobile product
+module, selected content-profile module, and book-owned fragment. It remains a
+complete first-use manual even though the same general handbook also lives at
+`/obsidian/`.
+
 ## Safe Initial Sync
 
 1. Disconnect or remove the old full vault from the phone. Deleting a local

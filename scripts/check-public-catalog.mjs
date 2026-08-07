@@ -1,4 +1,4 @@
-import { readdir, readFile, stat } from 'node:fs/promises'
+import { access, readdir, readFile, stat } from 'node:fs/promises'
 import { join } from 'node:path'
 
 const root = new URL('..', import.meta.url).pathname
@@ -30,7 +30,11 @@ const publicBookSlugs = []
 for (const entry of publicEntries) {
   const entryPath = join(publicDir, entry)
 
-  if ((await stat(entryPath)).isDirectory()) {
+  const isSitePage = await access(join(entryPath, 'SITE-PAGE.json')).then(
+    () => true,
+    () => false,
+  )
+  if ((await stat(entryPath)).isDirectory() && !isSitePage) {
     publicBookSlugs.push(entry)
   }
 }

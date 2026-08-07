@@ -4,6 +4,7 @@ import json
 import sys
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 
 
@@ -13,6 +14,7 @@ sys.path.insert(0, str(VAULT_PACKAGE))
 from firstpair_vault.compare import compare_vaults  # noqa: E402
 from firstpair_vault.config import ConfigError, load_config  # noqa: E402
 from firstpair_vault.inventory import inventory  # noqa: E402
+from firstpair_vault.guides import compose_guide  # noqa: E402
 from firstpair_vault.projection import project  # noqa: E402
 
 
@@ -58,11 +60,31 @@ class VaultConfigTests(unittest.TestCase):
         self.assertEqual(1, len(project(config, "desktop").evidence))
         self.assertEqual(1, len(project(config, "mobile").evidence))
         self.assertEqual(1, len(project(config, "preview").pages))
+        guide = compose_guide(config, project(config, "preview"))
+        self.assertIn("Install Obsidian", guide)
+        self.assertIn("Using a history and sources vault", guide)
+        self.assertIn("This preview product", guide)
+        self.assertIn("Omnighost", guide)
 
     def test_rejects_source_traversal(self) -> None:
         path = self.write_config(reader=[{"id": "bad", "title": "Bad", "source": "../bad.md"}])
         with self.assertRaises(ConfigError):
             load_config(path)
+
+    def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
+        config = load_config(self.write_config())
+        for profile in ("code", "history", "triptych"):
+            configured = replace(config, profile=profile)
+            for product_name in ("desktop", "mobile", "preview"):
+                projected = project(config, product_name)
+                guide = compose_guide(
+                    configured,
+                    replace(projected, product=replace(projected.product, name=product_name)),
+                )
+                self.assertIn("<!-- firstpair-vault-guide-v2 -->", guide)
+                self.assertIn("Install Obsidian", guide)
+                self.assertIn("Instructions specific to this book", guide)
+                self.assertIn("Build identity", guide)
 
 
 class VaultComparisonTests(unittest.TestCase):

@@ -61,6 +61,7 @@ class VaultConfig:
     collections: tuple[EvidenceCollection, ...]
     products: dict[str, Product]
     plugin: bool
+    book_guide: Path | None
 
 
 @dataclass(frozen=True)
