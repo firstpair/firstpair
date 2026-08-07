@@ -17,6 +17,8 @@ const hasTutorialProxyRoute =
 const hasDeliverableProxyRoute =
   routeDestinations.get('^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|cover)/?$') ===
   '/api/deliverable?slug=$1&format=$2'
+const hasObsidianHandbookRoute =
+  routeDestinations.get('^/obsidian/?$') === '/obsidian/index.html'
 const hasFilesystemRoute = (vercel.routes ?? []).some((route) => route.handle === 'filesystem')
 const hasAppFallbackRoute = routeDestinations.get('^/(.*)$') === '/index.html'
 const { readerBooks } = await import('../reader-map.mjs')
@@ -261,6 +263,7 @@ if (
   !hasReaderProxyRoute ||
   !hasTutorialProxyRoute ||
   !hasDeliverableProxyRoute ||
+  !hasObsidianHandbookRoute ||
   !hasFilesystemRoute ||
   !hasAppFallbackRoute
 ) {
@@ -284,6 +287,7 @@ if (
         hasReaderProxyRoute,
         hasTutorialProxyRoute,
         hasDeliverableProxyRoute,
+        hasObsidianHandbookRoute,
         hasFilesystemRoute,
         hasAppFallbackRoute,
       },
