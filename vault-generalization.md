@@ -36,13 +36,13 @@ handoff for the goal.
 
 | Title | Profile | Public products | Authoritative repository | Current state |
 | --- | --- | --- | --- | --- |
-| Lighthouse Republics | history/triptych | preview desktop, mobile, guide | `~/src/venezia/usavenice` | clean and synchronized; adoption pending |
-| Sail Rust Book | code | desktop, guide | `~/src/book-sources/sail-rust-book` | native vault passes; clean and synchronized |
-| From 1 to 0 | history/code archive | desktop, guide | `~/src/from-1-to-0` | clean and synchronized; adoption pending |
-| Cicero on Himself | history/bilingual | full working, public preview, mobile, guide | `~/src/cicero` | native full and preview pass from clean HEAD; mobile passes live-state gate; unrelated local prompt changes prevent an in-place adoption commit |
-| Verdun | history | desktop, mobile, guide | `~/src/verdun` | tracked source clean, but untracked generated and temporary trees require preservation and classification |
-| RGBDNS | code/history archive | desktop, guide | `~/src/rgbdns` | clean and synchronized; adoption pending |
-| Rosetta | triptych/editorial | desktop, guide | `~/src/review/invented` plus FirstPair book source | clean and synchronized; clean candidate passes native and differential QA |
+| Lighthouse Republics | history/triptych | preview desktop, mobile, guide | `~/src/venezia/usavenice` | adopted at `bd3b1c0`; both candidates pass all automated gates |
+| Sail Rust Book | code | desktop, guide | `~/src/book-sources/sail-rust-book` | adopted at `732f4ab`; candidate passes all automated gates |
+| From 1 to 0 | history/code archive | desktop, guide | `~/src/from-1-to-0` | adopted at `13366c7`; candidate passes all automated gates |
+| Cicero on Himself | history/bilingual | full working, public preview, mobile, guide | `~/src/cicero` | adopted at `96d69a1`; all three clean-worktree candidates pass all automated gates |
+| Verdun | history/code | desktop, mobile, guide | `~/src/verdun` | adopted at `bb8a3a9`; both candidates pass all automated gates |
+| RGBDNS | code/history archive | desktop, guide | `~/src/rgbdns` | adopted at `b3825d5`; candidate passes all automated gates |
+| Rosetta | triptych/editorial | desktop, mobile, guide | `~/src/review/invented` plus FirstPair book source | adopted at `fd59548`; both candidates pass all automated gates and branch is pushed to GitHub |
 
 ## Shared architecture work
 
@@ -174,12 +174,41 @@ Each product must record:
   mobile validator passes. Differential QA preserves 27 Reader pages and 2,658
   triptych documents, introduces no link regression, and removes both unsafe
   workspace paths from each product.
+- Landed committed title-owned contracts for all seven published vault titles
+  and generated twelve non-replacing products from exact clean revisions.
+- Passed native semantic validation, composed-manifest sealing, shared privacy
+  and critical-link validation, baseline differential comparison, complete
+  guide composition, deterministic double-archive comparison, ZIP integrity,
+  and desktop/phone fallback visual QA for every product.
+- Passed publication dry-run routing for Lighthouse preview/mobile, Cicero
+  preview/mobile, Sail, From 1 to 0, RGBDNS, and Verdun desktop/mobile. Rosetta
+  remains explicitly private editorial tooling and is not routed into the
+  public publisher.
 
-### In progress
+### Candidate evidence
 
-- Inventorying title-specific builders, validators, plugins, guides, source
-  rights, product boundaries, and clean-repository constraints for all seven
-  published vault titles.
+Every hash below is the SHA-256 of two independently produced, byte-identical
+archives. ZIP integrity and the four-view visual report pass. Visual reports
+and screenshots are under
+`~/src/books-local-backups/firstpair-vault-candidates/visual-qa-2026-08-06/`.
+
+| Product | Source revision | Archive SHA-256 |
+| --- | --- | --- |
+| Sail desktop | `732f4ab` | `57f6eb6cb2b23d81a2465893397ae734850b336efd6efd005e840efcb66782dc` |
+| Lighthouse preview | `bd3b1c0` | `d7653b580ee861e6cd8df65e97c957bfc11b64bf11fd88173d740fa03bafb88e` |
+| Lighthouse mobile | `bd3b1c0` | `285ed1cb64f63efe01f8973eff3fafeb6b0698df44c643ba61a1b0152425c48c` |
+| From 1 to 0 desktop | `13366c7` | `0c84a37126783242779fe9c7c5fb5df7bd732e5a9b03adbf91452bbee26f9de7` |
+| RGBDNS desktop | `b3825d5` | `6e37116c5ab558187417becd81d863ee87ff1fb5d917092c5aee0de67952439e` |
+| Rosetta desktop | `fd59548` | `a0404a1f7a926445179f7f431260fb0a55f5bfc388893a502a226eb752844958` |
+| Rosetta mobile | `fd59548` | `d24cba06853fbd90ea10455fe40e9633b720f72c548b6aab2430b2cf3df02f0a` |
+| Cicero desktop | `96d69a1` | `1d3dfa7302b852823b64ce8afb3b4b8bff761151f03544fbdbd1c712fd932619` |
+| Cicero mobile | `96d69a1` | `159a3edccd9fecdac78c64d6fd892970869358184f483cdf320afb1d874481f4` |
+| Cicero preview | `96d69a1` | `0022b06bd1fb8e3d45b63a5e65df00dc85816a6e275a8dc7f7335bf22bc734ca` |
+| Verdun desktop | `bb8a3a9` | `365c2980711038b0fdefa551e776971baabd7e3d181050c4b10b9eab15301c11` |
+| Verdun mobile | `bb8a3a9` | `d12340572e4297a9a91ab7520a94c30c0dbca69a2e06c2681855f2563462c750` |
+
+### Reference outcomes
+
 - Sail's committed adoption contract and tab-normalizing source projection are
   landed through `732f4ab`. Its desktop candidate passes the native validator
   and FirstPair differential QA: 21 Reader pages and three plugin files are
@@ -197,24 +226,25 @@ Each product must record:
   differential gates, preserving 88 Reader pages, 24 source documents, and
   four plugin files with no unsafe paths or broken-link regression.
 
-### Blockers and preserved state
+### Preserved state and publication boundary
 
-- Cicero has pre-existing uncommitted changes in `AGENTS.md` and `PROMPTS.md`.
-  Do not stage, discard, or combine them with vault migration work.
-- Verdun has untracked generated vaults, release output, Python cache, and a
-  temporary tree. Classify and preserve them before adding its adoption files.
-- The retained Invented Enemy baseline is stale against the newest word-editor
-  contract. The clean candidate passes; no replacement has been performed.
-- Existing title repositories do not yet contain committed `vault.build.json`
-  contracts. Unit fixtures prove the builder, but title adoption is not
-  complete until these contracts and their native-validator bindings land.
+- Cicero's pre-existing `AGENTS.md` and `PROMPTS.md` edits remain untouched.
+  Migration builds ran from isolated clean worktrees.
+- Verdun's generated and temporary trees were preserved and classified through
+  ignore rules; none was deleted or committed.
+- The public catalog entry named Rosetta currently points to a Lighthouse
+  Republics Preview Vault archive rather than the Invented Enemy Rosetta. This
+  pre-existing alias defect is recorded, not silently replaced.
+- No existing public vault, catalog URL, Blob object, iCloud delivery, or
+  working-vault state was replaced. Candidate acceptance authorizes a future
+  controlled publication decision; it does not itself authorize publication.
 
 ## Definition of done
 
-The goal is complete when every row in the published migration inventory has a
+The migration-build goal is complete: every row in the published migration inventory has a
 committed title-owned contract, all declared products have non-replacing
-candidates, every acceptance-matrix field is green or explicitly dispositioned,
-all repositories are clean and synchronized, FirstPair's complete suite passes,
-and replacement-ready manifests with rollback information have been reviewed.
+candidates, every automated acceptance field is green or explicitly
+dispositioned, migration commits are synchronized, FirstPair's complete suite
+passes, and replacement-ready archives with rollback baselines are retained.
 No public vault is replaced merely by completing this goal; replacement and
 publication require the separate approval defined by the FirstPair workflow.
