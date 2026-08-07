@@ -138,6 +138,11 @@ Each product must record:
   the title producer and validator as argument arrays, enforces shared privacy
   and link rules, and records a concrete FirstPair candidate manifest. This
   retains title semantics while centralizing construction policy.
+- Ordered that boundary explicitly: a title validator certifies the untouched
+  native artifact and its native manifest first; FirstPair then installs the
+  complete standardized guide and applies its independent privacy, link, and
+  packaging gates. This prevents shared guide files from invalidating a
+  title-owned byte-count manifest.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.
@@ -165,6 +170,10 @@ Each product must record:
 - Shared link inventory now excludes fenced and inline code from link parsing,
   preventing Cargo, Rust, Python, and documentation syntax from being counted
   as broken Obsidian navigation while retaining all real Markdown links.
+- Lighthouse now has a committed preview/mobile adoption contract at
+  `e1e8bd7`. Its non-replacing preview candidate passes the native and
+  differential gates, preserving 88 Reader pages, 24 source documents, and
+  four plugin files with no unsafe paths or broken-link regression.
 
 ### Blockers and preserved state
 

@@ -46,9 +46,6 @@ def build_native_candidate(root: Path, config, projection, source_revision: str)
         )
         if not root.is_dir() or root.is_symlink():
             raise RuntimeError("native builder did not create its candidate directory")
-        complete_guide = guide.read_text(encoding="utf-8")
-        (root / "Guide.md").write_text(complete_guide, encoding="utf-8")
-        (root / "README.md").write_text(complete_guide, encoding="utf-8")
         subprocess.run(
             _command(
                 driver.validate,
@@ -59,6 +56,9 @@ def build_native_candidate(root: Path, config, projection, source_revision: str)
             cwd=config.repo_root,
             check=True,
         )
+        complete_guide = guide.read_text(encoding="utf-8")
+        (root / "Guide.md").write_text(complete_guide, encoding="utf-8")
+        (root / "README.md").write_text(complete_guide, encoding="utf-8")
         scanned = inventory(root)
         if scanned.critical_broken_links or scanned.unsafe_paths:
             raise RuntimeError(

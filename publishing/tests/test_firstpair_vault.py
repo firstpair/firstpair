@@ -141,8 +141,8 @@ class VaultConfigTests(unittest.TestCase):
             "import sys\n"
             "root = Path(sys.argv[1])\n"
             "assert (root / 'Home.md').is_file()\n"
-            "assert 'firstpair-vault-guide-v2' in (root / 'Guide.md').read_text()\n"
-            "assert (root / 'Guide.md').read_bytes() == (root / 'README.md').read_bytes()\n",
+            "assert not (root / 'Guide.md').exists()\n"
+            "assert not (root / 'README.md').exists()\n",
             encoding="utf-8",
         )
         path = self.write_config(
@@ -164,6 +164,11 @@ class VaultConfigTests(unittest.TestCase):
         candidate = self.root / "candidate" / "desktop"
         self.assertEqual("firstpair-native-vault-manifest-v1", manifest["schema"])
         self.assertTrue((candidate / "FIRSTPAIR-VAULT-MANIFEST.json").is_file())
+        self.assertIn("firstpair-vault-guide-v2", (candidate / "Guide.md").read_text())
+        self.assertEqual(
+            (candidate / "Guide.md").read_bytes(),
+            (candidate / "README.md").read_bytes(),
+        )
 
     def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
         config = load_config(self.write_config())
