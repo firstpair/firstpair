@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-07T00:22:15.371Z",
+  "updatedAt": "2026-08-07T00:36:24.585Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -6238,60 +6238,42 @@
       }
     },
     "marciana": {
-      "updatedAt": "2026-08-06T16:29:48.035Z",
+      "updatedAt": "2026-08-07T00:36:24.585Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/marciana/marciana.pdf",
-          "sha256": "55b35a743a823c262e48f5d29ebcf77ba956f723491b385ea10602131eb1206c",
-          "size": 3961161,
-          "pathname": "books/marciana/pdf/55b35a743a823c26-marciana.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/55b35a743a823c26-marciana.pdf",
+          "sha256": "2f9a8908d4f668c465663f08814705498aa6bc303f8232f716304e825b5ec5e1",
+          "size": 3967261,
+          "pathname": "books/marciana/pdf/2f9a8908d4f668c4-marciana.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/2f9a8908d4f668c4-marciana.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/marciana/marciana.epub",
-          "sha256": "6908c512eaa046091cda0e3f06d4b54f5f93c3680e96f55e26adef6c679b8dcd",
-          "size": 3321377,
-          "pathname": "books/marciana/epub/6908c512eaa04609-marciana.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/6908c512eaa04609-marciana.epub",
+          "sha256": "f84bd71672a3735ea67ddd347ef35823e33291179f7e57fe3fb5059fec31b55e",
+          "size": 3323083,
+          "pathname": "books/marciana/epub/f84bd71672a3735e-marciana.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/f84bd71672a3735e-marciana.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/marciana/marciana.html",
-          "sha256": "f955d89c5f693278e11bda1ef7abce0cae62362b41994cbe98e213dbd8c86883",
-          "size": 4507292,
-          "pathname": "books/marciana/html/f955d89c5f693278-marciana.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/f955d89c5f693278-marciana.html",
+          "sha256": "2c58333dfc6a49618ba5b480b8ecfb53fbf1aa0f092744385722c4382b026ca5",
+          "size": 4510461,
+          "pathname": "books/marciana/html/2c58333dfc6a4961-marciana.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/2c58333dfc6a4961-marciana.html",
           "skipped": false
-        },
-        "cover": {
-          "kind": "cover",
-          "localPath": "book-uploads/staging/marciana/marciana-cover.png",
-          "sha256": "540f3857bae5d60972a58df393739fe9da50f660f262d19fafe2732c418095f1",
-          "size": 2886095,
-          "pathname": "books/marciana/cover/540f3857bae5d609-marciana-cover.png",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/cover/540f3857bae5d609-marciana-cover.png",
-          "skipped": true
-        },
-        "headboard": {
-          "kind": "headboard",
-          "localPath": "book-uploads/staging/marciana/marciana-headboard.png",
-          "sha256": "8a907f90a5a1b0de073f8a2a63bb9b474b406d29ff2554b112998114666a6b80",
-          "size": 3095725,
-          "pathname": "books/marciana/headboard/8a907f90a5a1b0de-marciana-headboard.png",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/headboard/8a907f90a5a1b0de-marciana-headboard.png",
-          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/marciana/marciana-chapters",
-          "sha256": "17ab8ed22535f52b1df106a118e4549a1576600b15d04e730fc9996e5c0ef36a",
-          "pathnamePrefix": "books/marciana/chapters/17ab8ed22535f52b",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/index.html",
+          "sha256": "5f56c5d1b685a7567dd5b27fb4beb8e119fad11356ff3c87209361695160d645",
+          "pathnamePrefix": "books/marciana/chapters/5f56c5d1b685a756",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/index.html",
           "skipped": false,
           "files": [
             {
@@ -6299,8 +6281,8 @@
               "relativePath": "assets/22115ea4e75d-diagram-9.png",
               "sha256": "22115ea4e75d78f691b610f07e7d49f07a5d7e0debc1b93f3e2f1c6f015ad6ed",
               "size": 43052,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/22115ea4e75d-diagram-9.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/22115ea4e75d-diagram-9.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/22115ea4e75d-diagram-9.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/22115ea4e75d-diagram-9.png",
               "skipped": false
             },
             {
@@ -6308,8 +6290,8 @@
               "relativePath": "assets/391dc1d6a2d6-diagram-3.png",
               "sha256": "391dc1d6a2d6dd8f1ece80101295999897209875424617452cb29a711a25fed9",
               "size": 80941,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/391dc1d6a2d6-diagram-3.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/391dc1d6a2d6-diagram-3.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/391dc1d6a2d6-diagram-3.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/391dc1d6a2d6-diagram-3.png",
               "skipped": false
             },
             {
@@ -6317,8 +6299,8 @@
               "relativePath": "assets/540f3857bae5-marciana-cover.png",
               "sha256": "540f3857bae5d60972a58df393739fe9da50f660f262d19fafe2732c418095f1",
               "size": 2886095,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/540f3857bae5-marciana-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/540f3857bae5-marciana-cover.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/540f3857bae5-marciana-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/540f3857bae5-marciana-cover.png",
               "skipped": false
             },
             {
@@ -6326,8 +6308,8 @@
               "relativePath": "assets/6e561d55dc67-diagram-2.png",
               "sha256": "6e561d55dc676ff441b9e0adc05464a7c479329fc8063ef028cf9464aa85d41f",
               "size": 79335,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/6e561d55dc67-diagram-2.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/6e561d55dc67-diagram-2.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/6e561d55dc67-diagram-2.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/6e561d55dc67-diagram-2.png",
               "skipped": false
             },
             {
@@ -6335,8 +6317,8 @@
               "relativePath": "assets/7d10a8d50744-diagram-1.png",
               "sha256": "7d10a8d50744ece51667dbf12db357f88804b6afdcd3778e21f508557b1c630b",
               "size": 12165,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/7d10a8d50744-diagram-1.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/7d10a8d50744-diagram-1.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/7d10a8d50744-diagram-1.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/7d10a8d50744-diagram-1.png",
               "skipped": false
             },
             {
@@ -6344,8 +6326,8 @@
               "relativePath": "assets/943cf69369b3-diagram-4.png",
               "sha256": "943cf69369b36dff00f964e5e538d986c825068762f2036b9ffabfa8c0cf82c5",
               "size": 66833,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/943cf69369b3-diagram-4.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/943cf69369b3-diagram-4.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/943cf69369b3-diagram-4.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/943cf69369b3-diagram-4.png",
               "skipped": false
             },
             {
@@ -6353,8 +6335,8 @@
               "relativePath": "assets/a9f03a0fefae-diagram-8.png",
               "sha256": "a9f03a0fefaec40ff6bcab8ecbf8e30616c84adc178bd7fc36a5fe12b610779d",
               "size": 38171,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/a9f03a0fefae-diagram-8.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/a9f03a0fefae-diagram-8.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/a9f03a0fefae-diagram-8.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/a9f03a0fefae-diagram-8.png",
               "skipped": false
             },
             {
@@ -6362,8 +6344,8 @@
               "relativePath": "assets/b3ce467ed375-diagram-7.png",
               "sha256": "b3ce467ed375fb252f5a59af136e446fdd63c9612d08fca22eb9629be748baf4",
               "size": 20251,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/b3ce467ed375-diagram-7.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/b3ce467ed375-diagram-7.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/b3ce467ed375-diagram-7.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/b3ce467ed375-diagram-7.png",
               "skipped": false
             },
             {
@@ -6371,8 +6353,8 @@
               "relativePath": "assets/d82e26744aa9-diagram-5.png",
               "sha256": "d82e26744aa962a9f905c40b87d9961dca6d0413b783c6782f59524e83b96623",
               "size": 12348,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/d82e26744aa9-diagram-5.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/d82e26744aa9-diagram-5.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/d82e26744aa9-diagram-5.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/d82e26744aa9-diagram-5.png",
               "skipped": false
             },
             {
@@ -6380,134 +6362,134 @@
               "relativePath": "assets/e4f1e319c6cc-diagram-6.png",
               "sha256": "e4f1e319c6ccd995e72766160e51217b80c78fd305f1d0a60d4bd8fb831f403a",
               "size": 69769,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/assets/e4f1e319c6cc-diagram-6.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/assets/e4f1e319c6cc-diagram-6.png",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/e4f1e319c6cc-diagram-6.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/e4f1e319c6cc-diagram-6.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/book.css",
               "relativePath": "book.css",
-              "sha256": "3b65c8a354e836c2c196ce6d907290f380c4c5fb660e13cdd59c41eaf4b8d790",
-              "size": 579,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/book.css",
+              "sha256": "4a33326d7659b0d038ed65587e85defb1fe971989cf7b2cb5b047ac1fe2e7df5",
+              "size": 884,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "d5f0875ae6c541d66e72eb7f2daae201f243a1937b0c2fb4b3d549712a9c2122",
+              "sha256": "c5d24c233c46851aebabca081a46f83997f380923959a09aa201dfa7f58d0495",
               "size": 2382,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-001.html",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "729052f06b57fbc1985304abe9b74bfe28cac3b092eb1287d2c1cc5d36d6da82",
-              "size": 4493,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-002.html",
+              "sha256": "9cea3d2e29f6d58df36a7ad069fa467810ff3207931b20203c0e8c32de597e70",
+              "size": 4722,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "76b3165614d5981e010de2e9215baded5618049c2fcb43f85218630476b2edc1",
+              "sha256": "544da195bcbc7c20b7ccc4801da1f79e1f5b34628bc1a1c6f78121a880351c14",
               "size": 10556,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-003.html",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "66107354fe6f3a4e3e378d85a844b1d061bd7dd74b0f280edf053d1faced45a3",
+              "sha256": "fbc493878b286f5c45b3659ac30194aabc7484086268c5ef8610ed48e3e445b2",
               "size": 7157,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-004.html",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "57bd2e44a0d1be119209b85f980cd421b3fab78d7f5fe3e63af3e63b7adb1162",
-              "size": 17965,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-005.html",
+              "sha256": "f626ddaab223da8abb7ac7c34383584804494f5113ca157870fd3041ffbd9aa2",
+              "size": 17723,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "ecf7e866efe61a6eef4b80855d016b73d24e83e2456550042ce9581fe10b8d08",
+              "sha256": "98ea2f27270f635f7d0de796d7ce148252f539a36c51f1fe6e68a9959efbcfd0",
               "size": 12077,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-006.html",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "031de9a7610d7ecb84ad7708df50f081013367414fb988f9d1d46ba4d3630d5c",
-              "size": 8792,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-007.html",
+              "sha256": "b488e634c4fd5eac90b0b920bd1b48059e469b0abc2bbc8c13c302a72a3c7dfa",
+              "size": 8783,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "791b27576d672d8e2a0fc5f869e6eeb7370ca5027e0ad0cfcb76b4a4900c9d58",
-              "size": 18355,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-008.html",
+              "sha256": "66f29cbbab9869178482449b24deb0ce0c8ac6e4a962bf972ba1350ea0be5d5f",
+              "size": 21063,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "804e3e241b0c3d70a650a2a54787da423d958538eb3501663d0bc4f2c94e5e67",
-              "size": 10185,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-009.html",
+              "sha256": "4e7705b39c703344955ff4e749637f63e66b5402d6586adc4d8a93c28bcb63e1",
+              "size": 10393,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "6a424d75aaf82d277d25e1d6ca4bde2d50a90eebed598277c934d0c9a70a71e7",
+              "sha256": "d0de1eedeeb06da2176f731e8c7b4776efa90d7b58eecbf91db62a875d6c0dbb",
               "size": 3461,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-010.html",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "55ac3c41e92e2bd4a049c3bdf7f1d2946dce1236e075b33fe897dd837075b831",
-              "size": 29821,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/chapter-011.html",
+              "sha256": "ce82aa6aedf7e463620359a6cafec10c881780aa454f7963dcbcf5f7efd89643",
+              "size": 30078,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "45f2c6f9eb60b59f7d856a68105e377dd8e45defcb67456140a61ccbfbfacb16",
+              "sha256": "18560ad91bb2c902e26394a7a1bf346dab82fe6e1a50501036eb56e1759da18e",
               "size": 8384,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/index.html",
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/index.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/marciana/marciana-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "2f098a2eae0242ed7eb88158dc0160f14c6416193bc131060793267e4d170500",
-              "size": 16277,
-              "pathname": "books/marciana/chapters/17ab8ed22535f52b/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/17ab8ed22535f52b/sitemap.json",
+              "sha256": "e060dd61b33029b706f43fdd4bdd4b8efaa0e4a5a01185b2838994738504dcc5",
+              "size": 16495,
+              "pathname": "books/marciana/chapters/5f56c5d1b685a756/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/sitemap.json",
               "skipped": false
             }
           ]
@@ -7938,6 +7920,21 @@
       "pathname": "books/adversarial-cognition/html/bc591183d4e02f80-adversarial-cognition.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/bc591183d4e02f80-adversarial-cognition.html",
       "size": 4184141
+    },
+    "2f9a8908d4f668c465663f08814705498aa6bc303f8232f716304e825b5ec5e1:3967261": {
+      "pathname": "books/marciana/pdf/2f9a8908d4f668c4-marciana.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/pdf/2f9a8908d4f668c4-marciana.pdf",
+      "size": 3967261
+    },
+    "f84bd71672a3735ea67ddd347ef35823e33291179f7e57fe3fb5059fec31b55e:3323083": {
+      "pathname": "books/marciana/epub/f84bd71672a3735e-marciana.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/epub/f84bd71672a3735e-marciana.epub",
+      "size": 3323083
+    },
+    "2c58333dfc6a49618ba5b480b8ecfb53fbf1aa0f092744385722c4382b026ca5:4510461": {
+      "pathname": "books/marciana/html/2c58333dfc6a4961-marciana.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/html/2c58333dfc6a4961-marciana.html",
+      "size": 4510461
     }
   },
   "chapterPackages": {
@@ -21083,6 +21080,228 @@
           "size": 6670,
           "pathname": "books/adversarial-cognition/chapters/4fa05eaee38dabd5/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/4fa05eaee38dabd5/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "5f56c5d1b685a7567dd5b27fb4beb8e119fad11356ff3c87209361695160d645": {
+      "pathnamePrefix": "books/marciana/chapters/5f56c5d1b685a756",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/22115ea4e75d-diagram-9.png",
+          "relativePath": "assets/22115ea4e75d-diagram-9.png",
+          "sha256": "22115ea4e75d78f691b610f07e7d49f07a5d7e0debc1b93f3e2f1c6f015ad6ed",
+          "size": 43052,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/22115ea4e75d-diagram-9.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/22115ea4e75d-diagram-9.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/391dc1d6a2d6-diagram-3.png",
+          "relativePath": "assets/391dc1d6a2d6-diagram-3.png",
+          "sha256": "391dc1d6a2d6dd8f1ece80101295999897209875424617452cb29a711a25fed9",
+          "size": 80941,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/391dc1d6a2d6-diagram-3.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/391dc1d6a2d6-diagram-3.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/540f3857bae5-marciana-cover.png",
+          "relativePath": "assets/540f3857bae5-marciana-cover.png",
+          "sha256": "540f3857bae5d60972a58df393739fe9da50f660f262d19fafe2732c418095f1",
+          "size": 2886095,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/540f3857bae5-marciana-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/540f3857bae5-marciana-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/6e561d55dc67-diagram-2.png",
+          "relativePath": "assets/6e561d55dc67-diagram-2.png",
+          "sha256": "6e561d55dc676ff441b9e0adc05464a7c479329fc8063ef028cf9464aa85d41f",
+          "size": 79335,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/6e561d55dc67-diagram-2.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/6e561d55dc67-diagram-2.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/7d10a8d50744-diagram-1.png",
+          "relativePath": "assets/7d10a8d50744-diagram-1.png",
+          "sha256": "7d10a8d50744ece51667dbf12db357f88804b6afdcd3778e21f508557b1c630b",
+          "size": 12165,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/7d10a8d50744-diagram-1.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/7d10a8d50744-diagram-1.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/943cf69369b3-diagram-4.png",
+          "relativePath": "assets/943cf69369b3-diagram-4.png",
+          "sha256": "943cf69369b36dff00f964e5e538d986c825068762f2036b9ffabfa8c0cf82c5",
+          "size": 66833,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/943cf69369b3-diagram-4.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/943cf69369b3-diagram-4.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/a9f03a0fefae-diagram-8.png",
+          "relativePath": "assets/a9f03a0fefae-diagram-8.png",
+          "sha256": "a9f03a0fefaec40ff6bcab8ecbf8e30616c84adc178bd7fc36a5fe12b610779d",
+          "size": 38171,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/a9f03a0fefae-diagram-8.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/a9f03a0fefae-diagram-8.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/b3ce467ed375-diagram-7.png",
+          "relativePath": "assets/b3ce467ed375-diagram-7.png",
+          "sha256": "b3ce467ed375fb252f5a59af136e446fdd63c9612d08fca22eb9629be748baf4",
+          "size": 20251,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/b3ce467ed375-diagram-7.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/b3ce467ed375-diagram-7.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/d82e26744aa9-diagram-5.png",
+          "relativePath": "assets/d82e26744aa9-diagram-5.png",
+          "sha256": "d82e26744aa962a9f905c40b87d9961dca6d0413b783c6782f59524e83b96623",
+          "size": 12348,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/d82e26744aa9-diagram-5.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/d82e26744aa9-diagram-5.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/assets/e4f1e319c6cc-diagram-6.png",
+          "relativePath": "assets/e4f1e319c6cc-diagram-6.png",
+          "sha256": "e4f1e319c6ccd995e72766160e51217b80c78fd305f1d0a60d4bd8fb831f403a",
+          "size": 69769,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/assets/e4f1e319c6cc-diagram-6.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/assets/e4f1e319c6cc-diagram-6.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "4a33326d7659b0d038ed65587e85defb1fe971989cf7b2cb5b047ac1fe2e7df5",
+          "size": 884,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "c5d24c233c46851aebabca081a46f83997f380923959a09aa201dfa7f58d0495",
+          "size": 2382,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "9cea3d2e29f6d58df36a7ad069fa467810ff3207931b20203c0e8c32de597e70",
+          "size": 4722,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "544da195bcbc7c20b7ccc4801da1f79e1f5b34628bc1a1c6f78121a880351c14",
+          "size": 10556,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "fbc493878b286f5c45b3659ac30194aabc7484086268c5ef8610ed48e3e445b2",
+          "size": 7157,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "f626ddaab223da8abb7ac7c34383584804494f5113ca157870fd3041ffbd9aa2",
+          "size": 17723,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "98ea2f27270f635f7d0de796d7ce148252f539a36c51f1fe6e68a9959efbcfd0",
+          "size": 12077,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "b488e634c4fd5eac90b0b920bd1b48059e469b0abc2bbc8c13c302a72a3c7dfa",
+          "size": 8783,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "66f29cbbab9869178482449b24deb0ce0c8ac6e4a962bf972ba1350ea0be5d5f",
+          "size": 21063,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "4e7705b39c703344955ff4e749637f63e66b5402d6586adc4d8a93c28bcb63e1",
+          "size": 10393,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "d0de1eedeeb06da2176f731e8c7b4776efa90d7b58eecbf91db62a875d6c0dbb",
+          "size": 3461,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "ce82aa6aedf7e463620359a6cafec10c881780aa454f7963dcbcf5f7efd89643",
+          "size": 30078,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "18560ad91bb2c902e26394a7a1bf346dab82fe6e1a50501036eb56e1759da18e",
+          "size": 8384,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/marciana/marciana-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "e060dd61b33029b706f43fdd4bdd4b8efaa0e4a5a01185b2838994738504dcc5",
+          "size": 16495,
+          "pathname": "books/marciana/chapters/5f56c5d1b685a756/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/marciana/chapters/5f56c5d1b685a756/sitemap.json",
           "skipped": false
         }
       ]

@@ -169,9 +169,7 @@
       "pdf": "book-uploads/staging/marciana/marciana.pdf",
       "epub": "book-uploads/staging/marciana/marciana.epub",
       "html": "book-uploads/staging/marciana/marciana.html",
-      "htmlChapters": "book-uploads/staging/marciana/marciana-chapters",
-      "cover": "book-uploads/staging/marciana/marciana-cover.png",
-      "headboard": "book-uploads/staging/marciana/marciana-headboard.png"
+      "htmlChapters": "book-uploads/staging/marciana/marciana-chapters"
     },
     "adversarial-cognition": {
       "pdf": "book-uploads/staging/adversarial-cognition/adversarial-cognition.pdf",
