@@ -90,7 +90,7 @@ def inventory(root: Path) -> Inventory:
                 resolved = any(
                     choice.is_file() and choice.is_relative_to(root)
                     for base in (relative_target, root_target)
-                    for choice in (base, base.with_suffix(".md"))
+                    for choice in (base, Path(f"{base}.md"))
                 ) or target_path.with_suffix("").name in note_names
                 if not resolved:
                     finding = f"{relative}->{target}"

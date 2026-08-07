@@ -203,6 +203,15 @@ class VaultComparisonTests(unittest.TestCase):
             (obsidian / "workspace.json").write_text("{}\n", encoding="utf-8")
             self.assertEqual(("private:.obsidian/workspace.json",), inventory(root).unsafe_paths)
 
+    def test_inventory_resolves_dotted_obsidian_note_names(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "Home.md").write_text("[[Code/example.rs.source]]\n", encoding="utf-8")
+            code = root / "Code"
+            code.mkdir()
+            (code / "example.rs.source.md").write_text("# Source\n", encoding="utf-8")
+            self.assertEqual((), inventory(root).broken_links)
+
 
 if __name__ == "__main__":
     unittest.main()
