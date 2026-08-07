@@ -133,7 +133,10 @@ class VaultConfigTests(unittest.TestCase):
             "import sys\n"
             "root = Path(sys.argv[1])\n"
             "root.mkdir(parents=True)\n"
-            "(root / 'Home.md').write_text('# Home\\n')\n",
+            "(root / 'Home.md').write_text('# Home\\n')\n"
+            "obsidian = root / '.obsidian'\n"
+            "obsidian.mkdir()\n"
+            "(obsidian / 'workspace.json').write_text('{}\\n')\n",
             encoding="utf-8",
         )
         (scripts / "check.py").write_text(
@@ -170,6 +173,7 @@ class VaultConfigTests(unittest.TestCase):
             (candidate / "README.md").read_bytes(),
         )
         self.assertTrue((candidate / ".obsidian/workspace-first-open.json").is_file())
+        self.assertFalse((candidate / ".obsidian/workspace.json").exists())
 
     def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
         config = load_config(self.write_config())

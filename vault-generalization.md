@@ -146,6 +146,9 @@ Each product must record:
 - Centralized the deterministic first-open workspace in FirstPair. Native
   builders emit no device state; after native validation, the shared layer
   installs the same archive-validated Home workspace used by typed builds.
+- For legacy native builders that still emit workspace aliases, FirstPair
+  preserves them through native validation, removes the three volatile/private
+  aliases at the composition boundary, and then installs the canonical seed.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.

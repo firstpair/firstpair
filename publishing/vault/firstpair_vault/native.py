@@ -62,6 +62,8 @@ def build_native_candidate(root: Path, config, projection, source_revision: str)
         (root / "README.md").write_text(complete_guide, encoding="utf-8")
         obsidian = root / ".obsidian"
         obsidian.mkdir(exist_ok=True)
+        for private_name in ("workspace.json", "workspace-mobile.json", "workspaces.json"):
+            (obsidian / private_name).unlink(missing_ok=True)
         (obsidian / "workspace-first-open.json").write_bytes(first_open_bytes())
         scanned = inventory(root)
         if scanned.critical_broken_links or scanned.unsafe_paths:
