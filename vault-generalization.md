@@ -201,9 +201,9 @@ and screenshots are under
 | RGBDNS desktop | `b3825d5` | `6e37116c5ab558187417becd81d863ee87ff1fb5d917092c5aee0de67952439e` |
 | Rosetta desktop | `fd59548` | `a0404a1f7a926445179f7f431260fb0a55f5bfc388893a502a226eb752844958` |
 | Rosetta mobile | `fd59548` | `d24cba06853fbd90ea10455fe40e9633b720f72c548b6aab2430b2cf3df02f0a` |
-| Cicero desktop | `96d69a1` | `1d3dfa7302b852823b64ce8afb3b4b8bff761151f03544fbdbd1c712fd932619` |
-| Cicero mobile | `96d69a1` | `159a3edccd9fecdac78c64d6fd892970869358184f483cdf320afb1d874481f4` |
-| Cicero preview | `96d69a1` | `0022b06bd1fb8e3d45b63a5e65df00dc85816a6e275a8dc7f7335bf22bc734ca` |
+| Cicero desktop | `319e9b4` | `dd9693f529cee315fb4e1c356d3b4823abd4e8bf7cc819ad1fbcdae263f67a2d` |
+| Cicero mobile | `319e9b4` | `b4c81f52a3a84ec2827eefa45ca2271d1f7f00ecb38b3dc722ff5693ae0389d8` |
+| Cicero preview | `319e9b4` | `6b386de2eda49d438e21fcd0de051e19fbeb0e047501273735346bb3e8cffa34` |
 | Verdun desktop | `bb8a3a9` | `365c2980711038b0fdefa551e776971baabd7e3d181050c4b10b9eab15301c11` |
 | Verdun mobile | `bb8a3a9` | `d12340572e4297a9a91ab7520a94c30c0dbca69a2e06c2681855f2563462c750` |
 
@@ -228,8 +228,10 @@ and screenshots are under
 
 ### Preserved state and publication boundary
 
-- Cicero's pre-existing `AGENTS.md` and `PROMPTS.md` edits remain untouched.
-  Migration builds ran from isolated clean worktrees.
+- Cicero's bibliographic workflow changes are committed at `319e9b4`. All
+  three current candidates were built directly from the active, clean Cicero
+  repository; the temporary isolated-worktree accommodation is no longer
+  needed. The shared vault launcher runs under zsh as of FirstPair `bbf9333`.
 - Verdun's generated and temporary trees were preserved and classified through
   ignore rules; none was deleted or committed.
 - The public catalog entry named Rosetta currently points to a Lighthouse
