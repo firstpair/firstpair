@@ -155,9 +155,13 @@ Each product must record:
 - Inventorying title-specific builders, validators, plugins, guides, source
   rights, product boundaries, and clean-repository constraints for all seven
   published vault titles.
-- Sail's committed adoption contract is landed at `1580d67`. Its first
-  candidate run found and is resolving strict-validator issues in illustrative
-  handbook links and tab-bearing generated source excerpts.
+- Sail's committed adoption contract and tab-normalizing source projection are
+  landed through `732f4ab`. Its desktop candidate passes the native validator
+  and FirstPair differential QA: 21 Reader pages and three plugin files are
+  preserved, code files increase from 2,027 to 2,301, generated fragments reach
+  21,475, and unsafe paths remain zero. Two independent archives are
+  byte-identical at
+  `57f6eb6cb2b23d81a2465893397ae734850b336efd6efd005e840efcb66782dc`.
 - Shared link inventory now excludes fenced and inline code from link parsing,
   preventing Cargo, Rust, Python, and documentation syntax from being counted
   as broken Obsidian navigation while retaining all real Markdown links.
