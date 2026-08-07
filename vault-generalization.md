@@ -39,7 +39,7 @@ handoff for the goal.
 | Lighthouse Republics | history/triptych | preview desktop, mobile, guide | `~/src/venezia/usavenice` | adopted at `bd3b1c0`; both candidates pass all automated gates |
 | Sail Rust Book | code | desktop, guide | `~/src/book-sources/sail-rust-book` | adopted at `732f4ab`; candidate passes all automated gates |
 | From 1 to 0 | history/code archive | desktop, guide | `~/src/from-1-to-0` | adopted at `13366c7`; candidate passes all automated gates |
-| Cicero on Himself | history/bilingual | full working, public preview, mobile, guide | `~/src/cicero` | adopted at `96d69a1`; all three clean-worktree candidates pass all automated gates |
+| Cicero on Himself | history/bilingual | full working, public preview, mobile, guide | `~/src/cicero` | current at `319e9b4`; all three active-repository candidates pass all automated gates and await human acceptance |
 | Verdun | history/code | desktop, mobile, guide | `~/src/verdun` | adopted at `bb8a3a9`; both candidates pass all automated gates |
 | RGBDNS | code/history archive | desktop, guide | `~/src/rgbdns` | adopted at `b3825d5`; candidate passes all automated gates |
 | Rosetta | triptych/editorial | desktop, mobile, guide | `~/src/review/invented` plus FirstPair book source | adopted at `fd59548`; both candidates pass all automated gates and branch is pushed to GitHub |
@@ -191,6 +191,8 @@ Every hash below is the SHA-256 of two independently produced, byte-identical
 archives. ZIP integrity and the four-view visual report pass. Visual reports
 and screenshots are under
 `~/src/books-local-backups/firstpair-vault-candidates/visual-qa-2026-08-06/`.
+The remaining reader acceptance procedure is recorded in
+[`vaults-human-acceptance.md`](vaults-human-acceptance.md).
 
 | Product | Source revision | Archive SHA-256 |
 | --- | --- | --- |
