@@ -143,6 +143,9 @@ Each product must record:
   complete standardized guide and applies its independent privacy, link, and
   packaging gates. This prevents shared guide files from invalidating a
   title-owned byte-count manifest.
+- Centralized the deterministic first-open workspace in FirstPair. Native
+  builders emit no device state; after native validation, the shared layer
+  installs the same archive-validated Home workspace used by typed builds.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.

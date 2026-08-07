@@ -6,6 +6,7 @@ import subprocess
 
 from .guides import compose_guide
 from .inventory import inventory
+from .workspace import first_open_bytes
 
 
 def _command(
@@ -59,6 +60,9 @@ def build_native_candidate(root: Path, config, projection, source_revision: str)
         complete_guide = guide.read_text(encoding="utf-8")
         (root / "Guide.md").write_text(complete_guide, encoding="utf-8")
         (root / "README.md").write_text(complete_guide, encoding="utf-8")
+        obsidian = root / ".obsidian"
+        obsidian.mkdir(exist_ok=True)
+        (obsidian / "workspace-first-open.json").write_bytes(first_open_bytes())
         scanned = inventory(root)
         if scanned.critical_broken_links or scanned.unsafe_paths:
             raise RuntimeError(

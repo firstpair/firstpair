@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import hashlib
-import importlib.util
 import json
 import os
 import shutil
@@ -18,24 +17,15 @@ from .native import build_native_candidate
 from .profiles import validate_collection_kinds, validate_evidence
 from .projection import project
 from .revisions import require_clean_worktree, resolve_source_commit
+from .workspace import first_open_bytes
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 PLUGIN_ROOT = PACKAGE_ROOT / "plugin" / "firstpair-reader"
-ARCHIVER = PACKAGE_ROOT.parents[1] / "scripts" / "archive-vault.py"
 
 
 def _safe_name(value: str) -> str:
     return "".join(character if character.isalnum() or character in " -_." else "-" for character in value).strip()
-
-
-def _first_open_bytes() -> bytes:
-    specification = importlib.util.spec_from_file_location("firstpair_archive_vault", ARCHIVER)
-    if specification is None or specification.loader is None:
-        raise RuntimeError(f"could not load canonical workspace contract: {ARCHIVER}")
-    module = importlib.util.module_from_spec(specification)
-    specification.loader.exec_module(module)
-    return module.FIRST_OPEN_BYTES
 
 
 def _process_gate() -> None:
@@ -153,7 +143,7 @@ def _write_projection(root: Path, projection: Projection, config, source_revisio
         json.dumps(["file-explorer", "search", "bookmarks", "outline"], indent=2) + "\n",
         encoding="utf-8",
     )
-    (obsidian / "workspace-first-open.json").write_bytes(_first_open_bytes())
+    (obsidian / "workspace-first-open.json").write_bytes(first_open_bytes())
     if config.plugin:
         shutil.copytree(PLUGIN_ROOT, obsidian / "plugins" / "firstpair-reader")
 

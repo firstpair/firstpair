@@ -169,6 +169,7 @@ class VaultConfigTests(unittest.TestCase):
             (candidate / "Guide.md").read_bytes(),
             (candidate / "README.md").read_bytes(),
         )
+        self.assertTrue((candidate / ".obsidian/workspace-first-open.json").is_file())
 
     def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
         config = load_config(self.write_config())
