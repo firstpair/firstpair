@@ -16,6 +16,7 @@ import {
   UserRound,
 } from '@lucide/vue'
 import { isPreviewBook } from './library-status.js'
+import { obsidianHandbookHtml } from './generated/obsidian-handbook.js'
 
 const libraryShelfConfig = [
   {
@@ -164,6 +165,7 @@ const selectedBookSlug = computed(() => {
 const selectedBook = computed(() =>
   selectedBookSlug.value ? books.value.find((book) => book.slug === selectedBookSlug.value) : null,
 )
+const isObsidianGuide = computed(() => /^\/obsidian\/?$/.test(routePath.value))
 
 function updateRoute() {
   routePath.value = window.location.pathname
@@ -213,8 +215,12 @@ onBeforeUnmount(() => {
   window.removeEventListener('popstate', updateRoute)
 })
 
-watch(selectedBook, (book) => {
-  document.title = book ? `${book.title} - First Pair` : 'First Pair'
+watch([selectedBook, isObsidianGuide], ([book, guide]) => {
+  document.title = guide
+    ? 'The FirstPair Guide to Reading Books in Obsidian'
+    : book
+      ? `${book.title} - First Pair`
+      : 'First Pair'
 })
 
 const sources = [
@@ -248,7 +254,7 @@ const fragments = [
       <nav class="nav-links" aria-label="Primary">
         <a href="/#books" @click="navigateInApp($event, '/#books')">Books</a>
         <a href="/#sources" @click="navigateInApp($event, '/#sources')">Sources</a>
-        <a href="/obsidian/">Obsidian guide</a>
+        <a href="/obsidian/" @click="navigateInApp($event, '/obsidian/')">Obsidian guide</a>
         <a
           href="https://firstpair.press/"
           target="_blank"
@@ -265,8 +271,13 @@ const fragments = [
       </nav>
     </header>
 
+    <section v-if="isObsidianGuide" class="obsidian-handbook-shell" aria-label="Obsidian reader guide">
+      <a class="book-detail__back" href="/" @click="navigateInApp($event, '/')">Back to library</a>
+      <article class="obsidian-handbook" v-html="obsidianHandbookHtml"></article>
+    </section>
+
     <section
-      v-if="selectedBook"
+      v-else-if="selectedBook"
       class="book-detail"
       :style="{ '--book-accent': selectedBook.accent }"
       :aria-labelledby="`book-detail-${selectedBook.slug}`"
