@@ -221,7 +221,7 @@ watch([selectedBook, isObsidianGuide], ([book, guide]) => {
     : book
       ? `${book.title} - First Pair`
       : 'First Pair'
-})
+}, { immediate: true })
 
 const sources = [
   { label: 'First principles', icon: Braces },
