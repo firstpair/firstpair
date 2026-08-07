@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 from pathlib import Path
+import re
 from typing import Any
 
 from .model import EvidenceCollection, EvidenceTarget, PRODUCTS, PROFILES, Product, ReaderPage, VaultConfig
@@ -9,6 +10,9 @@ from .model import EvidenceCollection, EvidenceTarget, PRODUCTS, PROFILES, Produ
 
 class ConfigError(ValueError):
     pass
+
+
+COMMIT_RE = re.compile(r"[0-9a-f]{40}")
 
 
 def _object(value: Any, label: str) -> dict[str, Any]:
@@ -141,13 +145,16 @@ def load_config(path: Path) -> VaultConfig:
         raise ConfigError("products must not be empty")
 
     guide = _object(raw.get("guide", {}), "guide")
+    source_commit = _text(raw.get("sourceCommit"), "sourceCommit")
+    if source_commit != "HEAD" and not COMMIT_RE.fullmatch(source_commit):
+        raise ConfigError("sourceCommit must be HEAD or an exact 40-character lowercase Git commit")
     return VaultConfig(
         config_path=config_path,
         repo_root=repo_root,
         slug=_text(raw.get("slug"), "slug"),
         title=_text(raw.get("title"), "title"),
         profile=profile,
-        source_commit=_text(raw.get("sourceCommit"), "sourceCommit"),
+        source_commit=source_commit,
         pages=tuple(pages),
         evidence=tuple(evidence),
         collections=tuple(collections),

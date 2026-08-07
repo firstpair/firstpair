@@ -16,6 +16,7 @@ from .inventory import inventory
 from .model import Projection
 from .profiles import validate_collection_kinds, validate_evidence
 from .projection import project
+from .revisions import require_clean_worktree, resolve_source_commit
 
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
@@ -46,25 +47,10 @@ def _process_gate() -> None:
         raise RuntimeError("could not determine whether Obsidian is running")
 
 
-def _verify_source_revision(config) -> None:
-    head = subprocess.run(
-        ["git", "-C", str(config.repo_root), "rev-parse", "HEAD"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    if head.returncode != 0:
-        raise RuntimeError(f"vault source is not a Git worktree: {config.repo_root}")
-    if head.stdout.strip() != config.source_commit:
-        raise RuntimeError("sourceCommit does not match the source repository HEAD")
-    status = subprocess.run(
-        ["git", "-C", str(config.repo_root), "status", "--porcelain"],
-        check=False,
-        capture_output=True,
-        text=True,
-    )
-    if status.returncode != 0 or status.stdout.strip():
-        raise RuntimeError("source repository must be clean before building a vault")
+def _verify_source_revision(config) -> str:
+    revision = resolve_source_commit(config.repo_root, config.source_commit)
+    require_clean_worktree(config.repo_root)
+    return revision
 
 
 def plan_vault(config_path: Path, product_name: str) -> dict[str, object]:
@@ -82,11 +68,11 @@ def plan_vault(config_path: Path, product_name: str) -> dict[str, object]:
         "readerPages": len(projection.pages),
         "evidenceTargets": len(projection.evidence),
         "evidenceCollections": len(projection.collections),
-        "sourceCommit": config.source_commit,
+        "sourceCommit": resolve_source_commit(config.repo_root, config.source_commit),
     }
 
 
-def _write_projection(root: Path, projection: Projection, config) -> None:
+def _write_projection(root: Path, projection: Projection, config, source_revision: str) -> None:
     reader_root = root / "Reader"
     evidence_root = root / "Evidence"
     data_root = root / "_data"
@@ -156,7 +142,7 @@ def _write_projection(root: Path, projection: Projection, config) -> None:
         "[[Guide|First time using Obsidian? Read the complete Vault Guide.]]\n"
     )
     (root / "Home.md").write_text(home, encoding="utf-8")
-    guide = compose_guide(config, projection)
+    guide = compose_guide(config, projection, source_revision=source_revision)
     (root / "Guide.md").write_text(guide, encoding="utf-8")
     (root / "README.md").write_text(guide, encoding="utf-8")
     obsidian = root / ".obsidian"
@@ -171,7 +157,7 @@ def _write_projection(root: Path, projection: Projection, config) -> None:
         shutil.copytree(PLUGIN_ROOT, obsidian / "plugins" / "firstpair-reader")
 
 
-def _manifest(root: Path, config, projection: Projection) -> dict[str, object]:
+def _manifest(root: Path, config, projection: Projection, source_revision: str) -> dict[str, object]:
     scanned = inventory(root)
     payload = {
         "schema": "firstpair-vault-manifest-v2",
@@ -180,7 +166,7 @@ def _manifest(root: Path, config, projection: Projection) -> dict[str, object]:
         "profile": config.profile,
         "product": projection.product.name,
         "edition": projection.product.edition,
-        "sourceCommit": config.source_commit,
+        "sourceCommit": source_revision,
         "readerPages": len(projection.pages),
         "evidenceTargets": len(projection.evidence),
         "evidenceCollections": len(projection.collections),
@@ -198,15 +184,15 @@ def build_vault(config_path: Path, product_name: str) -> dict[str, object]:
     config = load_config(config_path)
     validate_evidence(config.profile, config.evidence)
     validate_collection_kinds(config.profile, config.collections)
-    _verify_source_revision(config)
+    source_revision = _verify_source_revision(config)
     projection = project(config, product_name)
     destination = projection.product.output
     destination.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=f".{destination.name}-", dir=destination.parent) as temporary:
         candidate = Path(temporary) / destination.name
         candidate.mkdir()
-        _write_projection(candidate, projection, config)
-        manifest = _manifest(candidate, config, projection)
+        _write_projection(candidate, projection, config, source_revision)
+        manifest = _manifest(candidate, config, projection, source_revision)
         (candidate / "VAULT-MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
         scanned = inventory(candidate)
         if scanned.critical_broken_links or scanned.unsafe_paths:

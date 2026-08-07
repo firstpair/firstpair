@@ -9,6 +9,7 @@ from .compare import baseline_contract, compare_vaults
 from .config import load_config
 from .guides import compose_guide
 from .projection import project
+from .revisions import resolve_source_commit
 
 
 def parser() -> argparse.ArgumentParser:
@@ -43,7 +44,11 @@ def main() -> int:
         result = baseline_contract(args.baseline)
     elif args.command == "guide":
         config = load_config(args.config)
-        text = compose_guide(config, project(config, args.product))
+        text = compose_guide(
+            config,
+            project(config, args.product),
+            source_revision=resolve_source_commit(config.repo_root, config.source_commit),
+        )
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(text, encoding="utf-8")
         result = {"guide": str(args.output.resolve()), "bytes": len(text.encode("utf-8"))}

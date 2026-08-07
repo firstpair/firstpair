@@ -11,7 +11,11 @@
     "slug": { "type": "string", "minLength": 1 },
     "title": { "type": "string", "minLength": 1 },
     "profile": { "enum": ["code", "history", "triptych"] },
-    "sourceCommit": { "type": "string", "minLength": 7 },
+    "sourceCommit": {
+      "type": "string",
+      "description": "Use HEAD for a title-owned committed contract, or an exact 40-character commit for an externally pinned source.",
+      "pattern": "^(HEAD|[0-9a-f]{40})$"
+    },
     "plugin": { "type": "boolean" },
     "guide": {
       "type": "object",

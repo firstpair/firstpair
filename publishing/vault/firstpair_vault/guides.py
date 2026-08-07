@@ -14,7 +14,12 @@ def _read(path: Path) -> str:
     return path.read_text(encoding="utf-8").strip()
 
 
-def compose_guide(config: VaultConfig, projection: Projection) -> str:
+def compose_guide(
+    config: VaultConfig,
+    projection: Projection,
+    *,
+    source_revision: str | None = None,
+) -> str:
     introduction = f"""<!-- firstpair-vault-guide-v2 -->
 
 # {config.title}: Obsidian Vault Guide
@@ -44,7 +49,7 @@ The maintained web edition of the general handbook is at
         )
     sections.append(
         "## Build identity\n\n"
-        f"- Source revision: `{config.source_commit}`\n"
+        f"- Source revision: `{source_revision or config.source_commit}`\n"
         f"- Vault profile: `{config.profile}`\n"
         f"- Product: `{projection.product.name}`\n"
         f"- Edition: `{projection.product.edition}`"

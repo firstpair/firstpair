@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -34,7 +35,7 @@ class VaultConfigTests(unittest.TestCase):
             "slug": "fixture",
             "title": "Fixture",
             "profile": "history",
-            "sourceCommit": "0123456789abcdef",
+            "sourceCommit": "0123456789abcdef0123456789abcdef01234567",
             "reader": [{"id": "chapter", "title": "Chapter", "source": "chapter.md", "preview": True}],
             "evidence": [
                 {
@@ -70,6 +71,25 @@ class VaultConfigTests(unittest.TestCase):
         path = self.write_config(reader=[{"id": "bad", "title": "Bad", "source": "../bad.md"}])
         with self.assertRaises(ConfigError):
             load_config(path)
+
+    def test_accepts_head_as_a_committed_contract_without_a_self_hash(self) -> None:
+        subprocess.run(["git", "init", "-q", "--initial-branch=main", str(self.root)], check=True)
+        subprocess.run(["git", "-C", str(self.root), "config", "user.name", "Vault Test"], check=True)
+        subprocess.run(
+            ["git", "-C", str(self.root), "config", "user.email", "vault@example.invalid"],
+            check=True,
+        )
+        path = self.write_config(sourceCommit="HEAD")
+        subprocess.run(["git", "-C", str(self.root), "add", "."], check=True)
+        subprocess.run(["git", "-C", str(self.root), "commit", "-q", "-m", "fixture"], check=True)
+        config = load_config(path)
+        from firstpair_vault.revisions import resolve_source_commit
+
+        revision = resolve_source_commit(config.repo_root, config.source_commit)
+        self.assertEqual(40, len(revision))
+        guide = compose_guide(config, project(config, "desktop"), source_revision=revision)
+        self.assertIn(f"Source revision: `{revision}`", guide)
+        self.assertNotIn("Source revision: `HEAD`", guide)
 
     def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
         config = load_config(self.write_config())
