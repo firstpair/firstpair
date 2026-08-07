@@ -176,6 +176,8 @@ Each product must record:
 - Shared link inventory now excludes fenced and inline code from link parsing,
   preventing Cargo, Rust, Python, and documentation syntax from being counted
   as broken Obsidian navigation while retaining all real Markdown links.
+- Shared link resolution now follows CommonMark angle-quoted and percent-
+  encoded destinations, including asset paths containing spaces.
 - Lighthouse now has a committed preview/mobile adoption contract at
   `e1e8bd7`. Its non-replacing preview candidate passes the native and
   differential gates, preserving 88 Reader pages, 24 source documents, and

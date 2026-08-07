@@ -233,6 +233,20 @@ class VaultComparisonTests(unittest.TestCase):
             (code / "example.rs.source.md").write_text("# Source\n", encoding="utf-8")
             self.assertEqual((), inventory(root).broken_links)
 
+    def test_inventory_resolves_angle_quoted_markdown_destinations(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            reader = root / "Reader"
+            assets = root / "Source Files" / "visuals"
+            reader.mkdir()
+            assets.mkdir(parents=True)
+            (reader / "Page.md").write_text(
+                "![Portrait](<../Source Files/visuals/portrait.jpg>)\n",
+                encoding="utf-8",
+            )
+            (assets / "portrait.jpg").write_bytes(b"fixture")
+            self.assertEqual((), inventory(root).critical_broken_links)
+
 
 if __name__ == "__main__":
     unittest.main()

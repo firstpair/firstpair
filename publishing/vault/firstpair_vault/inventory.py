@@ -4,6 +4,7 @@ import hashlib
 import re
 from dataclasses import dataclass
 from pathlib import Path
+from urllib.parse import unquote
 
 
 WIKI_LINK = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]")
@@ -98,7 +99,8 @@ def inventory(root: Path) -> Inventory:
                     if relative == "Home.md" or "Reader" in Path(relative).parts:
                         critical_broken.append(finding)
             for target in MARKDOWN_LINK.findall(text):
-                candidate = (path.parent / target).resolve()
+                normalized_target = unquote(target.strip().removeprefix("<").removesuffix(">"))
+                candidate = (path.parent / normalized_target).resolve()
                 if not candidate.is_file() or not candidate.is_relative_to(root):
                     finding = f"{relative}->{target}"
                     broken.append(finding)
