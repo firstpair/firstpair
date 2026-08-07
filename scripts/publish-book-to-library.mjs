@@ -1203,6 +1203,23 @@ async function validateSourceOwnedVault(
   vaultDir,
   validatorName = 'check-obsidian-vault.py',
 ) {
+  const composedManifest = join(vaultDir, 'FIRSTPAIR-VAULT-MANIFEST.json')
+  if (await exists(composedManifest)) {
+    const validator = join(root, 'publishing', 'scripts', 'firstpair-vault')
+    const args = ['validate', '--vault', vaultDir]
+    console.error(`$ ${[validator, ...args].join(' ')}`)
+    const { code } = await runProcess(validator, args, {
+      cwd: root,
+      env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' },
+      stdio: 'pipe',
+      onStdout: (chunk) => process.stderr.write(chunk),
+      onStderr: (chunk) => process.stderr.write(chunk),
+    })
+    if (code !== 0) {
+      throw new Error(`composed vault validation failed (${code}) for ${vaultDir}`)
+    }
+    return { validator, sourceRoot: root, runner: 'firstpair-composed' }
+  }
   const sourceRoot = await sourceRepositoryRoot(inputDir, distDir, vaultDir)
   const validator = join(sourceRoot, 'scripts', validatorName)
   const validatorStat = await stat(validator).catch(() => null)

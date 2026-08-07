@@ -18,6 +18,7 @@ from firstpair_vault.config import ConfigError, load_config  # noqa: E402
 from firstpair_vault.inventory import inventory, linkable_markdown  # noqa: E402
 from firstpair_vault.guides import compose_guide  # noqa: E402
 from firstpair_vault.projection import project  # noqa: E402
+from firstpair_vault.verify import verify_composed_vault  # noqa: E402
 
 
 class VaultConfigTests(unittest.TestCase):
@@ -174,6 +175,10 @@ class VaultConfigTests(unittest.TestCase):
         )
         self.assertTrue((candidate / ".obsidian/workspace-first-open.json").is_file())
         self.assertFalse((candidate / ".obsidian/workspace.json").exists())
+        self.assertTrue(verify_composed_vault(candidate)["passed"])
+        (candidate / "Home.md").write_text("# Changed\n", encoding="utf-8")
+        with self.assertRaises(ValueError):
+            verify_composed_vault(candidate)
 
     def test_every_profile_and_product_composes_a_complete_manual(self) -> None:
         config = load_config(self.write_config())

@@ -10,6 +10,7 @@ from .config import load_config
 from .guides import compose_guide
 from .projection import project
 from .revisions import resolve_source_commit
+from .verify import verify_composed_vault
 
 
 def parser() -> argparse.ArgumentParser:
@@ -21,6 +22,8 @@ def parser() -> argparse.ArgumentParser:
         command.add_argument("--product", choices=("desktop", "mobile", "preview", "all"), required=True)
     snapshot = commands.add_parser("snapshot")
     snapshot.add_argument("--baseline", type=Path, required=True)
+    validate = commands.add_parser("validate")
+    validate.add_argument("--vault", type=Path, required=True)
     guide = commands.add_parser("guide")
     guide.add_argument("config", type=Path)
     guide.add_argument("--product", choices=("desktop", "mobile", "preview"), required=True)
@@ -52,6 +55,8 @@ def main() -> int:
         result = {"products": [build_vault(args.config, name) for name in names]}
     elif args.command == "snapshot":
         result = baseline_contract(args.baseline)
+    elif args.command == "validate":
+        result = verify_composed_vault(args.vault)
     elif args.command == "guide":
         config = load_config(args.config)
         text = compose_guide(

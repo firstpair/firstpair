@@ -153,6 +153,11 @@ Each product must record:
   use the shared root manifest or a title-owned child mobile manifest, paired
   with a mobile library, reader index, or unit ledger. The title's validator
   still supplies the semantic proof before any archive is staged.
+- Added a composed-candidate seal verifier for publication. Native validation
+  proves the untouched title artifact; the final FirstPair manifest then binds
+  every post-composition file, byte total, source revision, product, and native
+  validator command. Publication verifies that seal instead of incorrectly
+  rerunning a title byte-count validator after shared files were added.
 - Captured baseline QA contracts for Sail; Cicero desktop, mobile, and preview;
   and Invented Enemy desktop and mobile under
   `~/src/books-local-backups/firstpair-vault-candidates/qa-2026-08-06/`.
