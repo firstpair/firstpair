@@ -14,4 +14,4 @@ The QueryGraph Stack: The Definitive Guide to the Governed Semantic Lakehouse, d
 The source repository owns the manuscript, metadata, version manifest, build
 pipeline, and canonical generated artifacts:
 
-[https://github.com/querygraph/qg-rust](https://github.com/querygraph/qg-rust)
+[https://github.com/querygraph/querygraph](https://github.com/querygraph/querygraph)

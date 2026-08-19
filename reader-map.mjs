@@ -70,9 +70,9 @@ export const readerBooks = [
   },
   {
     "slug": "querygraph",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/html/c213e7f61f0f1216-querygraph.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/c55774c57a5e627f/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/c55774c57a5e627f"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/html/61dd13b7f5b13f84-querygraph.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/8753f8d5e5546a97/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/8753f8d5e5546a97"
   },
   {
     "slug": "sail-iggy",
