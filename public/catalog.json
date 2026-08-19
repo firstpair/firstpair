@@ -266,12 +266,12 @@
       "kicker": "Finished book",
       "description": "The QueryGraph Stack: The Definitive Guide to the Governed Semantic Lakehouse, delivered as PDF, EPUB, and hosted web readers.",
       "accent": "#7a6a3e",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/9c125deb5dbcc045-querygraph.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/536e2815ed236760-querygraph.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/525f0b6e2c971704-querygraph.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/8a202c7a334a9cd1-querygraph.epub",
       "html": "/read/querygraph/",
       "htmlChapters": "/read/querygraph/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/html/c213e7f61f0f1216-querygraph.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/c55774c57a5e627f/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/html/61dd13b7f5b13f84-querygraph.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/chapters/8753f8d5e5546a97/index.html",
       "tags": [
         "finished"
       ],

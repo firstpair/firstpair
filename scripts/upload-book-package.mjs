@@ -137,10 +137,19 @@ function blobCommandOptions(extra = {}) {
 }
 
 function scrubSecretText(value) {
-  return String(value)
-    .replaceAll(oidcToken ?? '', '[redacted-oidc-token]')
-    .replaceAll(readWriteToken ?? '', '[redacted-rw-token]')
-    .replace(/[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g, '[redacted-jwt]')
+  let scrubbed = String(value)
+
+  if (oidcToken) {
+    scrubbed = scrubbed.replaceAll(oidcToken, '[redacted-oidc-token]')
+  }
+  if (readWriteToken) {
+    scrubbed = scrubbed.replaceAll(readWriteToken, '[redacted-rw-token]')
+  }
+
+  return scrubbed.replace(
+    /[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+/g,
+    '[redacted-jwt]',
+  )
 }
 
 async function findExistingBlob(pathname, expectedSize) {
