@@ -388,12 +388,12 @@
       "kicker": "Finished book",
       "description": "A ground-up explanation of DNS followed by a guided tour of rgbdns, a memory-safe Rust reimplementation of the djbdns suite.",
       "accent": "#52734d",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/pdf/061865acb775f0b6-rgbdns.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/7500af662276e933-rgbdns.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/pdf/0a8f55b9c2307c3b-rgbdns.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/epub/e1f46ae28bb694e0-rgbdns.epub",
       "html": "/read/rgbdns/",
       "htmlChapters": "/read/rgbdns/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/html/d68c5160120d54cc-rgbdns.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/a3139c86a73e2723/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/html/6ddcee7ca4d454fb-rgbdns.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e9a1d9e6014e0ad6/index.html",
       "tags": [
         "finished"
       ],
