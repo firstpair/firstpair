@@ -111,9 +111,12 @@
       "html": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview.html",
       "htmlChapters": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-chapters",
       "cover": "book-uploads/staging/cicero-on-himself/cicero-on-himself-cover.png",
-      "emacs": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-emacs (2.0.0-sol-4297211c).zip",
-      "emacsGuideMarkdown": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-4297211c).md",
-      "emacsGuideHtml": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-4297211c).html"
+      "vault": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-2996266c).zip",
+      "vaultGuideMarkdown": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-2996266c).md",
+      "vaultGuideHtml": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
+      "emacs": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-emacs (2.0.0-sol-2cef4fad).zip",
+      "emacsGuideMarkdown": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-2cef4fad).md",
+      "emacsGuideHtml": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-2cef4fad).html"
     },
     "verdun": {
       "pdf": "book-uploads/staging/verdun/verdun.pdf",
