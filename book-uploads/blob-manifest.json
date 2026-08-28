@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-28T18:25:35.403Z",
+  "updatedAt": "2026-08-28T18:27:13.979Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4819,7 +4819,7 @@
       }
     },
     "cicero-on-himself": {
-      "updatedAt": "2026-08-28T18:25:35.402Z",
+      "updatedAt": "2026-08-28T18:27:13.978Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -4865,7 +4865,7 @@
           "size": 85126,
           "pathname": "books/cicero-on-himself/emacs/8b6ecb472a51dbe7-cicero-on-himself-preview-emacs (2.0.0-sol-4297211c).zip",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/8b6ecb472a51dbe7-cicero-on-himself-preview-emacs%20%282.0.0-sol-4297211c%29.zip",
-          "skipped": false
+          "skipped": true
         },
         "emacsGuide": {
           "kind": "emacs-guide",
@@ -4874,7 +4874,7 @@
           "size": 25294,
           "pathname": "books/cicero-on-himself/emacs-guide/74e5461b54d8b7f3-cicero-on-himself-emacs-guide (2.0.0-sol-4297211c).html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/74e5461b54d8b7f3-cicero-on-himself-emacs-guide%20%282.0.0-sol-4297211c%29.html",
-          "skipped": false
+          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
