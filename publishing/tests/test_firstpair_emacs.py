@@ -13,7 +13,7 @@ PUBLISHING = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PUBLISHING / "vault"))
 sys.path.insert(0, str(PUBLISHING / "emacs"))
 
-from firstpair_emacs import corpus  # noqa: E402
+from firstpair_emacs import corpus, package  # noqa: E402
 from firstpair_emacs.builder import build, plan  # noqa: E402
 from firstpair_emacs.config import load  # noqa: E402
 from firstpair_emacs.document import Manual, Node, Paragraph, Reference, Text, Emphasis, node_name  # noqa: E402
@@ -187,6 +187,46 @@ class ConfigTests(Fixture):
         self.assertIn("Open the Proem first.", guide)
 
 
+def has(program: str) -> bool:
+    return shutil.which(program) is not None
+
+
+class PackageTests(unittest.TestCase):
+    def test_assembles_an_installable_package_with_its_handbook(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            output = Path(temporary)
+            manifest = package.assemble(output)
+            release = manifest["version"]
+            directory = output / f"firstpair-reader-{release}"
+            for name in ("firstpair-reader.el", "firstpair-bundle.el", "firstpair-lexicon.el", "firstpair-reader-pkg.el", "firstpair-reader.info", "dir", "README.md"):
+                self.assertTrue((directory / name).is_file(), name)
+            self.assertIn(f'(define-package "firstpair-reader" "{release}"', (directory / "firstpair-reader-pkg.el").read_text())
+            parsed = parse_info(directory / "firstpair-reader.info")
+            self.assertIn("Install Emacs", parsed.nodes)
+            self.assertIn("Add the manuals to Info's directory", parsed.nodes)
+            with self.assertRaises(RuntimeError):
+                package.assemble(output)
+            if not has("emacs"):
+                return
+            user_dir = output / "elpa"
+            script = f"""(progn
+  (require 'package)
+  (setq package-user-dir "{user_dir.as_posix()}")
+  (package-initialize)
+  (package-install-file "{manifest['tar']}")
+  (require 'firstpair-reader)
+  (info "(firstpair-reader)Top")
+  (princ (format "installed=%S node=%S discover=%S\n"
+                 (package-installed-p 'firstpair-reader)
+                 Info-current-node
+                 (fboundp 'firstpair-reader-discover))))"""
+            completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+            self.assertEqual(0, completed.returncode, completed.stderr[-2000:])
+            self.assertIn("installed=t", completed.stdout)
+            self.assertIn('node="Top"', completed.stdout)
+            self.assertIn("discover=t", completed.stdout)
+
+
 class ModelTests(unittest.TestCase):
     def test_node_names_avoid_info_delimiters(self) -> None:
         self.assertEqual("Letters to Atticus 4-8a", node_name("Letters to Atticus 4.8a"))
@@ -274,6 +314,36 @@ class BuildTests(Fixture):
             self.assertTrue(all(item["exitCode"] == 0 for item in report["makeinfo"]["manuals"].values()))
         with self.assertRaises(RuntimeError):
             build(path, "desktop", allow_download=False)
+        self.assertTrue((bundle / "install.sh").stat().st_mode & 0o100)
+        self.assertIn("(add-to-list 'load-path (expand-file-name \"lisp\" bundle) t)", (bundle / "init.el").read_text())
+        if has("install-info") or has("emacs"):
+            info_dir = self.root / "info-dir"
+            for mode in ("install", "remove"):
+                arguments = ["sh", str(bundle / "install.sh")] + (["--remove"] if mode == "remove" else []) + [str(info_dir)]
+                completed = subprocess.run(arguments, capture_output=True, text=True, check=False)
+                self.assertEqual(0, completed.returncode, completed.stderr)
+                present = (info_dir / "fixture.info").exists()
+                self.assertEqual(mode == "install", present)
+                listing = (info_dir / "dir").read_text(encoding="utf-8") if (info_dir / "dir").exists() else ""
+                self.assertEqual(mode == "install", "(fixture)" in listing, listing)
+        if has("emacs"):
+            info_dir = self.root / "info-elisp"
+            script = f"""(progn
+  (add-to-list 'load-path "{(bundle / 'lisp').as_posix()}")
+  (require 'firstpair-reader)
+  (let ((bundle (firstpair-bundle-load "{bundle.as_posix()}")))
+    (cl-letf (((symbol-function 'firstpair-reader--install-info-program) (lambda () nil)))
+      (firstpair-reader-install-info bundle "{info_dir.as_posix()}")
+      (princ (format "installed=%S\n" (file-exists-p "{(info_dir / 'dir').as_posix()}")))
+      (firstpair-reader-uninstall-info bundle "{info_dir.as_posix()}")
+      (princ (format "removed=%S\n" (not (file-exists-p "{(info_dir / 'fixture.info').as_posix()}")))))))"""
+            completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+            self.assertEqual(0, completed.returncode, completed.stderr[-2000:])
+            self.assertIn("installed=t", completed.stdout)
+            self.assertIn("removed=t", completed.stdout)
+            listing = (info_dir / "dir").read_text(encoding="utf-8")
+            self.assertNotIn("(fixture)", listing)
+            self.assertIn("* Menu:", listing)
         (bundle / "dir").write_text("changed\n", encoding="utf-8")
         with self.assertRaises(BundleError):
             verify_bundle(bundle, run_emacs=False, run_makeinfo=False)

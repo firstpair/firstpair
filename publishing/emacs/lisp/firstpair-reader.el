@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.0
+;; Version: 1.1
 ;; Package-Requires: ((emacs "28.1"))
 ;; Keywords: docs, hypermedia
 
@@ -46,6 +46,16 @@
 (defcustom firstpair-reader-highlight t
   "Non-nil underlines the words the dictionary window can explain."
   :type 'boolean)
+
+(defcustom firstpair-reader-bundle-directories nil
+  "Directories `firstpair-reader-discover' searches for bundles.
+Each entry is either a bundle directory or a directory whose immediate
+subdirectories are bundles."
+  :type '(repeat directory))
+
+(defcustom firstpair-reader-info-directory "~/.local/share/info"
+  "Info directory that `firstpair-reader-install-info' installs manuals into."
+  :type 'directory)
 
 (defface firstpair-reader-marked
   '((t :underline t))
@@ -366,14 +376,47 @@ The entry opens in the dictionary window below the references."
          (target (and windows (nth (mod (1+ (or position -1)) (length windows)) windows))))
     (when target (select-window target))))
 
+(defun firstpair-reader--bundle-directory-p (directory)
+  "Return non-nil when DIRECTORY is the root of a FirstPair bundle."
+  (file-readable-p (expand-file-name "data/bundle.json" directory)))
+
+;;;###autoload
+(defun firstpair-reader-discover (&optional directories)
+  "Register every bundle found under DIRECTORIES and return them.
+DIRECTORIES defaults to `firstpair-reader-bundle-directories'.  A directory
+that is itself a bundle is registered; otherwise its subdirectories that are
+bundles are."
+  (interactive)
+  (let (found)
+    (dolist (directory (or directories firstpair-reader-bundle-directories))
+      (let ((directory (expand-file-name directory)))
+        (cond ((firstpair-reader--bundle-directory-p directory)
+               (push (firstpair-reader-register directory) found))
+              ((file-directory-p directory)
+               (dolist (child (directory-files directory t "\\`[^.]"))
+                 (when (and (file-directory-p child)
+                            (firstpair-reader--bundle-directory-p child))
+                   (push (firstpair-reader-register child) found)))))))
+    (when (called-interactively-p 'any)
+      (message "Registered %d FirstPair bundle%s" (length found) (if (= 1 (length found)) "" "s")))
+    (nreverse found)))
+
 (defun firstpair-reader--choose (root)
-  "Return the bundle at ROOT, or let the user pick a registered bundle."
+  "Return the bundle at ROOT, or let the user pick a registered bundle.
+With no bundle registered, search `firstpair-reader-bundle-directories'
+and finally ask for a bundle directory."
   (cond (root (firstpair-reader-register root))
+        ((and (null firstpair-bundles) (firstpair-reader-discover))
+         (firstpair-reader--choose nil))
         ((null firstpair-bundles)
-         (user-error "No FirstPair bundle is registered; load a bundle's init.el first"))
+         (firstpair-reader-register
+          (read-directory-name "FirstPair bundle directory: " nil nil t)))
         ((null (cdr firstpair-bundles)) (cdar firstpair-bundles))
         (t (let* ((titles (mapcar (lambda (entry)
-                                    (cons (firstpair-bundle-title (cdr entry)) (cdr entry)))
+                                    (let ((bundle (cdr entry)))
+                                      (cons (format "%s (%s)" (firstpair-bundle-title bundle)
+                                                    (firstpair-bundle-edition bundle))
+                                            bundle)))
                                   firstpair-bundles))
                   (choice (completing-read "Book: " titles nil t)))
              (cdr (assoc choice titles))))))
@@ -419,6 +462,123 @@ bundle at ROOT; otherwise read the registered bundle."
       (firstpair-reader--goto 'references (format "(%s)Top" (firstpair-bundle-reference bundle)))
       (select-window window)
       bundle)))
+
+;;; Info directory installation
+
+(defconst firstpair-reader--dir-preamble
+  "This is the file .../dir, which contains the
+topmost node of the Info hierarchy, called (dir)Top.
+The first time you invoke Info you start off looking at this node.
+
+\x1f
+File: dir,\tNode: Top,\tThis is the top of the INFO tree
+
+  This (the Directory node) gives a menu of major topics.
+
+* Menu:
+
+"
+  "Contents of a fresh Info `dir' file, as `install-info' writes it.")
+
+(defun firstpair-reader--dir-entries (info-file)
+  "Return (SECTION . MENU-LINES) declared in the header of INFO-FILE."
+  (with-temp-buffer
+    (insert-file-contents info-file nil 0 4096)
+    (goto-char (point-min))
+    (let ((section (and (re-search-forward "^INFO-DIR-SECTION \\(.+\\)$" nil t)
+                        (match-string 1)))
+          (lines nil))
+      (goto-char (point-min))
+      (when (re-search-forward "^START-INFO-DIR-ENTRY\n" nil t)
+        (while (not (or (eobp) (looking-at "^END-INFO-DIR-ENTRY")))
+          (push (buffer-substring-no-properties (line-beginning-position) (line-end-position))
+                lines)
+          (forward-line 1)))
+      (cons (or section "Books") (nreverse lines)))))
+
+(defun firstpair-reader--dir-remove (lines)
+  "Delete from the current buffer every menu line naming the manuals in LINES."
+  (dolist (line lines)
+    (when (string-match "(\\([^)]+\\))" line)
+      (let ((target (regexp-quote (match-string 0 line))))
+        (goto-char (point-min))
+        (while (re-search-forward (concat "^\\* [^\n]*: " target "[^\n]*\n") nil t)
+          (replace-match ""))))))
+
+(defun firstpair-reader--update-dir (dir-file section lines &optional remove)
+  "List LINES under SECTION in the Info DIR-FILE, or delete them when REMOVE.
+This is what `install-info' does, for machines without it."
+  (with-temp-buffer
+    (when (file-exists-p dir-file)
+      (insert-file-contents dir-file))
+    (when (zerop (buffer-size))
+      (insert firstpair-reader--dir-preamble))
+    (firstpair-reader--dir-remove lines)
+    (unless remove
+      (goto-char (point-min))
+      (if (re-search-forward (concat "^" (regexp-quote section) "\n") nil t)
+          (dolist (line lines) (insert line "\n"))
+        (goto-char (point-max))
+        (unless (bolp) (insert "\n"))
+        (insert "\n" section "\n")
+        (dolist (line lines) (insert line "\n"))))
+    (write-region (point-min) (point-max) dir-file nil 'silent)))
+
+(defun firstpair-reader--install-info-program ()
+  "Return the `install-info' executable, or nil."
+  (executable-find "install-info"))
+
+;;;###autoload
+(defun firstpair-reader-install-info (&optional bundle directory)
+  "Copy BUNDLE's manuals into DIRECTORY and list them in its Info `dir' file.
+Afterwards `info' and `C-h i' show the book beside the system manuals.
+DIRECTORY defaults to `firstpair-reader-info-directory'.  The GNU
+`install-info' program is used when present; otherwise the `dir' file is
+updated directly.  Returns DIRECTORY."
+  (interactive)
+  (let* ((bundle (or bundle (firstpair-reader--choose nil)))
+         (directory (file-name-as-directory
+                     (expand-file-name (or directory firstpair-reader-info-directory))))
+         (program (firstpair-reader--install-info-program)))
+    (make-directory directory t)
+    (dolist (stem (list (firstpair-bundle-reader bundle) (firstpair-bundle-reference bundle)))
+      (let ((source (expand-file-name (concat stem ".info") (firstpair-bundle-root bundle)))
+            (target (expand-file-name (concat stem ".info") directory)))
+        (copy-file source target t)
+        (if program
+            (unless (zerop (call-process program nil nil nil
+                                         (concat "--info-dir=" (directory-file-name directory))
+                                         target))
+              (error "install-info could not register %s" target))
+          (let ((entries (firstpair-reader--dir-entries target)))
+            (firstpair-reader--update-dir (expand-file-name "dir" directory)
+                                          (car entries) (cdr entries))))))
+    (info-initialize)
+    (add-to-list 'Info-directory-list (directory-file-name directory))
+    (message "Installed %s into %s. Keep it with (add-to-list \\='Info-directory-list \"%s\") in your init file, or INFOPATH in your shell."
+             (firstpair-bundle-title bundle) directory (directory-file-name directory))
+    directory))
+
+;;;###autoload
+(defun firstpair-reader-uninstall-info (&optional bundle directory)
+  "Remove BUNDLE's manuals from the Info DIRECTORY and its `dir' file."
+  (interactive)
+  (let* ((bundle (or bundle (firstpair-reader--choose nil)))
+         (directory (file-name-as-directory
+                     (expand-file-name (or directory firstpair-reader-info-directory))))
+         (program (firstpair-reader--install-info-program)))
+    (dolist (stem (list (firstpair-bundle-reader bundle) (firstpair-bundle-reference bundle)))
+      (let ((target (expand-file-name (concat stem ".info") directory)))
+        (when (file-exists-p target)
+          (if program
+              (call-process program nil nil nil "--delete"
+                            (concat "--info-dir=" (directory-file-name directory)) target)
+            (let ((entries (firstpair-reader--dir-entries target)))
+              (firstpair-reader--update-dir (expand-file-name "dir" directory)
+                                            (car entries) (cdr entries) t)))
+          (delete-file target))))
+    (message "Removed %s from %s" (firstpair-bundle-title bundle) directory)
+    directory))
 
 ;;;###autoload
 (defun firstpair-reader-register (root)

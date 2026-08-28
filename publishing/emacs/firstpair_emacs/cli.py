@@ -8,7 +8,7 @@ from pathlib import Path
 
 from firstpair_vault.revisions import resolve_source_commit
 
-from . import corpus
+from . import corpus, package
 from .builder import build, plan
 from .config import PRODUCTS, load
 from .guides import compose
@@ -36,6 +36,8 @@ def parser() -> argparse.ArgumentParser:
     lexicon = commands.add_parser("lexicon", help="fetch or verify the pinned lexicon corpus")
     lexicon.add_argument("--language", default="latin")
     lexicon.add_argument("--offline", action="store_true")
+    packager = commands.add_parser("package", help="assemble the standalone firstpair-reader package")
+    packager.add_argument("--output", type=Path, default=package.PACKAGE_ROOT / "dist")
     validate = commands.add_parser("validate")
     validate.add_argument("--bundle", type=Path, required=True)
     validate.add_argument("--skip-emacs", action="store_true", help="do not open the bundle in Emacs")
@@ -72,6 +74,8 @@ def main() -> int:
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(text, encoding="utf-8")
         result = {"guide": str(args.output.resolve()), "bytes": len(text.encode("utf-8"))}
+    elif args.command == "package":
+        result = package.assemble(args.output.resolve())
     elif args.command == "lexicon":
         spec = corpus.load_corpus(args.language)
         directory = corpus.ensure(spec, allow_download=not args.offline)

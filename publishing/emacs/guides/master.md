@@ -55,6 +55,35 @@ Emacs configuration file (`~/.emacs.d/init.el` or `~/.config/emacs/init.el`):
 (load "/path/to/the/bundle/init.el")
 ```
 
+## Install the reader once, for every FirstPair book
+
+Each bundle carries its own copy of the reader, so the step above is all a
+single book needs. If you read several FirstPair books, install the reader as
+an Emacs package instead and let it find your bundles:
+
+```elisp
+;; From a downloaded firstpair-reader-<version>.tar:
+M-x package-install-file RET /path/to/firstpair-reader-1.1.tar RET
+
+;; Or straight from the FirstPair repository (Emacs 29 or newer):
+(package-vc-install '(firstpair-reader
+                      :url "https://github.com/firstpair/firstpair"
+                      :lisp-dir "publishing/emacs/lisp"))
+```
+
+Then tell it where your bundles live and open one:
+
+```elisp
+(setq firstpair-reader-bundle-directories '("~/Books/FirstPair"))
+M-x firstpair-read RET
+```
+
+`firstpair-read` registers every bundle found in those folders and offers a
+choice when there is more than one. A bundle's `init.el` still works and,
+when the package is installed, uses the installed reader rather than its own
+copy. The package also installs this handbook as an Info manual:
+`C-h i m FirstPair Reader RET`.
+
 ## Your first five minutes
 
 Everything is ordinary Info. The keys you need:
@@ -152,6 +181,31 @@ info -f /path/to/the/bundle/<book>.info
 Citations still work; they open in the same window, and `l` returns. The
 manual name appears after the label, as Info shows any reference to another
 manual. The dictionary keys are not available without the reader.
+
+## Add the manuals to Info's directory
+
+`M-x firstpair-read` never touches your system. If you would rather find the
+book under `C-h i` or the `info` command beside the Emacs and GNU manuals,
+install its two manuals into an Info directory:
+
+```sh
+./install.sh                      # into ~/.local/share/info
+./install.sh /usr/local/share/info
+./install.sh --remove             # take them out again
+```
+
+or, inside Emacs, `M-x firstpair-reader-install-info` (and
+`firstpair-reader-uninstall-info`). Both copy the `.info` files and update the
+directory's `dir` menu, using GNU `install-info` when it is present and
+Emacs itself otherwise. Then add the directory to Emacs:
+
+```elisp
+(add-to-list 'Info-directory-list "~/.local/share/info")
+```
+
+or to your shell, `export INFOPATH="$HOME/.local/share/info:"`, and the book
+appears under **Books** in the Info directory. Reading it that way is plain
+Info: the FirstPair keys need the reader loaded as above.
 
 ## Re-rendering the edition
 

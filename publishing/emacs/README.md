@@ -20,6 +20,7 @@ publishing/scripts/firstpair-emacs plan vault.build.json --product all
 publishing/scripts/firstpair-emacs build vault.build.json --product preview
 publishing/scripts/firstpair-emacs validate --bundle '/path/to/bundle'
 publishing/scripts/firstpair-emacs guide vault.build.json --product desktop --output build/guide.md
+publishing/scripts/firstpair-emacs package            # dist/firstpair-reader-<version>.tar
 ```
 
 Building requires a clean, committed source worktree and refuses to replace an

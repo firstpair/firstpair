@@ -253,12 +253,65 @@ def _init_file(config: EmacsConfig) -> str:
 ;; Then run M-x firstpair-read.
 
 (let ((bundle (file-name-directory (or load-file-name buffer-file-name))))
-  (add-to-list 'load-path (expand-file-name "lisp" bundle))
+  ;; The bundled reader is appended to `load-path', so an installed
+  ;; firstpair-reader package takes precedence when one is present.
+  (add-to-list 'load-path (expand-file-name "lisp" bundle) t)
   (require 'firstpair-reader)
   (firstpair-reader-register bundle))
 
 (provide 'init)
 ;;; init.el ends here
+"""
+
+
+def _install_script(config: EmacsConfig) -> str:
+    stems = f"{config.reader_stem} {config.reference_stem}"
+    return f"""#!/bin/sh
+# Install the Info manuals of this FirstPair bundle into an Info directory,
+# so that `info` and Emacs's `C-h i` list {config.core.title} beside the
+# system manuals. The bundle itself is unchanged; M-x firstpair-read keeps
+# working from init.el.
+#
+#   ./install.sh [INFO-DIRECTORY]            install (default: ~/.local/share/info)
+#   ./install.sh --remove [INFO-DIRECTORY]   remove again
+#
+# GNU install-info is used when present; otherwise Emacs updates the
+# directory's `dir` file with the same result.
+set -eu
+here="$(cd "$(dirname "$0")" && pwd)"
+mode=install
+if [ "${{1:-}}" = "--remove" ]; then
+  mode=remove
+  shift
+fi
+target="${{1:-${{INFO_DIR:-$HOME/.local/share/info}}}}"
+manuals="{stems}"
+if command -v install-info >/dev/null 2>&1; then
+  mkdir -p "$target"
+  for stem in $manuals; do
+    if [ "$mode" = install ]; then
+      cp "$here/$stem.info" "$target/$stem.info"
+      install-info --info-dir="$target" "$target/$stem.info"
+    elif [ -f "$target/$stem.info" ]; then
+      install-info --delete --info-dir="$target" "$target/$stem.info"
+      rm -f "$target/$stem.info"
+    fi
+  done
+elif command -v emacs >/dev/null 2>&1; then
+  if [ "$mode" = install ]; then command=firstpair-reader-install-info; else command=firstpair-reader-uninstall-info; fi
+  emacs --batch -Q -L "$here/lisp" -l firstpair-reader \\
+    --eval "($command (firstpair-bundle-load \\"$here\\") \\"$target\\")"
+else
+  echo "install.sh: neither install-info nor emacs is available" >&2
+  exit 1
+fi
+if [ "$mode" = install ]; then
+  echo "Installed {config.core.title} into $target."
+  echo "Emacs: add   (add-to-list 'Info-directory-list \\"$target\\")   to your init file."
+  echo "Shell: export INFOPATH=\\"$target:\\${{INFOPATH:-}}\\"   then run: info {config.reader_stem}"
+else
+  echo "Removed {config.core.title} from $target."
+fi
 """
 
 
@@ -458,6 +511,8 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
 
         shutil.copytree(LISP_ROOT, root / "lisp", ignore=shutil.ignore_patterns("test", "*.elc", "firstpair-check.el"))
         (root / "init.el").write_text(_init_file(config), encoding="utf-8")
+        (root / "install.sh").write_text(_install_script(config), encoding="utf-8")
+        (root / "install.sh").chmod(0o755)
         (root / "Guide.md").write_text(guide, encoding="utf-8")
         (root / "README.md").write_text(guide, encoding="utf-8")
 

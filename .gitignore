@@ -14,3 +14,4 @@ __pycache__/
 .vercel
 .env*
 book-uploads/staging/
+publishing/emacs/dist/

@@ -10,7 +10,8 @@ on it.
 
 ```text
 <bundle>/
-  init.el                      loader: adds lisp/ to load-path and registers the bundle
+  init.el                      loader: registers the bundle; uses an installed reader if present
+  install.sh                   copies the manuals into an Info directory (install-info or Emacs)
   dir                          Info directory node listing both manuals
   <stem>.info                  the book, one Info file
   <stem>-refs.info             the references, one Info file
@@ -87,6 +88,26 @@ are pinned by digest in `lexicon/<language>/SOURCES.json` inside FirstPair and
 cached under `~/.cache/firstpair/lexicon/`; `firstpair-emacs lexicon` fetches
 or verifies them. FirstPair's own supplement rows are recorded with their
 reason.
+
+## The reader as a package
+
+`lisp/` is also the source of the standalone `firstpair-reader` package.
+`firstpair-emacs package` assembles `dist/firstpair-reader-<version>/` and
+`dist/firstpair-reader-<version>.tar` — the three Lisp files, a
+`firstpair-reader-pkg.el`, and the shared handbook compiled as the package's
+own Info manual with its `dir` — for `M-x package-install-file`.
+`package-vc-install` with `:lisp-dir "publishing/emacs/lisp"` installs the
+same files from the repository. Every file's `;; Version:` header must agree;
+the package version is the reader's. Bundles keep shipping `lisp/`, appended
+to `load-path` so an installed package wins when both are present; the
+bundle schema (`firstpair-emacs-bundle-v1`) is the compatibility contract
+between them.
+
+With the package installed, `firstpair-reader-bundle-directories` lists the
+folders `firstpair-read` searches for bundles, and
+`firstpair-reader-install-info` / `install.sh` put a bundle's manuals into an
+Info directory (`~/.local/share/info` by default) so plain `info` and `C-h i`
+list them.
 
 ## Guarantees
 
