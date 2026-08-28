@@ -45,6 +45,7 @@ const booleanFlags = new Set([
   'smoke',
   'full',
   'vault',
+  'emacs',
   'verbose',
   'help',
 ])
@@ -63,6 +64,8 @@ const valueFlags = new Set([
   'vault-dir',
   'vault-guide',
   'mobile-vault-dir',
+  'emacs-dir',
+  'emacs-guide',
 ])
 
 function usage() {
@@ -111,6 +114,17 @@ Options:
   --vault-dir <dir>         Explicit vault directory (implies --vault).
   --vault-guide <file>      Explicit vault guide (default: a docs/*VAULT*.md).
   --mobile-vault-dir <dir>  Deliver a separately validated mobile vault archive.
+  --emacs                   Deliver the Emacs Info bundle declared for this
+                            edition in the source's vault.build.json (emacs
+                            block), or found under <book>/dist-emacs/. The
+                            bundle must pass firstpair-emacs validate, and its
+                            manifest must bind to the source HEAD and the
+                            selected edition. It is zipped to a versioned
+                            name, its Guide.md is rendered for
+                            /read/<slug>/emacs-guide/, and both are copied to
+                            iCloud beside the book. Served at /<slug>/emacs/.
+  --emacs-dir <dir>         Explicit bundle directory (implies --emacs).
+  --emacs-guide <file>      Override the Emacs guide (default: the bundle's Guide.md).
   --icloud-dir <dir>        Defaults to "$HOME/icloud/books".
   --stage-only              Only refresh book-uploads/staging and source map.
   --no-upload               Alias for --stage-only.
@@ -912,6 +926,7 @@ function readmeFor(plan, catalogEntry) {
     catalogEntry.vault || catalogEntry.mobileVault || catalogEntry.vaultGuide
       ? `${catalogEntry.vault ? `- [Download the Obsidian vault](${stableDeliverablePath(plan.slug, 'vault')})\n` : ''}${catalogEntry.mobileVault ? `- [Download the Mobile Obsidian vault](${stableDeliverablePath(plan.slug, 'mobile-vault')})\n` : ''}${catalogEntry.vaultGuide ? `- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})\n` : ''}`
       : ''
+  const emacsLinks = emacsReadmeLinks(plan, catalogEntry)
   const sourceText = source
     ? `\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts:\n\n[${source}](${source})\n`
     : '\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts. Record the upstream URL in\n`public/catalog.json` when it becomes available.\n'
@@ -927,8 +942,19 @@ ${catalogEntry.description}
 - [Read online](/read/${plan.slug}/)
 - [Chapter reader](/read/${plan.slug}/chapters/)
 ${plan.tutorial ? `- [Interactive tutorial](/learn/${plan.slug}/)\n` : ''}
-${vaultLinks}
+${vaultLinks}${emacsLinks}
 ${sourceText}`
+}
+
+function emacsReadmeLinks(plan, catalogEntry) {
+  const lines = []
+  if (catalogEntry.emacs) {
+    lines.push(`- [Download the Emacs edition](${stableDeliverablePath(plan.slug, 'emacs')})`)
+  }
+  if (catalogEntry.emacsGuide) {
+    lines.push(`- [Read the Emacs guide](${catalogEntry.emacsGuide})`)
+  }
+  return lines.length ? `${lines.join('\n')}\n` : ''
 }
 
 function readmeWithUpdatedLinks(plan, catalogEntry, existingText) {
@@ -975,6 +1001,26 @@ function readmeWithUpdatedLinks(plan, catalogEntry, existingText) {
       text = text.replace(
         /(- \[Chapter reader\]\([^)]+\)\n)/i,
         `$1${block}`,
+      )
+    }
+  }
+
+  const emacsBlock = emacsReadmeLinks(plan, catalogEntry)
+  if (emacsBlock) {
+    if (/\[[^\]]*(?:Emacs edition|Emacs guide)[^\]]*\]\(/i.test(text)) {
+      text = text.replace(
+        /(?:- \[[^\]]*(?:Emacs edition|Emacs guide)[^\]]*\]\([^)]+\)\n?)+/i,
+        emacsBlock,
+      )
+    } else if (/\[[^\]]*(?:Obsidian vault|vault guide)[^\]]*\]\(/i.test(text)) {
+      text = text.replace(
+        /((?:- \[[^\]]*(?:Obsidian vault|vault guide)[^\]]*\]\([^)]+\)\n?)+)/i,
+        `$1${emacsBlock}`,
+      )
+    } else {
+      text = text.replace(
+        /(- \[Chapter reader\]\([^)]+\)\n)/i,
+        `$1${emacsBlock}`,
       )
     }
   }
@@ -1043,6 +1089,16 @@ async function refreshSourceMap(plan, dryRun) {
   if (plan.mobileVault) {
     sources.books[plan.slug].mobileVault = repoRelative(
       join(plan.stageDir, plan.mobileVault.zipName),
+    )
+  }
+
+  if (plan.emacs) {
+    sources.books[plan.slug].emacs = repoRelative(join(plan.stageDir, plan.emacs.zipName))
+    sources.books[plan.slug].emacsGuideMarkdown = repoRelative(
+      join(plan.stageDir, plan.emacs.guideName),
+    )
+    sources.books[plan.slug].emacsGuideHtml = repoRelative(
+      join(plan.stageDir, plan.emacs.guideHtmlName),
     )
   }
 
@@ -1463,6 +1519,138 @@ async function resolveMobileVault(inputDir, distDir, edition, version, slug, opt
   }
 }
 
+// --- Emacs Info bundles ----------------------------------------------------
+//
+// An Emacs bundle is the directory firstpair-emacs build produced and
+// firstpair-emacs validate accepted. Resolution mirrors the vault path: locate,
+// validate (also for --dry-run), then bind the archive name to the bundle's own
+// source commit, since it may postdate the book artifacts in dist/.
+
+async function emacsBundleDescription(dir) {
+  const description = await readJson(join(dir, 'data', 'bundle.json'), null)
+  if (description?.schema !== 'firstpair-emacs-bundle-v1') {
+    return null
+  }
+  return description
+}
+
+async function gitTopLevel(directory) {
+  return commandOutput('git', ['-C', directory, 'rev-parse', '--show-toplevel']).catch(() => null)
+}
+
+async function discoverEmacsBundle(inputDir, distDir, edition) {
+  const sourceRoot = (await gitTopLevel(inputDir)) ?? inputDir
+  const config = await readJson(join(sourceRoot, 'vault.build.json'), null)
+  const product = edition === 'preview' ? 'preview' : 'desktop'
+  const declared = config?.emacs?.products?.[product]?.output
+  if (declared) {
+    const dir = resolve(sourceRoot, declared)
+    if (!(await emacsBundleDescription(dir))) {
+      throw new Error(
+        `vault.build.json declares the ${product} Emacs bundle at ${dir}, but no built bundle is there.\n` +
+          'Build it first with firstpair-emacs build, or pass --emacs-dir.',
+      )
+    }
+    return dir
+  }
+  const base = join(dirname(distDir), 'dist-emacs')
+  const candidates = []
+  for (const entry of await listEntries(base)) {
+    if (!entry.isDirectory()) continue
+    const dir = join(base, entry.name)
+    const description = await emacsBundleDescription(dir)
+    if (description?.edition === edition) {
+      candidates.push(dir)
+    }
+  }
+  if (candidates.length > 1) {
+    throw new Error(`multiple ${edition} Emacs bundles under ${base}; pass --emacs-dir to choose:\n  ${candidates.join('\n  ')}`)
+  }
+  return candidates[0] ?? null
+}
+
+async function validateEmacsBundle(inputDir, distDir, dir, edition) {
+  const validator = join(root, 'publishing', 'scripts', 'firstpair-emacs')
+  const output = []
+  const { code } = await runProcess(validator, ['validate', '--bundle', dir], {
+    stdio: 'pipe',
+    onStdout: (chunk) => output.push(chunk),
+    onStderr: (chunk) => process.stderr.write(chunk),
+  })
+  if (code !== 0) {
+    throw new Error(`Emacs bundle validation failed (${code}) for ${dir}`)
+  }
+  const report = JSON.parse(Buffer.concat(output.map((chunk) => Buffer.from(chunk))).toString('utf8'))
+  if (!report.passed) {
+    throw new Error(`Emacs bundle validation did not pass for ${dir}`)
+  }
+  const manifest = await readJson(join(dir, 'FIRSTPAIR-EMACS-MANIFEST.json'))
+  if (manifest.edition !== edition) {
+    throw new Error(
+      `Emacs bundle at ${dir} is the ${manifest.edition} edition, but the ${edition} edition is being published`,
+    )
+  }
+  const sourceRoot = await gitTopLevel(inputDir)
+  if (sourceRoot) {
+    const head = await commandOutput('git', ['-C', sourceRoot, 'rev-parse', 'HEAD'])
+    if (manifest.sourceCommit !== head) {
+      throw new Error(
+        `Emacs bundle at ${dir} was built at ${manifest.sourceCommit}, but the source HEAD is ${head}.\n` +
+          'Rebuild the bundle from the commit being published.',
+      )
+    }
+  }
+  return { validator: 'firstpair-emacs validate', sourceCommit: manifest.sourceCommit, report }
+}
+
+async function resolveEmacs(inputDir, distDir, edition, version, slug, options) {
+  const wantEmacs = Boolean(options.emacs || options['emacs-dir'])
+  if (!wantEmacs) {
+    return null
+  }
+  const dir = options['emacs-dir']
+    ? resolve(isAbsolute(options['emacs-dir']) ? options['emacs-dir'] : join(inputDir, options['emacs-dir']))
+    : await discoverEmacsBundle(inputDir, distDir, edition)
+  if (!dir) {
+    throw new Error(
+      `--emacs was requested but no ${edition} Emacs bundle was found under ` +
+        `${join(dirname(distDir), 'dist-emacs')}. Build one first, or pass --emacs-dir.`,
+    )
+  }
+  if (!(await emacsBundleDescription(dir))) {
+    throw new Error(`--emacs-dir is not a FirstPair Emacs bundle: ${dir}`)
+  }
+  const validation = await validateEmacsBundle(inputDir, distDir, dir, edition)
+  const stamp = `${firstValue(version.version) ?? 'current'}-${validation.sourceCommit.slice(0, 8)}`
+  const guide = options['emacs-guide']
+    ? resolve(isAbsolute(options['emacs-guide']) ? options['emacs-guide'] : join(inputDir, options['emacs-guide']))
+    : join(dir, 'Guide.md')
+  if (!(await exists(guide))) {
+    throw new Error(`Emacs guide does not exist: ${guide}`)
+  }
+  return {
+    dir,
+    validation: { validator: validation.validator, sourceCommit: validation.sourceCommit },
+    zipName: `${slug}-${edition}-emacs (${stamp}).zip`,
+    guideSource: guide,
+    guideName: `${slug}-emacs-guide (${stamp}).md`,
+    guideHtmlName: `${slug}-emacs-guide (${stamp}).html`,
+  }
+}
+
+async function zipEmacsBundle(bundleDir, destinationZip) {
+  await rm(destinationZip, { force: true })
+  await mkdir(dirname(destinationZip), { recursive: true })
+  const { code } = await runProcess(
+    'python3',
+    [join(scriptDir, 'archive-emacs-bundle.py'), '--bundle', bundleDir, '--output', destinationZip],
+    { env: { ...process.env, PYTHONDONTWRITEBYTECODE: '1' }, stdio: 'inherit' },
+  )
+  if (code !== 0) {
+    throw new Error(`Emacs bundle archiver failed (${code}) for ${bundleDir}`)
+  }
+}
+
 // Archive the vault through Python's standard library. Apple /usr/bin/zip does
 // not consistently support its documented UTF-8 switch; the helper writes a
 // stable root, sorted members, fixed metadata, and UTF-8 flags while preserving
@@ -1547,6 +1735,16 @@ async function stageCompanions(plan, dryRun) {
       })
     }
   }
+  if (plan.emacs) {
+    await zipEmacsBundle(plan.emacs.dir, join(plan.stageDir, plan.emacs.zipName))
+    await copyFile(plan.emacs.guideSource, join(plan.stageDir, plan.emacs.guideName))
+    await renderVaultGuide({
+      source: plan.emacs.guideSource,
+      destination: join(plan.stageDir, plan.emacs.guideHtmlName),
+      title: `${plan.title} — Emacs Guide`,
+      resourcePaths: [plan.emacs.dir],
+    })
+  }
 }
 
 // Copy the already-staged companions to iCloud beside the book.
@@ -1571,6 +1769,18 @@ async function copyCompanionsToIcloud(plan, dryRun) {
       role: 'mobile-vault',
       source: join(plan.stageDir, plan.mobileVault.zipName),
       path: join(plan.icloudDir, plan.mobileVault.zipName),
+    })
+  }
+  if (plan.emacs) {
+    delivered.push({
+      role: 'emacs',
+      source: join(plan.stageDir, plan.emacs.zipName),
+      path: join(plan.icloudDir, plan.emacs.zipName),
+    })
+    delivered.push({
+      role: 'emacs-guide-markdown',
+      source: join(plan.stageDir, plan.emacs.guideName),
+      path: join(plan.icloudDir, plan.emacs.guideName),
     })
   }
   if (dryRun || !plan.copyIcloud) {
@@ -1835,6 +2045,13 @@ async function runLiveCatalogCheck(plan) {
     'mobileVault',
     'vaultGuide',
     'vaultGuideSource',
+    'emacs',
+    'emacsGuide',
+    'emacsGuideSource',
+  ]
+  const hostedGuides = [
+    ['vaultGuide', 'vaultGuideSource'],
+    ['emacsGuide', 'emacsGuideSource'],
   ]
   const deadline = Date.now() + 3 * 60 * 1000
   let lastLiveBook = null
@@ -1855,9 +2072,11 @@ async function runLiveCatalogCheck(plan) {
       )
 
       if (fieldsMatch) {
-        if (localBook.vaultGuideSource) {
+        let guideProblem = false
+        for (const [routeField, sourceField] of hostedGuides) {
+          if (!localBook[sourceField]) continue
           const guideResponse = await fetch(
-            new URL(localBook.vaultGuide, 'https://firstpair.org').href,
+            new URL(localBook[routeField], 'https://firstpair.org').href,
             { cache: 'no-store' },
           ).catch(() => null)
           const guideBody = guideResponse?.ok ? await guideResponse.text() : ''
@@ -1878,9 +2097,13 @@ async function runLiveCatalogCheck(plan) {
             !lastGuideCheck.rendered ||
             !lastGuideCheck.hasLibraryLink
           ) {
-            await new Promise((resolveWait) => setTimeout(resolveWait, 5000))
-            continue
+            guideProblem = true
+            break
           }
+        }
+        if (guideProblem) {
+          await new Promise((resolveWait) => setTimeout(resolveWait, 5000))
+          continue
         }
 
         console.error(`live catalog and hosted readers match local entry for ${plan.slug}`)
@@ -1974,6 +2197,7 @@ async function buildPlan(inputDir, options) {
   const tutorial = await resolveTutorial(inputDir, distDir, options.tutorial ?? version.tutorial_file)
   const vault = await resolveVault(inputDir, distDir, edition, version, slug, options)
   const mobileVault = await resolveMobileVault(inputDir, distDir, edition, version, slug, options)
+  const emacs = await resolveEmacs(inputDir, distDir, edition, version, slug, options)
   const cover = await resolveCover(inputDir, distDir, metadata, slug)
   const headboard = await resolveHeadboard(inputDir, distDir, metadata, slug)
 
@@ -1999,6 +2223,7 @@ async function buildPlan(inputDir, options) {
     tutorial,
     vault,
     mobileVault,
+    emacs,
     cover,
     headboard,
     stageDir: join(root, 'book-uploads', 'staging', slug),
@@ -2084,6 +2309,15 @@ function printablePlan(
             validation: plan.mobileVault.validation,
           }
         : null,
+      emacs: plan.emacs
+        ? {
+            source: plan.emacs.dir,
+            zip: plan.emacs.zipName,
+            guideMarkdown: plan.emacs.guideName,
+            guideHtml: plan.emacs.guideHtmlName,
+            validation: plan.emacs.validation,
+          }
+        : null,
       cover: plan.cover
         ? {
             source: plan.cover.sourcePath,
@@ -2105,6 +2339,7 @@ function printablePlan(
       upload: !dryRun && !plan.stageOnly,
       copyIcloud: !dryRun && plan.copyIcloud && !plan.stageOnly,
       deliverVault: !dryRun && Boolean(plan.vault || plan.mobileVault) && !plan.stageOnly,
+      deliverEmacs: !dryRun && Boolean(plan.emacs) && !plan.stageOnly,
       checkCatalog: !dryRun && plan.runCheck && !plan.stageOnly,
       prodBuild: !dryRun && plan.runBuild && !plan.stageOnly,
       smoke: !dryRun && plan.runSmoke && !plan.stageOnly,

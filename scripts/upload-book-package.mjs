@@ -424,6 +424,28 @@ if (mobileVaultSource) {
   units.mobileVault = await uploadFileUnit(manifest, 'mobile-vault', mobileVaultSource)
 }
 
+const emacsSource = sourcePath(sourceBook.emacs)
+
+if (emacsSource) {
+  units.emacs = await uploadFileUnit(manifest, 'emacs', emacsSource)
+}
+
+const emacsGuideHtmlSource = sourcePath(sourceBook.emacsGuideHtml)
+const emacsGuideMarkdownSource = sourcePath(sourceBook.emacsGuideMarkdown)
+
+if (emacsGuideHtmlSource) {
+  if (!emacsGuideHtmlSource.path.toLowerCase().endsWith('.html')) {
+    throw new Error(`emacsGuideHtml must point to rendered HTML for ${slug}`)
+  }
+
+  if (!emacsGuideMarkdownSource?.path.toLowerCase().endsWith('.md')) {
+    throw new Error(`emacsGuideMarkdown (Markdown) is required beside emacsGuideHtml for ${slug}`)
+  }
+
+  await stat(emacsGuideMarkdownSource.path)
+  units.emacsGuide = await uploadFileUnit(manifest, 'emacs-guide', emacsGuideHtmlSource)
+}
+
 const vaultGuideHtmlSource = sourcePath(sourceBook.vaultGuideHtml)
 const vaultGuideMarkdownSource = sourcePath(sourceBook.vaultGuideMarkdown)
 const legacyVaultGuideSource = sourcePath(sourceBook.vaultGuide)
@@ -492,6 +514,15 @@ if (!dryRun) {
 
   if (units.mobileVault) {
     book.mobileVault = units.mobileVault.url
+  }
+
+  if (units.emacs) {
+    book.emacs = units.emacs.url
+  }
+
+  if (units.emacsGuide) {
+    book.emacsGuide = `/read/${slug}/emacs-guide/`
+    book.emacsGuideSource = units.emacsGuide.url
   }
 
   if (units.vaultGuide) {

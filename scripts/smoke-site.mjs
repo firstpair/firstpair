@@ -178,6 +178,9 @@ const paths = catalog.books.flatMap((book) => {
   const guidePath = isLocalTarget
     ? (book.vaultGuideSource ?? book.vaultGuide)
     : book.vaultGuide
+  const emacsGuidePath = isLocalTarget
+    ? (book.emacsGuideSource ?? book.emacsGuide)
+    : book.emacsGuide
   const stableDeliverables = isLocalTarget
     ? []
     : [
@@ -185,6 +188,7 @@ const paths = catalog.books.flatMap((book) => {
         `/${book.slug}/epub/`,
         book.vault ? `/${book.slug}/vault/` : null,
         book.mobileVault ? `/${book.slug}/mobile-vault/` : null,
+        book.emacs ? `/${book.slug}/emacs/` : null,
         book.cover ? `/${book.slug}/cover/` : null,
       ].filter(Boolean)
 
@@ -199,7 +203,9 @@ const paths = catalog.books.flatMap((book) => {
     book.headboard,
     book.vault,
     book.mobileVault,
+    book.emacs,
     guidePath,
+    emacsGuidePath,
     ...stableDeliverables,
   ].filter(Boolean)
 })

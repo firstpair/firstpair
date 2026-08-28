@@ -12,12 +12,16 @@
       "dest": "/api/reader?path=$1&area=tutorial"
     },
     {
-      "src": "^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|cover)/?$",
+      "src": "^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|emacs|cover)/?$",
       "dest": "/api/deliverable?slug=$1&format=$2"
     },
     {
       "src": "^/obsidian/?$",
       "dest": "/obsidian/index.html"
+    },
+    {
+      "src": "^/emacs/?$",
+      "dest": "/emacs/index.html"
     },
     {
       "handle": "filesystem"

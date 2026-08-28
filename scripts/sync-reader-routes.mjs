@@ -18,6 +18,10 @@ function hostedGuidePath(slug) {
   return `/read/${slug}/guide/`
 }
 
+function hostedEmacsGuidePath(slug) {
+  return `/read/${slug}/emacs-guide/`
+}
+
 function normalizeIndexUrl(url) {
   return url.endsWith('/index.html') ? url : `${url.replace(/\/$/, '')}/index.html`
 }
@@ -37,12 +41,16 @@ function readerRoutes() {
       dest: '/api/reader?path=$1&area=tutorial',
     },
     {
-      src: '^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|cover)/?$',
+      src: '^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|emacs|cover)/?$',
       dest: '/api/deliverable?slug=$1&format=$2',
     },
     {
       src: '^/obsidian/?$',
       dest: '/obsidian/index.html',
+    },
+    {
+      src: '^/emacs/?$',
+      dest: '/emacs/index.html',
     },
     {
       handle: 'filesystem',
@@ -71,6 +79,10 @@ function readerMap(books) {
       entry.vaultGuideSource = book.vaultGuideSource
     }
 
+    if (book.emacsGuideSource) {
+      entry.emacsGuideSource = book.emacsGuideSource
+    }
+
     return entry
   })
 }
@@ -90,6 +102,10 @@ function deliverableMap(books) {
 
     if (book.mobileVault) {
       entry.mobileVault = book.mobileVault
+    }
+
+    if (book.emacs) {
+      entry.emacs = book.emacs
     }
 
     if (book.cover) {
@@ -150,6 +166,12 @@ for (const book of catalog.books) {
     book.vaultGuide = hostedGuidePath(book.slug)
   } else if (book.vaultGuide?.startsWith('/read/')) {
     throw new Error(`missing external vaultGuideSource for ${book.slug}`)
+  }
+
+  if (book.emacsGuideSource?.startsWith('https://')) {
+    book.emacsGuide = hostedEmacsGuidePath(book.slug)
+  } else if (book.emacsGuide) {
+    throw new Error(`missing external emacsGuideSource for ${book.slug}`)
   }
 }
 

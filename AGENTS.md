@@ -40,7 +40,7 @@ shared rules.
   validator is a stop condition, not something to route around.
 - Use stable FirstPair deliverable routes in reader-facing prose:
   `/<book-stem>/pdf/`, `/<book-stem>/epub/`, and, when present,
-  `/<book-stem>/vault/`. Raw Vercel Blob URLs belong in `public/catalog.json`,
+  `/<book-stem>/vault/` and `/<book-stem>/emacs/`. Raw Vercel Blob URLs belong in `public/catalog.json`,
   `book-uploads/blob-manifest.json`, and generated route maps, not in blog
   posts, public README text, or long-lived external links.
 - Treat Vercel deployments, Blob uploads, iCloud delivery, and full-edition

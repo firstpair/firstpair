@@ -17,6 +17,7 @@ import {
 } from '@lucide/vue'
 import { isPreviewBook } from './library-status.js'
 import { obsidianHandbookHtml } from './generated/obsidian-handbook.js'
+import { emacsHandbookHtml } from './generated/emacs-handbook.js'
 
 const libraryShelfConfig = [
   {
@@ -78,6 +79,9 @@ type Book = {
   mobileVault?: string
   vaultGuide?: string
   vaultGuideSource?: string
+  emacs?: string
+  emacsGuide?: string
+  emacsGuideSource?: string
   tags: string[]
 }
 
@@ -107,7 +111,7 @@ const filters = computed(() => [
 
 const bookDetailHref = (book: Book): string => `/books/${book.slug}/`
 const bookPageHref = (book: Book): string => bookDetailHref(book)
-const stableDeliverableHref = (book: Book, format: 'pdf' | 'epub' | 'vault' | 'mobile-vault' | 'cover'): string =>
+const stableDeliverableHref = (book: Book, format: 'pdf' | 'epub' | 'vault' | 'mobile-vault' | 'emacs' | 'cover'): string =>
   `/${book.slug}/${format}/`
 const bookHeroImage = (book: Book): string => book.headboard ?? book.cover ?? ''
 
@@ -166,6 +170,7 @@ const selectedBook = computed(() =>
   selectedBookSlug.value ? books.value.find((book) => book.slug === selectedBookSlug.value) : null,
 )
 const isObsidianGuide = computed(() => /^\/obsidian\/?$/.test(routePath.value))
+const isEmacsGuide = computed(() => /^\/emacs\/?$/.test(routePath.value))
 
 function updateRoute() {
   routePath.value = window.location.pathname
@@ -215,12 +220,14 @@ onBeforeUnmount(() => {
   window.removeEventListener('popstate', updateRoute)
 })
 
-watch([selectedBook, isObsidianGuide], ([book, guide]) => {
+watch([selectedBook, isObsidianGuide, isEmacsGuide], ([book, guide, emacsGuide]) => {
   document.title = guide
     ? 'The FirstPair Guide to Reading Books in Obsidian'
-    : book
-      ? `${book.title} - First Pair`
-      : 'First Pair'
+    : emacsGuide
+      ? 'The FirstPair Guide to Reading Books in Emacs'
+      : book
+        ? `${book.title} - First Pair`
+        : 'First Pair'
 }, { immediate: true })
 
 const sources = [
@@ -255,6 +262,7 @@ const fragments = [
         <a href="/#books" @click="navigateInApp($event, '/#books')">Books</a>
         <a href="/#sources" @click="navigateInApp($event, '/#sources')">Sources</a>
         <a href="/obsidian/" @click="navigateInApp($event, '/obsidian/')">Obsidian guide</a>
+        <a href="/emacs/" @click="navigateInApp($event, '/emacs/')">Emacs guide</a>
         <a
           href="https://firstpair.press/"
           target="_blank"
@@ -274,6 +282,11 @@ const fragments = [
     <section v-if="isObsidianGuide" class="obsidian-handbook-shell" aria-label="Obsidian reader guide">
       <a class="book-detail__back" href="/" @click="navigateInApp($event, '/')">Back to library</a>
       <article class="obsidian-handbook" v-html="obsidianHandbookHtml"></article>
+    </section>
+
+    <section v-else-if="isEmacsGuide" class="obsidian-handbook-shell" aria-label="Emacs reader guide">
+      <a class="book-detail__back" href="/" @click="navigateInApp($event, '/')">Back to library</a>
+      <article class="obsidian-handbook" v-html="emacsHandbookHtml"></article>
     </section>
 
     <section
@@ -337,6 +350,21 @@ const fragments = [
               rel="noopener noreferrer"
             >
               Vault guide
+            </a>
+            <a
+              v-if="selectedBook.emacs"
+              :href="stableDeliverableHref(selectedBook, 'emacs')"
+              download
+            >
+              Emacs edition
+            </a>
+            <a
+              v-if="selectedBook.emacsGuide"
+              :href="selectedBook.emacsGuide"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Emacs guide
             </a>
             <a
               v-if="selectedBook.tutorial"
@@ -607,6 +635,8 @@ const fragments = [
                     <a v-if="book.vault" :href="stableDeliverableHref(book, 'vault')" download>Vault</a>
                     <a v-if="book.mobileVault" :href="stableDeliverableHref(book, 'mobile-vault')" download>Mobile Vault</a>
                     <a v-if="book.vaultGuide" :href="book.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
+                    <a v-if="book.emacs" :href="stableDeliverableHref(book, 'emacs')" download>Emacs</a>
+                    <a v-if="book.emacsGuide" :href="book.emacsGuide" target="_blank" rel="noopener noreferrer">Emacs guide</a>
                     <a v-if="book.post" :href="book.post" target="_blank" rel="noreferrer">
                       Story
                       <ExternalLink :size="14" />

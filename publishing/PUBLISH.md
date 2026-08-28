@@ -301,6 +301,20 @@ Repositories with `pyproject.toml` and `uv.lock` run through the locked uv
 project; readable or executable standalone validators use `python3` or their
 own shebang. A nonzero result stops publication before ZIP creation.
 
+For `--emacs` deliveries, the publisher resolves the Emacs Info bundle the
+source declares in `vault.build.json` (`emacs.products.preview` or
+`.desktop` for the selected edition), runs `firstpair-emacs validate` against
+it before returning a dry-run plan, and refuses a bundle whose manifest is not
+bound to the source HEAD or the selected edition. The bundle is archived with
+`scripts/archive-emacs-bundle.py`, its `Guide.md` is rendered for
+`/read/<slug>/emacs-guide/`, the ZIP is served at `/<slug>/emacs/`, and both
+are copied to iCloud. The Emacs edition is a separate deliverable with its own
+routes and guide; it never shares the vault's. The site handbook at `/emacs/`
+is generated from `publishing/emacs/guides/master.md` by
+`npm run build:emacs-handbook`. See
+[`EMACS-DELIVERY-PROPOSAL.md`](EMACS-DELIVERY-PROPOSAL.md) for the design and
+[`skills/emacs-info-bundle.md`](skills/emacs-info-bundle.md) for the workflow.
+
 Run the shared regression fixtures with:
 
 ```sh

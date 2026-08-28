@@ -46,13 +46,15 @@ sources shaped them, and what the public edition is meant to do.
 Heavy book payloads do not live in deployable `public/`. PDF, EPUB, single HTML,
 chapter HTML, cover and headboard images, companion vaults, and rendered vault
 guides are uploaded to Vercel Blob one title at a time.
-`firstpair.org` exposes PDF and EPUB as downloads and HTML through hosted reader
-routes:
+`firstpair.org` exposes PDF, EPUB, and companion vault and Emacs bundles as
+downloads (`/<book-stem>/pdf/`, `/epub/`, `/vault/`, `/emacs/`) and HTML
+through hosted reader routes:
 
 ```text
 /read/<book-stem>/
 /read/<book-stem>/chapters/
 /read/<book-stem>/guide/
+/read/<book-stem>/emacs-guide/
 ```
 
 When `library:publish` is run with `--vault`, it keeps the canonical Markdown

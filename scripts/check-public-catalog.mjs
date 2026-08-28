@@ -15,10 +15,11 @@ const hasReaderProxyRoute = routeDestinations.get('^/read(?:/(.*))?$') === '/api
 const hasTutorialProxyRoute =
   routeDestinations.get('^/learn(?:/(.*))?$') === '/api/reader?path=$1&area=tutorial'
 const hasDeliverableProxyRoute =
-  routeDestinations.get('^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|cover)/?$') ===
+  routeDestinations.get('^/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|emacs|cover)/?$') ===
   '/api/deliverable?slug=$1&format=$2'
 const hasObsidianHandbookRoute =
   routeDestinations.get('^/obsidian/?$') === '/obsidian/index.html'
+const hasEmacsHandbookRoute = routeDestinations.get('^/emacs/?$') === '/emacs/index.html'
 const hasFilesystemRoute = (vercel.routes ?? []).some((route) => route.handle === 'filesystem')
 const hasAppFallbackRoute = routeDestinations.get('^/(.*)$') === '/index.html'
 const { readerBooks } = await import('../reader-map.mjs')
@@ -58,6 +59,7 @@ const staleReaderMap = []
 const invalidSourceUrls = []
 const invalidTutorialRoutes = []
 const invalidVaultGuideRoutes = []
+const invalidEmacsGuideRoutes = []
 const invalidPreviewSources = []
 const invalidPostUrls = []
 const invalidAuthors = []
@@ -137,6 +139,30 @@ for (const book of catalog.books) {
     }
   }
 
+  // The Emacs edition has its own hosted guide route and Blob-backed HTML.
+  if (book.emacsGuide || book.emacsGuideSource) {
+    if (book.emacsGuide !== `/read/${book.slug}/emacs-guide/`) {
+      invalidEmacsGuideRoutes.push({ slug: book.slug, field: 'emacsGuide', path: book.emacsGuide })
+    }
+
+    if (!book.emacsGuideSource?.startsWith('https://')) {
+      invalidSourceUrls.push({ slug: book.slug, field: 'emacsGuideSource', url: book.emacsGuideSource })
+    } else if (
+      !URL.canParse(book.emacsGuideSource) ||
+      !new URL(book.emacsGuideSource).pathname.toLowerCase().endsWith('.html')
+    ) {
+      invalidEmacsGuideRoutes.push({
+        slug: book.slug,
+        field: 'emacsGuideSource',
+        path: book.emacsGuideSource,
+      })
+    }
+  }
+
+  if (book.emacs && !book.emacs.startsWith('https://')) {
+    invalidSourceUrls.push({ slug: book.slug, field: 'emacs', url: book.emacs })
+  }
+
   if (book.vault && !book.vault.startsWith('https://')) {
     invalidSourceUrls.push({ slug: book.slug, field: 'vault', url: book.vault })
   }
@@ -178,6 +204,7 @@ for (const book of catalog.books) {
   const readerMapEntry = readerMapEntries.get(book.slug)
   const expectedTutorialSource = book.tutorialSource ?? undefined
   const expectedVaultGuideSource = book.vaultGuideSource ?? undefined
+  const expectedEmacsGuideSource = book.emacsGuideSource ?? undefined
 
   if (
     !readerMapEntry ||
@@ -185,7 +212,8 @@ for (const book of catalog.books) {
     readerMapEntry.htmlChaptersSource !== expectedChaptersIndex ||
     readerMapEntry.htmlChaptersBase !== expectedChaptersBase ||
     (readerMapEntry.tutorialSource ?? undefined) !== expectedTutorialSource ||
-    (readerMapEntry.vaultGuideSource ?? undefined) !== expectedVaultGuideSource
+    (readerMapEntry.vaultGuideSource ?? undefined) !== expectedVaultGuideSource ||
+    (readerMapEntry.emacsGuideSource ?? undefined) !== expectedEmacsGuideSource
   ) {
     staleReaderMap.push({
       slug: book.slug,
@@ -195,6 +223,7 @@ for (const book of catalog.books) {
         htmlChaptersBase: expectedChaptersBase,
         tutorialSource: expectedTutorialSource,
         vaultGuideSource: expectedVaultGuideSource,
+        emacsGuideSource: expectedEmacsGuideSource,
       },
       actual: readerMapEntry,
     })
@@ -208,6 +237,7 @@ for (const book of catalog.books) {
     epub: book.epub,
     ...(book.vault ? { vault: book.vault } : {}),
     ...(book.mobileVault ? { mobileVault: book.mobileVault } : {}),
+    ...(book.emacs ? { emacs: book.emacs } : {}),
     ...(book.cover ? { cover: book.cover } : {}),
   }
 
@@ -253,6 +283,7 @@ if (
   invalidReaderRoutes.length ||
   invalidTutorialRoutes.length ||
   invalidVaultGuideRoutes.length ||
+  invalidEmacsGuideRoutes.length ||
   invalidPreviewSources.length ||
   invalidPostUrls.length ||
   invalidAuthors.length ||
@@ -264,6 +295,7 @@ if (
   !hasTutorialProxyRoute ||
   !hasDeliverableProxyRoute ||
   !hasObsidianHandbookRoute ||
+  !hasEmacsHandbookRoute ||
   !hasFilesystemRoute ||
   !hasAppFallbackRoute
 ) {
@@ -277,6 +309,7 @@ if (
         invalidReaderRoutes,
         invalidTutorialRoutes,
         invalidVaultGuideRoutes,
+        invalidEmacsGuideRoutes,
         invalidPreviewSources,
         invalidPostUrls,
         invalidAuthors,
@@ -288,6 +321,7 @@ if (
         hasTutorialProxyRoute,
         hasDeliverableProxyRoute,
         hasObsidianHandbookRoute,
+        hasEmacsHandbookRoute,
         hasFilesystemRoute,
         hasAppFallbackRoute,
       },

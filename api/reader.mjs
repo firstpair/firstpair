@@ -112,6 +112,14 @@ function targetUrl(parts, search, areaOverride = null) {
     return { url: `${book.vaultGuideSource}${search}`, kind: 'html', book }
   }
 
+  if (area === 'emacs-guide') {
+    if (rest.length > 0 || !book.emacsGuideSource) {
+      return null
+    }
+
+    return { url: `${book.emacsGuideSource}${search}`, kind: 'html', book }
+  }
+
   if (area !== 'chapters') {
     return null
   }
