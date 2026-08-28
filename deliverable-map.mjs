@@ -154,5 +154,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/pdf/98382e815156acbc-adversarial-cognition.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/epub/41062fdfa509b962-adversarial-cognition.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/cover/1d23b97dc652439f-adversarial-cognition-cover.png"
+  },
+  {
+    "slug": "lakecat-catalog-foundation",
+    "title": "LakeCat: A Thin, Governed, Replayable Catalog Foundation",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png"
   }
 ]

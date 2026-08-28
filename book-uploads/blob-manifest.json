@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-22T03:36:24.109Z",
+  "updatedAt": "2026-08-28T15:56:45.585Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -6763,6 +6763,283 @@
           ]
         }
       }
+    },
+    "lakecat-catalog-foundation": {
+      "updatedAt": "2026-08-28T15:56:45.584Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation.pdf",
+          "sha256": "499e31d675381a8534a1d3b7d92d990cba84d99f1a81a63a137d6084ba78c1b8",
+          "size": 3305637,
+          "pathname": "books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation.epub",
+          "sha256": "7ee8fa16ceccb5690640697f62cd4fc3005f4699d74df654b85c1ed28a4524dc",
+          "size": 2372478,
+          "pathname": "books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation.html",
+          "sha256": "a690a79a9cf1ea6dda82469e91938bfa28bbe0145b38522175545db6491cf38e",
+          "size": 3233095,
+          "pathname": "books/lakecat-catalog-foundation/html/a690a79a9cf1ea6d-lakecat-catalog-foundation.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/html/a690a79a9cf1ea6d-lakecat-catalog-foundation.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-cover.png",
+          "sha256": "700bc3524f3474c9795e51a2e2e2e4d46205fdbada891042e97b38c8837555c9",
+          "size": 1958939,
+          "pathname": "books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-headboard.png",
+          "sha256": "700bc3524f3474c9795e51a2e2e2e4d46205fdbada891042e97b38c8837555c9",
+          "size": 1958939,
+          "pathname": "books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+          "skipped": true
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters",
+          "sha256": "9eb8d004a9bc203d2986d935d4cebc7d187ce38ad649dadef17ed7e8529c9c41",
+          "pathnamePrefix": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/assets/lakecat-aurora-headboard.png",
+              "relativePath": "assets/lakecat-aurora-headboard.png",
+              "sha256": "700bc3524f3474c9795e51a2e2e2e4d46205fdbada891042e97b38c8837555c9",
+              "size": 1958939,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/assets/lakecat-aurora-headboard.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/assets/lakecat-aurora-headboard.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "f1f3fe82d3513e29e04e37dc0e2b3301f9f18578afd2afcc1bb423e367a7e055",
+              "size": 649,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "a7f2484b92059a43c2c3f8672b998ab42e71cfbdd0615e0443343e9536c223b5",
+              "size": 2493,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "47116c222f3d8f03db0b46b551600b028831938c526b543d1d2ffd867bcde32b",
+              "size": 2984,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "c093a5b993720a201f7b1919700254261e987d80849058c350226a3b81279f28",
+              "size": 5898,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "9363d13059c9b1098585392492004418ccd1147137b6f79d7c6cc1109beb9a89",
+              "size": 7897,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "36349e52debabddba85c5764b05af9e3ba1b8b061c8745191bcdecb39d7472ee",
+              "size": 4024,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "b508b01cd546aba19e4d6417aefe9e0b6fbaed182e2deab6e50829a80976d03e",
+              "size": 6401,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "4162c8514f77cf3d0ceb3a54e32150d9c43e4b0add3aa2545f3b3fdceb3110c2",
+              "size": 4213,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "dd51f5fc299fe693240fc130790126752be178593cf85e4cf3c8d31cab4315db",
+              "size": 5293,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "7a20f199ed5a1bb7ced0ecd93e37b0f6efbbe7e022f948c190d8c2a82aef2ca0",
+              "size": 6037,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "e8fcd23bf7a79069fd87480b7b19437ab310aa46d6a3817b2e5190ba7588364f",
+              "size": 7251,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "a928ad50cc803b11b581dc8ee05af60b8ff29fdc62b39f9c57d622f4521d4edb",
+              "size": 5062,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "16ab15fb84da7ffe07bc2ab5e7bcb2f060eb3fc2ed00714cbe6fe6919fe4366b",
+              "size": 4336,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "fece08298b0683d37523eed5fa1641f031399a646239ac745b001ddb6b90acf4",
+              "size": 3271,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "321458ec39c87a85c78b1ede816d28f4e940b5a5a71be1db8619d5d9158fce69",
+              "size": 3740,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "066075d37f9d9b80d9367450286b8c47fb1d12803621ea1ccb9be90b66b6405b",
+              "size": 3433,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "1c8c6ab730634443f2a3b13544d4f3f95dbb98cfe5a009a9c311d8ffb185908d",
+              "size": 4676,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-01.png",
+              "relativePath": "diagrams/diagram-01.png",
+              "sha256": "95c05bc74085ef809091e9c6f3d137328a0437b8fd1c685ae28585a08b6ab10d",
+              "size": 83936,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-01.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-01.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-02.png",
+              "relativePath": "diagrams/diagram-02.png",
+              "sha256": "d1da9e8ab0d6203365d493954aa9863b4f6ef4881938050d547094a62792d3db",
+              "size": 132325,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-02.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-02.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-03.png",
+              "relativePath": "diagrams/diagram-03.png",
+              "sha256": "735f24fcb2cc67c82986ecaf11b70ece14f702eb5b0c411bf24d10eccba2713e",
+              "size": 156578,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-03.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-03.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-04.png",
+              "relativePath": "diagrams/diagram-04.png",
+              "sha256": "26d20a6e3eea7b2d343b3c2fee8dbefc4287be8714cb64efb210da94bd6b20b7",
+              "size": 56890,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-04.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-04.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "3a730f55e10c114ea40c7e7ff53cbdbf9a0669e34be76a4d94e4448e46a6a096",
+              "size": 9937,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "a258fae8a66988f796ca5eb748b8e19ecd026f32e45702582cf347a13f1e931b",
+              "size": 6376,
+              "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -8040,6 +8317,26 @@
       "pathname": "books/rgbdns/html/6ddcee7ca4d454fb-rgbdns.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/html/6ddcee7ca4d454fb-rgbdns.html",
       "size": 248795
+    },
+    "499e31d675381a8534a1d3b7d92d990cba84d99f1a81a63a137d6084ba78c1b8:3305637": {
+      "pathname": "books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
+      "size": 3305637
+    },
+    "7ee8fa16ceccb5690640697f62cd4fc3005f4699d74df654b85c1ed28a4524dc:2372478": {
+      "pathname": "books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
+      "size": 2372478
+    },
+    "a690a79a9cf1ea6dda82469e91938bfa28bbe0145b38522175545db6491cf38e:3233095": {
+      "pathname": "books/lakecat-catalog-foundation/html/a690a79a9cf1ea6d-lakecat-catalog-foundation.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/html/a690a79a9cf1ea6d-lakecat-catalog-foundation.html",
+      "size": 3233095
+    },
+    "700bc3524f3474c9795e51a2e2e2e4d46205fdbada891042e97b38c8837555c9:1958939": {
+      "pathname": "books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+      "size": 1958939
     }
   },
   "chapterPackages": {
@@ -22619,6 +22916,228 @@
           "size": 19995,
           "pathname": "books/rgbdns/chapters/e9a1d9e6014e0ad6/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/chapters/e9a1d9e6014e0ad6/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "9eb8d004a9bc203d2986d935d4cebc7d187ce38ad649dadef17ed7e8529c9c41": {
+      "pathnamePrefix": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/assets/lakecat-aurora-headboard.png",
+          "relativePath": "assets/lakecat-aurora-headboard.png",
+          "sha256": "700bc3524f3474c9795e51a2e2e2e4d46205fdbada891042e97b38c8837555c9",
+          "size": 1958939,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/assets/lakecat-aurora-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/assets/lakecat-aurora-headboard.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "f1f3fe82d3513e29e04e37dc0e2b3301f9f18578afd2afcc1bb423e367a7e055",
+          "size": 649,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "a7f2484b92059a43c2c3f8672b998ab42e71cfbdd0615e0443343e9536c223b5",
+          "size": 2493,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "47116c222f3d8f03db0b46b551600b028831938c526b543d1d2ffd867bcde32b",
+          "size": 2984,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "c093a5b993720a201f7b1919700254261e987d80849058c350226a3b81279f28",
+          "size": 5898,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "9363d13059c9b1098585392492004418ccd1147137b6f79d7c6cc1109beb9a89",
+          "size": 7897,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "36349e52debabddba85c5764b05af9e3ba1b8b061c8745191bcdecb39d7472ee",
+          "size": 4024,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "b508b01cd546aba19e4d6417aefe9e0b6fbaed182e2deab6e50829a80976d03e",
+          "size": 6401,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "4162c8514f77cf3d0ceb3a54e32150d9c43e4b0add3aa2545f3b3fdceb3110c2",
+          "size": 4213,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "dd51f5fc299fe693240fc130790126752be178593cf85e4cf3c8d31cab4315db",
+          "size": 5293,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "7a20f199ed5a1bb7ced0ecd93e37b0f6efbbe7e022f948c190d8c2a82aef2ca0",
+          "size": 6037,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "e8fcd23bf7a79069fd87480b7b19437ab310aa46d6a3817b2e5190ba7588364f",
+          "size": 7251,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "a928ad50cc803b11b581dc8ee05af60b8ff29fdc62b39f9c57d622f4521d4edb",
+          "size": 5062,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "16ab15fb84da7ffe07bc2ab5e7bcb2f060eb3fc2ed00714cbe6fe6919fe4366b",
+          "size": 4336,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "fece08298b0683d37523eed5fa1641f031399a646239ac745b001ddb6b90acf4",
+          "size": 3271,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "321458ec39c87a85c78b1ede816d28f4e940b5a5a71be1db8619d5d9158fce69",
+          "size": 3740,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "066075d37f9d9b80d9367450286b8c47fb1d12803621ea1ccb9be90b66b6405b",
+          "size": 3433,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "1c8c6ab730634443f2a3b13544d4f3f95dbb98cfe5a009a9c311d8ffb185908d",
+          "size": 4676,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-01.png",
+          "relativePath": "diagrams/diagram-01.png",
+          "sha256": "95c05bc74085ef809091e9c6f3d137328a0437b8fd1c685ae28585a08b6ab10d",
+          "size": 83936,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-01.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-01.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-02.png",
+          "relativePath": "diagrams/diagram-02.png",
+          "sha256": "d1da9e8ab0d6203365d493954aa9863b4f6ef4881938050d547094a62792d3db",
+          "size": 132325,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-02.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-02.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-03.png",
+          "relativePath": "diagrams/diagram-03.png",
+          "sha256": "735f24fcb2cc67c82986ecaf11b70ece14f702eb5b0c411bf24d10eccba2713e",
+          "size": 156578,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-03.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-03.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/diagrams/diagram-04.png",
+          "relativePath": "diagrams/diagram-04.png",
+          "sha256": "26d20a6e3eea7b2d343b3c2fee8dbefc4287be8714cb64efb210da94bd6b20b7",
+          "size": 56890,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-04.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/diagrams/diagram-04.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "3a730f55e10c114ea40c7e7ff53cbdbf9a0669e34be76a4d94e4448e46a6a096",
+          "size": 9937,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "a258fae8a66988f796ca5eb748b8e19ecd026f32e45702582cf347a13f1e931b",
+          "size": 6376,
+          "pathname": "books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/sitemap.json",
           "skipped": false
         }
       ]

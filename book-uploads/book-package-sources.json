@@ -175,6 +175,14 @@
       "htmlChapters": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters",
       "cover": "book-uploads/staging/adversarial-cognition/adversarial-cognition-cover.png",
       "headboard": "book-uploads/staging/adversarial-cognition/adversarial-cognition-headboard.png"
+    },
+    "lakecat-catalog-foundation": {
+      "pdf": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation.pdf",
+      "epub": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation.epub",
+      "html": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation.html",
+      "htmlChapters": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters",
+      "cover": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-cover.png",
+      "headboard": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-headboard.png"
     }
   }
 }

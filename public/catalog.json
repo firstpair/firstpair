@@ -504,6 +504,27 @@
       "source": "https://github.com/querygraph/adversarial-cognition",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/cover/1d23b97dc652439f-adversarial-cognition-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/headboard/6953b9920530eeed-adversarial-cognition-headboard.png"
+    },
+    {
+      "slug": "lakecat-catalog-foundation",
+      "title": "LakeCat: A Thin, Governed, Replayable Catalog Foundation",
+      "author": "Alexy Khrabrov",
+      "kicker": "Finished book",
+      "description": "LakeCat: A Thin, Governed, Replayable Catalog Foundation: Open Iceberg Interoperability, Apache Ossie Semantics, and Evidence-Bearing Evaluation, delivered as PDF, EPUB, and hosted web readers.",
+      "accent": "#476a7c",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
+      "html": "/read/lakecat-catalog-foundation/",
+      "htmlChapters": "/read/lakecat-catalog-foundation/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/html/a690a79a9cf1ea6d-lakecat-catalog-foundation.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/chapters/9eb8d004a9bc203d/index.html",
+      "tags": [
+        "finished"
+      ],
+      "shelf": "querygraph",
+      "source": "https://github.com/querygraph/lakecat",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png"
     }
   ]
 }
