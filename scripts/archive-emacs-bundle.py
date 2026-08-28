@@ -59,7 +59,10 @@ def main() -> int:
             info.flag_bits |= 0x800  # UTF-8 file names
             archive.writestr(info, path.read_bytes())
             count += 1
-    print(json.dumps({"bundle": str(bundle), "output": str(args.output), "members": count, "root": bundle.name}))
+    print(
+        json.dumps({"bundle": str(bundle), "output": str(args.output), "members": count, "root": bundle.name}),
+        file=sys.stderr,
+    )
     return 0
 
 
