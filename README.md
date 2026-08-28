@@ -77,6 +77,12 @@ contract lives in
 including version/hash binding, watched narrow refreshes, Sync activity checks,
 and full quit/relaunch verification.
 
+Emacs Info editions — a book manual, a references manual that opens below
+the text, and an offline Latin lexicon — are built by
+[`publishing/emacs/`](publishing/emacs/README.md) from the same
+`vault.build.json`; the operational card is
+[`publishing/skills/emacs-info-bundle.md`](publishing/skills/emacs-info-bundle.md).
+
 ## The Method
 
 First Pair treats a book as a living system rather than a frozen file.

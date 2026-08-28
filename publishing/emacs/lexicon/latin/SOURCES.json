@@ -1,0 +1,26 @@
+{
+  "schema": "firstpair-lexicon-source-v1",
+  "language": "latin",
+  "name": "WORDS, a Latin dictionary, by Colonel William Whitaker",
+  "license": "Public domain. Whitaker released the program and its data files freely for any use; see LICENCE.txt in the cache.",
+  "upstream": "https://github.com/mk270/whitakers-words",
+  "pinnedCommit": "1f2f0fb0867a896d7b9284a03d615ed635d6f992",
+  "note": "Fetched once into ~/.cache/firstpair/lexicon/latin and verified by digest. FirstPair adds lexicon/latin/supplement.tsv for paradigms the WORDS engine conjugates in code.",
+  "files": [
+    {
+      "name": "DICTLINE.GEN",
+      "url": "https://raw.githubusercontent.com/mk270/whitakers-words/1f2f0fb0867a896d7b9284a03d615ed635d6f992/DICTLINE.GEN",
+      "sha256": "8f6c0fc84d12859abc863eac84ddd49b7e039503855ca34c1d44a6e78abf7569"
+    },
+    {
+      "name": "INFLECTS.LAT",
+      "url": "https://raw.githubusercontent.com/mk270/whitakers-words/1f2f0fb0867a896d7b9284a03d615ed635d6f992/INFLECTS.LAT",
+      "sha256": "dd0f019669719d820f690a6199286f6f54addfb06e959a7592699f8c7e6d2a9b"
+    },
+    {
+      "name": "LICENCE.txt",
+      "url": "https://raw.githubusercontent.com/mk270/whitakers-words/1f2f0fb0867a896d7b9284a03d615ed635d6f992/LICENCE.txt",
+      "sha256": "de533c3fb7c4a54b6d2deb5e56624947850bd2121c1de206ba5ee59b72c119a3"
+    }
+  ]
+}

@@ -3,34 +3,71 @@
   "$id": "https://firstpair.org/schemas/vault.build.schema.json",
   "title": "FirstPair vault build",
   "type": "object",
-  "required": ["schemaVersion", "slug", "title", "profile", "sourceCommit", "reader", "products"],
+  "required": [
+    "schemaVersion",
+    "slug",
+    "title",
+    "profile",
+    "sourceCommit",
+    "reader",
+    "products"
+  ],
   "properties": {
-    "$schema": { "type": "string" },
-    "schemaVersion": { "const": 1 },
-    "repoRoot": { "type": "string" },
-    "slug": { "type": "string", "minLength": 1 },
-    "title": { "type": "string", "minLength": 1 },
-    "profile": { "enum": ["code", "history", "triptych"] },
+    "$schema": {
+      "type": "string"
+    },
+    "schemaVersion": {
+      "const": 1
+    },
+    "repoRoot": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string",
+      "minLength": 1
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profile": {
+      "enum": [
+        "code",
+        "history",
+        "triptych"
+      ]
+    },
     "sourceCommit": {
       "type": "string",
       "description": "Use HEAD for a title-owned committed contract, or an exact 40-character commit for an externally pinned source.",
       "pattern": "^(HEAD|[0-9a-f]{40})$"
     },
-    "plugin": { "type": "boolean" },
+    "plugin": {
+      "type": "boolean"
+    },
     "nativeDriver": {
       "type": "object",
       "description": "Thin title-owned producer and validator used when an existing vault has richer semantics than the canonical projection model.",
-      "required": ["build", "validate"],
+      "required": [
+        "build",
+        "validate"
+      ],
       "properties": {
-        "build": { "$ref": "#/$defs/command" },
-        "validate": { "$ref": "#/$defs/command" }
+        "build": {
+          "$ref": "#/$defs/command"
+        },
+        "validate": {
+          "$ref": "#/$defs/command"
+        }
       },
       "additionalProperties": false
     },
     "guide": {
       "type": "object",
       "properties": {
-        "bookSpecific": { "type": "string" }
+        "bookSpecific": {
+          "type": "string"
+        }
       },
       "additionalProperties": false
     },
@@ -39,12 +76,28 @@
       "minItems": 1,
       "items": {
         "type": "object",
-        "required": ["id", "title", "source"],
+        "required": [
+          "id",
+          "title",
+          "source"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "title": { "type": "string" },
-          "source": { "type": "string" },
-          "preview": { "type": "boolean" }
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "preview": {
+            "type": "boolean"
+          },
+          "part": {
+            "type": "string",
+            "description": "Emacs part grouping; names one of emacs.parts[].title. Consecutive pages with the same part form one part node."
+          }
         },
         "additionalProperties": false
       }
@@ -53,15 +106,40 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "kind", "source"],
+        "required": [
+          "id",
+          "kind",
+          "source"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "kind": { "type": "string" },
-          "source": { "type": "string" },
-          "label": { "type": "string" },
-          "rights": { "enum": ["redistributable", "metadata-only", "restricted"] },
-          "referencedBy": { "type": "array", "items": { "type": "string" } },
-          "metadata": { "type": "object" }
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          },
+          "rights": {
+            "enum": [
+              "redistributable",
+              "metadata-only",
+              "restricted"
+            ]
+          },
+          "referencedBy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "metadata": {
+            "type": "object"
+          }
         },
         "additionalProperties": false
       }
@@ -70,15 +148,46 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["id", "kind", "source"],
+        "required": [
+          "id",
+          "kind",
+          "source"
+        ],
         "properties": {
-          "id": { "type": "string" },
-          "kind": { "type": "string" },
-          "source": { "type": "string" },
-          "include": { "type": "array", "items": { "type": "string" } },
-          "exclude": { "type": "array", "items": { "type": "string" } },
-          "rights": { "enum": ["redistributable", "metadata-only", "restricted"] },
-          "referencedBy": { "type": "array", "items": { "type": "string" } }
+          "id": {
+            "type": "string"
+          },
+          "kind": {
+            "type": "string"
+          },
+          "source": {
+            "type": "string"
+          },
+          "include": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "exclude": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rights": {
+            "enum": [
+              "redistributable",
+              "metadata-only",
+              "restricted"
+            ]
+          },
+          "referencedBy": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
         },
         "additionalProperties": false
       }
@@ -87,9 +196,206 @@
       "type": "object",
       "minProperties": 1,
       "properties": {
-        "desktop": { "$ref": "#/$defs/product" },
-        "mobile": { "$ref": "#/$defs/product" },
-        "preview": { "$ref": "#/$defs/product" }
+        "desktop": {
+          "$ref": "#/$defs/product"
+        },
+        "mobile": {
+          "$ref": "#/$defs/product"
+        },
+        "preview": {
+          "$ref": "#/$defs/product"
+        }
+      },
+      "additionalProperties": false
+    },
+    "emacs": {
+      "type": "object",
+      "description": "Emacs Info bundle delivery, read by firstpair-emacs beside the shared core.",
+      "required": [
+        "products"
+      ],
+      "properties": {
+        "direntry": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string",
+              "minLength": 1
+            },
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Info manual stem; defaults to the slug."
+            },
+            "description": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "additionalProperties": false
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "author": {
+          "type": "string"
+        },
+        "parts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "title"
+            ],
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1
+              },
+              "description": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "lexicon": {
+          "type": "object",
+          "properties": {
+            "language": {
+              "type": "string",
+              "minLength": 1
+            },
+            "mode": {
+              "enum": [
+                "projected",
+                "complete",
+                "none"
+              ]
+            },
+            "minimumLength": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "exclude": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "include": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "records": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "id",
+              "source",
+              "blocks"
+            ],
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1
+              },
+              "source": {
+                "type": "string",
+                "description": "Repository-relative JSON or JSON Lines file of records."
+              },
+              "kind": {
+                "type": "string"
+              },
+              "identifier": {
+                "type": "string",
+                "description": "Field holding each record's unique id."
+              },
+              "label": {
+                "type": "string",
+                "description": "Template over record fields, e.g. \"{work_title} {citation}\"."
+              },
+              "rights": {
+                "enum": [
+                  "redistributable",
+                  "metadata-only",
+                  "restricted"
+                ]
+              },
+              "section": {
+                "type": "string"
+              },
+              "referencedBy": {
+                "type": "string",
+                "description": "Field listing the reader pages that quote the record."
+              },
+              "referenceMatch": {
+                "enum": [
+                  "source",
+                  "id"
+                ]
+              },
+              "anchors": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                },
+                "description": "Fields whose exact text receives a citation link in quoting pages."
+              },
+              "blocks": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "field"
+                  ],
+                  "properties": {
+                    "field": {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    "label": {
+                      "type": "string"
+                    },
+                    "style": {
+                      "enum": [
+                        "paragraph",
+                        "quotation",
+                        "field",
+                        "verbatim"
+                      ]
+                    },
+                    "language": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "products": {
+          "type": "object",
+          "minProperties": 1,
+          "properties": {
+            "desktop": {
+              "$ref": "#/$defs/product"
+            },
+            "preview": {
+              "$ref": "#/$defs/product"
+            }
+          },
+          "additionalProperties": false
+        }
       },
       "additionalProperties": false
     }
@@ -98,16 +404,34 @@
     "command": {
       "type": "array",
       "minItems": 1,
-      "items": { "type": "string", "minLength": 1 }
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
     },
     "product": {
       "type": "object",
-      "required": ["output"],
+      "required": [
+        "output"
+      ],
       "properties": {
-        "output": { "type": "string" },
-        "edition": { "enum": ["full", "preview"] },
-        "maxFiles": { "type": "integer", "minimum": 1 },
-        "maxBytes": { "type": "integer", "minimum": 1 }
+        "output": {
+          "type": "string"
+        },
+        "edition": {
+          "enum": [
+            "full",
+            "preview"
+          ]
+        },
+        "maxFiles": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxBytes": {
+          "type": "integer",
+          "minimum": 1
+        }
       },
       "additionalProperties": false
     }

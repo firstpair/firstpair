@@ -1,0 +1,7 @@
+#!/usr/bin/env zsh
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "$0")" && pwd)"
+vault_root="$(cd "$script_dir/../vault" && pwd)"
+emacs_root="$(cd "$script_dir/../emacs" && pwd)"
+PYTHONPATH="$emacs_root:$vault_root${PYTHONPATH:+:$PYTHONPATH}" exec python3 -m firstpair_emacs.cli "$@"

@@ -1,0 +1,5 @@
+# FirstPair supplement to Whitaker's WORDS dictionary data.
+# Columns: stem1, stem2, stem3, stem4, id, headword, part, code, senses, note.
+# "-" marks an absent stem; "." marks a stem that is genuinely empty.
+# Every row must record why upstream DICTLINE.GEN does not carry the entry.
+s	.	fu	fut	sum	sum, esse, fui, futurus	V	5 1 TO_BE	be, exist; (auxiliary verb); happen; be there/here; belong to; be made of;	The WORDS engine conjugates the copula in code rather than listing it in DICTLINE.GEN.

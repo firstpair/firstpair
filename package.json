@@ -17,7 +17,8 @@
     "test:book-build": "publishing/tests/test-build-library-book.sh",
     "test:vault-guide": "node publishing/tests/test-vault-guide-workflow.mjs",
     "test:vault-framework": "python3 -m unittest publishing/tests/test_firstpair_vault.py && node --test publishing/tests/test-firstpair-reader.mjs publishing/tests/test-obsidian-handbook.mjs && node --check publishing/vault/plugin/firstpair-reader/main.js",
-    "build:obsidian-handbook": "node scripts/build-obsidian-handbook.mjs"
+    "build:obsidian-handbook": "node scripts/build-obsidian-handbook.mjs",
+    "test:emacs-framework": "python3 -m unittest publishing/tests/test_firstpair_emacs.py && emacs --batch -Q -L publishing/emacs/lisp --eval \"(dolist (f '(\\\"firstpair-bundle.el\\\" \\\"firstpair-lexicon.el\\\" \\\"firstpair-reader.el\\\" \\\"firstpair-check.el\\\")) (unless (byte-compile-file (expand-file-name f \\\"publishing/emacs/lisp\\\")) (kill-emacs 1)))\" && rm -f publishing/emacs/lisp/*.elc"
   },
   "dependencies": {
     "@lucide/vue": "^1.17.0",

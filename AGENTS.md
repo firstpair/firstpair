@@ -511,6 +511,19 @@ card in the same work tranche. Keep title-specific counts and paths labeled as
 examples; keep the reusable contract here instead of letting it live only in a
 single source repository or chat history.
 
+For Emacs Info editions, follow `publishing/skills/emacs-info-bundle.md`.
+The bundle is a third reader product projected from the same `vault.build.json`
+reader order and evidence as the vaults, plus the title's `emacs` block: a
+book manual, a references manual that opens below the text, an offline
+lexicon, and the Texinfo source of both. FirstPair owns the Info and Texinfo
+writers, the reader under `publishing/emacs/lisp/`, the pinned lexicon
+corpora, and `firstpair-emacs validate`; the source repository owns the
+record maps, part grouping, lexicon include/exclude lists, and the
+book-specific guide fragment. Never produce the delivered `.info` with
+`makeinfo`; the builder writes it so marked-word positions stay exact. A bundle
+is validated only when the inventory, structural Info, link, lexicon,
+`makeinfo`, and `emacs --batch` gates all pass.
+
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it
 against the resolved vault and fail closed before staging or ZIP creation. A
