@@ -11,6 +11,8 @@ The complete Proem of Cicero on Himself, with a companion bilingual source vault
 
 - [Download the Obsidian vault](/cicero-on-himself/vault/)
 - [Read the Obsidian vault guide](/read/cicero-on-himself/guide/)
+- [Download the Emacs edition](/cicero-on-himself/emacs/)
+- [Read the Emacs guide](/read/cicero-on-himself/emacs-guide/)
 
 
 The source repository owns the manuscript, metadata, version manifest, build

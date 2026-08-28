@@ -63,7 +63,12 @@ const invalidEmacsGuideRoutes = []
 const invalidPreviewSources = []
 const invalidPostUrls = []
 const invalidAuthors = []
-const validPostOrigins = new Set(['https://firstpair.press', 'https://querygraph.ai'])
+// Story links may live on First Pair Press, QueryGraph, or a paper's own site.
+const validPostOrigins = new Set([
+  'https://firstpair.press',
+  'https://querygraph.ai',
+  'https://eigentimes.com',
+])
 const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
 const staleDeliverableMap = []

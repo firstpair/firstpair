@@ -85,7 +85,8 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/html/928c8357a4a3d802-cicero-on-himself-preview.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/2fd6ec59bb0a4478/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/chapters/2fd6ec59bb0a4478",
-    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html"
+    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/61fd021b30fc554a-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html",
+    "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/74e5461b54d8b7f3-cicero-on-himself-emacs-guide%20%282.0.0-sol-4297211c%29.html"
   },
   {
     "slug": "verdun",

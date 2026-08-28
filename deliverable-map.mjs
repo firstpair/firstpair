@@ -100,6 +100,7 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/pdf/e35f31d4f970650e-cicero-on-himself-preview.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/epub/381b67f42b56c426-cicero-on-himself-preview.epub",
     "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/f4bc85faeddf8d1f-cicero-on-himself-preview-vault%20%282.0.0-sol-2996266c%29.zip",
+    "emacs": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/8b6ecb472a51dbe7-cicero-on-himself-preview-emacs%20%282.0.0-sol-4297211c%29.zip",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png"
   },
   {
