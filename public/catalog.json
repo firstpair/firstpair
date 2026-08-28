@@ -525,6 +525,31 @@
       "source": "https://github.com/querygraph/lakecat",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png"
+    },
+    {
+      "slug": "eigentimes",
+      "title": "Eigen Times: A Newspaper in the Eigenbasis of the News",
+      "author": "Alexy Khrabrov",
+      "kicker": "Scholarly article",
+      "description": "How Eigen Times was built: a 1.09-million-article public news corpus, two constructions of the eigenbasis of the news (term-space LSA and an embedding eigenbasis), the statistics that turn coordinates into a daily issue, and a comparison against human event categories.",
+      "accent": "#2E6A8A",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/c2402c7ccce19662-eigentimes.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/f2c8a66c4dfe5065-eigentimes.epub",
+      "html": "/read/eigentimes/",
+      "htmlChapters": "/read/eigentimes/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/bf1f7cd8586d932f-eigentimes.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/267da0cc1cb50804/index.html",
+      "tags": [
+        "eigentimes",
+        "finished",
+        "news-automation",
+        "scholarly-article"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/alexy/eigentimes",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/cover/92379787ecd6cbf9-eigentimes-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/headboard/bb96e5795e5c435a-eigentimes-headboard.png",
+      "post": "https://eigentimes.com/"
     }
   ]
 }

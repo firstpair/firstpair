@@ -161,5 +161,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/pdf/499e31d675381a85-lakecat-catalog-foundation.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/epub/7ee8fa16ceccb569-lakecat-catalog-foundation.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-catalog-foundation/cover/700bc3524f3474c9-lakecat-catalog-foundation-cover.png"
+  },
+  {
+    "slug": "eigentimes",
+    "title": "Eigen Times: A Newspaper in the Eigenbasis of the News",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/c2402c7ccce19662-eigentimes.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/f2c8a66c4dfe5065-eigentimes.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/cover/92379787ecd6cbf9-eigentimes-cover.png"
   }
 ]

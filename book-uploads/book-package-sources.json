@@ -183,6 +183,14 @@
       "htmlChapters": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-chapters",
       "cover": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-cover.png",
       "headboard": "book-uploads/staging/lakecat-catalog-foundation/lakecat-catalog-foundation-headboard.png"
+    },
+    "eigentimes": {
+      "pdf": "book-uploads/staging/eigentimes/eigentimes.pdf",
+      "epub": "book-uploads/staging/eigentimes/eigentimes.epub",
+      "html": "book-uploads/staging/eigentimes/eigentimes.html",
+      "htmlChapters": "book-uploads/staging/eigentimes/eigentimes-chapters",
+      "cover": "book-uploads/staging/eigentimes/eigentimes-cover.png",
+      "headboard": "book-uploads/staging/eigentimes/eigentimes-headboard.png"
     }
   }
 }
