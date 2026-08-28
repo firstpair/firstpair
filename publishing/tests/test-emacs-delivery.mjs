@@ -68,6 +68,7 @@ try {
   await writeFile(join(harness, 'public', 'catalog.json'), '{"books":[]}\n')
   await writeFile(join(harness, 'book-uploads', 'book-package-sources.json'), '{"books":{}}\n')
   await writeFile(join(harness, 'vercel.json'), '{"routes":[]}\n')
+  await writeFile(join(harness, '.gitignore'), '__pycache__/\nbook-uploads/staging/\n')
 
   // A minimal preview book: dist artifacts plus an Emacs bundle declaration.
   await mkdir(join(dist, 'fixture-book-chapters'), { recursive: true })
