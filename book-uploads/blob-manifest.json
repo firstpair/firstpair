@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T04:26:26.310Z",
+  "updatedAt": "2026-08-29T05:08:29.591Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4819,7 +4819,7 @@
       }
     },
     "cicero-on-himself": {
-      "updatedAt": "2026-08-29T04:26:26.310Z",
+      "updatedAt": "2026-08-29T05:08:29.590Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -4860,20 +4860,20 @@
         },
         "emacs": {
           "kind": "emacs",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-emacs (2.0.0-sol-dcf320ce).zip",
-          "sha256": "0b3e22def2e457199485b1a2aa3f829b87ccb1646ebbda7b5a258e6582981115",
-          "size": 85672,
-          "pathname": "books/cicero-on-himself/emacs/0b3e22def2e45719-cicero-on-himself-preview-emacs (2.0.0-sol-dcf320ce).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/0b3e22def2e45719-cicero-on-himself-preview-emacs%20%282.0.0-sol-dcf320ce%29.zip",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-emacs (2.0.0-sol-25d6ed6b).zip",
+          "sha256": "3e1646edf0dc1acd840bc6f2dff9d1a859bf8d9dd1dfb6ba6bfffeeb41a45dc5",
+          "size": 95734,
+          "pathname": "books/cicero-on-himself/emacs/3e1646edf0dc1acd-cicero-on-himself-preview-emacs (2.0.0-sol-25d6ed6b).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/3e1646edf0dc1acd-cicero-on-himself-preview-emacs%20%282.0.0-sol-25d6ed6b%29.zip",
           "skipped": false
         },
         "emacsGuide": {
           "kind": "emacs-guide",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-dcf320ce).html",
-          "sha256": "a6fcff01a43a87d346d386a0fa3794e14a5fd838e3251f17d0ecaa6fdaaff83c",
-          "size": 25310,
-          "pathname": "books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide (2.0.0-sol-dcf320ce).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide%20%282.0.0-sol-dcf320ce%29.html",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-25d6ed6b).html",
+          "sha256": "245f14fbd63523f686e2025fd936904764f77105786d80f9f8d14a41e39220f4",
+          "size": 26128,
+          "pathname": "books/cicero-on-himself/emacs-guide/245f14fbd63523f6-cicero-on-himself-emacs-guide (2.0.0-sol-25d6ed6b).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/245f14fbd63523f6-cicero-on-himself-emacs-guide%20%282.0.0-sol-25d6ed6b%29.html",
           "skipped": false
         },
         "htmlChapters": {
@@ -8661,6 +8661,16 @@
       "pathname": "books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide (2.0.0-sol-dcf320ce).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide%20%282.0.0-sol-dcf320ce%29.html",
       "size": 25310
+    },
+    "3e1646edf0dc1acd840bc6f2dff9d1a859bf8d9dd1dfb6ba6bfffeeb41a45dc5:95734": {
+      "pathname": "books/cicero-on-himself/emacs/3e1646edf0dc1acd-cicero-on-himself-preview-emacs (2.0.0-sol-25d6ed6b).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/3e1646edf0dc1acd-cicero-on-himself-preview-emacs%20%282.0.0-sol-25d6ed6b%29.zip",
+      "size": 95734
+    },
+    "245f14fbd63523f686e2025fd936904764f77105786d80f9f8d14a41e39220f4:26128": {
+      "pathname": "books/cicero-on-himself/emacs-guide/245f14fbd63523f6-cicero-on-himself-emacs-guide (2.0.0-sol-25d6ed6b).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/245f14fbd63523f6-cicero-on-himself-emacs-guide%20%282.0.0-sol-25d6ed6b%29.html",
+      "size": 26128
     }
   },
   "chapterPackages": {

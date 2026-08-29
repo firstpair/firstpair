@@ -1,6 +1,6 @@
 # Cicero on Himself
 
-The complete Proem of Cicero on Himself, with a companion bilingual source vault and an Emacs Info edition whose Latin quotations open their witnesses and their dictionary entries.
+The complete Proem of Cicero on Himself, with a companion bilingual source vault and an Emacs Info edition whose Latin quotations open their witnesses and their dictionary entries in English and Russian.
 
 ## Current Public Editions
 
