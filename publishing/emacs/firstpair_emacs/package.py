@@ -46,7 +46,7 @@ def version() -> str:
 def _requires() -> str:
     text = (LISP_ROOT / "firstpair-reader.el").read_text(encoding="utf-8")
     match = REQUIRES_HEADER.search(text)
-    return match.group("requires").strip() if match else '((emacs "28.1"))'
+    return match.group("requires").strip() if match else '((emacs "27.1"))'
 
 
 def handbook_manual() -> Manual:

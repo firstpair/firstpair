@@ -235,7 +235,7 @@ in the bundle contacts a server.</p>
 <section id="install-emacs" class="level2">
 <h2>Install Emacs</h2>
 <ol type="1">
-<li>Install GNU Emacs 28.1 or newer. On macOS,
+<li>Install GNU Emacs 27.1 or newer. On macOS,
 <code>brew install --cask emacs</code> or the build at <a href="https://emacsformacosx.com/">emacsformacosx.com</a>; on Windows,
 the release from <a href="https://www.gnu.org/software/emacs/">gnu.org/software/emacs</a>;
 on Linux, your distribution’s <code>emacs</code> package.</li>
@@ -272,7 +272,7 @@ your Emacs configuration file (<code>~/.emacs.d/init.el</code> or
 all a single book needs. If you read several FirstPair books, install
 the reader as an Emacs package instead and let it find your bundles:</p>
 <pre class="elisp"><code>;; From a downloaded firstpair-reader-&lt;version&gt;.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.1.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.2.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install &#39;(firstpair-reader

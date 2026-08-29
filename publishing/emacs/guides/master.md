@@ -16,7 +16,7 @@ into HTML, PDF, or plain text. Nothing in the bundle contacts a server.
 
 ## Install Emacs
 
-1. Install GNU Emacs 28.1 or newer. On macOS, `brew install --cask emacs` or
+1. Install GNU Emacs 27.1 or newer. On macOS, `brew install --cask emacs` or
    the build at [emacsformacosx.com](https://emacsformacosx.com/); on Windows,
    the release from [gnu.org/software/emacs](https://www.gnu.org/software/emacs/);
    on Linux, your distribution's `emacs` package.
@@ -63,7 +63,7 @@ an Emacs package instead and let it find your bundles:
 
 ```elisp
 ;; From a downloaded firstpair-reader-<version>.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.1.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.2.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install '(firstpair-reader
