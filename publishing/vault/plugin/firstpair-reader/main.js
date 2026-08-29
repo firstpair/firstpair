@@ -197,7 +197,8 @@ class FirstPairReaderView extends ItemView {
         const others = columns.filter((other) => other.index !== column.index).map((other) => other.id);
         const select = group.createEl("select", { cls: "firstpair-reader__picker", attr: { "aria-label": `${language.label} translation` } });
         for (const item of available.filter((item) => !others.includes(item.id))) {
-          const option = select.createEl("option", { text: this.columnTitle({ item, id: item.id }) }); option.value = item.id;
+          const approximate = item.alignment && item.alignment !== "line" ? " ≈" : "";
+          const option = select.createEl("option", { text: `${item.title ?? item.translator ?? item.id}${approximate}` }); option.value = item.id;
           if (item.id === column.id) option.selected = true;
         }
         select.addEventListener("change", async () => {
@@ -439,23 +440,28 @@ class FirstPairReaderView extends ItemView {
       // part of speech, and grammar, drop repeated senses, show the first
       // merged entry and fold the rest behind "N more".
       const merged = this.mergeEntries(entries);
-      const shown = merged.slice(0, 1); const rest = merged.slice(1);
-      const renderEntry = (entry, container) => {
+      const [first, ...rest] = merged; const SENSES = 3;
+      const renderEntry = (entry, container, senses = entry.definitions) => {
         const head = container.createDiv({ cls: "firstpair-reader__entry-head" });
         head.createSpan({ text: [entry.headword, entry.partOfSpeech].filter(Boolean).join(" · "), cls: "firstpair-reader__headword" });
         if (entry.grammar) head.createSpan({ text: ` ${entry.grammar}`, cls: "firstpair-reader__grammar" });
-        container.createEl("p", { text: entry.definitions.join("; "), cls: "firstpair-reader__senses" });
+        container.createEl("p", { text: senses.join("; "), cls: "firstpair-reader__senses" });
         for (const example of entry.examples ?? []) container.createEl("blockquote", { text: typeof example === "string" ? example : [example.latin ?? example.source, example.translation].filter(Boolean).join(" — ") });
       };
-      for (const entry of shown) renderEntry(entry, section);
-      if (rest.length) {
-        const more = section.createEl("button", { cls: "firstpair-reader__more", text: `${rest.length} more`, attr: { "aria-expanded": "false" } });
+      // The top entry, its first senses only; the remaining senses and the
+      // other entries wait behind the disclosure.
+      renderEntry({ ...first, examples: first.examples.slice(0, 1) }, section, first.definitions.slice(0, SENSES));
+      const extraSenses = first.definitions.slice(SENSES);
+      const count = rest.length + (extraSenses.length ? 1 : 0);
+      if (count) {
+        const more = section.createEl("button", { cls: "firstpair-reader__more", text: `${count} more`, attr: { "aria-expanded": "false" } });
         const hidden = section.createDiv({ cls: "firstpair-reader__more-entries", attr: { hidden: "" } });
+        if (extraSenses.length) hidden.createEl("p", { text: `also: ${extraSenses.join("; ")}`, cls: "firstpair-reader__senses" });
         for (const entry of rest) renderEntry(entry, hidden);
         more.addEventListener("click", () => {
           const open = hidden.hasAttribute("hidden");
           if (open) hidden.removeAttribute("hidden"); else hidden.setAttribute("hidden", "");
-          more.setText(open ? "less" : `${rest.length} more`); more.setAttribute("aria-expanded", String(open));
+          more.setText(open ? "less" : `${count} more`); more.setAttribute("aria-expanded", String(open));
         });
       }
     }

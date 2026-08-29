@@ -55,6 +55,12 @@
   .firstpair-reader__toolbar { gap: var(--size-4-3); }
   .firstpair-reader__toolbar-title, .firstpair-reader__column-labels, .firstpair-reader__button-label { display: none; }
   .firstpair-reader__layout-toggle .firstpair-reader__button-short { display: inline; }
+  .firstpair-reader__toolbar { gap: var(--size-4-1) var(--size-4-2); }
+  .firstpair-reader__languages { gap: var(--size-4-1) var(--size-4-3); }
+  .firstpair-reader__language-toggle, .firstpair-reader__layout-toggle { min-height: 36px; }
+  .firstpair-reader__layout-toggle { margin-inline-start: 0; min-width: 36px; }
+  .firstpair-reader__picker { font-size: var(--font-ui-smaller); max-width: 10rem; min-height: 32px; }
+  .firstpair-reader__column-control { min-height: 32px; min-width: 32px; }
   .firstpair-reader__page--stacked .firstpair-reader__cell--translation { padding-inline-start: var(--size-4-4); }
   /* Columns on a phone: one language per screen, swiped horizontally. */
   .firstpair-reader__page--columns .firstpair-reader__strip { display: flex; gap: var(--size-4-2); margin-inline: calc(-1 * var(--size-4-2)); overflow-x: auto; padding-inline: var(--size-4-2); scroll-snap-type: x mandatory; }
