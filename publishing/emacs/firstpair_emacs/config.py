@@ -38,7 +38,7 @@ class Translation:
 
     identifier: str
     label: str
-    glossary: str
+    glossaries: tuple[str, ...]
     dictionary: Path | None
     supplement: Path | None
 
@@ -51,6 +51,8 @@ class LexiconSpec:
     include: tuple[str, ...]
     minimum_length: int
     translations: tuple[Translation, ...]
+    source_id: str = ""
+    supplement: Path | None = None
 
 
 @dataclass(frozen=True)
@@ -173,7 +175,10 @@ def load(path: Path) -> EmacsConfig:
                 Translation(
                     identifier=identifier,
                     label=_text(entry.get("label", identifier), f"emacs.lexicon.translations[{position}].label"),
-                    glossary=str(entry.get("glossary", "")),
+                    glossaries=tuple(
+                        [entry["glossary"]] if isinstance(entry.get("glossary"), str) and entry["glossary"]
+                        else [str(item) for item in entry.get("glossary", []) if item]
+                    ),
                     dictionary=(
                         _relative(root, entry["dictionary"], f"emacs.lexicon.translations[{position}].dictionary")
                         if entry.get("dictionary")
@@ -195,6 +200,8 @@ def load(path: Path) -> EmacsConfig:
             include=tuple(row.get("include", [])),
             minimum_length=int(row.get("minimumLength", 3)),
             translations=tuple(translations),
+            source_id=str(row.get("sourceId", "")),
+            supplement=_relative(root, row["supplement"], "emacs.lexicon.supplement") if row.get("supplement") else None,
         )
 
     page_ids = {page.page_id for page in core.pages}

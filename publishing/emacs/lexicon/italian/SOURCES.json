@@ -1,0 +1,45 @@
+{
+  "schema": "firstpair-lexicon-source-v1",
+  "language": "italian",
+  "name": "English Wiktionary Italian dictionary, extracted by Wiktextract and published by Kaikki.org",
+  "license": "CC BY-SA 4.0. Senses are English Wiktionary text; attribution and share-alike apply to the delivered tables.",
+  "upstream": "https://kaikki.org/dictionary/Italian/index.html",
+  "note": "Fetched once into ~/.cache/firstpair/lexicon/italian and verified by digest. Lemmas, English senses, inflected forms, and form-of links; Dante's elisions, apocope, old endings, and enclitics are restored by firstpair_emacs.languages.italian.",
+  "glossLanguage": "en",
+  "files": [
+    {
+      "name": "enwiktionary-italian.jsonl",
+      "url": "https://kaikki.org/dictionary/Italian/kaikki.org-dictionary-Italian.jsonl",
+      "sha256": "d4a062d07cf5e92ee6e88049afda603228fbc6b8a941df074c10e9746974ae62",
+      "snapshot": "2026-08-29"
+    }
+  ],
+  "glossaries": [
+    {
+      "id": "ruwiktionary-italian",
+      "language": "ru",
+      "label": "Русский",
+      "name": "Russian Wiktionary Italian dictionary, extracted by Wiktextract and published by Kaikki.org",
+      "license": "CC BY-SA 4.0. Definitions are Russian Wiktionary text; attribution and share-alike apply to the delivered glosses.",
+      "upstream": "https://kaikki.org/ruwiktionary/%D0%98%D1%82%D0%B0%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/index.html",
+      "url": "https://kaikki.org/ruwiktionary/%D0%98%D1%82%D0%B0%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/kaikki.org-dictionary-%D0%98%D1%82%D0%B0%D0%BB%D1%8C%D1%8F%D0%BD%D1%81%D0%BA%D0%B8%D0%B9.jsonl",
+      "file": "ruwiktionary-italian.jsonl",
+      "sha256": "185d6edf0c43390b0deff8cdb5f6c92f91dd40b73b07e195d9935672878b5839",
+      "snapshot": "2026-08-29"
+    },
+    {
+      "id": "ruwiktionary-russian-translations",
+      "language": "ru",
+      "label": "Русский",
+      "kind": "translations",
+      "sourceCode": "it",
+      "name": "Russian Wiktionary translation tables into Italian, extracted by Wiktextract and published by Kaikki.org",
+      "license": "CC BY-SA 4.0. Each gloss is the Russian headword whose translation table names the Italian word; attribution and share-alike apply.",
+      "upstream": "https://kaikki.org/ruwiktionary/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/index.html",
+      "url": "https://kaikki.org/ruwiktionary/%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9/kaikki.org-dictionary-%D0%A0%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9.jsonl",
+      "file": "ruwiktionary-russian.jsonl",
+      "sha256": "420edef8bbd6170609aaa991860f915318349f93ee52b2ad23f7f458fdf8de8c",
+      "snapshot": "2026-08-29"
+    }
+  ]
+}

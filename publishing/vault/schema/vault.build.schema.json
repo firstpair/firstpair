@@ -264,7 +264,11 @@
           "properties": {
             "language": {
               "type": "string",
-              "minLength": 1
+              "minLength": 1,
+              "enum": [
+                "latin",
+                "italian"
+              ]
             },
             "mode": {
               "enum": [
@@ -307,8 +311,18 @@
                     "type": "string"
                   },
                   "glossary": {
-                    "type": "string",
-                    "description": "Identifier of a glossary pinned in FirstPair's lexicon/<language>/SOURCES.json."
+                    "anyOf": [
+                      {
+                        "type": "string"
+                      },
+                      {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    ],
+                    "description": "Identifier(s) of glossaries pinned in FirstPair's lexicon/<language>/SOURCES.json, consulted in order."
                   },
                   "dictionary": {
                     "type": "string",
@@ -321,6 +335,14 @@
                 },
                 "additionalProperties": false
               }
+            },
+            "sourceId": {
+              "type": "string",
+              "description": "Identifier of the source language in aligned chapters (matches parallel-reader sourceLanguage.id)."
+            },
+            "supplement": {
+              "type": "string",
+              "description": "Repository-relative reviewed supplement for the analyser: forms the pinned corpus lacks, with headword, part of speech, definitions, and grammar."
             }
           },
           "additionalProperties": false

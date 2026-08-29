@@ -35,6 +35,7 @@ from .document import (
     Strong,
     Table,
     Text,
+    Verse,
     plain_text,
 )
 from .markdown import inline as parse_inline
@@ -62,12 +63,25 @@ class Span:
     kind: str
 
 
+@dataclass(frozen=True)
+class Region:
+    """The lines of one Verse block: a language's text within a unit."""
+
+    node: str
+    language: str
+    unit: str
+    start: int
+    end: int
+    source: bool
+
+
 @dataclass
 class Rendered:
     data: bytes
     spans: tuple[Span, ...]
     nodes: tuple[str, ...]
     references: dict[str, tuple[dict[str, str], ...]]
+    regions: tuple[Region, ...] = ()
 
 
 @dataclass
@@ -76,6 +90,7 @@ class _Buffer:
 
     lines: list[str] = field(default_factory=list)
     meta: list[tuple[str, str]] = field(default_factory=list)
+    regions: list[tuple[str, str, int, int, bool]] = field(default_factory=list)
 
     def add(self, line: str) -> None:
         self.lines.append(line)
@@ -244,6 +259,15 @@ class InfoWriter:
                 buffer.add(" " * indent + "-" * 20)
                 buffer.blank()
                 previous_paragraph = False
+            elif isinstance(block, Verse):
+                buffer.blank()
+                margin = indent if block.source else indent + QUOTE_INDENT
+                start = len(buffer.lines) + 1
+                for line in block.lines:
+                    buffer.add(" " * margin + _clean(line))
+                buffer.regions.append((block.language, block.unit, start, len(buffer.lines), block.source))
+                buffer.blank()
+                previous_paragraph = False
 
     def _table(self, table: Table, buffer: _Buffer, footnotes: list[Footnote], indent: int) -> None:
         columns = max([len(table.header)] + [len(row) for row in table.rows] or [0])
@@ -337,7 +361,7 @@ class InfoWriter:
                 for row in rows[1:]:
                     buffer.add(row if row.startswith("   ") else "   " + row.strip())
         buffer.blank()
-        return buffer.lines, anchors, buffer.meta
+        return buffer.lines, anchors, buffer.meta, buffer.regions
 
     def render(self) -> Rendered:
         nodes = self.manual.nodes()
@@ -362,6 +386,7 @@ class InfoWriter:
         node_starts: list[tuple[str, int]] = []
         references: dict[str, tuple[dict[str, str], ...]] = {}
         body_lines: dict[str, list[str]] = {}
+        regions: list[Region] = []
         for node in nodes:
             siblings = [node.name] if node.name not in parents else [
                 child.name for child in next(item for item in nodes if item.name == parents[node.name]).children
@@ -377,8 +402,9 @@ class InfoWriter:
             if previous:
                 fields.append(f"Prev: {previous}")
             fields.append(f"Up: {parents.get(node.name, '(dir)')}")
-            lines, anchors, meta = self._node_text(node, ",  ".join(fields))
+            lines, anchors, meta, found = self._node_text(node, ",  ".join(fields))
             body_lines[node.name] = lines
+            regions.extend(Region(node.name, language, unit, start, end, source) for language, unit, start, end, source in found)
             anchor_lines.extend((name, node.name, line) for name, line in anchors)
             spans.extend(_collect_spans(node.name, lines, meta))
             references[node.name] = tuple(
@@ -418,6 +444,7 @@ class InfoWriter:
             spans=tuple(spans),
             nodes=tuple(node.name for node in nodes),
             references=references,
+            regions=tuple(regions),
         )
 
 

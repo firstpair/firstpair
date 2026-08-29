@@ -489,6 +489,22 @@ def parse_supplement(text: str) -> list[tuple[Entry, tuple[str, ...]]]:
     return rows
 
 
+def add_supplement(words: WordsData, supplement: Path) -> None:
+    """Add a further supplement table to loaded WORDS data."""
+
+    index = {stem: list(ids) for stem, ids in words.stems.items()}
+    for entry, declared in parse_supplement(supplement.read_text(encoding="utf-8")):
+        entry_id, ordinal = entry.entry_id, 1
+        while entry_id in words.entries:
+            ordinal += 1
+            entry_id = f"{entry.entry_id}~{ordinal}"
+        entry = replace(entry, entry_id=entry_id)
+        words.entries[entry.entry_id] = entry
+        for stem in set(declared):
+            index.setdefault(stem, []).append(entry.entry_id)
+    words.stems = {stem: tuple(ids) for stem, ids in index.items()}
+
+
 def iter_words(text: str) -> list[tuple[int, str]]:
     """Return (offset, word) pairs for every alphabetic run in ``text``."""
 

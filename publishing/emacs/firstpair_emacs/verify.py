@@ -220,6 +220,15 @@ def verify_bundle(root: Path, *, run_emacs: bool = True, run_makeinfo: bool = Tr
                 raise BundleError(f"marked.tsv names a missing node: {row[0]} {row[1]}")
             marked_nodes.add((row[0], row[1]))
 
+    regions_path = root / "data" / "regions.tsv"
+    if regions_path.is_file():
+        with regions_path.open(encoding="utf-8") as handle:
+            handle.readline()
+            for line in handle:
+                row = line.rstrip("\n").split("\t")
+                if len(row) != 7 or row[1] not in manuals[row[0]].nodes:
+                    raise BundleError(f"regions.tsv names a missing node: {row[:2]}")
+
     if bundle["lexicon"]["mode"] != "none":
         lexicon = json.loads((root / "lexicon" / "LEXICON.json").read_text(encoding="utf-8"))
         if lexicon.get("schema") != "firstpair-lexicon-v1":

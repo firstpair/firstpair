@@ -34,6 +34,7 @@ from .document import (
     node_name,
     plain_text,
 )
+from . import parallel
 from .markdown import inline, parse
 from .projection import Projection, Record
 
@@ -49,9 +50,17 @@ class Assembly:
     record_nodes: dict[str, str]
     anchored: dict[str, tuple[str, ...]]
     unmatched: tuple[tuple[str, str], ...]
+    vocabulary: dict[str, list[str]]
 
 
-def _page_blocks(source: Path, page_id: str) -> tuple[tuple[Block, ...], str]:
+def _page_blocks(
+    source: Path, page_id: str, *, source_language: str = "", translations: tuple[str, ...] = ()
+) -> tuple[tuple[Block, ...], str, list[str]]:
+    if parallel.is_chapter(source):
+        if not source_language:
+            raise ValueError(f"aligned page {page_id} needs emacs.lexicon.sourceId")
+        blocks, title, lines = parallel.load(source, source_language, translations)
+        return blocks, title, lines
     blocks = list(parse(source.read_text(encoding="utf-8")))
     title = ""
     if blocks and isinstance(blocks[0], Heading) and blocks[0].level == 1:
@@ -67,7 +76,7 @@ def _page_blocks(source: Path, page_id: str) -> tuple[tuple[Block, ...], str]:
             taken.append(name)
             block = Heading(level=block.level, title=block.title, anchor=name)
         result.append(block)
-    return tuple(result), title
+    return tuple(result), title, []
 
 
 def _record_blocks(record: Record, spec: RecordSet, reader_manual: str, page_nodes: dict[str, str]) -> tuple[Block, ...]:
@@ -245,18 +254,25 @@ def assemble(
     reference_file = f"{config.reference_stem}.info"
     taken_reader: list[str] = [READER_TOP]
     taken_reference: list[str] = [READER_TOP]
+    source_language = config.lexicon.source_id if config.lexicon else ""
+    translations = tuple(item.identifier for item in config.lexicon.translations) if config.lexicon else ()
 
     page_nodes: dict[str, str] = {}
     page_titles: dict[str, str] = {}
     page_blocks: dict[str, tuple[Block, ...]] = {}
+    vocabulary: dict[str, list[str]] = {}
     for page in projection.pages:
-        blocks, heading = _page_blocks(page.source, page.page_id)
+        blocks, heading, lines = _page_blocks(
+            page.source, page.page_id, source_language=source_language, translations=translations
+        )
         title = page.title or heading
         name = node_name(title, taken_reader)
         taken_reader.append(name)
         page_nodes[page.page_id] = name
         page_titles[page.page_id] = title
         page_blocks[page.page_id] = blocks
+        if lines:
+            vocabulary[name] = lines
 
     specs = {record_set.set_id: record_set for record_set in config.records}
     record_nodes: dict[str, str] = {}
@@ -443,6 +459,7 @@ def assemble(
         record_nodes=record_nodes,
         anchored=anchored,
         unmatched=tuple(unmatched),
+        vocabulary=vocabulary,
     )
 
 

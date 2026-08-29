@@ -30,6 +30,7 @@ from .document import (
     Strong,
     Table,
     Text,
+    Verse,
 )
 from .markdown import inline as parse_inline
 
@@ -115,6 +116,9 @@ def _blocks(blocks: tuple[Block, ...], footnotes: dict[str, Footnote]) -> str:
             out.append("@end example")
         elif isinstance(block, Rule):
             out.append("@sp 1")
+        elif isinstance(block, Verse):
+            body = "\n".join(escape(line) for line in block.lines)
+            out.append(("@display\n" if block.source else "@quotation\n@display\n") + body + ("\n@end display" if block.source else "\n@end display\n@end quotation"))
     return "\n\n".join(part for part in out if part.strip())
 
 

@@ -18,7 +18,7 @@ from pathlib import Path
 
 from firstpair_vault.revisions import require_clean_worktree, resolve_source_commit
 
-from . import corpus, glosses as glosses_module, lexicon as lexicon_module, texiwriter
+from . import corpus, glosses as glosses_module, languages, texiwriter
 from .config import EmacsConfig, load
 from .document import (
     Block,
@@ -45,6 +45,8 @@ PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 LISP_ROOT = PACKAGE_ROOT / "lisp"
 VERSION = "1.0"
 PRODUCER = f"firstpair-emacs {VERSION}"
+GLOSSARY_PLACES = 8
+GLOSSARY_SPLIT = 800
 STOPWORDS = frozenset(
     """a an and are as at be but by do for from he her his i if in is it its me my no not
     of on or our so that the their them there they this to us was we were what when who
@@ -137,19 +139,19 @@ def _colophon(config: EmacsConfig, projection: Projection, revision: str, lexico
 
 def _classify(
     spans: tuple[Span, ...],
-    words: lexicon_module.WordsData | None,
+    lexicon: languages.Language | None,
     language: str,
     include: frozenset[str],
     exclude: frozenset[str],
     minimum: int,
-) -> list[tuple[Span, tuple[lexicon_module.Analysis, ...]]]:
+) -> list[tuple[Span, tuple[languages.Analysis, ...]]]:
     """Decide which marked words the dictionary window should offer."""
 
-    if words is None:
+    if lexicon is None:
         return []
-    found: list[tuple[Span, tuple[lexicon_module.Analysis, ...]]] = []
+    found: list[tuple[Span, tuple[languages.Analysis, ...]]] = []
     for span in spans:
-        folded = lexicon_module.normalise(span.text)
+        folded = lexicon.normalise(span.text)
         if not folded or folded in exclude:
             continue
         declared = span.kind == language
@@ -158,7 +160,7 @@ def _classify(
                 continue
             if len(folded) < minimum and folded not in include:
                 continue
-        analyses = words.analyse(folded)
+        analyses = lexicon.analyse(folded)
         if not analyses:
             continue
         found.append((span, analyses))
@@ -166,7 +168,8 @@ def _classify(
 
 
 def _glossary(
-    entries: dict[str, lexicon_module.Entry],
+    lexicon: languages.Language,
+    entries: dict[str, languages.Entry],
     occurrences: dict[str, dict[str, int]],
     page_nodes: dict[str, str],
     node_titles: dict[str, str],
@@ -177,42 +180,75 @@ def _glossary(
     merged: dict[tuple[str, str, str], dict[str, int]] = {}
     for entry_id, places in occurrences.items():
         entry = entries[entry_id]
-        key = (entry.headword, entry.part, lexicon_module._clean_senses(entry.senses))
+        key = (entry.headword, entry.part, lexicon.senses(entry))
         target = merged.setdefault(key, {})
         for node, count in places.items():
             target[node] = target.get(node, 0) + count
     representative = {}
     for entry_id in occurrences:
         entry = entries[entry_id]
-        representative.setdefault((entry.headword, entry.part, lexicon_module._clean_senses(entry.senses)), entry)
+        representative.setdefault((entry.headword, entry.part, lexicon.senses(entry)), entry)
+    large = len(merged) > GLOSSARY_SPLIT
     for key in sorted(merged, key=lambda item: (item[0].lower(), item[1])):
         entry = representative[key]
-        places = merged[key]
+        # A glossary of many thousands of words lists no occurrences: the
+        # references would outweigh the book itself.
+        places = {} if large else merged[key]
         body = [
             Strong(body=(Text(text=entry.headword),)),
-            Text(text=f" — {lexicon_module.PART_NAMES.get(entry.part, entry.part)}. "),
-            Text(text=lexicon_module._clean_senses(entry.senses)),
+            Text(text=f" — {lexicon.part_name(entry.part)}. "),
+            Text(text=lexicon.senses(entry)),
         ]
         if places:
             body.append(Text(text=" Appears in: "))
-            for position, node in enumerate(sorted(places, key=lambda name: -places[name])):
+            ranked = sorted(places, key=lambda name: -places[name])
+            for position, node in enumerate(ranked[:GLOSSARY_PLACES]):
                 if position:
                     body.append(Text(text="; "))
                 body.append(
                     Reference(label=node_titles.get(node, node), node=node, manual=reader_stem)
                 )
+            if len(ranked) > GLOSSARY_PLACES:
+                body.append(Text(text=f" and {len(ranked) - GLOSSARY_PLACES} more"))
             body.append(Text(text="."))
-        items.append((Paragraph(body=tuple(body)),))
-    name = node_name("Latin Glossary", taken)
+        items.append((entry.headword, (Paragraph(body=tuple(body)),)))
+    name = node_name(f"{lexicon.name} Glossary", taken)
     taken.append(name)
+    description = (
+        "Every word the dictionary window recognises in this edition, with the "
+        "nodes where it occurs."
+    )
+    if len(items) <= GLOSSARY_SPLIT:
+        return Node(
+            name=name,
+            title=f"{lexicon.name} Glossary",
+            description=description,
+            blocks=(ItemList(items=tuple(blocks for _, blocks in items)),) if items else (),
+            kind="glossary",
+        )
+    # A large glossary reads better as one node per initial letter.
+    groups: dict[str, list[tuple[Block, ...]]] = {}
+    for headword, blocks in items:
+        initial = next((character.upper() for character in headword if character.isalpha()), "#")
+        groups.setdefault(initial, []).append(blocks)
+    children: list[Node] = []
+    for initial in sorted(groups):
+        child_name = node_name(f"{lexicon.name} Glossary {initial}", taken)
+        taken.append(child_name)
+        children.append(
+            Node(
+                name=child_name,
+                title=f"{lexicon.name} Glossary: {initial}",
+                blocks=(ItemList(items=tuple(groups[initial])),),
+                kind="glossary",
+            )
+        )
     return Node(
         name=name,
-        title="Latin Glossary",
-        description=(
-            "Every word the dictionary window recognises in this edition, with the "
-            "nodes where it occurs."
-        ),
-        blocks=(ItemList(items=tuple(items)),) if items else (),
+        title=f"{lexicon.name} Glossary",
+        description=description,
+        menu=tuple((child.name, f"{len(groups[child.title[-1]])} words") for child in children),
+        children=children,
         kind="glossary",
     )
 
@@ -336,12 +372,14 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
         raise RuntimeError(f"refusing to replace an existing bundle: {destination}")
     destination.parent.mkdir(parents=True, exist_ok=True)
 
-    words = None
+    words: languages.Language | None = None
     corpus_spec = None
     if config.lexicon is not None and config.lexicon.mode != "none":
         corpus_spec = corpus.load_corpus(config.lexicon.language)
         cache = corpus.ensure(corpus_spec, allow_download=allow_download)
-        words = lexicon_module.load_words(cache, corpus_spec.supplement)
+        words = languages.get(config.lexicon.language)
+        supplements = tuple(path for path in (corpus_spec.supplement, config.lexicon.supplement) if path is not None)
+        words.load(cache, supplements)
 
     lexicon_note = ""
     if corpus_spec is not None:
@@ -351,10 +389,10 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             "under lexicon/, so lookup works with no network and no external program."
         )
         for translation in config.lexicon.translations:
-            if translation.glossary:
-                item = corpus.glossary(corpus_spec, translation.glossary)
+            for identifier in translation.glossaries:
+                item = corpus.glossary(corpus_spec, identifier)
                 lexicon_note += f" {translation.label} glosses come from {item.name} ({item.license})."
-            elif translation.dictionary:
+            if translation.dictionary and not translation.glossaries:
                 lexicon_note += f" {translation.label} glosses come from the edition's own dictionary."
 
     with tempfile.TemporaryDirectory(prefix=f".{destination.name}-", dir=destination.parent) as temporary:
@@ -373,11 +411,12 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
         reference_render = InfoWriter(assembly.references, produced_by=PRODUCER).render()
 
         language = config.lexicon.language if config.lexicon else ""
-        include = frozenset(lexicon_module.normalise(word) for word in (config.lexicon.include if config.lexicon else ()))
-        exclude = frozenset(lexicon_module.normalise(word) for word in (config.lexicon.exclude if config.lexicon else ()))
+        fold = words.normalise if words is not None else (lambda value: value.lower())
+        include = frozenset(fold(word) for word in (config.lexicon.include if config.lexicon else ()))
+        exclude = frozenset(fold(word) for word in (config.lexicon.exclude if config.lexicon else ()))
         minimum = config.lexicon.minimum_length if config.lexicon else 3
 
-        def classify(render) -> list[tuple[Span, tuple[lexicon_module.Analysis, ...]]]:
+        def classify(render) -> list[tuple[Span, tuple[languages.Analysis, ...]]]:
             return _classify(render.spans, words, language, include, exclude, minimum)
 
         marked = {
@@ -387,12 +426,17 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
 
         projected = None
         occurrences: dict[str, dict[str, int]] = {}
+        aligned: dict[str, list[str]] = {}
+        if words is not None:
+            for node, lines in assembly.vocabulary.items():
+                aligned[node] = [surface for line in lines for _, surface in words.tokens(line)]
         if words is not None and config.lexicon is not None:
             vocabulary = [span.text for pairs in marked.values() for span, _ in pairs]
+            vocabulary.extend(surface for tokens in aligned.values() for surface in tokens)
             projected = (
-                lexicon_module.project(words, vocabulary)
+                words.project(vocabulary)
                 if config.lexicon.mode == "projected"
-                else lexicon_module.complete(words)
+                else words.complete()
             )
             node_of = {node.name: node for node in assembly.reader.nodes()}
             for span, analyses in marked[config.reader_stem]:
@@ -401,12 +445,22 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                 for analysis in analyses:
                     occurrences.setdefault(analysis.entry_id, {}).setdefault(span.node, 0)
                     occurrences[analysis.entry_id][span.node] += 1
+            analysed: dict[str, tuple] = {}
+            for node, tokens in aligned.items():
+                for surface in tokens:
+                    form = words.normalise(surface)
+                    if form not in analysed:
+                        analysed[form] = words.analyse(form)
+                    for analysis in analysed[form]:
+                        occurrences.setdefault(analysis.entry_id, {}).setdefault(node, 0)
+                        occurrences[analysis.entry_id][node] += 1
 
         if projected is not None and occurrences:
             node_titles = {node.name: node.title for node in assembly.reader.nodes()}
             taken = [node.name for node in assembly.references.nodes()]
             entries = {entry.entry_id: entry for entry in projected.entries}
             glossary = _glossary(
+                words,
                 entries,
                 {key: value for key, value in occurrences.items() if key in entries},
                 assembly.page_nodes,
@@ -416,7 +470,7 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             )
             assembly.references.top.children.append(glossary)
             assembly.references.top.menu = assembly.references.top.menu + (
-                (glossary.name, f"{language.capitalize()} words in this edition, with their meanings."),
+                (glossary.name, f"{words.name} words in this edition, with their meanings."),
             )
             reference_render = InfoWriter(assembly.references, produced_by=PRODUCER).render()
             known = {form for form, _ in projected.forms} if projected.forms else None
@@ -424,7 +478,7 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                 stem: [
                     pair
                     for pair in classify(render)
-                    if known is None or lexicon_module.normalise(pair[0].text) in known
+                    if known is None or words.normalise(pair[0].text) in known
                 ]
                 for stem, render in (
                     (config.reader_stem, reader_render),
@@ -495,7 +549,7 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                         str(span.line),
                         str(span.column),
                         str(span.length),
-                        lexicon_module.normalise(span.text),
+                        words.normalise(span.text) if words is not None else span.text.lower(),
                         ",".join(dict.fromkeys(analysis.entry_id for analysis in analyses)),
                     )
                 )
@@ -507,15 +561,22 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             "manual\tnode\tline\tcolumn\tlength\tform\tentries\n" + "".join(f"{row}\n" for row in marked_rows),
             encoding="utf-8",
         )
+        region_rows = [
+            "\t".join((stem, region.node, region.language, region.unit, str(region.start), str(region.end), "source" if region.source else "translation"))
+            for stem, render in ((config.reader_stem, reader_render), (config.reference_stem, reference_render))
+            for region in render.regions
+        ]
+        (data_root / "regions.tsv").write_text(
+            "manual\tnode\tlanguage\tunit\tstart\tend\trole\n" + "".join(f"{row}\n" for row in region_rows),
+            encoding="utf-8",
+        )
 
         lexicon_payload: dict[str, object] = {}
         translations_payload: list[dict[str, object]] = []
         if projected is not None and corpus_spec is not None and config.lexicon is not None:
-            lexicon_payload = lexicon_module.write_tables(
+            lexicon_payload = words.write_tables(
                 root / "lexicon",
-                words,
                 projected,
-                language=config.lexicon.language,
                 mode=config.lexicon.mode,
                 source={
                     "name": corpus_spec.name,
@@ -558,9 +619,15 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                 "forms": lexicon_payload.get("forms", 0),
                 "glossLanguage": corpus_spec.gloss_language if corpus_spec else "",
                 "translations": [
-                    {"id": item["id"], "label": item["label"]} for item in translations_payload
+                    {"id": item.identifier, "label": item.label}
+                    for item in (config.lexicon.translations if config.lexicon else ())
                 ],
+                "name": words.name if words is not None else "",
+                "normalise": words.normalise_spec.payload() if words is not None else None,
+                "enclitics": list(words.enclitics) if words is not None else [],
+                "sourceId": config.lexicon.source_id if config.lexicon else "",
             },
+            "alignedUnits": sum(1 for region in reader_render.regions if region.source),
             "pages": len(pages),
             "records": len(records),
             "markedWords": len(marked_rows),
@@ -596,24 +663,24 @@ def _translations(config, corpus_spec, words, projected, directory: Path, *, all
     indexed: dict[Path, glosses_module.GlossaryIndex] = {}
     for translation in config.lexicon.translations:
         glossary_index = None
-        glossary_item = None
-        if translation.glossary:
-            glossary_item = corpus.glossary(corpus_spec, translation.glossary)
+        glossary_items = []
+        for identifier in translation.glossaries:
+            glossary_item = corpus.glossary(corpus_spec, identifier)
             if glossary_item.language != translation.identifier:
-                raise ValueError(
-                    f"glossary {translation.glossary} is {glossary_item.language}, not {translation.identifier}"
-                )
+                raise ValueError(f"glossary {identifier} is {glossary_item.language}, not {translation.identifier}")
             path = corpus.ensure_glossary(corpus_spec, glossary_item, allow_download=allow_download)
-            glossary_index = indexed.get(path) or glosses_module.index_kaikki(path)
-            indexed[path] = glossary_index
-        dictionary = glosses_module.load_dictionary(translation.dictionary) if translation.dictionary else None
-        supplement = glosses_module.load_supplement(translation.supplement) if translation.supplement else None
+            index = indexed.get(path) or glosses_module.load_glossary(path, glossary_item, fold=words.normalise)
+            indexed[path] = index
+            glossary_index = index if glossary_index is None else glosses_module.merge(glossary_index, index)
+            glossary_items.append(glossary_item)
+        dictionary = glosses_module.load_dictionary(translation.dictionary, fold=words.normalise) if translation.dictionary else None
+        supplement = glosses_module.load_supplement(translation.supplement, fold=words.normalise) if translation.supplement else None
         glosses, report = glosses_module.project(
             translation.identifier,
-            words,
             projected,
+            fold=words.normalise,
             glossary=glossary_index,
-            glossary_name=glossary_item.name if glossary_item else "",
+            glossary_name="; ".join(item.name for item in glossary_items),
             dictionary=dictionary,
             dictionary_name=str(translation.dictionary.relative_to(config.repo_root)) if translation.dictionary else "",
             supplement=supplement,
@@ -626,11 +693,10 @@ def _translations(config, corpus_spec, words, projected, directory: Path, *, all
                 "id": translation.identifier,
                 "label": translation.label,
                 "lexicon": lexicon_covers,
-                "glossary": (
-                    {"id": glossary_item.identifier, "name": glossary_item.name, "license": glossary_item.license, "snapshot": glossary_item.snapshot}
-                    if glossary_item
-                    else None
-                ),
+                "glossaries": [
+                    {"id": item.identifier, "name": item.name, "license": item.license, "snapshot": item.snapshot, "kind": item.kind}
+                    for item in glossary_items
+                ],
                 "dictionary": str(translation.dictionary.relative_to(config.repo_root)) if translation.dictionary else None,
                 "supplement": str(translation.supplement.relative_to(config.repo_root)) if translation.supplement else None,
                 "coverage": {

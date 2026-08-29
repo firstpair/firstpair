@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.4
+;; Version: 1.5
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -28,7 +28,7 @@
 (cl-defstruct (firstpair-bundle (:constructor firstpair-bundle--create)
                                 (:copier nil))
   root title slug product edition reader reference
-  pages records marked lexicon tables)
+  pages records marked regions lexicon tables)
 
 (defvar firstpair-bundles nil
   "Alist of (ROOT . BUNDLE) for every registered bundle.")
@@ -77,6 +77,30 @@
           (forward-line 1))))
     table))
 
+(defun firstpair-bundle--regions (file)
+  "Read the aligned-text table FILE into a hash keyed by \"manual\\0node\"."
+  (let ((table (make-hash-table :test #'equal)))
+    (when (file-readable-p file)
+      (with-temp-buffer
+        (insert-file-contents file)
+        (goto-char (point-min))
+        (forward-line 1)
+        (while (not (eobp))
+          (let ((fields (split-string (buffer-substring-no-properties
+                                       (line-beginning-position) (line-end-position))
+                                      "\t")))
+            (when (= (length fields) 7)
+              (let ((key (concat (nth 0 fields) "\0" (nth 1 fields))))
+                (puthash key
+                         (cons (list :language (nth 2 fields) :unit (nth 3 fields)
+                                     :start (string-to-number (nth 4 fields))
+                                     :end (string-to-number (nth 5 fields))
+                                     :source (equal (nth 6 fields) "source"))
+                               (gethash key table))
+                         table))))
+          (forward-line 1))))
+    table))
+
 ;;;###autoload
 (defun firstpair-bundle-load (root)
   "Load the bundle rooted at ROOT and return it.
@@ -100,6 +124,7 @@ Signals an error when ROOT is not a bundle this reader understands."
        :pages (firstpair-bundle--read-json (expand-file-name "data/reader.json" root))
        :records (firstpair-bundle--read-json (expand-file-name "data/records.json" root))
        :marked (firstpair-bundle--marked (expand-file-name "data/marked.tsv" root))
+       :regions (firstpair-bundle--regions (expand-file-name "data/regions.tsv" root))
        :tables (make-hash-table :test #'equal)))))
 
 ;;;###autoload
@@ -153,6 +178,10 @@ editions of one book, whose manuals share a name, stay distinct."
 (defun firstpair-bundle-marked-words (bundle manual node)
   "Return the marked words recorded for NODE of MANUAL in BUNDLE."
   (gethash (concat manual "\0" node) (firstpair-bundle-marked bundle)))
+
+(defun firstpair-bundle-regions-for-node (bundle manual node)
+  "Return the aligned-text regions recorded for NODE of MANUAL in BUNDLE."
+  (gethash (concat manual "\0" node) (firstpair-bundle-regions bundle)))
 
 (defun firstpair-bundle-records-for-node (bundle node)
   "Return the records of BUNDLE quoted in NODE."

@@ -79,7 +79,7 @@ class FirstPairReaderView extends ItemView {
     for (const line of Array.isArray(lines) ? lines : [lines]) {
       const row = container.createDiv({ cls: "firstpair-reader__verse" });
       if (!clickable) { row.setText(line); continue; }
-      for (const token of line.split(/([\p{L}\p{M}’']+)/u)) {
+      for (const token of line.split(/([\p{L}\p{M}]+[’']?)/u)) {
         if (/^[\p{L}\p{M}]/u.test(token)) {
           const word = row.createEl("button", { text: token, cls: "firstpair-reader__word" });
           word.addEventListener("click", () => this.openDictionary(token));
@@ -90,20 +90,23 @@ class FirstPairReaderView extends ItemView {
   async renderParallel(entry) {
     const chapter = await this.readJson(entry.path); this.page.addClass("firstpair-reader__page--parallel");
     this.page.createEl("h1", { text: chapter.title });
+    // The source text leads: a learner reads the original first and the
+    // translations, in their declared order, follow. A title may still
+    // declare sourceLanguage.position "right" for the older arrangement.
     const translations = this.parallel.translations.filter((item) => this.enabled.has(item.id));
-    const languages = [...translations, this.parallel.sourceLanguage];
+    const sourceLast = this.parallel.sourceLanguage.position === "right";
+    const languages = sourceLast ? [...translations, this.parallel.sourceLanguage] : [this.parallel.sourceLanguage, ...translations];
     const labels = this.page.createDiv({ cls: "firstpair-reader__column-labels" });
     labels.style.setProperty("--firstpair-columns", String(languages.length));
     for (const language of languages) labels.createDiv({ text: language.label, cls: "firstpair-reader__column-label" });
     for (const unit of chapter.units) {
       const strip = this.page.createDiv({ cls: "firstpair-reader__strip", attr: { "data-unit-id": unit.id } });
       strip.style.setProperty("--firstpair-columns", String(languages.length));
-      for (const language of translations) {
-        const cell = strip.createDiv({ cls: `firstpair-reader__cell firstpair-reader__cell--${language.id}`, attr: { lang: language.lang ?? language.id } });
-        this.appendText(cell, unit.translations?.[language.id] ?? []);
+      for (const language of languages) {
+        const isSource = language === this.parallel.sourceLanguage;
+        const cell = strip.createDiv({ cls: `firstpair-reader__cell firstpair-reader__cell--${isSource ? "source" : language.id}`, attr: { lang: language.lang ?? language.id } });
+        this.appendText(cell, isSource ? unit.source : (unit.translations?.[language.id] ?? []), isSource);
       }
-      const source = strip.createDiv({ cls: "firstpair-reader__cell firstpair-reader__cell--source", attr: { lang: this.parallel.sourceLanguage.lang ?? this.parallel.sourceLanguage.id } });
-      this.appendText(source, unit.source, true);
     }
   }
   async openDictionary(surface) {
@@ -119,8 +122,10 @@ class FirstPairReaderView extends ItemView {
       if (!entries.length) { section.createEl("p", { text: "No exact headword entry." }); continue; }
       found = true;
       for (const entry of entries) {
-        section.createEl("p", { text: [entry.partOfSpeech, ...(entry.definitions ?? [])].filter(Boolean).join(" — ") });
-        for (const example of entry.examples ?? []) section.createEl("blockquote", { text: example });
+        const head = section.createEl("h4", { text: [entry.headword, entry.partOfSpeech].filter(Boolean).join(" · ") });
+        if (entry.grammar) head.createSpan({ text: ` ${entry.grammar}`, cls: "firstpair-reader__grammar" });
+        section.createEl("p", { text: (entry.definitions ?? []).join("; ") });
+        for (const example of entry.examples ?? []) section.createEl("blockquote", { text: typeof example === "string" ? example : [example.latin ?? example.source, example.translation].filter(Boolean).join(" — ") });
       }
     }
     if (!found) this.drawer.createEl("p", { text: "Try the headword form; this offline edition does not guess every historical inflection." });

@@ -54,6 +54,20 @@ Dictionary window -> C-c C-d on any underlined word
    `publishing/emacs/guides/` or the title's `guide.bookSpecific` fragment,
    never the bundle.
 
+## Aligned and Multilingual Editions
+
+A triptych (source plus aligned translations) uses the same aligned chapter
+files as the Obsidian Reader as its reader page sources, declares
+`lexicon.sourceId`, and lists its `lexicon.translations`; the reader hides
+unselected translations and looks any source word up. Build the vault first
+so the chapter files exist, then the bundle. The dictionaries of both
+products come from `firstpair_emacs.dictionaries.project` over the same
+analyser and sources, so the two readers agree word for word. Read the
+coverage report the title writes; extend the title's reviewed supplement for
+frequent gaps rather than lowering the analyser's standards. A source-language
+corpus a title cannot redistribute (a translation still under rights review)
+keeps the bundle local: no `--emacs` publication.
+
 ## Validation Gate
 
 Fail closed on:

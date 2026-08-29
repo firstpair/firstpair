@@ -63,7 +63,7 @@ an Emacs package instead and let it find your bundles:
 
 ```elisp
 ;; From a downloaded firstpair-reader-<version>.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.4.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.5.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install '(firstpair-reader
@@ -163,6 +163,16 @@ own source, and says plainly when the edition has no entry in that language.
 
 Set `firstpair-reader-highlight` to `nil` in your configuration to turn the
 underlines off while keeping every key.
+
+## Aligned editions
+
+Some editions align an original with its translations unit by unit — a
+tercet of Dante with its English and Russian, say. Each unit shows the
+original first and then the translations you have on; `C-c C-t` cycles the
+choice exactly as it does for the dictionary, hiding the other translation in
+place so the original never moves. Every word of the original can be looked
+up with `C-c C-d`, and the entry says how an old or shortened spelling was
+read (*apocope of amore*, *old form of diceva*).
 
 ## Rearranging windows
 

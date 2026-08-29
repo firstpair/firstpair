@@ -38,3 +38,8 @@ test('standard Reader supports data-driven multilingual editions offline', () =>
   assert.match(source, /unit\.translations/)
   assert.doesNotMatch(source, /Italian|English|Russian|Dante/)
 })
+
+test('standard Reader leads with the source text unless a title asks otherwise', () => {
+  assert.match(source, /\[this\.parallel\.sourceLanguage, \.\.\.translations\]/)
+  assert.match(source, /position === "right"/)
+})

@@ -18,7 +18,8 @@ import json
 from pathlib import Path
 from typing import Iterable
 
-from .lexicon import Entry, Projection, WordsData, normalise
+from .languages.base import Entry, Projection
+from .lexicon import normalise
 
 
 MAXIMUM_PER_KEY = 8
@@ -41,8 +42,11 @@ class GlossaryIndex:
     by_form: dict[str, tuple[dict[str, object], ...]]
 
 
-def index_kaikki(path: Path) -> GlossaryIndex:
-    """Index a Kaikki JSON Lines extraction by headword and by inflected form."""
+def index_kaikki(path: Path, fold=normalise) -> GlossaryIndex:
+    """Index a Kaikki JSON Lines extraction by headword and by inflected form.
+
+    FOLD is the lexicon language's normalisation, so keys match its forms.
+    """
 
     by_headword: dict[str, list[dict[str, object]]] = {}
     by_form: dict[str, list[dict[str, object]]] = {}
@@ -52,7 +56,7 @@ def index_kaikki(path: Path) -> GlossaryIndex:
                 continue
             row = json.loads(line)
             headword = str(row.get("word", ""))
-            key = normalise(headword)
+            key = fold(headword)
             definitions: list[str] = []
             for sense in row.get("senses", []):
                 definitions.extend(str(value) for value in sense.get("glosses", []) if value)
@@ -66,7 +70,7 @@ def index_kaikki(path: Path) -> GlossaryIndex:
             by_headword.setdefault(key, []).append(entry)
             by_form.setdefault(key, []).append(entry)
             for form in row.get("forms", []):
-                form_key = normalise(str(form.get("form", "")))
+                form_key = fold(str(form.get("form", "")))
                 if form_key and form_key != key:
                     by_form.setdefault(form_key, []).append(entry)
     return GlossaryIndex(
@@ -75,7 +79,71 @@ def index_kaikki(path: Path) -> GlossaryIndex:
     )
 
 
-def load_dictionary(path: Path) -> dict[str, tuple[dict[str, object], ...]]:
+def index_translations(path: Path, source_code: str, fold=normalise) -> GlossaryIndex:
+    """Invert a Kaikki extraction of the target language into a glossary.
+
+    Each row is a target-language entry; its translation tables name the
+    words of other languages that render it. Every SOURCE_CODE word named
+    there becomes a headword glossed by the target-language entry, so a
+    dictionary of the target language doubles as a dictionary into it.
+    """
+
+    by_headword: dict[str, list[dict[str, object]]] = {}
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
+            if not line.strip():
+                continue
+            row = json.loads(line)
+            translations = [
+                item for item in row.get("translations", [])
+                if item.get("lang_code") == source_code and item.get("word")
+            ]
+            if not translations:
+                continue
+            word = str(row.get("word", ""))
+            if not word:
+                continue
+            glosses = [str(value) for sense in row.get("senses", []) for value in sense.get("glosses", []) if value]
+            part = str(row.get("pos", ""))
+            for item in translations:
+                key = fold(str(item["word"]))
+                if not key:
+                    continue
+                sense = str(item.get("sense", "")).strip()
+                definition = word if not sense else f"{word} ({sense})"
+                entry = {"headword": str(item["word"]), "partOfSpeech": part, "definitions": [definition], "hint": glosses[:1]}
+                bucket = by_headword.setdefault(key, [])
+                if not any(existing["definitions"] == entry["definitions"] for existing in bucket):
+                    bucket.append(entry)
+    merged: dict[str, tuple[dict[str, object], ...]] = {}
+    for key, bucket in by_headword.items():
+        # One entry per headword listing every target word, most common part first.
+        definitions = list(dict.fromkeys(definition for entry in bucket for definition in entry["definitions"]))
+        merged[key] = ({"headword": bucket[0]["headword"], "partOfSpeech": bucket[0]["partOfSpeech"], "definitions": definitions[:12]},)
+    return GlossaryIndex(by_headword=merged, by_form=merged)
+
+
+def load_glossary(path: Path, item, fold=normalise) -> GlossaryIndex:
+    """Index a pinned glossary according to its kind."""
+
+    if getattr(item, "kind", "entries") == "translations":
+        return index_translations(path, item.source_code, fold=fold)
+    return index_kaikki(path, fold=fold)
+
+
+def merge(first: GlossaryIndex, second: GlossaryIndex) -> GlossaryIndex:
+    """Combine two glossaries; the first's readings come first."""
+
+    by_headword = {key: tuple(value) for key, value in first.by_headword.items()}
+    for key, value in second.by_headword.items():
+        by_headword[key] = by_headword.get(key, ()) + tuple(value)
+    by_form = {key: tuple(value) for key, value in first.by_form.items()}
+    for key, value in second.by_form.items():
+        by_form[key] = by_form.get(key, ()) + tuple(value)
+    return GlossaryIndex(by_headword=by_headword, by_form=by_form)
+
+
+def load_dictionary(path: Path, fold=normalise) -> dict[str, tuple[dict[str, object], ...]]:
     """Load a ``firstpair-reader-dictionary-v1`` file keyed by normalised form."""
 
     payload = json.loads(path.read_text(encoding="utf-8"))
@@ -84,32 +152,34 @@ def load_dictionary(path: Path) -> dict[str, tuple[dict[str, object], ...]]:
     entries = payload.get("entries", {})
     if not isinstance(entries, dict):
         raise ValueError(f"dictionary entries are not an object: {path}")
-    return {normalise(key): tuple(value) for key, value in entries.items() if isinstance(value, list)}
+    return {fold(key): tuple(value) for key, value in entries.items() if isinstance(value, list)}
 
 
-def load_supplement(path: Path) -> dict[str, tuple[str, ...]]:
+def load_supplement(path: Path, fold=normalise) -> dict[str, tuple[str, ...]]:
     """Load a reviewed supplement: ``{form: [definition, ...]}``."""
 
     payload = json.loads(path.read_text(encoding="utf-8"))
+    if isinstance(payload, dict) and isinstance(payload.get("entries"), dict) and "schema" in payload:
+        payload = payload["entries"]
     if not isinstance(payload, dict):
         raise ValueError(f"supplement is not an object: {path}")
     result: dict[str, tuple[str, ...]] = {}
     for key, value in payload.items():
         if isinstance(value, list):
-            result[normalise(key)] = tuple(str(item) for item in value if item)
+            result[fold(key)] = tuple(str(item) for item in value if item)
         elif isinstance(value, dict) and isinstance(value.get("definitions"), list):
-            result[normalise(key)] = tuple(str(item) for item in value["definitions"] if item)
+            result[fold(key)] = tuple(str(item) for item in value["definitions"] if item)
     return result
 
 
-def _lemmas(entry: Entry) -> tuple[str, ...]:
+def _lemmas(entry: Entry, fold=normalise) -> tuple[str, ...]:
     """Return every principal part of ENTRY's headword as a lookup key.
 
     Whitaker lists some paradigms neuter- or stem-first (``omne, omnis``), so
     a glossary keyed on the conventional headword answers for a later part.
     """
 
-    parts = [normalise(part) for part in entry.headword.split(",")]
+    parts = [fold(part) for part in entry.headword.split(",")]
     return tuple(dict.fromkeys(part for part in parts if part))
 
 
@@ -135,9 +205,9 @@ def _glosses_from(language: str, key: str, kind: str, items: Iterable[dict[str, 
 
 def project(
     language: str,
-    words: WordsData,
     projection: Projection,
     *,
+    fold=normalise,
     glossary: GlossaryIndex | None = None,
     glossary_name: str = "",
     dictionary: dict[str, tuple[dict[str, object], ...]] | None = None,
@@ -168,11 +238,13 @@ def project(
         if supplement is not None and form in supplement:
             add(form, "form", [Gloss(language, form, "form", form, "", supplement[form], supplement_name)])
     for entry in projection.entries:
-        for lemma in _lemmas(entry):
+        for lemma in _lemmas(entry, fold):
             if glossary is not None:
                 add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", glossary.by_headword.get(lemma, ()), glossary_name))
             if dictionary is not None:
                 add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", dictionary.get(lemma, ()), dictionary_name))
+            if supplement is not None and lemma in supplement:
+                add(entry.entry_id, "entry", [Gloss(language, entry.entry_id, "entry", entry.headword, "", supplement[lemma], supplement_name)])
 
     covered = 0
     missing: list[str] = []

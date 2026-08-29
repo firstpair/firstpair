@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.4
+;; Version: 1.5
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -180,7 +180,7 @@ Returns the description of the new choice."
 Each result is a plist with :headword, :part, :definitions, and :source.
 The lexicon's own senses answer for its gloss language; other languages
 come from the glosses table, by exact form first and then by entry."
-  (let* ((form (firstpair-lexicon-normalise word))
+  (let* ((form (firstpair-lexicon-normalise word bundle))
          (own (equal language (or (alist-get 'glossLanguage (firstpair-bundle-lexicon bundle)) "en")))
          (found nil))
     (when own
@@ -211,20 +211,53 @@ come from the glosses table, by exact form first and then by entry."
 
 ;;; Analysis
 
-(defconst firstpair-lexicon-enclitics '("que" "ne" "ve" "cum")
-  "Suffixes that may be attached to a Latin word.")
+(defconst firstpair-lexicon-latin-spec
+  '((lowercase . t) (combining . "strip") (replace . (("j" "i") ("v" "u"))) (strip . "’'"))
+  "The folding rule of bundles built before rules shipped as data: Latin.")
 
-(defun firstpair-lexicon-normalise (word)
-  "Fold WORD to the shape the delivered tables are keyed on."
-  (let* ((plain (ucs-normalize-NFD-string (or word "")))
-         (letters (seq-filter (lambda (character)
-                                (not (memq (get-char-code-property character 'general-category)
-                                           '(Mn Mc Me))))
-                              (append plain nil)))
-         (folded (downcase (apply #'string letters))))
-    (replace-regexp-in-string
-     "[^[:alpha:]]" ""
-     (replace-regexp-in-string "v" "u" (replace-regexp-in-string "j" "i" folded)))))
+(defvar firstpair-lexicon--spec-bundle nil
+  "The bundle whose folding rule `firstpair-lexicon-normalise' applies.")
+
+(defun firstpair-lexicon-spec (&optional bundle)
+  "Return the folding rule of BUNDLE, an alist shipped in data/bundle.json."
+  (let ((declared (and bundle (alist-get 'normalise (firstpair-bundle-lexicon bundle)))))
+    (or declared firstpair-lexicon-latin-spec)))
+
+(defun firstpair-lexicon-enclitics (&optional bundle)
+  "Return the enclitic suffixes of BUNDLE's language."
+  (let ((declared (and bundle (alist-get 'enclitics (firstpair-bundle-lexicon bundle)))))
+    (or declared '("que" "ne" "ve" "cum"))))
+
+(defconst firstpair-lexicon-diaereses
+  '((?ï . ?i) (?ü . ?u) (?ë . ?e) (?ö . ?o) (?ä . ?a))
+  "Diaeresis letters folded when a rule keeps other accents.")
+
+(defun firstpair-lexicon-normalise (word &optional bundle)
+  "Fold WORD to the shape the delivered tables are keyed on.
+The rule is BUNDLE's, or the rule of `firstpair-lexicon--spec-bundle', or
+Latin's: lower case, combining marks stripped or kept, replacements applied."
+  (let* ((spec (firstpair-lexicon-spec (or bundle firstpair-lexicon--spec-bundle)))
+         (combining (or (alist-get 'combining spec) "strip"))
+         (text (or word ""))
+         (text (if (equal combining "strip")
+                   (let ((plain (ucs-normalize-NFD-string text)))
+                     (apply #'string
+                            (seq-filter (lambda (character)
+                                          (not (memq (get-char-code-property character 'general-category)
+                                                     '(Mn Mc Me))))
+                                        (append plain nil))))
+                 (ucs-normalize-NFC-string text)))
+         (text (if (equal combining "diaeresis")
+                   (apply #'string (mapcar (lambda (character)
+                                             (or (alist-get character firstpair-lexicon-diaereses) character))
+                                           (append text nil)))
+                 text))
+         (text (if (alist-get 'lowercase spec) (downcase text) text))
+         (text (string-trim text (format "[%s]+" (or (alist-get 'strip spec) "’'"))
+                            (format "[%s]+" (or (alist-get 'strip spec) "’'")))))
+    (dolist (pair (alist-get 'replace spec))
+      (setq text (replace-regexp-in-string (regexp-quote (car pair)) (cadr pair) text t t)))
+    (replace-regexp-in-string "[^[:alpha:]’']" "" text)))
 
 (defun firstpair-lexicon--fallback (bundle form)
   "Analyse FORM against the stems and endings BUNDLE ships."
@@ -251,7 +284,7 @@ come from the glosses table, by exact form first and then by entry."
 
 (defun firstpair-lexicon-analyse (bundle word)
   "Return the readings of WORD offered by BUNDLE, best first."
-  (let* ((form (firstpair-lexicon-normalise word))
+  (let* ((form (firstpair-lexicon-normalise word bundle))
          (forms (firstpair-lexicon-table bundle "forms.tsv"))
          (direct (and (> (length form) 0) (gethash form forms))))
     (or direct
@@ -262,7 +295,7 @@ come from the glosses table, by exact form first and then by entry."
                            (mapcar (lambda (reading)
                                      (plist-put (copy-sequence reading) :enclitic enclitic))
                                    (gethash base forms)))))
-                  firstpair-lexicon-enclitics)
+                  (firstpair-lexicon-enclitics bundle))
         (firstpair-lexicon--fallback bundle form))))
 
 (defun firstpair-lexicon-entry (bundle id)
@@ -380,7 +413,8 @@ Returns the buffer."
   (let ((bundle (or firstpair-lexicon-bundle
                     (user-error "No dictionary is showing"))))
     (message "Translations: %s" (firstpair-lexicon-cycle-languages bundle))
-    (firstpair-lexicon-refresh)))
+    (firstpair-lexicon-refresh)
+    (when (fboundp 'firstpair-reader-refresh-regions) (firstpair-reader-refresh-regions))))
 
 (defun firstpair-lexicon-select-languages ()
   "Choose which translation languages the dictionary window shows."
@@ -388,7 +422,8 @@ Returns the buffer."
   (let ((bundle (or firstpair-lexicon-bundle
                     (user-error "No dictionary is showing"))))
     (message "Translations: %s" (firstpair-lexicon-choose-languages bundle))
-    (firstpair-lexicon-refresh)))
+    (firstpair-lexicon-refresh)
+    (when (fboundp 'firstpair-reader-refresh-regions) (firstpair-reader-refresh-regions))))
 
 (provide 'firstpair-lexicon)
 ;;; firstpair-lexicon.el ends here

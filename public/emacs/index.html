@@ -272,7 +272,7 @@ your Emacs configuration file (<code>~/.emacs.d/init.el</code> or
 all a single book needs. If you read several FirstPair books, install
 the reader as an Emacs package instead and let it find your bundles:</p>
 <pre class="elisp"><code>;; From a downloaded firstpair-reader-&lt;version&gt;.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.4.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.5.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install &#39;(firstpair-reader
@@ -442,6 +442,18 @@ entry in that language.</p>
 <p>Set <code>firstpair-reader-highlight</code> to <code>nil</code> in
 your configuration to turn the underlines off while keeping every
 key.</p>
+</section>
+<section id="aligned-editions" class="level2">
+<h2>Aligned editions</h2>
+<p>Some editions align an original with its translations unit by unit —
+a tercet of Dante with its English and Russian, say. Each unit shows the
+original first and then the translations you have on;
+<code>C-c C-t</code> cycles the choice exactly as it does for the
+dictionary, hiding the other translation in place so the original never
+moves. Every word of the original can be looked up with
+<code>C-c C-d</code>, and the entry says how an old or shortened
+spelling was read (<em>apocope of amore</em>, <em>old form of
+diceva</em>).</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>

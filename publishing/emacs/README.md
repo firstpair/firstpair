@@ -81,6 +81,9 @@ with the same part become one part node.
   text, when found in a quoting page, receives a citation link. Block
   `style` is `paragraph`, `quotation`, `field`, or `verbatim`; a `language`
   marks the block's words for the dictionary.
+- `lexicon.language` is `latin` or `italian` (see `firstpair_emacs/languages/`);
+  `lexicon.supplement` adds a title's reviewed forms; `lexicon.sourceId` names the
+  source language of aligned chapters, which may be reader page sources.
 - `lexicon.mode` is `projected`, `complete`, or `none`. `exclude` lists forms
   never to mark; `include` lists short or common forms to mark anyway;
   `minimumLength` filters undeclared words. `lexicon.translations` declares

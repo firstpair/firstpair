@@ -111,12 +111,27 @@ class Rule:
 
 
 @dataclass(frozen=True)
+class Verse:
+    """Lines kept as written, tagged with the language they are in.
+
+    An aligned edition renders each unit as one Verse per language; the
+    reader hides the languages a reader has not selected and looks words up
+    in the source-language lines.
+    """
+
+    lines: tuple[str, ...]
+    language: str = ""
+    unit: str = ""
+    source: bool = False
+
+
+@dataclass(frozen=True)
 class Footnote:
     identifier: str
     blocks: tuple["Block", ...]
 
 
-Block = Heading | Paragraph | Quotation | ItemList | Table | Figure | Preformatted | Rule | Footnote
+Block = Heading | Paragraph | Quotation | ItemList | Table | Figure | Preformatted | Rule | Footnote | Verse
 
 
 # --- node model -------------------------------------------------------------
@@ -238,4 +253,6 @@ def block_text(blocks: Iterable[Block]) -> str:
             parts.append(block.text)
         elif isinstance(block, Footnote):
             parts.append(block_text(block.blocks))
+        elif isinstance(block, Verse):
+            parts.extend(block.lines)
     return "\n".join(parts)

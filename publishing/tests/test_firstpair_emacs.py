@@ -455,3 +455,147 @@ class BuildTests(Fixture):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class ItalianTests(unittest.TestCase):
+    """The Italian analyser, on a hand-made slice of the Wiktionary extraction."""
+
+    ROWS = [
+        {"word": "amore", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["love"]}], "forms": [{"form": "amóre", "tags": ["canonical"]}, {"form": "amori", "tags": ["plural"]}, {"form": "amor", "tags": ["apocopic", "alternative"]}]},
+        {"word": "dire", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to say"]}], "forms": [{"form": "dìce", "tags": ["third-person", "singular", "present", "indicative"]}, {"form": "dicéva", "tags": ["third-person", "singular", "imperfect", "indicative"]}, {"form": "dirò", "tags": ["first-person", "singular", "future"]}]},
+        {"word": "avere", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to have"]}], "forms": [{"form": "hò", "tags": ["first-person", "singular", "present"]}]},
+        {"word": "hai", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["second-person singular present indicative of avere and (obsolete) havere"], "tags": ["form-of"], "form_of": [{"word": "avere and"}]}]},
+        {"word": "eterno", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["eternal"]}], "forms": [{"form": "eterna", "tags": ["feminine", "singular"]}]},
+        {"word": "etterno", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["archaic form of eterno"], "tags": ["alt-of"], "alt_of": [{"word": "eterno"}]}]},
+        {"word": "etterna", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["feminine singular of etterno"], "tags": ["form-of"], "form_of": [{"word": "etterno"}]}]},
+        {"word": "il", "pos": "article", "lang_code": "it", "senses": [{"glosses": ["the"]}]},
+        {"word": "l", "pos": "article", "lang_code": "it", "senses": [{"glosses": ["apocopic form of il"], "tags": ["alt-of"], "alt_of": [{"word": "il"}]}]},
+        {"word": "in", "pos": "prep", "lang_code": "it", "senses": [{"glosses": ["in"]}]},
+        {"word": "nel", "pos": "contraction", "lang_code": "it", "senses": [{"glosses": ["contraction of in il; in the"], "tags": ["alt-of"], "alt_of": [{"word": "in il"}]}]},
+        {"word": "-io", "pos": "suffix", "lang_code": "it", "senses": [{"glosses": ["suffix"]}]},
+        {"word": "inferno", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["hell"]}]},
+        {"word": "mostrare", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to show"]}], "forms": [{"form": "mostrò", "tags": ["third-person", "singular", "past", "historic"]}]},
+        {"word": "carità", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["charity"]}]},
+    ]
+
+    def setUp(self) -> None:
+        from firstpair_emacs.languages import get
+
+        self.temporary = tempfile.TemporaryDirectory()
+        cache = Path(self.temporary.name)
+        (cache / "enwiktionary-italian.jsonl").write_text("\n".join(json.dumps(row, ensure_ascii=False) for row in self.ROWS) + "\n", encoding="utf-8")
+        self.italian = get("italian")
+        self.italian.load(cache)
+
+    def tearDown(self) -> None:
+        self.temporary.cleanup()
+
+    def first(self, word: str) -> tuple[str, str, str]:
+        analyses = self.italian.analyse(word)
+        self.assertTrue(analyses, word)
+        return self.italian.entry(analyses[0].entry_id).headword, analyses[0].features, analyses[0].note
+
+    def test_tokens_split_elisions(self) -> None:
+        self.assertEqual(["l’", "altre", "ch’", "io", "’l"], [surface for _, surface in self.italian.tokens("l’altre ch’io ’l")])
+
+    def test_forms_ignore_stress_marks_and_follow_links(self) -> None:
+        self.assertEqual(("dire", "third-person singular present indicative", ""), self.first("dice"))
+        self.assertEqual("avere", self.first("ho")[0])
+        self.assertEqual("avere", self.first("hai")[0])
+        self.assertEqual("eterno", self.first("etterna")[0])
+        self.assertEqual({"in", "il"}, {self.italian.entry(a.entry_id).headword for a in self.italian.analyse("nel")})
+
+    def test_dante_restorations_are_named(self) -> None:
+        self.assertEqual(("amore", "apocopic alternative", ""), self.first("amor"))
+        self.assertEqual("old form of diceva", self.first("dicea")[2])
+        self.assertEqual("elision of inferno", self.first("’nferno")[2])
+        self.assertEqual("il", self.first("l’")[0])
+        self.assertEqual("mostrò + mi", self.first("mostrommi")[2])
+        self.assertEqual("old form of carità", self.first("caritate")[2])
+        self.assertEqual((), self.italian.analyse("ïo")[:0])
+        self.assertFalse(any(self.italian.entry(a.entry_id).headword == "-io" for a in self.italian.analyse("ïo")))
+
+    def test_projection_and_tables(self) -> None:
+        projection = self.italian.project(["Amor", "dicea", "nel", "xyzzy"])
+        self.assertEqual(("xyzzy",), projection.unknown)
+        self.assertEqual({"amor", "dicea", "nel"}, {form for form, _ in projection.forms})
+        with tempfile.TemporaryDirectory() as temporary:
+            payload = self.italian.write_tables(Path(temporary), projection, mode="projected", source={})
+            self.assertEqual(3, payload["forms"])
+            forms = (Path(temporary) / "forms.tsv").read_text(encoding="utf-8")
+            self.assertIn("dicea\tdire|verb\tthird-person singular imperfect indicative (old form of diceva)", forms)
+
+    def test_shared_dictionary_projection(self) -> None:
+        from firstpair_emacs import dictionaries
+
+        payload, report = dictionaries.project(
+            self.italian, ["Amor", "dicea", "sapïenza"], target="en", label="English", license="CC BY-SA 4.0", attribution="test",
+        )
+        self.assertEqual("firstpair-reader-dictionary-v1", payload["schema"])
+        self.assertEqual(["love"], payload["entries"]["amor"][0]["definitions"])
+        self.assertIn("apocopic", payload["entries"]["amor"][0]["grammar"])
+        self.assertEqual(["sapienza"], report["unanalysed"])
+        russian, report = dictionaries.project(
+            self.italian, ["Amor", "dicea"], target="ru", label="Русский", license="CC BY-SA 4.0", attribution="test",
+            supplement={"amore": ("любовь",)}, supplement_name="test-supplement",
+        )
+        self.assertEqual(["любовь"], russian["entries"]["amor"][0]["definitions"])
+        self.assertEqual(["dicea"], report["missing"])
+
+
+class AlignedTests(Fixture):
+    """An aligned edition: chapters in the shared schema become verse regions."""
+
+    def test_builds_regions_and_hides_unselected_translations(self) -> None:
+        chapter = {
+            "schema": "firstpair-aligned-chapter-v1", "id": "canto-1", "title": "Inferno — Canto 1",
+            "units": [
+                {"id": "u1", "source": ["Nel mezzo del cammin di nostra vita", "mi ritrovai per una selva oscura,"],
+                 "translations": {"en": ["Midway upon the journey of our life", "I found myself within a forest dark,"], "ru": ["Земную жизнь пройдя до половины,", "Я очутился в сумрачном лесу,"]}},
+                {"id": "u2", "source": ["ché la diritta via era smarrita."], "translations": {"en": ["For the straightforward pathway had been lost."], "ru": ["Утратив правый путь во тьме долины."]}},
+            ],
+        }
+        (self.root / "canto-1.json").write_text(json.dumps(chapter, ensure_ascii=False), encoding="utf-8")
+        path = self.write_config(
+            reader=[{"id": "canto-1", "title": "Inferno — Canto 1", "source": "canto-1.json", "part": "Inferno"}],
+            evidence=[],
+        )
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        raw["emacs"]["parts"] = [{"title": "Inferno"}]
+        raw["emacs"]["records"] = []
+        raw["emacs"]["lexicon"] = {"language": "italian", "mode": "none", "sourceId": "it",
+                                   "translations": [{"id": "en", "label": "English"}, {"id": "ru", "label": "Русский"}]}
+        path.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
+        self.commit()
+        manifest = build(path, "desktop", allow_download=False)
+        bundle = self.root / "emacs" / "desktop"
+        self.assertEqual(2, manifest["alignedUnits"])
+        regions = (bundle / "data" / "regions.tsv").read_text(encoding="utf-8").splitlines()
+        self.assertEqual(7, len(regions))  # header + 2 units x 3 languages
+        self.assertTrue(any("\tit\tu1\t" in row and row.endswith("\tsource") for row in regions))
+        info = (bundle / "fixture.info").read_text(encoding="utf-8")
+        self.assertIn("Nel mezzo del cammin di nostra vita\nmi ritrovai per una selva oscura,\n", info)
+        self.assertIn("     Земную жизнь пройдя до половины,", info)
+        self.assertTrue(verify_bundle(bundle, run_makeinfo=False, run_emacs=has("emacs"))["passed"])
+        if not has("emacs"):
+            return
+        script = f"""(progn
+  (load "{(bundle / 'init.el').as_posix()}")
+  (firstpair-read)
+  (with-current-buffer firstpair-reader-buffer
+    (Info-goto-node "(fixture)Inferno — Canto 1")
+    (let ((count (lambda () (length (seq-filter (lambda (o) (overlay-get o 'firstpair-region)) firstpair-reader--overlays)))))
+      (princ (format "all=%d\\\\n" (funcall count)))
+      (setq firstpair-lexicon-languages '("ru"))
+      (firstpair-reader-refresh-regions)
+      (princ (format "ru-only=%d\\\\n" (funcall count)))
+      (goto-char (point-min)) (search-forward "Midway")
+      (princ (format "english-hidden=%S\\\\n" (invisible-p (point))))
+      (goto-char (point-min)) (search-forward "Земную")
+      (princ (format "russian-visible=%S\\\\n" (not (invisible-p (point))))))))"""
+        completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+        self.assertEqual(0, completed.returncode, completed.stderr[-2000:])
+        self.assertIn("all=0", completed.stdout)
+        self.assertIn("ru-only=2", completed.stdout)
+        self.assertIn("english-hidden=t", completed.stdout)
+        self.assertIn("russian-visible=t", completed.stdout)

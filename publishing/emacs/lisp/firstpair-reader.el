@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.4
+;; Version: 1.5
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -206,14 +206,15 @@ rendering has moved the text, the word is found again on the same line."
       (let* ((start (+ (point) (plist-get entry :column)))
              (end (+ start (plist-get entry :length)))
              (form (plist-get entry :form))
+             (bundle (firstpair-bundle-current))
              (limit (line-end-position)))
         (if (and (<= end limit)
-                 (equal (firstpair-lexicon-normalise (buffer-substring-no-properties start end))
+                 (equal (firstpair-lexicon-normalise (buffer-substring-no-properties start end) bundle)
                         form))
             (cons start end)
           (let (found)
             (while (and (not found) (re-search-forward "[[:alpha:]]+" limit t))
-              (when (equal (firstpair-lexicon-normalise (match-string-no-properties 0)) form)
+              (when (equal (firstpair-lexicon-normalise (match-string-no-properties 0) bundle) form)
                 (setq found (cons (match-beginning 0) (match-end 0)))))
             found))))))
 
@@ -253,6 +254,36 @@ rendering has moved the text, the word is found again on the same line."
             (overlay-put overlay 'evaporate t)
             (push overlay firstpair-reader--overlays)))))))
 
+(defun firstpair-reader--apply-regions (bundle)
+  "Hide the translation regions of the current node that are not selected.
+The selection is the dictionary's: `firstpair-lexicon-languages'."
+  (let ((chosen (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-selected bundle))))
+    (dolist (region (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node))
+      (unless (or (plist-get region :source) (member (plist-get region :language) chosen))
+        (save-excursion
+          (goto-char (point-min))
+          (when (zerop (forward-line (1- (plist-get region :start))))
+            (let ((start (point)))
+              (forward-line (1+ (- (plist-get region :end) (plist-get region :start))))
+              ;; Swallow the blank line that separates this region from the next.
+              (when (and (not (eobp)) (looking-at-p "^$")) (forward-line 1))
+              (let ((overlay (make-overlay start (point))))
+                (overlay-put overlay 'invisible t)
+                (overlay-put overlay 'firstpair-region region)
+                (overlay-put overlay 'evaporate t)
+                (push overlay firstpair-reader--overlays)))))))))
+
+(defun firstpair-reader-refresh-regions ()
+  "Apply the language selection to every open reader buffer."
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      (when (and firstpair-reader-mode (firstpair-bundle-current))
+        (let ((bundle (firstpair-bundle-current)))
+          (firstpair-reader--mark bundle)
+          (when Info-hide-note-references
+            (firstpair-reader--tidy-references bundle))
+          (firstpair-reader--apply-regions bundle))))))
+
 (defun firstpair-reader--marked-overlays ()
   "Return the overlays that mark dictionary words, in buffer order."
   (seq-filter (lambda (overlay) (overlay-get overlay 'firstpair-marked))
@@ -271,7 +302,8 @@ rendering has moved the text, the word is found again on the same line."
            (unless firstpair-reader-mode (firstpair-reader-mode 1))
            (firstpair-reader--mark bundle)
            (when Info-hide-note-references
-             (firstpair-reader--tidy-references bundle)))
+             (firstpair-reader--tidy-references bundle))
+           (firstpair-reader--apply-regions bundle))
           (firstpair-reader-mode
            (firstpair-reader-mode -1)))))
 
@@ -383,7 +415,8 @@ The choice applies to every lookup, gloss, and glossary until changed."
              (if choose
                  (firstpair-lexicon-choose-languages bundle)
                (firstpair-lexicon-cycle-languages bundle)))
-    (firstpair-lexicon-refresh)))
+    (firstpair-lexicon-refresh)
+    (firstpair-reader-refresh-regions)))
 
 (defun firstpair-reader-glossary ()
   "Open the glossary of dictionary words in the references window."

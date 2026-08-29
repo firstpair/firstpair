@@ -26,6 +26,7 @@ on it.
   data/records.json            records and evidence targets: id, label, kind, section, node, rights, file, quotedIn
   data/references.json         every cross-reference each node contains, per manual
   data/marked.tsv              words the dictionary window explains, by position
+  data/regions.tsv             aligned editions: the lines of each language in each unit
   lexicon/LEXICON.json         lexicon description (schema firstpair-lexicon-v1)
   lexicon/entries.tsv          id, headword, part, code, frequency, senses
   lexicon/forms.tsv            form, entry, features, enclitic
@@ -111,6 +112,33 @@ folders `firstpair-read` searches for bundles, and
 `firstpair-reader-install-info` / `install.sh` put a bundle's manuals into an
 Info directory (`~/.local/share/info` by default) so plain `info` and `C-h i`
 list them.
+
+## Languages
+
+The lexicon is one of the languages in `firstpair_emacs.languages`, each
+fulfilling the same contract: a folding rule (shipped in `data/bundle.json`
+as `lexicon.normalise` so the reader folds words the same way), an analyser
+from inflected form to entries with grammatical features, a projection of
+the entries and forms a text uses, and the delivered tables. Latin is served
+by Whitaker's WORDS; Italian by the English Wiktionary extraction, with
+Dante's elisions, apocope, old endings, enclitics, and spelling alternations
+restored by rules that name what they did (`apocope of amore`). A title may
+add a reviewed `emacs.lexicon.supplement` for forms the corpus lacks. Adding
+a language means adding one module; the builder, the tables, the reader, and
+the verifier do not change.
+
+## Aligned editions
+
+A reader page whose source is an aligned chapter in the shared
+`firstpair-aligned-chapter-v1` schema (the same files the Obsidian Reader
+reads) renders each unit as the source lines followed by each translation's
+lines, in the order `emacs.lexicon.translations` declares. `data/regions.tsv`
+records the lines of every language in every unit; the reader hides the
+translations not selected (`C-c C-t`, the same choice that governs the
+dictionary), never the source. Every source word is looked up on demand, so
+aligned editions carry no underlines and `marked.tsv` stays small. The
+projection covers every source word, and the glossary splits by initial
+letter when it grows past a few hundred entries.
 
 ## Translations
 
