@@ -66,6 +66,8 @@ const valueFlags = new Set([
   'mobile-vault-dir',
   'emacs-dir',
   'emacs-guide',
+  'version',
+  'version-label',
 ])
 
 function usage() {
@@ -124,6 +126,13 @@ Options:
                             /read/<slug>/emacs-guide/, and both are copied to
                             iCloud beside the book. Served at /<slug>/emacs/.
   --emacs-dir <dir>         Explicit bundle directory (implies --emacs).
+  --version <id>            Publish this package as a version of the title (a
+                            language edition, say) under /<slug>/<id>/… beside
+                            the title's own deliverables; the title must be
+                            listed already.
+  --version-label <text>    The version's name on the card ("Italian, English,
+                            and Russian"); without --version, names the
+                            title's own deliverables ("Italian and English").
   --emacs-guide <file>      Override the Emacs guide (default: the bundle's Guide.md).
   --icloud-dir <dir>        Defaults to "$HOME/icloud/books".
   --stage-only              Only refresh book-uploads/staging and source map.
@@ -942,8 +951,24 @@ ${catalogEntry.description}
 - [Read online](/read/${plan.slug}/)
 - [Chapter reader](/read/${plan.slug}/chapters/)
 ${plan.tutorial ? `- [Interactive tutorial](/learn/${plan.slug}/)\n` : ''}
-${vaultLinks}${emacsLinks}
+${vaultLinks}${emacsLinks}${versionsReadme(plan, catalogEntry)}
 ${sourceText}`
+}
+
+function versionsReadme(plan, catalogEntry) {
+  const versions = catalogEntry.versions ?? []
+  if (!versions.length) return ''
+  const lines = ['', '## Versions', '', `- ${catalogEntry.versionLabel ?? 'Default edition'}: the links above`]
+  for (const version of versions) {
+    const base = `/${plan.slug}/${version.id}`
+    const parts = [`[PDF](${base}/pdf/)`, `[EPUB](${base}/epub/)`, `[Read online](${version.html})`, `[Chapter reader](${version.htmlChapters})`]
+    if (version.vault) parts.push(`[Obsidian vault](${base}/vault/)`)
+    if (version.vaultGuide) parts.push(`[Vault guide](${version.vaultGuide})`)
+    if (version.emacs) parts.push(`[Emacs edition](${base}/emacs/)`)
+    if (version.emacsGuide) parts.push(`[Emacs guide](${version.emacsGuide})`)
+    lines.push(`- ${version.label}: ${parts.join(' · ')}`)
+  }
+  return `${lines.join('\n')}\n`
 }
 
 function emacsReadmeLinks(plan, catalogEntry) {
@@ -1025,6 +1050,10 @@ function readmeWithUpdatedLinks(plan, catalogEntry, existingText) {
     }
   }
 
+  if (catalogEntry.versions?.length || plan.versionId) {
+    return readmeFor(plan, catalogEntry)
+  }
+
   return text === existingText ? readmeFor(plan, catalogEntry) : text
 }
 
@@ -1053,51 +1082,64 @@ async function refreshSourceMap(plan, dryRun) {
   const sources = await readJson(sourcesPath, { books: {} })
 
   sources.books ??= {}
-  sources.books[plan.slug] = {
+  const record = {
     pdf: repoRelative(join(plan.stageDir, plan.pdf.stableName)),
     epub: repoRelative(join(plan.stageDir, plan.epub.stableName)),
     html: repoRelative(join(plan.stageDir, plan.html.stableName)),
     htmlChapters: repoRelative(join(plan.stageDir, plan.chapters.stableName)),
   }
+  if (plan.versionId) {
+    // A version's sources sit under the title's record, which must exist.
+    if (!sources.books[plan.slug]) {
+      throw new Error(`--version ${plan.versionId}: publish the title ${plan.slug} itself first`)
+    }
+    sources.books[plan.slug].versions ??= {}
+    sources.books[plan.slug].versions[plan.versionId] = record
+    if (plan.versionLabel) record.label = plan.versionLabel
+    else if (sources.books[plan.slug].versions[plan.versionId]?.label) record.label = sources.books[plan.slug].versions[plan.versionId].label
+  } else {
+    sources.books[plan.slug] = { ...record, ...(sources.books[plan.slug]?.versions ? { versions: sources.books[plan.slug].versions } : {}) }
+  }
+  const target = plan.versionId ? sources.books[plan.slug].versions[plan.versionId] : sources.books[plan.slug]
 
   if (plan.tutorial) {
-    sources.books[plan.slug].tutorial = repoRelative(join(plan.stageDir, plan.tutorial.stableName))
+    target.tutorial = repoRelative(join(plan.stageDir, plan.tutorial.stableName))
   }
 
   if (plan.cover) {
-    sources.books[plan.slug].cover = repoRelative(join(plan.stageDir, plan.cover.stableName))
+    target.cover = repoRelative(join(plan.stageDir, plan.cover.stableName))
   }
 
   if (plan.headboard) {
-    sources.books[plan.slug].headboard = repoRelative(
+    target.headboard = repoRelative(
       join(plan.stageDir, plan.headboard.stableName),
     )
   }
 
   if (plan.vault) {
-    sources.books[plan.slug].vault = repoRelative(join(plan.stageDir, plan.vault.zipName))
+    target.vault = repoRelative(join(plan.stageDir, plan.vault.zipName))
     if (plan.vault.guideName) {
-      sources.books[plan.slug].vaultGuideMarkdown = repoRelative(
+      target.vaultGuideMarkdown = repoRelative(
         join(plan.stageDir, plan.vault.guideName),
       )
-      sources.books[plan.slug].vaultGuideHtml = repoRelative(
+      target.vaultGuideHtml = repoRelative(
         join(plan.stageDir, plan.vault.guideHtmlName),
       )
     }
   }
 
   if (plan.mobileVault) {
-    sources.books[plan.slug].mobileVault = repoRelative(
+    target.mobileVault = repoRelative(
       join(plan.stageDir, plan.mobileVault.zipName),
     )
   }
 
   if (plan.emacs) {
-    sources.books[plan.slug].emacs = repoRelative(join(plan.stageDir, plan.emacs.zipName))
-    sources.books[plan.slug].emacsGuideMarkdown = repoRelative(
+    target.emacs = repoRelative(join(plan.stageDir, plan.emacs.zipName))
+    target.emacsGuideMarkdown = repoRelative(
       join(plan.stageDir, plan.emacs.guideName),
     )
-    sources.books[plan.slug].emacsGuideHtml = repoRelative(
+    target.emacsGuideHtml = repoRelative(
       join(plan.stageDir, plan.emacs.guideHtmlName),
     )
   }
@@ -1106,14 +1148,33 @@ async function refreshSourceMap(plan, dryRun) {
     await writeJsonAtomic(sourcesPath, sources)
   }
 
-  return sources.books[plan.slug]
+  return target
 }
 
 async function refreshCatalog(plan, dryRun) {
   const catalogPath = join(root, 'public', 'catalog.json')
   const catalog = await readJson(catalogPath)
   const existing = catalog.books.find((book) => book.slug === plan.slug) ?? {}
-  const entry = catalogEntryFromPlan(plan, existing)
+  let entry
+  if (plan.versionId) {
+    // A version leaves the title's own record alone and adds or renames
+    // itself in versions[]; the uploader fills in its URLs.
+    if (!existing.slug) {
+      throw new Error(`--version ${plan.versionId}: the title ${plan.slug} is not in the catalog yet; publish it first`)
+    }
+    entry = { ...existing, versions: [...(existing.versions ?? [])] }
+    let version = entry.versions.find((item) => item.id === plan.versionId)
+    if (!version) {
+      version = { id: plan.versionId, label: plan.versionLabel ?? plan.versionId, pdf: '', epub: '', html: `/read/${plan.slug}/${plan.versionId}/`, htmlChapters: `/read/${plan.slug}/${plan.versionId}/chapters/`, htmlSource: '', htmlChaptersSource: '' }
+      entry.versions.push(version)
+    } else if (plan.versionLabel) {
+      version.label = plan.versionLabel
+    }
+  } else {
+    entry = catalogEntryFromPlan(plan, existing)
+    if (plan.versionLabel) entry.versionLabel = plan.versionLabel
+    if (existing.versions) entry.versions = existing.versions
+  }
 
   upsertCatalogEntry(catalog, entry)
 
@@ -2054,6 +2115,8 @@ async function runLiveCatalogCheck(plan) {
     'emacs',
     'emacsGuide',
     'emacsGuideSource',
+    'versionLabel',
+    'versions',
   ]
   const hostedGuides = [
     ['vaultGuide', 'vaultGuideSource'],
@@ -2159,6 +2222,12 @@ async function buildPlan(inputDir, options) {
     basename(inputDir),
   )
   const slug = slugify(contractSlug ?? version.title_stem ?? metadata.title_stem ?? stem)
+  if (options.version && !/^[a-z0-9-]+$/.test(options.version)) {
+    throw new Error(`--version must be a lowercase URL-safe id: ${options.version}`)
+  }
+  if (options.version && ['guide', 'emacs-guide', 'chapters', 'pdf', 'epub', 'vault', 'mobile-vault', 'emacs', 'cover'].includes(options.version)) {
+    throw new Error(`--version ${options.version} collides with a route segment`)
+  }
   const shelf = options.shelf ?? firstpair.shelf
   const title = firstValue(options.title, version.html_title, version.title, metadata.title, titleFromSlug(slug))
   const author = firstValue(version.author, metadata.author)
@@ -2232,7 +2301,11 @@ async function buildPlan(inputDir, options) {
     emacs,
     cover,
     headboard,
-    stageDir: join(root, 'book-uploads', 'staging', slug),
+    versionId: options.version ?? null,
+    versionLabel: options['version-label'] ?? null,
+    stageDir: options.version
+      ? join(root, 'book-uploads', 'staging', slug, options.version)
+      : join(root, 'book-uploads', 'staging', slug),
     publicDir: join(root, 'public', slug),
     icloudDir: resolve(options['icloud-dir'] ?? join(homedir(), 'icloud', 'books')),
     copyIcloud: !options['no-icloud'],
@@ -2272,6 +2345,7 @@ function printablePlan(
     stageDir: repoRelative(plan.stageDir),
     publicDir: repoRelative(plan.publicDir),
     source: plan.source,
+    version: plan.versionId ? { id: plan.versionId, label: plan.versionLabel } : null,
     dryRun,
     catalogEntry,
     artifacts: {
@@ -2429,6 +2503,9 @@ async function main() {
   }
 
   const uploadArgs = ['scripts/upload-book-package.mjs', plan.slug]
+  if (plan.versionId) {
+    uploadArgs.push('--version', plan.versionId)
+  }
 
   if (plan.verbose) {
     uploadArgs.push('--verbose')

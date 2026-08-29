@@ -88,6 +88,24 @@ type Book = {
   emacsGuide?: string
   emacsGuideSource?: string
   tags: string[]
+  versionLabel?: string
+  versions?: BookVersion[]
+}
+
+// A version of a title — a language edition, say — with its own deliverables
+// under /<slug>/<version>/… and /read/<slug>/<version>/…
+type BookVersion = {
+  id: string
+  label: string
+  pdf: string
+  epub: string
+  html: string
+  htmlChapters: string
+  vault?: string
+  mobileVault?: string
+  vaultGuide?: string
+  emacs?: string
+  emacsGuide?: string
 }
 
 type Catalog = {
@@ -118,6 +136,14 @@ const bookDetailHref = (book: Book): string => `/books/${book.slug}/`
 const bookPageHref = (book: Book): string => bookDetailHref(book)
 const stableDeliverableHref = (book: Book, format: 'pdf' | 'epub' | 'vault' | 'mobile-vault' | 'emacs' | 'cover'): string =>
   `/${book.slug}/${format}/`
+type VersionRow = { id: string | null; label: string; pdf: string; epub: string; html: string; htmlChapters: string; vault?: string; mobileVault?: string; vaultGuide?: string; emacs?: string; emacsGuide?: string }
+// The title's own deliverables listed as the first version, then the others.
+const bookVersions = (book: Book): VersionRow[] =>
+  book.versions?.length
+    ? [{ id: null, label: book.versionLabel ?? 'Default edition', pdf: book.pdf, epub: book.epub, html: book.html, htmlChapters: book.htmlChapters, vault: book.vault, mobileVault: book.mobileVault, vaultGuide: book.vaultGuide, emacs: book.emacs, emacsGuide: book.emacsGuide }, ...book.versions]
+    : []
+const versionHref = (book: Book, version: VersionRow, format: 'pdf' | 'epub' | 'vault' | 'mobile-vault' | 'emacs'): string =>
+  version.id ? `/${book.slug}/${version.id}/${format}/` : stableDeliverableHref(book, format)
 const bookHeroImage = (book: Book): string => book.headboard ?? book.cover ?? ''
 
 const knownLibraryShelfIds = new Set<string>(libraryShelfConfig.map((shelf) => shelf.id))
@@ -389,6 +415,28 @@ const fragments = [
             </a>
           </div>
         </section>
+        <section v-if="bookVersions(selectedBook).length" class="book-detail__section" aria-labelledby="book-detail-versions">
+          <div>
+            <p class="eyebrow">Versions</p>
+            <h2 id="book-detail-versions">Language versions</h2>
+          </div>
+          <ul class="book-versions">
+            <li v-for="version in bookVersions(selectedBook)" :key="version.id ?? 'default'" class="book-versions__item">
+              <span class="book-versions__label">{{ version.label }}</span>
+              <div class="book-detail__links">
+                <a :href="versionHref(selectedBook, version, 'pdf')">PDF</a>
+                <a :href="versionHref(selectedBook, version, 'epub')">EPUB</a>
+                <a :href="version.html" target="_blank" rel="noopener noreferrer">Hosted HTML</a>
+                <a :href="version.htmlChapters" target="_blank" rel="noopener noreferrer">Chapter HTML</a>
+                <a v-if="version.vault" :href="versionHref(selectedBook, version, 'vault')" download>Obsidian Vault</a>
+                <a v-if="version.mobileVault" :href="versionHref(selectedBook, version, 'mobile-vault')" download>Mobile Obsidian Vault</a>
+                <a v-if="version.vaultGuide" :href="version.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
+                <a v-if="version.emacs" :href="versionHref(selectedBook, version, 'emacs')" download>Emacs edition</a>
+                <a v-if="version.emacsGuide" :href="version.emacsGuide" target="_blank" rel="noopener noreferrer">Emacs guide</a>
+              </div>
+            </li>
+          </ul>
+        </section>
 
         <section class="book-detail__section" aria-labelledby="book-detail-context">
           <div>
@@ -642,6 +690,16 @@ const fragments = [
                     <a v-if="book.vaultGuide" :href="book.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
                     <a v-if="book.emacs" :href="stableDeliverableHref(book, 'emacs')" download>Emacs</a>
                     <a v-if="book.emacsGuide" :href="book.emacsGuide" target="_blank" rel="noopener noreferrer">Emacs guide</a>
+                    <template v-for="version in (book.versions ?? [])" :key="version.id">
+                      <span class="book-links__version">{{ version.label }}:</span>
+                      <a :href="versionHref(book, version, 'pdf')">PDF</a>
+                      <a :href="versionHref(book, version, 'epub')">EPUB</a>
+                      <a :href="version.html" target="_blank" rel="noopener noreferrer">Read</a>
+                      <a v-if="version.vault" :href="versionHref(book, version, 'vault')" download>Vault</a>
+                      <a v-if="version.vaultGuide" :href="version.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>
+                      <a v-if="version.emacs" :href="versionHref(book, version, 'emacs')" download>Emacs</a>
+                      <a v-if="version.emacsGuide" :href="version.emacsGuide" target="_blank" rel="noopener noreferrer">Emacs guide</a>
+                    </template>
                     <a v-if="book.post" :href="book.post" target="_blank" rel="noreferrer">
                       Story
                       <ExternalLink :size="14" />

@@ -4,6 +4,12 @@ import { basename, isAbsolute, join, relative } from 'node:path'
 import { head, put } from '@vercel/blob'
 
 const slug = process.argv[2]
+// --version <id>: upload one version of the title (a language edition, say),
+// whose sources sit under books[slug].versions[id] and whose Blob objects go
+// under books/<slug>/<id>/…
+const versionIndex = process.argv.indexOf('--version')
+const versionId = versionIndex > 0 ? process.argv[versionIndex + 1] : null
+const blobBase = versionId ? `${slug}/${versionId}` : slug
 const dryRun = process.argv.includes('--dry-run')
 const verbose = process.argv.includes('--verbose')
 
@@ -22,7 +28,7 @@ const manifestPath = join(uploadsDir, 'blob-manifest.json')
 const catalog = JSON.parse(await readFile(catalogPath, 'utf8'))
 const sources = JSON.parse(await readFile(sourcesPath, 'utf8'))
 const book = catalog.books.find((entry) => entry.slug === slug)
-const sourceBook = sources.books?.[slug]
+const sourceBook = versionId ? sources.books?.[slug]?.versions?.[versionId] : sources.books?.[slug]
 
 if (!book) {
   console.error(`unknown catalog slug: ${slug}`)
@@ -246,7 +252,7 @@ function sourcePath(value) {
 
 function filePathname(kind, file, preferredName) {
   const name = preferredName ?? basename(file.path)
-  return `books/${slug}/${kind}/${file.sha256.slice(0, 16)}-${name}`
+  return `books/${blobBase}/${kind}/${file.sha256.slice(0, 16)}-${name}`
 }
 
 function chapterDigest(files) {
@@ -313,7 +319,7 @@ async function uploadChapterUnit(manifest, localDir) {
   }
 
   const digest = chapterDigest(files)
-  const prefix = `books/${slug}/chapters/${digest.slice(0, 16)}`
+  const prefix = `books/${blobBase}/chapters/${digest.slice(0, 16)}`
   const existing = manifest.chapterPackages[digest]
   const records = []
 
@@ -480,57 +486,70 @@ if (!chaptersSource) {
 
 units.htmlChapters = await uploadChapterUnit(manifest, chaptersSource.path)
 
-manifest.books[slug] = {
+manifest.books[blobBase] = {
   updatedAt: new Date().toISOString(),
   dryRun,
   units,
 }
 manifest.updatedAt = new Date().toISOString()
 
+// The catalog record the URLs are written to: the book, or its version.
+let target = book
+if (versionId) {
+  book.versions ??= []
+  target = book.versions.find((item) => item.id === versionId)
+  if (!target) {
+    target = { id: versionId }
+    book.versions.push(target)
+  }
+  target.label = sourceBook.label ?? target.label ?? versionId
+}
+const routeBase = versionId ? `${slug}/${versionId}` : slug
+
 if (!dryRun) {
-  book.pdf = units.pdf.url
-  book.epub = units.epub.url
-  book.htmlSource = units.html.url
-  book.htmlChaptersSource = units.htmlChapters.url
-  book.html = `/read/${slug}/`
-  book.htmlChapters = `/read/${slug}/chapters/`
+  target.pdf = units.pdf.url
+  target.epub = units.epub.url
+  target.htmlSource = units.html.url
+  target.htmlChaptersSource = units.htmlChapters.url
+  target.html = `/read/${routeBase}/`
+  target.htmlChapters = `/read/${routeBase}/chapters/`
 
   if (units.tutorial) {
-    book.tutorialSource = units.tutorial.url
-    book.tutorial = `/learn/${slug}/`
+    target.tutorialSource = units.tutorial.url
+    target.tutorial = `/learn/${routeBase}/`
   }
 
   if (units.cover) {
-    book.cover = units.cover.url
+    target.cover = units.cover.url
   }
 
   if (units.headboard) {
-    book.headboard = units.headboard.url
+    target.headboard = units.headboard.url
   }
 
   if (units.vault) {
-    book.vault = units.vault.url
+    target.vault = units.vault.url
   }
 
   if (units.mobileVault) {
-    book.mobileVault = units.mobileVault.url
+    target.mobileVault = units.mobileVault.url
   }
 
   if (units.emacs) {
-    book.emacs = units.emacs.url
+    target.emacs = units.emacs.url
   }
 
   if (units.emacsGuide) {
-    book.emacsGuide = `/read/${slug}/emacs-guide/`
-    book.emacsGuideSource = units.emacsGuide.url
+    target.emacsGuide = `/read/${routeBase}/emacs-guide/`
+    target.emacsGuideSource = units.emacsGuide.url
   }
 
   if (units.vaultGuide) {
     if (vaultGuideHtmlSource) {
-      book.vaultGuide = `/read/${slug}/guide/`
-      book.vaultGuideSource = units.vaultGuide.url
+      target.vaultGuide = `/read/${routeBase}/guide/`
+      target.vaultGuideSource = units.vaultGuide.url
     } else {
-      book.vaultGuide = units.vaultGuide.url
+      target.vaultGuide = units.vaultGuide.url
     }
   }
 
@@ -541,7 +560,7 @@ if (!dryRun) {
   await rename(`${catalogPath}.tmp`, catalogPath)
 }
 
-const result = manifest.books[slug]
+const result = manifest.books[blobBase]
 const summary = {
   updatedAt: result.updatedAt,
   dryRun: result.dryRun,

@@ -14,17 +14,21 @@ function requestParams(requestUrl) {
   const url = new URL(requestUrl, 'https://firstpair.org')
   const querySlug = url.searchParams.get('slug')
   const queryFormat = url.searchParams.get('format')
+  const queryVersion = url.searchParams.get('version')
 
   if (querySlug || queryFormat) {
-    return { slug: querySlug, format: queryFormat }
+    return { slug: querySlug, format: queryFormat, version: queryVersion }
   }
 
-  const [slug, format] = url.pathname
+  const parts = url.pathname
     .split('/')
     .filter(Boolean)
     .map((part) => decodeURIComponent(part))
 
-  return { slug, format }
+  // /<slug>/<format>/ or, for a version of the title, /<slug>/<version>/<format>/
+  if (parts.length >= 3) return { slug: parts[0], version: parts[1], format: parts[2] }
+  const [slug, format] = parts
+  return { slug, format, version: null }
 }
 
 export default async function handler(request, response) {
@@ -35,17 +39,18 @@ export default async function handler(request, response) {
     return
   }
 
-  const { slug, format } = requestParams(request.url)
+  const { slug, format, version } = requestParams(request.url)
   const field = fieldByFormat[format]
 
   if (!slug || !field) {
     response.statusCode = 400
-    response.end('Expected /<book-slug>/(pdf|epub|vault|mobile-vault|emacs|cover)/')
+    response.end('Expected /<book-slug>/(pdf|epub|vault|mobile-vault|emacs|cover)/ or /<book-slug>/<version>/(pdf|epub|vault|mobile-vault|emacs|cover)/')
     return
   }
 
   const book = books.get(slug)
-  const target = book?.[field]
+  const holder = version ? book?.versions?.[version] : book
+  const target = holder?.[field]
 
   if (!target) {
     response.statusCode = 404

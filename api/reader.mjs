@@ -85,11 +85,19 @@ function encodePathParts(parts) {
 }
 
 function targetUrl(parts, search, areaOverride = null) {
-  const [slug, area, ...rest] = parts
+  let [slug, area, ...rest] = parts
   const book = books.get(slug)
 
   if (!book) {
     return null
+  }
+
+  // A version of the title (/read/<slug>/<version>/…) reads from its own
+  // sources; the book itself still names the page.
+  let sources = book
+  if (area && book.versions?.[area]) {
+    sources = book.versions[area]
+    ;[area, ...rest] = rest
   }
 
   if (areaOverride === 'tutorial') {
@@ -101,23 +109,23 @@ function targetUrl(parts, search, areaOverride = null) {
   }
 
   if (!area) {
-    return { url: `${book.htmlSource}${search}`, kind: 'html', book }
+    return { url: `${sources.htmlSource}${search}`, kind: 'html', book }
   }
 
   if (area === 'guide') {
-    if (rest.length > 0 || !book.vaultGuideSource) {
+    if (rest.length > 0 || !sources.vaultGuideSource) {
       return null
     }
 
-    return { url: `${book.vaultGuideSource}${search}`, kind: 'html', book }
+    return { url: `${sources.vaultGuideSource}${search}`, kind: 'html', book }
   }
 
   if (area === 'emacs-guide') {
-    if (rest.length > 0 || !book.emacsGuideSource) {
+    if (rest.length > 0 || !sources.emacsGuideSource) {
       return null
     }
 
-    return { url: `${book.emacsGuideSource}${search}`, kind: 'html', book }
+    return { url: `${sources.emacsGuideSource}${search}`, kind: 'html', book }
   }
 
   if (area !== 'chapters') {
@@ -125,11 +133,11 @@ function targetUrl(parts, search, areaOverride = null) {
   }
 
   if (rest.length === 0) {
-    return { url: `${book.htmlChaptersSource}${search}`, kind: 'html', book }
+    return { url: `${sources.htmlChaptersSource}${search}`, kind: 'html', book }
   }
 
   return {
-    url: `${book.htmlChaptersBase}/${encodePathParts(rest)}${search}`,
+    url: `${sources.htmlChaptersBase}/${encodePathParts(rest)}${search}`,
     kind: 'html',
     book,
   }

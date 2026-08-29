@@ -16,6 +16,10 @@
       "dest": "/api/deliverable?slug=$1&format=$2"
     },
     {
+      "src": "^/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|emacs|cover)/?$",
+      "dest": "/api/deliverable?slug=$1&version=$2&format=$3"
+    },
+    {
       "src": "^/obsidian/?$",
       "dest": "/obsidian/index.html"
     },

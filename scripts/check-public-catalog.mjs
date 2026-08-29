@@ -20,6 +20,11 @@ const hasDeliverableProxyRoute =
 const hasObsidianHandbookRoute =
   routeDestinations.get('^/obsidian/?$') === '/obsidian/index.html'
 const hasEmacsHandbookRoute = routeDestinations.get('^/emacs/?$') === '/emacs/index.html'
+const hasVersionDeliverableRoute =
+  routeDestinations.get('^/([A-Za-z0-9-]+)/([A-Za-z0-9-]+)/(pdf|epub|vault|mobile-vault|emacs|cover)/?$') ===
+  '/api/deliverable?slug=$1&version=$2&format=$3'
+const reservedVersionIds = new Set(['guide', 'emacs-guide', 'chapters', 'pdf', 'epub', 'vault', 'mobile-vault', 'emacs', 'cover'])
+const invalidVersions = []
 const hasFilesystemRoute = (vercel.routes ?? []).some((route) => route.handle === 'filesystem')
 const hasAppFallbackRoute = routeDestinations.get('^/(.*)$') === '/index.html'
 const { readerBooks } = await import('../reader-map.mjs')
@@ -198,6 +203,28 @@ for (const book of catalog.books) {
     invalidPostUrls.push({ slug: book.slug, post: book.post })
   }
 
+  // Versions of a title: each has its own routes one segment deeper and its
+  // own Blob sources; ids must be slugs that cannot be mistaken for an area.
+  for (const version of book.versions ?? []) {
+    const prefix = `${book.slug}/${version.id}`
+    const problem = (field, value) => invalidVersions.push({ slug: prefix, field, value })
+    if (!/^[a-z0-9-]+$/.test(version.id ?? '') || reservedVersionIds.has(version.id)) problem('id', version.id)
+    if (!version.label) problem('label', version.label)
+    for (const field of ['pdf', 'epub', 'htmlSource', 'htmlChaptersSource']) if (!version[field]?.startsWith('https://')) problem(field, version[field])
+    if (version.html !== `/read/${prefix}/`) problem('html', version.html)
+    if (version.htmlChapters !== `/read/${prefix}/chapters/`) problem('htmlChapters', version.htmlChapters)
+    if (version.vaultGuide || version.vaultGuideSource) {
+      if (version.vaultGuide !== `/read/${prefix}/guide/`) problem('vaultGuide', version.vaultGuide)
+      if (!version.vaultGuideSource?.startsWith('https://')) problem('vaultGuideSource', version.vaultGuideSource)
+    }
+    if (version.emacsGuide || version.emacsGuideSource) {
+      if (version.emacsGuide !== `/read/${prefix}/emacs-guide/`) problem('emacsGuide', version.emacsGuide)
+      if (!version.emacsGuideSource?.startsWith('https://')) problem('emacsGuideSource', version.emacsGuideSource)
+    }
+    for (const field of ['vault', 'mobileVault', 'emacs', 'cover']) if (version[field] && !version[field].startsWith('https://')) problem(field, version[field])
+    if (!hasVersionDeliverableRoute) problem('route', 'versioned deliverable route missing from vercel.json')
+  }
+
   for (const field of ['htmlSource', 'htmlChaptersSource']) {
     if (!book[field]?.startsWith('https://')) {
       invalidSourceUrls.push({ slug: book.slug, field, url: book[field] })
@@ -294,6 +321,7 @@ if (
   invalidPostUrls.length ||
   invalidAuthors.length ||
   invalidShelves.length ||
+  invalidVersions.length ||
   staleReaderMap.length ||
   staleDeliverableMap.length ||
   invalidSourceUrls.length ||
@@ -320,6 +348,8 @@ if (
         invalidPostUrls,
         invalidAuthors,
         invalidShelves,
+        invalidVersions,
+        hasVersionDeliverableRoute,
         staleReaderMap,
         staleDeliverableMap,
         invalidSourceUrls,
