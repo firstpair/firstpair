@@ -1,9 +1,9 @@
 {
   "id": "firstpair-reader",
   "name": "FirstPair Reader",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "minAppVersion": "1.5.0",
-  "description": "Offline book, evidence, and aligned multilingual reading for FirstPair vaults.",
+  "description": "Offline book, evidence, and aligned multilingual reading for FirstPair vaults: source column first, dictionary drawer with analysed forms.",
   "author": "First Pair",
   "authorUrl": "https://firstpair.org",
   "isDesktopOnly": false
