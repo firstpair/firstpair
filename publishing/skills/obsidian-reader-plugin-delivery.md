@@ -143,7 +143,13 @@ first and the enabled translations after it.
    (Settings → FirstPair Reader): `layout`, and `reserveDrawerColumn` (default
    on) which keeps the grid at the full track count when a translation is
    switched off so the drawer opens over the empty track rather than a
-   visible column. Never leave a blank view: an error while opening is shown
+   visible column; `keepDrawerOpen` (a standing dictionary column that keeps
+   the last entry across page turns, no Close button); `dictionaryLanguages`
+   (`shown`: only the translations on screen; `all`: every language, shown
+   ones first). The drawer is placed by measurement from the strip grid — the
+   reserved track or the last visible column in column layout, a right-hand
+   panel in stacked layout — never from the viewport edge, so it is exact in
+   any pane. Never leave a blank view: an error while opening is shown
    with a Retry button. Test the plugin in jsdom against a mocked `obsidian`
    module (`publishing/tests/obsidian-mock.cjs`,
    `test-firstpair-reader-dom.mjs`): open, render, tap a word, switch layout,

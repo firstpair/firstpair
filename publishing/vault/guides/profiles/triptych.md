@@ -23,7 +23,11 @@ With a translation switched off, the remaining columns stay in place on the
 left and the empty column is where the dictionary drawer opens, so it never
 covers a translation you are reading. Settings → FirstPair Reader → *Reserve
 the last column for the dictionary* turns this off, and the visible columns
-spread across the full width instead.
+spread across the full width instead. Two more settings there: *Keep the
+dictionary open* makes it a standing column that keeps the last entry while
+you read and turn pages, and *Dictionary languages* answers either only in
+the translations on screen (one language when one translation is on) or in
+every language of the edition, the shown ones first.
 
 Select any word of the source text to open the dictionary drawer. In Columns
 the drawer covers only the last column, so the source and the other

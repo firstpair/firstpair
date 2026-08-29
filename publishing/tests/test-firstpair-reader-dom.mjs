@@ -148,6 +148,31 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     select.value = 'columns'; select.dispatchEvent(new window.Event('change')); await settle()
     assert.equal(view.plugin.settings.layout, 'columns')
     assert.ok(root.querySelector('.firstpair-reader__page--columns'))
+
+    // Dictionary languages follow the shown translations (English is off),
+    // or answer in all languages with the shown ones first.
+    const mezzo = () => Array.from(root.querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'mezzo')
+    mezzo().click(); await settle(); await settle()
+    let headings = Array.from(drawer.querySelectorAll('h3')).map((h) => h.textContent)
+    assert.deepEqual(headings, ['Русский'])
+    const languages = app.settingsContainer.querySelectorAll('select')[1]
+    languages.value = 'all'; languages.dispatchEvent(new window.Event('change')); await settle()
+    mezzo().click(); await settle(); await settle()
+    headings = Array.from(drawer.querySelectorAll('h3')).map((h) => h.textContent)
+    assert.deepEqual(headings, ['Русский', 'English'])
+
+    // A standing dictionary column opens with the page, has no Close button,
+    // and keeps the last entry across page turns.
+    const keep = app.settingsContainer.querySelectorAll('input[type="checkbox"]')[1]
+    keep.checked = true; keep.dispatchEvent(new window.Event('change')); await settle(); await settle()
+    assert.equal(drawer.hasAttribute('hidden'), false)
+    mezzo().click(); await settle(); await settle()
+    assert.equal(drawer.querySelector('button'), null)
+    assert.match(drawer.textContent, /middle; half/)
+    next.click(); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 2/)
+    assert.equal(drawer.hasAttribute('hidden'), false)
+    assert.match(drawer.textContent, /middle; half/)
   } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
 })
 

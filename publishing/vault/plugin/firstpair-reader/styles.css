@@ -17,7 +17,8 @@
 .firstpair-reader__verse { line-height: 1.65; min-height: 1.65em; }
 .firstpair-reader__word { background: none; border: 0; box-shadow: none; color: inherit; cursor: pointer; font: inherit; height: auto; padding: 0; vertical-align: baseline; }
 .firstpair-reader__word:hover, .firstpair-reader__word:focus-visible { background: var(--text-highlight-bg); text-decoration: underline; }
-.firstpair-reader__drawer { background: var(--background-secondary); border-inline-start: 1px solid var(--background-modifier-border); box-shadow: var(--shadow-l); height: 100%; inset-block: 0; inset-inline-end: 0; max-width: 90vw; overflow: auto; padding: var(--size-4-4); position: fixed; width: min(30rem, 90vw); z-index: 20; }
+.firstpair-reader__drawer { background: var(--background-secondary); border-inline-start: 1px solid var(--background-modifier-border); box-shadow: var(--shadow-l); box-sizing: border-box; height: 100%; inset-block: 0; inset-inline-end: 0; max-width: 90vw; overflow: auto; padding: var(--size-4-4); position: fixed; width: min(30rem, 90vw); z-index: 20; }
+.firstpair-reader__drawer-hint { color: var(--text-muted); }
 .firstpair-reader__drawer[hidden] { display: none; }
 .firstpair-reader__grammar { color: var(--text-muted); font-size: var(--font-ui-smaller); font-weight: normal; }
 .firstpair-reader__drawer-head { align-items: center; display: flex; justify-content: space-between; }

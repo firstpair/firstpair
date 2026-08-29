@@ -18,7 +18,10 @@ const STACK_BELOW = 700;
 // reserveDrawerColumn: with a translation switched off, the remaining columns
 // keep their places on the left and the empty track is where the dictionary
 // drawer opens, so it never covers a visible translation.
-const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true };
+// keepDrawerOpen: the dictionary is a standing column that keeps the last entry.
+// dictionaryLanguages: "shown" answers only in the translations on screen;
+// "all" answers in every language, the shown ones first.
+const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true, keepDrawerOpen: false, dictionaryLanguages: "shown" };
 
 class ReaderHistory {
   constructor(limit = 64) { this.limit = limit; this.items = []; }
@@ -113,17 +116,33 @@ class FirstPairReaderView extends ItemView {
     if (typeof window.matchMedia === "function") { this.orientation = window.matchMedia("(orientation: portrait)"); this.orientation.addEventListener("change", this.applyLayout); }
     if (typeof ResizeObserver === "function") { this.resizeObserver = new ResizeObserver(() => this.applyLayout()); this.resizeObserver.observe(this.root); }
   }
-  // In column layout the drawer covers only the last column, as on a desktop,
-  // so the source and the other translations stay readable beside it.
+  // The drawer is placed by measurement: in column layout it sits exactly on
+  // the reserved (empty) track when there is one, otherwise over the last
+  // column; either way it never covers a translation the reader is using. In
+  // stacked layout it is a panel on the right of the Reader pane.
   sizeDrawer() {
     if (!this.drawer || this.drawer.hasAttribute("hidden")) return;
-    const last = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip .firstpair-reader__cell:last-child") : null;
-    if (!last) { this.drawer.style.removeProperty("width"); return; }
+    const style = this.drawer.style;
+    for (const property of ["left", "top", "width", "height"]) style.removeProperty(property);
+    const pane = this.root.getBoundingClientRect();
+    if (!pane.width) return;
+    style.top = `${Math.round(pane.top)}px`; style.height = `${Math.round(pane.height)}px`;
+    const strip = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip") : null;
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-    const rect = last.getBoundingClientRect();
-    const edge = this.reservedTrack ? rect.right + 8 : rect.left - 8;
-    const width = Math.min(window.innerWidth * 0.9, Math.max(15 * rem, window.innerWidth - edge));
-    this.drawer.style.width = `${Math.round(width)}px`;
+    if (!strip) {
+      const width = Math.min(30 * rem, pane.width * 0.9);
+      style.left = `${Math.round(pane.right - width)}px`; style.width = `${Math.round(width)}px`; return;
+    }
+    const grid = strip.getBoundingClientRect();
+    const tracks = Number(strip.style.getPropertyValue("--firstpair-columns")) || strip.children.length || 1;
+    const gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+    const track = (grid.width - gap * (tracks - 1)) / tracks;
+    const cells = strip.querySelectorAll(".firstpair-reader__cell");
+    // The drawer's own column: the empty track, or the last visible one.
+    const index = this.reservedTrack ? cells.length : Math.max(0, cells.length - 1);
+    const left = grid.left + index * (track + gap) - gap / 2;
+    const width = Math.max(15 * rem, pane.right - left);
+    style.left = `${Math.round(Math.max(pane.left, left))}px`; style.width = `${Math.round(Math.min(width, pane.width))}px`;
   }
   makeButton(label, icon, action) {
     const button = this.rail.createEl("button", { attr: { "aria-label": label, title: label } });
@@ -182,13 +201,30 @@ class FirstPairReaderView extends ItemView {
     }
     this.applyLayout();
   }
+  // Which dictionaries answer, and in what order: the translations on screen
+  // first (in the edition's order), then — only when the setting says all —
+  // the ones switched off.
+  dictionaryLanguages() {
+    const shown = this.parallel.translations.filter((item) => this.enabled.has(item.id));
+    if (this.plugin.settings.dictionaryLanguages !== "all") return shown;
+    return [...shown, ...this.parallel.translations.filter((item) => !this.enabled.has(item.id))];
+  }
+  showDrawer() {
+    this.drawer.removeAttribute("hidden"); this.sizeDrawer();
+    if (!this.drawer.childElementCount) {
+      const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: "Dictionary" });
+      this.drawer.createEl("p", { text: "Select a word of the source text.", cls: "firstpair-reader__drawer-hint" });
+    }
+  }
   async openDictionary(surface) {
     const word = normalizeWord(surface); this.drawer.empty(); this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: surface });
-    const close = head.createEl("button", { text: "Close", attr: { "aria-label": "Close dictionary" } });
-    close.addEventListener("click", () => this.drawer.setAttribute("hidden", ""));
+    if (!this.plugin.settings.keepDrawerOpen) {
+      const close = head.createEl("button", { text: "Close", attr: { "aria-label": "Close dictionary" } });
+      close.addEventListener("click", () => this.drawer.setAttribute("hidden", ""));
+    }
     let found = false;
-    for (const language of this.parallel.translations.filter((item) => this.enabled.has(item.id))) {
+    for (const language of this.dictionaryLanguages()) {
       const dictionary = this.parallel.dictionaries?.[language.id]; if (!dictionary) continue;
       const section = this.drawer.createDiv({ cls: "firstpair-reader__definition" }); section.createEl("h3", { text: language.label });
       let entries;
@@ -215,6 +251,7 @@ class FirstPairReaderView extends ItemView {
       }
     } catch (error) { this.showError(error); return; }
     if (resetScroll) this.root.scrollTop = 0;
+    if (this.plugin.settings.keepDrawerOpen) this.showDrawer(); else this.sizeDrawer();
     this.previous.disabled = this.position === 0; this.next.disabled = this.position === this.pages.length - 1;
     this.back.disabled = !this.history.items.length;
     this.previous.title = this.pages[this.position - 1]?.title ?? "Previous";
@@ -233,6 +270,14 @@ class FirstPairReaderSettingTab extends PluginSettingTab {
       .setDesc("With a translation switched off, keep the remaining columns in place on the left; the dictionary drawer opens over the empty column instead of covering a translation. Off: the visible columns spread across the full width.")
       .addToggle((toggle) => toggle.setValue(this.plugin.settings.reserveDrawerColumn)
         .onChange(async (value) => { await this.plugin.saveSettings({ reserveDrawerColumn: value }); this.plugin.refreshViews(true); }));
+    new Setting(containerEl).setName("Keep the dictionary open")
+      .setDesc("The dictionary is a standing column that keeps the last entry while you read and turn pages, instead of a drawer that closes.")
+      .addToggle((toggle) => toggle.setValue(this.plugin.settings.keepDrawerOpen)
+        .onChange(async (value) => { await this.plugin.saveSettings({ keepDrawerOpen: value }); this.plugin.refreshViews(true); }));
+    new Setting(containerEl).setName("Dictionary languages")
+      .setDesc("Shown: answer only in the translations on screen — one language when one translation is on. All: answer in every language of the edition, the shown ones first.")
+      .addDropdown((dropdown) => dropdown.addOption("shown", "Shown translations").addOption("all", "All, shown first").setValue(this.plugin.settings.dictionaryLanguages)
+        .onChange(async (value) => { await this.plugin.saveSettings({ dictionaryLanguages: value }); }));
   }
 }
 
