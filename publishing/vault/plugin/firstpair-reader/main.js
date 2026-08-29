@@ -47,10 +47,15 @@ class FirstPairReaderView extends ItemView {
     return JSON.parse(await this.app.vault.read(file));
   }
   async onOpen() {
-    this.containerEl.empty(); this.root = this.containerEl.createDiv({ cls: "firstpair-reader" });
+    // The frame is the drawer's containing block: the scrolling root and the
+    // drawer are siblings in it, so the drawer stays put while the text
+    // scrolls, and its position is measured against the frame — never the
+    // window, whose coordinates Obsidian's contained leaves do not share.
+    this.containerEl.empty(); this.frame = this.containerEl.createDiv({ cls: "firstpair-reader__frame" });
+    this.root = this.frame.createDiv({ cls: "firstpair-reader" });
     this.toolbar = this.root.createDiv({ cls: "firstpair-reader__toolbar" });
     this.page = this.root.createDiv({ cls: "firstpair-reader__page" });
-    this.drawer = this.root.createDiv({ cls: "firstpair-reader__drawer", attr: { hidden: "" } });
+    this.drawer = this.frame.createDiv({ cls: "firstpair-reader__drawer", attr: { hidden: "" } });
     this.rail = this.root.createDiv({ cls: "firstpair-reader__rail" });
     try { await this.loadIndex(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage(); }
     catch (error) { this.showError(error); }
@@ -123,26 +128,27 @@ class FirstPairReaderView extends ItemView {
   sizeDrawer() {
     if (!this.drawer || this.drawer.hasAttribute("hidden")) return;
     const style = this.drawer.style;
-    for (const property of ["left", "top", "width", "height"]) style.removeProperty(property);
-    const pane = this.root.getBoundingClientRect();
+    for (const property of ["left", "width"]) style.removeProperty(property);
+    const pane = this.frame.getBoundingClientRect();
     if (!pane.width) return;
-    style.top = `${Math.round(pane.top)}px`; style.height = `${Math.round(pane.height)}px`;
     const strip = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip") : null;
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
     if (!strip) {
-      const width = Math.min(30 * rem, pane.width * 0.9);
-      style.left = `${Math.round(pane.right - width)}px`; style.width = `${Math.round(width)}px`; return;
+      // Stacked: a generous panel — two fifths of the pane, never under 30rem, never over nine tenths.
+      const width = Math.min(pane.width * 0.9, Math.max(30 * rem, pane.width * 0.4));
+      style.left = `${Math.round(pane.width - width)}px`; style.width = `${Math.round(width)}px`; return;
     }
     const grid = strip.getBoundingClientRect();
     const tracks = Number(strip.style.getPropertyValue("--firstpair-columns")) || strip.children.length || 1;
     const gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
     const track = (grid.width - gap * (tracks - 1)) / tracks;
     const cells = strip.querySelectorAll(".firstpair-reader__cell");
-    // The drawer's own column: the empty track, or the last visible one.
+    // The drawer's own column: the empty track, or the last visible one — as
+    // an offset from the frame's left edge.
     const index = this.reservedTrack ? cells.length : Math.max(0, cells.length - 1);
-    const left = grid.left + index * (track + gap) - gap / 2;
-    const width = Math.max(15 * rem, pane.right - left);
-    style.left = `${Math.round(Math.max(pane.left, left))}px`; style.width = `${Math.round(Math.min(width, pane.width))}px`;
+    const left = Math.max(0, grid.left - pane.left + index * (track + gap) - gap / 2);
+    const width = Math.min(pane.width, Math.max(15 * rem, pane.width - left));
+    style.left = `${Math.round(pane.width - width)}px`; style.width = `${Math.round(width)}px`;
   }
   makeButton(label, icon, action) {
     const button = this.rail.createEl("button", { attr: { "aria-label": label, title: label } });
