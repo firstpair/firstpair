@@ -67,7 +67,9 @@ const invalidAuthors = []
 const validPostOrigins = new Set([
   'https://firstpair.press',
   'https://querygraph.ai',
-  'https://eigentimes.com',, 'https://firstpair.org'])
+  'https://eigentimes.com',
+  'https://firstpair.org',
+])
 const validShelves = new Set(['history', 'literature', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
 const staleDeliverableMap = []
