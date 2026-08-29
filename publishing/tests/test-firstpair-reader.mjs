@@ -27,3 +27,14 @@ test('standard Reader preserves navigation and bounded local history', () => {
   assert.match(source, /limit = 64/)
   assert.match(source, /rotate-ccw/)
 })
+
+test('standard Reader supports data-driven multilingual editions offline', () => {
+  assert.match(source, /_data\/parallel-reader\.json/)
+  assert.match(source, /parallel\.translations/)
+  assert.match(source, /defaultVisible/)
+  assert.match(source, /firstpair-reader__language-toggle/)
+  assert.match(source, /openDictionary/)
+  assert.match(source, /loadDictionary/)
+  assert.match(source, /unit\.translations/)
+  assert.doesNotMatch(source, /Italian|English|Russian|Dante/)
+})
