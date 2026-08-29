@@ -410,9 +410,10 @@ class BuildTests(Fixture):
         references = (bundle / "fixture-preview-refs.info").read_text(encoding="utf-8")
         self.assertIn("Node: Latin Glossary", references)
         self.assertIn("scribo", references)
-        for name in ("entries.tsv", "forms.tsv", "stems.tsv", "endings.tsv", "glosses.tsv", "LEXICON.json"):
+        for name in ("entries.tsv", "forms.tsv", "stems.tsv", "endings.tsv", "glosses/s.tsv", "glosses/p.tsv", "LEXICON.json"):
             self.assertTrue((bundle / "lexicon" / name).is_file(), name)
-        glosses_table = (bundle / "lexicon" / "glosses.tsv").read_text(encoding="utf-8")
+        self.assertFalse((bundle / "lexicon" / "glosses.tsv").exists(), "glosses ship as shards")
+        glosses_table = "".join(path.read_text(encoding="utf-8") for path in sorted((bundle / "lexicon" / "glosses").glob("*.tsv")))
         self.assertIn("ru\tscribito\tform\tscribo\tverb\tписать\tla-ru.json", glosses_table)
         self.assertIn("ru\tpopuli\tform\tpopuli\t\tнарода\tru-supplement.json", glosses_table)
         lexicon_meta = json.loads((bundle / "lexicon" / "LEXICON.json").read_text(encoding="utf-8"))

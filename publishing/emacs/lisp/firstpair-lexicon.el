@@ -13,7 +13,7 @@
 ;; delivered text actually contains, the stems of those entries, and the
 ;; language's inflection endings.  Looking a word up is therefore a hash
 ;; lookup, and a word the tables do not list is analysed from stems and
-;; endings on the spot.  A fifth table, glosses.tsv, carries translations of
+;; endings on the spot.  A fifth table, glosses/<letter>.tsv, carries translations of
 ;; forms and entries into the target languages the edition declares; the
 ;; reader chooses one language or all of them.  Nothing here contacts a
 ;; server or shells out.
@@ -129,7 +129,33 @@ Change it with `firstpair-lexicon-cycle-languages'.")
      ("stems.tsv" #'firstpair-lexicon--stems)
      ("endings.tsv" #'firstpair-lexicon--endings)
      ("glosses.tsv" #'firstpair-lexicon--glosses)
+     ((pred (lambda (n) (string-prefix-p "glosses/" n))) #'firstpair-lexicon--glosses)
      (_ #'firstpair-lexicon--rows))))
+
+(defun firstpair-lexicon--gloss-shard (key)
+  "The gloss shard KEY lives in: its first letter, lowercased, or \"_\"."
+  (let ((first (and (> (length key) 0) (downcase (substring key 0 1)))))
+    (if (and first (string-match-p "[[:alpha:]]" first)) first "_")))
+
+(defun firstpair-lexicon--gloss-table (bundle key)
+  "The gloss table holding KEY.
+The key's shard, or the single table of an older bundle."
+  (let* ((root (firstpair-bundle-root bundle))
+         (shard (concat "glosses/" (firstpair-lexicon--gloss-shard key) ".tsv")))
+    (cond ((file-readable-p (expand-file-name (concat "lexicon/" shard) root))
+           (firstpair-lexicon-table bundle shard))
+          ((file-readable-p (expand-file-name "lexicon/glosses.tsv" root))
+           (firstpair-lexicon-table bundle "glosses.tsv"))
+          (t (make-hash-table :test #'equal)))))
+
+(defun firstpair-lexicon-gloss-tables (bundle)
+  "Every gloss table of BUNDLE, loaded: the shards, or the single table."
+  (let* ((root (firstpair-bundle-root bundle))
+         (directory (expand-file-name "lexicon/glosses" root)))
+    (if (file-directory-p directory)
+        (mapcar (lambda (file) (firstpair-lexicon-table bundle (concat "glosses/" file)))
+                (directory-files directory nil "\\.tsv\\'"))
+      (list (firstpair-lexicon-table bundle "glosses.tsv")))))
 
 ;;; Languages
 
@@ -175,7 +201,7 @@ Returns the description of the new choice."
 (defun firstpair-lexicon-glosses (bundle language kind key)
   "Return the glosses of KEY (a form or an entry id, per KIND) in LANGUAGE."
   (gethash (concat language "\0" kind "\0" key)
-           (firstpair-lexicon-table bundle "glosses.tsv")))
+           (firstpair-lexicon--gloss-table bundle key)))
 
 (defun firstpair-lexicon-definitions (bundle language word readings)
   "Return the definitions of WORD in LANGUAGE, given its READINGS.

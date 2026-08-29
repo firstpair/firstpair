@@ -14,6 +14,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import hashlib
+import shutil
 import json
 from pathlib import Path
 import re
@@ -480,11 +481,25 @@ def project(
     return [gloss for bucket in glosses.values() for gloss in bucket], report
 
 
-def write(directory: Path, glosses: Iterable[Gloss]) -> dict[str, object]:
-    """Append the delivered ``lexicon/glosses.tsv`` and return its metadata."""
+def shard_of(key: str) -> str:
+    """The shard a gloss key belongs to: its first letter, lowercased; "_" for anything else."""
 
-    rows = sorted(
-        "\t".join(
+    first = key[:1].lower()
+    return first if first.isalpha() else "_"
+
+
+def write(directory: Path, glosses: Iterable[Gloss]) -> dict[str, object]:
+    """Write the delivered glosses as ``lexicon/glosses/<letter>.tsv`` shards and return their metadata.
+
+    One table of every gloss ran to tens of megabytes for a Russian edition,
+    and the reader parsed all of it on the first lookup — minutes on a phone
+    under iSH. Sharded by the key's first letter, a lookup reads one slice.
+    """
+
+    header = "language\tkey\tkind\theadword\tpart\tdefinitions\tsource\n"
+    shards: dict[str, list[str]] = {}
+    for gloss in glosses:
+        row = "\t".join(
             (
                 gloss.language,
                 gloss.key,
@@ -495,9 +510,17 @@ def write(directory: Path, glosses: Iterable[Gloss]) -> dict[str, object]:
                 gloss.source.replace("\t", " "),
             )
         )
-        for gloss in glosses
-    )
-    text = "language\tkey\tkind\theadword\tpart\tdefinitions\tsource\n" + "".join(f"{row}\n" for row in rows)
-    directory.mkdir(parents=True, exist_ok=True)
-    (directory / "glosses.tsv").write_text(text, encoding="utf-8")
-    return {"rows": len(rows), "bytes": len(text.encode("utf-8")), "sha256": hashlib.sha256(text.encode("utf-8")).hexdigest()}
+        shards.setdefault(shard_of(gloss.key), []).append(row)
+    target = directory / "glosses"
+    if target.exists():
+        shutil.rmtree(target)
+    target.mkdir(parents=True, exist_ok=True)
+    files: dict[str, dict[str, object]] = {}
+    total_rows = 0; total_bytes = 0
+    for name, rows in sorted(shards.items()):
+        text = header + "".join(f"{row}\n" for row in sorted(rows))
+        (target / f"{name}.tsv").write_text(text, encoding="utf-8")
+        encoded = text.encode("utf-8")
+        files[f"glosses/{name}.tsv"] = {"rows": len(rows), "bytes": len(encoded), "sha256": hashlib.sha256(encoded).hexdigest()}
+        total_rows += len(rows); total_bytes += len(encoded)
+    return {"rows": total_rows, "bytes": total_bytes, "shards": len(files), "files": files}

@@ -602,7 +602,8 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             lexicon_payload["glossLanguage"] = corpus_spec.gloss_language
             lexicon_payload["translations"] = translations_payload
             if glosses_meta is not None:
-                lexicon_payload["files"]["glosses.tsv"] = glosses_meta
+                lexicon_payload["files"].update(glosses_meta["files"])
+                lexicon_payload["glosses"] = {key: glosses_meta[key] for key in ("rows", "bytes", "shards")}
             (root / "lexicon" / "LEXICON.json").write_text(
                 json.dumps(lexicon_payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8"
             )

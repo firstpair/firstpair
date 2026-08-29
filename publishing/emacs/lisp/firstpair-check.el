@@ -68,11 +68,12 @@
       ;; Every language that has glosses at all must render at least one of
       ;; them; partial coverage is legitimate and reported by the builder.
       (when (cdr translations)
-        (let ((glosses (firstpair-lexicon-table bundle "glosses.tsv")))
+        (let ((tables (firstpair-lexicon-gloss-tables bundle)))
           (dolist (language translations)
             (let* ((id (alist-get 'id language))
                    (has-glosses (catch 'found
-                                  (maphash (lambda (key _) (when (string-prefix-p (concat id "\0") key) (throw 'found t))) glosses)
+                                  (dolist (glosses tables)
+                                    (maphash (lambda (key _) (when (string-prefix-p (concat id "\0") key) (throw 'found t))) glosses))
                                   nil))
                    (rendered (catch 'found
                                (maphash (lambda (form _)

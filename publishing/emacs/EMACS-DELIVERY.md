@@ -32,7 +32,7 @@ on it.
   lexicon/forms.tsv            form, entry, features, enclitic
   lexicon/stems.tsv            stem, entry, index
   lexicon/endings.tsv          ending, part, declension, variant, stem, features, order, frequency
-  lexicon/glosses.tsv          language, key, kind (form|entry), headword, part, definitions, source
+  lexicon/glosses/<letter>.tsv language, key, kind (form|entry), headword, part, definitions, source — one shard per first letter of the key, read on demand
   evidence/                    delivered evidence files, named by target id
   FIRSTPAIR-EMACS-MANIFEST.json sealed inventory (schema firstpair-emacs-manifest-v1)
 ```
@@ -166,7 +166,7 @@ may answer in; each entry names up to three sources:
 - `supplement`: a reviewed `{form: [definitions]}` file owned by the title.
 
 The builder projects each language onto the bundle's marked forms and their
-lexicon entries (lemmas) into `lexicon/glosses.tsv`, records the sources and
+lexicon entries (lemmas) into `lexicon/glosses/<letter>.tsv` shards, records the sources and
 coverage per language in `LEXICON.json`, and lists `{id, label}` pairs in
 `data/bundle.json` `lexicon.translations`. The reader shows one language or
 all of them (`C-c C-t`), answering by exact form first and by entry second,

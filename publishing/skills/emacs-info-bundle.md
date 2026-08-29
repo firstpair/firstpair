@@ -100,3 +100,5 @@ Pitfalls:
 - do not ship `firstpair-check.el` or compiled Lisp inside a bundle;
 - do not mark English words as Latin merely because Whitaker's dictionary
   happens to contain a homograph; use `exclude`.
+
+Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the key, `_` otherwise), each listed in `LEXICON.json` `files`; the reader loads one shard per lookup, so a first `C-c C-d` on a phone under iSH no longer parses tens of megabytes. Older bundles with a single `glosses.tsv` still read.
