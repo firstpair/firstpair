@@ -1,0 +1,57 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FirstPair Reader harness</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+:root { --size-4-1: 4px; --size-4-2: 8px; --size-4-3: 12px; --size-4-4: 16px; --size-4-6: 24px; --background-primary: #fff; --background-secondary: #f3f0e8; --background-modifier-border: #ccc; --text-muted: #777; --text-warning: #b35c00; --font-ui-small: 13px; --font-ui-smaller: 12px; --text-highlight-bg: #ffe9a8; --shadow-l: 0 4px 16px rgba(0,0,0,.2); --link-color: #2a5db0; }
+html, body { margin: 0; height: 100%; font-family: Georgia, serif; }
+.app { display: flex; height: 100%; }
+.sidebar { width: 220px; background: #e8e8e8; flex: none; }
+.leaf { flex: 1; min-width: 0; contain: strict; position: relative; height: 100%; }
+.view-content { height: 100%; overflow: hidden; }
+</style></head>
+<body><div class="app"><div class="sidebar" id="sidebar" style="display:none"></div><div class="leaf"><div class="view-content" id="view"></div></div></div>
+<script>
+// Obsidian stand-in: DOM helpers and the API surface the plugin uses.
+(function () {
+  const proto = Element.prototype;
+  proto.createEl = function (tag, options = {}) { const el = document.createElement(tag); if (typeof options === "string") options = { cls: options }; if (options.cls) el.className = Array.isArray(options.cls) ? options.cls.join(" ") : options.cls; if (options.text != null) el.textContent = String(options.text); if (options.type) el.setAttribute("type", options.type); for (const [k, v] of Object.entries(options.attr ?? {})) el.setAttribute(k, String(v)); this.appendChild(el); return el; };
+  proto.createDiv = function (o) { return this.createEl("div", o); };
+  proto.createSpan = function (o) { return this.createEl("span", o); };
+  proto.empty = function () { while (this.firstChild) this.removeChild(this.firstChild); };
+  proto.setText = function (t) { this.textContent = t; };
+  proto.appendText = function (t) { this.appendChild(document.createTextNode(t)); };
+  proto.addClass = function (...c) { this.classList.add(...c); };
+  proto.removeClass = function (...c) { this.classList.remove(...c); };
+  proto.toggleClass = function (c, v) { for (const x of [].concat(c)) this.classList.toggle(x, v); };
+  proto.hasClass = function (c) { return this.classList.contains(c); };
+  class ItemView { constructor(leaf) { this.leaf = leaf; this.app = leaf.app; this.containerEl = leaf.containerEl; } }
+  class Plugin { constructor(app) { this.app = app; this.views = {}; this.postProcessors = []; this.data = JSON.parse(localStorage.getItem("fp-data") || "null"); } registerView(t, f) { this.views[t] = f; } addRibbonIcon() {} addCommand() {} registerMarkdownPostProcessor(f) { this.postProcessors.push(f); } registerObsidianProtocolHandler() {} addSettingTab(t) { this.settingTab = t; } async loadData() { return this.data; } async saveData(v) { this.data = v; localStorage.setItem("fp-data", JSON.stringify(v)); } }
+  class PluginSettingTab { constructor(app, plugin) { this.app = app; this.plugin = plugin; this.containerEl = document.getElementById("sidebar"); } }
+  class Setting { constructor(c) { this.el = c.createDiv({ cls: "setting-item" }); this.el.style.padding = "8px"; } setName(n) { this.el.createDiv({ text: n }).style.fontWeight = "bold"; return this; } setDesc(d) { const e = this.el.createDiv({ text: d }); e.style.fontSize = "11px"; return this; } addDropdown(f) { const s = this.el.createEl("select"); const api = { addOption(v, l) { const o = s.createEl("option", { text: l }); o.value = v; return api; }, setValue(v) { s.value = v; return api; }, onChange(h) { s.addEventListener("change", () => h(s.value)); return api; } }; f(api); return this; } addToggle(f) { const i = this.el.createEl("input", { type: "checkbox" }); const api = { setValue(v) { i.checked = v; return api; }, onChange(h) { i.addEventListener("change", () => h(i.checked)); return api; } }; f(api); return this; } }
+  const MarkdownRenderer = { async render(app, md, el) { el.textContent = md; } };
+  const mobile = /iPhone|Android/.test(navigator.userAgent) || new URLSearchParams(location.search).has("mobile"); if (!mobile) document.getElementById("sidebar").style.display = ""; const Platform = { isMobile: mobile };
+  const setIcon = (el, name) => { const s = document.createElementNS("http://www.w3.org/2000/svg", "svg"); s.setAttribute("width", "16"); s.setAttribute("height", "16"); s.setAttribute("viewBox", "0 0 16 16"); s.innerHTML = '<rect x="2" y="2" width="12" height="12" rx="2" fill="none" stroke="currentColor"/>'; el.appendChild(s); };
+  window.require = (name) => { if (name !== "obsidian") throw new Error(name); return { ItemView, Plugin, PluginSettingTab, Setting, MarkdownRenderer, Platform, setIcon }; };
+  window.module = { exports: {} };
+})();
+</script>
+<script src="main.js"></script>
+<script>
+(async function () {
+  const vaultBase = new URLSearchParams(location.search).get("vault") || "/Dante-Multilingual-Vault";
+  const cache = new Map();
+  const vault = {
+    getAbstractFileByPath(path) { return { path }; },
+    async read(file) { const r = await fetch(vaultBase + "/" + file.path); if (!r.ok) throw new Error("missing " + file.path); return r.text(); },
+  };
+  const leaves = [];
+  const app = { vault, workspace: { getLeavesOfType(t) { return leaves.filter((l) => l.type === t); }, getLeaf() { const leaf = { app, containerEl: document.getElementById("view"), async setViewState(s) { leaf.type = s.type; leaf.view = plugin.views[s.type](leaf); await leaf.view.onOpen(); } }; leaves.push(leaf); return leaf; }, revealLeaf() {} } };
+  const PluginClass = window.module.exports;
+  const plugin = new PluginClass(app); window.plugin = plugin;
+  await plugin.onload(); await plugin.activate();
+  plugin.settingTab.display();
+  window.view = leaves[0].view;
+})();
+</script>
+</body></html>

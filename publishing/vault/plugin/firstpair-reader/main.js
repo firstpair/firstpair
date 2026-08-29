@@ -8,9 +8,9 @@ const DICTIONARY_INDEX_SCHEMA = "firstpair-reader-dictionary-index-v1";
 // Layouts for aligned editions. "auto" follows the device: stacked when the
 // reader is narrow or a phone is held upright, columns otherwise.
 const LAYOUTS = [
-  { id: "auto", label: "Auto", icons: ["smartphone"] },
-  { id: "columns", label: "Columns", icons: ["columns-2", "columns"] },
-  { id: "stacked", label: "Stacked", icons: ["rows-3", "rows"] },
+  { id: "auto", label: "Auto", short: "Auto", icons: ["smartphone"] },
+  { id: "columns", label: "Columns", short: "Cols", icons: ["columns-2", "columns"] },
+  { id: "stacked", label: "Stacked", short: "Stack", icons: ["rows-3", "rows"] },
 ];
 // Obsidian's bundled Lucide set renamed some icons; take the first name it knows.
 const setAnyIcon = (element, names) => { for (const name of names) { setIcon(element, name); if (element.querySelector("svg")) return; } };
@@ -57,6 +57,13 @@ class FirstPairReaderView extends ItemView {
     this.page = this.root.createDiv({ cls: "firstpair-reader__page" });
     this.drawer = this.frame.createDiv({ cls: "firstpair-reader__drawer", attr: { hidden: "" } });
     this.rail = this.root.createDiv({ cls: "firstpair-reader__rail" });
+    // Escape, or a tap on the text away from a word, closes the drawer.
+    this.registerDomEvent?.(this.frame, "keydown", (event) => { if (event.key === "Escape") this.closeDrawer(); });
+    this.frame.addEventListener("click", (event) => {
+      if (this.drawer.hasAttribute("hidden") || this.drawer.contains(event.target)) return;
+      if (event.target.closest?.(".firstpair-reader__word, .firstpair-reader__toolbar, .firstpair-reader__rail")) return;
+      this.closeDrawer();
+    });
     try { await this.loadIndex(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage(); }
     catch (error) { this.showError(error); }
   }
@@ -100,6 +107,7 @@ class FirstPairReaderView extends ItemView {
     const choice = LAYOUTS.find((item) => item.id === this.plugin.settings.layout) ?? LAYOUTS[0];
     this.layoutButton.empty(); setAnyIcon(this.layoutButton, choice.icons);
     this.layoutButton.createSpan({ text: choice.label, cls: "firstpair-reader__button-label" });
+    this.layoutButton.createSpan({ text: choice.short, cls: "firstpair-reader__button-short" });
     this.layoutButton.setAttribute("aria-label", `Layout: ${choice.label} (tap to change)`); this.layoutButton.title = `Layout: ${choice.label}`;
   }
   // Orientation and width are both watched: an iPad in landscape has room for
@@ -131,6 +139,8 @@ class FirstPairReaderView extends ItemView {
     for (const property of ["left", "width"]) style.removeProperty(property);
     const pane = this.frame.getBoundingClientRect();
     if (!pane.width) return;
+    // Between the toolbar and the rail, so their buttons stay reachable.
+    style.top = `${this.toolbar.hidden ? 0 : this.toolbar.offsetHeight}px`; style.bottom = `${this.rail.offsetHeight}px`;
     const strip = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip") : null;
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
     if (!strip) {
@@ -215,6 +225,7 @@ class FirstPairReaderView extends ItemView {
     if (this.plugin.settings.dictionaryLanguages !== "all") return shown;
     return [...shown, ...this.parallel.translations.filter((item) => !this.enabled.has(item.id))];
   }
+  closeDrawer() { if (!this.plugin.settings.keepDrawerOpen) this.drawer.setAttribute("hidden", ""); }
   showDrawer() {
     this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     if (!this.drawer.childElementCount) {
@@ -226,8 +237,8 @@ class FirstPairReaderView extends ItemView {
     const word = normalizeWord(surface); this.drawer.empty(); this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: surface });
     if (!this.plugin.settings.keepDrawerOpen) {
-      const close = head.createEl("button", { text: "Close", attr: { "aria-label": "Close dictionary" } });
-      close.addEventListener("click", () => this.drawer.setAttribute("hidden", ""));
+      const close = head.createEl("button", { text: "Close", cls: "firstpair-reader__drawer-close", attr: { "aria-label": "Close dictionary" } });
+      close.addEventListener("click", (event) => { event.stopPropagation(); this.closeDrawer(); });
     }
     let found = false;
     for (const language of this.dictionaryLanguages()) {

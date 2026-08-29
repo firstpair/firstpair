@@ -24,7 +24,9 @@
 .firstpair-reader__grammar { color: var(--text-muted); font-size: var(--font-ui-smaller); font-weight: normal; }
 .firstpair-reader__drawer-head { align-items: center; display: flex; justify-content: space-between; }
 .firstpair-reader__definition { border-block-start: 1px solid var(--background-modifier-border); margin-block-start: var(--size-4-4); }
-.firstpair-reader__layout-toggle { align-items: center; display: inline-flex; gap: var(--size-4-1); margin-inline-start: auto; min-height: 44px; }
+.firstpair-reader__layout-toggle { align-items: center; display: inline-flex; gap: var(--size-4-1); margin-inline-start: auto; min-height: 44px; min-width: 44px; }
+.firstpair-reader__button-short { display: none; }
+.firstpair-reader__drawer-close { min-height: 44px; min-width: 44px; padding-inline: var(--size-4-3); }
 .firstpair-reader__warning { color: var(--text-warning); }
 /* Stacked layout: the source stanza left-flushed, each translation under it, indented. */
 .firstpair-reader__page--stacked .firstpair-reader__column-labels { display: none; }
@@ -36,6 +38,7 @@
   .firstpair-reader { padding: var(--size-4-2); }
   .firstpair-reader__toolbar { gap: var(--size-4-3); }
   .firstpair-reader__toolbar-title, .firstpair-reader__column-labels, .firstpair-reader__button-label { display: none; }
+  .firstpair-reader__layout-toggle .firstpair-reader__button-short { display: inline; }
   .firstpair-reader__page--stacked .firstpair-reader__cell--translation { padding-inline-start: var(--size-4-4); }
   /* Columns on a phone: one language per screen, swiped horizontally. */
   .firstpair-reader__page--columns .firstpair-reader__strip { display: flex; gap: var(--size-4-2); margin-inline: calc(-1 * var(--size-4-2)); overflow-x: auto; padding-inline: var(--size-4-2); scroll-snap-type: x mandatory; }
