@@ -176,5 +176,14 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png"
+  },
+  {
+    "slug": "dante-commedia",
+    "title": "Dante — La Divina Commedia",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
+    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault/9bde0eedc4213b2a-dante-commedia-full-vault%20%281.0.0-fe8f3928%29.zip",
+    "emacs": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs/ea24f33a1ef8c3c0-dante-commedia-full-emacs%20%281.0.0-fe8f3928%29.zip",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png"
   }
 ]

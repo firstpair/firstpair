@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T05:26:15.961Z",
+  "updatedAt": "2026-08-29T18:01:27.525Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -7684,6 +7684,1084 @@
           ]
         }
       }
+    },
+    "dante-commedia": {
+      "updatedAt": "2026-08-29T18:01:27.525Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia.pdf",
+          "sha256": "ca1d2f63cef44346a7a58582489863d808d8ccc71ad15cf456ef3e9859e5a955",
+          "size": 4411799,
+          "pathname": "books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia.epub",
+          "sha256": "1ddc930ce3ba56717d33849452438970dfb549ad5e06a93d57502a6cea24206f",
+          "size": 2849921,
+          "pathname": "books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia.html",
+          "sha256": "fc454c8c73dc2a45d939e66893cb2c5a001949060b10d1fa180049bee54b231a",
+          "size": 4911868,
+          "pathname": "books/dante-commedia/html/fc454c8c73dc2a45-dante-commedia.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/html/fc454c8c73dc2a45-dante-commedia.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-cover.png",
+          "sha256": "4774fb594f8187d4d7530d49d3475dc5d3445e58f1277b87751f23a41ae51423",
+          "size": 2163551,
+          "pathname": "books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-headboard.png",
+          "sha256": "4122a2110b375b8124aaff0e9a34403b5b1db6b75cb21e2c4b43438b48d18427",
+          "size": 3109673,
+          "pathname": "books/dante-commedia/headboard/4122a2110b375b81-dante-commedia-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/headboard/4122a2110b375b81-dante-commedia-headboard.png",
+          "skipped": false
+        },
+        "vault": {
+          "kind": "vault",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-full-vault (1.0.0-fe8f3928).zip",
+          "sha256": "9bde0eedc4213b2a49dee26b8eeab97701dda4ce5e7d338201ec02b3e1a4e6df",
+          "size": 3727420,
+          "pathname": "books/dante-commedia/vault/9bde0eedc4213b2a-dante-commedia-full-vault (1.0.0-fe8f3928).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault/9bde0eedc4213b2a-dante-commedia-full-vault%20%281.0.0-fe8f3928%29.zip",
+          "skipped": false
+        },
+        "emacs": {
+          "kind": "emacs",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-full-emacs (1.0.0-fe8f3928).zip",
+          "sha256": "ea24f33a1ef8c3c0dcd70364a600a8e494b0fd32ceaa431d3f4a72a16f4cd70d",
+          "size": 3432594,
+          "pathname": "books/dante-commedia/emacs/ea24f33a1ef8c3c0-dante-commedia-full-emacs (1.0.0-fe8f3928).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs/ea24f33a1ef8c3c0-dante-commedia-full-emacs%20%281.0.0-fe8f3928%29.zip",
+          "skipped": false
+        },
+        "emacsGuide": {
+          "kind": "emacs-guide",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-fe8f3928).html",
+          "sha256": "88f93536ba1ed6b8dd013f79cb0dedd423b6fdcf58c5a1f1c7f79a5e25f15579",
+          "size": 27150,
+          "pathname": "books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide (1.0.0-fe8f3928).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
+          "skipped": false
+        },
+        "vaultGuide": {
+          "kind": "vault-guide",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-vault-guide (1.0.0-fe8f3928).html",
+          "sha256": "b0bde35d2ffaaba558debf071aac7b9cc691b1d7db846fd896071283ac1e4d29",
+          "size": 24420,
+          "pathname": "books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide (1.0.0-fe8f3928).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters",
+          "sha256": "32c78f106958e028a013f464b95fdf3a55037b689f11bddccc252f3f397baead",
+          "pathnamePrefix": "books/dante-commedia/chapters/32c78f106958e028",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/assets/4774fb594f81-dante-commedia-cover.png",
+              "relativePath": "assets/4774fb594f81-dante-commedia-cover.png",
+              "sha256": "4774fb594f8187d4d7530d49d3475dc5d3445e58f1277b87751f23a41ae51423",
+              "size": 2163551,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/assets/4774fb594f81-dante-commedia-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/assets/4774fb594f81-dante-commedia-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "3b4cc4d2398624d0458883ddc59c76a2fae6d20ca94be3a2cbb917f22f4ae8a6",
+              "size": 753,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "61cd217ccfd7cfe636313573fbe01255a35f56161ad45cce156c862d23487ad5",
+              "size": 2328,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "6bbcf45931036f4e2a0bcdd0b6b20d45781863999bb9a1eba6b9d6fd89bf0c42",
+              "size": 3283,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "424d1b6b5bb4e2bf1eba7062282605f1dfb628114df6e6dfdc128864dee9d0b0",
+              "size": 2333,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "837ffabc475573041b57cd35335457d6060762143b670b03a927ce67c4b2220a",
+              "size": 21359,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "a645506da216224d7ad6aec223348e8147095991c46e83b40b006a4348b9ab38",
+              "size": 22213,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "3f0c1e30f9b02a5665e1563246ce0496fd7d3e1a188f0b2f337c8cea25d29c8a",
+              "size": 21253,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "9d4f80c1409a9e17dccf4ac964829de81260a23a120d66a012c91b4ec62106b5",
+              "size": 23113,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "389939f2fdb9fd77aefe285ff9c18dc615f2a9f87e556dabcb1fe5f8be8e5bc1",
+              "size": 22099,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "5da42b80b3aa83942696319e9cf520a30413e44253f330734078ab3d9bc7e504",
+              "size": 18510,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "5437c6bcf67d456f4aee178e4a817b3338d78a633f56f6b0152f59af385d36aa",
+              "size": 20694,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "2452a8004ce8ef69da54d38d863d30a1dd10d321165e2601e04c6381bf7fb053",
+              "size": 20781,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "e7f28a47b08e67b8f6cddf7209b66a71131d1b2f3b243c03416845b9fc10b340",
+              "size": 21191,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "b72ccf74261c39cde344eb567b808dd138977ed38f2ca263ad4f4ca9c1908ca1",
+              "size": 21584,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "fcc0b9e2a38cd3776574aa1c07bab950ddd0753bc36c579b61dddd585b8795bb",
+              "size": 18524,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "b6cc41d749ad45e5c1d41a93b27d680cf48c69b54db10a3939b1458ed2a97f8b",
+              "size": 21971,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "b4cf38dfef6b0164059cc738198527f869ddd9973ce711bc15f4fe36c5d30a34",
+              "size": 23706,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-017.html",
+              "relativePath": "chapter-017.html",
+              "sha256": "fa518740346002215cfb3ff1b3299f4eb0739ba51db68b236d0eeb287de7a882",
+              "size": 22419,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-017.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-018.html",
+              "relativePath": "chapter-018.html",
+              "sha256": "7ecc5989d5cce1897bfa904c17106c3138828452c277ace2fa406933023ce97b",
+              "size": 19774,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-018.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-019.html",
+              "relativePath": "chapter-019.html",
+              "sha256": "26f35e607b164d15cce0f9b573bc3394d66085ba66f58d6e9ea6e91d68663c0d",
+              "size": 21457,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-019.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-020.html",
+              "relativePath": "chapter-020.html",
+              "sha256": "c6fd1724087a84efae0a5929ee423e2f388f82d68f3878baaa4a041903b5f27d",
+              "size": 21462,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-020.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-020.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-021.html",
+              "relativePath": "chapter-021.html",
+              "sha256": "c66bec6dbf65ac99b5a8c065b9ff7ae2a153d33b0ce658d0d63f2c870b9dda28",
+              "size": 21445,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-021.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-021.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-022.html",
+              "relativePath": "chapter-022.html",
+              "sha256": "3639c481836ce1953eb48e644a932d3a37ba9419b2f33dad8ef120226c7779cd",
+              "size": 21174,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-022.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-022.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-023.html",
+              "relativePath": "chapter-023.html",
+              "sha256": "e652738d9dbe471dca58b546f4d716bbdf2253341b6b4dd82dced1a265489de6",
+              "size": 20389,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-023.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-023.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-024.html",
+              "relativePath": "chapter-024.html",
+              "sha256": "6759c726a3d877fc579798b60ddab20c7b4bdf43431c1841fd5da77c2bacb99b",
+              "size": 22099,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-024.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-024.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-025.html",
+              "relativePath": "chapter-025.html",
+              "sha256": "3a6335a4431bc648ba3f554be9e7848819156a71cb5af24ff97d10e72dfe65cf",
+              "size": 23580,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-025.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-025.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-026.html",
+              "relativePath": "chapter-026.html",
+              "sha256": "78ffa4f46b68d5b52636baf272cbefde93b2358b9e5f4e7404bcd9fd38c4bd69",
+              "size": 23260,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-026.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-026.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-027.html",
+              "relativePath": "chapter-027.html",
+              "sha256": "607dd307f78ffda48ee667c0c0397969e10fe952945950283f6a170a00b19cdf",
+              "size": 23604,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-027.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-027.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-028.html",
+              "relativePath": "chapter-028.html",
+              "sha256": "3ea981e8eb2d77dd72e8244a6898d7e6f0634c584f2038f871b588c5c54b579c",
+              "size": 23617,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-028.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-028.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-029.html",
+              "relativePath": "chapter-029.html",
+              "sha256": "8ddbd49cb606aff9d3e8e809aa7567c6a55e278ad003cd7d297aad9d3ae08b23",
+              "size": 22289,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-029.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-029.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-030.html",
+              "relativePath": "chapter-030.html",
+              "sha256": "05d44eddc606ac0dc13dfa1577be8dfb391bee8b94af96dd50007e033bc19cf7",
+              "size": 21408,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-030.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-030.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-031.html",
+              "relativePath": "chapter-031.html",
+              "sha256": "da03ac812559bba9e3833c87530d8c8b76e2c38f040ee1e0858060c694979f7d",
+              "size": 22146,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-031.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-031.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-032.html",
+              "relativePath": "chapter-032.html",
+              "sha256": "e501e928603d5a7089041b91bc461f804e2ac22c7aedf7b02573ec9f04346921",
+              "size": 21845,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-032.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-032.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-033.html",
+              "relativePath": "chapter-033.html",
+              "sha256": "df04c3987144f0061e205a190def74414f8d86b379b75949b22a37224fa13a56",
+              "size": 23244,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-033.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-033.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-034.html",
+              "relativePath": "chapter-034.html",
+              "sha256": "d955f7c4216729d921ec0d600ae6d019f4d06e42ecf9f6cc88a23e0c550e279b",
+              "size": 22717,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-034.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-034.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-035.html",
+              "relativePath": "chapter-035.html",
+              "sha256": "45066e89533d51baf2a1ef1960985b7689b3bbd81c994d4791ec0ddf461b4c47",
+              "size": 22184,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-035.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-035.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-036.html",
+              "relativePath": "chapter-036.html",
+              "sha256": "0fd302bd5eac24fae8c5c56ba12d68ae2662ea757163d211d79550e0ba8cd5f3",
+              "size": 24564,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-036.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-036.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-037.html",
+              "relativePath": "chapter-037.html",
+              "sha256": "a2dfd86653fc119256f3ff550b03ac234313cbb10d652bf12b22e2f040593bda",
+              "size": 22091,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-037.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-037.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-038.html",
+              "relativePath": "chapter-038.html",
+              "sha256": "090655318a6f4786a362048d935873547bad3b6441f66363eba7f4948b28052c",
+              "size": 2352,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-038.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-038.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-039.html",
+              "relativePath": "chapter-039.html",
+              "sha256": "4b2060f94d124c1c5720013eaa4ac7fb5d91052feaf7b1e7b1760f1912f119ac",
+              "size": 21280,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-039.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-039.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-040.html",
+              "relativePath": "chapter-040.html",
+              "sha256": "71dfd4113aaa2436d3985deab43948779fad1705998a997a33d03050ebc918c2",
+              "size": 20911,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-040.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-040.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-041.html",
+              "relativePath": "chapter-041.html",
+              "sha256": "02303e5788e6d9f5ca164c90a94c65cd027f745c74c7a7cacd88d3ac0c8b726d",
+              "size": 22764,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-041.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-041.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-042.html",
+              "relativePath": "chapter-042.html",
+              "sha256": "a58fe6ea90fdb9209e1a66daacefdaa7536d26aa26adaf71177dc6705d119539",
+              "size": 21989,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-042.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-042.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-043.html",
+              "relativePath": "chapter-043.html",
+              "sha256": "28ae515982dd789aeb1e834fd934b8bc04e7542a0e7c2faf22071fac7f0399a7",
+              "size": 21611,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-043.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-043.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-044.html",
+              "relativePath": "chapter-044.html",
+              "sha256": "c5eedb695a1d196f1a5d3284b0df8de4b7a00c8c9e0b3efe256faf98d3f3ad98",
+              "size": 23446,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-044.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-044.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-045.html",
+              "relativePath": "chapter-045.html",
+              "sha256": "fc25a6c6ded63643398f1b378589079eea95c0ed3eb54fbd964daa0c15fbe6d3",
+              "size": 21570,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-045.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-045.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-046.html",
+              "relativePath": "chapter-046.html",
+              "sha256": "41098882c45536c371948572926b7d254e968ad90e18dd9be4606a80a759508e",
+              "size": 22018,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-046.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-046.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-047.html",
+              "relativePath": "chapter-047.html",
+              "sha256": "18d629f71b46adad6ad08302742dba3be584e687a070f6a3e01c6126021baede",
+              "size": 22729,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-047.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-047.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-048.html",
+              "relativePath": "chapter-048.html",
+              "sha256": "f669ebbeb707bf9abab27c1069b06970f2c2d0f12778361a9d614205867689c9",
+              "size": 21879,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-048.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-048.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-049.html",
+              "relativePath": "chapter-049.html",
+              "sha256": "3e5a8bb3c645cc86eb79453aebd77f0a1f011a26a8270fa5f9dbfc58292c5e0b",
+              "size": 22333,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-049.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-049.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-050.html",
+              "relativePath": "chapter-050.html",
+              "sha256": "c4177431d85d6f498d25dcd67b83df198c1e330d8eb48b52a37265df56773c61",
+              "size": 21235,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-050.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-050.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-051.html",
+              "relativePath": "chapter-051.html",
+              "sha256": "851912bf2e7060959dbd71c4f81174e3764d7b92a6d2ed188dc1dac6ac4a25b3",
+              "size": 24124,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-051.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-051.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-052.html",
+              "relativePath": "chapter-052.html",
+              "sha256": "d8709087d9f8bb8e0a38c6894cc0931ab5870a3dd723738fae520bb22a6c6b6d",
+              "size": 23551,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-052.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-052.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-053.html",
+              "relativePath": "chapter-053.html",
+              "sha256": "08a81cb0800d0a5485686ab7f774862d41ecda58a3ebfa5d7aa4c6581529d1dd",
+              "size": 22750,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-053.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-053.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-054.html",
+              "relativePath": "chapter-054.html",
+              "sha256": "cd7cd4265f4ecb3a5de6845e4aa57196586d702705a1a133c7abff2604a53c63",
+              "size": 22832,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-054.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-054.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-055.html",
+              "relativePath": "chapter-055.html",
+              "sha256": "79e2d5b1664a1029c994525f3ead87a39b79b8fcba5e4c1155050c9572b7a5f2",
+              "size": 21716,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-055.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-055.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-056.html",
+              "relativePath": "chapter-056.html",
+              "sha256": "4d87d9f993565666d890b972a42e0e5d25dcef6b35dfa5385713a314aa2f2ff8",
+              "size": 22630,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-056.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-056.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-057.html",
+              "relativePath": "chapter-057.html",
+              "sha256": "20bcff942485516e757ce904c469d8b913d048ea166edc5437bfafd481e5ed32",
+              "size": 22806,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-057.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-057.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-058.html",
+              "relativePath": "chapter-058.html",
+              "sha256": "07388aecdb11cecdd2e2460835b1365e6f908e605e460b0219aac7175746609a",
+              "size": 23389,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-058.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-058.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-059.html",
+              "relativePath": "chapter-059.html",
+              "sha256": "6248422aa46db0d4c87165cb6dda4dc9de19cac7a680f29a9d4f292645e23520",
+              "size": 21633,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-059.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-059.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-060.html",
+              "relativePath": "chapter-060.html",
+              "sha256": "59ab0cf2e76002407a72b1b5129e22049ab24c03869e261839bf4a4bf9b8b07a",
+              "size": 23655,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-060.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-060.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-061.html",
+              "relativePath": "chapter-061.html",
+              "sha256": "d572bca0c6dc2bc1f3682793cba224a2ec962d662fb40eb3265467a2c5e3d90c",
+              "size": 21008,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-061.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-061.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-062.html",
+              "relativePath": "chapter-062.html",
+              "sha256": "2e66f2da8c6f25b3c8a06f3bcbf5e77a537c14031ec3f36b9a5ac87103e4b847",
+              "size": 24120,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-062.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-062.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-063.html",
+              "relativePath": "chapter-063.html",
+              "sha256": "f0692326633d489e47c5d36d91b54261a4a2d163cb2a4046d4bb379841211966",
+              "size": 21840,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-063.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-063.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-064.html",
+              "relativePath": "chapter-064.html",
+              "sha256": "9ebd635f686471aa086a08902aca5cdd9b5cadaa024f0a6ead6397d045794a5a",
+              "size": 23128,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-064.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-064.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-065.html",
+              "relativePath": "chapter-065.html",
+              "sha256": "16d32618a6cc2bed2f696f7d3cb79128bc8cb90bdb0ac2d01ef6cc57dbdbee73",
+              "size": 22254,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-065.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-065.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-066.html",
+              "relativePath": "chapter-066.html",
+              "sha256": "c69e8a7d2adb5816b43a03de13538857a45391062a225bebe7afe09180fb8116",
+              "size": 23035,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-066.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-066.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-067.html",
+              "relativePath": "chapter-067.html",
+              "sha256": "e3ab55b70b9a8bf80f063240a311fe76c3d70a2f4260dd2ad98f756fc7e43c56",
+              "size": 23702,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-067.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-067.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-068.html",
+              "relativePath": "chapter-068.html",
+              "sha256": "269b78f4f4df5a9ec919db3780d3cb66cbcd71f95dbb873fb96472456166d8c7",
+              "size": 22460,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-068.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-068.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-069.html",
+              "relativePath": "chapter-069.html",
+              "sha256": "c77a9cf132aac449e4bbfeed5d30449e7f0f6a0a43a824ea191d668b67633b68",
+              "size": 22728,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-069.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-069.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-070.html",
+              "relativePath": "chapter-070.html",
+              "sha256": "e5b6995631ac92cc9115f789071038158db72819b73293e46f937a54443edd3d",
+              "size": 24713,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-070.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-070.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-071.html",
+              "relativePath": "chapter-071.html",
+              "sha256": "2259f721ba0f233a1170ab1776300b88a1f74623f6e4ff30f051a40fdf21c590",
+              "size": 22543,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-071.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-071.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-072.html",
+              "relativePath": "chapter-072.html",
+              "sha256": "34c4f24bf77e4c310eb52eb11bd75d68266ed909a2fc7abe178120304e6d2115",
+              "size": 2336,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-072.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-072.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-073.html",
+              "relativePath": "chapter-073.html",
+              "sha256": "d9243910b6f6f6ea362379cb0fe675d1fa937d59d170e941a969bd05c23b7e72",
+              "size": 21857,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-073.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-073.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-074.html",
+              "relativePath": "chapter-074.html",
+              "sha256": "5393a6a7df90464859d9e89b32ab2ef71814c7d5e88d9a6e3527452a30d43b24",
+              "size": 22802,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-074.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-074.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-075.html",
+              "relativePath": "chapter-075.html",
+              "sha256": "ff43bd2f81240a31f298c96aecfc323bfcc140d64bff5ab914fca777dfbbfcc1",
+              "size": 20509,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-075.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-075.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-076.html",
+              "relativePath": "chapter-076.html",
+              "sha256": "a9eba9ff820697a6b58a260cab39e856c7a92ad1624a7139b752f1d8f60eec25",
+              "size": 22019,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-076.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-076.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-077.html",
+              "relativePath": "chapter-077.html",
+              "sha256": "fef802229896468f6c52ca0028cfd2e2cf320bb77f93c57deaa5c6555c9b97f6",
+              "size": 21781,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-077.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-077.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-078.html",
+              "relativePath": "chapter-078.html",
+              "sha256": "3d1a5649cb4453c743c3901761641c12a59ff5c5b305f72aa262156303acc477",
+              "size": 22091,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-078.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-078.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-079.html",
+              "relativePath": "chapter-079.html",
+              "sha256": "ddfbecc9670ad38740b02ab09eb432af56bff46580061690d0a0f353f5da3a56",
+              "size": 22678,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-079.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-079.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-080.html",
+              "relativePath": "chapter-080.html",
+              "sha256": "26d05e6d016dd2bbdb41fcb4f6a6f9bf69c8b53d816d765628b57ffdbbb62b41",
+              "size": 22968,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-080.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-080.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-081.html",
+              "relativePath": "chapter-081.html",
+              "sha256": "d604513886a88b88ae34a485af9b76774feac7f880c1a7df8375b7440fdbefa5",
+              "size": 22071,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-081.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-081.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-082.html",
+              "relativePath": "chapter-082.html",
+              "sha256": "132dd3cba4a710dbf895b57a38090a077f37674ddaeb10767d8eca8092498fab",
+              "size": 23034,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-082.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-082.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-083.html",
+              "relativePath": "chapter-083.html",
+              "sha256": "516b90e3b9329b028b3d657bd95ebc0999f7f4d5667dc20298a8a47a1e836c1e",
+              "size": 21542,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-083.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-083.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-084.html",
+              "relativePath": "chapter-084.html",
+              "sha256": "65ded54f9b6213d59b8b2233fa853b16408ab1e8ea8d012fd0d97f46fac67c87",
+              "size": 22246,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-084.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-084.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-085.html",
+              "relativePath": "chapter-085.html",
+              "sha256": "fee2f90caf1a7800e0f3f6ca78ac0d8cb6f2accb048fb73554e67a926fe6bf3d",
+              "size": 22111,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-085.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-085.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-086.html",
+              "relativePath": "chapter-086.html",
+              "sha256": "137ab463e9046e1c4e71036a03f51fe819a3594a7be7158a0f144f149ff5a000",
+              "size": 21552,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-086.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-086.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-087.html",
+              "relativePath": "chapter-087.html",
+              "sha256": "4e52a366cd8747d31fd578f0e54b4627610cb1f02902c33a6e7f9b1da14cc0d7",
+              "size": 22800,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-087.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-087.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-088.html",
+              "relativePath": "chapter-088.html",
+              "sha256": "b7f88115772d27f4401b5792b1821c3a610c3f164d1fd99b8fa5e9b8fea461e6",
+              "size": 23518,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-088.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-088.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-089.html",
+              "relativePath": "chapter-089.html",
+              "sha256": "2ba743166d604e5900ff3632c65c67c6181fdf06bcd603e306eb253e794c051a",
+              "size": 22165,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-089.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-089.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-090.html",
+              "relativePath": "chapter-090.html",
+              "sha256": "f1716c635ef3eee19668de2c5d0209e02b62aea280b92b3d941ab043454c247e",
+              "size": 21185,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-090.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-090.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-091.html",
+              "relativePath": "chapter-091.html",
+              "sha256": "62d3226bce8cc6dab04fd716b0f6e3e22a2a70c386036086faf5f6fb4c319aca",
+              "size": 22846,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-091.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-091.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-092.html",
+              "relativePath": "chapter-092.html",
+              "sha256": "21218c0968583f8d2daf5e55320e8aa21ca81a40fe63eff2d5194fa2fa9a95e2",
+              "size": 22853,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-092.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-092.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-093.html",
+              "relativePath": "chapter-093.html",
+              "sha256": "2611097df543f92c81acf84bb1340e1f0a45f75175478f6efe5fbbd03519ad48",
+              "size": 22215,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-093.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-093.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-094.html",
+              "relativePath": "chapter-094.html",
+              "sha256": "af198ccea71380cb845356791168b5caa91867232abe5531b54a18f1004584c8",
+              "size": 23808,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-094.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-094.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-095.html",
+              "relativePath": "chapter-095.html",
+              "sha256": "1b2a64991471dff934d55dddb0908aafe9852339ce1169ccccecf4ed2fb0ce3a",
+              "size": 21574,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-095.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-095.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-096.html",
+              "relativePath": "chapter-096.html",
+              "sha256": "4ee48430eb0084ec82642eaeff09ccf28b83f9ed4bb9ebdecc2fc650e57ef4f7",
+              "size": 24038,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-096.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-096.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-097.html",
+              "relativePath": "chapter-097.html",
+              "sha256": "73137f72a48f41c2f279c53b9be4c78d491e1f5ede73ec68cc0e33849066843e",
+              "size": 21827,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-097.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-097.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-098.html",
+              "relativePath": "chapter-098.html",
+              "sha256": "b6960762505d4a23e6760308fbb4f9a5e486278d1c84393f05b1da62b56d3a5d",
+              "size": 22112,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-098.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-098.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-099.html",
+              "relativePath": "chapter-099.html",
+              "sha256": "e09910a62b169927e0bf409dca7c96d409151c8b7fec270e2ae7b6368a5c7a57",
+              "size": 22834,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-099.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-099.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-100.html",
+              "relativePath": "chapter-100.html",
+              "sha256": "70a93f2d18344d4702716672412807708ba314c1ed5147bae12383325881f35a",
+              "size": 21678,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-100.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-100.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-101.html",
+              "relativePath": "chapter-101.html",
+              "sha256": "d1ed132b4ee2a1041a90ca5c65316eb3a0757032770aaf9638e0a36bdeb28799",
+              "size": 22432,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-101.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-101.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-102.html",
+              "relativePath": "chapter-102.html",
+              "sha256": "cda54ef3d24b1641b6ad979f2437aa6fd05acf18924a4de6b6eed272174d35ef",
+              "size": 22791,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-102.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-102.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-103.html",
+              "relativePath": "chapter-103.html",
+              "sha256": "e1663580a02ba4239be0ccd3facec99413e2052029efaa0b5799d1a83718f54f",
+              "size": 21857,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-103.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-103.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-104.html",
+              "relativePath": "chapter-104.html",
+              "sha256": "a36e84ce1c7bd06f2166913d23c49b41c7e682656e91174cf08b44e236f26b8d",
+              "size": 23123,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-104.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-104.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-105.html",
+              "relativePath": "chapter-105.html",
+              "sha256": "ab1d41f4f05642648602c90a83ee652d5f49f3a566f0d503b2c4482dab4940d9",
+              "size": 22240,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-105.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-105.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "c5bc22ea341e11f0eee4b9de52a3b6d4f6d9d3762d0b37c4e1be80052fd4a32d",
+              "size": 16322,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "8576a47b8d3901200ed17776607c33d3628a893240086a59634bd9aa8c28b537",
+              "size": 15370,
+              "pathname": "books/dante-commedia/chapters/32c78f106958e028/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -9081,6 +10159,51 @@
       "pathname": "books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
       "size": 186370
+    },
+    "ca1d2f63cef44346a7a58582489863d808d8ccc71ad15cf456ef3e9859e5a955:4411799": {
+      "pathname": "books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
+      "size": 4411799
+    },
+    "1ddc930ce3ba56717d33849452438970dfb549ad5e06a93d57502a6cea24206f:2849921": {
+      "pathname": "books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
+      "size": 2849921
+    },
+    "fc454c8c73dc2a45d939e66893cb2c5a001949060b10d1fa180049bee54b231a:4911868": {
+      "pathname": "books/dante-commedia/html/fc454c8c73dc2a45-dante-commedia.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/html/fc454c8c73dc2a45-dante-commedia.html",
+      "size": 4911868
+    },
+    "4774fb594f8187d4d7530d49d3475dc5d3445e58f1277b87751f23a41ae51423:2163551": {
+      "pathname": "books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png",
+      "size": 2163551
+    },
+    "4122a2110b375b8124aaff0e9a34403b5b1db6b75cb21e2c4b43438b48d18427:3109673": {
+      "pathname": "books/dante-commedia/headboard/4122a2110b375b81-dante-commedia-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/headboard/4122a2110b375b81-dante-commedia-headboard.png",
+      "size": 3109673
+    },
+    "9bde0eedc4213b2a49dee26b8eeab97701dda4ce5e7d338201ec02b3e1a4e6df:3727420": {
+      "pathname": "books/dante-commedia/vault/9bde0eedc4213b2a-dante-commedia-full-vault (1.0.0-fe8f3928).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault/9bde0eedc4213b2a-dante-commedia-full-vault%20%281.0.0-fe8f3928%29.zip",
+      "size": 3727420
+    },
+    "ea24f33a1ef8c3c0dcd70364a600a8e494b0fd32ceaa431d3f4a72a16f4cd70d:3432594": {
+      "pathname": "books/dante-commedia/emacs/ea24f33a1ef8c3c0-dante-commedia-full-emacs (1.0.0-fe8f3928).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs/ea24f33a1ef8c3c0-dante-commedia-full-emacs%20%281.0.0-fe8f3928%29.zip",
+      "size": 3432594
+    },
+    "88f93536ba1ed6b8dd013f79cb0dedd423b6fdcf58c5a1f1c7f79a5e25f15579:27150": {
+      "pathname": "books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide (1.0.0-fe8f3928).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
+      "size": 27150
+    },
+    "b0bde35d2ffaaba558debf071aac7b9cc691b1d7db846fd896071283ac1e4d29:24420": {
+      "pathname": "books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide (1.0.0-fe8f3928).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
+      "size": 24420
     }
   },
   "chapterPackages": {
@@ -24416,6 +25539,993 @@
           "size": 7019,
           "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "32c78f106958e028a013f464b95fdf3a55037b689f11bddccc252f3f397baead": {
+      "pathnamePrefix": "books/dante-commedia/chapters/32c78f106958e028",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/assets/4774fb594f81-dante-commedia-cover.png",
+          "relativePath": "assets/4774fb594f81-dante-commedia-cover.png",
+          "sha256": "4774fb594f8187d4d7530d49d3475dc5d3445e58f1277b87751f23a41ae51423",
+          "size": 2163551,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/assets/4774fb594f81-dante-commedia-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/assets/4774fb594f81-dante-commedia-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "3b4cc4d2398624d0458883ddc59c76a2fae6d20ca94be3a2cbb917f22f4ae8a6",
+          "size": 753,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "61cd217ccfd7cfe636313573fbe01255a35f56161ad45cce156c862d23487ad5",
+          "size": 2328,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "6bbcf45931036f4e2a0bcdd0b6b20d45781863999bb9a1eba6b9d6fd89bf0c42",
+          "size": 3283,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "424d1b6b5bb4e2bf1eba7062282605f1dfb628114df6e6dfdc128864dee9d0b0",
+          "size": 2333,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "837ffabc475573041b57cd35335457d6060762143b670b03a927ce67c4b2220a",
+          "size": 21359,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "a645506da216224d7ad6aec223348e8147095991c46e83b40b006a4348b9ab38",
+          "size": 22213,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "3f0c1e30f9b02a5665e1563246ce0496fd7d3e1a188f0b2f337c8cea25d29c8a",
+          "size": 21253,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "9d4f80c1409a9e17dccf4ac964829de81260a23a120d66a012c91b4ec62106b5",
+          "size": 23113,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "389939f2fdb9fd77aefe285ff9c18dc615f2a9f87e556dabcb1fe5f8be8e5bc1",
+          "size": 22099,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "5da42b80b3aa83942696319e9cf520a30413e44253f330734078ab3d9bc7e504",
+          "size": 18510,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "5437c6bcf67d456f4aee178e4a817b3338d78a633f56f6b0152f59af385d36aa",
+          "size": 20694,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "2452a8004ce8ef69da54d38d863d30a1dd10d321165e2601e04c6381bf7fb053",
+          "size": 20781,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "e7f28a47b08e67b8f6cddf7209b66a71131d1b2f3b243c03416845b9fc10b340",
+          "size": 21191,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "b72ccf74261c39cde344eb567b808dd138977ed38f2ca263ad4f4ca9c1908ca1",
+          "size": 21584,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "fcc0b9e2a38cd3776574aa1c07bab950ddd0753bc36c579b61dddd585b8795bb",
+          "size": 18524,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "b6cc41d749ad45e5c1d41a93b27d680cf48c69b54db10a3939b1458ed2a97f8b",
+          "size": 21971,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "b4cf38dfef6b0164059cc738198527f869ddd9973ce711bc15f4fe36c5d30a34",
+          "size": 23706,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "fa518740346002215cfb3ff1b3299f4eb0739ba51db68b236d0eeb287de7a882",
+          "size": 22419,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "7ecc5989d5cce1897bfa904c17106c3138828452c277ace2fa406933023ce97b",
+          "size": 19774,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "26f35e607b164d15cce0f9b573bc3394d66085ba66f58d6e9ea6e91d68663c0d",
+          "size": 21457,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-020.html",
+          "relativePath": "chapter-020.html",
+          "sha256": "c6fd1724087a84efae0a5929ee423e2f388f82d68f3878baaa4a041903b5f27d",
+          "size": 21462,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-020.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-020.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-021.html",
+          "relativePath": "chapter-021.html",
+          "sha256": "c66bec6dbf65ac99b5a8c065b9ff7ae2a153d33b0ce658d0d63f2c870b9dda28",
+          "size": 21445,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-021.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-021.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-022.html",
+          "relativePath": "chapter-022.html",
+          "sha256": "3639c481836ce1953eb48e644a932d3a37ba9419b2f33dad8ef120226c7779cd",
+          "size": 21174,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-022.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-022.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-023.html",
+          "relativePath": "chapter-023.html",
+          "sha256": "e652738d9dbe471dca58b546f4d716bbdf2253341b6b4dd82dced1a265489de6",
+          "size": 20389,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-023.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-023.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-024.html",
+          "relativePath": "chapter-024.html",
+          "sha256": "6759c726a3d877fc579798b60ddab20c7b4bdf43431c1841fd5da77c2bacb99b",
+          "size": 22099,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-024.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-024.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-025.html",
+          "relativePath": "chapter-025.html",
+          "sha256": "3a6335a4431bc648ba3f554be9e7848819156a71cb5af24ff97d10e72dfe65cf",
+          "size": 23580,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-025.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-025.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-026.html",
+          "relativePath": "chapter-026.html",
+          "sha256": "78ffa4f46b68d5b52636baf272cbefde93b2358b9e5f4e7404bcd9fd38c4bd69",
+          "size": 23260,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-026.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-026.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-027.html",
+          "relativePath": "chapter-027.html",
+          "sha256": "607dd307f78ffda48ee667c0c0397969e10fe952945950283f6a170a00b19cdf",
+          "size": 23604,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-027.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-027.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-028.html",
+          "relativePath": "chapter-028.html",
+          "sha256": "3ea981e8eb2d77dd72e8244a6898d7e6f0634c584f2038f871b588c5c54b579c",
+          "size": 23617,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-028.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-028.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-029.html",
+          "relativePath": "chapter-029.html",
+          "sha256": "8ddbd49cb606aff9d3e8e809aa7567c6a55e278ad003cd7d297aad9d3ae08b23",
+          "size": 22289,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-029.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-029.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-030.html",
+          "relativePath": "chapter-030.html",
+          "sha256": "05d44eddc606ac0dc13dfa1577be8dfb391bee8b94af96dd50007e033bc19cf7",
+          "size": 21408,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-030.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-030.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-031.html",
+          "relativePath": "chapter-031.html",
+          "sha256": "da03ac812559bba9e3833c87530d8c8b76e2c38f040ee1e0858060c694979f7d",
+          "size": 22146,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-031.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-031.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-032.html",
+          "relativePath": "chapter-032.html",
+          "sha256": "e501e928603d5a7089041b91bc461f804e2ac22c7aedf7b02573ec9f04346921",
+          "size": 21845,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-032.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-032.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-033.html",
+          "relativePath": "chapter-033.html",
+          "sha256": "df04c3987144f0061e205a190def74414f8d86b379b75949b22a37224fa13a56",
+          "size": 23244,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-033.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-033.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-034.html",
+          "relativePath": "chapter-034.html",
+          "sha256": "d955f7c4216729d921ec0d600ae6d019f4d06e42ecf9f6cc88a23e0c550e279b",
+          "size": 22717,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-034.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-034.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-035.html",
+          "relativePath": "chapter-035.html",
+          "sha256": "45066e89533d51baf2a1ef1960985b7689b3bbd81c994d4791ec0ddf461b4c47",
+          "size": 22184,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-035.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-035.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-036.html",
+          "relativePath": "chapter-036.html",
+          "sha256": "0fd302bd5eac24fae8c5c56ba12d68ae2662ea757163d211d79550e0ba8cd5f3",
+          "size": 24564,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-036.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-036.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-037.html",
+          "relativePath": "chapter-037.html",
+          "sha256": "a2dfd86653fc119256f3ff550b03ac234313cbb10d652bf12b22e2f040593bda",
+          "size": 22091,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-037.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-037.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-038.html",
+          "relativePath": "chapter-038.html",
+          "sha256": "090655318a6f4786a362048d935873547bad3b6441f66363eba7f4948b28052c",
+          "size": 2352,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-038.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-038.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-039.html",
+          "relativePath": "chapter-039.html",
+          "sha256": "4b2060f94d124c1c5720013eaa4ac7fb5d91052feaf7b1e7b1760f1912f119ac",
+          "size": 21280,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-039.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-039.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-040.html",
+          "relativePath": "chapter-040.html",
+          "sha256": "71dfd4113aaa2436d3985deab43948779fad1705998a997a33d03050ebc918c2",
+          "size": 20911,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-040.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-040.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-041.html",
+          "relativePath": "chapter-041.html",
+          "sha256": "02303e5788e6d9f5ca164c90a94c65cd027f745c74c7a7cacd88d3ac0c8b726d",
+          "size": 22764,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-041.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-041.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-042.html",
+          "relativePath": "chapter-042.html",
+          "sha256": "a58fe6ea90fdb9209e1a66daacefdaa7536d26aa26adaf71177dc6705d119539",
+          "size": 21989,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-042.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-042.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-043.html",
+          "relativePath": "chapter-043.html",
+          "sha256": "28ae515982dd789aeb1e834fd934b8bc04e7542a0e7c2faf22071fac7f0399a7",
+          "size": 21611,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-043.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-043.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-044.html",
+          "relativePath": "chapter-044.html",
+          "sha256": "c5eedb695a1d196f1a5d3284b0df8de4b7a00c8c9e0b3efe256faf98d3f3ad98",
+          "size": 23446,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-044.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-044.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-045.html",
+          "relativePath": "chapter-045.html",
+          "sha256": "fc25a6c6ded63643398f1b378589079eea95c0ed3eb54fbd964daa0c15fbe6d3",
+          "size": 21570,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-045.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-045.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-046.html",
+          "relativePath": "chapter-046.html",
+          "sha256": "41098882c45536c371948572926b7d254e968ad90e18dd9be4606a80a759508e",
+          "size": 22018,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-046.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-046.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-047.html",
+          "relativePath": "chapter-047.html",
+          "sha256": "18d629f71b46adad6ad08302742dba3be584e687a070f6a3e01c6126021baede",
+          "size": 22729,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-047.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-047.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-048.html",
+          "relativePath": "chapter-048.html",
+          "sha256": "f669ebbeb707bf9abab27c1069b06970f2c2d0f12778361a9d614205867689c9",
+          "size": 21879,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-048.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-048.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-049.html",
+          "relativePath": "chapter-049.html",
+          "sha256": "3e5a8bb3c645cc86eb79453aebd77f0a1f011a26a8270fa5f9dbfc58292c5e0b",
+          "size": 22333,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-049.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-049.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-050.html",
+          "relativePath": "chapter-050.html",
+          "sha256": "c4177431d85d6f498d25dcd67b83df198c1e330d8eb48b52a37265df56773c61",
+          "size": 21235,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-050.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-050.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-051.html",
+          "relativePath": "chapter-051.html",
+          "sha256": "851912bf2e7060959dbd71c4f81174e3764d7b92a6d2ed188dc1dac6ac4a25b3",
+          "size": 24124,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-051.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-051.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-052.html",
+          "relativePath": "chapter-052.html",
+          "sha256": "d8709087d9f8bb8e0a38c6894cc0931ab5870a3dd723738fae520bb22a6c6b6d",
+          "size": 23551,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-052.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-052.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-053.html",
+          "relativePath": "chapter-053.html",
+          "sha256": "08a81cb0800d0a5485686ab7f774862d41ecda58a3ebfa5d7aa4c6581529d1dd",
+          "size": 22750,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-053.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-053.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-054.html",
+          "relativePath": "chapter-054.html",
+          "sha256": "cd7cd4265f4ecb3a5de6845e4aa57196586d702705a1a133c7abff2604a53c63",
+          "size": 22832,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-054.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-054.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-055.html",
+          "relativePath": "chapter-055.html",
+          "sha256": "79e2d5b1664a1029c994525f3ead87a39b79b8fcba5e4c1155050c9572b7a5f2",
+          "size": 21716,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-055.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-055.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-056.html",
+          "relativePath": "chapter-056.html",
+          "sha256": "4d87d9f993565666d890b972a42e0e5d25dcef6b35dfa5385713a314aa2f2ff8",
+          "size": 22630,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-056.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-056.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-057.html",
+          "relativePath": "chapter-057.html",
+          "sha256": "20bcff942485516e757ce904c469d8b913d048ea166edc5437bfafd481e5ed32",
+          "size": 22806,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-057.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-057.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-058.html",
+          "relativePath": "chapter-058.html",
+          "sha256": "07388aecdb11cecdd2e2460835b1365e6f908e605e460b0219aac7175746609a",
+          "size": 23389,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-058.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-058.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-059.html",
+          "relativePath": "chapter-059.html",
+          "sha256": "6248422aa46db0d4c87165cb6dda4dc9de19cac7a680f29a9d4f292645e23520",
+          "size": 21633,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-059.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-059.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-060.html",
+          "relativePath": "chapter-060.html",
+          "sha256": "59ab0cf2e76002407a72b1b5129e22049ab24c03869e261839bf4a4bf9b8b07a",
+          "size": 23655,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-060.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-060.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-061.html",
+          "relativePath": "chapter-061.html",
+          "sha256": "d572bca0c6dc2bc1f3682793cba224a2ec962d662fb40eb3265467a2c5e3d90c",
+          "size": 21008,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-061.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-061.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-062.html",
+          "relativePath": "chapter-062.html",
+          "sha256": "2e66f2da8c6f25b3c8a06f3bcbf5e77a537c14031ec3f36b9a5ac87103e4b847",
+          "size": 24120,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-062.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-062.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-063.html",
+          "relativePath": "chapter-063.html",
+          "sha256": "f0692326633d489e47c5d36d91b54261a4a2d163cb2a4046d4bb379841211966",
+          "size": 21840,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-063.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-063.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-064.html",
+          "relativePath": "chapter-064.html",
+          "sha256": "9ebd635f686471aa086a08902aca5cdd9b5cadaa024f0a6ead6397d045794a5a",
+          "size": 23128,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-064.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-064.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-065.html",
+          "relativePath": "chapter-065.html",
+          "sha256": "16d32618a6cc2bed2f696f7d3cb79128bc8cb90bdb0ac2d01ef6cc57dbdbee73",
+          "size": 22254,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-065.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-065.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-066.html",
+          "relativePath": "chapter-066.html",
+          "sha256": "c69e8a7d2adb5816b43a03de13538857a45391062a225bebe7afe09180fb8116",
+          "size": 23035,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-066.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-066.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-067.html",
+          "relativePath": "chapter-067.html",
+          "sha256": "e3ab55b70b9a8bf80f063240a311fe76c3d70a2f4260dd2ad98f756fc7e43c56",
+          "size": 23702,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-067.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-067.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-068.html",
+          "relativePath": "chapter-068.html",
+          "sha256": "269b78f4f4df5a9ec919db3780d3cb66cbcd71f95dbb873fb96472456166d8c7",
+          "size": 22460,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-068.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-068.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-069.html",
+          "relativePath": "chapter-069.html",
+          "sha256": "c77a9cf132aac449e4bbfeed5d30449e7f0f6a0a43a824ea191d668b67633b68",
+          "size": 22728,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-069.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-069.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-070.html",
+          "relativePath": "chapter-070.html",
+          "sha256": "e5b6995631ac92cc9115f789071038158db72819b73293e46f937a54443edd3d",
+          "size": 24713,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-070.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-070.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-071.html",
+          "relativePath": "chapter-071.html",
+          "sha256": "2259f721ba0f233a1170ab1776300b88a1f74623f6e4ff30f051a40fdf21c590",
+          "size": 22543,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-071.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-071.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-072.html",
+          "relativePath": "chapter-072.html",
+          "sha256": "34c4f24bf77e4c310eb52eb11bd75d68266ed909a2fc7abe178120304e6d2115",
+          "size": 2336,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-072.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-072.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-073.html",
+          "relativePath": "chapter-073.html",
+          "sha256": "d9243910b6f6f6ea362379cb0fe675d1fa937d59d170e941a969bd05c23b7e72",
+          "size": 21857,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-073.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-073.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-074.html",
+          "relativePath": "chapter-074.html",
+          "sha256": "5393a6a7df90464859d9e89b32ab2ef71814c7d5e88d9a6e3527452a30d43b24",
+          "size": 22802,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-074.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-074.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-075.html",
+          "relativePath": "chapter-075.html",
+          "sha256": "ff43bd2f81240a31f298c96aecfc323bfcc140d64bff5ab914fca777dfbbfcc1",
+          "size": 20509,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-075.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-075.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-076.html",
+          "relativePath": "chapter-076.html",
+          "sha256": "a9eba9ff820697a6b58a260cab39e856c7a92ad1624a7139b752f1d8f60eec25",
+          "size": 22019,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-076.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-076.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-077.html",
+          "relativePath": "chapter-077.html",
+          "sha256": "fef802229896468f6c52ca0028cfd2e2cf320bb77f93c57deaa5c6555c9b97f6",
+          "size": 21781,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-077.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-077.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-078.html",
+          "relativePath": "chapter-078.html",
+          "sha256": "3d1a5649cb4453c743c3901761641c12a59ff5c5b305f72aa262156303acc477",
+          "size": 22091,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-078.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-078.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-079.html",
+          "relativePath": "chapter-079.html",
+          "sha256": "ddfbecc9670ad38740b02ab09eb432af56bff46580061690d0a0f353f5da3a56",
+          "size": 22678,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-079.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-079.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-080.html",
+          "relativePath": "chapter-080.html",
+          "sha256": "26d05e6d016dd2bbdb41fcb4f6a6f9bf69c8b53d816d765628b57ffdbbb62b41",
+          "size": 22968,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-080.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-080.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-081.html",
+          "relativePath": "chapter-081.html",
+          "sha256": "d604513886a88b88ae34a485af9b76774feac7f880c1a7df8375b7440fdbefa5",
+          "size": 22071,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-081.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-081.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-082.html",
+          "relativePath": "chapter-082.html",
+          "sha256": "132dd3cba4a710dbf895b57a38090a077f37674ddaeb10767d8eca8092498fab",
+          "size": 23034,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-082.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-082.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-083.html",
+          "relativePath": "chapter-083.html",
+          "sha256": "516b90e3b9329b028b3d657bd95ebc0999f7f4d5667dc20298a8a47a1e836c1e",
+          "size": 21542,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-083.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-083.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-084.html",
+          "relativePath": "chapter-084.html",
+          "sha256": "65ded54f9b6213d59b8b2233fa853b16408ab1e8ea8d012fd0d97f46fac67c87",
+          "size": 22246,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-084.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-084.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-085.html",
+          "relativePath": "chapter-085.html",
+          "sha256": "fee2f90caf1a7800e0f3f6ca78ac0d8cb6f2accb048fb73554e67a926fe6bf3d",
+          "size": 22111,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-085.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-085.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-086.html",
+          "relativePath": "chapter-086.html",
+          "sha256": "137ab463e9046e1c4e71036a03f51fe819a3594a7be7158a0f144f149ff5a000",
+          "size": 21552,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-086.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-086.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-087.html",
+          "relativePath": "chapter-087.html",
+          "sha256": "4e52a366cd8747d31fd578f0e54b4627610cb1f02902c33a6e7f9b1da14cc0d7",
+          "size": 22800,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-087.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-087.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-088.html",
+          "relativePath": "chapter-088.html",
+          "sha256": "b7f88115772d27f4401b5792b1821c3a610c3f164d1fd99b8fa5e9b8fea461e6",
+          "size": 23518,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-088.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-088.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-089.html",
+          "relativePath": "chapter-089.html",
+          "sha256": "2ba743166d604e5900ff3632c65c67c6181fdf06bcd603e306eb253e794c051a",
+          "size": 22165,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-089.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-089.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-090.html",
+          "relativePath": "chapter-090.html",
+          "sha256": "f1716c635ef3eee19668de2c5d0209e02b62aea280b92b3d941ab043454c247e",
+          "size": 21185,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-090.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-090.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-091.html",
+          "relativePath": "chapter-091.html",
+          "sha256": "62d3226bce8cc6dab04fd716b0f6e3e22a2a70c386036086faf5f6fb4c319aca",
+          "size": 22846,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-091.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-091.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-092.html",
+          "relativePath": "chapter-092.html",
+          "sha256": "21218c0968583f8d2daf5e55320e8aa21ca81a40fe63eff2d5194fa2fa9a95e2",
+          "size": 22853,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-092.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-092.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-093.html",
+          "relativePath": "chapter-093.html",
+          "sha256": "2611097df543f92c81acf84bb1340e1f0a45f75175478f6efe5fbbd03519ad48",
+          "size": 22215,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-093.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-093.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-094.html",
+          "relativePath": "chapter-094.html",
+          "sha256": "af198ccea71380cb845356791168b5caa91867232abe5531b54a18f1004584c8",
+          "size": 23808,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-094.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-094.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-095.html",
+          "relativePath": "chapter-095.html",
+          "sha256": "1b2a64991471dff934d55dddb0908aafe9852339ce1169ccccecf4ed2fb0ce3a",
+          "size": 21574,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-095.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-095.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-096.html",
+          "relativePath": "chapter-096.html",
+          "sha256": "4ee48430eb0084ec82642eaeff09ccf28b83f9ed4bb9ebdecc2fc650e57ef4f7",
+          "size": 24038,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-096.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-096.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-097.html",
+          "relativePath": "chapter-097.html",
+          "sha256": "73137f72a48f41c2f279c53b9be4c78d491e1f5ede73ec68cc0e33849066843e",
+          "size": 21827,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-097.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-097.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-098.html",
+          "relativePath": "chapter-098.html",
+          "sha256": "b6960762505d4a23e6760308fbb4f9a5e486278d1c84393f05b1da62b56d3a5d",
+          "size": 22112,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-098.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-098.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-099.html",
+          "relativePath": "chapter-099.html",
+          "sha256": "e09910a62b169927e0bf409dca7c96d409151c8b7fec270e2ae7b6368a5c7a57",
+          "size": 22834,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-099.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-099.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-100.html",
+          "relativePath": "chapter-100.html",
+          "sha256": "70a93f2d18344d4702716672412807708ba314c1ed5147bae12383325881f35a",
+          "size": 21678,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-100.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-100.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-101.html",
+          "relativePath": "chapter-101.html",
+          "sha256": "d1ed132b4ee2a1041a90ca5c65316eb3a0757032770aaf9638e0a36bdeb28799",
+          "size": 22432,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-101.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-101.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-102.html",
+          "relativePath": "chapter-102.html",
+          "sha256": "cda54ef3d24b1641b6ad979f2437aa6fd05acf18924a4de6b6eed272174d35ef",
+          "size": 22791,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-102.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-102.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-103.html",
+          "relativePath": "chapter-103.html",
+          "sha256": "e1663580a02ba4239be0ccd3facec99413e2052029efaa0b5799d1a83718f54f",
+          "size": 21857,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-103.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-103.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-104.html",
+          "relativePath": "chapter-104.html",
+          "sha256": "a36e84ce1c7bd06f2166913d23c49b41c7e682656e91174cf08b44e236f26b8d",
+          "size": 23123,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-104.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-104.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/chapter-105.html",
+          "relativePath": "chapter-105.html",
+          "sha256": "ab1d41f4f05642648602c90a83ee652d5f49f3a566f0d503b2c4482dab4940d9",
+          "size": 22240,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/chapter-105.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/chapter-105.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "c5bc22ea341e11f0eee4b9de52a3b6d4f6d9d3762d0b37c4e1be80052fd4a32d",
+          "size": 16322,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/dante-commedia-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "8576a47b8d3901200ed17776607c33d3628a893240086a59634bd9aa8c28b537",
+          "size": 15370,
+          "pathname": "books/dante-commedia/chapters/32c78f106958e028/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/sitemap.json",
           "skipped": false
         }
       ]

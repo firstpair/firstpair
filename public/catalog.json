@@ -578,6 +578,36 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
       "post": "https://firstpair.org/read/eigentimes/"
+    },
+    {
+      "slug": "dante-commedia",
+      "title": "Dante — La Divina Commedia",
+      "author": "Dante Alighieri",
+      "kicker": "Aligned edition",
+      "description": "The complete Commedia with Dante's Italian beside four English translations — Longfellow, Cary, Norton, Sibbald — tercet by tercet, and a dictionary that analyses every Italian word: a book, an Obsidian vault, and an Emacs Info bundle.",
+      "accent": "#8a4f3d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
+      "html": "/read/dante-commedia/",
+      "htmlChapters": "/read/dante-commedia/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/html/fc454c8c73dc2a45-dante-commedia.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/32c78f106958e028/index.html",
+      "tags": [
+        "finished",
+        "literature",
+        "Dante",
+        "Italian"
+      ],
+      "shelf": "literature",
+      "source": "https://github.com/firstpair/dante",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/headboard/4122a2110b375b81-dante-commedia-headboard.png",
+      "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault/9bde0eedc4213b2a-dante-commedia-full-vault%20%281.0.0-fe8f3928%29.zip",
+      "emacs": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs/ea24f33a1ef8c3c0-dante-commedia-full-emacs%20%281.0.0-fe8f3928%29.zip",
+      "emacsGuide": "/read/dante-commedia/emacs-guide/",
+      "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
+      "vaultGuide": "/read/dante-commedia/guide/",
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html"
     }
   ]
 }
