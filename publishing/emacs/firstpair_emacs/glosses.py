@@ -24,6 +24,7 @@ from .lexicon import normalise
 
 
 MAXIMUM_PER_KEY = 8
+PIVOT_HINT = 48  # characters of the English sense kept in a pivoted gloss
 
 
 @dataclass(frozen=True)
@@ -190,7 +191,8 @@ def index_pivot(path: Path, source_code: str, target_code: str, fold=normalise) 
                 targets = list(dict.fromkeys(sides[target_code]))
                 if not targets:
                     continue
-                hint = f"{word}: {sense}" if sense and sense != word else word
+                short = sense if len(sense) <= PIVOT_HINT else sense[: PIVOT_HINT - 1].rstrip() + "…"
+                hint = f"{word}: {short}" if short and short != word else word
                 definition = ", ".join(targets[:6]) + f" ({hint})"
                 for cell in sides[source_code]:
                     for piece in _cells(cell):
