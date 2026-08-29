@@ -40,6 +40,35 @@
       "file": "ruwiktionary-russian.jsonl",
       "sha256": "420edef8bbd6170609aaa991860f915318349f93ee52b2ad23f7f458fdf8de8c",
       "snapshot": "2026-08-29"
+    },
+    {
+      "id": "itwiktionary-italian-translations",
+      "language": "ru",
+      "label": "Русский",
+      "kind": "entry-translations",
+      "targetCode": "ru",
+      "name": "Italian Wiktionary translation tables into Russian, extracted by Wiktextract and published by Kaikki.org",
+      "license": "CC BY-SA 4.0. Each gloss is a Russian translation listed by Italian Wiktionary; attribution and share-alike apply.",
+      "upstream": "https://kaikki.org/itwiktionary/Italiano/index.html",
+      "url": "https://kaikki.org/itwiktionary/Italiano/kaikki.org-dictionary-Italiano.jsonl",
+      "file": "itwiktionary-italian.jsonl",
+      "sha256": "a6883cb6170a829b34decc941070e36e0228d25803c45c328ee7ef64dd2aaf3c",
+      "snapshot": "2026-08-29"
+    },
+    {
+      "id": "enwiktionary-english-pivot",
+      "language": "ru",
+      "label": "Русский",
+      "kind": "pivot",
+      "sourceCode": "it",
+      "targetCode": "ru",
+      "name": "English Wiktionary translation tables, Italian and Russian equivalents of the same English sense, extracted by Wiktextract and published by Kaikki.org",
+      "license": "CC BY-SA 4.0. Each gloss names the English sense it passed through; attribution and share-alike apply.",
+      "upstream": "https://kaikki.org/dictionary/English/index.html",
+      "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl",
+      "file": "enwiktionary-english.jsonl",
+      "sha256": "4367576ff96ebbfa2f21bfde6f393dfe7aa699f5ae881fc03f3e92198f14bc58",
+      "snapshot": "2026-08-29"
     }
   ]
 }

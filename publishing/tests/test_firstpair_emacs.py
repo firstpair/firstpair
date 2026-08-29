@@ -599,3 +599,34 @@ class AlignedTests(Fixture):
         self.assertIn("ru-only=2", completed.stdout)
         self.assertIn("english-hidden=t", completed.stdout)
         self.assertIn("russian-visible=t", completed.stdout)
+
+
+class GlossaryKindTests(unittest.TestCase):
+    def test_entry_translations_and_pivot_indexes(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            italian = root / "it.jsonl"
+            italian.write_text(json.dumps({"word": "chiudere", "pos": "verb", "translations": [{"lang_code": "ru", "word": "закрыть"}, {"lang_code": "en", "word": "close"}]}, ensure_ascii=False) + "\n", encoding="utf-8")
+            english = root / "en.jsonl"
+            english.write_text(json.dumps({"word": "shrewd", "pos": "adj", "senses": [{"glosses": ["showing clever resourcefulness"], "translations": [
+                {"lang_code": "it", "word": "accorto"},
+                {"lang_code": "it", "word": "scaltro, astuto"},
+                {"lang_code": "ru", "word": "проницательный"},
+                {"lang_code": "ru", "word": "хитрый"},
+            ]}]}, ensure_ascii=False) + "\n", encoding="utf-8")
+            from firstpair_emacs.languages.italian import normalise as fold
+
+            direct = glosses.index_entry_translations(italian, "ru", fold=fold)
+            self.assertEqual(["закрыть"], direct.by_headword["chiudere"][0]["definitions"])
+            pivot = glosses.index_pivot(english, "it", "ru", fold=fold)
+            self.assertEqual(["проницательный, хитрый (shrewd: showing clever resourcefulness)"], pivot.by_headword["accorto"][0]["definitions"])
+            self.assertIn("astuto", pivot.by_headword)
+
+            class Item:
+                kind = "pivot"; source_code = "it"; target_code = "ru"; sha256 = "abc123def456"
+
+            cached = glosses.load_glossary(english, Item(), fold=fold)
+            self.assertIn("accorto", cached.by_headword)
+            self.assertTrue(any(path.suffix == ".json" and "pivot" in path.name for path in root.iterdir()))
+            again = glosses.load_glossary(english, Item(), fold=fold)
+            self.assertEqual(cached.by_headword["accorto"], again.by_headword["accorto"])

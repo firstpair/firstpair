@@ -146,9 +146,17 @@ The lexicon's own senses are in its gloss language (Whitaker's are English).
 `emacs.lexicon.translations` declares every language the dictionary window
 may answer in; each entry names up to three sources:
 
-- `glossary`: a corpus pinned by digest in FirstPair's
-  `lexicon/<language>/SOURCES.json` under `glossaries` (a Wiktextract/Kaikki
-  extraction), cached beside the lexicon corpus;
+- `glossary`: one or more corpora pinned by digest in FirstPair's
+  `lexicon/<language>/SOURCES.json` under `glossaries`, consulted in order.
+  Each is a Wiktextract/Kaikki extraction of one of four kinds: `entries`
+  (lexicon-language entries with target-language senses, e.g. Russian
+  Wiktionary's Latin or Italian sections), `translations` (target-language
+  entries whose tables name lexicon-language words, inverted), `entry-translations`
+  (lexicon-language entries with tables into the target), and `pivot`
+  (a third language's entries — English — whose tables give both the
+  lexicon-language word and the target word for one sense; the gloss names
+  that sense). A scanned dump is cached as a small derived index keyed by
+  its digest, so multi-gigabyte extractions are read once;
 - `dictionary`: a title-owned `firstpair-reader-dictionary-v1` file — the
   same schema the Obsidian Reader's drawer loads — keyed by normalised form;
 - `supplement`: a reviewed `{form: [definitions]}` file owned by the title.

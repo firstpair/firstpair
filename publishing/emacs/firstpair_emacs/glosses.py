@@ -16,6 +16,7 @@ from dataclasses import dataclass
 import hashlib
 import json
 from pathlib import Path
+import re
 from typing import Iterable
 
 from .languages.base import Entry, Projection
@@ -123,12 +124,116 @@ def index_translations(path: Path, source_code: str, fold=normalise) -> Glossary
     return GlossaryIndex(by_headword=merged, by_form=merged)
 
 
-def load_glossary(path: Path, item, fold=normalise) -> GlossaryIndex:
-    """Index a pinned glossary according to its kind."""
+def _cells(value: str) -> list[str]:
+    """Split a translation cell into its words: 'seguente, consecutivo' lists two."""
 
-    if getattr(item, "kind", "entries") == "translations":
-        return index_translations(path, item.source_code, fold=fold)
-    return index_kaikki(path, fold=fold)
+    return [part.strip() for part in re.split(r"[,;/]", value) if part.strip()]
+
+
+def index_entry_translations(path: Path, target_code: str, fold=normalise) -> GlossaryIndex:
+    """Index lexicon-language entries by their translation tables into TARGET_CODE."""
+
+    by_headword: dict[str, list[dict[str, object]]] = {}
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
+            if '"translations"' not in line:
+                continue
+            row = json.loads(line)
+            words = list(dict.fromkeys(
+                str(item["word"]).strip() for item in row.get("translations", [])
+                if item.get("lang_code") == target_code and item.get("word")
+            ))
+            key = fold(str(row.get("word", "")))
+            if not words or not key:
+                continue
+            entry = {"headword": str(row.get("word", "")), "partOfSpeech": str(row.get("pos", "")), "definitions": words[:12]}
+            bucket = by_headword.setdefault(key, [])
+            if not any(existing["definitions"] == entry["definitions"] for existing in bucket):
+                bucket.append(entry)
+    merged = {key: tuple(value) for key, value in by_headword.items()}
+    return GlossaryIndex(by_headword=merged, by_form=merged)
+
+
+def index_pivot(path: Path, source_code: str, target_code: str, fold=normalise) -> GlossaryIndex:
+    """Gloss SOURCE_CODE words through a third language's translation tables.
+
+    Each row is an entry of the dump's language (English, say) whose tables
+    translate one sense into many languages. A source-language word named
+    for a sense is glossed by the target-language words named for the same
+    sense, and the gloss says which sense carried it, so a reader can see the
+    pivot rather than mistake it for a direct dictionary.
+    """
+
+    by_headword: dict[str, list[dict[str, object]]] = {}
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
+            if '"translations"' not in line or f'"lang_code": "{source_code}"' not in line or f'"lang_code": "{target_code}"' not in line:
+                continue
+            row = json.loads(line)
+            senses: dict[str, dict[str, list[str]]] = {}
+
+            def collect(items, label: str) -> None:
+                for item in items:
+                    code = item.get("lang_code")
+                    if code not in (source_code, target_code) or not item.get("word"):
+                        continue
+                    bucket = senses.setdefault(str(item.get("sense", "")) or label, {source_code: [], target_code: []})
+                    bucket[code].append(str(item["word"]).strip())
+
+            # Tables sit on the entry or, more often, on the sense they translate.
+            collect(row.get("translations", []), "")
+            for sense in row.get("senses", []):
+                glosses = [str(value) for value in sense.get("glosses", []) if value]
+                collect(sense.get("translations", []), glosses[0] if glosses else "")
+            word = str(row.get("word", ""))
+            for sense, sides in senses.items():
+                targets = list(dict.fromkeys(sides[target_code]))
+                if not targets:
+                    continue
+                hint = f"{word}: {sense}" if sense and sense != word else word
+                definition = ", ".join(targets[:6]) + f" ({hint})"
+                for cell in sides[source_code]:
+                    for piece in _cells(cell):
+                        if " " in piece:
+                            continue
+                        key = fold(piece)
+                        if not key:
+                            continue
+                        bucket = by_headword.setdefault(key, [])
+                        if len(bucket) < 8 and not any(existing["definitions"][0] == definition for existing in bucket):
+                            bucket.append({"headword": piece, "partOfSpeech": str(row.get("pos", "")), "definitions": [definition]})
+    merged = {key: tuple(value) for key, value in by_headword.items()}
+    return GlossaryIndex(by_headword=merged, by_form=merged)
+
+
+def load_glossary(path: Path, item, fold=normalise, cache: Path | None = None) -> GlossaryIndex:
+    """Index a pinned glossary according to its kind, reusing a derived file when present.
+
+    Scanning a multi-gigabyte extraction takes minutes; the derived index is
+    small and keyed by the dump's digest, so later builds load it in seconds.
+    """
+
+    kind = getattr(item, "kind", "entries")
+    derived = (cache or path.parent) / f"{path.name}.{kind}.{getattr(item, 'source_code', '')}-{getattr(item, 'target_code', '')}.{getattr(item, 'sha256', '')[:12]}.json"
+    if derived.is_file():
+        payload = json.loads(derived.read_text(encoding="utf-8"))
+        return GlossaryIndex(
+            by_headword={key: tuple(value) for key, value in payload["byHeadword"].items()},
+            by_form={key: tuple(value) for key, value in payload["byForm"].items()},
+        )
+    if kind == "translations":
+        index = index_translations(path, item.source_code, fold=fold)
+    elif kind == "entry-translations":
+        index = index_entry_translations(path, item.target_code, fold=fold)
+    elif kind == "pivot":
+        index = index_pivot(path, item.source_code, item.target_code, fold=fold)
+    else:
+        index = index_kaikki(path, fold=fold)
+    derived.write_text(
+        json.dumps({"schema": "firstpair-derived-glossary-v1", "kind": kind, "byHeadword": {k: list(v) for k, v in index.by_headword.items()}, "byForm": {k: list(v) for k, v in index.by_form.items()}}, ensure_ascii=False),
+        encoding="utf-8",
+    )
+    return index
 
 
 def merge(first: GlossaryIndex, second: GlossaryIndex) -> GlossaryIndex:

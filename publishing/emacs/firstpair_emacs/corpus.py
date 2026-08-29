@@ -43,8 +43,13 @@ class Glossary:
     file: str
     sha256: str
     snapshot: str
-    kind: str = "entries"  # "entries": rows are entries of the lexicon language; "translations": rows are entries of the target language whose translation tables name lexicon-language words
-    source_code: str = ""  # for "translations": the lang_code of the lexicon language in the tables
+    # "entries": rows are entries of the lexicon language with target-language senses;
+    # "translations": rows are target-language entries whose tables name lexicon-language words;
+    # "entry-translations": rows are lexicon-language entries with tables into the target language;
+    # "pivot": rows are entries of a third language with tables into both.
+    kind: str = "entries"
+    source_code: str = ""  # lang_code of the lexicon language in translation tables
+    target_code: str = ""  # lang_code of the target language in translation tables
 
 
 @dataclass(frozen=True)
@@ -97,6 +102,7 @@ def load_corpus(language: str) -> Corpus:
                 snapshot=item.get("snapshot", ""),
                 kind=item.get("kind", "entries"),
                 source_code=item.get("sourceCode", ""),
+                target_code=item.get("targetCode", ""),
             )
             for item in payload.get("glossaries", [])
         ),
