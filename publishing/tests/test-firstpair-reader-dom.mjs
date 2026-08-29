@@ -155,7 +155,7 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     mezzo().click(); await settle(); await settle()
     let headings = Array.from(drawer.querySelectorAll('h3')).map((h) => h.textContent)
     assert.deepEqual(headings, ['Русский'])
-    const languages = app.settingsContainer.querySelectorAll('select')[1]
+    const languages = Array.from(app.settingsContainer.querySelectorAll('select')).find((s) => Array.from(s.options).some((o) => o.value === 'all'))
     languages.value = 'all'; languages.dispatchEvent(new window.Event('change')); await settle()
     mezzo().click(); await settle(); await settle()
     headings = Array.from(drawer.querySelectorAll('h3')).map((h) => h.textContent)
@@ -183,6 +183,29 @@ test('a phone held upright stacks automatically', async () => {
   try {
     const { root } = await openReader(vaultRoot, window)
     assert.ok(root.querySelector('.firstpair-reader__page--stacked'))
+  } finally { mock.Platform.isMobile = false; rmSync(vaultRoot, { recursive: true, force: true }) }
+})
+
+test('a bottom dictionary band in stacked layout shortens the text when kept open', async () => {
+  const window = mock.makeWindow(); window.__portrait = true; globalThis.window = window; globalThis.document = window.document; globalThis.getComputedStyle = window.getComputedStyle.bind(window); globalThis.ResizeObserver = window.ResizeObserver
+  mock.Platform.isMobile = true
+  const vaultRoot = fixtureVault()
+  try {
+    const { view, root, app } = await openReader(vaultRoot, window)
+    await view.plugin.saveSettings({ drawerPosition: 'bottom', keepDrawerOpen: true }); view.plugin.refreshViews(true); await settle(); await settle()
+    const frame = root.querySelector('.firstpair-reader__frame'); Object.defineProperty(frame, 'getBoundingClientRect', { value: () => ({ left: 0, top: 0, right: 390, bottom: 800, width: 390, height: 800 }) })
+    view.sizeDrawer()
+    const drawer = root.querySelector('.firstpair-reader__drawer')
+    assert.equal(drawer.hasAttribute('hidden'), false)
+    assert.ok(drawer.classList.contains('firstpair-reader__drawer--bottom'))
+    assert.equal(drawer.style.height, '264px'); assert.equal(drawer.style.bottom, '0px'); assert.equal(drawer.style.width, '390px')
+    assert.equal(root.querySelector('.firstpair-reader').style.height, 'calc(100% - 264px)')
+    assert.ok(drawer.querySelector('.firstpair-reader__drawer-grip'), 'grip present')
+    await view.plugin.saveSettings({ drawerHeight: 0.5 }); view.sizeDrawer()
+    assert.equal(drawer.style.height, '400px')
+    await view.plugin.saveSettings({ keepDrawerOpen: false }); view.closeDrawer()
+    assert.equal(drawer.hasAttribute('hidden'), true)
+    assert.equal(root.querySelector('.firstpair-reader').style.height, '')
   } finally { mock.Platform.isMobile = false; rmSync(vaultRoot, { recursive: true, force: true }) }
 })
 

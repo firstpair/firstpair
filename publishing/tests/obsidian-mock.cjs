@@ -54,6 +54,7 @@ class Setting {
   setName(name) { this.el.createDiv({ text: name, cls: "setting-item-name" }); return this; }
   setDesc(text) { this.el.createDiv({ text, cls: "setting-item-description" }); return this; }
   addDropdown(fn) { const select = this.el.createEl("select"); const api = { addOption(value, label) { const option = select.createEl("option", { text: label }); option.value = value; return api; }, setValue(value) { select.value = value; return api; }, onChange(handler) { select.addEventListener("change", () => handler(select.value)); return api; } }; fn(api); return this; }
+  addSlider(fn) { const input = this.el.createEl("input", { type: "range" }); const api = { setLimits(min, max, step) { input.min = min; input.max = max; input.step = step; return api; }, setValue(value) { input.value = value; return api; }, setDynamicTooltip() { return api; }, onChange(handler) { input.addEventListener("change", () => handler(Number(input.value))); return api; } }; fn(api); return this; }
   addToggle(fn) { const input = this.el.createEl("input", { type: "checkbox" }); const api = { setValue(value) { input.checked = value; return api; }, onChange(handler) { input.addEventListener("change", () => handler(input.checked)); return api; } }; fn(api); return this; }
 }
 const MarkdownRenderer = { async render(app, markdown, element) { element.textContent = markdown; } };

@@ -21,7 +21,11 @@ const STACK_BELOW = 700;
 // keepDrawerOpen: the dictionary is a standing column that keeps the last entry.
 // dictionaryLanguages: "shown" answers only in the translations on screen;
 // "all" answers in every language, the shown ones first.
-const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true, keepDrawerOpen: false, dictionaryLanguages: "shown" };
+// drawerPosition: in stacked layout the dictionary is a side panel or a band
+// at the bottom; a kept-open bottom band shortens the text so it flows above.
+// drawerHeight: the bottom band's share of the pane, a third by default, set
+// by dragging the band's top edge or in the settings.
+const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true, keepDrawerOpen: false, dictionaryLanguages: "shown", drawerPosition: "side", drawerHeight: 0.33 };
 
 class ReaderHistory {
   constructor(limit = 64) { this.limit = limit; this.items = []; }
@@ -136,12 +140,21 @@ class FirstPairReaderView extends ItemView {
   sizeDrawer() {
     if (!this.drawer || this.drawer.hasAttribute("hidden")) return;
     const style = this.drawer.style;
-    for (const property of ["left", "width"]) style.removeProperty(property);
+    for (const property of ["left", "width", "top", "bottom", "height"]) style.removeProperty(property);
+    this.root.style.removeProperty("height"); this.drawer.removeClass("firstpair-reader__drawer--bottom");
     const pane = this.frame.getBoundingClientRect();
     if (!pane.width) return;
+    const strip = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip") : null;
+    if (!strip && this.plugin.settings.drawerPosition === "bottom") {
+      // A band across the bottom; kept open, the text is shortened to flow above it.
+      const height = Math.round(pane.height * Math.min(0.85, Math.max(0.15, this.plugin.settings.drawerHeight)));
+      this.drawer.addClass("firstpair-reader__drawer--bottom"); this.ensureGrip();
+      style.left = "0px"; style.width = `${Math.round(pane.width)}px`; style.top = "auto"; style.bottom = "0px"; style.height = `${height}px`;
+      if (this.plugin.settings.keepDrawerOpen) this.root.style.height = `calc(100% - ${height}px)`;
+      return;
+    }
     // Between the toolbar and the rail, so their buttons stay reachable.
     style.top = `${this.toolbar.hidden ? 0 : this.toolbar.offsetHeight}px`; style.bottom = `${this.rail.offsetHeight}px`;
-    const strip = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip") : null;
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
     if (!strip) {
       // Stacked: a generous panel — two fifths of the pane, never under 30rem, never over nine tenths.
@@ -225,16 +238,33 @@ class FirstPairReaderView extends ItemView {
     if (this.plugin.settings.dictionaryLanguages !== "all") return shown;
     return [...shown, ...this.parallel.translations.filter((item) => !this.enabled.has(item.id))];
   }
-  closeDrawer() { if (!this.plugin.settings.keepDrawerOpen) this.drawer.setAttribute("hidden", ""); }
+  // The grip along the band's top edge: drag it to resize; the share is remembered.
+  ensureGrip() {
+    if (this.grip && this.grip.parentElement === this.drawer && this.drawer.firstElementChild === this.grip) return;
+    this.grip?.remove(); this.grip = this.drawer.ownerDocument.createElement("div"); this.grip.className = "firstpair-reader__drawer-grip";
+    this.grip.setAttribute("role", "separator"); this.grip.setAttribute("aria-label", "Drag to resize the dictionary");
+    this.drawer.prepend(this.grip);
+    this.grip.addEventListener("pointerdown", (event) => {
+      event.preventDefault(); this.grip.setPointerCapture?.(event.pointerId);
+      const pane = this.frame.getBoundingClientRect();
+      const move = (moveEvent) => {
+        const share = Math.min(0.85, Math.max(0.15, (pane.bottom - moveEvent.clientY) / pane.height));
+        this.plugin.settings.drawerHeight = share; this.sizeDrawer();
+      };
+      const finish = async () => { this.grip.removeEventListener("pointermove", move); this.grip.removeEventListener("pointerup", finish); this.grip.removeEventListener("pointercancel", finish); await this.plugin.saveSettings({ drawerHeight: this.plugin.settings.drawerHeight }); };
+      this.grip.addEventListener("pointermove", move); this.grip.addEventListener("pointerup", finish); this.grip.addEventListener("pointercancel", finish);
+    });
+  }
+  closeDrawer() { if (!this.plugin.settings.keepDrawerOpen) { this.drawer.setAttribute("hidden", ""); this.root.style.removeProperty("height"); } }
   showDrawer() {
     this.drawer.removeAttribute("hidden"); this.sizeDrawer();
-    if (!this.drawer.childElementCount) {
+    if (this.drawer.childElementCount <= (this.grip ? 1 : 0)) {
       const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: "Dictionary" });
       this.drawer.createEl("p", { text: "Select a word of the source text.", cls: "firstpair-reader__drawer-hint" });
     }
   }
   async openDictionary(surface) {
-    const word = normalizeWord(surface); this.drawer.empty(); this.drawer.removeAttribute("hidden"); this.sizeDrawer();
+    const word = normalizeWord(surface); this.drawer.empty(); this.grip = null; this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: surface });
     if (!this.plugin.settings.keepDrawerOpen) {
       const close = head.createEl("button", { text: "Close", cls: "firstpair-reader__drawer-close", attr: { "aria-label": "Close dictionary" } });
@@ -291,6 +321,14 @@ class FirstPairReaderSettingTab extends PluginSettingTab {
       .setDesc("The dictionary is a standing column that keeps the last entry while you read and turn pages, instead of a drawer that closes.")
       .addToggle((toggle) => toggle.setValue(this.plugin.settings.keepDrawerOpen)
         .onChange(async (value) => { await this.plugin.saveSettings({ keepDrawerOpen: value }); this.plugin.refreshViews(true); }));
+    new Setting(containerEl).setName("Dictionary position in stacked layout")
+      .setDesc("Side: a panel on the right. Bottom: a band across the bottom of the screen; with the dictionary kept open, the text flows above it.")
+      .addDropdown((dropdown) => dropdown.addOption("side", "Side").addOption("bottom", "Bottom").setValue(this.plugin.settings.drawerPosition)
+        .onChange(async (value) => { await this.plugin.saveSettings({ drawerPosition: value }); this.plugin.refreshViews(); }));
+    new Setting(containerEl).setName("Bottom band height")
+      .setDesc("The share of the screen the bottom dictionary takes, as a percentage; dragging the band's top edge changes it too.")
+      .addSlider((slider) => slider.setLimits(15, 85, 5).setValue(Math.round(this.plugin.settings.drawerHeight * 100)).setDynamicTooltip()
+        .onChange(async (value) => { await this.plugin.saveSettings({ drawerHeight: value / 100 }); this.plugin.refreshViews(); }));
     new Setting(containerEl).setName("Dictionary languages")
       .setDesc("Shown: answer only in the translations on screen — one language when one translation is on. All: answer in every language of the edition, the shown ones first.")
       .addDropdown((dropdown) => dropdown.addOption("shown", "Shown translations").addOption("all", "All, shown first").setValue(this.plugin.settings.dictionaryLanguages)
