@@ -63,8 +63,9 @@ def project(
     projection = language.project(surfaces.keys())
     own = target == language.gloss_language
     found: list[glosses_module.Gloss] = []
-    if not own or glossary or dictionary or supplement:
-        found, _ = glosses_module.project(
+    gloss_report: dict[str, object] = {}
+    if not own or glossary or dictionary or supplement or gloss_pivot:
+        found, gloss_report = glosses_module.project(
             target,
             projection,
             fold=language.normalise,
@@ -142,5 +143,6 @@ def project(
         "covered": len(projection.forms) - len(missing),
         "unanalysed": unknown,
         "missing": missing,
+        "derivedEntries": gloss_report.get("derivedEntries", 0),
     }
     return payload, report

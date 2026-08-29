@@ -641,12 +641,16 @@ class SecondPassTests(unittest.TestCase):
             {"word": "gaietto", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["lively, merry (dated)"], "synonyms": [{"word": "gaio"}]}]},
             {"word": "gaetta", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["Dantesque form of gaietto"], "tags": ["alt-of"], "alt_of": [{"word": "gaietto"}]}]},
             {"word": "accismare", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to adorn, to deck out"]}]},
+            {"word": "gaetto", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["Dantesque form of gaietto"]}], "forms": [{"form": "gaetti", "tags": ["masculine", "plural"]}]},
         ]
         with tempfile.TemporaryDirectory() as temporary:
             cache = Path(temporary)
             (cache / "enwiktionary-italian.jsonl").write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in rows) + "\n", encoding="utf-8")
             italian = get("italian"); italian.load(cache)
             self.assertEqual(["gaio"], italian.related("gaietto|adj"))
+            self.assertEqual("gaietto", italian.entry(italian.analyse("gaetta")[0].entry_id).headword)
+            self.assertEqual("gaietto", italian.entry(italian.analyse("gaetti")[0].entry_id).headword)
+            self.assertEqual("masculine plural; Dantesque form of", italian.analyse("gaetti")[0].features)
             english = cache / "en.jsonl"
             english.write_text(json.dumps({"word": "adorn", "pos": "verb", "senses": [{"glosses": ["to make more beautiful"], "translations": [{"lang_code": "ru", "word": "украшать"}]}]}) + "\n", encoding="utf-8")
             pivot = glosses.index_gloss_pivot(english, "ru")

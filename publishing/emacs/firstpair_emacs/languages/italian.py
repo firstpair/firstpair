@@ -28,6 +28,11 @@ WORD = re.compile(r"[^\W\d_]+", re.UNICODE)
 DIAERESIS = {"ï": "i", "ü": "u", "ë": "e", "ö": "o", "ä": "a"}
 SKIPPED_TAGS = {"table-tags", "inflection-template", "canonical", "romanization", "class", "conjugation", "declension"}
 FORM_OF = re.compile(r"^(?P<kind>.*?)\bof\s+(?P<target>[^\s,;:()]+)\s*$")
+# A link written only as gloss text: "Dantesque form of gaietto", "obsolete spelling of cuore".
+FORM_OF_GLOSS = re.compile(
+    r"^(?P<kind>(?:[A-Za-z-]+ ){0,4}(?:form|spelling|variant|misspelling|contraction|abbreviation|apocope|elision|synonym) of)\s+(?P<target>[^\s,;:()]+)\.?\s*$",
+    re.IGNORECASE,
+)
 MINOR_PARTS = {"suffix", "prefix", "infix", "interfix", "abbrev", "symbol", "letter", "character", "punct"}
 LATE_PARTS = {"name", "abbrev"}
 
@@ -122,6 +127,13 @@ def _targets(sense: dict) -> list[tuple[str, str]]:
     match = FORM_OF.match(kind)
     default_features = match.group("kind").strip() if match else kind
     found: list[tuple[str, str]] = []
+    if not sense.get("form_of") and not sense.get("alt_of") and glosses:
+        written = FORM_OF_GLOSS.match(glosses[0])
+        if written:
+            target = normalise(written.group("target"))
+            if target:
+                found.append((target, written.group("kind").strip()))
+            return found
     for item in sense.get("form_of", []) + sense.get("alt_of", []):
         raw = str(item.get("word", "")).strip()
         if not raw:
@@ -175,6 +187,7 @@ class Italian:
     links: dict[str, list[tuple[str, str]]] = field(default_factory=dict)  # form -> (target lemma, kind)
     own: dict[str, list[str]] = field(default_factory=dict)  # form-of row -> its own entry ids
     relations: dict[str, list[str]] = field(default_factory=dict)  # entry id -> related lemma keys
+    link_rows: dict[str, str] = field(default_factory=dict)  # entry id of a form-of row -> its key
     supplement_entries: dict[str, list[str]] = field(default_factory=dict)
 
     # -- loading -------------------------------------------------------------
@@ -246,6 +259,14 @@ class Italian:
             for target, kind in form_links:
                 self.links.setdefault(key, []).append((target, kind))
             self.own.setdefault(key, []).append(entry_id)
+            self.link_rows[entry_id] = key
+            # A form-of row may still carry an inflection table; its forms
+            # resolve through the row's link when looked up.
+            for form in row.get("forms", []):
+                text = normalise(str(form.get("form", "")))
+                tags = tuple(tag for tag in form.get("tags", []) if tag not in SKIPPED_TAGS)
+                if text and text != key and tags:
+                    self._index_form(text, entry_id, " ".join(tags))
             return
         self.lemmas.setdefault(key, []).append(entry_id)
         plain = unaccented(key)
@@ -316,7 +337,16 @@ class Italian:
             found.append(Analysis(form=form, entry_id=entry_id, features=features, enclitic=enclitic, note=note))
 
         for entry_id, features in self.forms.get(form, ()):
-            add(entry_id, features)
+            row_key = self.link_rows.get(entry_id)
+            if row_key is None:
+                add(entry_id, features)
+                continue
+            resolved = [pair for target, kind in self.links.get(row_key, ()) for pair in self._linked(target, f"{features}; {kind}")]
+            if resolved:
+                for linked_id, linked_features in resolved:
+                    add(linked_id, linked_features)
+            else:
+                add(entry_id, features)
         for target, kind in self.links.get(form, ()):
             for entry_id, features in self._linked(target, kind):
                 add(entry_id, features)
