@@ -153,12 +153,12 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     // or answer in all languages with the shown ones first.
     const mezzo = () => Array.from(root.querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'mezzo')
     mezzo().click(); await settle(); await settle()
-    let headings = Array.from(drawer.querySelectorAll('h3')).map((h) => h.textContent)
+    let headings = Array.from(drawer.querySelectorAll('.firstpair-reader__lang')).map((h) => h.textContent)
     assert.deepEqual(headings, ['Русский'])
     const languages = Array.from(app.settingsContainer.querySelectorAll('select')).find((s) => Array.from(s.options).some((o) => o.value === 'all'))
     languages.value = 'all'; languages.dispatchEvent(new window.Event('change')); await settle()
     mezzo().click(); await settle(); await settle()
-    headings = Array.from(drawer.querySelectorAll('h3')).map((h) => h.textContent)
+    headings = Array.from(drawer.querySelectorAll('.firstpair-reader__lang')).map((h) => h.textContent)
     assert.deepEqual(headings, ['Русский', 'English'])
 
     // A standing dictionary column opens with the page, has no Close button,
@@ -227,6 +227,12 @@ test('several translations per language: rotate, second column, coverage', async
     // Remove the extra column.
     Array.from(root.querySelectorAll('.firstpair-reader__column-control')).find((b) => b.textContent === '−').click(); await settle(); await settle()
     assert.deepEqual(headers(), ['Italiano', 'English · Longfellow (1867)', 'Русский · Мин (1855)'])
+    // The toolbar picker (for phones, where headers are hidden) changes the translation too.
+    const picker = root.querySelector('.firstpair-reader__languages .firstpair-reader__picker')
+    assert.ok(picker, 'English has a picker'); assert.equal(picker.value, 'en-longfellow')
+    picker.value = 'en-cary'; picker.dispatchEvent(new window.Event('change')); await settle(); await settle()
+    assert.deepEqual(headers().slice(1, 2), ['English · Cary (1814) ≈'])
+    assert.equal(root.querySelectorAll('.firstpair-reader__languages .firstpair-reader__picker').length, 1, 'Russian has one translation, no picker')
   } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
 })
 

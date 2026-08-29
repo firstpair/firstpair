@@ -162,15 +162,8 @@ class FirstPairReaderView extends ItemView {
   makeToolbar() {
     if (!this.parallel) { this.toolbar.hidden = true; return; }
     this.toolbar.createSpan({ text: "Translations", cls: "firstpair-reader__toolbar-title" });
-    for (const language of this.languages()) {
-      const label = this.toolbar.createEl("label", { cls: "firstpair-reader__language-toggle" });
-      const input = label.createEl("input", { type: "checkbox" }); input.checked = this.enabled.has(language.id);
-      input.addEventListener("change", async () => {
-        if (input.checked) this.enabled.add(language.id); else this.enabled.delete(language.id);
-        await this.renderPage(false);
-      });
-      label.createSpan({ text: language.label });
-    }
+    this.languageControls = this.toolbar.createDiv({ cls: "firstpair-reader__languages" });
+    this.updateToolbar();
     this.layoutButton = this.toolbar.createEl("button", { cls: "firstpair-reader__layout-toggle" });
     this.layoutButton.addEventListener("click", async () => {
       const index = LAYOUTS.findIndex((item) => item.id === this.plugin.settings.layout);
@@ -178,6 +171,50 @@ class FirstPairReaderView extends ItemView {
       this.applyLayout();
     });
     this.showLayoutChoice();
+  }
+  // One group per language: its checkbox, and — when it has several
+  // translations — a picker for the one on screen and + for a second column
+  // (then a second picker and −). Pickers work where column headers are
+  // hidden: phones, and the stacked layout.
+  updateToolbar() {
+    if (!this.languageControls) return;
+    this.languageControls.empty();
+    const part = this.currentPart();
+    for (const language of this.languages()) {
+      const group = this.languageControls.createDiv({ cls: "firstpair-reader__language" });
+      const label = group.createEl("label", { cls: "firstpair-reader__language-toggle" });
+      const input = label.createEl("input", { type: "checkbox" }); input.checked = this.enabled.has(language.id);
+      input.addEventListener("change", async () => {
+        if (input.checked) this.enabled.add(language.id); else this.enabled.delete(language.id);
+        await this.renderPage(false);
+      });
+      label.createSpan({ text: language.label });
+      if (!this.enabled.has(language.id)) continue;
+      const available = this.translationsOf(language.id).filter((item) => this.covers(item, part));
+      if (available.length < 2) continue;
+      const columns = this.columns.map((column, index) => ({ ...column, index })).filter((column) => column.lang === language.id);
+      for (const column of columns) {
+        const others = columns.filter((other) => other.index !== column.index).map((other) => other.id);
+        const select = group.createEl("select", { cls: "firstpair-reader__picker", attr: { "aria-label": `${language.label} translation` } });
+        for (const item of available.filter((item) => !others.includes(item.id))) {
+          const option = select.createEl("option", { text: this.columnTitle({ item, id: item.id }) }); option.value = item.id;
+          if (item.id === column.id) option.selected = true;
+        }
+        select.addEventListener("change", async () => {
+          this.columns[column.index].id = select.value;
+          if (!column.extra) await this.remember(language.id, select.value);
+          await this.renderPage(false);
+        });
+        if (column.extra) {
+          const remove = group.createEl("button", { cls: "firstpair-reader__column-control", text: "−", attr: { "aria-label": "Remove the second column", title: "Remove the second column" } });
+          remove.addEventListener("click", () => this.removeColumn(column.index));
+        }
+      }
+      if (columns.length === 1 && available.length > 1) {
+        const add = group.createEl("button", { cls: "firstpair-reader__column-control", text: "+", attr: { "aria-label": "Show a second translation beside this one", title: "Second translation" } });
+        add.addEventListener("click", () => this.addColumn(language.id));
+      }
+    }
   }
   showLayoutChoice() {
     const choice = LAYOUTS.find((item) => item.id === this.plugin.settings.layout) ?? LAYOUTS[0];
@@ -199,6 +236,7 @@ class FirstPairReaderView extends ItemView {
       }
       this.page.toggleClass("firstpair-reader__page--stacked", layout === "stacked");
       this.page.toggleClass("firstpair-reader__page--columns", layout === "columns");
+      this.root.style.setProperty("--firstpair-toolbar-height", `${this.toolbar.hidden ? 0 : this.toolbar.offsetHeight}px`);
       if (this.layoutButton) this.showLayoutChoice();
       this.sizeDrawer();
     };
@@ -304,6 +342,7 @@ class FirstPairReaderView extends ItemView {
         this.appendText(element, isSource ? unit.source : (unit.translations?.[cell.id] ?? []), isSource);
       }
     }
+    this.updateToolbar();
     this.applyLayout();
   }
   // Which dictionaries answer, and in what order: the translations on screen
@@ -365,6 +404,20 @@ class FirstPairReaderView extends ItemView {
       add.addEventListener("click", () => this.addColumn(cell.lang));
     }
   }
+  mergeEntries(entries) {
+    const groups = new Map();
+    for (const entry of entries) {
+      const key = [entry.headword ?? "", entry.partOfSpeech ?? "", entry.grammar ?? ""].join("\u0000");
+      const group = groups.get(key) ?? { headword: entry.headword, partOfSpeech: entry.partOfSpeech, grammar: entry.grammar, definitions: [], examples: [] };
+      for (const definition of entry.definitions ?? []) {
+        const plain = definition.trim();
+        if (plain && !group.definitions.some((known) => known === plain || known.startsWith(plain) || plain.startsWith(known))) group.definitions.push(plain);
+      }
+      for (const example of entry.examples ?? []) if (!group.examples.includes(example)) group.examples.push(example);
+      groups.set(key, group);
+    }
+    return [...groups.values()].map((group) => ({ ...group, examples: group.examples.slice(0, 2) }));
+  }
   async openDictionary(surface) {
     const word = normalizeWord(surface); this.drawer.empty(); this.grip = null; this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: surface });
@@ -375,18 +428,35 @@ class FirstPairReaderView extends ItemView {
     let found = false;
     for (const language of this.dictionaryLanguages()) {
       const dictionary = this.parallel.dictionaries?.[language.id]; if (!dictionary) continue;
-      // (dictionaries are keyed by language; the label is the language's)
-      const section = this.drawer.createDiv({ cls: "firstpair-reader__definition" }); section.createEl("h3", { text: language.label });
+      const section = this.drawer.createDiv({ cls: "firstpair-reader__definition" });
+      section.createSpan({ text: language.label, cls: "firstpair-reader__lang" });
       let entries;
       try { entries = await this.plugin.lookup(dictionary.path, word); }
       catch (error) { section.createEl("p", { text: `This dictionary is not in the vault yet (${error.message}). If the vault is synced, wait for the sync to finish.`, cls: "firstpair-reader__warning" }); continue; }
-      if (!entries.length) { section.createEl("p", { text: "No exact headword entry." }); continue; }
+      if (!entries.length) { section.createEl("p", { text: "No exact headword entry.", cls: "firstpair-reader__none" }); continue; }
       found = true;
-      for (const entry of entries) {
-        const head = section.createEl("h4", { text: [entry.headword, entry.partOfSpeech].filter(Boolean).join(" · ") });
+      // Entries from several sources repeat one another: merge by headword,
+      // part of speech, and grammar, drop repeated senses, show the first
+      // merged entry and fold the rest behind "N more".
+      const merged = this.mergeEntries(entries);
+      const shown = merged.slice(0, 1); const rest = merged.slice(1);
+      const renderEntry = (entry, container) => {
+        const head = container.createDiv({ cls: "firstpair-reader__entry-head" });
+        head.createSpan({ text: [entry.headword, entry.partOfSpeech].filter(Boolean).join(" · "), cls: "firstpair-reader__headword" });
         if (entry.grammar) head.createSpan({ text: ` ${entry.grammar}`, cls: "firstpair-reader__grammar" });
-        section.createEl("p", { text: (entry.definitions ?? []).join("; ") });
-        for (const example of entry.examples ?? []) section.createEl("blockquote", { text: typeof example === "string" ? example : [example.latin ?? example.source, example.translation].filter(Boolean).join(" — ") });
+        container.createEl("p", { text: entry.definitions.join("; "), cls: "firstpair-reader__senses" });
+        for (const example of entry.examples ?? []) container.createEl("blockquote", { text: typeof example === "string" ? example : [example.latin ?? example.source, example.translation].filter(Boolean).join(" — ") });
+      };
+      for (const entry of shown) renderEntry(entry, section);
+      if (rest.length) {
+        const more = section.createEl("button", { cls: "firstpair-reader__more", text: `${rest.length} more`, attr: { "aria-expanded": "false" } });
+        const hidden = section.createDiv({ cls: "firstpair-reader__more-entries", attr: { hidden: "" } });
+        for (const entry of rest) renderEntry(entry, hidden);
+        more.addEventListener("click", () => {
+          const open = hidden.hasAttribute("hidden");
+          if (open) hidden.removeAttribute("hidden"); else hidden.setAttribute("hidden", "");
+          more.setText(open ? "less" : `${rest.length} more`); more.setAttribute("aria-expanded", String(open));
+        });
       }
     }
     if (!found) this.drawer.createEl("p", { text: "Try the headword form; this offline edition does not guess every historical inflection." });
