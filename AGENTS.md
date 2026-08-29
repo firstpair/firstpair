@@ -302,6 +302,13 @@ Cicero (`~/src/cicero`) shows the preview/full split.
    would always be one commit behind. Order the work so that tracked outputs
    (`vault.build.json`, coverage reports) are committed first and the Emacs
    bundle is built last, because its manifest must name the pushed HEAD.
+   A source repository may publish **more than one title**: pass the second
+   title's dist directory as the input with `--slug`, and its vault and
+   bundle with `--vault-dir` / `--emacs-dir`, as Dante does for
+   `dante-commedia` and `dante-commedia-russian` (see its `FIRSTPAIR.md`).
+   An aligned edition with several translations per language follows
+   `publishing/skills/obsidian-reader-plugin-delivery.md` § Aligned Editions;
+   its Emacs bundle declares `emacs.aligned.index`.
 5. **Rights.** A full edition may be published only for text the source
    repository is licensed to distribute; keep any restricted witness (a
    translation still in copyright) in a separately named local build that the

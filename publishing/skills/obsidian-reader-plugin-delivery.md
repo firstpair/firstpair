@@ -170,7 +170,20 @@ first and the enabled translations after it.
    post-processor, so `Home.md`'s table of contents opens pages directly in
    reading view. `obsidian://firstpair-reader?page=<id>` does the same from
    outside the vault. Both are in addition to the ribbon icon and command.
-5. The source-owned validator must check the index schema, every shard's size,
+5. Several translations of one language: `translations[]` entries carry
+   `lang`, `title` (translator and date), `alignment` (`line`,
+   `proportional`, or `prose` — only `line` asserts the same verses on a
+   row; the others are shown with ≈), `coverage` (the `part` values the
+   translation covers), and `default`; `languages[]` lists the languages in
+   column order. The plugin keeps one column per enabled language, its
+   header naming the translation and rotating through the language's
+   translations that cover the current page on click; **+** adds a second
+   column of the same language, **−** removes it; the choice is remembered
+   per edition title in `settings.choices`. Dictionaries stay keyed by
+   language. The Emacs builder reads the same index through
+   `emacs.aligned.index`, renders every translation as a region, ships
+   `data/translations.json`, and rotates with `C-c C-v` / `C-c C-b`.
+6. The source-owned validator must check the index schema, every shard's size,
    and the total entry count, and a public edition must refuse any language it
    does not license (Dante's rejects Cyrillic in a public chapter).
 
