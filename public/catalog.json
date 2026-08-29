@@ -553,6 +553,31 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/cover/92379787ecd6cbf9-eigentimes-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/headboard/bb96e5795e5c435a-eigentimes-headboard.png",
       "post": "https://eigentimes.com/"
+    },
+    {
+      "slug": "eigentimes-math",
+      "title": "The Mathematics of Eigen Times",
+      "author": "Alexy Khrabrov",
+      "kicker": "Tutorial",
+      "description": "A tutorial companion to the Eigen Times article: how text becomes vectors, what the covariance and its eigenvectors are, the SVD and latent semantic analysis, varimax rotation, projection and the T²/Q statistics, and every clustering and statistical threshold of the newspaper, explained with coloured-square matrix diagrams and worked examples.",
+      "accent": "#2E6A8A",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
+      "html": "/read/eigentimes-math/",
+      "htmlChapters": "/read/eigentimes-math/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/html/d3360285af404fd1-eigentimes-math.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+      "tags": [
+        "eigentimes",
+        "finished",
+        "linear-algebra",
+        "tutorial"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/alexy/eigentimes-math",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
+      "post": "https://firstpair.org/read/eigentimes/"
     }
   ]
 }

@@ -191,6 +191,14 @@
       "htmlChapters": "book-uploads/staging/eigentimes/eigentimes-chapters",
       "cover": "book-uploads/staging/eigentimes/eigentimes-cover.png",
       "headboard": "book-uploads/staging/eigentimes/eigentimes-headboard.png"
+    },
+    "eigentimes-math": {
+      "pdf": "book-uploads/staging/eigentimes-math/eigentimes-math.pdf",
+      "epub": "book-uploads/staging/eigentimes-math/eigentimes-math.epub",
+      "html": "book-uploads/staging/eigentimes-math/eigentimes-math.html",
+      "htmlChapters": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters",
+      "cover": "book-uploads/staging/eigentimes-math/eigentimes-math-cover.png",
+      "headboard": "book-uploads/staging/eigentimes-math/eigentimes-math-headboard.png"
     }
   }
 }

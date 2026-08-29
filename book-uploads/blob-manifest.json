@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T05:08:29.591Z",
+  "updatedAt": "2026-08-29T05:26:15.961Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -7299,6 +7299,391 @@
           ]
         }
       }
+    },
+    "eigentimes-math": {
+      "updatedAt": "2026-08-29T05:26:15.961Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math.pdf",
+          "sha256": "a84ed043616ec817517336ef1ba858a346e80f412bbd06911333dddb5e8ecf8a",
+          "size": 1471497,
+          "pathname": "books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math.epub",
+          "sha256": "a15254ac19f32eb11b1d8454710ddfdae15dea7f691d278ccf9af124593cc780",
+          "size": 1552964,
+          "pathname": "books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math.html",
+          "sha256": "d3360285af404fd10ef14d939e48a03b726ac5e0c68ef64222d632f84ed33e63",
+          "size": 2248092,
+          "pathname": "books/eigentimes-math/html/d3360285af404fd1-eigentimes-math.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/html/d3360285af404fd1-eigentimes-math.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-cover.png",
+          "sha256": "5cea5eff45a15dfdde0a182de72be477503d8e8831154f5a8e22b17f0536de04",
+          "size": 101072,
+          "pathname": "books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-headboard.png",
+          "sha256": "609cd3773edabefc5916214b2d363e461f2ac3928407be29357011c43d1a07d6",
+          "size": 186370,
+          "pathname": "books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters",
+          "sha256": "cb290bd7091171e594c0aa54bc60739e2645daf012080f07ae34471a2d4f47f6",
+          "pathnamePrefix": "books/eigentimes-math/chapters/cb290bd7091171e5",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/assets/5cea5eff45a1-eigentimes-math-cover.png",
+              "relativePath": "assets/5cea5eff45a1-eigentimes-math-cover.png",
+              "sha256": "5cea5eff45a15dfdde0a182de72be477503d8e8831154f5a8e22b17f0536de04",
+              "size": 101072,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/assets/5cea5eff45a1-eigentimes-math-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/assets/5cea5eff45a1-eigentimes-math-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "cb66f6f2608ad70246441d6d5d17964ce480a6588f9cfb58c596d61c1478bf4a",
+              "size": 5074,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "8f50c7f00433b8a2d21de45061596e396f0b756f196ded52e3b55494bdedd2d6",
+              "size": 6176,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "f15943ef9f6d3cdd66892cda46932b8f4aab99fb83c9a5895fcc833f226746c3",
+              "size": 6521,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "9cdb6e56ba1a94255fd06fccad41b8dc5f1b03fb3b2abc5466425d289f2a356f",
+              "size": 12488,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "b90dc1040172e9229e9564159a2a506fe6263fdbb55db1f145c953a45ed60e33",
+              "size": 14027,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "4d3386fba4a80b76e80d1578e9ac17640bd9b0d136823dd359b29c2bcfa43adf",
+              "size": 20342,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "7ec9f7fd73013e6a433eaa04039ae803d0d02ee685a4a17196a351cafaf7a288",
+              "size": 21271,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "5ee9b5d3085740b57537f68d49919e57ed018ad4e9636512d87b2ac5c016e392",
+              "size": 17067,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "540177aff99fde16f279d029da7a0542ae73aa45101b10de380427be457b143b",
+              "size": 14480,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "e0654f21114f827805161c7160bcfb5dc1cc64b759fdeab0e80cb31576cacda9",
+              "size": 12507,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "620b37f77f741b8451ae0c9123c0ce451192492f28f5c7e0bb5e71b5fda7b240",
+              "size": 9591,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "cf25bf00e3290b1366dae3b124d082a9c7e951497a5dda8de8514a6a3c744fc7",
+              "size": 9010,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "fab3d004aa94a32ef529731ac808057f9326035e79adb549deb4d7c05a4e7667",
+              "size": 11554,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "3cb07a778172858372a6dcd7a2f23a5a6af3e06c8cf30d147c1dfee52c935897",
+              "size": 9628,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "5bf50af3797c6ff3beeb40c8801281c3409125f64841587fc4bfce3905bf2581",
+              "size": 6783,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-cluster-sizes.png",
+              "relativePath": "figures/fig-cluster-sizes.png",
+              "sha256": "9b91cd2dc0464110da2c56e8fedaf05013c60048b5a18e494a9498848349d330",
+              "size": 85134,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-sizes.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-sizes.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-cluster-thresholds.png",
+              "relativePath": "figures/fig-cluster-thresholds.png",
+              "sha256": "136f28e316153269f6e70c5d7ffaa1408e42a36bd901b3bb1fbbc13ef8bc4cdd",
+              "size": 86864,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-thresholds.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-thresholds.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-covariance.png",
+              "relativePath": "figures/fig-covariance.png",
+              "sha256": "e8a2ffd5498e6d7096a157fce367e20ce4f7be58c14eb01943f612fe7da1e5de",
+              "size": 82957,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-covariance.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-covariance.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-degenerate.png",
+              "relativePath": "figures/fig-degenerate.png",
+              "sha256": "cd6a56823cf6f8243d7a61073bfe1b9ed1c9601a24fea2af8a5540150b6dbdec",
+              "size": 103540,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-degenerate.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-degenerate.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-eigen2d.png",
+              "relativePath": "figures/fig-eigen2d.png",
+              "sha256": "85de8239ebaf3f7def99597a1fe93b22948f359d215e584adbffa3578fa39e4c",
+              "size": 116304,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-eigen2d.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-eigen2d.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-episode-links.png",
+              "relativePath": "figures/fig-episode-links.png",
+              "sha256": "84a23305fab2928ed1b4d00316a6f275aa3ab6380eee226d27e4f6cd89eb64ba",
+              "size": 73603,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-episode-links.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-episode-links.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-lsa-terms.png",
+              "relativePath": "figures/fig-lsa-terms.png",
+              "sha256": "720de7efc10e61cd460ebf6024eeee3845d986dd24ac64a3df8f3ecc48aa71d6",
+              "size": 98764,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-lsa-terms.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-lsa-terms.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-matching.png",
+              "relativePath": "figures/fig-matching.png",
+              "sha256": "bdd9f12cbd0679602a8be57dcf9bd96a25bab9b525b7cff1bf8424a785c59cd7",
+              "size": 121739,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matching.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matching.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-matmul.png",
+              "relativePath": "figures/fig-matmul.png",
+              "sha256": "4b30cb3132896dfd22f5d9a33dd205b9f1753634cdc8ec0d8b91741e9697e434",
+              "size": 42145,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matmul.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matmul.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-matvec.png",
+              "relativePath": "figures/fig-matvec.png",
+              "sha256": "d2877162c5aad4c46373f649b999ed6e80801d98aeac0233735300c5b375136c",
+              "size": 42877,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matvec.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matvec.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-pipeline-shapes.png",
+              "relativePath": "figures/fig-pipeline-shapes.png",
+              "sha256": "07b30a636aa7da993b9e98212b35fbb554de191dc404f1dddfd946784562e322",
+              "size": 64359,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-pipeline-shapes.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-pipeline-shapes.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-projection.png",
+              "relativePath": "figures/fig-projection.png",
+              "sha256": "cd82ae78c732c375db46aab21830ae92620b60d0aa68538a130456287a96aa2a",
+              "size": 74627,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-projection.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-projection.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-single-linkage.png",
+              "relativePath": "figures/fig-single-linkage.png",
+              "sha256": "0f47f07a1b2dd5c9ef963b94399fa1649c92fc14190ce657c5651a62230b304c",
+              "size": 70058,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-single-linkage.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-single-linkage.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-svd-blocks.png",
+              "relativePath": "figures/fig-svd-blocks.png",
+              "sha256": "7fc8f4348b8dd37b0ae7d6f68307e405554726853e4fae39f9e59bfc4f556274",
+              "size": 65939,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-blocks.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-blocks.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-svd-example.png",
+              "relativePath": "figures/fig-svd-example.png",
+              "sha256": "ca6ff87f63c20f9c9ff43771bba8a020598ce701a6d1c5c4ba2c2b6acc1f274b",
+              "size": 93290,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-example.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-example.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-tfidf.png",
+              "relativePath": "figures/fig-tfidf.png",
+              "sha256": "37207ea7cdb110e93bae0d75e540c1490f7ef14b9b46e7af03225c048fdb3ba2",
+              "size": 66247,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-tfidf.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-tfidf.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-varimax.png",
+              "relativePath": "figures/fig-varimax.png",
+              "sha256": "b92ffc95a6b1d0e5923d3ed58745efe3b88e0ea6b8785220842f7084b06d98f1",
+              "size": 118144,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-varimax.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-varimax.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-whitening.png",
+              "relativePath": "figures/fig-whitening.png",
+              "sha256": "c88386dc02b1efb133e1e1007437733a5b13c3e7112b5f7390f4050bd8d289a4",
+              "size": 92390,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-whitening.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-whitening.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "40e776bd0c581fc61d08c083b2227f923c00f1c16d043a8a9d236ee1535e3af3",
+              "size": 11436,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "5953b67200a3db248906f5065006450d3b40c102712193a727b803ef2efa7615",
+              "size": 7019,
+              "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -8671,6 +9056,31 @@
       "pathname": "books/cicero-on-himself/emacs-guide/245f14fbd63523f6-cicero-on-himself-emacs-guide (2.0.0-sol-25d6ed6b).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/245f14fbd63523f6-cicero-on-himself-emacs-guide%20%282.0.0-sol-25d6ed6b%29.html",
       "size": 26128
+    },
+    "a84ed043616ec817517336ef1ba858a346e80f412bbd06911333dddb5e8ecf8a:1471497": {
+      "pathname": "books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
+      "size": 1471497
+    },
+    "a15254ac19f32eb11b1d8454710ddfdae15dea7f691d278ccf9af124593cc780:1552964": {
+      "pathname": "books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
+      "size": 1552964
+    },
+    "d3360285af404fd10ef14d939e48a03b726ac5e0c68ef64222d632f84ed33e63:2248092": {
+      "pathname": "books/eigentimes-math/html/d3360285af404fd1-eigentimes-math.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/html/d3360285af404fd1-eigentimes-math.html",
+      "size": 2248092
+    },
+    "5cea5eff45a15dfdde0a182de72be477503d8e8831154f5a8e22b17f0536de04:101072": {
+      "pathname": "books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
+      "size": 101072
+    },
+    "609cd3773edabefc5916214b2d363e461f2ac3928407be29357011c43d1a07d6:186370": {
+      "pathname": "books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
+      "size": 186370
     }
   },
   "chapterPackages": {
@@ -23676,6 +24086,336 @@
           "size": 5625,
           "pathname": "books/eigentimes/chapters/267da0cc1cb50804/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/267da0cc1cb50804/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "cb290bd7091171e594c0aa54bc60739e2645daf012080f07ae34471a2d4f47f6": {
+      "pathnamePrefix": "books/eigentimes-math/chapters/cb290bd7091171e5",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/assets/5cea5eff45a1-eigentimes-math-cover.png",
+          "relativePath": "assets/5cea5eff45a1-eigentimes-math-cover.png",
+          "sha256": "5cea5eff45a15dfdde0a182de72be477503d8e8831154f5a8e22b17f0536de04",
+          "size": 101072,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/assets/5cea5eff45a1-eigentimes-math-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/assets/5cea5eff45a1-eigentimes-math-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "cb66f6f2608ad70246441d6d5d17964ce480a6588f9cfb58c596d61c1478bf4a",
+          "size": 5074,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "8f50c7f00433b8a2d21de45061596e396f0b756f196ded52e3b55494bdedd2d6",
+          "size": 6176,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "f15943ef9f6d3cdd66892cda46932b8f4aab99fb83c9a5895fcc833f226746c3",
+          "size": 6521,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "9cdb6e56ba1a94255fd06fccad41b8dc5f1b03fb3b2abc5466425d289f2a356f",
+          "size": 12488,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "b90dc1040172e9229e9564159a2a506fe6263fdbb55db1f145c953a45ed60e33",
+          "size": 14027,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "4d3386fba4a80b76e80d1578e9ac17640bd9b0d136823dd359b29c2bcfa43adf",
+          "size": 20342,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "7ec9f7fd73013e6a433eaa04039ae803d0d02ee685a4a17196a351cafaf7a288",
+          "size": 21271,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "5ee9b5d3085740b57537f68d49919e57ed018ad4e9636512d87b2ac5c016e392",
+          "size": 17067,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "540177aff99fde16f279d029da7a0542ae73aa45101b10de380427be457b143b",
+          "size": 14480,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "e0654f21114f827805161c7160bcfb5dc1cc64b759fdeab0e80cb31576cacda9",
+          "size": 12507,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "620b37f77f741b8451ae0c9123c0ce451192492f28f5c7e0bb5e71b5fda7b240",
+          "size": 9591,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "cf25bf00e3290b1366dae3b124d082a9c7e951497a5dda8de8514a6a3c744fc7",
+          "size": 9010,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "fab3d004aa94a32ef529731ac808057f9326035e79adb549deb4d7c05a4e7667",
+          "size": 11554,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "3cb07a778172858372a6dcd7a2f23a5a6af3e06c8cf30d147c1dfee52c935897",
+          "size": 9628,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "5bf50af3797c6ff3beeb40c8801281c3409125f64841587fc4bfce3905bf2581",
+          "size": 6783,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-cluster-sizes.png",
+          "relativePath": "figures/fig-cluster-sizes.png",
+          "sha256": "9b91cd2dc0464110da2c56e8fedaf05013c60048b5a18e494a9498848349d330",
+          "size": 85134,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-sizes.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-sizes.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-cluster-thresholds.png",
+          "relativePath": "figures/fig-cluster-thresholds.png",
+          "sha256": "136f28e316153269f6e70c5d7ffaa1408e42a36bd901b3bb1fbbc13ef8bc4cdd",
+          "size": 86864,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-thresholds.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-cluster-thresholds.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-covariance.png",
+          "relativePath": "figures/fig-covariance.png",
+          "sha256": "e8a2ffd5498e6d7096a157fce367e20ce4f7be58c14eb01943f612fe7da1e5de",
+          "size": 82957,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-covariance.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-covariance.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-degenerate.png",
+          "relativePath": "figures/fig-degenerate.png",
+          "sha256": "cd6a56823cf6f8243d7a61073bfe1b9ed1c9601a24fea2af8a5540150b6dbdec",
+          "size": 103540,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-degenerate.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-degenerate.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-eigen2d.png",
+          "relativePath": "figures/fig-eigen2d.png",
+          "sha256": "85de8239ebaf3f7def99597a1fe93b22948f359d215e584adbffa3578fa39e4c",
+          "size": 116304,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-eigen2d.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-eigen2d.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-episode-links.png",
+          "relativePath": "figures/fig-episode-links.png",
+          "sha256": "84a23305fab2928ed1b4d00316a6f275aa3ab6380eee226d27e4f6cd89eb64ba",
+          "size": 73603,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-episode-links.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-episode-links.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-lsa-terms.png",
+          "relativePath": "figures/fig-lsa-terms.png",
+          "sha256": "720de7efc10e61cd460ebf6024eeee3845d986dd24ac64a3df8f3ecc48aa71d6",
+          "size": 98764,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-lsa-terms.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-lsa-terms.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-matching.png",
+          "relativePath": "figures/fig-matching.png",
+          "sha256": "bdd9f12cbd0679602a8be57dcf9bd96a25bab9b525b7cff1bf8424a785c59cd7",
+          "size": 121739,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matching.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matching.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-matmul.png",
+          "relativePath": "figures/fig-matmul.png",
+          "sha256": "4b30cb3132896dfd22f5d9a33dd205b9f1753634cdc8ec0d8b91741e9697e434",
+          "size": 42145,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matmul.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matmul.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-matvec.png",
+          "relativePath": "figures/fig-matvec.png",
+          "sha256": "d2877162c5aad4c46373f649b999ed6e80801d98aeac0233735300c5b375136c",
+          "size": 42877,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matvec.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-matvec.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-pipeline-shapes.png",
+          "relativePath": "figures/fig-pipeline-shapes.png",
+          "sha256": "07b30a636aa7da993b9e98212b35fbb554de191dc404f1dddfd946784562e322",
+          "size": 64359,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-pipeline-shapes.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-pipeline-shapes.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-projection.png",
+          "relativePath": "figures/fig-projection.png",
+          "sha256": "cd82ae78c732c375db46aab21830ae92620b60d0aa68538a130456287a96aa2a",
+          "size": 74627,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-projection.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-projection.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-single-linkage.png",
+          "relativePath": "figures/fig-single-linkage.png",
+          "sha256": "0f47f07a1b2dd5c9ef963b94399fa1649c92fc14190ce657c5651a62230b304c",
+          "size": 70058,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-single-linkage.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-single-linkage.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-svd-blocks.png",
+          "relativePath": "figures/fig-svd-blocks.png",
+          "sha256": "7fc8f4348b8dd37b0ae7d6f68307e405554726853e4fae39f9e59bfc4f556274",
+          "size": 65939,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-blocks.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-blocks.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-svd-example.png",
+          "relativePath": "figures/fig-svd-example.png",
+          "sha256": "ca6ff87f63c20f9c9ff43771bba8a020598ce701a6d1c5c4ba2c2b6acc1f274b",
+          "size": 93290,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-example.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-svd-example.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-tfidf.png",
+          "relativePath": "figures/fig-tfidf.png",
+          "sha256": "37207ea7cdb110e93bae0d75e540c1490f7ef14b9b46e7af03225c048fdb3ba2",
+          "size": 66247,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-tfidf.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-tfidf.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-varimax.png",
+          "relativePath": "figures/fig-varimax.png",
+          "sha256": "b92ffc95a6b1d0e5923d3ed58745efe3b88e0ea6b8785220842f7084b06d98f1",
+          "size": 118144,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-varimax.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-varimax.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/figures/fig-whitening.png",
+          "relativePath": "figures/fig-whitening.png",
+          "sha256": "c88386dc02b1efb133e1e1007437733a5b13c3e7112b5f7390f4050bd8d289a4",
+          "size": 92390,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-whitening.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/figures/fig-whitening.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "40e776bd0c581fc61d08c083b2227f923c00f1c16d043a8a9d236ee1535e3af3",
+          "size": 11436,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math/eigentimes-math-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "5953b67200a3db248906f5065006450d3b40c102712193a727b803ef2efa7615",
+          "size": 7019,
+          "pathname": "books/eigentimes-math/chapters/cb290bd7091171e5/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/chapters/cb290bd7091171e5/sitemap.json",
           "skipped": false
         }
       ]
