@@ -63,7 +63,7 @@ an Emacs package instead and let it find your bundles:
 
 ```elisp
 ;; From a downloaded firstpair-reader-<version>.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.5.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.6.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install '(firstpair-reader

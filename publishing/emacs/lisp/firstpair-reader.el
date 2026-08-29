@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.5
+;; Version: 1.6
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -242,6 +242,30 @@ rendering has moved the text, the word is found again on the same line."
           (sort firstpair-reader--overlays
                 (lambda (a b) (< (overlay-start a) (overlay-start b)))))))
 
+(defface firstpair-reader-emphasis
+  '((t :inherit italic))
+  "Face for text the manual marks with underscores, Info's emphasis.")
+
+(defun firstpair-reader--fontify-emphasis ()
+  "Show Info's _emphasis_ as italics, hiding the underscores.
+Older Emacs did this itself; current Info leaves the underscores in place."
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward "\\(?:^\\|[[:space:](\"“‘]\\)\\(_\\)\\([^_[:space:]][^_]\\{0,200\\}?[^_[:space:]]\\|[^_[:space:]]\\)\\(_\\)\\(?:$\\|[[:space:][:punct:]]\\)" nil t)
+      (let ((open (match-beginning 1)) (close (match-beginning 3))
+            (start (match-beginning 2)) (end (match-end 2)))
+        (unless (string-match-p "\n[ \t]*\n" (buffer-substring-no-properties start end))
+          (dolist (bounds (list (cons open (1+ open)) (cons close (1+ close))))
+            (let ((overlay (make-overlay (car bounds) (cdr bounds))))
+              (overlay-put overlay 'invisible t)
+              (overlay-put overlay 'evaporate t)
+              (push overlay firstpair-reader--overlays)))
+          (let ((overlay (make-overlay start end)))
+            (overlay-put overlay 'face 'firstpair-reader-emphasis)
+            (overlay-put overlay 'evaporate t)
+            (push overlay firstpair-reader--overlays)))
+        (goto-char (max (point) (1+ close)))))))
+
 (defun firstpair-reader--tidy-references (bundle)
   "Hide the manual name Info leaves visible in references to BUNDLE's manuals."
   (save-excursion
@@ -280,6 +304,7 @@ The selection is the dictionary's: `firstpair-lexicon-languages'."
       (when (and firstpair-reader-mode (firstpair-bundle-current))
         (let ((bundle (firstpair-bundle-current)))
           (firstpair-reader--mark bundle)
+          (firstpair-reader--fontify-emphasis)
           (when Info-hide-note-references
             (firstpair-reader--tidy-references bundle))
           (firstpair-reader--apply-regions bundle))))))
@@ -301,6 +326,7 @@ The selection is the dictionary's: `firstpair-lexicon-languages'."
     (cond (bundle
            (unless firstpair-reader-mode (firstpair-reader-mode 1))
            (firstpair-reader--mark bundle)
+           (firstpair-reader--fontify-emphasis)
            (when Info-hide-note-references
              (firstpair-reader--tidy-references bundle))
            (firstpair-reader--apply-regions bundle))
