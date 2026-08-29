@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.7
+;; Version: 1.8
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -52,6 +52,14 @@
 Each entry is either a bundle directory or a directory whose immediate
 subdirectories are bundles."
   :type '(repeat directory))
+
+(defcustom firstpair-reader-resume t
+  "Reopen a bundle where it was left: node, point, languages, translations."
+  :type 'boolean)
+
+(defcustom firstpair-reader-state-file (locate-user-emacs-file "firstpair-reader-state.el")
+  "File remembering, per bundle, where reading stopped and what was shown."
+  :type 'file)
 
 (defcustom firstpair-reader-info-directory "~/.local/share/info"
   "Info directory that `firstpair-reader-install-info' installs manuals into."
@@ -384,9 +392,83 @@ id, the dictionary's choice."
            (firstpair-reader--fontify-emphasis)
            (when Info-hide-note-references
              (firstpair-reader--tidy-references bundle))
-           (firstpair-reader--apply-regions bundle))
+           (firstpair-reader--apply-regions bundle)
+           (ignore-errors (firstpair-reader-save-state)))
           (firstpair-reader-mode
            (firstpair-reader-mode -1)))))
+
+;;; Resuming
+
+(defvar firstpair-reader--setting-up nil
+  "Non-nil while `firstpair-read' opens a bundle: node changes then are not saved.")
+
+(defvar firstpair-reader--states nil
+  "Saved reading states by bundle root, from `firstpair-reader-state-file'.")
+
+(defun firstpair-reader--load-states ()
+  "Read `firstpair-reader-state-file' once."
+  (unless firstpair-reader--states
+    (setq firstpair-reader--states
+          (or (and (file-readable-p firstpair-reader-state-file)
+                   (with-temp-buffer
+                     (insert-file-contents firstpair-reader-state-file)
+                     (condition-case nil (read (current-buffer)) (error nil))))
+              (list 'firstpair-reader-states))))
+  firstpair-reader--states)
+
+(defun firstpair-reader--state-of (bundle)
+  "The saved state of BUNDLE, or nil."
+  (cdr (assoc (firstpair-reader--state-key bundle)
+              (cdr (firstpair-reader--load-states)))))
+
+(defun firstpair-reader--state-key (bundle)
+  "The key BUNDLE is remembered under: its true directory, symlinks resolved."
+  (directory-file-name (file-truename (firstpair-bundle-root bundle))))
+
+(defun firstpair-reader-save-state ()
+  "Remember where reading stopped in the current bundle, and what was shown."
+  (interactive)
+  (let ((bundle (firstpair-bundle-current)))
+    (when (and firstpair-reader-resume bundle firstpair-reader-mode (not firstpair-reader--setting-up)
+               (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle))
+               Info-current-node)
+      (let* ((key (firstpair-reader--state-key bundle))
+             (state (list :node Info-current-node :point (point)
+                          :languages firstpair-lexicon-languages
+                          :choices firstpair-reader-translation-choices
+                          :seconds firstpair-reader-second-translations
+                          :saved (format-time-string "%FT%T%z")))
+             (states (firstpair-reader--load-states)))
+        (setf (alist-get key (cdr states) nil nil #'equal) state)
+        (with-temp-file firstpair-reader-state-file
+          (insert ";; FirstPair Reader: where each bundle was left. Generated; edit freely.\n")
+          (pp states (current-buffer)))))))
+
+(defun firstpair-reader--resume (bundle)
+  "Return to the saved place in BUNDLE, if any; non-nil when it did."
+  (let ((state (and firstpair-reader-resume (firstpair-reader--state-of bundle))))
+    (when state
+      (when (plist-get state :languages) (setq firstpair-lexicon-languages (plist-get state :languages)))
+      (setq firstpair-reader-translation-choices (plist-get state :choices)
+            firstpair-reader-second-translations (plist-get state :seconds))
+      (condition-case nil
+          (progn
+            (firstpair-reader--goto 'reader (firstpair-reader--node bundle (firstpair-bundle-reader bundle) (plist-get state :node)))
+            (with-selected-window (firstpair-reader--ensure-window 'reader)
+              (goto-char (min (max (or (plist-get state :point) 1) (point-min)) (point-max)))
+              (firstpair-reader-refresh-regions)))
+        (error nil))
+      t)))
+
+(defvar firstpair-reader--save-timer nil)
+
+(defun firstpair-reader--arm-save ()
+  "Save the reading state when Emacs has been idle a few seconds."
+  (unless firstpair-reader--save-timer
+    (setq firstpair-reader--save-timer
+          (run-with-idle-timer 5 t (lambda () (ignore-errors (firstpair-reader-save-state)))))))
+
+(add-hook 'kill-emacs-hook (lambda () (ignore-errors (firstpair-reader-save-state))))
 
 ;;; Commands
 
@@ -683,11 +765,15 @@ bundle at ROOT; otherwise read the registered bundle."
   (let ((bundle (firstpair-reader--choose root)))
     (delete-other-windows)
     (firstpair-reader--reset-roles)
-    (let ((window (firstpair-reader--claim (selected-window) 'reader)))
+    (let ((window (firstpair-reader--claim (selected-window) 'reader))
+          (firstpair-reader--setting-up t))
       (firstpair-reader--goto 'reader (firstpair-reader--node bundle (firstpair-bundle-reader bundle) "Top"))
       (firstpair-reader--goto 'references
                               (firstpair-reader--node bundle (firstpair-bundle-reference bundle) "Top"))
       (select-window window)
+      (when (firstpair-reader--resume bundle)
+        (message "Resumed at %s" Info-current-node))
+      (firstpair-reader--arm-save)
       bundle)))
 
 ;;; Info directory installation

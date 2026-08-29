@@ -25,7 +25,10 @@ const STACK_BELOW = 700;
 // at the bottom; a kept-open bottom band shortens the text so it flows above.
 // drawerHeight: the bottom band's share of the pane, a third by default, set
 // by dragging the band's top edge or in the settings.
-const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true, keepDrawerOpen: false, dictionaryLanguages: "shown", drawerPosition: "side", drawerHeight: 0.33 };
+// resume: the Reader reopens exactly where it was — page, scroll position,
+// languages, translations and extra columns, the open dictionary word —
+// remembered per edition in settings.state.
+const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true, keepDrawerOpen: false, dictionaryLanguages: "shown", drawerPosition: "side", drawerHeight: 0.33, resume: true, state: {} };
 
 class ReaderHistory {
   constructor(limit = 64) { this.limit = limit; this.items = []; }
@@ -135,8 +138,40 @@ class FirstPairReaderView extends ItemView {
       if (event.target.closest?.(".firstpair-reader__word, .firstpair-reader__toolbar, .firstpair-reader__rail")) return;
       this.closeDrawer();
     });
-    try { await this.loadIndex(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage(); }
+    try {
+      await this.loadIndex(); this.restoreState(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage();
+      const saved = this.savedState();
+      if (saved?.scrollTop) this.root.scrollTop = saved.scrollTop;
+      if (saved?.word) await this.openDictionary(saved.word);
+      this.root.addEventListener("scroll", () => this.saveStateSoon(), { passive: true });
+    }
     catch (error) { this.showError(error); }
+  }
+  // --- Resume ---------------------------------------------------------------
+  stateKey() { return this.parallel?.title ?? "reader"; }
+  savedState() { return this.plugin.settings.resume ? this.plugin.settings.state?.[this.stateKey()] : null; }
+  restoreState() {
+    const saved = this.savedState(); if (!saved) return;
+    const position = this.pages.findIndex((page) => page.id === saved.pageId);
+    if (position >= 0) this.position = position;
+    if (this.parallel) {
+      if (Array.isArray(saved.enabled)) { this.enabled = new Set(saved.enabled.filter((lang) => this.languages().some((l) => l.id === lang))); }
+      if (Array.isArray(saved.columns)) this.columns = saved.columns.filter((c) => this.translation(c.id)).map((c) => ({ lang: c.lang, id: c.id, extra: Boolean(c.extra) }));
+    }
+  }
+  currentState() {
+    return { pageId: this.pages[this.position]?.id, scrollTop: Math.round(this.root?.scrollTop ?? 0), enabled: [...this.enabled],
+             columns: this.columns.map((c) => ({ lang: c.lang, id: c.id, extra: Boolean(c.extra) })), word: this.drawer && !this.drawer.hasAttribute("hidden") ? this.lastWord ?? null : null };
+  }
+  saveStateSoon() {
+    if (!this.plugin.settings.resume || !this.pages.length) return;
+    clearTimeout(this.saveTimer);
+    this.saveTimer = setTimeout(() => this.saveState(), 400);
+  }
+  async saveState() {
+    if (!this.plugin.settings.resume || !this.pages.length) return;
+    const state = { ...(this.plugin.settings.state ?? {}), [this.stateKey()]: this.currentState() };
+    await this.plugin.saveSettings({ state });
   }
   // A vault still syncing, or a half-written index, must never leave a blank view.
   showError(error) {
@@ -146,7 +181,13 @@ class FirstPairReaderView extends ItemView {
     box.createEl("p", { text: "If the vault is still syncing, wait for it to finish, then try again." });
     const retry = box.createEl("button", { text: "Retry" }); retry.addEventListener("click", () => this.onOpen());
   }
-  async onClose() { this.resizeObserver?.disconnect(); this.orientation?.removeEventListener("change", this.applyLayout); }
+  async onClose() { clearTimeout(this.saveTimer); await this.saveState(); this.resizeObserver?.disconnect(); this.orientation?.removeEventListener("change", this.applyLayout); }
+  // Obsidian keeps the leaf's state across restarts too; the page id rides on it.
+  getState() { return { pageId: this.pages[this.position]?.id ?? null }; }
+  async setState(state, result) {
+    if (state?.pageId && this.pages.length) { const position = this.pages.findIndex((page) => page.id === state.pageId); if (position >= 0 && position !== this.position) { this.position = position; await this.renderPage(); } }
+    return super.setState?.(state, result);
+  }
   async loadIndex() {
     this.parallel = await this.readJson(PARALLEL_INDEX, true);
     const value = this.parallel?.pages ?? await this.readJson(READER_INDEX);
@@ -372,7 +413,7 @@ class FirstPairReaderView extends ItemView {
       this.grip.addEventListener("pointermove", move); this.grip.addEventListener("pointerup", finish); this.grip.addEventListener("pointercancel", finish);
     });
   }
-  closeDrawer() { if (!this.plugin.settings.keepDrawerOpen) { this.drawer.setAttribute("hidden", ""); this.root.style.removeProperty("height"); } }
+  closeDrawer() { if (!this.plugin.settings.keepDrawerOpen) { this.drawer.setAttribute("hidden", ""); this.root.style.removeProperty("height"); this.saveStateSoon(); } }
   showDrawer() {
     this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     if (this.drawer.childElementCount <= (this.grip ? 1 : 0)) {
@@ -420,7 +461,7 @@ class FirstPairReaderView extends ItemView {
     return [...groups.values()].map((group) => ({ ...group, examples: group.examples.slice(0, 2) }));
   }
   async openDictionary(surface) {
-    const word = normalizeWord(surface); this.drawer.empty(); this.grip = null; this.drawer.removeAttribute("hidden"); this.sizeDrawer();
+    const word = normalizeWord(surface); this.lastWord = surface; this.drawer.empty(); this.grip = null; this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: surface });
     if (!this.plugin.settings.keepDrawerOpen) {
       const close = head.createEl("button", { text: "Close", cls: "firstpair-reader__drawer-close", attr: { "aria-label": "Close dictionary" } });
@@ -466,6 +507,7 @@ class FirstPairReaderView extends ItemView {
       }
     }
     if (!found) this.drawer.createEl("p", { text: "Try the headword form; this offline edition does not guess every historical inflection." });
+    this.saveStateSoon();
   }
   async renderPage(resetScroll = true) {
     const entry = this.pages[this.position]; this.page.empty(); this.page.removeClass("firstpair-reader__page--parallel");
@@ -482,6 +524,7 @@ class FirstPairReaderView extends ItemView {
     this.back.disabled = !this.history.items.length;
     this.previous.title = this.pages[this.position - 1]?.title ?? "Previous";
     this.next.title = this.pages[this.position + 1]?.title ?? "Next";
+    this.saveStateSoon();
   }
 }
 
@@ -508,6 +551,10 @@ class FirstPairReaderSettingTab extends PluginSettingTab {
       .setDesc("The share of the screen the bottom dictionary takes, as a percentage; dragging the band's top edge changes it too.")
       .addSlider((slider) => slider.setLimits(15, 85, 5).setValue(Math.round(this.plugin.settings.drawerHeight * 100)).setDynamicTooltip()
         .onChange(async (value) => { await this.plugin.saveSettings({ drawerHeight: value / 100 }); this.plugin.refreshViews(); }));
+    new Setting(containerEl).setName("Resume where you left off")
+      .setDesc("Reopen the Reader on the same page and scroll position, with the same languages, translations, and dictionary entry. Off: the Reader opens at the first page.")
+      .addToggle((toggle) => toggle.setValue(this.plugin.settings.resume)
+        .onChange(async (value) => { await this.plugin.saveSettings({ resume: value, ...(value ? {} : { state: {} }) }); }));
     new Setting(containerEl).setName("Dictionary languages")
       .setDesc("Shown: answer only in the translations on screen — one language when one translation is on. All: answer in every language of the edition, the shown ones first.")
       .addDropdown((dropdown) => dropdown.addOption("shown", "Shown translations").addOption("all", "All, shown first").setValue(this.plugin.settings.dictionaryLanguages)

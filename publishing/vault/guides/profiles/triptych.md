@@ -44,3 +44,10 @@ Editorial annotations and review state are separate from the canonical witness
 text. Keep personal observations in `My Notes/` unless the guide explicitly
 describes an editable review product. Never overwrite a source witness to make
 the columns appear more closely aligned.
+
+The Reader remembers where you stopped. Closing Obsidian, or the Reader
+tab, and opening it again returns you to the same canto and scroll
+position, with the same languages and translations on screen and the same
+dictionary entry open — per edition, so two vaults do not confuse each
+other. Settings → FirstPair Reader → *Resume where you left off* turns this
+off, in which case the Reader opens at the first page.

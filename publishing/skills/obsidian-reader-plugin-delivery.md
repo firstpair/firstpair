@@ -153,7 +153,14 @@ first and the enabled translations after it.
    with a Retry button. Test the plugin in jsdom against a mocked `obsidian`
    module (`publishing/tests/obsidian-mock.cjs`,
    `test-firstpair-reader-dom.mjs`): open, render, tap a word, switch layout,
-   follow Home links, half-synced vault.
+   follow Home links, half-synced vault, resume. The Reader persists its
+   state per edition title in `settings.state` (page id, scroll offset,
+   enabled languages, columns, open dictionary word), saved on every page
+   turn, toggle, lookup, scroll (debounced), and on close, and restored in
+   `onOpen`; `resume` in settings turns it off. The Emacs reader does the
+   same in `firstpair-reader-state-file` keyed by the bundle's true
+   directory, with saves suppressed while `firstpair-read` opens the Top
+   nodes so setup never overwrites the remembered place.
 2. The dictionary drawer, in column layout, is sized to the last column
    (never narrower than 15 rem nor wider than 90 vw) so the other columns stay
    readable; in stacked layout it is `min(30rem, 90vw)`.

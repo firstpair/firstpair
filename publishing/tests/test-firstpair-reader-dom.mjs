@@ -236,6 +236,31 @@ test('several translations per language: rotate, second column, coverage', async
   } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
 })
 
+test('the Reader resumes where it was left: page, scroll, languages, columns, word', async () => {
+  const window = mock.makeWindow(); globalThis.window = window; globalThis.document = window.document; globalThis.getComputedStyle = window.getComputedStyle.bind(window); globalThis.ResizeObserver = window.ResizeObserver
+  const vaultRoot = multiFixture()
+  try {
+    const first = await openReader(vaultRoot, window)
+    Object.defineProperty(first.root.querySelector('.firstpair-reader'), 'clientWidth', { value: 1200 }); first.view.applyLayout()
+    const next = Array.from(first.root.querySelectorAll('.firstpair-reader__rail button')).find((button) => button.getAttribute('aria-label') === 'Next')
+    next.click(); await settle(); await settle()
+    const english = Array.from(first.root.querySelectorAll('.firstpair-reader__language-toggle input'))[0]
+    english.checked = false; english.dispatchEvent(new window.Event('change')); await settle(); await settle()
+    const word = Array.from(first.root.querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'correr')
+    word.click(); await settle(); await settle()
+    await first.view.saveState()
+    const saved = first.view.plugin.data.state.Multi
+    assert.equal(saved.pageId, 'c-02'); assert.deepEqual(saved.enabled, ['ru']); assert.equal(saved.word, 'correr')
+    // A fresh plugin with the same data opens at the same place.
+    const second = await (async () => { const { app, plugin } = makeApp(vaultRoot, window); plugin.data = first.view.plugin.data; await plugin.onload(); await plugin.activate(); const leaf = app.workspace.getLeavesOfType('firstpair-reader')[0]; return { view: leaf.view, root: leaf.containerEl } })()
+    await settle(); await settle()
+    assert.match(second.root.querySelector('h1').textContent, /Canto 2/)
+    assert.deepEqual([...second.view.enabled], ['ru'])
+    assert.equal(second.root.querySelector('.firstpair-reader__drawer').hasAttribute('hidden'), false)
+    assert.match(second.root.querySelector('.firstpair-reader__drawer').textContent, /correr/)
+  } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
+})
+
 test('a phone held upright stacks automatically', async () => {
   const window = mock.makeWindow(); window.__portrait = true; globalThis.window = window; globalThis.document = window.document; globalThis.getComputedStyle = window.getComputedStyle.bind(window); globalThis.ResizeObserver = window.ResizeObserver
   mock.Platform.isMobile = true

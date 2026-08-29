@@ -663,6 +663,24 @@ class AlignedTests(Fixture):
         output = result.stdout.strip().split(" ", 3)
         self.assertEqual(["2", "2", "0"], output[:3], result.stdout)  # Cary hidden; then Longfellow hidden; then nothing hidden
         self.assertIn("Cary (1814) ≈", output[3])
+        # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
+        state_file = self.root / "reader-state.el"
+        script = f"""(progn
+  (setq firstpair-reader-state-file "{state_file.as_posix()}")
+  (load "{(bundle / 'init.el').as_posix()}")
+  (firstpair-read)
+  (with-current-buffer firstpair-reader-buffer
+    (Info-goto-node "(fixture)Inferno — Canto 1")
+    (firstpair-reader-rotate-translation)
+    (firstpair-reader-save-state))
+  (setq firstpair-reader--states nil firstpair-reader-translation-choices nil)
+  (firstpair-read)
+  (with-current-buffer firstpair-reader-buffer
+    (princ (format "%s|%s" Info-current-node (alist-get "en" firstpair-reader-translation-choices nil nil #'equal)))))"""
+        result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+        self.assertEqual(0, result.returncode, result.stderr)
+        self.assertEqual("Inferno — Canto 1|en-cary", result.stdout.strip().splitlines()[-1], result.stdout)
+        self.assertIn(":node", state_file.read_text(encoding="utf-8"))
 
 
 class GlossaryKindTests(unittest.TestCase):

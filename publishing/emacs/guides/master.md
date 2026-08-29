@@ -287,3 +287,13 @@ desk reference. `l` is your thread back through the labyrinth. Bookmarks and
 your own notes are your work, and live outside the bundle. With those
 boundaries an Emacs bundle remains approachable for a first-time reader while
 holding the depth a scholar or a programmer expects.
+
+## Picking up where you left off
+
+`M-x firstpair-read` returns to the node and the line where you stopped in
+that bundle, with the same languages, translations, and second translations
+on screen. The reader saves this on every page turn, whenever Emacs has
+been idle for a few seconds, and when Emacs exits, in
+`firstpair-reader-state-file` (`~/.emacs.d/firstpair-reader-state.el` by
+default — plain Lisp, one entry per bundle). Set `firstpair-reader-resume`
+to nil to always open at the top.
