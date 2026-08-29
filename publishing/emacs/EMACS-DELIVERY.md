@@ -35,7 +35,9 @@ on it.
   FIRSTPAIR-EMACS-MANIFEST.json sealed inventory (schema firstpair-emacs-manifest-v1)
 ```
 
-`<stem>` is `emacs.direntry.name`, by default the title slug.
+`<stem>` is `emacs.direntry.name`, by default the title slug; a preview
+bundle uses `<stem>-preview`, so a preview and a complete edition can share
+an Info directory.
 
 ## Info conventions
 

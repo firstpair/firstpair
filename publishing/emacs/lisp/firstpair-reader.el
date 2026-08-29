@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.2
+;; Version: 1.3
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -153,24 +153,40 @@ Select the window when SELECT is non-nil."
   (when (string-match "\\`(\\([^)]+\\))\\(.*\\)\\'" nodename)
     (cons (file-name-base (match-string 1 nodename)) (match-string 2 nodename))))
 
-(defun firstpair-reader--redirect-role (nodename)
-  "Return the window role NODENAME should open in, or nil to follow it here."
+(defun firstpair-reader--node (bundle manual node)
+  "Return an Info node name for NODE of MANUAL addressed by its file in BUNDLE.
+Addressing the file rather than the manual name keeps two editions of one
+book apart when both are registered."
+  (format "(%s)%s" (firstpair-bundle-info-file bundle manual) node))
+
+(defun firstpair-reader--target-bundle (manual)
+  "Return the bundle a reference to MANUAL means: the current one when it owns it."
+  (let ((current (firstpair-bundle-current)))
+    (if (and current
+             (member manual (list (firstpair-bundle-reader current)
+                                  (firstpair-bundle-reference current))))
+        current
+      (firstpair-bundle-for-manual manual))))
+
+(defun firstpair-reader--redirect (nodename)
+  "Return (ROLE . NODENAME) when NODENAME should open in another window, else nil.
+The returned NODENAME addresses the manual by file inside its bundle."
   (let* ((target (firstpair-reader--parse-target nodename))
-         (bundle (and target (firstpair-bundle-for-manual (car target)))))
+         (bundle (and target (firstpair-reader--target-bundle (car target)))))
     (when bundle
       (let ((role (if (equal (car target) (firstpair-bundle-reference bundle))
                       'references
                     'reader)))
         (unless (eq role (firstpair-reader--role))
-          role)))))
+          (cons role (firstpair-reader--node bundle (car target) (cdr target))))))))
 
 (defun firstpair-reader--goto-node-advice (original nodename &rest arguments)
   "Open NODENAME in the window its manual belongs to while a reader command runs.
 ORIGINAL is `Info-goto-node'; ARGUMENTS are passed through to it."
-  (let ((role (and firstpair-reader--redirecting
-                   (firstpair-reader--redirect-role nodename))))
-    (if role
-        (firstpair-reader--goto role nodename)
+  (let ((redirect (and firstpair-reader--redirecting
+                       (firstpair-reader--redirect nodename))))
+    (if redirect
+        (firstpair-reader--goto (car redirect) (cdr redirect))
       (apply original nodename arguments))))
 
 ;;; Marked words
@@ -339,8 +355,8 @@ The entry opens in the dictionary window below the references."
            (choice (if (cdr labels) (completing-read "Reference: " labels nil t) (car labels)))
            (record (seq-find (lambda (record) (equal (alist-get 'label record) choice)) records)))
       (firstpair-reader--goto 'references
-                              (format "(%s)%s" (firstpair-bundle-reference bundle)
-                                      (alist-get 'node record))))))
+                              (firstpair-reader--node bundle (firstpair-bundle-reference bundle)
+                                                      (alist-get 'node record))))))
 
 (defun firstpair-reader-open-file ()
   "Open the file the bundle delivers for the reference shown in this node."
@@ -365,7 +381,7 @@ The entry opens in the dictionary window below the references."
          (node (format "%s Glossary" (capitalize (or language "")))))
     (condition-case nil
         (firstpair-reader--goto 'references
-                                (format "(%s)%s" (firstpair-bundle-reference bundle) node))
+                                (firstpair-reader--node bundle (firstpair-bundle-reference bundle) node))
       (error (user-error "This edition has no glossary")))))
 
 (defun firstpair-reader-other-window ()
@@ -439,11 +455,11 @@ and finally ask for a bundle directory."
     (let ((window (firstpair-reader--claim (selected-window) 'reader)))
       (if reader
           (set-window-buffer window reader)
-        (firstpair-reader--goto 'reader (format "(%s)Top" (firstpair-bundle-reader bundle))))
+        (firstpair-reader--goto 'reader (firstpair-reader--node bundle (firstpair-bundle-reader bundle) "Top")))
       (if (buffer-live-p references)
           (firstpair-reader--show references 'references)
         (firstpair-reader--goto 'references
-                                (format "(%s)Top" (firstpair-bundle-reference bundle))))
+                                (firstpair-reader--node bundle (firstpair-bundle-reference bundle) "Top")))
       (when (buffer-live-p lexicon)
         (firstpair-reader--show lexicon 'lexicon))
       (select-window window))))
@@ -458,8 +474,9 @@ bundle at ROOT; otherwise read the registered bundle."
     (delete-other-windows)
     (firstpair-reader--reset-roles)
     (let ((window (firstpair-reader--claim (selected-window) 'reader)))
-      (firstpair-reader--goto 'reader (format "(%s)Top" (firstpair-bundle-reader bundle)))
-      (firstpair-reader--goto 'references (format "(%s)Top" (firstpair-bundle-reference bundle)))
+      (firstpair-reader--goto 'reader (firstpair-reader--node bundle (firstpair-bundle-reader bundle) "Top"))
+      (firstpair-reader--goto 'references
+                              (firstpair-reader--node bundle (firstpair-bundle-reference bundle) "Top"))
       (select-window window)
       bundle)))
 

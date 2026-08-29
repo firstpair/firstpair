@@ -371,7 +371,8 @@ class BuildTests(Fixture):
         self.assertIn("scribito", forms)
         self.assertIn("populi", forms)
         self.assertNotIn("res", forms)
-        references = (bundle / "fixture-refs.info").read_text(encoding="utf-8")
+        self.assertTrue((bundle / "fixture-preview.info").is_file())
+        references = (bundle / "fixture-preview-refs.info").read_text(encoding="utf-8")
         self.assertIn("Node: Latin Glossary", references)
         self.assertIn("scribo", references)
         for name in ("entries.tsv", "forms.tsv", "stems.tsv", "endings.tsv", "LEXICON.json"):

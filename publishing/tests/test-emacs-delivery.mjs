@@ -137,7 +137,7 @@ try {
   await stat(zipPath)
   const listing = (await ok('unzip', ['-Z1', zipPath])).stdout.split('\n').filter(Boolean)
   assert.ok(listing.every((entry) => entry.startsWith('Fixture Book Emacs Preview/')), 'single root folder')
-  for (const member of ['init.el', 'install.sh', 'fixture-book.info', 'fixture-book-refs.info', 'lisp/firstpair-reader.el', 'FIRSTPAIR-EMACS-MANIFEST.json', 'README.md']) {
+  for (const member of ['init.el', 'install.sh', 'fixture-book-preview.info', 'fixture-book-preview-refs.info', 'lisp/firstpair-reader.el', 'FIRSTPAIR-EMACS-MANIFEST.json', 'README.md']) {
     assert.ok(listing.includes(`Fixture Book Emacs Preview/${member}`), `archive contains ${member}`)
   }
   assert.ok(!listing.some((entry) => /\.elc$|\.DS_Store|firstpair-check\.el/.test(entry)))

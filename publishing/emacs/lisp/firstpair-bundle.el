@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.2
+;; Version: 1.3
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -125,11 +125,26 @@ Signals an error when ROOT is not a bundle this reader understands."
                      bundle)))
             firstpair-bundles))
 
+(defun firstpair-bundle-for-file (file)
+  "Return the registered bundle whose directory contains FILE, or nil."
+  (let ((name (file-truename (expand-file-name file))))
+    (seq-some (lambda (entry)
+                (and (string-prefix-p (file-name-as-directory (file-truename (car entry))) name)
+                     (cdr entry)))
+              firstpair-bundles)))
+
 (defun firstpair-bundle-current ()
-  "Return the bundle owning the Info manual in the current buffer, or nil."
+  "Return the bundle owning the Info manual in the current buffer, or nil.
+The bundle is identified by the directory of the Info file, so several
+editions of one book, whose manuals share a name, stay distinct."
   (when (and (derived-mode-p 'Info-mode) Info-current-file)
-    (firstpair-bundle-for-manual
-     (file-name-base (directory-file-name Info-current-file)))))
+    (or (firstpair-bundle-for-file Info-current-file)
+        (firstpair-bundle-for-manual
+         (file-name-base (directory-file-name Info-current-file))))))
+
+(defun firstpair-bundle-info-file (bundle manual)
+  "Return the absolute path of MANUAL, a manual stem, inside BUNDLE."
+  (expand-file-name (concat manual ".info") (firstpair-bundle-root bundle)))
 
 (defun firstpair-bundle-manual ()
   "Return the manual stem of the current Info buffer."

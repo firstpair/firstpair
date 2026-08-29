@@ -322,6 +322,15 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
     revision = resolve_source_commit(config.repo_root, config.core.source_commit)
     require_clean_worktree(config.repo_root)
     projection = project(config, product_name)
+    if projection.product.edition == "preview":
+        # A preview and a complete edition of one book may sit on the same
+        # Info path; distinct manual names keep them apart there and in dir.
+        config = replace(
+            config,
+            reader_stem=f"{config.reader_stem}-preview",
+            reference_stem=f"{config.reader_stem}-preview-refs",
+            direntry=(config.direntry[0], f"{config.direntry[1]}-preview", config.direntry[2]),
+        )
     destination = projection.product.output
     if destination.exists():
         raise RuntimeError(f"refusing to replace an existing bundle: {destination}")
