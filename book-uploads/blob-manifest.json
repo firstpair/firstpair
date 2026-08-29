@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-28T18:38:35.135Z",
+  "updatedAt": "2026-08-29T04:26:26.310Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4819,7 +4819,7 @@
       }
     },
     "cicero-on-himself": {
-      "updatedAt": "2026-08-28T18:38:35.135Z",
+      "updatedAt": "2026-08-29T04:26:26.310Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -4858,40 +4858,22 @@
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/cover/2eabf238ba3ca67f-cicero-on-himself-cover.png",
           "skipped": true
         },
-        "vault": {
-          "kind": "vault",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-vault (2.0.0-sol-2996266c).zip",
-          "sha256": "afe9b09c8c41f49ce230f0d33713846c6b22d1edca1bb0539e8560ff6c71874d",
-          "size": 149627011,
-          "pathname": "books/cicero-on-himself/vault/afe9b09c8c41f49c-cicero-on-himself-preview-vault (2.0.0-sol-2996266c).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault/afe9b09c8c41f49c-cicero-on-himself-preview-vault%20%282.0.0-sol-2996266c%29.zip",
-          "skipped": false
-        },
         "emacs": {
           "kind": "emacs",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-emacs (2.0.0-sol-2cef4fad).zip",
-          "sha256": "3408f0bbb61e05aa93d5e194de2510c96dee3f0082f3e10eef646d7be45cc072",
-          "size": 85116,
-          "pathname": "books/cicero-on-himself/emacs/3408f0bbb61e05aa-cicero-on-himself-preview-emacs (2.0.0-sol-2cef4fad).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/3408f0bbb61e05aa-cicero-on-himself-preview-emacs%20%282.0.0-sol-2cef4fad%29.zip",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-preview-emacs (2.0.0-sol-dcf320ce).zip",
+          "sha256": "0b3e22def2e457199485b1a2aa3f829b87ccb1646ebbda7b5a258e6582981115",
+          "size": 85672,
+          "pathname": "books/cicero-on-himself/emacs/0b3e22def2e45719-cicero-on-himself-preview-emacs (2.0.0-sol-dcf320ce).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/0b3e22def2e45719-cicero-on-himself-preview-emacs%20%282.0.0-sol-dcf320ce%29.zip",
           "skipped": false
         },
         "emacsGuide": {
           "kind": "emacs-guide",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-2cef4fad).html",
-          "sha256": "066679e60de0c75ff4de6720321c1ad5a7d419127afac8d27460a3d964cc79dc",
-          "size": 25294,
-          "pathname": "books/cicero-on-himself/emacs-guide/066679e60de0c75f-cicero-on-himself-emacs-guide (2.0.0-sol-2cef4fad).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/066679e60de0c75f-cicero-on-himself-emacs-guide%20%282.0.0-sol-2cef4fad%29.html",
-          "skipped": false
-        },
-        "vaultGuide": {
-          "kind": "vault-guide",
-          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
-          "sha256": "559f79206c630b137c977e2b438d3638370626e49aac1110f115560fc9f369b6",
-          "size": 33412,
-          "pathname": "books/cicero-on-himself/vault-guide/559f79206c630b13-cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/559f79206c630b13-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html",
+          "localPath": "book-uploads/staging/cicero-on-himself/cicero-on-himself-emacs-guide (2.0.0-sol-dcf320ce).html",
+          "sha256": "a6fcff01a43a87d346d386a0fa3794e14a5fd838e3251f17d0ecaa6fdaaff83c",
+          "size": 25310,
+          "pathname": "books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide (2.0.0-sol-dcf320ce).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide%20%282.0.0-sol-dcf320ce%29.html",
           "skipped": false
         },
         "htmlChapters": {
@@ -8669,6 +8651,16 @@
       "pathname": "books/cicero-on-himself/vault-guide/559f79206c630b13-cicero-on-himself-vault-guide (2.0.0-sol-2996266c).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/vault-guide/559f79206c630b13-cicero-on-himself-vault-guide%20%282.0.0-sol-2996266c%29.html",
       "size": 33412
+    },
+    "0b3e22def2e457199485b1a2aa3f829b87ccb1646ebbda7b5a258e6582981115:85672": {
+      "pathname": "books/cicero-on-himself/emacs/0b3e22def2e45719-cicero-on-himself-preview-emacs (2.0.0-sol-dcf320ce).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs/0b3e22def2e45719-cicero-on-himself-preview-emacs%20%282.0.0-sol-dcf320ce%29.zip",
+      "size": 85672
+    },
+    "a6fcff01a43a87d346d386a0fa3794e14a5fd838e3251f17d0ecaa6fdaaff83c:25310": {
+      "pathname": "books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide (2.0.0-sol-dcf320ce).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/cicero-on-himself/emacs-guide/a6fcff01a43a87d3-cicero-on-himself-emacs-guide%20%282.0.0-sol-dcf320ce%29.html",
+      "size": 25310
     }
   },
   "chapterPackages": {
