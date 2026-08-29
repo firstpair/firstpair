@@ -608,7 +608,27 @@
       "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
       "vaultGuide": "/read/dante-commedia/guide/",
       "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
-      "versionLabel": "Italian and English"
+      "versionLabel": "Italian and English",
+      "versions": [
+        {
+          "id": "russian",
+          "label": "Italian, English, and Russian",
+          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/pdf/560bf9f6ce1d22d6-dante-commedia-russian.pdf",
+          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/epub/94e56815e9bc7667-dante-commedia-russian.epub",
+          "html": "/read/dante-commedia/russian/",
+          "htmlChapters": "/read/dante-commedia/russian/chapters/",
+          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/e487fc2873007104-dante-commedia-russian.html",
+          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/index.html",
+          "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/cover/728049b83ad7d4b8-dante-commedia-cover.png",
+          "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/headboard/4122a2110b375b81-dante-commedia-headboard.png",
+          "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/791ddcbe7e5ca9f9-dante-commedia-full-vault%20%281.0.0-fe8f3928%29.zip",
+          "emacs": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/83bc91d8677bb087-dante-commedia-full-emacs%20%281.0.0-fe8f3928%29.zip",
+          "emacsGuide": "/read/dante-commedia/russian/emacs-guide/",
+          "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/eaf34753e5bd5474-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
+          "vaultGuide": "/read/dante-commedia/russian/guide/",
+          "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/9e3b754e923b6410-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html"
+        }
+      ]
     }
   ]
 }

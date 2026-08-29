@@ -2270,9 +2270,12 @@ async function buildPlan(inputDir, options) {
   })
   const chapters = await resolveChaptersDir(distDir, version, slug)
   const tutorial = await resolveTutorial(inputDir, distDir, options.tutorial ?? version.tutorial_file)
-  const vault = await resolveVault(inputDir, distDir, edition, version, slug, options)
-  const mobileVault = await resolveMobileVault(inputDir, distDir, edition, version, slug, options)
-  const emacs = await resolveEmacs(inputDir, distDir, edition, version, slug, options)
+  // Companion archives of a version carry the version in their names, so a
+  // title's versions never overwrite one another in staging, Blob, or iCloud.
+  const companionSlug = options.version ? `${slug}-${options.version}` : slug
+  const vault = await resolveVault(inputDir, distDir, edition, version, companionSlug, options)
+  const mobileVault = await resolveMobileVault(inputDir, distDir, edition, version, companionSlug, options)
+  const emacs = await resolveEmacs(inputDir, distDir, edition, version, companionSlug, options)
   const cover = await resolveCover(inputDir, distDir, metadata, slug)
   const headboard = await resolveHeadboard(inputDir, distDir, metadata, slug)
 

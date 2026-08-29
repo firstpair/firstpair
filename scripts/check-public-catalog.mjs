@@ -246,7 +246,12 @@ for (const book of catalog.books) {
     readerMapEntry.htmlChaptersBase !== expectedChaptersBase ||
     (readerMapEntry.tutorialSource ?? undefined) !== expectedTutorialSource ||
     (readerMapEntry.vaultGuideSource ?? undefined) !== expectedVaultGuideSource ||
-    (readerMapEntry.emacsGuideSource ?? undefined) !== expectedEmacsGuideSource
+    (readerMapEntry.emacsGuideSource ?? undefined) !== expectedEmacsGuideSource ||
+    (book.versions ?? []).some((version) =>
+      readerMapEntry.versions?.[version.id]?.htmlSource !== version.htmlSource ||
+      readerMapEntry.versions?.[version.id]?.htmlChaptersSource !== version.htmlChaptersSource ||
+      (readerMapEntry.versions?.[version.id]?.vaultGuideSource ?? undefined) !== (version.vaultGuideSource ?? undefined) ||
+      (readerMapEntry.versions?.[version.id]?.emacsGuideSource ?? undefined) !== (version.emacsGuideSource ?? undefined))
   ) {
     staleReaderMap.push({
       slug: book.slug,
@@ -272,6 +277,15 @@ for (const book of catalog.books) {
     ...(book.mobileVault ? { mobileVault: book.mobileVault } : {}),
     ...(book.emacs ? { emacs: book.emacs } : {}),
     ...(book.cover ? { cover: book.cover } : {}),
+    ...(book.versions?.length
+      ? {
+          versions: Object.fromEntries(book.versions.map((version) => {
+            const item = { pdf: version.pdf, epub: version.epub }
+            for (const field of ['vault', 'mobileVault', 'emacs', 'cover']) if (version[field]) item[field] = version[field]
+            return [version.id, item]
+          })),
+        }
+      : {}),
   }
 
   if (

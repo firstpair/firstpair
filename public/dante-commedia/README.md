@@ -14,6 +14,11 @@ The complete Commedia with Dante's Italian beside its translations, tercet by te
 - [Download the Emacs edition](/dante-commedia/emacs/)
 - [Read the Emacs guide](/read/dante-commedia/emacs-guide/)
 
+## Versions
+
+- Italian and English: the links above
+- Italian, English, and Russian: [PDF](/dante-commedia/russian/pdf/) · [EPUB](/dante-commedia/russian/epub/) · [Read online](/read/dante-commedia/russian/) · [Chapter reader](/read/dante-commedia/russian/chapters/) · [Obsidian vault](/dante-commedia/russian/vault/) · [Vault guide](/read/dante-commedia/russian/guide/) · [Emacs edition](/dante-commedia/russian/emacs/) · [Emacs guide](/read/dante-commedia/russian/emacs-guide/)
+
 
 The source repository owns the manuscript, metadata, version manifest, build
 pipeline, and canonical generated artifacts:
