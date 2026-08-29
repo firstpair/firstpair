@@ -163,8 +163,8 @@ export const readerBooks = [
         "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/e487fc2873007104-dante-commedia-russian.html",
         "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/index.html",
         "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903",
-        "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/9e3b754e923b6410-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
-        "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/eaf34753e5bd5474-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html"
+        "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide%20%281.0.0-fe8f3928%29.html",
+        "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide%20%281.0.0-5ca23eab%29.html"
       }
     }
   }

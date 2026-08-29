@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T20:40:11.433Z",
+  "updatedAt": "2026-08-29T20:42:24.730Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -8764,7 +8764,7 @@
       }
     },
     "dante-commedia/russian": {
-      "updatedAt": "2026-08-29T18:14:46.628Z",
+      "updatedAt": "2026-08-29T20:42:24.729Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -8815,38 +8815,38 @@
         "vault": {
           "kind": "vault",
           "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-vault (1.0.0-fe8f3928).zip",
-          "sha256": "791ddcbe7e5ca9f9038d2d7904d72bcda6fba943a46b03a8553601ccdd3fae0e",
-          "size": 9383282,
-          "pathname": "books/dante-commedia/russian/vault/791ddcbe7e5ca9f9-dante-commedia-full-vault (1.0.0-fe8f3928).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/791ddcbe7e5ca9f9-dante-commedia-full-vault%20%281.0.0-fe8f3928%29.zip",
-          "skipped": true
+          "sha256": "82fb6660f4c0eddda978acedd2e152f1f926d86c6edc8b51bb3465f6d826d942",
+          "size": 9385561,
+          "pathname": "books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault (1.0.0-fe8f3928).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault%20%281.0.0-fe8f3928%29.zip",
+          "skipped": false
         },
         "emacs": {
           "kind": "emacs",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-fe8f3928).zip",
-          "sha256": "83bc91d8677bb0877a7bb4debdbf4794a46aa42dfec2e4c64ed1211b01a07cca",
-          "size": 7285457,
-          "pathname": "books/dante-commedia/russian/emacs/83bc91d8677bb087-dante-commedia-full-emacs (1.0.0-fe8f3928).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/83bc91d8677bb087-dante-commedia-full-emacs%20%281.0.0-fe8f3928%29.zip",
-          "skipped": true
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-5ca23eab).zip",
+          "sha256": "dd86576b6fee8009901f5770a4d46561aefa0bb3fb433c59d23eaa28531eacf4",
+          "size": 7285467,
+          "pathname": "books/dante-commedia/russian/emacs/dd86576b6fee8009-dante-commedia-russian-full-emacs (1.0.0-5ca23eab).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/dd86576b6fee8009-dante-commedia-russian-full-emacs%20%281.0.0-5ca23eab%29.zip",
+          "skipped": false
         },
         "emacsGuide": {
           "kind": "emacs-guide",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-fe8f3928).html",
-          "sha256": "eaf34753e5bd5474943e7f67c9623014835f5959992226bba3490001b3f58fc9",
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-5ca23eab).html",
+          "sha256": "a854aacb1b9479a98b643451269e38ff994a7bfcf5e478ca1068f393cacef7f5",
           "size": 27494,
-          "pathname": "books/dante-commedia/russian/emacs-guide/eaf34753e5bd5474-dante-commedia-emacs-guide (1.0.0-fe8f3928).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/eaf34753e5bd5474-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
-          "skipped": true
+          "pathname": "books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide (1.0.0-5ca23eab).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide%20%281.0.0-5ca23eab%29.html",
+          "skipped": false
         },
         "vaultGuide": {
           "kind": "vault-guide",
           "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-vault-guide (1.0.0-fe8f3928).html",
-          "sha256": "9e3b754e923b6410c4fb6c317b8c48535f484e20cddfbb165c0a44c7a2039567",
+          "sha256": "14b96bd72a01a698198bdf261a75b01c2be40dd660f41dd6e20db42d653e8435",
           "size": 24854,
-          "pathname": "books/dante-commedia/russian/vault-guide/9e3b754e923b6410-dante-commedia-vault-guide (1.0.0-fe8f3928).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/9e3b754e923b6410-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
-          "skipped": true
+          "pathname": "books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide (1.0.0-fe8f3928).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide%20%281.0.0-fe8f3928%29.html",
+          "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
@@ -11342,6 +11342,26 @@
       "pathname": "books/dante-commedia/vault-guide/bea73a27f9e26d9a-dante-commedia-vault-guide (1.0.0-fe8f3928).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/bea73a27f9e26d9a-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
       "size": 24400
+    },
+    "82fb6660f4c0eddda978acedd2e152f1f926d86c6edc8b51bb3465f6d826d942:9385561": {
+      "pathname": "books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault (1.0.0-fe8f3928).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault%20%281.0.0-fe8f3928%29.zip",
+      "size": 9385561
+    },
+    "dd86576b6fee8009901f5770a4d46561aefa0bb3fb433c59d23eaa28531eacf4:7285467": {
+      "pathname": "books/dante-commedia/russian/emacs/dd86576b6fee8009-dante-commedia-russian-full-emacs (1.0.0-5ca23eab).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/dd86576b6fee8009-dante-commedia-russian-full-emacs%20%281.0.0-5ca23eab%29.zip",
+      "size": 7285467
+    },
+    "a854aacb1b9479a98b643451269e38ff994a7bfcf5e478ca1068f393cacef7f5:27494": {
+      "pathname": "books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide (1.0.0-5ca23eab).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide%20%281.0.0-5ca23eab%29.html",
+      "size": 27494
+    },
+    "14b96bd72a01a698198bdf261a75b01c2be40dd660f41dd6e20db42d653e8435:24854": {
+      "pathname": "books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide (1.0.0-fe8f3928).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide%20%281.0.0-fe8f3928%29.html",
+      "size": 24854
     }
   },
   "chapterPackages": {
