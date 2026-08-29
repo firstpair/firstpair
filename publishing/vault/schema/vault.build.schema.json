@@ -215,6 +215,16 @@
         "products"
       ],
       "properties": {
+        "guide": {
+          "type": "object",
+          "description": "Book-specific guide fragment for the Emacs bundle; defaults to the shared guide.bookSpecific.",
+          "properties": {
+            "bookSpecific": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
         "direntry": {
           "type": "object",
           "properties": {

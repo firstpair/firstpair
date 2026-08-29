@@ -122,6 +122,44 @@ unreadable in Restricted mode.
    anthology title** setting, alongside an independent **Open source anthology
    in a new tab** setting. Preserve both preferences in plugin `data.json`.
 
+## Aligned Editions
+
+An aligned (triptych) vault carries `_data/parallel-reader.json`
+(`firstpair-parallel-reader-v1`): the source language with its `position`,
+the translations in display order with `defaultVisible`, one dictionary path
+per translation, and the ordered pages, each a
+`firstpair-aligned-chapter-v1` JSON of units with `source` lines and
+`translations` keyed by language id. The plugin renders the source column
+first and the enabled translations after it.
+
+1. Two layouts, chosen per device: `columns` (side by side; on a phone, a
+   horizontally swiped strip, one language per screen) and `stacked` (the
+   source stanza flush left, each translation under it, indented, labelled
+   only when more than one translation is on). The toolbar button cycles
+   `auto → columns → stacked`; `auto` stacks when the Reader pane is narrower
+   than 700 px or a mobile device reports portrait orientation, and re-applies
+   on rotation and resize without re-rendering. Persist the choice in plugin
+   `data.json`.
+2. The dictionary drawer, in column layout, is sized to the last column
+   (never narrower than 15 rem nor wider than 90 vw) so the other columns stay
+   readable; in stacked layout it is `min(30rem, 90vw)`.
+3. Dictionaries are `firstpair-reader-dictionary-v1` (one file, `entries`
+   keyed by folded form) or `firstpair-reader-dictionary-index-v1`: an
+   `index.json` with `shards` keyed by headword prefix and `prefixLength`,
+   written by `firstpair_emacs.dictionaries.write_sharded` so no file exceeds
+   4 MB — Obsidian Sync's per-file ceiling on the standard plan, and a size a
+   phone parses on first tap. The plugin resolves a word by its longest
+   prefix present in `shards`, then shorter ones. A missing dictionary file is
+   reported in the drawer as not yet synced, never as an empty drawer.
+4. Reader links in ordinary notes: `[Open the Reader](firstpair:reader)` and
+   `[Canto 1](firstpair:page:<page-id>)` are bound by the Markdown
+   post-processor, so `Home.md`'s table of contents opens pages directly in
+   reading view. `obsidian://firstpair-reader?page=<id>` does the same from
+   outside the vault. Both are in addition to the ribbon icon and command.
+5. The source-owned validator must check the index schema, every shard's size,
+   and the total entry count, and a public edition must refuse any language it
+   does not license (Dante's rejects Cyrillic in a public chapter).
+
 ## Bibliographic Integrity Gate
 
 1. Preserve the source title as display text, but compare contributor identity

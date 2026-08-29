@@ -1148,9 +1148,15 @@ async function writePublicReadme(plan, dryRun) {
 
 // A "proper" editorial vault has a root Home.md and a <book>/_data ledger
 // directory with unit rows. This keeps --vault from shipping a stray folder.
+// A proper editorial vault has a root Home.md and either a <book>/_data unit
+// ledger (evidence editions) or a root _data/parallel-reader.json index (an
+// aligned edition read by the FirstPair Reader plugin).
 async function isProperVault(dir) {
   if (!(await exists(join(dir, 'Home.md')))) {
     return false
+  }
+  if (await exists(join(dir, '_data', 'parallel-reader.json'))) {
+    return true
   }
   let entries
   try {

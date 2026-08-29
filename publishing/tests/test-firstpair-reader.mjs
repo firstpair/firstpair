@@ -42,4 +42,13 @@ test('standard Reader supports data-driven multilingual editions offline', () =>
 test('standard Reader leads with the source text unless a title asks otherwise', () => {
   assert.match(source, /\[this\.parallel\.sourceLanguage, \.\.\.translations\]/)
   assert.match(source, /position === "right"/)
+  assert.match(source, /firstpair-reader-dictionary-index-v1/)
+  assert.match(source, /async lookup\(path, word\)/)
+  assert.match(source, /firstpair:page:/)
+  assert.match(source, /firstpair:reader/)
+  assert.match(source, /registerObsidianProtocolHandler\("firstpair-reader"/)
+  assert.match(source, /orientation: portrait/)
+  assert.match(source, /ResizeObserver/)
+  assert.match(source, /firstpair-reader__page--stacked/)
+  assert.match(source, /sizeDrawer\(\)/)
 })

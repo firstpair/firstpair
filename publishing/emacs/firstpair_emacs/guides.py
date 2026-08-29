@@ -47,8 +47,8 @@ The maintained web edition of the shared handbook is at [{HANDBOOK_URL}]({HANDBO
     ]
     if lexicon_summary:
         sections.append(lexicon_summary.strip())
-    if config.core.book_guide:
-        sections.append("## Instructions specific to this book\n\n" + _read(config.core.book_guide))
+    if config.book_guide:
+        sections.append("## Instructions specific to this book\n\n" + _read(config.book_guide))
     sections.append(
         "## Build identity\n\n"
         f"- Source revision: `{source_revision}`\n"

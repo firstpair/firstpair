@@ -69,7 +69,7 @@ const validPostOrigins = new Set([
   'https://querygraph.ai',
   'https://eigentimes.com',
 ])
-const validShelves = new Set(['history', 'music', 'technology', 'publishing', 'querygraph', 'other'])
+const validShelves = new Set(['history', 'literature', 'music', 'technology', 'publishing', 'querygraph', 'other'])
 const invalidShelves = []
 const staleDeliverableMap = []
 

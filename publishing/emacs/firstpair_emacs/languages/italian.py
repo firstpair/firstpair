@@ -27,6 +27,9 @@ CORPUS_FILE = "enwiktionary-italian.jsonl"
 WORD = re.compile(r"[^\W\d_]+", re.UNICODE)
 DIAERESIS = {"ï": "i", "ü": "u", "ë": "e", "ö": "o", "ä": "a"}
 SKIPPED_TAGS = {"table-tags", "inflection-template", "canonical", "romanization", "class", "conjugation", "declension"}
+# A row tagged "auxiliary" names the helper verb of the compound tenses (avere,
+# essere) — often beside "transitive" — and is not a form of the lemma at all.
+SKIPPED_ROW_TAGS = {"auxiliary"}
 FORM_OF = re.compile(r"^(?P<kind>.*?)\bof\s+(?P<target>[^\s,;:()]+)\s*$")
 # A link written only as gloss text: "Dantesque form of gaietto", "obsolete spelling of cuore".
 FORM_OF_GLOSS = re.compile(
@@ -263,6 +266,8 @@ class Italian:
             # A form-of row may still carry an inflection table; its forms
             # resolve through the row's link when looked up.
             for form in row.get("forms", []):
+                if SKIPPED_ROW_TAGS.intersection(form.get("tags", [])):
+                    continue
                 text = normalise(str(form.get("form", "")))
                 tags = tuple(tag for tag in form.get("tags", []) if tag not in SKIPPED_TAGS)
                 if text and text != key and tags:
@@ -274,6 +279,8 @@ class Italian:
             self.lemmas.setdefault(plain, []).append(entry_id)
         self._index_form(key, entry_id, "lemma")
         for form in row.get("forms", []):
+            if SKIPPED_ROW_TAGS.intersection(form.get("tags", [])):
+                continue
             text = normalise(str(form.get("form", "")))
             tags = tuple(tag for tag in form.get("tags", []) if tag not in SKIPPED_TAGS)
             if not text or text == key or not tags:

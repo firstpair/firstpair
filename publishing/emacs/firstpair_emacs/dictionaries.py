@@ -146,3 +146,52 @@ def project(
         "derivedEntries": gloss_report.get("derivedEntries", 0),
     }
     return payload, report
+
+
+INDEX_SCHEMA = "firstpair-reader-dictionary-index-v1"
+
+
+def write_sharded(payload: dict, directory: Path, *, max_bytes: int = 4_000_000) -> dict:
+    """Write a dictionary as ``index.json`` plus shards keyed by headword prefix.
+
+    Obsidian Sync and phones handle many small files better than one large
+    one. Entries are grouped by their first character; a group larger than
+    ``max_bytes`` is split by a longer prefix. The Reader plugin resolves a
+    word by its longest prefix present in ``shards``, then the shorter ones,
+    so a shard named ``ab`` and a shard named ``a`` may coexist. Returns the
+    index payload; the caller's original single-file payload is unchanged.
+    """
+
+    import json as _json
+
+    entries = payload["entries"]
+    groups: dict[str, dict] = {}
+    pending = [("", entries)]
+    longest = 0
+    while pending:
+        prefix, members = pending.pop()
+        size = len(_json.dumps(members, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
+        if size <= max_bytes or all(len(key) <= len(prefix) for key in members):
+            groups[prefix] = members
+            longest = max(longest, len(prefix))
+            continue
+        # Keys that end at this prefix stay here; longer keys are split by one more character.
+        stay = {key: value for key, value in members.items() if len(key) <= len(prefix)}
+        if stay:
+            groups[prefix] = stay
+            longest = max(longest, len(prefix))
+        buckets: dict[str, dict] = {}
+        for key, value in members.items():
+            if len(key) > len(prefix):
+                buckets.setdefault(key[: len(prefix) + 1], {})[key] = value
+        pending.extend(buckets.items())
+    directory.mkdir(parents=True, exist_ok=True)
+    shards = {}
+    for prefix, members in sorted(groups.items()):
+        name = f"{prefix or '_'}.json" if prefix.isalnum() or not prefix else f"{prefix.encode('utf-8').hex()}.json"
+        (directory / name).write_text(_json.dumps({"schema": SCHEMA, "prefix": prefix, "entries": dict(sorted(members.items()))}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        shards[prefix] = name
+    index = {key: value for key, value in payload.items() if key != "entries"}
+    index.update({"schema": INDEX_SCHEMA, "prefixLength": longest, "entryCount": len(entries), "shards": shards})
+    (directory / "index.json").write_text(_json.dumps(index, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    return index

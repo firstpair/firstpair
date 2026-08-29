@@ -31,6 +31,11 @@ const libraryShelfConfig = [
     deck: 'Historical previews and arguments from Venice to Russophobia.',
   },
   {
+    id: 'literature',
+    label: 'Literature',
+    deck: 'Classic texts read in the original beside their translations.',
+  },
+  {
     id: 'music',
     label: 'Music',
     deck: 'Practical music guides and listening-led learning books.',

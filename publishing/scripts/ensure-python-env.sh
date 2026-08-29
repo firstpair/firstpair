@@ -36,11 +36,21 @@ if [[ -f "$repo_root/uv.lock" ]]; then
   uv_args+=(--locked)
 fi
 
-asdf_python="$(cd "$repo_root" && asdf which python 2>/dev/null || true)"
-if [[ -n "$asdf_python" && -x "$asdf_python" ]]; then
-  uv "${uv_args[@]}" --python "$asdf_python" >/dev/null
-else
+# A project that pins its interpreter with uv's own .python-version (and may
+# keep managed interpreters under .uv-python) is resolved by uv itself; only
+# projects without that pin take the interpreter asdf selects for them.
+if [[ -f "$repo_root/.python-version" ]]; then
+  if [[ -d "$repo_root/.uv-python" ]]; then
+    export UV_PYTHON_INSTALL_DIR="$repo_root/.uv-python"
+  fi
   uv "${uv_args[@]}" >/dev/null
+else
+  asdf_python="$(cd "$repo_root" && asdf which python 2>/dev/null || true)"
+  if [[ -n "$asdf_python" && -x "$asdf_python" ]]; then
+    uv "${uv_args[@]}" --python "$asdf_python" >/dev/null
+  else
+    uv "${uv_args[@]}" >/dev/null
+  fi
 fi
 
 if [[ ! -x "$python_path" ]]; then

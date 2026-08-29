@@ -94,6 +94,7 @@ class EmacsConfig:
     reference_stem: str
     subtitle: str
     author: str
+    book_guide: Path | None
 
 
 def _object(value: Any, label: str) -> dict[str, Any]:
@@ -264,6 +265,13 @@ def load(path: Path) -> EmacsConfig:
     if unknown:
         raise ConfigError(f"reader parts name unknown pages: {', '.join(unknown)}")
 
+    guide_raw = _object(block.get("guide", {}), "emacs.guide")
+    book_guide = (
+        _relative(root, guide_raw["bookSpecific"], "emacs.guide.bookSpecific")
+        if guide_raw.get("bookSpecific")
+        else core.book_guide
+    )
+
     return EmacsConfig(
         core=core,
         config_path=config_path,
@@ -278,6 +286,7 @@ def load(path: Path) -> EmacsConfig:
         reference_stem=f"{stem}-refs",
         subtitle=str(block.get("subtitle", "")),
         author=str(block.get("author", "")),
+        book_guide=book_guide,
     )
 
 

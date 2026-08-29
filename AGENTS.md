@@ -251,6 +251,73 @@ when only the ignored staging package and source map should be prepared, and
 `--no-deploy` when the package should be uploaded without changing the live
 site.
 
+### Publishing a title end to end
+
+"Publish this book to First Pair" means, for a source repository that has never
+been listed, the following sequence. Every step is owned by the source
+repository except the last two; the Eigen Times pair (`~/src/eigentimes`,
+`~/src/eigentimes-math`) and Dante (`~/src/dante`) are complete examples, and
+Cicero (`~/src/cicero`) shows the preview/full split.
+
+1. **Contract.** Write `FIRSTPAIR.md` at the source root with the unbulleted
+   key-value header `slug:`, `shelf:` (one of `history`, `literature`,
+   `music`, `technology`, `publishing`, `querygraph`, `other` — the set in
+   `scripts/check-public-catalog.mjs` and `src/App.vue`), and
+   `default_edition:` (`preview` or `full`), then Ownership, Build, and
+   Publish sections that record the exact commands below. The catalog
+   `source` field is the repository's `origin` remote, so the repository must
+   be one the reader may see.
+2. **Book package.** Write `book.build.json` against
+   `publishing/book.build.schema.json` (`bookRoot`, `manuscript`, `metadata`,
+   `stem`, `version` source, `dist`, `edition`, `pdf.coverImage`,
+   `epub.coverImage`, `headboardImage`, `html.splitLevel`) and build with
+   `publishing/scripts/build-library-book.sh --repo-root <repo>`. The result
+   is one `dist` directory holding `VERSION.md` (`edition:`, `version_stamp`,
+   `source_commit`), the PDF, the EPUB, the single-file HTML, and the
+   `<stem>-chapters/` directory; the publisher requires all four artifacts.
+   Split output into `dist-preview/` and `dist-full/` only when the title has
+   both editions. The builder verifies the toolchain against
+   `publishing/toolchain.lock.json` first; when a workstation upgrade moves a
+   pinned tool (calibre, pandoc, typst), refresh the lock in the same commit
+   as the publication. A source project that pins Python with uv
+   (`.python-version`, optionally `.uv-python/`) is resolved by uv; others take
+   the asdf interpreter.
+3. **Cover and headboard.** The library card wants a portrait cover image
+   and, optionally, a wide headboard banner. The publisher resolves them from
+   `metadata.yaml` (`cover_image`, `headboard_image`), from
+   `book.build.json` (`pdf.coverImage`/`epub.coverImage`, `headboardImage`),
+   or from `cover.png`/`headboard.png` beside the dist; only image files
+   count. A cover may be rendered from the headboard art with Typst
+   (`typst compile --root . --ppi 200 cover/cover.typ cover/<slug>-cover.png`,
+   as Dante does) and committed.
+4. **Companion products** (optional): a vault under `vault.build.json`
+   (`--vault-dir <dir> --vault-guide <file>`), a mobile vault, an Emacs
+   bundle (`--emacs`, resolved from the config's `emacs.products`). A vault
+   directory is accepted when it has a root `Home.md` and either a
+   `<book>/_data/units.jsonl` ledger or a root `_data/parallel-reader.json`
+   aligned-reader index. Compose guides with `firstpair-vault guide <config>
+   --product <name> --output <file>`; the Emacs bundle carries its own
+   `Guide.md`. Write composed guides and bundles into ignored directories:
+   their build identity names the commit being published, and a tracked guide
+   would always be one commit behind. Order the work so that tracked outputs
+   (`vault.build.json`, coverage reports) are committed first and the Emacs
+   bundle is built last, because its manifest must name the pushed HEAD.
+5. **Rights.** A full edition may be published only for text the source
+   repository is licensed to distribute; keep any restricted witness (a
+   translation still in copyright) in a separately named local build that the
+   source-owned `scripts/check-obsidian-vault.py` refuses to pass as public.
+6. **Dry run, then live.** Commit and push both repositories. Run
+   `npm run library:publish -- <repo> [--full] [--vault-dir … --vault-guide …]
+   [--emacs] --title … --description … --kicker … --tags … --dry-run
+   --no-build --no-smoke --no-deploy --no-icloud`, read the resolved
+   `distDir`, `edition`, vault, and Emacs plan, then run the same command
+   without the dry-run flags. The live run stages, uploads, updates the
+   catalog and route maps, writes `public/<slug>/README.md`, copies versioned
+   files to `~/icloud/books`, deploys, and verifies the live catalog.
+7. **Record.** Commit the FirstPair metadata the run produced, update the
+   source repository's `FIRSTPAIR.md` if the command changed, and note any
+   reusable lesson in the matching `publishing/skills/*.md` card.
+
 ### Preview → full publishing (the `--full` gate)
 
 A book may split its build output into two publish-complete directories,

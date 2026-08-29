@@ -462,7 +462,7 @@ class ItalianTests(unittest.TestCase):
 
     ROWS = [
         {"word": "amore", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["love"]}], "forms": [{"form": "amóre", "tags": ["canonical"]}, {"form": "amori", "tags": ["plural"]}, {"form": "amor", "tags": ["apocopic", "alternative"]}]},
-        {"word": "dire", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to say"]}], "forms": [{"form": "dìce", "tags": ["third-person", "singular", "present", "indicative"]}, {"form": "dicéva", "tags": ["third-person", "singular", "imperfect", "indicative"]}, {"form": "dirò", "tags": ["first-person", "singular", "future"]}]},
+        {"word": "dire", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to say"]}], "forms": [{"form": "avére", "tags": ["auxiliary", "transitive"]}, {"form": "dìce", "tags": ["third-person", "singular", "present", "indicative"]}, {"form": "dicéva", "tags": ["third-person", "singular", "imperfect", "indicative"]}, {"form": "dirò", "tags": ["first-person", "singular", "future"]}]},
         {"word": "avere", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to have"]}], "forms": [{"form": "hò", "tags": ["first-person", "singular", "present"]}]},
         {"word": "hai", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["second-person singular present indicative of avere and (obsolete) havere"], "tags": ["form-of"], "form_of": [{"word": "avere and"}]}]},
         {"word": "eterno", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["eternal"]}], "forms": [{"form": "eterna", "tags": ["feminine", "singular"]}]},
@@ -502,6 +502,8 @@ class ItalianTests(unittest.TestCase):
         self.assertEqual(("dire", "third-person singular present indicative", ""), self.first("dice"))
         self.assertEqual("avere", self.first("ho")[0])
         self.assertEqual("avere", self.first("hai")[0])
+        # The auxiliary named in dire's conjugation table is not a form of dire.
+        self.assertEqual({"avere"}, {self.italian.entry(a.entry_id).headword for a in self.italian.analyse("avere")})
         self.assertEqual("eterno", self.first("etterna")[0])
         self.assertEqual({"in", "il"}, {self.italian.entry(a.entry_id).headword for a in self.italian.analyse("nel")})
 
