@@ -302,13 +302,23 @@ Cicero (`~/src/cicero`) shows the preview/full split.
    would always be one commit behind. Order the work so that tracked outputs
    (`vault.build.json`, coverage reports) are committed first and the Emacs
    bundle is built last, because its manifest must name the pushed HEAD.
-   A source repository may publish **more than one title**: pass the second
-   title's dist directory as the input with `--slug`, and its vault and
-   bundle with `--vault-dir` / `--emacs-dir`, as Dante does for
-   `dante-commedia` and `dante-commedia-russian` (see its `FIRSTPAIR.md`).
-   An aligned edition with several translations per language follows
-   `publishing/skills/obsidian-reader-plugin-delivery.md` § Aligned Editions;
-   its Emacs bundle declares `emacs.aligned.index`.
+   **Versions of one title.** A title may carry several versions — language
+   editions, say — under one catalog entry. Publish the title itself first
+   (optionally with `--version-label "Italian and English"` to name its own
+   deliverables), then each version from its own dist directory with
+   `--version <id> --version-label <text>`, passing its vault, guide, and
+   bundle with `--vault-dir` / `--vault-guide` / `--emacs-dir` (absolute
+   paths when the input is a dist directory; put `cover.png` and
+   `headboard.png` beside that dist if the card should show them). A version
+   is served one segment deeper — `/<slug>/<id>/(pdf|epub|vault|emacs)/`,
+   `/read/<slug>/<id>/`, `/read/<slug>/<id>/(chapters|guide|emacs-guide)/` —
+   is stored under `books/<slug>/<id>/…` in Blob and `versions[]` in the
+   catalog, and is listed on the card and the book page. Ids are lowercase
+   slugs and may not be `guide`, `emacs-guide`, `chapters`, or a format name.
+   Dante's `FIRSTPAIR.md` is the worked example (`dante-commedia` with the
+   `russian` version). An aligned edition with several translations per
+   language follows `publishing/skills/obsidian-reader-plugin-delivery.md`
+   § Aligned Editions; its Emacs bundle declares `emacs.aligned.index`.
 5. **Rights.** A full edition may be published only for text the source
    repository is licensed to distribute; keep any restricted witness (a
    translation still in copyright) in a separately named local build that the

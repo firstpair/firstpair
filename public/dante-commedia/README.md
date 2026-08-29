@@ -1,6 +1,6 @@
 # Dante — La Divina Commedia
 
-The complete Commedia with Dante's Italian beside four English translations — Longfellow, Cary, Norton, Sibbald — tercet by tercet, and a dictionary that analyses every Italian word: a book, an Obsidian vault, and an Emacs Info bundle.
+The complete Commedia with Dante's Italian beside its translations, tercet by tercet — four English (Longfellow, Cary, Norton, Sibbald) and, in the Russian version, five Russian (Min, Petrov, Fedorov, Chuiko, Minaev) — with a dictionary that analyses every Italian word: a book, an Obsidian vault, and an Emacs Info bundle.
 
 ## Current Public Editions
 

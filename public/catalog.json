@@ -584,7 +584,7 @@
       "title": "Dante — La Divina Commedia",
       "author": "Dante Alighieri",
       "kicker": "Aligned edition",
-      "description": "The complete Commedia with Dante's Italian beside four English translations — Longfellow, Cary, Norton, Sibbald — tercet by tercet, and a dictionary that analyses every Italian word: a book, an Obsidian vault, and an Emacs Info bundle.",
+      "description": "The complete Commedia with Dante's Italian beside its translations, tercet by tercet — four English (Longfellow, Cary, Norton, Sibbald) and, in the Russian version, five Russian (Min, Petrov, Fedorov, Chuiko, Minaev) — with a dictionary that analyses every Italian word: a book, an Obsidian vault, and an Emacs Info bundle.",
       "accent": "#8a4f3d",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/pdf/ca1d2f63cef44346-dante-commedia.pdf",
       "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/epub/1ddc930ce3ba5671-dante-commedia.epub",
@@ -607,7 +607,8 @@
       "emacsGuide": "/read/dante-commedia/emacs-guide/",
       "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/88f93536ba1ed6b8-dante-commedia-emacs-guide%20%281.0.0-fe8f3928%29.html",
       "vaultGuide": "/read/dante-commedia/guide/",
-      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html"
+      "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/b0bde35d2ffaaba5-dante-commedia-vault-guide%20%281.0.0-fe8f3928%29.html",
+      "versionLabel": "Italian and English"
     }
   ]
 }
