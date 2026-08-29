@@ -233,11 +233,15 @@ method, not those title-specific counts.
    Preserve local workspace aliases during normal closed-vault rebuilds; use an
    explicit reset mode only to replace stale volatile aliases.
 3. For mobile Sync, enable images, all other file types, active community-plugin
-   list, and installed community-plugin list on every device. JSON indexes,
-   WebP images, plugin installation, and plugin activation are separate Sync
-   planes. A Markdown-only file count can represent a completed selective pass.
-   These controls are device-specific, and **Fully synced** covers only enabled
-   categories. Recheck every required control on both devices after restart.
+   list, and installed community-plugin list on every device — **starting with
+   the originating Mac vault**, where Obsidian creates every selective-sync and
+   vault-configuration toggle off when a vault is first connected or re-linked.
+   JSON indexes, WebP images, dictionary shards, plugin installation, and
+   plugin activation are separate Sync planes. A Markdown-only file count can
+   represent a completed selective pass. These controls are device-specific,
+   and **Fully synced** covers only enabled categories. Recheck every required
+   control on both devices after restart, and first of all whenever a sync
+   problem is reported: an unset toggle is the usual cause.
 4. Keep community plugins disabled through first Sync. Enable the Reader only
    after content, images, JSON indexes, plugin files, and configuration reach
    the device and the vault is responsive.

@@ -523,6 +523,21 @@ background; writing the vault while it is open can race those writes and poison
 the generated edition. Once the gate passes, regenerate the vault from source,
 then validate it before staging or publishing.
 
+When a vault is delivered through Obsidian Sync, check the Sync settings on
+the **originating Mac vault** before anything else, and again whenever a
+sync problem appears: Settings → Sync → *Selective sync* must have **Images**,
+**Audio**, **Videos**, **PDFs**, and **All other file types** on, and *Vault
+configuration sync* must have **Installed community plugins**, **Active
+community plugins**, **Core plugin settings**, and **Appearance settings**
+on. Obsidian creates these toggles **off** for a newly connected vault and
+they are per device, so a fresh vault, a re-linked remote, or a new device
+silently ships Markdown only: JSON indexes, dictionary shards, images, and
+the Reader plugin never arrive, and the phone shows text without a Reader,
+or a Reader with an empty dictionary drawer. Enable the same toggles on the
+phone, wait for **Fully synced**, and only then judge a delivery or debug a
+plugin. Record this check in the vault handoff notes; it is the most common
+cause of a Sync "failure" that is not a failure at all.
+
 For compact device editions, follow
 `publishing/skills/obsidian-mobile-vault.md`. Treat the mobile vault as a
 separate, source-derived Reader product with its own local vault, Sync remote,
