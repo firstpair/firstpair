@@ -31,6 +31,7 @@ on it.
   lexicon/forms.tsv            form, entry, features, enclitic
   lexicon/stems.tsv            stem, entry, index
   lexicon/endings.tsv          ending, part, declension, variant, stem, features, order, frequency
+  lexicon/glosses.tsv          language, key, kind (form|entry), headword, part, definitions, source
   evidence/                    delivered evidence files, named by target id
   FIRSTPAIR-EMACS-MANIFEST.json sealed inventory (schema firstpair-emacs-manifest-v1)
 ```
@@ -110,6 +111,31 @@ folders `firstpair-read` searches for bundles, and
 `firstpair-reader-install-info` / `install.sh` put a bundle's manuals into an
 Info directory (`~/.local/share/info` by default) so plain `info` and `C-h i`
 list them.
+
+## Translations
+
+The lexicon's own senses are in its gloss language (Whitaker's are English).
+`emacs.lexicon.translations` declares every language the dictionary window
+may answer in; each entry names up to three sources:
+
+- `glossary`: a corpus pinned by digest in FirstPair's
+  `lexicon/<language>/SOURCES.json` under `glossaries` (a Wiktextract/Kaikki
+  extraction), cached beside the lexicon corpus;
+- `dictionary`: a title-owned `firstpair-reader-dictionary-v1` file — the
+  same schema the Obsidian Reader's drawer loads — keyed by normalised form;
+- `supplement`: a reviewed `{form: [definitions]}` file owned by the title.
+
+The builder projects each language onto the bundle's marked forms and their
+lexicon entries (lemmas) into `lexicon/glosses.tsv`, records the sources and
+coverage per language in `LEXICON.json`, and lists `{id, label}` pairs in
+`data/bundle.json` `lexicon.translations`. The reader shows one language or
+all of them (`C-c C-t`), answering by exact form first and by entry second,
+and states when a language has no entry. Absence is reported, never filled by
+machine translation.
+
+Record sets may `merge` further files by identifier, so translations kept in
+a separate map (for example a reviewed Russian reading of each passage) join
+the passage's node as ordinary blocks.
 
 ## Guarantees
 

@@ -288,6 +288,39 @@
               "items": {
                 "type": "string"
               }
+            },
+            "translations": {
+              "type": "array",
+              "minItems": 1,
+              "description": "Target languages the dictionary window can show. Each may draw on a FirstPair-pinned glossary, a title dictionary in the shared firstpair-reader-dictionary-v1 schema, and a reviewed supplement.",
+              "items": {
+                "type": "object",
+                "required": [
+                  "id"
+                ],
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "label": {
+                    "type": "string"
+                  },
+                  "glossary": {
+                    "type": "string",
+                    "description": "Identifier of a glossary pinned in FirstPair's lexicon/<language>/SOURCES.json."
+                  },
+                  "dictionary": {
+                    "type": "string",
+                    "description": "Repository-relative firstpair-reader-dictionary-v1 JSON keyed by normalized form."
+                  },
+                  "supplement": {
+                    "type": "string",
+                    "description": "Repository-relative JSON of {form: [definitions]} reviewed by the title."
+                  }
+                },
+                "additionalProperties": false
+              }
             }
           },
           "additionalProperties": false
@@ -373,6 +406,25 @@
                       ]
                     },
                     "language": {
+                      "type": "string"
+                    }
+                  },
+                  "additionalProperties": false
+                }
+              },
+              "merge": {
+                "type": "array",
+                "description": "Further record files whose rows are merged into records with the same identifier, e.g. translations kept in a separate map.",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "source"
+                  ],
+                  "properties": {
+                    "source": {
+                      "type": "string"
+                    },
+                    "identifier": {
                       "type": "string"
                     }
                   },

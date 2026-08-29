@@ -33,12 +33,24 @@ class Product:
 
 
 @dataclass(frozen=True)
+class Translation:
+    """One target language the dictionary window can show."""
+
+    identifier: str
+    label: str
+    glossary: str
+    dictionary: Path | None
+    supplement: Path | None
+
+
+@dataclass(frozen=True)
 class LexiconSpec:
     language: str
     mode: str
     exclude: tuple[str, ...]
     include: tuple[str, ...]
     minimum_length: int
+    translations: tuple[Translation, ...]
 
 
 @dataclass(frozen=True)
@@ -62,6 +74,7 @@ class RecordSet:
     referenced_by: str
     reference_match: str
     section: str
+    merges: tuple[tuple[Path, str], ...] = ()
 
 
 @dataclass(frozen=True)
@@ -150,12 +163,38 @@ def load(path: Path) -> EmacsConfig:
         mode = _text(row.get("mode", "projected"), "emacs.lexicon.mode")
         if mode not in LEXICON_MODES:
             raise ConfigError(f"unsupported lexicon mode: {mode}")
+        translations: list[Translation] = []
+        for position, item in enumerate(row.get("translations", [{"id": "en", "label": "English"}])):
+            entry = _object(item, f"emacs.lexicon.translations[{position}]")
+            identifier = _text(entry.get("id"), f"emacs.lexicon.translations[{position}].id")
+            if identifier in {existing.identifier for existing in translations}:
+                raise ConfigError(f"duplicate translation language: {identifier}")
+            translations.append(
+                Translation(
+                    identifier=identifier,
+                    label=_text(entry.get("label", identifier), f"emacs.lexicon.translations[{position}].label"),
+                    glossary=str(entry.get("glossary", "")),
+                    dictionary=(
+                        _relative(root, entry["dictionary"], f"emacs.lexicon.translations[{position}].dictionary")
+                        if entry.get("dictionary")
+                        else None
+                    ),
+                    supplement=(
+                        _relative(root, entry["supplement"], f"emacs.lexicon.translations[{position}].supplement")
+                        if entry.get("supplement")
+                        else None
+                    ),
+                )
+            )
+        if not translations:
+            raise ConfigError("emacs.lexicon.translations must not be empty")
         lexicon = LexiconSpec(
             language=_text(row.get("language", "latin"), "emacs.lexicon.language"),
             mode=mode,
             exclude=tuple(row.get("exclude", [])),
             include=tuple(row.get("include", [])),
             minimum_length=int(row.get("minimumLength", 3)),
+            translations=tuple(translations),
         )
 
     page_ids = {page.page_id for page in core.pages}
@@ -184,6 +223,16 @@ def load(path: Path) -> EmacsConfig:
                 referenced_by=str(row.get("referencedBy", "")),
                 reference_match=_text(row.get("referenceMatch", "source"), f"emacs.records[{index}].referenceMatch"),
                 section=_text(row.get("section", "References"), f"emacs.records[{index}].section"),
+                merges=tuple(
+                    (
+                        _relative(root, merge.get("source"), f"emacs.records[{index}].merge[{position}].source"),
+                        _text(merge.get("identifier", "id"), f"emacs.records[{index}].merge[{position}].identifier"),
+                    )
+                    for position, merge in enumerate(
+                        _object(item, f"emacs.records[{index}].merge[{position}]")
+                        for position, item in enumerate(row.get("merge", []))
+                    )
+                ),
             )
         )
 

@@ -18,7 +18,7 @@ from pathlib import Path
 
 from firstpair_vault.revisions import require_clean_worktree, resolve_source_commit
 
-from . import corpus, lexicon as lexicon_module, texiwriter
+from . import corpus, glosses as glosses_module, lexicon as lexicon_module, texiwriter
 from .config import EmacsConfig, load
 from .document import (
     Block,
@@ -350,6 +350,12 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             f"{corpus_spec.name}. {corpus_spec.license} The compiled tables ship in this bundle "
             "under lexicon/, so lookup works with no network and no external program."
         )
+        for translation in config.lexicon.translations:
+            if translation.glossary:
+                item = corpus.glossary(corpus_spec, translation.glossary)
+                lexicon_note += f" {translation.label} glosses come from {item.name} ({item.license})."
+            elif translation.dictionary:
+                lexicon_note += f" {translation.label} glosses come from the edition's own dictionary."
 
     with tempfile.TemporaryDirectory(prefix=f".{destination.name}-", dir=destination.parent) as temporary:
         root = Path(temporary) / destination.name
@@ -503,6 +509,7 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
         )
 
         lexicon_payload: dict[str, object] = {}
+        translations_payload: list[dict[str, object]] = []
         if projected is not None and corpus_spec is not None and config.lexicon is not None:
             lexicon_payload = lexicon_module.write_tables(
                 root / "lexicon",
@@ -516,6 +523,16 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                     "upstream": corpus_spec.upstream,
                     "files": words.provenance,
                 },
+            )
+            translations_payload, glosses_meta = _translations(
+                config, corpus_spec, words, projected, root / "lexicon", allow_download=allow_download
+            )
+            lexicon_payload["glossLanguage"] = corpus_spec.gloss_language
+            lexicon_payload["translations"] = translations_payload
+            if glosses_meta is not None:
+                lexicon_payload["files"]["glosses.tsv"] = glosses_meta
+            (root / "lexicon" / "LEXICON.json").write_text(
+                json.dumps(lexicon_payload, indent=2, sort_keys=True, ensure_ascii=False) + "\n", encoding="utf-8"
             )
 
         shutil.copytree(LISP_ROOT, root / "lisp", ignore=shutil.ignore_patterns("test", "*.elc", "firstpair-check.el"))
@@ -539,6 +556,10 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                 "mode": config.lexicon.mode if config.lexicon else "none",
                 "entries": lexicon_payload.get("entries", 0),
                 "forms": lexicon_payload.get("forms", 0),
+                "glossLanguage": corpus_spec.gloss_language if corpus_spec else "",
+                "translations": [
+                    {"id": item["id"], "label": item["label"]} for item in translations_payload
+                ],
             },
             "pages": len(pages),
             "records": len(records),
@@ -567,9 +588,76 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
     return manifest
 
 
+def _translations(config, corpus_spec, words, projected, directory: Path, *, allow_download: bool):
+    """Project every declared target language and write the glosses table."""
+
+    payload: list[dict[str, object]] = []
+    found: list[glosses_module.Gloss] = []
+    indexed: dict[Path, glosses_module.GlossaryIndex] = {}
+    for translation in config.lexicon.translations:
+        glossary_index = None
+        glossary_item = None
+        if translation.glossary:
+            glossary_item = corpus.glossary(corpus_spec, translation.glossary)
+            if glossary_item.language != translation.identifier:
+                raise ValueError(
+                    f"glossary {translation.glossary} is {glossary_item.language}, not {translation.identifier}"
+                )
+            path = corpus.ensure_glossary(corpus_spec, glossary_item, allow_download=allow_download)
+            glossary_index = indexed.get(path) or glosses_module.index_kaikki(path)
+            indexed[path] = glossary_index
+        dictionary = glosses_module.load_dictionary(translation.dictionary) if translation.dictionary else None
+        supplement = glosses_module.load_supplement(translation.supplement) if translation.supplement else None
+        glosses, report = glosses_module.project(
+            translation.identifier,
+            words,
+            projected,
+            glossary=glossary_index,
+            glossary_name=glossary_item.name if glossary_item else "",
+            dictionary=dictionary,
+            dictionary_name=str(translation.dictionary.relative_to(config.repo_root)) if translation.dictionary else "",
+            supplement=supplement,
+            supplement_name=str(translation.supplement.relative_to(config.repo_root)) if translation.supplement else "",
+        )
+        found.extend(glosses)
+        lexicon_covers = translation.identifier == corpus_spec.gloss_language
+        payload.append(
+            {
+                "id": translation.identifier,
+                "label": translation.label,
+                "lexicon": lexicon_covers,
+                "glossary": (
+                    {"id": glossary_item.identifier, "name": glossary_item.name, "license": glossary_item.license, "snapshot": glossary_item.snapshot}
+                    if glossary_item
+                    else None
+                ),
+                "dictionary": str(translation.dictionary.relative_to(config.repo_root)) if translation.dictionary else None,
+                "supplement": str(translation.supplement.relative_to(config.repo_root)) if translation.supplement else None,
+                "coverage": {
+                    "forms": report["forms"],
+                    "covered": report["forms"] if lexicon_covers else report["covered"],
+                    "glossed": report["covered"],
+                    "missing": [] if lexicon_covers else report["missing"][:200],
+                },
+            }
+        )
+    if not found:
+        return payload, None
+    return payload, glosses_module.write(directory, found)
+
+
 def _lexicon_guide(config: EmacsConfig, corpus_spec) -> str:
     if corpus_spec is None or config.lexicon is None:
         return ""
+    labels = [translation.label for translation in config.lexicon.translations]
+    languages = " and ".join(labels) if len(labels) <= 2 else ", ".join(labels[:-1]) + f", and {labels[-1]}"
+    selector = ""
+    if len(labels) > 1:
+        selector = (
+            f" The dictionary answers in {languages}; `C-c C-t` (or `t` in the dictionary "
+            "window) cycles between one language at a time and all of them together, and the "
+            "window's header line shows the current choice."
+        )
     return (
         "## The dictionary window\n\n"
         f"This bundle carries a {config.lexicon.language} lexicon compiled from "
@@ -577,6 +665,6 @@ def _lexicon_guide(config: EmacsConfig, corpus_spec) -> str:
         "opens in a third window under the references, with the dictionary form, the "
         "grammatical analysis of the exact form in front of you, and the senses. "
         "`C-c C-n` and `C-c C-p` move between marked words. "
-        "Nothing here needs a network connection or an external dictionary program.\n\n"
+        f"Nothing here needs a network connection or an external dictionary program.{selector}\n\n"
         f"Licence: {corpus_spec.license}"
     )

@@ -272,7 +272,7 @@ your Emacs configuration file (<code>~/.emacs.d/init.el</code> or
 all a single book needs. If you read several FirstPair books, install
 the reader as an Emacs package instead and let it find your bundles:</p>
 <pre class="elisp"><code>;; From a downloaded firstpair-reader-&lt;version&gt;.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.3.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.4.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install &#39;(firstpair-reader
@@ -430,6 +430,15 @@ exact form in front of you, and the senses. Lookup is a table read from
 the bundle’s <code>lexicon/</code> folder; it works with no network and
 no external program. <code>C-c C-d</code> also works on words that are
 not underlined, and reports honestly when the lexicon has no entry.</p>
+<p>An edition may answer in more than one language — say English and
+Russian for a Latin book. The dictionary window’s header line shows
+which languages are on. <code>C-c C-t</code> in the book (or
+<code>t</code> in the dictionary window) cycles through each language
+alone and then all of them together; <code>C-u C-c C-t</code> (or
+<code>T</code>) lets you pick by name. The choice sticks for every
+lookup, for the one-line glosses, and for the mouse hover. Each language
+section names its own source, and says plainly when the edition has no
+entry in that language.</p>
 <p>Set <code>firstpair-reader-highlight</code> to <code>nil</code> in
 your configuration to turn the underlines off while keeping every
 key.</p>

@@ -63,7 +63,7 @@ an Emacs package instead and let it find your bundles:
 
 ```elisp
 ;; From a downloaded firstpair-reader-<version>.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.3.tar RET
+M-x package-install-file RET /path/to/firstpair-reader-1.4.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install '(firstpair-reader
@@ -152,6 +152,14 @@ form in front of you, and the senses. Lookup is a table read from the
 bundle's `lexicon/` folder; it works with no network and no external program.
 `C-c C-d` also works on words that are not underlined, and reports honestly
 when the lexicon has no entry.
+
+An edition may answer in more than one language — say English and Russian
+for a Latin book. The dictionary window's header line shows which languages
+are on. `C-c C-t` in the book (or `t` in the dictionary window) cycles
+through each language alone and then all of them together; `C-u C-c C-t`
+(or `T`) lets you pick by name. The choice sticks for every lookup, for the
+one-line glosses, and for the mouse hover. Each language section names its
+own source, and says plainly when the edition has no entry in that language.
 
 Set `firstpair-reader-highlight` to `nil` in your configuration to turn the
 underlines off while keeping every key.

@@ -60,9 +60,17 @@ def read_records(config: EmacsConfig, record_set: RecordSet, pages: tuple[Reader
     }
     by_id = {page.page_id: page.page_id for page in pages}
     lookup = by_source if record_set.reference_match == "source" else by_id
+    merged: dict[str, dict[str, Any]] = {}
+    for source, key in record_set.merges:
+        for extra in _rows(source):
+            extra_id = str(extra.get(key, "")).strip()
+            if extra_id:
+                merged.setdefault(extra_id, {}).update({name: value for name, value in extra.items() if name != key})
     records: list[Record] = []
     for row in _rows(record_set.source):
         identifier = str(row.get(record_set.identifier, "")).strip()
+        if identifier in merged:
+            row = {**row, **merged[identifier]}
         if not identifier:
             raise ValueError(f"record without {record_set.identifier}: {record_set.set_id}")
         referenced: list[str] = []

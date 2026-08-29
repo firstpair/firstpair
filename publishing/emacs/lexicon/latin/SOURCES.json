@@ -22,5 +22,20 @@
       "url": "https://raw.githubusercontent.com/mk270/whitakers-words/1f2f0fb0867a896d7b9284a03d615ed635d6f992/LICENCE.txt",
       "sha256": "de533c3fb7c4a54b6d2deb5e56624947850bd2121c1de206ba5ee59b72c119a3"
     }
+  ],
+  "glossLanguage": "en",
+  "glossaries": [
+    {
+      "id": "ruwiktionary",
+      "language": "ru",
+      "label": "Русский",
+      "name": "Russian Wiktionary Latin dictionary, extracted by Wiktextract and published by Kaikki.org",
+      "license": "CC BY-SA 4.0. Definitions are Russian Wiktionary text; attribution and share-alike apply to the delivered glosses.",
+      "upstream": "https://kaikki.org/ruwiktionary/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/index.html",
+      "url": "https://kaikki.org/ruwiktionary/%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9/kaikki.org-dictionary-%D0%9B%D0%B0%D1%82%D0%B8%D0%BD%D1%81%D0%BA%D0%B8%D0%B9.jsonl",
+      "file": "ruwiktionary-latin.jsonl",
+      "sha256": "fa72af045603f1ba44ce6caaab78b2fa7981aff77dca9c0cffe11c21cdf27f81",
+      "snapshot": "2026-08-27"
+    }
   ]
 }

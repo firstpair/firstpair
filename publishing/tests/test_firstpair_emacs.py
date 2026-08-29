@@ -13,7 +13,7 @@ PUBLISHING = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PUBLISHING / "vault"))
 sys.path.insert(0, str(PUBLISHING / "emacs"))
 
-from firstpair_emacs import corpus, package  # noqa: E402
+from firstpair_emacs import corpus, glosses, package  # noqa: E402
 from firstpair_emacs.builder import build, plan  # noqa: E402
 from firstpair_emacs.config import load  # noqa: E402
 from firstpair_emacs.document import Manual, Node, Paragraph, Reference, Text, Emphasis, node_name  # noqa: E402
@@ -227,6 +227,23 @@ class PackageTests(unittest.TestCase):
             self.assertIn("discover=t", completed.stdout)
 
 
+class GlossTests(unittest.TestCase):
+    def test_indexes_kaikki_rows_by_headword_and_form(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            path = Path(temporary) / "kaikki.jsonl"
+            path.write_text(
+                json.dumps({"word": "scribo", "pos": "verb", "senses": [{"glosses": ["писать"]}, {"glosses": ["сочинять"]}], "forms": [{"form": "scrībis"}, {"form": "scriptum"}]}, ensure_ascii=False)
+                + "\n"
+                + json.dumps({"word": "nihil", "pos": "pronoun", "senses": [{"glosses": ["ничто"]}]}, ensure_ascii=False)
+                + "\n",
+                encoding="utf-8",
+            )
+            index = glosses.index_kaikki(path)
+        self.assertEqual(("писать", "сочинять"), tuple(index.by_headword["scribo"][0]["definitions"]))
+        self.assertEqual("scribo", index.by_form["scribis"][0]["headword"])
+        self.assertIn("nihil", index.by_form)
+
+
 class ModelTests(unittest.TestCase):
     def test_node_names_avoid_info_delimiters(self) -> None:
         self.assertEqual("Letters to Atticus 4-8a", node_name("Letters to Atticus 4.8a"))
@@ -359,8 +376,26 @@ class BuildTests(Fixture):
     def test_projected_lexicon_marks_latin_and_builds_a_glossary(self) -> None:
         path = self.write_config()
         raw = json.loads(path.read_text(encoding="utf-8"))
-        raw["emacs"]["lexicon"] = {"language": "latin", "mode": "projected", "exclude": ["res"]}
-        path.write_text(json.dumps(raw), encoding="utf-8")
+        (self.root / "la-ru.json").write_text(
+            json.dumps({"schema": "firstpair-reader-dictionary-v1", "sourceLanguage": "la", "targetLanguage": "ru",
+                        "entries": {"scribito": [{"headword": "scribo", "partOfSpeech": "verb", "definitions": ["писать"]}]}}, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        (self.root / "ru-supplement.json").write_text(json.dumps({"populi": ["народа"]}, ensure_ascii=False), encoding="utf-8")
+        (self.root / "russian.jsonl").write_text(
+            json.dumps({"id": "quote-att-4-8a", "russian": "Когда нечего будет писать, напиши именно это.", "russian_translator": "First Pair editorial translation"}, ensure_ascii=False) + "\n",
+            encoding="utf-8",
+        )
+        raw["emacs"]["lexicon"] = {
+            "language": "latin", "mode": "projected", "exclude": ["res"],
+            "translations": [
+                {"id": "en", "label": "English"},
+                {"id": "ru", "label": "Русский", "dictionary": "la-ru.json", "supplement": "ru-supplement.json"},
+            ],
+        }
+        raw["emacs"]["records"][0]["merge"] = [{"source": "russian.jsonl", "identifier": "id"}]
+        raw["emacs"]["records"][0]["blocks"].append({"field": "russian", "label": "Русский", "style": "quotation"})
+        path.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
         self.commit()
         manifest = build(path, "preview", allow_download=False)
         bundle = self.root / "emacs" / "preview"
@@ -375,8 +410,20 @@ class BuildTests(Fixture):
         references = (bundle / "fixture-preview-refs.info").read_text(encoding="utf-8")
         self.assertIn("Node: Latin Glossary", references)
         self.assertIn("scribo", references)
-        for name in ("entries.tsv", "forms.tsv", "stems.tsv", "endings.tsv", "LEXICON.json"):
+        for name in ("entries.tsv", "forms.tsv", "stems.tsv", "endings.tsv", "glosses.tsv", "LEXICON.json"):
             self.assertTrue((bundle / "lexicon" / name).is_file(), name)
+        glosses_table = (bundle / "lexicon" / "glosses.tsv").read_text(encoding="utf-8")
+        self.assertIn("ru\tscribito\tform\tscribo\tverb\tписать\tla-ru.json", glosses_table)
+        self.assertIn("ru\tpopuli\tform\tpopuli\t\tнарода\tru-supplement.json", glosses_table)
+        lexicon_meta = json.loads((bundle / "lexicon" / "LEXICON.json").read_text(encoding="utf-8"))
+        by_id = {item["id"]: item for item in lexicon_meta["translations"]}
+        self.assertTrue(by_id["en"]["lexicon"])
+        self.assertEqual(by_id["en"]["coverage"]["covered"], by_id["en"]["coverage"]["forms"])
+        self.assertGreaterEqual(by_id["ru"]["coverage"]["glossed"], 2)
+        self.assertIn("scribas", by_id["ru"]["coverage"]["missing"])
+        description = json.loads((bundle / "data" / "bundle.json").read_text(encoding="utf-8"))
+        self.assertEqual([{"id": "en", "label": "English"}, {"id": "ru", "label": "Русский"}], description["lexicon"]["translations"])
+        self.assertIn("Когда нечего будет писать", references)
         report = verify_bundle(bundle)
         self.assertTrue(report["passed"])
         if report.get("emacs", {}).get("available"):
@@ -384,6 +431,26 @@ class BuildTests(Fixture):
             self.assertEqual(report["emacs"]["expectedMarks"], report["emacs"]["locatedMarks"])
             self.assertGreater(report["emacs"]["lexiconTested"], 0)
             self.assertEqual([], list(report["emacs"]["lexiconFailures"]))
+        if has("emacs"):
+            script = f"""(progn
+  (add-to-list 'load-path "{(bundle / 'lisp').as_posix()}")
+  (require 'firstpair-reader)
+  (let ((bundle (firstpair-bundle-load "{bundle.as_posix()}")))
+    (setq firstpair-lexicon-languages '("ru"))
+    (with-current-buffer (firstpair-lexicon-render bundle "scribito")
+      (princ (format "ru-only=%S header=%S\\n" (and (search-forward "писать" nil t) (not (progn (goto-char (point-min)) (search-forward "write" nil t)))) header-line-format)))
+    (princ (format "cycle=%s\\n" (firstpair-lexicon-cycle-languages bundle)))
+    (with-current-buffer (firstpair-lexicon-render bundle "scribito")
+      (goto-char (point-min))
+      (princ (format "both=%S\\n" (and (search-forward "write" nil t) (search-forward "писать" nil t) t))))
+    (princ (format "gloss=%s\\n" (firstpair-lexicon-gloss bundle "scribito")))))"""
+            completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+            self.assertEqual(0, completed.returncode, completed.stderr[-2000:])
+            self.assertIn("ru-only=t", completed.stdout)
+            self.assertIn("Translations: Русский", completed.stdout)
+            self.assertIn("cycle=English + Русский", completed.stdout)
+            self.assertIn("both=t", completed.stdout)
+            self.assertIn("писать", completed.stdout)
 
 
 if __name__ == "__main__":

@@ -30,6 +30,22 @@ class CorpusFile:
 
 
 @dataclass(frozen=True)
+class Glossary:
+    """A pinned translation corpus for one target language."""
+
+    identifier: str
+    language: str
+    label: str
+    name: str
+    license: str
+    upstream: str
+    url: str
+    file: str
+    sha256: str
+    snapshot: str
+
+
+@dataclass(frozen=True)
 class Corpus:
     language: str
     name: str
@@ -37,6 +53,8 @@ class Corpus:
     upstream: str
     files: tuple[CorpusFile, ...]
     supplement: Path | None
+    glossaries: tuple[Glossary, ...] = ()
+    gloss_language: str = "en"
 
 
 def cache_root() -> Path:
@@ -62,7 +80,52 @@ def load_corpus(language: str) -> Corpus:
             for item in payload["files"]
         ),
         supplement=supplement if supplement.is_file() else None,
+        gloss_language=str(payload.get("glossLanguage", "en")),
+        glossaries=tuple(
+            Glossary(
+                identifier=item["id"],
+                language=item["language"],
+                label=item.get("label", item["language"]),
+                name=item["name"],
+                license=item["license"],
+                upstream=item["upstream"],
+                url=item["url"],
+                file=item["file"],
+                sha256=item["sha256"],
+                snapshot=item.get("snapshot", ""),
+            )
+            for item in payload.get("glossaries", [])
+        ),
     )
+
+
+def glossary(corpus: Corpus, identifier: str) -> Glossary:
+    for item in corpus.glossaries:
+        if item.identifier == identifier:
+            return item
+    raise ValueError(f"unknown glossary for {corpus.language}: {identifier}")
+
+
+def ensure_glossary(corpus: Corpus, item: Glossary, *, allow_download: bool = True) -> Path:
+    """Return the cached glossary file, fetching and verifying it if needed."""
+
+    directory = cache_root() / corpus.language
+    directory.mkdir(parents=True, exist_ok=True)
+    destination = directory / item.file
+    if destination.is_file() and _digest(destination) == item.sha256:
+        return destination
+    if not allow_download:
+        raise RuntimeError(
+            f"missing pinned glossary: {destination}. "
+            f"Run 'firstpair-emacs lexicon --language {corpus.language}' with network access."
+        )
+    with urlopen(item.url, timeout=600) as response:  # noqa: S310 - pinned https URL
+        payload = response.read()
+    digest = hashlib.sha256(payload).hexdigest()
+    if digest != item.sha256:
+        raise RuntimeError(f"pinned digest mismatch for {item.file}: expected {item.sha256}, downloaded {digest}")
+    destination.write_bytes(payload)
+    return destination
 
 
 def _digest(path: Path) -> str:

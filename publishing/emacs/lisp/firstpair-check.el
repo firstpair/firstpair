@@ -63,7 +63,25 @@
                 (condition-case nil
                     (firstpair-check--visit "resolve" target)
                   (error (push target unresolved)))))))))
-    (let ((forms (firstpair-lexicon-table bundle "forms.tsv")))
+    (let ((forms (firstpair-lexicon-table bundle "forms.tsv"))
+          (translations (firstpair-lexicon-translations bundle)))
+      ;; Every language that has glosses at all must render at least one of
+      ;; them; partial coverage is legitimate and reported by the builder.
+      (when (cdr translations)
+        (let ((glosses (firstpair-lexicon-table bundle "glosses.tsv")))
+          (dolist (language translations)
+            (let* ((id (alist-get 'id language))
+                   (has-glosses (catch 'found
+                                  (maphash (lambda (key _) (when (string-prefix-p (concat id "\0") key) (throw 'found t))) glosses)
+                                  nil))
+                   (rendered (catch 'found
+                               (maphash (lambda (form _)
+                                          (when (firstpair-lexicon-definitions bundle id form (firstpair-lexicon-analyse bundle form))
+                                            (throw 'found t)))
+                                        forms)
+                               nil)))
+              (when (and has-glosses (not rendered))
+                (push (format "no %s definitions render for any form" id) lexicon-failures))))))
       (when (hash-table-p forms)
         (catch 'done
           (maphash (lambda (form _readings)

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.3
+;; Version: 1.4
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -13,7 +13,10 @@
 ;; delivered text actually contains, the stems of those entries, and the
 ;; language's inflection endings.  Looking a word up is therefore a hash
 ;; lookup, and a word the tables do not list is analysed from stems and
-;; endings on the spot.  Nothing here contacts a server or shells out.
+;; endings on the spot.  A fifth table, glosses.tsv, carries translations of
+;; forms and entries into the target languages the edition declares; the
+;; reader chooses one language or all of them.  Nothing here contacts a
+;; server or shells out.
 
 ;;; Code:
 
@@ -38,6 +41,13 @@
 
 (defvar-local firstpair-lexicon-bundle nil
   "The bundle whose lexicon this buffer is showing.")
+
+(defvar-local firstpair-lexicon-word nil
+  "The word this buffer is showing.")
+
+(defvar firstpair-lexicon-languages nil
+  "Identifiers of the translation languages to show, or nil for all of them.
+Change it with `firstpair-lexicon-cycle-languages'.")
 
 (defconst firstpair-lexicon-buffer "*FirstPair Lexicon*"
   "Name of the buffer holding dictionary entries.")
@@ -94,6 +104,19 @@
                     :features (nth 5 row))
               (gethash (nth 0 row) table))))))
 
+(defun firstpair-lexicon--glosses (file)
+  "Read glosses.tsv into a hash keyed by \"language\\0kind\\0key\"."
+  (let ((table (make-hash-table :test #'equal)))
+    (dolist (row (firstpair-lexicon--rows file) table)
+      (when (>= (length row) 6)
+        (let ((key (concat (nth 0 row) "\0" (nth 2 row) "\0" (nth 1 row))))
+          (puthash key
+                   (append (gethash key table)
+                           (list (list :headword (nth 3 row) :part (nth 4 row)
+                                       :definitions (split-string (nth 5 row) " | " t)
+                                       :source (or (nth 6 row) ""))))
+                   table))))))
+
 (defun firstpair-lexicon-table (bundle name)
   "Return table NAME of BUNDLE, reading it the first time it is needed."
   (firstpair-bundle-table
@@ -103,7 +126,88 @@
      ("forms.tsv" #'firstpair-lexicon--forms)
      ("stems.tsv" #'firstpair-lexicon--stems)
      ("endings.tsv" #'firstpair-lexicon--endings)
+     ("glosses.tsv" #'firstpair-lexicon--glosses)
      (_ #'firstpair-lexicon--rows))))
+
+;;; Languages
+
+(defun firstpair-lexicon-translations (bundle)
+  "Return the translation languages BUNDLE declares: alists with id and label."
+  (let ((declared (alist-get 'translations (firstpair-bundle-lexicon bundle))))
+    (or declared
+        (list (list (cons 'id (or (alist-get 'glossLanguage (firstpair-bundle-lexicon bundle)) "en"))
+                    (cons 'label "English"))))))
+
+(defun firstpair-lexicon-selected (bundle)
+  "Return the translations of BUNDLE currently selected, at least one."
+  (let* ((declared (firstpair-lexicon-translations bundle))
+         (chosen (seq-filter (lambda (item) (member (alist-get 'id item) firstpair-lexicon-languages))
+                             declared)))
+    (or chosen declared)))
+
+(defun firstpair-lexicon-languages-label (bundle)
+  "Describe the selected translation languages of BUNDLE."
+  (mapconcat (lambda (item) (alist-get 'label item)) (firstpair-lexicon-selected bundle) " + "))
+
+(defun firstpair-lexicon-cycle-languages (bundle)
+  "Select the next translation choice for BUNDLE: each language alone, then all.
+Returns the description of the new choice."
+  (let* ((declared (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-translations bundle)))
+         (choices (append (mapcar #'list declared) (and (cdr declared) (list declared))))
+         (current (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-selected bundle)))
+         (position (seq-position choices current #'equal))
+         (next (nth (mod (1+ (or position -1)) (length choices)) choices)))
+    (setq firstpair-lexicon-languages next)
+    (firstpair-lexicon-languages-label bundle)))
+
+(defun firstpair-lexicon-choose-languages (bundle)
+  "Ask which translation languages of BUNDLE to show."
+  (let* ((declared (firstpair-lexicon-translations bundle))
+         (labels (mapcar (lambda (item) (alist-get 'label item)) declared))
+         (chosen (completing-read-multiple "Translations (comma-separated): " labels nil t)))
+    (setq firstpair-lexicon-languages
+          (mapcar (lambda (item) (alist-get 'id item))
+                  (seq-filter (lambda (item) (member (alist-get 'label item) chosen)) declared)))
+    (firstpair-lexicon-languages-label bundle)))
+
+(defun firstpair-lexicon-glosses (bundle language kind key)
+  "Return the glosses of KEY (a form or an entry id, per KIND) in LANGUAGE."
+  (gethash (concat language "\0" kind "\0" key)
+           (firstpair-lexicon-table bundle "glosses.tsv")))
+
+(defun firstpair-lexicon-definitions (bundle language word readings)
+  "Return the definitions of WORD in LANGUAGE, given its READINGS.
+Each result is a plist with :headword, :part, :definitions, and :source.
+The lexicon's own senses answer for its gloss language; other languages
+come from the glosses table, by exact form first and then by entry."
+  (let* ((form (firstpair-lexicon-normalise word))
+         (own (equal language (or (alist-get 'glossLanguage (firstpair-bundle-lexicon bundle)) "en")))
+         (found nil))
+    (when own
+      (let ((seen (make-hash-table :test #'equal)))
+        (dolist (reading readings)
+          (let* ((id (plist-get reading :entry))
+                 (entry (firstpair-lexicon-entry bundle id)))
+            (when (and entry (not (gethash id seen)))
+              (puthash id t seen)
+              (push (list :headword (plist-get entry :headword)
+                          :part (plist-get entry :part)
+                          :definitions (split-string (plist-get entry :senses) ";" t " ")
+                          :source "")
+                    found))))))
+    (dolist (gloss (firstpair-lexicon-glosses bundle language "form" form))
+      (push gloss found))
+    (dolist (reading readings)
+      (dolist (gloss (firstpair-lexicon-glosses bundle language "entry" (plist-get reading :entry)))
+        (push gloss found)))
+    (let ((unique nil))
+      (dolist (item (nreverse found))
+        (unless (seq-find (lambda (other)
+                            (and (equal (plist-get other :headword) (plist-get item :headword))
+                                 (equal (plist-get other :definitions) (plist-get item :definitions))))
+                          unique)
+          (push item unique)))
+      (nreverse unique))))
 
 ;;; Analysis
 
@@ -166,23 +270,35 @@
   (gethash id (firstpair-lexicon-table bundle "entries.tsv")))
 
 (defun firstpair-lexicon-gloss (bundle word)
-  "Return a one-line gloss for WORD, suitable for the echo area."
+  "Return a one-line gloss for WORD in the selected languages, for the echo area."
   (let* ((readings (firstpair-lexicon-analyse bundle word))
          (first (car readings))
          (entry (and first (firstpair-lexicon-entry bundle (plist-get first :entry)))))
     (when entry
-      (format "%s — %s: %s"
-              (plist-get entry :headword)
-              (plist-get first :features)
-              (truncate-string-to-width (plist-get entry :senses) 90 nil nil "…")))))
+      (let ((pieces nil))
+        (dolist (language (firstpair-lexicon-selected bundle))
+          (let ((definitions (firstpair-lexicon-definitions bundle (alist-get 'id language) word readings)))
+            (when definitions
+              (push (mapconcat #'identity (seq-take (plist-get (car definitions) :definitions) 3) "; ")
+                    pieces))))
+        (format "%s — %s: %s"
+                (plist-get entry :headword)
+                (plist-get first :features)
+                (truncate-string-to-width (mapconcat #'identity (nreverse pieces) " · ") 110 nil nil "…"))))))
 
 ;;; Presentation
+
+(defface firstpair-lexicon-language
+  '((t :inherit shadow :weight bold))
+  "Face for the language heading of a definition block.")
 
 (defvar firstpair-lexicon-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "q") #'quit-window)
     (define-key map (kbd "n") #'forward-paragraph)
     (define-key map (kbd "p") #'backward-paragraph)
+    (define-key map (kbd "t") #'firstpair-lexicon-next-languages)
+    (define-key map (kbd "T") #'firstpair-lexicon-select-languages)
     map)
   "Keymap for `firstpair-lexicon-mode'.")
 
@@ -190,6 +306,22 @@
   "Major mode for the FirstPair dictionary window."
   (setq-local truncate-lines nil)
   (setq-local buffer-read-only t))
+
+(defun firstpair-lexicon--insert-definitions (bundle word readings)
+  "Insert the definitions of WORD from BUNDLE for every selected language."
+  (dolist (language (firstpair-lexicon-selected bundle))
+    (let ((definitions (firstpair-lexicon-definitions bundle (alist-get 'id language) word readings)))
+      (insert "\n" (propertize (alist-get 'label language) 'face 'firstpair-lexicon-language) "\n")
+      (if (null definitions)
+          (insert (format "  No %s entry in this edition.\n" (alist-get 'label language)))
+        (dolist (item definitions)
+          (insert "  " (propertize (plist-get item :headword) 'face 'firstpair-lexicon-headword))
+          (unless (string-empty-p (or (plist-get item :part) ""))
+            (insert "  [" (plist-get item :part) "]"))
+          (insert "\n")
+          (let ((start (point)))
+            (insert "    " (mapconcat #'identity (plist-get item :definitions) "; ") "\n")
+            (fill-region start (point))))))))
 
 (defun firstpair-lexicon--insert (bundle word readings)
   "Render READINGS of WORD from BUNDLE into the current buffer."
@@ -205,16 +337,14 @@
               (puthash id t seen)
               (insert "\n"
                       (propertize (plist-get entry :headword) 'face 'firstpair-lexicon-headword)
-                      "  [" (plist-get entry :part) "]\n")
-              (let ((start (point)))
-                (insert "  " (plist-get entry :senses) "\n")
-                (fill-region start (point))))
+                      "  [" (plist-get entry :part) "]\n"))
             (insert "  "
                     (propertize (plist-get reading :features) 'face 'firstpair-lexicon-analysis)
                     (if (string-empty-p (or (plist-get reading :enclitic) ""))
                         ""
                       (format " + enclitic -%s" (plist-get reading :enclitic)))
-                    "\n"))))))
+                    "\n"))))
+      (firstpair-lexicon--insert-definitions bundle word readings)))
   (goto-char (point-min)))
 
 (defun firstpair-lexicon-render (bundle word)
@@ -224,11 +354,41 @@ Returns the buffer."
         (readings (firstpair-lexicon-analyse bundle word)))
     (with-current-buffer buffer
       (firstpair-lexicon-mode)
-      (setq firstpair-lexicon-bundle bundle)
+      (setq firstpair-lexicon-bundle bundle
+            firstpair-lexicon-word word)
+      (setq header-line-format
+            (if (cdr (firstpair-lexicon-translations bundle))
+                (format " Translations: %s   (t: next choice, T: choose)"
+                        (firstpair-lexicon-languages-label bundle))
+              nil))
       (let ((inhibit-read-only t))
         (erase-buffer)
         (firstpair-lexicon--insert bundle word readings)))
     buffer))
+
+(defun firstpair-lexicon-refresh ()
+  "Render the lexicon buffer's word again, after a language change."
+  (let ((buffer (get-buffer firstpair-lexicon-buffer)))
+    (when (buffer-live-p buffer)
+      (with-current-buffer buffer
+        (when (and firstpair-lexicon-bundle firstpair-lexicon-word)
+          (firstpair-lexicon-render firstpair-lexicon-bundle firstpair-lexicon-word))))))
+
+(defun firstpair-lexicon-next-languages ()
+  "Cycle the dictionary window through one language at a time, then all."
+  (interactive)
+  (let ((bundle (or firstpair-lexicon-bundle
+                    (user-error "No dictionary is showing"))))
+    (message "Translations: %s" (firstpair-lexicon-cycle-languages bundle))
+    (firstpair-lexicon-refresh)))
+
+(defun firstpair-lexicon-select-languages ()
+  "Choose which translation languages the dictionary window shows."
+  (interactive)
+  (let ((bundle (or firstpair-lexicon-bundle
+                    (user-error "No dictionary is showing"))))
+    (message "Translations: %s" (firstpair-lexicon-choose-languages bundle))
+    (firstpair-lexicon-refresh)))
 
 (provide 'firstpair-lexicon)
 ;;; firstpair-lexicon.el ends here

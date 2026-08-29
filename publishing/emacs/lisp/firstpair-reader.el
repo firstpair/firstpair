@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.3
+;; Version: 1.4
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -373,6 +373,18 @@ The entry opens in the dictionary window below the references."
       (with-selected-window (firstpair-reader--ensure-window 'references)
         (if (file-directory-p path) (dired path) (view-file path))))))
 
+(defun firstpair-reader-translation-languages (&optional choose)
+  "Cycle the dictionary window's languages: each alone, then all together.
+With a prefix argument CHOOSE, pick the languages by name instead.
+The choice applies to every lookup, gloss, and glossary until changed."
+  (interactive "P")
+  (let ((bundle (firstpair-reader--bundle)))
+    (message "Translations: %s"
+             (if choose
+                 (firstpair-lexicon-choose-languages bundle)
+               (firstpair-lexicon-cycle-languages bundle)))
+    (firstpair-lexicon-refresh)))
+
 (defun firstpair-reader-glossary ()
   "Open the glossary of dictionary words in the references window."
   (interactive)
@@ -615,6 +627,7 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "C-c C-r") #'firstpair-reader-references)
     (define-key map (kbd "C-c C-f") #'firstpair-reader-open-file)
     (define-key map (kbd "C-c C-g") #'firstpair-reader-glossary)
+    (define-key map (kbd "C-c C-t") #'firstpair-reader-translation-languages)
     (define-key map (kbd "C-c C-l") #'firstpair-reader-layout)
     (define-key map (kbd "C-c C-o") #'firstpair-reader-other-window)
     (define-key map [remap Info-follow-nearest-node] #'firstpair-reader-follow-nearest-node)

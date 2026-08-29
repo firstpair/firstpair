@@ -79,12 +79,17 @@ def main() -> int:
     elif args.command == "lexicon":
         spec = corpus.load_corpus(args.language)
         directory = corpus.ensure(spec, allow_download=not args.offline)
+        glossaries = {
+            item.identifier: str(corpus.ensure_glossary(spec, item, allow_download=not args.offline))
+            for item in spec.glossaries
+        }
         result = {
             "language": spec.language,
             "name": spec.name,
             "cache": str(directory),
             "files": {item.name: item.sha256 for item in spec.files},
             "supplement": str(spec.supplement) if spec.supplement else None,
+            "glossaries": glossaries,
         }
     else:
         result = verify_bundle(

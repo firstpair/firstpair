@@ -35,7 +35,15 @@ existing bundle. The delivered layout and its guarantees are in
   "subtitle": "How I Outlived Rome",
   "author": "Alexy Khrabrov",
   "parts": [ { "title": "Part I: ...", "description": "..." } ],
-  "lexicon": { "language": "latin", "mode": "projected", "minimumLength": 3, "exclude": [], "include": [] },
+  "lexicon": {
+    "language": "latin", "mode": "projected", "minimumLength": 3, "exclude": [], "include": [],
+    "translations": [
+      { "id": "en", "label": "English" },
+      { "id": "ru", "label": "Русский", "glossary": "ruwiktionary",
+        "dictionary": "book/vault-data/dictionaries/la-ru.json",
+        "supplement": "sources/dictionaries/russian-supplement.json" }
+    ]
+  },
   "records": [
     {
       "id": "bilingual-passages",
@@ -47,6 +55,7 @@ existing bundle. The delivered layout and its guarantees are in
       "rights": "redistributable",
       "referencedBy": "book_sources",
       "referenceMatch": "source",
+      "merge": [ { "source": "book/bilingual-russian-map.jsonl", "identifier": "id" } ],
       "anchors": ["aliases", "latin", "english"],
       "blocks": [
         { "field": "latin", "label": "Latin", "style": "quotation", "language": "latin" },
@@ -74,7 +83,9 @@ with the same part become one part node.
   marks the block's words for the dictionary.
 - `lexicon.mode` is `projected`, `complete`, or `none`. `exclude` lists forms
   never to mark; `include` lists short or common forms to mark anyway;
-  `minimumLength` filters undeclared words.
+  `minimumLength` filters undeclared words. `lexicon.translations` declares
+  the languages the dictionary window answers in (see `EMACS-DELIVERY.md`);
+  `records[].merge` joins rows from further files by identifier.
 - Evidence targets and collections from the shared core become nodes in the
   Evidence section and files under `evidence/`, subject to their rights.
 
