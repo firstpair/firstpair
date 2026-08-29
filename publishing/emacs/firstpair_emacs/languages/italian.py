@@ -174,6 +174,7 @@ class Italian:
     forms: dict[str, list[tuple[str, str]]] = field(default_factory=dict)  # form -> (entry id, features)
     links: dict[str, list[tuple[str, str]]] = field(default_factory=dict)  # form -> (target lemma, kind)
     own: dict[str, list[str]] = field(default_factory=dict)  # form-of row -> its own entry ids
+    relations: dict[str, list[str]] = field(default_factory=dict)  # entry id -> related lemma keys
     supplement_entries: dict[str, list[str]] = field(default_factory=dict)
 
     # -- loading -------------------------------------------------------------
@@ -217,9 +218,12 @@ class Italian:
             return
         senses: list[str] = []
         form_links: list[tuple[str, str]] = []
+        related: list[str] = []
         for sense in row.get("senses", []):
             glosses = [str(value) for value in sense.get("glosses", []) if value]
             targets = _targets(sense)
+            for item in sense.get("synonyms", []) + sense.get("alt_of", []) + sense.get("form_of", []):
+                related.append(normalise(str(item.get("word", "")).split(" and ")[0]))
             if targets:
                 form_links.extend(targets)
                 if glosses:
@@ -227,12 +231,17 @@ class Italian:
                 continue
             if glosses:
                 senses.append(glosses[0])
+        for item in row.get("synonyms", []):
+            related.append(normalise(str(item.get("word", ""))))
         if not senses:
             return
         base = f"{key}|{part}"
         counters[base] = counters.get(base, 0) + 1
         entry_id = base if counters[base] == 1 else f"{base}~{counters[base]}"
         self.entries[entry_id] = Entry(entry_id=entry_id, headword=word, part=part, senses="; ".join(dict.fromkeys(senses)))
+        related = [item for item in dict.fromkeys(related) if item and item != key]
+        if related:
+            self.relations[entry_id] = related
         if form_links:
             for target, kind in form_links:
                 self.links.setdefault(key, []).append((target, kind))
@@ -404,6 +413,11 @@ class Italian:
 
     def entry(self, entry_id: str) -> Entry:
         return self.entries[entry_id]
+
+    def related(self, entry_id: str) -> list[str]:
+        """Return lemma keys the dictionary relates to ENTRY_ID: synonyms and alternatives."""
+
+        return list(self.relations.get(entry_id, ()))
 
     @staticmethod
     def part_name(part: str) -> str:

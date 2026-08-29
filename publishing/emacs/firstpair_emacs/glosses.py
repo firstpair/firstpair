@@ -208,6 +208,66 @@ def index_pivot(path: Path, source_code: str, target_code: str, fold=normalise) 
     return GlossaryIndex(by_headword=merged, by_form=merged)
 
 
+GLOSS_STOPWORDS = frozenset(
+    "a an the to of in on at by for with from and or as be is are was were being been it its this that "
+    "one someone something oneself somebody who which what very more most such any some all".split()
+)
+
+
+def index_gloss_pivot(path: Path, target_code: str) -> GlossaryIndex:
+    """Index a dump's own entries by word, each glossed by its TARGET_CODE translations.
+
+    Used as a last resort: an entry of the lexicon language whose senses are
+    written in the dump's language (English) but which no direct source
+    translates can be glossed through the words of its own senses.
+    """
+
+    by_headword: dict[str, list[dict[str, object]]] = {}
+    with path.open(encoding="utf-8") as handle:
+        for line in handle:
+            if '"translations"' not in line or f'"lang_code": "{target_code}"' not in line:
+                continue
+            row = json.loads(line)
+            word = str(row.get("word", "")).strip()
+            key = word.casefold()
+            if not key or " " in key:
+                continue
+            for sense in row.get("senses", []):
+                targets = list(dict.fromkeys(
+                    str(item["word"]).strip() for item in sense.get("translations", [])
+                    if item.get("lang_code") == target_code and item.get("word")
+                ))
+                if not targets:
+                    continue
+                glosses = [str(value) for value in sense.get("glosses", []) if value]
+                label = glosses[0] if glosses else ""
+                short = label if len(label) <= PIVOT_HINT else label[: PIVOT_HINT - 1].rstrip() + "…"
+                entry = {"headword": word, "partOfSpeech": str(row.get("pos", "")), "definitions": [", ".join(targets[:6])], "hint": short}
+                bucket = by_headword.setdefault(key, [])
+                if len(bucket) < 6 and not any(existing["definitions"] == entry["definitions"] for existing in bucket):
+                    bucket.append(entry)
+    merged = {key: tuple(value) for key, value in by_headword.items()}
+    return GlossaryIndex(by_headword=merged, by_form=merged)
+
+
+def gloss_words(senses: str) -> list[str]:
+    """Return the words of an entry's senses worth looking up: 'to leave someone breathless' gives 'leave'."""
+
+    found: list[str] = []
+    for sense in re.split(r"[;]", senses):
+        sense = re.sub(r"\([^)]*\)", " ", sense).strip()
+        for phrase in re.split(r"[,/]", sense):
+            words = [word for word in re.findall(r"[A-Za-z][A-Za-z'-]*", phrase.casefold())]
+            if not words:
+                continue
+            if words[0] == "to" and len(words) > 1:
+                words = words[1:]
+            candidates = [word for word in words if word not in GLOSS_STOPWORDS and len(word) > 2]
+            if len(words) <= 3 and candidates:
+                found.append(candidates[0])
+    return list(dict.fromkeys(found))[:4]
+
+
 def load_glossary(path: Path, item, fold=normalise, cache: Path | None = None) -> GlossaryIndex:
     """Index a pinned glossary according to its kind, reusing a derived file when present.
 
@@ -225,6 +285,8 @@ def load_glossary(path: Path, item, fold=normalise, cache: Path | None = None) -
         )
     if kind == "translations":
         index = index_translations(path, item.source_code, fold=fold)
+    elif kind == "gloss-pivot":
+        index = index_gloss_pivot(path, item.target_code)
     elif kind == "entry-translations":
         index = index_entry_translations(path, item.target_code, fold=fold)
     elif kind == "pivot":
@@ -321,8 +383,19 @@ def project(
     dictionary_name: str = "",
     supplement: dict[str, tuple[str, ...]] | None = None,
     supplement_name: str = "",
+    related=None,
+    senses=None,
+    gloss_pivot: GlossaryIndex | None = None,
+    gloss_pivot_name: str = "",
 ) -> tuple[list[Gloss], dict[str, object]]:
-    """Return the glosses a bundle needs for LANGUAGE and a coverage report."""
+    """Return the glosses a bundle needs for LANGUAGE and a coverage report.
+
+    Direct sources come first. Then, for entries still without a gloss, a
+    second pass follows the dictionary's own pointers (RELATED gives synonyms
+    and alternative forms of an entry) and finally pivots through the words
+    of the entry's own SENSES with GLOSS_PIVOT; both are labelled in the
+    gloss's source so a reader can tell a direct entry from a derived one.
+    """
 
     glosses: dict[str, list[Gloss]] = {}
 
@@ -353,6 +426,43 @@ def project(
             if supplement is not None and lemma in supplement:
                 add(entry.entry_id, "entry", [Gloss(language, entry.entry_id, "entry", entry.headword, "", supplement[lemma], supplement_name)])
 
+    def direct(lemma: str) -> list[dict[str, object]]:
+        found: list[dict[str, object]] = []
+        if glossary is not None:
+            found.extend(glossary.by_headword.get(lemma, ()))
+        if dictionary is not None:
+            found.extend(dictionary.get(lemma, ()))
+        if supplement is not None and lemma in supplement:
+            found.append({"headword": lemma, "partOfSpeech": "", "definitions": list(supplement[lemma])})
+        return found
+
+    derived = 0
+    for entry in projection.entries:
+        if glosses.get(f"entry\0{entry.entry_id}") or entry.part in ("name",):
+            continue
+        # Second pass, step one: the dictionary's own synonyms and alternatives.
+        if related is not None:
+            for lemma in related(entry.entry_id)[:6]:
+                items = [dict(item, source=f"via {lemma}") for item in direct(lemma)]
+                if items:
+                    add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", items[:3], f"via {lemma}"))
+                    break
+        # Step two: the words of the entry's own senses, through the pivot.
+        if not glosses.get(f"entry\0{entry.entry_id}") and gloss_pivot is not None and senses is not None:
+            for word in gloss_words(senses(entry)):
+                items = gloss_pivot.by_headword.get(word, ())
+                if not items:
+                    continue
+                candidates = [
+                    {"headword": entry.headword, "partOfSpeech": item.get("partOfSpeech", ""),
+                     "definitions": [f"{item['definitions'][0]} (via English: {word}" + (f", {item['hint']})" if item.get("hint") else ")")]}
+                    for item in items[:2]
+                ]
+                add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", candidates, gloss_pivot_name or "via English gloss"))
+                break
+        if glosses.get(f"entry\0{entry.entry_id}"):
+            derived += 1
+
     covered = 0
     missing: list[str] = []
     for form, analyses in projection.forms:
@@ -365,6 +475,7 @@ def project(
         "covered": covered,
         "missing": missing,
         "entries": sum(1 for key in glosses if key.startswith("entry\0") and glosses[key]),
+        "derivedEntries": derived,
     }
     return [gloss for bucket in glosses.values() for gloss in bucket], report
 

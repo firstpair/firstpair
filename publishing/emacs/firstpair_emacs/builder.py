@@ -664,15 +664,21 @@ def _translations(config, corpus_spec, words, projected, directory: Path, *, all
     for translation in config.lexicon.translations:
         glossary_index = None
         glossary_items = []
+        gloss_pivot = None
+        gloss_pivot_name = ""
         for identifier in translation.glossaries:
             glossary_item = corpus.glossary(corpus_spec, identifier)
             if glossary_item.language != translation.identifier:
                 raise ValueError(f"glossary {identifier} is {glossary_item.language}, not {translation.identifier}")
             path = corpus.ensure_glossary(corpus_spec, glossary_item, allow_download=allow_download)
-            index = indexed.get(path) or glosses_module.load_glossary(path, glossary_item, fold=words.normalise)
-            indexed[path] = index
-            glossary_index = index if glossary_index is None else glosses_module.merge(glossary_index, index)
+            cache_key = (path, glossary_item.kind)
+            index = indexed.get(cache_key) or glosses_module.load_glossary(path, glossary_item, fold=words.normalise)
+            indexed[cache_key] = index
             glossary_items.append(glossary_item)
+            if glossary_item.kind == "gloss-pivot":
+                gloss_pivot, gloss_pivot_name = index, glossary_item.name
+                continue
+            glossary_index = index if glossary_index is None else glosses_module.merge(glossary_index, index)
         dictionary = glosses_module.load_dictionary(translation.dictionary, fold=words.normalise) if translation.dictionary else None
         supplement = glosses_module.load_supplement(translation.supplement, fold=words.normalise) if translation.supplement else None
         glosses, report = glosses_module.project(
@@ -685,6 +691,10 @@ def _translations(config, corpus_spec, words, projected, directory: Path, *, all
             dictionary_name=str(translation.dictionary.relative_to(config.repo_root)) if translation.dictionary else "",
             supplement=supplement,
             supplement_name=str(translation.supplement.relative_to(config.repo_root)) if translation.supplement else "",
+            related=getattr(words, "related", None),
+            senses=words.senses,
+            gloss_pivot=gloss_pivot,
+            gloss_pivot_name=gloss_pivot_name,
         )
         found.extend(glosses)
         lexicon_covers = translation.identifier == corpus_spec.gloss_language
@@ -703,6 +713,7 @@ def _translations(config, corpus_spec, words, projected, directory: Path, *, all
                     "forms": report["forms"],
                     "covered": report["forms"] if lexicon_covers else report["covered"],
                     "glossed": report["covered"],
+                    "derivedEntries": report.get("derivedEntries", 0),
                     "missing": [] if lexicon_covers else report["missing"][:200],
                 },
             }

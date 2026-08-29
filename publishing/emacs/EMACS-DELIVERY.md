@@ -155,8 +155,12 @@ may answer in; each entry names up to three sources:
   (lexicon-language entries with tables into the target), and `pivot`
   (a third language's entries — English — whose tables give both the
   lexicon-language word and the target word for one sense; the gloss names
-  that sense). A scanned dump is cached as a small derived index keyed by
-  its digest, so multi-gigabyte extractions are read once;
+  that sense), and `gloss-pivot` (the dump's own entries keyed by word with
+  their target-language tables, used only in a second pass: an entry no
+  direct source translates is glossed through the words of its own senses,
+  after the dictionary's own synonyms and alternative forms have been tried;
+  every such gloss says "via …"). A scanned dump is cached as a small derived
+  index keyed by its digest, so multi-gigabyte extractions are read once;
 - `dictionary`: a title-owned `firstpair-reader-dictionary-v1` file — the
   same schema the Obsidian Reader's drawer loads — keyed by normalised form;
 - `supplement`: a reviewed `{form: [definitions]}` file owned by the title.

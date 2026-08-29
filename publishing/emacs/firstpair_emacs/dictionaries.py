@@ -41,6 +41,8 @@ def project(
     supplement: dict[str, tuple[str, ...]] | None = None,
     supplement_name: str = "",
     examples: dict[str, list[str]] | None = None,
+    gloss_pivot: glosses_module.GlossaryIndex | None = None,
+    gloss_pivot_name: str = "",
 ) -> tuple[dict[str, object], dict[str, object]]:
     """Return a dictionary payload for TARGET and its coverage report.
 
@@ -72,6 +74,10 @@ def project(
             dictionary_name=dictionary_name,
             supplement=supplement,
             supplement_name=supplement_name,
+            related=getattr(language, "related", None),
+            senses=language.senses,
+            gloss_pivot=gloss_pivot,
+            gloss_pivot_name=gloss_pivot_name,
         )
     by_form: dict[str, list[glosses_module.Gloss]] = {}
     by_entry: dict[str, list[glosses_module.Gloss]] = {}

@@ -69,6 +69,21 @@
       "file": "enwiktionary-english.jsonl",
       "sha256": "4367576ff96ebbfa2f21bfde6f393dfe7aa699f5ae881fc03f3e92198f14bc58",
       "snapshot": "2026-08-29"
+    },
+    {
+      "id": "enwiktionary-english-glosses",
+      "language": "ru",
+      "label": "Русский",
+      "kind": "gloss-pivot",
+      "sourceCode": "en",
+      "targetCode": "ru",
+      "name": "English Wiktionary translation tables into Russian, reached through the English words of an entry's own senses (Wiktextract/Kaikki)",
+      "license": "CC BY-SA 4.0. Each gloss names the English word and sense it passed through; attribution and share-alike apply.",
+      "upstream": "https://kaikki.org/dictionary/English/index.html",
+      "url": "https://kaikki.org/dictionary/English/kaikki.org-dictionary-English.jsonl",
+      "file": "enwiktionary-english.jsonl",
+      "sha256": "4367576ff96ebbfa2f21bfde6f393dfe7aa699f5ae881fc03f3e92198f14bc58",
+      "snapshot": "2026-08-29"
     }
   ]
 }

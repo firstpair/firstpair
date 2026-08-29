@@ -630,3 +630,37 @@ class GlossaryKindTests(unittest.TestCase):
             self.assertTrue(any(path.suffix == ".json" and "pivot" in path.name for path in root.iterdir()))
             again = glosses.load_glossary(english, Item(), fold=fold)
             self.assertEqual(cached.by_headword["accorto"], again.by_headword["accorto"])
+
+
+class SecondPassTests(unittest.TestCase):
+    def test_related_lemmas_and_gloss_words_fill_gaps_with_labels(self) -> None:
+        from firstpair_emacs.languages import get
+
+        rows = [
+            {"word": "gaio", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["merry, cheerful"]}]},
+            {"word": "gaietto", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["lively, merry (dated)"], "synonyms": [{"word": "gaio"}]}]},
+            {"word": "gaetta", "pos": "adj", "lang_code": "it", "senses": [{"glosses": ["Dantesque form of gaietto"], "tags": ["alt-of"], "alt_of": [{"word": "gaietto"}]}]},
+            {"word": "accismare", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to adorn, to deck out"]}]},
+        ]
+        with tempfile.TemporaryDirectory() as temporary:
+            cache = Path(temporary)
+            (cache / "enwiktionary-italian.jsonl").write_text("\n".join(json.dumps(r, ensure_ascii=False) for r in rows) + "\n", encoding="utf-8")
+            italian = get("italian"); italian.load(cache)
+            self.assertEqual(["gaio"], italian.related("gaietto|adj"))
+            english = cache / "en.jsonl"
+            english.write_text(json.dumps({"word": "adorn", "pos": "verb", "senses": [{"glosses": ["to make more beautiful"], "translations": [{"lang_code": "ru", "word": "украшать"}]}]}) + "\n", encoding="utf-8")
+            pivot = glosses.index_gloss_pivot(english, "ru")
+            self.assertEqual(["украшать"], pivot.by_headword["adorn"][0]["definitions"])
+            self.assertEqual(["adorn", "deck"], glosses.gloss_words("to adorn, to deck out"))
+            projection = italian.project(["gaetta", "accismare"])
+            found, report = glosses.project(
+                "ru", projection, fold=italian.normalise,
+                supplement={"gaio": ("весёлый",)}, supplement_name="test-supplement",
+                related=italian.related, senses=italian.senses, gloss_pivot=pivot, gloss_pivot_name="test-pivot",
+            )
+            by_key = {(g.kind, g.key): g for g in found}
+            self.assertEqual(("весёлый",), by_key[("entry", "gaietto|adj")].definitions)
+            self.assertEqual("via gaio", by_key[("entry", "gaietto|adj")].source)
+            self.assertIn("украшать (via English: adorn", by_key[("entry", "accismare|verb")].definitions[0])
+            self.assertEqual(2, report["derivedEntries"])
+            self.assertEqual([], report["missing"])
