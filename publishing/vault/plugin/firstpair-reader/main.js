@@ -1,4 +1,4 @@
-const { ItemView, MarkdownRenderer, Platform, Plugin, setIcon } = require("obsidian");
+const { ItemView, MarkdownRenderer, Platform, Plugin, PluginSettingTab, Setting, setIcon } = require("obsidian");
 
 const VIEW_TYPE = "firstpair-reader";
 const READER_INDEX = "_data/reader.json";
@@ -8,12 +8,17 @@ const DICTIONARY_INDEX_SCHEMA = "firstpair-reader-dictionary-index-v1";
 // Layouts for aligned editions. "auto" follows the device: stacked when the
 // reader is narrow or a phone is held upright, columns otherwise.
 const LAYOUTS = [
-  { id: "auto", label: "Auto", icon: "smartphone" },
-  { id: "columns", label: "Columns", icon: "columns-2" },
-  { id: "stacked", label: "Stacked", icon: "rows-3" },
+  { id: "auto", label: "Auto", icons: ["smartphone"] },
+  { id: "columns", label: "Columns", icons: ["columns-2", "columns"] },
+  { id: "stacked", label: "Stacked", icons: ["rows-3", "rows"] },
 ];
+// Obsidian's bundled Lucide set renamed some icons; take the first name it knows.
+const setAnyIcon = (element, names) => { for (const name of names) { setIcon(element, name); if (element.querySelector("svg")) return; } };
 const STACK_BELOW = 700;
-const DEFAULT_SETTINGS = { layout: "auto" };
+// reserveDrawerColumn: with a translation switched off, the remaining columns
+// keep their places on the left and the empty track is where the dictionary
+// drawer opens, so it never covers a visible translation.
+const DEFAULT_SETTINGS = { layout: "auto", reserveDrawerColumn: true };
 
 class ReaderHistory {
   constructor(limit = 64) { this.limit = limit; this.items = []; }
@@ -44,7 +49,16 @@ class FirstPairReaderView extends ItemView {
     this.page = this.root.createDiv({ cls: "firstpair-reader__page" });
     this.drawer = this.root.createDiv({ cls: "firstpair-reader__drawer", attr: { hidden: "" } });
     this.rail = this.root.createDiv({ cls: "firstpair-reader__rail" });
-    await this.loadIndex(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage();
+    try { await this.loadIndex(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage(); }
+    catch (error) { this.showError(error); }
+  }
+  // A vault still syncing, or a half-written index, must never leave a blank view.
+  showError(error) {
+    console.error("FirstPair Reader", error);
+    this.page.empty(); const box = this.page.createDiv({ cls: "firstpair-reader__error" });
+    box.createEl("p", { text: `The Reader could not open this vault: ${error?.message ?? error}` });
+    box.createEl("p", { text: "If the vault is still syncing, wait for it to finish, then try again." });
+    const retry = box.createEl("button", { text: "Retry" }); retry.addEventListener("click", () => this.onOpen());
   }
   async onClose() { this.resizeObserver?.disconnect(); this.orientation?.removeEventListener("change", this.applyLayout); }
   async loadIndex() {
@@ -76,7 +90,7 @@ class FirstPairReaderView extends ItemView {
   }
   showLayoutChoice() {
     const choice = LAYOUTS.find((item) => item.id === this.plugin.settings.layout) ?? LAYOUTS[0];
-    this.layoutButton.empty(); setIcon(this.layoutButton, choice.icon);
+    this.layoutButton.empty(); setAnyIcon(this.layoutButton, choice.icons);
     this.layoutButton.createSpan({ text: choice.label, cls: "firstpair-reader__button-label" });
     this.layoutButton.setAttribute("aria-label", `Layout: ${choice.label} (tap to change)`); this.layoutButton.title = `Layout: ${choice.label}`;
   }
@@ -106,7 +120,9 @@ class FirstPairReaderView extends ItemView {
     const last = this.page.hasClass("firstpair-reader__page--columns") ? this.page.querySelector(".firstpair-reader__strip .firstpair-reader__cell:last-child") : null;
     if (!last) { this.drawer.style.removeProperty("width"); return; }
     const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
-    const width = Math.min(window.innerWidth * 0.9, Math.max(15 * rem, window.innerWidth - last.getBoundingClientRect().left + 8));
+    const rect = last.getBoundingClientRect();
+    const edge = this.reservedTrack ? rect.right + 8 : rect.left - 8;
+    const width = Math.min(window.innerWidth * 0.9, Math.max(15 * rem, window.innerWidth - edge));
     this.drawer.style.width = `${Math.round(width)}px`;
   }
   makeButton(label, icon, action) {
@@ -124,7 +140,7 @@ class FirstPairReaderView extends ItemView {
   }
   snapshot() { return { position: this.position, scrollTop: this.root.scrollTop }; }
   async jump(position) { if (position < 0 || position >= this.pages.length || position === this.position) return; this.history.push(this.snapshot()); this.position = position; await this.renderPage(); }
-  async open(pageId) { const position = this.pages.findIndex((page) => page.id === pageId); if (position >= 0) await this.jump(position); }
+  async openPage(pageId) { const position = this.pages.findIndex((page) => page.id === pageId); if (position >= 0) await this.jump(position); }
   async restore() { const state = this.history.pop(); if (!state) return; this.position = state.position; await this.renderPage(); this.root.scrollTop = state.scrollTop; }
   toTop() { this.history.push(this.snapshot()); this.root.scrollTop = 0; }
   async openHome() { const home = this.app.vault.getAbstractFileByPath("Home.md"); if (home) await this.app.workspace.getLeaf(false).openFile(home); }
@@ -150,12 +166,14 @@ class FirstPairReaderView extends ItemView {
     const translations = this.parallel.translations.filter((item) => this.enabled.has(item.id));
     const sourceLast = this.parallel.sourceLanguage.position === "right";
     const languages = sourceLast ? [...translations, this.parallel.sourceLanguage] : [this.parallel.sourceLanguage, ...translations];
+    const tracks = this.plugin.settings.reserveDrawerColumn ? 1 + this.parallel.translations.length : languages.length;
+    this.reservedTrack = tracks > languages.length;
     const labels = this.page.createDiv({ cls: "firstpair-reader__column-labels" });
-    labels.style.setProperty("--firstpair-columns", String(languages.length));
+    labels.style.setProperty("--firstpair-columns", String(tracks));
     for (const language of languages) labels.createDiv({ text: language.label, cls: "firstpair-reader__column-label" });
     for (const unit of chapter.units) {
       const strip = this.page.createDiv({ cls: "firstpair-reader__strip", attr: { "data-unit-id": unit.id, "data-translations": String(translations.length) } });
-      strip.style.setProperty("--firstpair-columns", String(languages.length));
+      strip.style.setProperty("--firstpair-columns", String(tracks));
       for (const language of languages) {
         const isSource = language === this.parallel.sourceLanguage;
         const cell = strip.createDiv({ cls: `firstpair-reader__cell firstpair-reader__cell--${isSource ? "source" : "translation"}`, attr: { lang: language.lang ?? language.id, "data-label": language.label } });
@@ -189,11 +207,13 @@ class FirstPairReaderView extends ItemView {
   }
   async renderPage(resetScroll = true) {
     const entry = this.pages[this.position]; this.page.empty(); this.page.removeClass("firstpair-reader__page--parallel");
-    if (this.parallel) await this.renderParallel(entry);
-    else {
-      const file = this.app.vault.getAbstractFileByPath(entry.path); if (!file) throw new Error(`Missing Reader page: ${entry.path}`);
-      await MarkdownRenderer.render(this.app, await this.app.vault.read(file), this.page, entry.path, this.plugin);
-    }
+    try {
+      if (this.parallel) await this.renderParallel(entry);
+      else {
+        const file = this.app.vault.getAbstractFileByPath(entry.path); if (!file) throw new Error(`Missing Reader page: ${entry.path}`);
+        await MarkdownRenderer.render(this.app, await this.app.vault.read(file), this.page, entry.path, this.plugin);
+      }
+    } catch (error) { this.showError(error); return; }
     if (resetScroll) this.root.scrollTop = 0;
     this.previous.disabled = this.position === 0; this.next.disabled = this.position === this.pages.length - 1;
     this.back.disabled = !this.history.items.length;
@@ -202,10 +222,25 @@ class FirstPairReaderView extends ItemView {
   }
 }
 
+class FirstPairReaderSettingTab extends PluginSettingTab {
+  constructor(app, plugin) { super(app, plugin); this.plugin = plugin; }
+  display() {
+    const { containerEl } = this; containerEl.empty();
+    new Setting(containerEl).setName("Layout").setDesc("Auto follows the width of the Reader pane and the orientation of a phone; Columns and Stacked stay fixed.")
+      .addDropdown((dropdown) => { for (const item of LAYOUTS) dropdown.addOption(item.id, item.label); dropdown.setValue(this.plugin.settings.layout)
+        .onChange(async (value) => { await this.plugin.saveSettings({ layout: value }); this.plugin.refreshViews(); }); });
+    new Setting(containerEl).setName("Reserve the last column for the dictionary")
+      .setDesc("With a translation switched off, keep the remaining columns in place on the left; the dictionary drawer opens over the empty column instead of covering a translation. Off: the visible columns spread across the full width.")
+      .addToggle((toggle) => toggle.setValue(this.plugin.settings.reserveDrawerColumn)
+        .onChange(async (value) => { await this.plugin.saveSettings({ reserveDrawerColumn: value }); this.plugin.refreshViews(true); }));
+  }
+}
+
 module.exports = class FirstPairReaderPlugin extends Plugin {
   async onload() {
     this.targets = null; this.dictionaries = new Map();
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    this.addSettingTab(new FirstPairReaderSettingTab(this.app, this));
     this.registerView(VIEW_TYPE, (leaf) => new FirstPairReaderView(leaf, this));
     this.addRibbonIcon("book-open", "Open the FirstPair Reader", () => this.activate());
     this.addCommand({ id: "open-reader", name: "Open Reader", callback: () => this.activate() });
@@ -214,6 +249,12 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     this.registerObsidianProtocolHandler("firstpair-reader", (params) => this.activate(params.page));
   }
   async saveSettings(patch) { Object.assign(this.settings, patch); await this.saveData(this.settings); }
+  refreshViews(rerender = false) {
+    for (const leaf of this.app.workspace.getLeavesOfType(VIEW_TYPE)) {
+      const view = leaf.view; if (!(view instanceof FirstPairReaderView) || !view.applyLayout) continue;
+      if (rerender) view.renderPage(false); else view.applyLayout();
+    }
+  }
   async loadDictionary(path) {
     if (this.dictionaries.has(path)) return this.dictionaries.get(path);
     const file = this.app.vault.getAbstractFileByPath(path); if (!file) throw new Error(`missing ${path}`);
@@ -242,16 +283,24 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     });
   }
   // Home.md links: [Open the Reader](firstpair:reader) and [Canto 1](firstpair:page:<id>).
+  // Each anchor is replaced by a button, so Obsidian's own handling of
+  // external links (which on a phone may try to open the scheme) never runs.
   bindReaderLinks(element) {
-    for (const anchor of element.querySelectorAll('a[href="firstpair:reader"], a[href^="firstpair:page:"]')) anchor.addEventListener("click", async (event) => {
-      event.preventDefault(); event.stopPropagation(); const href = anchor.getAttribute("href");
-      await this.activate(href.startsWith("firstpair:page:") ? href.slice("firstpair:page:".length) : undefined);
-    });
+    for (const anchor of Array.from(element.querySelectorAll('a[href="firstpair:reader"], a[href^="firstpair:page:"]'))) {
+      const href = anchor.getAttribute("href");
+      const button = element.doc?.createElement?.("button") ?? anchor.ownerDocument.createElement("button");
+      button.className = "firstpair-reader__link"; button.textContent = anchor.textContent; button.setAttribute("data-href", href);
+      button.addEventListener("click", async (event) => {
+        event.preventDefault(); event.stopPropagation();
+        await this.activate(href.startsWith("firstpair:page:") ? href.slice("firstpair:page:".length) : undefined);
+      });
+      anchor.replaceWith(button);
+    }
   }
   async activate(pageId) {
     let leaf = this.app.workspace.getLeavesOfType(VIEW_TYPE)[0];
     if (!leaf) { leaf = this.app.workspace.getLeaf("tab"); await leaf.setViewState({ type: VIEW_TYPE, active: true }); }
     this.app.workspace.revealLeaf(leaf);
-    if (pageId && leaf.view instanceof FirstPairReaderView) await leaf.view.open(pageId);
+    if (pageId && leaf.view instanceof FirstPairReaderView) await leaf.view.openPage(pageId);
   }
 };

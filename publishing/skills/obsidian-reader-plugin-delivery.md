@@ -139,7 +139,15 @@ first and the enabled translations after it.
    `auto → columns → stacked`; `auto` stacks when the Reader pane is narrower
    than 700 px or a mobile device reports portrait orientation, and re-applies
    on rotation and resize without re-rendering. Persist the choice in plugin
-   `data.json`.
+   `data.json`, and expose it with the other options in a `PluginSettingTab`
+   (Settings → FirstPair Reader): `layout`, and `reserveDrawerColumn` (default
+   on) which keeps the grid at the full track count when a translation is
+   switched off so the drawer opens over the empty track rather than a
+   visible column. Never leave a blank view: an error while opening is shown
+   with a Retry button. Test the plugin in jsdom against a mocked `obsidian`
+   module (`publishing/tests/obsidian-mock.cjs`,
+   `test-firstpair-reader-dom.mjs`): open, render, tap a word, switch layout,
+   follow Home links, half-synced vault.
 2. The dictionary drawer, in column layout, is sized to the last column
    (never narrower than 15 rem nor wider than 90 vw) so the other columns stay
    readable; in stacked layout it is `min(30rem, 90vw)`.

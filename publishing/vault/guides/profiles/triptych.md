@@ -15,8 +15,15 @@ puts every language side by side, as on a desktop or a tablet held sideways.
 under it, slightly indented — the form a phone held upright needs. The layout
 button in the Reader toolbar cycles **Auto → Columns → Stacked**; *Auto*
 follows the width of the Reader pane and the orientation of a phone, and the
-choice is remembered. On a phone in Columns, each row becomes a strip you
-swipe horizontally, one language per screen.
+choice is remembered. To keep one layout regardless of orientation, set it in
+Settings → FirstPair Reader → *Layout*. On a phone in Columns, each row
+becomes a strip you swipe horizontally, one language per screen.
+
+With a translation switched off, the remaining columns stay in place on the
+left and the empty column is where the dictionary drawer opens, so it never
+covers a translation you are reading. Settings → FirstPair Reader → *Reserve
+the last column for the dictionary* turns this off, and the visible columns
+spread across the full width instead.
 
 Select any word of the source text to open the dictionary drawer. In Columns
 the drawer covers only the last column, so the source and the other

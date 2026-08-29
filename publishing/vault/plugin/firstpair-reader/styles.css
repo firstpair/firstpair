@@ -41,3 +41,5 @@
   .firstpair-reader__page--columns .firstpair-reader__cell::before { color: var(--text-muted); content: attr(data-label); display: block; font-size: var(--font-ui-smaller); margin-block-end: var(--size-4-2); text-transform: uppercase; }
   .firstpair-reader__rail { gap: 2px; }
 }
+.firstpair-reader__link { background: none; border: 0; box-shadow: none; color: var(--link-color); cursor: pointer; font: inherit; height: auto; padding: 0; text-decoration: underline; }
+.firstpair-reader__error { margin: var(--size-4-6) auto; max-width: 40rem; }
