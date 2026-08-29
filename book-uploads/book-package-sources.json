@@ -205,14 +205,6 @@
       "epub": "book-uploads/staging/dante-commedia/dante-commedia.epub",
       "html": "book-uploads/staging/dante-commedia/dante-commedia.html",
       "htmlChapters": "book-uploads/staging/dante-commedia/dante-commedia-chapters",
-      "cover": "book-uploads/staging/dante-commedia/dante-commedia-cover.png",
-      "headboard": "book-uploads/staging/dante-commedia/dante-commedia-headboard.png",
-      "vault": "book-uploads/staging/dante-commedia/dante-commedia-full-vault (1.0.0-fe8f3928).zip",
-      "vaultGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-vault-guide (1.0.0-fe8f3928).md",
-      "vaultGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-vault-guide (1.0.0-fe8f3928).html",
-      "emacs": "book-uploads/staging/dante-commedia/dante-commedia-full-emacs (1.0.0-fe8f3928).zip",
-      "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-fe8f3928).md",
-      "emacsGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-fe8f3928).html",
       "versions": {
         "russian": {
           "pdf": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian.pdf",
@@ -229,7 +221,15 @@
           "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-fe8f3928).md",
           "emacsGuideHtml": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-fe8f3928).html"
         }
-      }
+      },
+      "cover": "book-uploads/staging/dante-commedia/dante-commedia-cover.png",
+      "headboard": "book-uploads/staging/dante-commedia/dante-commedia-headboard.png",
+      "vault": "book-uploads/staging/dante-commedia/dante-commedia-full-vault (1.0.0-fe8f3928).zip",
+      "vaultGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-vault-guide (1.0.0-fe8f3928).md",
+      "vaultGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-vault-guide (1.0.0-fe8f3928).html",
+      "emacs": "book-uploads/staging/dante-commedia/dante-commedia-full-emacs (1.0.0-5ca23eab).zip",
+      "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-5ca23eab).md",
+      "emacsGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-5ca23eab).html"
     }
   }
 }
