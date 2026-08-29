@@ -256,6 +256,8 @@ def assemble(
     taken_reference: list[str] = [READER_TOP]
     source_language = config.lexicon.source_id if config.lexicon else ""
     translations = tuple(item.identifier for item in config.lexicon.translations) if config.lexicon else ()
+    if config.aligned_index is not None:
+        translations = tuple(item["id"] for item in parallel.load_index(config.aligned_index)["translations"])
 
     page_nodes: dict[str, str] = {}
     page_titles: dict[str, str] = {}

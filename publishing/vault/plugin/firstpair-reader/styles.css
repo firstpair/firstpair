@@ -12,6 +12,11 @@
 .firstpair-reader__page--parallel { max-width: 100rem; }
 .firstpair-reader__column-labels, .firstpair-reader__strip { display: grid; gap: var(--size-4-4); grid-template-columns: repeat(var(--firstpair-columns), minmax(0, 1fr)); }
 .firstpair-reader__column-labels { background: var(--background-primary); color: var(--text-muted); font-size: var(--font-ui-small); inset-block-start: 44px; padding: var(--size-4-2) 0; position: sticky; z-index: 4; }
+.firstpair-reader__column-label { align-items: center; display: flex; gap: var(--size-4-1); min-width: 0; }
+.firstpair-reader__column-name { background: none; border: 0; box-shadow: none; color: inherit; cursor: default; font: inherit; height: auto; min-width: 0; overflow: hidden; padding: 0; text-align: start; text-overflow: ellipsis; white-space: nowrap; }
+.firstpair-reader__column-name--rotates { cursor: pointer; text-decoration: underline dotted; }
+.firstpair-reader__column-name--rotates:hover { color: var(--text-normal); }
+.firstpair-reader__column-control { background: none; border: 1px solid var(--background-modifier-border); border-radius: 4px; box-shadow: none; color: inherit; cursor: pointer; font: inherit; height: auto; line-height: 1; min-height: 24px; min-width: 24px; padding: 0 var(--size-4-1); }
 .firstpair-reader__strip { border-block-start: 1px solid var(--background-modifier-border); padding: var(--size-4-4) 0; }
 .firstpair-reader__cell { min-width: 0; }
 .firstpair-reader__verse { line-height: 1.65; min-height: 1.65em; }

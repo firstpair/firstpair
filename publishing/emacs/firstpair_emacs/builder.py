@@ -19,6 +19,7 @@ from pathlib import Path
 from firstpair_vault.revisions import require_clean_worktree, resolve_source_commit
 
 from . import corpus, glosses as glosses_module, languages, texiwriter
+from . import parallel
 from .config import EmacsConfig, load
 from .document import (
     Block,
@@ -571,6 +572,16 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             encoding="utf-8",
         )
 
+        # The edition's translation table: languages, the translations of each
+        # (id, title, alignment, coverage by part, default), for the reader's
+        # per-language choice. Without an index, the lexicon languages stand in.
+        aligned_payload = None
+        if config.aligned_index is not None:
+            index = parallel.load_index(config.aligned_index)
+            aligned_payload = {"schema": "firstpair-emacs-translations-v1", "languages": index["languages"],
+                               "translations": [{key: item.get(key) for key in ("id", "lang", "label", "title", "translator", "alignment", "coverage", "default", "orthography") if item.get(key) is not None} for item in index["translations"]]}
+            (data_root / "translations.json").write_text(json.dumps(aligned_payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+
         lexicon_payload: dict[str, object] = {}
         translations_payload: list[dict[str, object]] = []
         if projected is not None and corpus_spec is not None and config.lexicon is not None:
@@ -628,6 +639,7 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
                 "sourceId": config.lexicon.source_id if config.lexicon else "",
             },
             "alignedUnits": sum(1 for region in reader_render.regions if region.source),
+            "translations": [item["id"] for item in aligned_payload["translations"]] if aligned_payload else [item.identifier for item in (config.lexicon.translations if config.lexicon else ())],
             "pages": len(pages),
             "records": len(records),
             "markedWords": len(marked_rows),

@@ -215,6 +215,16 @@
         "products"
       ],
       "properties": {
+        "aligned": {
+          "type": "object",
+          "description": "The aligned edition's reader index (firstpair-parallel-reader-v1): languages and the translations of each, rendered as regions the reader rotates through.",
+          "properties": {
+            "index": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
         "guide": {
           "type": "object",
           "description": "Book-specific guide fragment for the Emacs bundle; defaults to the shared guide.bookSpecific.",

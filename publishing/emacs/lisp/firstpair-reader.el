@@ -278,10 +278,65 @@ Older Emacs did this itself; current Info leaves the underscores in place."
             (overlay-put overlay 'evaporate t)
             (push overlay firstpair-reader--overlays)))))))
 
+(defvar firstpair-reader-translation-choices nil
+  "Alist of language id to the translation id shown for it.
+A language without an entry shows its default translation.")
+
+(defvar firstpair-reader-second-translations nil
+  "Alist of language id to a second translation id shown under the first, or nil.")
+
+(defun firstpair-reader--page-part (bundle)
+  "Return the part (cantica, chapter group) of the current node, or nil."
+  (let ((page (firstpair-bundle-page bundle Info-current-node)))
+    (and page (alist-get 'part page))))
+
+(defun firstpair-reader--covers-p (translation part)
+  "Non-nil when TRANSLATION covers PART (or declares no coverage)."
+  (let ((coverage (alist-get 'coverage translation)))
+    (or (null coverage) (null part) (seq-contains-p (append coverage nil) part #'equal))))
+
+(defun firstpair-reader--candidates (bundle lang &optional exclude)
+  "The translations of LANG that cover the current page, EXCLUDE apart."
+  (let ((part (firstpair-reader--page-part bundle)))
+    (seq-filter (lambda (item)
+                  (and (not (equal (alist-get 'id item) exclude))
+                       (firstpair-reader--covers-p item part)))
+                (firstpair-bundle-translations-of bundle lang))))
+
+(defun firstpair-reader-translation-for (bundle lang &optional exclude)
+  "Return the id of the translation shown for LANG: the chosen one if it covers
+this page, else the language's default, else the first that covers; EXCLUDE
+names a translation not to return."
+  (let* ((candidates (firstpair-reader--candidates bundle lang exclude))
+         (chosen (alist-get lang firstpair-reader-translation-choices nil nil #'equal))
+         (pick (or (seq-find (lambda (item) (equal (alist-get 'id item) chosen)) candidates)
+                   (seq-find (lambda (item) (eq (alist-get 'default item) t)) candidates)
+                   (car candidates))))
+    (and pick (alist-get 'id pick))))
+
+(defun firstpair-reader--shown-translations (bundle)
+  "Return the translation ids on screen: one per selected language, plus seconds."
+  (let (ids)
+    (dolist (language (firstpair-lexicon-selected bundle))
+      (let* ((lang (alist-get 'id language))
+             (first (firstpair-reader-translation-for bundle lang))
+             (second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
+        (when first (push first ids))
+        (when (and second (not (equal second first))
+                   (member second (mapcar (lambda (item) (alist-get 'id item))
+                                          (firstpair-reader--candidates bundle lang first))))
+          (push second ids))))
+    (nreverse ids)))
+
 (defun firstpair-reader--apply-regions (bundle)
   "Hide the translation regions of the current node that are not selected.
-The selection is the dictionary's: `firstpair-lexicon-languages'."
-  (let ((chosen (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-selected bundle))))
+A region shows when its translation is the one chosen for a selected
+language (see `firstpair-reader-translation-for'), or that language's
+second translation. Bundles without a translation table select by language
+id, the dictionary's choice."
+  (let ((chosen (if (firstpair-bundle-translations bundle)
+                    (firstpair-reader--shown-translations bundle)
+                  (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-selected bundle)))))
     (dolist (region (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node))
       (unless (or (plist-get region :source) (member (plist-get region :language) chosen))
         (save-excursion
@@ -443,6 +498,90 @@ The choice applies to every lookup, gloss, and glossary until changed."
                (firstpair-lexicon-cycle-languages bundle)))
     (firstpair-lexicon-refresh)
     (firstpair-reader-refresh-regions)))
+
+(defun firstpair-reader--region-at-point (bundle)
+  "Return the aligned region containing point, or nil."
+  (let ((line (line-number-at-pos)))
+    (seq-find (lambda (region)
+                (and (<= (plist-get region :start) line) (<= line (plist-get region :end))))
+              (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node))))
+
+(defun firstpair-reader--language-at-point (bundle)
+  "The translation language to act on.
+That of the region under point, else the first selected language."
+  (let* ((region (firstpair-reader--region-at-point bundle))
+         (translation (and region (not (plist-get region :source))
+                           (firstpair-bundle-translation bundle (plist-get region :language)))))
+    (or (and translation (alist-get 'lang translation))
+        (alist-get 'id (car (firstpair-lexicon-selected bundle))))))
+
+(defun firstpair-reader--translation-title (bundle id)
+  "The display title of translation ID, marking approximate alignment."
+  (let ((item (firstpair-bundle-translation bundle id)))
+    (if (not item) id
+      (concat (or (alist-get 'title item) (alist-get 'translator item) id)
+              (if (equal (alist-get 'alignment item) "line") "" " ≈")))))
+
+(defun firstpair-reader-translations-label (bundle)
+  "Describe the translations on screen, per language."
+  (mapconcat (lambda (language)
+               (let* ((lang (alist-get 'id language))
+                      (first (firstpair-reader-translation-for bundle lang))
+                      (second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
+                 (concat (alist-get 'label language) ": "
+                         (if first (firstpair-reader--translation-title bundle first) "—")
+                         (if (and second (not (equal second first)))
+                             (concat " + " (firstpair-reader--translation-title bundle second))
+                           ""))))
+             (firstpair-lexicon-selected bundle) "; "))
+
+(defun firstpair-reader-rotate-translation (&optional choose)
+  "Show the next translation of the language at point (or the first selected one).
+With a prefix argument CHOOSE, pick the translation by name. Only the
+translations that cover the current part are offered; the choice is kept
+for the language until changed."
+  (interactive "P")
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle)))
+    (unless (firstpair-bundle-translations bundle)
+      (user-error "This bundle has one translation per language"))
+    (let* ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal))
+           (candidates (firstpair-reader--candidates bundle lang second))
+           (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
+           (current (firstpair-reader-translation-for bundle lang second)))
+      (when (< (length ids) 2)
+        (user-error "No other translation of this language covers this part"))
+      (let ((next (if choose
+                      (let* ((titles (mapcar (lambda (id) (cons (firstpair-reader--translation-title bundle id) id)) ids)))
+                        (cdr (assoc (completing-read "Translation: " (mapcar #'car titles) nil t) titles)))
+                    (nth (mod (1+ (or (seq-position ids current) -1)) (length ids)) ids))))
+        (setf (alist-get lang firstpair-reader-translation-choices nil nil #'equal) next)
+        (firstpair-reader-refresh-regions)
+        (firstpair-lexicon-refresh)
+        (message "%s" (firstpair-reader-translations-label bundle))))))
+
+(defun firstpair-reader-second-translation ()
+  "Show a second translation of the language at point under the first, or hide it.
+Repeated, it moves the second translation on to the next one; when none is
+left it hides the second column."
+  (interactive)
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle)))
+    (unless (firstpair-bundle-translations bundle)
+      (user-error "This bundle has one translation per language"))
+    (let* ((first (firstpair-reader-translation-for bundle lang))
+           (ids (mapcar (lambda (item) (alist-get 'id item)) (firstpair-reader--candidates bundle lang first)))
+           (current (alist-get lang firstpair-reader-second-translations nil nil #'equal))
+           (position (seq-position ids current))
+           (next (cond ((null ids) nil)
+                       ((null current) (car ids))
+                       ((and position (< (1+ position) (length ids))) (nth (1+ position) ids))
+                       (t nil))))
+      (setf (alist-get lang firstpair-reader-second-translations nil nil #'equal) next)
+      (firstpair-reader-refresh-regions)
+      (firstpair-lexicon-refresh)
+      (message "%s" (if next (firstpair-reader-translations-label bundle)
+                      (format "Second %s translation hidden" (alist-get 'label (firstpair-bundle-translation bundle first))))))))
 
 (defun firstpair-reader-glossary ()
   "Open the glossary of dictionary words in the references window."
@@ -687,6 +826,8 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "C-c C-f") #'firstpair-reader-open-file)
     (define-key map (kbd "C-c C-g") #'firstpair-reader-glossary)
     (define-key map (kbd "C-c C-t") #'firstpair-reader-translation-languages)
+    (define-key map (kbd "C-c C-v") #'firstpair-reader-rotate-translation)
+    (define-key map (kbd "C-c C-b") #'firstpair-reader-second-translation)
     (define-key map (kbd "C-c C-l") #'firstpair-reader-layout)
     (define-key map (kbd "C-c C-o") #'firstpair-reader-other-window)
     (define-key map [remap Info-follow-nearest-node] #'firstpair-reader-follow-nearest-node)

@@ -28,7 +28,7 @@
 (cl-defstruct (firstpair-bundle (:constructor firstpair-bundle--create)
                                 (:copier nil))
   root title slug product edition reader reference
-  pages records marked regions lexicon tables)
+  pages records marked regions lexicon translations tables)
 
 (defvar firstpair-bundles nil
   "Alist of (ROOT . BUNDLE) for every registered bundle.")
@@ -125,6 +125,8 @@ Signals an error when ROOT is not a bundle this reader understands."
        :records (firstpair-bundle--read-json (expand-file-name "data/records.json" root))
        :marked (firstpair-bundle--marked (expand-file-name "data/marked.tsv" root))
        :regions (firstpair-bundle--regions (expand-file-name "data/regions.tsv" root))
+       :translations (let ((file (expand-file-name "data/translations.json" root)))
+                       (and (file-readable-p file) (firstpair-bundle--read-json file)))
        :tables (make-hash-table :test #'equal)))))
 
 ;;;###autoload
@@ -193,6 +195,20 @@ editions of one book, whose manuals share a name, stay distinct."
   "Return the record of BUNDLE identified by ID."
   (seq-find (lambda (record) (equal (alist-get 'id record) id))
             (firstpair-bundle-records bundle)))
+
+(defun firstpair-bundle-translation-languages (bundle)
+  "Return the translation languages of BUNDLE: alists with id and label."
+  (append (alist-get 'languages (firstpair-bundle-translations bundle)) nil))
+
+(defun firstpair-bundle-translations-of (bundle lang)
+  "Return the translations of BUNDLE in language LANG, in the edition's order."
+  (seq-filter (lambda (item) (equal (alist-get 'lang item) lang))
+              (append (alist-get 'translations (firstpair-bundle-translations bundle)) nil)))
+
+(defun firstpair-bundle-translation (bundle id)
+  "Return the translation of BUNDLE whose id is ID."
+  (seq-find (lambda (item) (equal (alist-get 'id item) id))
+            (append (alist-get 'translations (firstpair-bundle-translations bundle)) nil)))
 
 (defun firstpair-bundle-page (bundle node)
   "Return the reader page of BUNDLE whose node is NODE."

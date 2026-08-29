@@ -15,10 +15,37 @@ from .document import Block, Verse
 
 
 SCHEMA = "firstpair-aligned-chapter-v1"
+INDEX_SCHEMA = "firstpair-parallel-reader-v1"
 
 
 def is_chapter(path: Path) -> bool:
     return path.suffix.lower() == ".json"
+
+
+def load_index(path: Path) -> dict:
+    """The edition's reader index: languages, translations (several per language), pages, dictionaries.
+
+    An index that predates languages and translation metadata is normalised:
+    each translation's id doubles as its language, and every translation is
+    its language's default.
+    """
+
+    payload = json.loads(path.read_text(encoding="utf-8"))
+    if payload.get("schema") != INDEX_SCHEMA:
+        raise ValueError(f"unsupported reader index schema: {path}")
+    translations = []
+    for row in payload.get("translations", []):
+        item = dict(row)
+        item.setdefault("lang", item["id"])
+        item.setdefault("title", item.get("translator") or item.get("label") or item["id"])
+        item.setdefault("alignment", "line")
+        item.setdefault("default", True)
+        translations.append(item)
+    languages = payload.get("languages") or [
+        {"id": lang, "label": next(t.get("label", lang) for t in translations if t["lang"] == lang)}
+        for lang in dict.fromkeys(t["lang"] for t in translations)
+    ]
+    return {"languages": languages, "translations": translations, "pages": payload.get("pages", []), "sourceLanguage": payload.get("sourceLanguage", {})}
 
 
 def load(path: Path, source_language: str, translations: tuple[str, ...]) -> tuple[tuple[Block, ...], str, list[str]]:

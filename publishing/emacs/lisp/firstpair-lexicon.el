@@ -45,6 +45,8 @@
 (defvar-local firstpair-lexicon-word nil
   "The word this buffer is showing.")
 
+(declare-function firstpair-reader-translations-label "firstpair-reader" (bundle))
+
 (defvar firstpair-lexicon-languages nil
   "Identifiers of the translation languages to show, or nil for all of them.
 Change it with `firstpair-lexicon-cycle-languages'.")
@@ -390,10 +392,14 @@ Returns the buffer."
       (setq firstpair-lexicon-bundle bundle
             firstpair-lexicon-word word)
       (setq header-line-format
-            (if (cdr (firstpair-lexicon-translations bundle))
-                (format " Translations: %s   (t: next choice, T: choose)"
-                        (firstpair-lexicon-languages-label bundle))
-              nil))
+            (cond ((and (firstpair-bundle-translations bundle)
+                        (fboundp 'firstpair-reader-translations-label))
+                   (format " %s   (t: languages, C-c C-v: next translation, C-c C-b: second)"
+                           (firstpair-reader-translations-label bundle)))
+                  ((cdr (firstpair-lexicon-translations bundle))
+                   (format " Translations: %s   (t: next choice, T: choose)"
+                           (firstpair-lexicon-languages-label bundle)))
+                  (t nil)))
       (let ((inhibit-read-only t))
         (erase-buffer)
         (firstpair-lexicon--insert bundle word readings)))

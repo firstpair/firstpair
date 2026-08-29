@@ -40,6 +40,73 @@ class FirstPairReaderView extends ItemView {
   constructor(leaf, plugin) {
     super(leaf); this.plugin = plugin; this.pages = []; this.position = 0;
     this.history = new ReaderHistory(); this.parallel = null; this.enabled = new Set();
+    // columns: the translations on screen, in order — one per language by
+    // default, a second column of a language when the reader asks for it.
+    this.columns = [];
+  }
+  // An edition lists translations; each has a lang. Older editions have one
+  // translation per language and no lang field, so the id serves as lang.
+  translationsOf(lang) { return this.parallel.translations.filter((item) => (item.lang ?? item.id) === lang); }
+  languages() {
+    if (this.parallel.languages) return this.parallel.languages;
+    const seen = new Map();
+    for (const item of this.parallel.translations) { const lang = item.lang ?? item.id; if (!seen.has(lang)) seen.set(lang, { id: lang, label: item.label }); }
+    return [...seen.values()];
+  }
+  translation(id) { return this.parallel.translations.find((item) => item.id === id); }
+  currentPart() { return this.pages[this.position]?.part; }
+  covers(item, part) { return !item.coverage || !part || item.coverage.includes(part); }
+  // The translation to show for a language: the remembered choice if it covers
+  // this page, else the language's default, else the first that covers.
+  choiceFor(lang, exclude = null) {
+    const part = this.currentPart(); const candidates = this.translationsOf(lang).filter((item) => item.id !== exclude);
+    const remembered = this.plugin.settings.choices?.[this.parallel.title]?.[lang];
+    const pick = candidates.find((item) => item.id === remembered && this.covers(item, part))
+      ?? candidates.find((item) => item.default && this.covers(item, part))
+      ?? candidates.find((item) => this.covers(item, part)) ?? candidates[0];
+    return pick?.id ?? null;
+  }
+  async remember(lang, id) {
+    const choices = { ...(this.plugin.settings.choices ?? {}) };
+    choices[this.parallel.title] = { ...(choices[this.parallel.title] ?? {}), [lang]: id };
+    await this.plugin.saveSettings({ choices });
+  }
+  // Rotate a column to the next translation of its language (skipping the
+  // other column of that language, if any) and remember the choice.
+  async rotate(index) {
+    const column = this.columns[index]; const others = this.columns.filter((c, i) => i !== index && c.lang === column.lang).map((c) => c.id);
+    const part = this.currentPart();
+    const list = this.translationsOf(column.lang).filter((item) => !others.includes(item.id) && this.covers(item, part));
+    if (list.length < 2) return;
+    const at = list.findIndex((item) => item.id === column.id);
+    column.id = list[(at + 1) % list.length].id;
+    if (index === this.columns.findIndex((c) => c.lang === column.lang)) await this.remember(column.lang, column.id);
+    await this.renderPage(false);
+  }
+  async addColumn(lang) {
+    const first = this.columns.find((c) => c.lang === lang); if (!first) return;
+    const id = this.choiceFor(lang, first.id); if (!id || id === first.id) return;
+    const at = this.columns.lastIndexOf(first); this.columns.splice(at + 1, 0, { lang, id, extra: true });
+    await this.renderPage(false);
+  }
+  async removeColumn(index) { this.columns.splice(index, 1); await this.renderPage(false); }
+  syncColumns() {
+    // Enabled languages each keep at least one column; disabled ones lose theirs.
+    const kept = this.columns.filter((c) => this.enabled.has(c.lang));
+    for (const lang of this.languages().map((l) => l.id)) {
+      if (this.enabled.has(lang) && !kept.some((c) => c.lang === lang)) kept.push({ lang, id: this.choiceFor(lang) });
+    }
+    const part = this.currentPart();
+    // Primary columns first (the remembered or default translation that covers
+    // this page), then extras, which must differ from their primary.
+    for (const column of kept.filter((c) => !c.extra)) { const item = this.translation(column.id); if (!item || !this.covers(item, part)) column.id = this.choiceFor(column.lang) ?? column.id; }
+    for (const column of kept.filter((c) => c.extra)) {
+      const primary = kept.find((c) => !c.extra && c.lang === column.lang); const item = this.translation(column.id);
+      if (!item || !this.covers(item, part) || column.id === primary?.id) column.id = this.choiceFor(column.lang, primary?.id ?? null) ?? column.id;
+    }
+    const order = this.languages().map((l) => l.id);
+    kept.sort((a, b) => order.indexOf(a.lang) - order.indexOf(b.lang) || (a.extra ? 1 : 0) - (b.extra ? 1 : 0));
+    this.columns = kept;
   }
   getViewType() { return VIEW_TYPE; }
   getDisplayText() { return this.parallel?.title ?? "FirstPair Reader"; }
@@ -85,12 +152,17 @@ class FirstPairReaderView extends ItemView {
     const value = this.parallel?.pages ?? await this.readJson(READER_INDEX);
     if (!Array.isArray(value) || !value.length) throw new Error("Reader index is empty");
     this.pages = value;
-    for (const language of this.parallel?.translations ?? []) if (language.defaultVisible !== false) this.enabled.add(language.id);
+    if (this.parallel) {
+      for (const language of this.languages()) {
+        const items = this.translationsOf(language.id);
+        if (items.some((item) => item.defaultVisible !== false)) this.enabled.add(language.id);
+      }
+    }
   }
   makeToolbar() {
     if (!this.parallel) { this.toolbar.hidden = true; return; }
     this.toolbar.createSpan({ text: "Translations", cls: "firstpair-reader__toolbar-title" });
-    for (const language of this.parallel.translations) {
+    for (const language of this.languages()) {
       const label = this.toolbar.createEl("label", { cls: "firstpair-reader__language-toggle" });
       const input = label.createEl("input", { type: "checkbox" }); input.checked = this.enabled.has(language.id);
       input.addEventListener("change", async () => {
@@ -211,21 +283,25 @@ class FirstPairReaderView extends ItemView {
     // The source text leads: a learner reads the original first and the
     // translations, in their declared order, follow. A title may still
     // declare sourceLanguage.position "right" for the older arrangement.
-    const translations = this.parallel.translations.filter((item) => this.enabled.has(item.id));
+    this.syncColumns();
+    const source = { source: true, label: this.parallel.sourceLanguage.label, lang: this.parallel.sourceLanguage.lang ?? this.parallel.sourceLanguage.id };
+    const shown = this.columns.map((column, index) => ({ ...column, index, item: this.translation(column.id) }));
     const sourceLast = this.parallel.sourceLanguage.position === "right";
-    const languages = sourceLast ? [...translations, this.parallel.sourceLanguage] : [this.parallel.sourceLanguage, ...translations];
-    const tracks = this.plugin.settings.reserveDrawerColumn ? 1 + this.parallel.translations.length : languages.length;
-    this.reservedTrack = tracks > languages.length;
+    const cells = sourceLast ? [...shown, source] : [source, ...shown];
+    // Reserved tracks: one per language plus the source, so a switched-off
+    // language leaves its track empty for the dictionary.
+    const tracks = Math.max(cells.length, this.plugin.settings.reserveDrawerColumn ? 1 + this.languages().length : 0);
+    this.reservedTrack = tracks > cells.length;
     const labels = this.page.createDiv({ cls: "firstpair-reader__column-labels" });
     labels.style.setProperty("--firstpair-columns", String(tracks));
-    for (const language of languages) labels.createDiv({ text: language.label, cls: "firstpair-reader__column-label" });
+    for (const cell of cells) this.columnHeader(labels, cell);
     for (const unit of chapter.units) {
-      const strip = this.page.createDiv({ cls: "firstpair-reader__strip", attr: { "data-unit-id": unit.id, "data-translations": String(translations.length) } });
+      const strip = this.page.createDiv({ cls: "firstpair-reader__strip", attr: { "data-unit-id": unit.id, "data-translations": String(shown.length) } });
       strip.style.setProperty("--firstpair-columns", String(tracks));
-      for (const language of languages) {
-        const isSource = language === this.parallel.sourceLanguage;
-        const cell = strip.createDiv({ cls: `firstpair-reader__cell firstpair-reader__cell--${isSource ? "source" : "translation"}`, attr: { lang: language.lang ?? language.id, "data-label": language.label } });
-        this.appendText(cell, isSource ? unit.source : (unit.translations?.[language.id] ?? []), isSource);
+      for (const cell of cells) {
+        const isSource = Boolean(cell.source);
+        const element = strip.createDiv({ cls: `firstpair-reader__cell firstpair-reader__cell--${isSource ? "source" : "translation"}`, attr: { lang: cell.lang, "data-label": isSource ? cell.label : this.columnTitle(cell) } });
+        this.appendText(element, isSource ? unit.source : (unit.translations?.[cell.id] ?? []), isSource);
       }
     }
     this.applyLayout();
@@ -234,9 +310,10 @@ class FirstPairReaderView extends ItemView {
   // first (in the edition's order), then — only when the setting says all —
   // the ones switched off.
   dictionaryLanguages() {
-    const shown = this.parallel.translations.filter((item) => this.enabled.has(item.id));
+    const languages = this.languages();
+    const shown = languages.filter((language) => this.enabled.has(language.id));
     if (this.plugin.settings.dictionaryLanguages !== "all") return shown;
-    return [...shown, ...this.parallel.translations.filter((item) => !this.enabled.has(item.id))];
+    return [...shown, ...languages.filter((language) => !this.enabled.has(language.id))];
   }
   // The grip along the band's top edge: drag it to resize; the share is remembered.
   ensureGrip() {
@@ -263,6 +340,31 @@ class FirstPairReaderView extends ItemView {
       this.drawer.createEl("p", { text: "Select a word of the source text.", cls: "firstpair-reader__drawer-hint" });
     }
   }
+  columnTitle(cell) {
+    const item = cell.item ?? this.translation(cell.id); if (!item) return cell.label ?? cell.id;
+    const name = item.title ?? item.translator ?? item.label;
+    const approximate = item.alignment && item.alignment !== "line" ? " ≈" : "";
+    return `${item.label && name !== item.label ? item.label + " · " : ""}${name}${approximate}`;
+  }
+  // A column header: the language, the translation's name (rotating through
+  // the language's translations on click), "+" for a second column of the
+  // language, "−" on that second column.
+  columnHeader(labels, cell) {
+    const head = labels.createDiv({ cls: "firstpair-reader__column-label" });
+    if (cell.source) { head.createSpan({ text: cell.label }); return; }
+    const item = cell.item; const part = this.currentPart();
+    const alternatives = this.translationsOf(cell.lang).filter((other) => this.covers(other, part) && !this.columns.some((c) => c !== this.columns[cell.index] && c.lang === cell.lang && c.id === other.id));
+    const name = head.createEl("button", { cls: "firstpair-reader__column-name", text: this.columnTitle(cell), attr: { title: alternatives.length > 1 ? "Next translation" : this.columnTitle(cell) } });
+    if (item?.alignment && item.alignment !== "line") name.setAttribute("aria-description", "Approximate alignment");
+    if (alternatives.length > 1) { name.addClass("firstpair-reader__column-name--rotates"); name.addEventListener("click", () => this.rotate(cell.index)); }
+    if (cell.extra) {
+      const remove = head.createEl("button", { cls: "firstpair-reader__column-control", text: "−", attr: { "aria-label": "Remove this column", title: "Remove this column" } });
+      remove.addEventListener("click", () => this.removeColumn(cell.index));
+    } else if (alternatives.length > 1 && !this.columns.some((c) => c.extra && c.lang === cell.lang)) {
+      const add = head.createEl("button", { cls: "firstpair-reader__column-control", text: "+", attr: { "aria-label": "Show a second translation beside this one", title: "Second translation" } });
+      add.addEventListener("click", () => this.addColumn(cell.lang));
+    }
+  }
   async openDictionary(surface) {
     const word = normalizeWord(surface); this.drawer.empty(); this.grip = null; this.drawer.removeAttribute("hidden"); this.sizeDrawer();
     const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" }); head.createEl("strong", { text: surface });
@@ -273,6 +375,7 @@ class FirstPairReaderView extends ItemView {
     let found = false;
     for (const language of this.dictionaryLanguages()) {
       const dictionary = this.parallel.dictionaries?.[language.id]; if (!dictionary) continue;
+      // (dictionaries are keyed by language; the label is the language's)
       const section = this.drawer.createDiv({ cls: "firstpair-reader__definition" }); section.createEl("h3", { text: language.label });
       let entries;
       try { entries = await this.plugin.lookup(dictionary.path, word); }

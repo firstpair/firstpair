@@ -602,6 +602,67 @@ class AlignedTests(Fixture):
         self.assertIn("english-hidden=t", completed.stdout)
         self.assertIn("russian-visible=t", completed.stdout)
 
+    def test_many_translations_per_language_rotate_and_pair(self) -> None:
+        chapter = {
+            "schema": "firstpair-aligned-chapter-v1", "id": "canto-1", "title": "Inferno — Canto 1",
+            "units": [
+                {"id": "u1", "source": ["Nel mezzo del cammin di nostra vita"],
+                 "translations": {"en-longfellow": ["Midway upon the journey of our life"], "en-cary": ["In the midway of this our mortal life,"], "ru-min": ["В средине нашей жизненной дороги,"]}},
+                {"id": "u2", "source": ["mi ritrovai per una selva oscura,"],
+                 "translations": {"en-longfellow": ["I found myself within a forest dark,"], "en-cary": ["I found me in a gloomy wood, astray"], "ru-min": ["Объятый сном, я в темный лес вступил,"]}},
+            ],
+        }
+        (self.root / "canto-1.json").write_text(json.dumps(chapter, ensure_ascii=False), encoding="utf-8")
+        index = {
+            "schema": "firstpair-parallel-reader-v1", "title": "Fixture", "unit": "tercet",
+            "sourceLanguage": {"id": "it", "lang": "it", "label": "Italiano", "position": "left"},
+            "languages": [{"id": "en", "label": "English"}, {"id": "ru", "label": "Русский"}],
+            "translations": [
+                {"id": "en-longfellow", "lang": "en", "label": "English", "title": "Longfellow (1867)", "alignment": "line", "coverage": ["Inferno"], "default": True, "defaultVisible": True},
+                {"id": "en-cary", "lang": "en", "label": "English", "title": "Cary (1814)", "alignment": "proportional", "coverage": ["Inferno"], "default": False, "defaultVisible": False},
+                {"id": "ru-min", "lang": "ru", "label": "Русский", "title": "Мин (1855)", "alignment": "line", "coverage": ["Inferno"], "default": True, "defaultVisible": True},
+            ],
+            "dictionaries": {}, "pages": [{"id": "canto-1", "title": "Inferno — Canto 1", "path": "canto-1.json", "part": "Inferno"}],
+        }
+        (self.root / "parallel-reader.json").write_text(json.dumps(index, ensure_ascii=False), encoding="utf-8")
+        path = self.write_config(reader=[{"id": "canto-1", "title": "Inferno — Canto 1", "source": "canto-1.json", "part": "Inferno"}], evidence=[])
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        raw["emacs"]["parts"] = [{"title": "Inferno"}]
+        raw["emacs"]["records"] = []
+        raw["emacs"]["aligned"] = {"index": "parallel-reader.json"}
+        raw["emacs"]["lexicon"] = {"language": "italian", "mode": "none", "sourceId": "it",
+                                   "translations": [{"id": "en", "label": "English"}, {"id": "ru", "label": "Русский"}]}
+        path.write_text(json.dumps(raw, ensure_ascii=False), encoding="utf-8")
+        self.commit()
+        manifest = build(path, "desktop", allow_download=False)
+        bundle = self.root / "emacs" / "desktop"
+        self.assertEqual(["en-longfellow", "en-cary", "ru-min"], manifest["translations"])
+        table = json.loads((bundle / "data" / "translations.json").read_text(encoding="utf-8"))
+        self.assertEqual(["en", "ru"], [item["id"] for item in table["languages"]])
+        self.assertEqual("proportional", table["translations"][1]["alignment"])
+        regions = (bundle / "data" / "regions.tsv").read_text(encoding="utf-8").splitlines()
+        self.assertEqual(9, len(regions))  # header + 2 units x (source + 3 translations)
+        self.assertTrue(any("\ten-cary\tu1\t" in row for row in regions))
+        self.assertTrue(verify_bundle(bundle, run_makeinfo=False, run_emacs=has("emacs"))["passed"])
+        if not has("emacs"):
+            return
+        script = f"""(progn
+  (load "{(bundle / 'init.el').as_posix()}")
+  (firstpair-read)
+  (with-current-buffer firstpair-reader-buffer
+    (Info-goto-node "(fixture)Inferno — Canto 1")
+    (let ((hidden (lambda () (length (seq-filter (lambda (o) (overlay-get o 'firstpair-region)) firstpair-reader--overlays)))))
+      (let ((a (funcall hidden)))
+        (firstpair-reader-rotate-translation)
+        (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
+          (firstpair-reader-second-translation)
+          (princ (format "%d %d %d %s" a b (funcall hidden) label)))))))"""
+        result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+        self.assertEqual(0, result.returncode, result.stderr)
+        output = result.stdout.strip().split(" ", 3)
+        self.assertEqual(["2", "2", "0"], output[:3], result.stdout)  # Cary hidden; then Longfellow hidden; then nothing hidden
+        self.assertIn("Cary (1814) ≈", output[3])
+
 
 class GlossaryKindTests(unittest.TestCase):
     def test_entry_translations_and_pivot_indexes(self) -> None:

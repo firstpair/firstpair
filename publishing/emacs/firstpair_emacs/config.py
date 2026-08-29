@@ -95,6 +95,7 @@ class EmacsConfig:
     subtitle: str
     author: str
     book_guide: Path | None
+    aligned_index: Path | None
 
 
 def _object(value: Any, label: str) -> dict[str, Any]:
@@ -265,6 +266,8 @@ def load(path: Path) -> EmacsConfig:
     if unknown:
         raise ConfigError(f"reader parts name unknown pages: {', '.join(unknown)}")
 
+    aligned_raw = _object(block.get("aligned", {}), "emacs.aligned")
+    aligned_index = _relative(root, aligned_raw["index"], "emacs.aligned.index") if aligned_raw.get("index") else None
     guide_raw = _object(block.get("guide", {}), "emacs.guide")
     book_guide = (
         _relative(root, guide_raw["bookSpecific"], "emacs.guide.bookSpecific")
@@ -287,6 +290,7 @@ def load(path: Path) -> EmacsConfig:
         subtitle=str(block.get("subtitle", "")),
         author=str(block.get("author", "")),
         book_guide=book_guide,
+        aligned_index=aligned_index,
     )
 
 

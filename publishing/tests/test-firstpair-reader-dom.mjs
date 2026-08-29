@@ -176,6 +176,60 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
   } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
 })
 
+function multiFixture() {
+  const root = fixtureVault()
+  const write = (path, value) => writeFileSync(join(root, path), JSON.stringify(value))
+  write('_data/parallel-reader.json', {
+    schema: 'firstpair-parallel-reader-v1', title: 'Multi', unit: 'tercet',
+    sourceLanguage: { id: 'it', lang: 'it', label: 'Italiano', position: 'left' },
+    languages: [{ id: 'en', label: 'English' }, { id: 'ru', label: 'Русский' }],
+    translations: [
+      { id: 'en-longfellow', lang: 'en', label: 'English', title: 'Longfellow (1867)', alignment: 'line', coverage: ['Inferno', 'Purgatorio'], default: true, defaultVisible: true },
+      { id: 'en-cary', lang: 'en', label: 'English', title: 'Cary (1814)', alignment: 'proportional', coverage: ['Inferno', 'Purgatorio'], default: false, defaultVisible: false },
+      { id: 'en-sibbald', lang: 'en', label: 'English', title: 'Sibbald (1884)', alignment: 'line', coverage: ['Inferno'], default: false, defaultVisible: false },
+      { id: 'ru-min', lang: 'ru', label: 'Русский', title: 'Мин (1855)', alignment: 'line', coverage: ['Inferno', 'Purgatorio'], default: true, defaultVisible: true },
+    ],
+    dictionaries: { en: { path: '_data/dictionaries/it-en/index.json' }, ru: { path: '_data/dictionaries/it-ru.json' } },
+    pages: [{ id: 'c-01', title: 'Canto 1', path: '_data/chapters/c-01.json', part: 'Inferno' }, { id: 'c-02', title: 'Canto 2', path: '_data/chapters/c-02.json', part: 'Purgatorio' }],
+  })
+  write('_data/chapters/c-01.json', { schema: 'firstpair-aligned-chapter-v1', id: 'c-01', title: 'Canto 1', units: [
+    { id: 'u1', source: ['Nel mezzo del cammin'], translations: { 'en-longfellow': ['Midway upon'], 'en-cary': ['In the midway'], 'en-sibbald': ['In middle of'], 'ru-min': ['В средине'] } } ] })
+  write('_data/chapters/c-02.json', { schema: 'firstpair-aligned-chapter-v1', id: 'c-02', title: 'Canto 2', units: [
+    { id: 'u2', source: ['Per correr miglior acque'], translations: { 'en-longfellow': ['To run o\'er better waters'], 'en-cary': ['O\'er better waves'], 'ru-min': ['Для лучших вод'] } } ] })
+  return root
+}
+
+test('several translations per language: rotate, second column, coverage', async () => {
+  const window = mock.makeWindow(); globalThis.window = window; globalThis.document = window.document; globalThis.getComputedStyle = window.getComputedStyle.bind(window); globalThis.ResizeObserver = window.ResizeObserver
+  const vaultRoot = multiFixture()
+  try {
+    const { view, root } = await openReader(vaultRoot, window)
+    const headers = () => Array.from(root.querySelectorAll('.firstpair-reader__column-label')).map((h) => h.querySelector('.firstpair-reader__column-name')?.textContent ?? h.textContent)
+    const cellsText = () => Array.from(root.querySelector('.firstpair-reader__strip').querySelectorAll('.firstpair-reader__cell')).map((c) => c.textContent)
+    assert.deepEqual(headers(), ['Italiano', 'English · Longfellow (1867)', 'Русский · Мин (1855)'])
+    assert.deepEqual(cellsText(), ['Nel mezzo del cammin', 'Midway upon', 'В средине'])
+    // Rotate English: Longfellow → Cary (≈) → Sibbald → Longfellow
+    const rotate = () => root.querySelectorAll('.firstpair-reader__column-name--rotates')[0].click()
+    rotate(); await settle(); await settle()
+    assert.deepEqual(headers().slice(1, 2), ['English · Cary (1814) ≈']); assert.equal(cellsText()[1], 'In the midway')
+    rotate(); await settle(); await settle()
+    assert.equal(cellsText()[1], 'In middle of')
+    assert.equal(view.plugin.settings.choices.Multi.en, 'en-sibbald')
+    // A second English column: the next translation not already shown.
+    root.querySelector('.firstpair-reader__column-control').click(); await settle(); await settle()
+    assert.deepEqual(headers(), ['Italiano', 'English · Sibbald (1884)', 'English · Longfellow (1867)', 'Русский · Мин (1855)'])
+    assert.deepEqual(cellsText(), ['Nel mezzo del cammin', 'In middle of', 'Midway upon', 'В средине'])
+    assert.equal(root.querySelector('.firstpair-reader__strip').style.getPropertyValue('--firstpair-columns'), '4')
+    // Purgatorio: Sibbald does not cover it, so the column falls back to the default.
+    const next = Array.from(root.querySelectorAll('.firstpair-reader__rail button')).find((button) => button.getAttribute('aria-label') === 'Next')
+    next.click(); await settle(); await settle()
+    assert.deepEqual(headers(), ['Italiano', 'English · Longfellow (1867)', 'English · Cary (1814) ≈', 'Русский · Мин (1855)'])
+    // Remove the extra column.
+    Array.from(root.querySelectorAll('.firstpair-reader__column-control')).find((b) => b.textContent === '−').click(); await settle(); await settle()
+    assert.deepEqual(headers(), ['Italiano', 'English · Longfellow (1867)', 'Русский · Мин (1855)'])
+  } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
+})
+
 test('a phone held upright stacks automatically', async () => {
   const window = mock.makeWindow(); window.__portrait = true; globalThis.window = window; globalThis.document = window.document; globalThis.getComputedStyle = window.getComputedStyle.bind(window); globalThis.ResizeObserver = window.ResizeObserver
   mock.Platform.isMobile = true
