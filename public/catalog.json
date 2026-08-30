@@ -629,6 +629,31 @@
           "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide%20%281.0.0-fe8f3928%29.html"
         }
       ]
+    },
+    {
+      "slug": "graph-book",
+      "title": "The Graph Book",
+      "author": "Alexy Khrabrov",
+      "kicker": "Field guide",
+      "description": "How First Pair Press turns a book into a knowledge graph and delivers the graph as a book: chapters as nodes, code and witnesses as evidence, quotes aligned across languages, translations as rotatable columns, dictionaries that help each other, and readers for Obsidian and Emacs — the Sail Rust Book, Lighthouse Republics, Cicero, and Dante.",
+      "accent": "#416f68",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+      "html": "/read/graph-book/",
+      "htmlChapters": "/read/graph-book/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/html/be5101ea4c512bdf-graph-book.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/index.html",
+      "tags": [
+        "finished",
+        "publishing",
+        "knowledge-graph",
+        "obsidian",
+        "emacs"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/firstpair/graph-book",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png"
     }
   ]
 }

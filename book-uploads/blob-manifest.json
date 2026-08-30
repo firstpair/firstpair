@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-29T23:53:08.331Z",
+  "updatedAt": "2026-08-30T06:58:53.009Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -9840,6 +9840,238 @@
           ]
         }
       }
+    },
+    "graph-book": {
+      "updatedAt": "2026-08-30T06:58:53.009Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/graph-book/graph-book.pdf",
+          "sha256": "1a55b8f80f53e9dc0abb16639492ff5f83a35843d7b5e9cf06aff9908334ab4f",
+          "size": 4239963,
+          "pathname": "books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/graph-book/graph-book.epub",
+          "sha256": "c035c237f78ec86b5452d9b598a468366ee76144da69f57b1536e541647f4ead",
+          "size": 3461391,
+          "pathname": "books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/graph-book/graph-book.html",
+          "sha256": "be5101ea4c512bdf353a93c0b1d3cfb8d4842782cf0ef4cba8f4159d11296274",
+          "size": 4689485,
+          "pathname": "books/graph-book/html/be5101ea4c512bdf-graph-book.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/html/be5101ea4c512bdf-graph-book.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/graph-book/graph-book-cover.png",
+          "sha256": "ec4395ce164268c1228ba0b8602e97ece188702346561aba3cd8498c939ffd78",
+          "size": 3469489,
+          "pathname": "books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/graph-book/graph-book-headboard.png",
+          "sha256": "31b2009c944120ae98a4e0d30e5d2db67bdd2fea2ad4612ac8b9222f00ec7e93",
+          "size": 3483577,
+          "pathname": "books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters",
+          "sha256": "198e61229834ea4ee153a4ccf06d94383f43da18861f0e0544e49301f6bcd8c3",
+          "pathnamePrefix": "books/graph-book/chapters/198e61229834ea4e",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/assets/ec4395ce1642-graph-book-cover.png",
+              "relativePath": "assets/ec4395ce1642-graph-book-cover.png",
+              "sha256": "ec4395ce164268c1228ba0b8602e97ece188702346561aba3cd8498c939ffd78",
+              "size": 3469489,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/assets/ec4395ce1642-graph-book-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/assets/ec4395ce1642-graph-book-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "71338e821c5db359769cf4529c953ffce47959b487793bc3e72f2e19f9b32a77",
+              "size": 504,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "a1dd79ca106035787d46ebfdc46dd5d98366f8290840a95178468524ff5bb502",
+              "size": 2276,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "a56729166f1dcca46ea3b4489bef9844d3362c497650aa8dea5340fc1f72d7d7",
+              "size": 5188,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "ed4f6a0b9ea523eeb18c3926f869c93b41acea0c4778253ee102e5a6cd9cf67f",
+              "size": 5336,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "19067d460484288cb12fc3f8491a361536e2eb589fcce515591109866cfb7a06",
+              "size": 7921,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "21244900935dd01e2bc0ec57a5ddd27a6a7459c133f94905298cdf8bb930923e",
+              "size": 5871,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "3f0055716e8380d5caf3e2cbc7a76766e89d7cda0d7d25cc923089b054e656c1",
+              "size": 6141,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "752c76301b5e6845ddd59cf5d89e07c59f04a01e051c10f8c9d1bad52a4b584d",
+              "size": 4150,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "ed0fb32f77db34f40cedd73882e2fdcf5df547a58d9367528e81d1d1fb5d9086",
+              "size": 11576,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "c95f851b1560e506c560ac4379fcab039f572a1ca4c271a12d5f2797e4f9e4ee",
+              "size": 8099,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "ee4cb3b260c136db752ab70e3b5e989bd1322439aa2a2a77fe789b593b6e84ef",
+              "size": 8320,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "655aa16f890647155e107f2b6afb9a9e49178865758da85a890af56157e0c519",
+              "size": 9047,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "b0be72abecba7a755fa678b4d91a5eb7be4011ec4e54fce0ff1bec045fc138bc",
+              "size": 5299,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "3a28b4ac25ea9c6601b864d7473de052e709d0264e37ee497a2b2c2f6d05f517",
+              "size": 4384,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "ae377f58950cf861b7be57ec8727d939a11e6b61c578ad39b1e85bb04cb3d0b7",
+              "size": 3306,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "aa56d42e2d50b62ff29ee97f8ab4ce3cec0146f586811e81809b409e1d6d51d9",
+              "size": 3131,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "43bd166f8ab9c13ae98dff9c7e3d64c4e77736eac8695fc730f880224b7cd91d",
+              "size": 7329,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/graph-book/graph-book-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "5acebaea69ef2aa921ac6e97d49e449934e650b0d7cf3b8b0ac8f34e187a9852",
+              "size": 5833,
+              "pathname": "books/graph-book/chapters/198e61229834ea4e/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -11372,6 +11604,31 @@
       "pathname": "books/dante-commedia/russian/emacs/db45b28f7b389f34-dante-commedia-russian-full-emacs (1.0.0-5ca23eab).zip",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/db45b28f7b389f34-dante-commedia-russian-full-emacs%20%281.0.0-5ca23eab%29.zip",
       "size": 7308388
+    },
+    "1a55b8f80f53e9dc0abb16639492ff5f83a35843d7b5e9cf06aff9908334ab4f:4239963": {
+      "pathname": "books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
+      "size": 4239963
+    },
+    "c035c237f78ec86b5452d9b598a468366ee76144da69f57b1536e541647f4ead:3461391": {
+      "pathname": "books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+      "size": 3461391
+    },
+    "be5101ea4c512bdf353a93c0b1d3cfb8d4842782cf0ef4cba8f4159d11296274:4689485": {
+      "pathname": "books/graph-book/html/be5101ea4c512bdf-graph-book.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/html/be5101ea4c512bdf-graph-book.html",
+      "size": 4689485
+    },
+    "ec4395ce164268c1228ba0b8602e97ece188702346561aba3cd8498c939ffd78:3469489": {
+      "pathname": "books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png",
+      "size": 3469489
+    },
+    "31b2009c944120ae98a4e0d30e5d2db67bdd2fea2ad4612ac8b9222f00ec7e93:3483577": {
+      "pathname": "books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png",
+      "size": 3483577
     }
   },
   "chapterPackages": {
@@ -28681,6 +28938,183 @@
           "size": 15370,
           "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "198e61229834ea4ee153a4ccf06d94383f43da18861f0e0544e49301f6bcd8c3": {
+      "pathnamePrefix": "books/graph-book/chapters/198e61229834ea4e",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/assets/ec4395ce1642-graph-book-cover.png",
+          "relativePath": "assets/ec4395ce1642-graph-book-cover.png",
+          "sha256": "ec4395ce164268c1228ba0b8602e97ece188702346561aba3cd8498c939ffd78",
+          "size": 3469489,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/assets/ec4395ce1642-graph-book-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/assets/ec4395ce1642-graph-book-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "71338e821c5db359769cf4529c953ffce47959b487793bc3e72f2e19f9b32a77",
+          "size": 504,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "a1dd79ca106035787d46ebfdc46dd5d98366f8290840a95178468524ff5bb502",
+          "size": 2276,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "a56729166f1dcca46ea3b4489bef9844d3362c497650aa8dea5340fc1f72d7d7",
+          "size": 5188,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "ed4f6a0b9ea523eeb18c3926f869c93b41acea0c4778253ee102e5a6cd9cf67f",
+          "size": 5336,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "19067d460484288cb12fc3f8491a361536e2eb589fcce515591109866cfb7a06",
+          "size": 7921,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "21244900935dd01e2bc0ec57a5ddd27a6a7459c133f94905298cdf8bb930923e",
+          "size": 5871,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "3f0055716e8380d5caf3e2cbc7a76766e89d7cda0d7d25cc923089b054e656c1",
+          "size": 6141,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "752c76301b5e6845ddd59cf5d89e07c59f04a01e051c10f8c9d1bad52a4b584d",
+          "size": 4150,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "ed0fb32f77db34f40cedd73882e2fdcf5df547a58d9367528e81d1d1fb5d9086",
+          "size": 11576,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "c95f851b1560e506c560ac4379fcab039f572a1ca4c271a12d5f2797e4f9e4ee",
+          "size": 8099,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "ee4cb3b260c136db752ab70e3b5e989bd1322439aa2a2a77fe789b593b6e84ef",
+          "size": 8320,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "655aa16f890647155e107f2b6afb9a9e49178865758da85a890af56157e0c519",
+          "size": 9047,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "b0be72abecba7a755fa678b4d91a5eb7be4011ec4e54fce0ff1bec045fc138bc",
+          "size": 5299,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "3a28b4ac25ea9c6601b864d7473de052e709d0264e37ee497a2b2c2f6d05f517",
+          "size": 4384,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "ae377f58950cf861b7be57ec8727d939a11e6b61c578ad39b1e85bb04cb3d0b7",
+          "size": 3306,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "aa56d42e2d50b62ff29ee97f8ab4ce3cec0146f586811e81809b409e1d6d51d9",
+          "size": 3131,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "43bd166f8ab9c13ae98dff9c7e3d64c4e77736eac8695fc730f880224b7cd91d",
+          "size": 7329,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/graph-book/graph-book-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "5acebaea69ef2aa921ac6e97d49e449934e650b0d7cf3b8b0ac8f34e187a9852",
+          "size": 5833,
+          "pathname": "books/graph-book/chapters/198e61229834ea4e/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/sitemap.json",
           "skipped": false
         }
       ]

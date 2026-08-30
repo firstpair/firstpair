@@ -194,5 +194,12 @@ export const deliverableBooks = [
         "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/cover/728049b83ad7d4b8-dante-commedia-cover.png"
       }
     }
+  },
+  {
+    "slug": "graph-book",
+    "title": "The Graph Book",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png"
   }
 ]

@@ -230,6 +230,14 @@
       "emacs": "book-uploads/staging/dante-commedia/dante-commedia-full-emacs (1.0.0-5ca23eab).zip",
       "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-5ca23eab).md",
       "emacsGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-5ca23eab).html"
+    },
+    "graph-book": {
+      "pdf": "book-uploads/staging/graph-book/graph-book.pdf",
+      "epub": "book-uploads/staging/graph-book/graph-book.epub",
+      "html": "book-uploads/staging/graph-book/graph-book.html",
+      "htmlChapters": "book-uploads/staging/graph-book/graph-book-chapters",
+      "cover": "book-uploads/staging/graph-book/graph-book-cover.png",
+      "headboard": "book-uploads/staging/graph-book/graph-book-headboard.png"
     }
   }
 }

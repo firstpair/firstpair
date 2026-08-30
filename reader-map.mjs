@@ -167,5 +167,11 @@ export const readerBooks = [
         "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide%20%281.0.0-5ca23eab%29.html"
       }
     }
+  },
+  {
+    "slug": "graph-book",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/html/be5101ea4c512bdf-graph-book.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e"
   }
 ]
