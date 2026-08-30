@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.14
+;; Version: 1.15
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -519,9 +519,7 @@ The entry opens in the dictionary window below the references."
       (firstpair-reader--show buffer 'lexicon)
       (when firstpair-reader-touch
         (with-current-buffer buffer
-          (setq header-line-format
-                (append (firstpair-reader--dictionary-bar)
-                        (list (if (stringp header-line-format) header-line-format (or (and (listp header-line-format) (cadr header-line-format)) ""))))))))
+          (setq mode-line-format (firstpair-reader--dictionary-bar)))))
     word))
 
 (defun firstpair-reader--source-spans (bundle)
@@ -984,13 +982,20 @@ updated directly.  Returns DIRECTORY."
 ;;; Touch: single keys, taps, and a button bar
 
 (defun firstpair-reader--button (label command &optional help)
-  "A header-line button LABEL running COMMAND on a tap, with HELP as tooltip."
-  (let ((map (make-sparse-keymap)))
-    (define-key map [header-line mouse-1] command)
-    (define-key map [header-line mouse-2] command)
-    (define-key map [mode-line mouse-1] command)
-    (define-key map [mode-line mouse-2] command)
-    (define-key map [mouse-1] command)
+  "A bar button LABEL running COMMAND on a tap, with HELP as tooltip.
+The command runs with the tapped window selected, so a button on the book
+acts on the book even while the dictionary window has focus."
+  (let ((map (make-sparse-keymap))
+        (action (lambda (event)
+                  (interactive "e")
+                  (let ((window (posn-window (event-start event))))
+                    (when (window-live-p window) (select-window window)))
+                  (call-interactively command))))
+    (define-key map [header-line mouse-1] action)
+    (define-key map [header-line mouse-2] action)
+    (define-key map [mode-line mouse-1] action)
+    (define-key map [mode-line mouse-2] action)
+    (define-key map [mouse-1] action)
     (propertize (concat " " label " ")
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
                 'mouse-face 'highlight 'local-map map 'help-echo (or help label))))
@@ -1000,15 +1005,20 @@ updated directly.  Returns DIRECTORY."
   (cons "" (mapcan (lambda (button) (list (firstpair-reader--button (car button) (cdr button)) " ")) buttons)))
 
 (defun firstpair-reader--reader-bar (bundle)
-  "The book's top bar: word by word through the dictionary, then translations."
+  "The book's one bar, on its mode line: words and dictionary, translations, paging, cantos.
+Labels are short so the bar fits a phone; `?' lists what they mean."
   (let ((many (firstpair-bundle-translations bundle)))
     (apply #'firstpair-reader--bar
-           (append (list (cons "◀ word" #'firstpair-reader-previous-marked-lookup)
-                         (cons "word ▶" #'firstpair-reader-next-marked-lookup)
+           (append (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)
+                         (cons "w▶" #'firstpair-reader-next-marked-lookup)
                          (cons "Dict" #'firstpair-reader-describe-word)
-                         (cons "Langs" #'firstpair-reader-translation-languages))
-                   (and many (list (cons "Next tr" #'firstpair-reader-rotate-translation)
-                                   (cons "2nd" #'firstpair-reader-second-translation)))))))
+                         (cons "Lang" #'firstpair-reader-translation-languages))
+                   (and many (list (cons "Tr" #'firstpair-reader-rotate-translation)
+                                   (cons "2nd" #'firstpair-reader-second-translation)))
+                   (list (cons "▲" #'firstpair-reader-page-up)
+                         (cons "▼" #'firstpair-reader-page-down)
+                         (cons "◀c" #'Info-prev)
+                         (cons "c▶" #'Info-next))))))
 
 (defun firstpair-reader-page-down ()
   "Show the next screen of the book."
@@ -1035,9 +1045,9 @@ updated directly.  Returns DIRECTORY."
 (defun firstpair-reader--dictionary-bar ()
   "The dictionary window's button bar."
   (firstpair-reader--bar (cons "Close" #'firstpair-reader-close-dictionary)
-                         (cons "Langs" #'firstpair-lexicon-cycle-languages-command)
-                         (cons "◀ word" #'firstpair-reader-previous-marked-lookup)
-                         (cons "word ▶" #'firstpair-reader-next-marked-lookup)))
+                         (cons "Lang" #'firstpair-lexicon-cycle-languages-command)
+                         (cons "◀w" #'firstpair-reader-previous-marked-lookup)
+                         (cons "w▶" #'firstpair-reader-next-marked-lookup)))
 
 (defun firstpair-reader-close-dictionary ()
   "Close the dictionary window."
@@ -1084,8 +1094,8 @@ updated directly.  Returns DIRECTORY."
     (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
     (princ "                                          j   k   next / previous word, looked up at once\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
-    (princ "Top bar               words, dictionary   v   next translation of the language at point\n")
-    (princ "Bottom bar            paging, cantos      SPC DEL   page down / up\n")
+    (princ "Bar under the book    ◀w w▶ words · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
+    (princ "Bar under dictionary  Close · Lang · ◀w w▶          SPC DEL   page down / up\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
@@ -1099,8 +1109,9 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
     ;; Only the book's own window carries the bars; the references manual
     ;; below it keeps Info's plain header and mode line.
     (when (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle))
-      (setq header-line-format (firstpair-reader--reader-bar bundle))
-      (setq mode-line-format (append (firstpair-reader--movement-bar) (list " " '(:eval (or Info-current-node ""))))))
+      ;; One bar, on the mode line between the book and its references; the
+      ;; header line stays Info's, out of the way of the app's own top edge.
+      (setq mode-line-format (append (firstpair-reader--reader-bar bundle) (list " " '(:eval (or Info-current-node ""))))))
     (unless (display-graphic-p)
       (unless (bound-and-true-p xterm-mouse-mode)
         (ignore-errors (xterm-mouse-mode 1)))

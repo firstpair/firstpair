@@ -313,11 +313,13 @@ to nil to always open at the top.
 ## Reading by touch and single keys
 
 On a phone (Emacs under iSH) or anywhere you would rather not type chords,
-the reader offers the same commands as taps and single letters. Two button
-bars frame the book — at the top **◀ word · word ▶ · Dict · Langs · Next tr ·
-2nd**, at the bottom **▲ page · ▼ page · ◀ canto · canto ▶ · Top · Refs · ?** —
-and the dictionary window has its own: **Close · Langs · ◀ word · word ▶**.
-The word arrows step through the source text and open each word's entry. Tapping a marked word looks it up; tapping a
+the reader offers the same commands as taps and single letters. One button
+bar sits on the book's mode line, just above the references — **◀w · w▶ ·
+Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶** (previous and next word, looked up;
+dictionary; languages; next translation; second translation; page up and
+down; previous and next chapter) — and the dictionary window has its own:
+**Close · Lang · ◀w · w▶**. The word arrows step through the source text and
+open each word's entry. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation, `b` a second one, `,` and `.` step between dictionary

@@ -686,7 +686,7 @@ class AlignedTests(Fixture):
   (firstpair-read)
   (with-current-buffer firstpair-reader-buffer
     (princ (format "%s|%s|%s|%s" Info-current-node (alist-get "en" firstpair-reader-translation-choices nil nil #'equal)
-                   (key-binding "d") (and (string-match-p "Dict" (format "%S" header-line-format)) t)))))"""
+                   (key-binding "d") (and (string-match-p "Dict" (format "%S" mode-line-format)) t)))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
         self.assertEqual("Inferno — Canto 1|en-cary|firstpair-reader-describe-word|t", result.stdout.strip().splitlines()[-1], result.stdout)
