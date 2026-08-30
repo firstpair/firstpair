@@ -1005,8 +1005,9 @@ acts on the book even while the dictionary window has focus."
   (cons "" (mapcan (lambda (button) (list (firstpair-reader--button (car button) (cdr button)) " ")) buttons)))
 
 (defun firstpair-reader--reader-bar (bundle)
-  "The book's one bar, on its mode line: words and dictionary, translations, paging, cantos.
-Labels are short so the bar fits a phone; `?' lists what they mean."
+  "The book's one bar, on its mode line.
+Words and dictionary, translations, paging, cantos; labels are short so
+the bar fits a phone, and `?' lists what they mean."
   (let ((many (firstpair-bundle-translations bundle)))
     (apply #'firstpair-reader--bar
            (append (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)

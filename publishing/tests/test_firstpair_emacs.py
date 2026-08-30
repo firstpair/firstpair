@@ -332,7 +332,9 @@ class BuildTests(Fixture):
         with self.assertRaises(RuntimeError):
             build(path, "desktop", allow_download=False)
         self.assertTrue((bundle / "install.sh").stat().st_mode & 0o100)
-        self.assertIn("(add-to-list 'load-path (expand-file-name \"lisp\" bundle) t)", (bundle / "init.el").read_text())
+        init_text = (bundle / "init.el").read_text()
+        self.assertIn("(add-to-list 'load-path (expand-file-name \"lisp\" bundle))", init_text)
+        self.assertIn("(locate-library \"firstpair-reader\")", init_text)  # an installed package wins interactively
         if has("install-info") or has("emacs"):
             info_dir = self.root / "info-dir"
             for mode in ("install", "remove"):
