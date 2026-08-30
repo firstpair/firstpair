@@ -290,13 +290,16 @@ def _init_file(config: EmacsConfig) -> str:
 ;; Then run M-x firstpair-read.
 
 (let ((bundle (file-name-directory (or load-file-name buffer-file-name))))
-  ;; An installed firstpair-reader package always wins: activate packages
-  ;; if that has not happened yet, and add the bundled reader to `load-path'
-  ;; only when no package provides it.
-  (when (and (fboundp 'package-initialize) (not (bound-and-true-p package--initialized)))
-    (ignore-errors (package-initialize)))
-  (unless (locate-library "firstpair-reader")
-    (add-to-list 'load-path (expand-file-name "lisp" bundle) t))
+  ;; Interactively an installed firstpair-reader package wins: activate
+  ;; packages if that has not happened yet, and add the bundled reader to
+  ;; `load-path' only when no package provides it. In batch (validation,
+  ;; scripts) the bundle's own Lisp is used, whatever is installed.
+  (unless noninteractive
+    (when (and (fboundp 'package-initialize) (not (bound-and-true-p package--initialized)))
+      (ignore-errors (package-initialize))))
+  (if (and (not noninteractive) (locate-library "firstpair-reader"))
+      nil
+    (add-to-list 'load-path (expand-file-name "lisp" bundle)))
   (require 'firstpair-reader)
   (firstpair-reader-register bundle))
 
