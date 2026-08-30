@@ -288,6 +288,18 @@ your own notes are your work, and live outside the bundle. With those
 boundaries an Emacs bundle remains approachable for a first-time reader while
 holding the depth a scholar or a programmer expects.
 
+## Getting the reader package
+
+The standalone reader is at `https://firstpair.org/emacs/firstpair-reader.tar`
+(always the current release; versioned copies sit beside it). Fetch it and
+install it once:
+
+```sh
+curl -fL -o firstpair-reader.tar https://firstpair.org/emacs/firstpair-reader.tar
+```
+
+then `M-x package-install-file RET firstpair-reader.tar RET`.
+
 ## Picking up where you left off
 
 `M-x firstpair-read` returns to the node and the line where you stopped in
