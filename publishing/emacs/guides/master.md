@@ -297,3 +297,19 @@ been idle for a few seconds, and when Emacs exits, in
 `firstpair-reader-state-file` (`~/.emacs.d/firstpair-reader-state.el` by
 default — plain Lisp, one entry per bundle). Set `firstpair-reader-resume`
 to nil to always open at the top.
+
+## Reading by touch and single keys
+
+On a phone (Emacs under iSH) or anywhere you would rather not type chords,
+the reader offers the same commands as taps and single letters. A button
+bar sits in the header line of the book — **Dict · Langs · Next tr · 2nd ·
+◀ · ▶ · Top · Refs · ?** — and another in the dictionary window — **Close ·
+Langs · ◀ word · word ▶**. Tapping a marked word looks it up; tapping a
+link follows it; a long press (right click) rotates the translation under
+it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
+next translation, `b` a second one, `,` and `.` step between dictionary
+words, `n` and `p` turn cantos, space and backspace page, `?` shows this
+list, `q` quits. Terminals get mouse reporting switched on automatically
+(`xterm-mouse-mode`); if taps still do nothing, the terminal app is not
+forwarding them and the single keys remain. `firstpair-reader-touch` turns
+the layer off.

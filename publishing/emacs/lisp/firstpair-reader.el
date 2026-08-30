@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.8
+;; Version: 1.9
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -52,6 +52,11 @@
 Each entry is either a bundle directory or a directory whose immediate
 subdirectories are bundles."
   :type '(repeat directory))
+
+(defcustom firstpair-reader-touch t
+  "Drive the reader by taps and single keys: a button bar in the header line,
+mouse reporting in terminals, and one-letter commands in the book."
+  :type 'boolean)
 
 (defcustom firstpair-reader-resume t
   "Reopen a bundle where it was left: node, point, languages, translations."
@@ -393,6 +398,7 @@ id, the dictionary's choice."
            (when Info-hide-note-references
              (firstpair-reader--tidy-references bundle))
            (firstpair-reader--apply-regions bundle)
+           (firstpair-reader--apply-touch bundle)
            (ignore-errors (firstpair-reader-save-state)))
           (firstpair-reader-mode
            (firstpair-reader-mode -1)))))
@@ -509,7 +515,13 @@ The entry opens in the dictionary window below the references."
                                  (overlay-start overlay) (overlay-end overlay)))
                    (thing-at-point 'word t)
                    (read-string "Look up word: "))))
-    (firstpair-reader--show (firstpair-lexicon-render bundle word) 'lexicon)
+    (let ((buffer (firstpair-lexicon-render bundle word)))
+      (firstpair-reader--show buffer 'lexicon)
+      (when firstpair-reader-touch
+        (with-current-buffer buffer
+          (setq header-line-format
+                (append (firstpair-reader--dictionary-bar)
+                        (list (if (stringp header-line-format) header-line-format (or (and (listp header-line-format) (cadr header-line-format)) ""))))))))
     word))
 
 (defun firstpair-reader--move-marked (forward)
@@ -914,6 +926,18 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "C-c C-t") #'firstpair-reader-translation-languages)
     (define-key map (kbd "C-c C-v") #'firstpair-reader-rotate-translation)
     (define-key map (kbd "C-c C-b") #'firstpair-reader-second-translation)
+    ;; Single keys for phones: the same commands without the C-c chord.
+    (define-key map (kbd "d") #'firstpair-reader-describe-word)
+    (define-key map (kbd "t") #'firstpair-reader-translation-languages)
+    (define-key map (kbd "v") #'firstpair-reader-rotate-translation)
+    (define-key map (kbd "b") #'firstpair-reader-second-translation)
+    (define-key map (kbd ",") #'firstpair-reader-previous-marked)
+    (define-key map (kbd ".") #'firstpair-reader-next-marked)
+    (define-key map (kbd "r") #'firstpair-reader-references)
+    (define-key map (kbd "?") #'firstpair-reader-help)
+    (define-key map [mouse-1] #'firstpair-reader-touch-click)
+    (define-key map [mouse-3] #'firstpair-reader-rotate-translation)
+    (define-key map [down-mouse-1] #'ignore)
     (define-key map (kbd "C-c C-l") #'firstpair-reader-layout)
     (define-key map (kbd "C-c C-o") #'firstpair-reader-other-window)
     (define-key map [remap Info-follow-nearest-node] #'firstpair-reader-follow-nearest-node)
@@ -923,6 +947,97 @@ updated directly.  Returns DIRECTORY."
   "Keymap for `firstpair-reader-mode'.")
 
 ;;;###autoload
+;;; Touch: single keys, taps, and a button bar
+
+(defun firstpair-reader--button (label command &optional help)
+  "A header-line button LABEL running COMMAND on a tap, with HELP as tooltip."
+  (let ((map (make-sparse-keymap)))
+    (define-key map [header-line mouse-1] command)
+    (define-key map [header-line mouse-2] command)
+    (define-key map [mouse-1] command)
+    (propertize (concat " " label " ")
+                'face '(:box (:line-width 1) :inherit mode-line-highlight)
+                'mouse-face 'highlight 'local-map map 'help-echo (or help label))))
+
+(defun firstpair-reader--bar (&rest buttons)
+  "A header line of BUTTONS (label . command) separated by a space."
+  (cons "" (mapcan (lambda (button) (list (firstpair-reader--button (car button) (cdr button)) " ")) buttons)))
+
+(defun firstpair-reader--reader-bar (bundle)
+  "The book's button bar: dictionary and translations first, then movement."
+  (let ((many (firstpair-bundle-translations bundle)))
+    (apply #'firstpair-reader--bar
+           (append (list (cons "Dict" #'firstpair-reader-describe-word)
+                         (cons "Langs" #'firstpair-reader-translation-languages))
+                   (and many (list (cons "Next tr" #'firstpair-reader-rotate-translation)
+                                   (cons "2nd" #'firstpair-reader-second-translation)))
+                   (list (cons "◀" #'Info-prev) (cons "▶" #'Info-next) (cons "Top" #'Info-top-node)
+                         (cons "Refs" #'firstpair-reader-references) (cons "?" #'firstpair-reader-help))))))
+
+(defun firstpair-reader--dictionary-bar ()
+  "The dictionary window's button bar."
+  (firstpair-reader--bar (cons "Close" #'firstpair-reader-close-dictionary)
+                         (cons "Langs" #'firstpair-lexicon-cycle-languages-command)
+                         (cons "◀ word" #'firstpair-reader-previous-marked-lookup)
+                         (cons "word ▶" #'firstpair-reader-next-marked-lookup)))
+
+(defun firstpair-reader-close-dictionary ()
+  "Close the dictionary window."
+  (interactive)
+  (let ((window (firstpair-reader--window 'lexicon)))
+    (when (window-live-p window) (delete-window window))))
+
+(defun firstpair-lexicon-cycle-languages-command ()
+  "Cycle the dictionary languages from the dictionary window."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (firstpair-reader-translation-languages)))
+
+(defun firstpair-reader-next-marked-lookup ()
+  "Look up the next dictionary word of the book."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (firstpair-reader-next-marked)
+    (firstpair-reader-describe-word)))
+
+(defun firstpair-reader-previous-marked-lookup ()
+  "Look up the previous dictionary word of the book."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (firstpair-reader-previous-marked)
+    (firstpair-reader-describe-word)))
+
+(defun firstpair-reader-touch-click (event)
+  "Act on a tap at EVENT: look up a dictionary word, follow a link, or move point."
+  (interactive "e")
+  (mouse-set-point event)
+  (cond ((firstpair-reader--overlay-at (point)) (firstpair-reader-describe-word))
+        ((or (Info-get-token (point) "\\*note[ \n\t]+" "\\*note[ \n\t]+\\([^:]*\\):\\(:\\|[ \n\t]*\\(([^)]*)\\|[^.,;\n]*\\)[.,;]\\)")
+             (Info-get-token (point) "\\* +" "\\* +\\([^:]*\\):"))
+         (firstpair-reader-mouse-follow-nearest-node event))
+        (t nil)))
+
+(defun firstpair-reader-help ()
+  "Show the reader's keys and taps."
+  (interactive)
+  (with-help-window "*FirstPair Reader keys*"
+    (princ "FirstPair Reader — keys and taps\n\n")
+    (princ "Tap a word            look it up          d   dictionary for the word at point\n")
+    (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
+    (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
+    (princ "Header buttons        as labelled         v   next translation of the language at point\n")
+    (princ "                                          b   second translation under the first\n")
+    (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
+    (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
+    (princ "\nIn the dictionary window: t languages, q close.  Everything above also has a C-c C-<letter> form.\n")))
+
+(defun firstpair-reader--apply-touch (bundle)
+  "Give the current reader buffer its button bar and turn on mouse reporting."
+  (when firstpair-reader-touch
+    (setq header-line-format (firstpair-reader--reader-bar bundle))
+    (unless (or (display-graphic-p) (bound-and-true-p xterm-mouse-mode))
+      (ignore-errors (xterm-mouse-mode 1)))))
+
 (define-minor-mode firstpair-reader-mode
   "Read a FirstPair bundle: references below the text, dictionary below both.
 \\{firstpair-reader-mode-map}"
