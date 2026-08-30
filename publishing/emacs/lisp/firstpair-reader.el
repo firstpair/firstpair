@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.13
+;; Version: 1.14
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -524,22 +524,53 @@ The entry opens in the dictionary window below the references."
                         (list (if (stringp header-line-format) header-line-format (or (and (listp header-line-format) (cadr header-line-format)) ""))))))))
     word))
 
+(defun firstpair-reader--source-spans (bundle)
+  "Buffer spans (START . END) of the source-language regions of the current node."
+  (let (spans)
+    (dolist (region (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node) (nreverse spans))
+      (when (plist-get region :source)
+        (save-excursion
+          (goto-char (point-min))
+          (when (zerop (forward-line (1- (plist-get region :start))))
+            (let ((start (point)))
+              (forward-line (1+ (- (plist-get region :end) (plist-get region :start))))
+              (push (cons start (point)) spans))))))))
+
+(defun firstpair-reader--in-spans-p (position spans)
+  (seq-some (lambda (span) (and (<= (car span) position) (< position (cdr span)))) spans))
+
+(defun firstpair-reader--move-source-word (forward spans)
+  "Move to the next (or previous, unless FORWARD) word inside SPANS; non-nil when found."
+  (let ((origin (point)) (found nil))
+    (save-excursion
+      (catch 'done
+        (while (if forward (< (point) (point-max)) (> (point) (point-min)))
+          (if forward (forward-word 1) (backward-word 1))
+          (let ((start (if forward (save-excursion (backward-word 1) (point)) (point))))
+            (when (and (/= start origin)
+                       (firstpair-reader--in-spans-p start spans)
+                       (if forward (> start origin) (< start origin)))
+              (setq found start) (throw 'done t))))))
+    (when found (goto-char found) t)))
+
 (defun firstpair-reader--move-marked (forward)
-  "Move point to the next marked word, or the previous one unless FORWARD."
-  (let* ((overlays (firstpair-reader--marked-overlays))
-         (current (firstpair-reader--overlay-at (point)))
-         (origin (if current (overlay-start current) (point)))
-         (target (if forward
-                     (seq-find (lambda (overlay) (> (overlay-start overlay) origin)) overlays)
-                   (seq-find (lambda (overlay) (< (overlay-start overlay) origin))
-                             (reverse overlays)))))
-    (unless target
-      (user-error "No more marked words in this node"))
-    (goto-char (overlay-start target))
-    (let ((gloss (firstpair-lexicon-gloss
-                  (firstpair-reader--bundle)
-                  (plist-get (overlay-get target 'firstpair-marked) :form))))
-      (when gloss (message "%s" gloss)))))
+  "Move point to the next dictionary word, or the previous one unless FORWARD.
+In prose these are the marked words; in an aligned edition they are the
+words of the source-language regions, which are all looked up directly."
+  (let* ((bundle (firstpair-reader--bundle))
+         (spans (firstpair-reader--source-spans bundle))
+         (overlays (firstpair-reader--marked-overlays)))
+    (if spans
+        (unless (firstpair-reader--move-source-word forward spans)
+          (user-error (if forward "No further source words in this canto" "No earlier source words in this canto")))
+      (let* ((current (firstpair-reader--overlay-at (point)))
+             (origin (if current (overlay-start current) (point)))
+             (target (if forward
+                         (seq-find (lambda (overlay) (> (overlay-start overlay) origin)) overlays)
+                       (seq-find (lambda (overlay) (< (overlay-start overlay) origin))
+                                 (reverse overlays)))))
+        (if target (goto-char (overlay-start target))
+          (user-error (if forward "No further marked words" "No earlier marked words")))))))
 
 (defun firstpair-reader-next-marked ()
   "Move to the next word the dictionary window can explain."

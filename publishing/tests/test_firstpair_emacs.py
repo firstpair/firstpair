@@ -655,6 +655,11 @@ class AlignedTests(Fixture):
   (with-current-buffer firstpair-reader-buffer
     (Info-goto-node "(fixture)Inferno — Canto 1")
     (let ((hidden (lambda () (length (seq-filter (lambda (o) (overlay-get o 'firstpair-region)) firstpair-reader--overlays)))))
+      (goto-char (point-min))
+      (firstpair-reader-next-marked)
+      (princ (format "WORD %s\n" (thing-at-point 'word t)))
+      (firstpair-reader-next-marked)
+      (princ (format "WORD %s\n" (thing-at-point 'word t)))
       (let ((a (funcall hidden)))
         (firstpair-reader-rotate-translation)
         (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
@@ -662,7 +667,9 @@ class AlignedTests(Fixture):
           (princ (format "%d %d %d %s" a b (funcall hidden) label)))))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
-        output = result.stdout.strip().split(" ", 3)
+        words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
+        self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
+        output = result.stdout.strip().splitlines()[-1].split(" ", 3)
         self.assertEqual(["2", "2", "0"], output[:3], result.stdout)  # Cary hidden; then Longfellow hidden; then nothing hidden
         self.assertIn("Cary (1814) ≈", output[3])
         # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
