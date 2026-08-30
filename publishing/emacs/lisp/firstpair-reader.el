@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.10
+;; Version: 1.11
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -956,6 +956,8 @@ updated directly.  Returns DIRECTORY."
   (let ((map (make-sparse-keymap)))
     (define-key map [header-line mouse-1] command)
     (define-key map [header-line mouse-2] command)
+    (define-key map [mode-line mouse-1] command)
+    (define-key map [mode-line mouse-2] command)
     (define-key map [mouse-1] command)
     (propertize (concat " " label " ")
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
@@ -966,15 +968,37 @@ updated directly.  Returns DIRECTORY."
   (cons "" (mapcan (lambda (button) (list (firstpair-reader--button (car button) (cdr button)) " ")) buttons)))
 
 (defun firstpair-reader--reader-bar (bundle)
-  "The book's button bar: dictionary and translations first, then movement."
+  "The book's top bar: word by word through the dictionary, then translations."
   (let ((many (firstpair-bundle-translations bundle)))
     (apply #'firstpair-reader--bar
-           (append (list (cons "Dict" #'firstpair-reader-describe-word)
+           (append (list (cons "◀ word" #'firstpair-reader-previous-marked-lookup)
+                         (cons "word ▶" #'firstpair-reader-next-marked-lookup)
+                         (cons "Dict" #'firstpair-reader-describe-word)
                          (cons "Langs" #'firstpair-reader-translation-languages))
                    (and many (list (cons "Next tr" #'firstpair-reader-rotate-translation)
-                                   (cons "2nd" #'firstpair-reader-second-translation)))
-                   (list (cons "◀" #'Info-prev) (cons "▶" #'Info-next) (cons "Top" #'Info-top-node)
-                         (cons "Refs" #'firstpair-reader-references) (cons "?" #'firstpair-reader-help))))))
+                                   (cons "2nd" #'firstpair-reader-second-translation)))))))
+
+(defun firstpair-reader-page-down ()
+  "Show the next screen of the book."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (condition-case nil (scroll-up-command) (end-of-buffer (Info-next)))))
+
+(defun firstpair-reader-page-up ()
+  "Show the previous screen of the book."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (condition-case nil (scroll-down-command) (beginning-of-buffer nil))))
+
+(defun firstpair-reader--movement-bar ()
+  "The book's bottom bar, nearest the thumb: paging and navigation."
+  (firstpair-reader--bar (cons "▲ page" #'firstpair-reader-page-up)
+                         (cons "▼ page" #'firstpair-reader-page-down)
+                         (cons "◀ canto" #'Info-prev)
+                         (cons "canto ▶" #'Info-next)
+                         (cons "Top" #'Info-top-node)
+                         (cons "Refs" #'firstpair-reader-references)
+                         (cons "?" #'firstpair-reader-help)))
 
 (defun firstpair-reader--dictionary-bar ()
   "The dictionary window's button bar."
@@ -1028,7 +1052,8 @@ updated directly.  Returns DIRECTORY."
     (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
     (princ "                                          j   k   next / previous word, looked up at once\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
-    (princ "Header buttons        as labelled         v   next translation of the language at point\n")
+    (princ "Top bar               words, dictionary   v   next translation of the language at point\n")
+    (princ "Bottom bar            paging, cantos      SPC DEL   page down / up\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
@@ -1040,6 +1065,7 @@ Terminals that report only focus (iSH sends ESC [ I on a tap) have those
 sequences decoded as focus events, so a tap never reads as M-[ I."
   (when firstpair-reader-touch
     (setq header-line-format (firstpair-reader--reader-bar bundle))
+    (setq mode-line-format (append (firstpair-reader--movement-bar) (list " " '(:eval (or Info-current-node "")))))
     (unless (display-graphic-p)
       (unless (bound-and-true-p xterm-mouse-mode)
         (ignore-errors (xterm-mouse-mode 1)))
