@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.15
+;; Version: 1.16
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -900,6 +900,10 @@ updated directly.  Returns DIRECTORY."
       (let ((source (expand-file-name (concat stem ".info") (firstpair-bundle-root bundle)))
             (target (expand-file-name (concat stem ".info") directory)))
         (copy-file source target t)
+        ;; A large manual is split into subfiles <stem>.info-1, -2, ...
+        (dolist (part (directory-files (firstpair-bundle-root bundle) t
+                                       (concat "\\`" (regexp-quote stem) "\\.info-[0-9]+\\'")))
+          (copy-file part (expand-file-name (file-name-nondirectory part) directory) t))
         (if program
             (unless (zerop (call-process program nil nil nil
                                          (concat "--info-dir=" (directory-file-name directory))

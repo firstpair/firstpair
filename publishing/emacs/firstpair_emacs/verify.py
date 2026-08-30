@@ -54,10 +54,38 @@ def parse_info(path: Path) -> InfoFile:
     pieces = text.split(SEPARATOR + "\n")
     if not pieces or not pieces[0].startswith(f"This is {path.name},"):
         raise BundleError(f"{path.name} lacks the Info preamble")
+    # An indirect manual keeps its nodes in subfiles; rebuild the single-file
+    # byte stream the tag offsets refer to (preamble, then each subfile's
+    # nodes) and parse the nodes from there.
+    indirect = next((piece for piece in pieces if piece.startswith("Indirect:")), None)
+    if indirect is not None:
+        stream = pieces[0].encode("utf-8")
+        node_pieces: list[str] = []
+        for line in indirect.splitlines()[1:]:
+            if not line.strip():
+                continue
+            name, _, offset = line.rpartition(": ")
+            subfile = path.parent / name
+            if not subfile.is_file():
+                raise BundleError(f"{path.name} names a missing subfile: {name}")
+            payload = subfile.read_bytes()
+            marker = payload.find(SEPARATOR.encode("utf-8"))
+            if marker < 0 or not payload.startswith(f"This is {name},".encode("utf-8")):
+                raise BundleError(f"{name} lacks the Info subfile preamble")
+            if len(stream) != int(offset):
+                raise BundleError(f"{path.name} indirect offset for {name} is {offset}, expected {len(stream)}")
+            nodes_bytes = payload[marker:]
+            stream += nodes_bytes
+            node_pieces.extend(nodes_bytes.decode("utf-8").split(SEPARATOR + "\n")[1:])
+        tag_pieces = [piece for piece in pieces[1:] if piece.startswith(("Tag Table:", "End Tag Table", "Local Variables:"))]
+        pieces = [pieces[0]] + node_pieces + tag_pieces
+        text = stream.decode("utf-8") + "".join(SEPARATOR + "\n" + piece for piece in tag_pieces)
     for piece in pieces[1:]:
+        if piece.startswith("Indirect:"):
+            continue
         if piece.startswith("Tag Table:"):
             for line in piece.splitlines()[1:]:
-                if DELIMITER not in line:
+                if DELIMITER not in line or line == "(Indirect)":
                     continue
                 name, offset = line.split(DELIMITER, 1)
                 if name.startswith("Node: "):

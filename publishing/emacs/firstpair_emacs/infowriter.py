@@ -82,6 +82,15 @@ class Rendered:
     nodes: tuple[str, ...]
     references: dict[str, tuple[dict[str, str], ...]]
     regions: tuple[Region, ...] = ()
+    # Indirect (split) manuals: (file name, bytes) for each subfile; empty
+    # when the manual fits in one file. `data` is then the main file.
+    subfiles: tuple[tuple[str, bytes], ...] = ()
+
+
+# A manual larger than this is split into subfiles the Info reader loads one
+# at a time: Emacs reads a whole Info file into a buffer on first visit, and
+# a nine-megabyte book took tens of seconds on a phone.
+SPLIT_BYTES = 300_000
 
 
 @dataclass
@@ -130,9 +139,10 @@ def fill(text: str, width: int, indent: int, first_indent: int | None = None) ->
 
 
 class InfoWriter:
-    def __init__(self, manual: Manual, *, produced_by: str) -> None:
+    def __init__(self, manual: Manual, *, produced_by: str, split_bytes: int = SPLIT_BYTES) -> None:
         self.manual = manual
         self.produced_by = produced_by
+        self.split_bytes = split_bytes
 
     # -- inline rendering ----------------------------------------------------
 
@@ -429,22 +439,53 @@ class InfoWriter:
                 )
             text += block
             node_starts.append((node.name, offsets[node.name]))
-        tags = [SEPARATOR + "\nTag Table:"]
         entries: list[tuple[int, str]] = [(offsets[node.name], f"Node: {node.name}{DELIMITER}{offsets[node.name]}") for node in nodes]
         entries.extend(
             (position, f"Ref: {name}{DELIMITER}{position}") for (_, name), position in anchor_offsets.items()
         )
-        for _, row in sorted(entries, key=lambda item: (item[0], item[1])):
-            tags.append(row)
-        tags.append(SEPARATOR + "\nEnd Tag Table\n")
-        text += "\n".join(tags)
-        text += "\n" + SEPARATOR + "\nLocal Variables:\ncoding: utf-8\nEnd:\n"
+        tag_rows = [row for _, row in sorted(entries, key=lambda item: (item[0], item[1]))]
+        trailer = "\n" + SEPARATOR + "\nLocal Variables:\ncoding: utf-8\nEnd:\n"
+        body = text.encode("utf-8")
+        preamble_length = len(pieces[0].encode("utf-8"))
+        subfiles: list[tuple[str, bytes]] = []
+        if len(body) - preamble_length > self.split_bytes and len(node_starts) > 1:
+            # Split at node boundaries into subfiles of about `split_bytes`.
+            # Tag offsets stay those of the single file; each subfile's
+            # Indirect offset is the single-file position of its first node,
+            # which is how Emacs's Info-read-subfile locates a node.
+            groups: list[list[tuple[str, int]]] = [[]]
+            for index, (name, start) in enumerate(node_starts):
+                end = node_starts[index + 1][1] if index + 1 < len(node_starts) else len(body)
+                current = groups[-1]
+                current_size = (end if not current else end - current[0][1])
+                if current and current_size > self.split_bytes:
+                    groups.append([(name, start)])
+                else:
+                    current.append((name, start))
+            indirect_lines = []
+            for number, group in enumerate(groups, 1):
+                start = group[0][1]
+                end = (groups[number][0][1] if number < len(groups) else len(body))
+                subfile_name = f"{self.manual.filename}-{number}"
+                header = f"This is {subfile_name}, produced by {self.produced_by}.\n\n".encode("utf-8")
+                subfiles.append((subfile_name, header + body[start:end]))
+                indirect_lines.append(f"{subfile_name}: {start}")
+            main = (
+                pieces[0]
+                + SEPARATOR + "\nIndirect:\n" + "\n".join(indirect_lines) + "\n"
+                + SEPARATOR + "\nTag Table:\n(Indirect)\n" + "\n".join(tag_rows) + "\n"
+                + SEPARATOR + "\nEnd Tag Table\n" + trailer
+            )
+            data = main.encode("utf-8")
+        else:
+            data = (text + SEPARATOR + "\nTag Table:\n" + "\n".join(tag_rows) + "\n" + SEPARATOR + "\nEnd Tag Table\n" + trailer).encode("utf-8")
         return Rendered(
-            data=text.encode("utf-8"),
+            data=data,
             spans=tuple(spans),
             nodes=tuple(node.name for node in nodes),
             references=references,
             regions=tuple(regions),
+            subfiles=tuple(subfiles),
         )
 
 

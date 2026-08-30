@@ -335,10 +335,11 @@ if command -v install-info >/dev/null 2>&1; then
   for stem in $manuals; do
     if [ "$mode" = install ]; then
       cp "$here/$stem.info" "$target/$stem.info"
+      for part in "$here/$stem.info"-*; do [ -f "$part" ] && cp "$part" "$target/"; done
       install-info --info-dir="$target" "$target/$stem.info"
     elif [ -f "$target/$stem.info" ]; then
       install-info --delete --info-dir="$target" "$target/$stem.info"
-      rm -f "$target/$stem.info"
+      rm -f "$target/$stem.info" "$target/$stem.info"-*
     fi
   done
 elif command -v emacs >/dev/null 2>&1; then
@@ -496,6 +497,9 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
 
         (root / assembly.reader.filename).write_bytes(reader_render.data)
         (root / assembly.references.filename).write_bytes(reference_render.data)
+        for render in (reader_render, reference_render):
+            for subfile_name, payload in render.subfiles:
+                (root / subfile_name).write_bytes(payload)
         (root / "dir").write_text(_dir_file([assembly.reader, assembly.references]), encoding="utf-8")
         texi_root = root / "texi"
         texi_root.mkdir()

@@ -13,8 +13,9 @@ on it.
   init.el                      loader: registers the bundle; uses an installed reader if present
   install.sh                   copies the manuals into an Info directory (install-info or Emacs)
   dir                          Info directory node listing both manuals
-  <stem>.info                  the book, one Info file
-  <stem>-refs.info             the references, one Info file
+  <stem>.info                  the book (over 300 KB: an Indirect main file
+  <stem>.info-1, -2, ...       with its nodes in subfiles, as makeinfo splits)
+  <stem>-refs.info             the references, split the same way when large
   texi/<stem>.texi             Texinfo source of the book
   texi/<stem>-refs.texi        Texinfo source of the references
   Guide.md, README.md          the complete first-use manual (identical bytes)
@@ -44,6 +45,12 @@ an Info directory.
 
 ## Info conventions
 
+- A manual over `infowriter.SPLIT_BYTES` (300 KB) is written as an Indirect
+  main file plus `<file>-N` subfiles of about that size, cut at node
+  boundaries; tag offsets are those of the single-file stream, so Emacs and
+  `info` load only the subfile holding the node they open (a 9 MB book was
+  taking minutes to open on a phone as one file). `verify.parse_info`
+  reassembles the stream and checks the Indirect offsets.
 - Both files are written directly by `firstpair_emacs.infowriter`, not by
   `makeinfo`, so the output is byte-reproducible for a given source revision
   and the builder knows the exact line and column of every marked word.

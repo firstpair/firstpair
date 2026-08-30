@@ -297,6 +297,37 @@ class ModelTests(unittest.TestCase):
         self.assertEqual({"Top", "Alpha"}, set(parsed.nodes))
         self.assertEqual([("Alpha", "other", "Beta 1-2")], parsed.notes)
 
+    def test_info_writer_splits_large_manuals_into_subfiles(self) -> None:
+        top = Node(name="Top", title="Fixture", menu=tuple((f"Canto {n}", "") for n in range(1, 9)))
+        for n in range(1, 9):
+            top.children.append(Node(name=f"Canto {n}", title=f"Canto {n}", blocks=(Paragraph(body=(Text(text=f"canto {n} " * 120),)),)))
+        manual = Manual(filename="fixture.info", title="Fixture", top=top, direntry=("Books", "fixture", "d"))
+        rendered = InfoWriter(manual, produced_by="test", split_bytes=2000).render()
+        names = [name for name, _ in rendered.subfiles]
+        self.assertGreater(len(names), 2)
+        self.assertEqual("fixture.info-1", names[0])
+        main = rendered.data.decode("utf-8")
+        self.assertIn("\x1f\nIndirect:\nfixture.info-1: ", main)
+        self.assertIn("\x1f\nTag Table:\n(Indirect)\n", main)
+        self.assertNotIn("Canto 3 " * 3, main)
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "fixture.info").write_bytes(rendered.data)
+            for name, payload in rendered.subfiles:
+                (root / name).write_bytes(payload)
+            parsed = parse_info(root / "fixture.info")
+            self.assertEqual({"Top", *(f"Canto {n}" for n in range(1, 9))}, set(parsed.nodes))
+            if has("emacs"):
+                script = (
+                    f'(progn (require (quote info)) (Info-find-node "{root / "fixture.info"}" "Canto 7")'
+                    ' (princ (format "%s|%s" Info-current-subfile (buffer-substring-no-properties (point) (min (point-max) (+ (point) 60))))))'
+                )
+                completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
+                self.assertEqual(0, completed.returncode, completed.stderr)
+                subfile, _, head = completed.stdout.partition("|")
+                self.assertTrue(subfile.endswith("fixture.info-" + str(names.index(next(n for n, b in rendered.subfiles if b"Node: Canto 7," in b)) + 1)), completed.stdout)
+                self.assertTrue(head.startswith("\nCanto 7\n*******"), head)
+
 
 class BuildTests(Fixture):
     def test_builds_and_verifies_a_complete_bundle(self) -> None:
