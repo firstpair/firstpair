@@ -540,7 +540,8 @@ The entry opens in the dictionary window below the references."
   (seq-some (lambda (span) (and (<= (car span) position) (< position (cdr span)))) spans))
 
 (defun firstpair-reader--move-source-word (forward spans)
-  "Move to the next (or previous, unless FORWARD) word inside SPANS; non-nil when found."
+  "Move to the next word inside SPANS, or the previous unless FORWARD.
+Return non-nil when a word was found."
   (let ((origin (point)) (found nil))
     (save-excursion
       (catch 'done
