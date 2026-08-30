@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.9
+;; Version: 1.10
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -933,6 +933,8 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "b") #'firstpair-reader-second-translation)
     (define-key map (kbd ",") #'firstpair-reader-previous-marked)
     (define-key map (kbd ".") #'firstpair-reader-next-marked)
+    (define-key map (kbd "j") #'firstpair-reader-next-marked-lookup)
+    (define-key map (kbd "k") #'firstpair-reader-previous-marked-lookup)
     (define-key map (kbd "r") #'firstpair-reader-references)
     (define-key map (kbd "?") #'firstpair-reader-help)
     (define-key map [mouse-1] #'firstpair-reader-touch-click)
@@ -1024,6 +1026,7 @@ updated directly.  Returns DIRECTORY."
     (princ "FirstPair Reader — keys and taps\n\n")
     (princ "Tap a word            look it up          d   dictionary for the word at point\n")
     (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
+    (princ "                                          j   k   next / previous word, looked up at once\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "Header buttons        as labelled         v   next translation of the language at point\n")
     (princ "                                          b   second translation under the first\n")
@@ -1032,11 +1035,16 @@ updated directly.  Returns DIRECTORY."
     (princ "\nIn the dictionary window: t languages, q close.  Everything above also has a C-c C-<letter> form.\n")))
 
 (defun firstpair-reader--apply-touch (bundle)
-  "Give the current reader buffer its button bar and turn on mouse reporting."
+  "Give the current reader buffer its button bar and turn on mouse reporting.
+Terminals that report only focus (iSH sends ESC [ I on a tap) have those
+sequences decoded as focus events, so a tap never reads as M-[ I."
   (when firstpair-reader-touch
     (setq header-line-format (firstpair-reader--reader-bar bundle))
-    (unless (or (display-graphic-p) (bound-and-true-p xterm-mouse-mode))
-      (ignore-errors (xterm-mouse-mode 1)))))
+    (unless (display-graphic-p)
+      (unless (bound-and-true-p xterm-mouse-mode)
+        (ignore-errors (xterm-mouse-mode 1)))
+      (define-key input-decode-map "\e[I" [focus-in])
+      (define-key input-decode-map "\e[O" [focus-out]))))
 
 (define-minor-mode firstpair-reader-mode
   "Read a FirstPair bundle: references below the text, dictionary below both.

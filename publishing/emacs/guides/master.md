@@ -308,8 +308,8 @@ Langs · ◀ word · word ▶**. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation, `b` a second one, `,` and `.` step between dictionary
-words, `n` and `p` turn cantos, space and backspace page, `?` shows this
-list, `q` quits. Terminals get mouse reporting switched on automatically
+words, `j` and `k` step to the next or previous word *and open it*, `n` and
+`p` turn cantos, space and backspace page, `?` shows this list, `q` quits. Terminals get mouse reporting switched on automatically
 (`xterm-mouse-mode`); if taps still do nothing, the terminal app is not
 forwarding them and the single keys remain. `firstpair-reader-touch` turns
 the layer off.
