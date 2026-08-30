@@ -63,7 +63,9 @@
                 (condition-case nil
                     (firstpair-check--visit "resolve" target)
                   (error (push target unresolved)))))))))
-    (let ((forms (firstpair-lexicon-table bundle "forms.tsv"))
+    (let ((forms (let ((merged (make-hash-table :test #'equal)))
+                   (dolist (table (firstpair-lexicon-forms-tables bundle) merged)
+                     (maphash (lambda (k v) (puthash k v merged)) table))))
           (translations (firstpair-lexicon-translations bundle)))
       ;; Every language that has glosses at all must render at least one of
       ;; them; partial coverage is legitimate and reported by the builder.

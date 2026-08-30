@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.11
+;; Version: 1.12
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -124,7 +124,9 @@ Signals an error when ROOT is not a bundle this reader understands."
        :pages (firstpair-bundle--read-json (expand-file-name "data/reader.json" root))
        :records (firstpair-bundle--read-json (expand-file-name "data/records.json" root))
        :marked (firstpair-bundle--marked (expand-file-name "data/marked.tsv" root))
-       :regions (firstpair-bundle--regions (expand-file-name "data/regions.tsv" root))
+       ;; Regions load per node on first use (see `firstpair-bundle-regions-for-node');
+       ;; the table holds the byte index when the bundle ships one, else it is filled whole, lazily.
+       :regions (firstpair-bundle--region-index root)
        :translations (let ((file (expand-file-name "data/translations.json" root)))
                        (and (file-readable-p file) (firstpair-bundle--read-json file)))
        :tables (make-hash-table :test #'equal)))))
@@ -181,9 +183,53 @@ editions of one book, whose manuals share a name, stay distinct."
   "Return the marked words recorded for NODE of MANUAL in BUNDLE."
   (gethash (concat manual "\0" node) (firstpair-bundle-marked bundle)))
 
+(defun firstpair-bundle--region-index (root)
+  "The region table's state for ROOT: a hash with the byte index, or an empty hash."
+  (let ((table (make-hash-table :test #'equal))
+        (index (expand-file-name "data/regions.index.json" root)))
+    (when (file-readable-p index)
+      (dolist (entry (firstpair-bundle--read-json index))
+        ;; keys are "manual<TAB>node"; values (start end) byte offsets
+        (puthash (concat "index\0" (replace-regexp-in-string "\t" "\0" (symbol-name (car entry)) t t))
+                 (cdr entry) table)))
+    table))
+
+(defun firstpair-bundle--parse-region-rows (text)
+  "Parse region rows from TEXT (header optional) into plists."
+  (let (rows)
+    (dolist (line (split-string text "\n" t) (nreverse rows))
+      (let ((fields (split-string line "\t")))
+        (when (and (= (length fields) 7) (not (equal (nth 0 fields) "manual")))
+          (push (list :language (nth 2 fields) :unit (nth 3 fields)
+                      :start (string-to-number (nth 4 fields))
+                      :end (string-to-number (nth 5 fields))
+                      :source (equal (nth 6 fields) "source"))
+                rows))))))
+
 (defun firstpair-bundle-regions-for-node (bundle manual node)
-  "Return the aligned-text regions recorded for NODE of MANUAL in BUNDLE."
-  (gethash (concat manual "\0" node) (firstpair-bundle-regions bundle)))
+  "Return the aligned-text regions recorded for NODE of MANUAL in BUNDLE.
+Read from the bundle's byte index on first use, or, for a bundle without an
+index, from the whole table parsed once."
+  (let* ((table (firstpair-bundle-regions bundle))
+         (key (concat manual "\0" node))
+         (cached (gethash key table 'none)))
+    (if (not (eq cached 'none))
+        cached
+      (let* ((file (expand-file-name "data/regions.tsv" (firstpair-bundle-root bundle)))
+             (span (gethash (concat "index\0" key) table))
+             (rows (cond (span
+                          (with-temp-buffer
+                            (insert-file-contents file nil (elt span 0) (elt span 1))
+                            (firstpair-bundle--parse-region-rows (buffer-string))))
+                         ((and (not (gethash "whole\0loaded" table)) (file-readable-p file))
+                          ;; Older bundle: parse everything once into the cache.
+                          (puthash "whole\0loaded" t table)
+                          (maphash (lambda (k v) (puthash k v table))
+                                   (firstpair-bundle--regions file))
+                          (gethash key table))
+                         (t nil))))
+        (puthash key (nreverse rows) table)
+        (gethash key table)))))
 
 (defun firstpair-bundle-records-for-node (bundle node)
   "Return the records of BUNDLE quoted in NODE."

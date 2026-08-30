@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.11
+;; Version: 1.12
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -126,6 +126,7 @@ Change it with `firstpair-lexicon-cycle-languages'.")
    (pcase name
      ("entries.tsv" #'firstpair-lexicon--entries)
      ("forms.tsv" #'firstpair-lexicon--forms)
+     ((pred (lambda (n) (string-prefix-p "forms/" n))) #'firstpair-lexicon--forms)
      ("stems.tsv" #'firstpair-lexicon--stems)
      ("endings.tsv" #'firstpair-lexicon--endings)
      ("glosses.tsv" #'firstpair-lexicon--glosses)
@@ -147,6 +148,26 @@ The key's shard, or the single table of an older bundle."
           ((file-readable-p (expand-file-name "lexicon/glosses.tsv" root))
            (firstpair-lexicon-table bundle "glosses.tsv"))
           (t (make-hash-table :test #'equal)))))
+
+(defun firstpair-lexicon--forms-table (bundle form)
+  "The forms table holding FORM.
+Its first-letter shard, or the single table of an older bundle."
+  (let* ((root (firstpair-bundle-root bundle))
+         (shard (concat "forms/" (firstpair-lexicon--gloss-shard form) ".tsv")))
+    (cond ((file-readable-p (expand-file-name (concat "lexicon/" shard) root))
+           (firstpair-lexicon-table bundle shard))
+          ((file-readable-p (expand-file-name "lexicon/forms.tsv" root))
+           (firstpair-lexicon-table bundle "forms.tsv"))
+          (t (make-hash-table :test #'equal)))))
+
+(defun firstpair-lexicon-forms-tables (bundle)
+  "Every forms table of BUNDLE, loaded: the shards, or the single table."
+  (let* ((root (firstpair-bundle-root bundle))
+         (directory (expand-file-name "lexicon/forms" root)))
+    (if (file-directory-p directory)
+        (mapcar (lambda (file) (firstpair-lexicon-table bundle (concat "forms/" file)))
+                (directory-files directory nil "\\.tsv\\'"))
+      (list (firstpair-lexicon-table bundle "forms.tsv")))))
 
 (defun firstpair-lexicon-gloss-tables (bundle)
   "Every gloss table of BUNDLE, loaded: the shards, or the single table."
@@ -313,8 +334,7 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
 (defun firstpair-lexicon-analyse (bundle word)
   "Return the readings of WORD offered by BUNDLE, best first."
   (let* ((form (firstpair-lexicon-normalise word bundle))
-         (forms (firstpair-lexicon-table bundle "forms.tsv"))
-         (direct (and (> (length form) 0) (gethash form forms))))
+         (direct (and (> (length form) 0) (gethash form (firstpair-lexicon--forms-table bundle form)))))
     (or direct
         (seq-some (lambda (enclitic)
                     (and (> (length form) (1+ (length enclitic)))
@@ -322,7 +342,7 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
                          (let ((base (substring form 0 (- (length form) (length enclitic)))))
                            (mapcar (lambda (reading)
                                      (plist-put (copy-sequence reading) :enclitic enclitic))
-                                   (gethash base forms)))))
+                                   (gethash base (firstpair-lexicon--forms-table bundle base))))))
                   (firstpair-lexicon-enclitics bundle))
         (firstpair-lexicon--fallback bundle form))))
 

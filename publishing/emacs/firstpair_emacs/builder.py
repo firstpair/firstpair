@@ -562,15 +562,24 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             "manual\tnode\tline\tcolumn\tlength\tform\tentries\n" + "".join(f"{row}\n" for row in marked_rows),
             encoding="utf-8",
         )
-        region_rows = [
-            "\t".join((stem, region.node, region.language, region.unit, str(region.start), str(region.end), "source" if region.source else "translation"))
+        # Regions are written grouped by node with a byte-offset index, so a
+        # reader loads one node's regions instead of the whole table.
+        region_rows: list[tuple[str, str]] = [
+            (f"{stem}\0{region.node}", "\t".join((stem, region.node, region.language, region.unit, str(region.start), str(region.end), "source" if region.source else "translation")))
             for stem, render in ((config.reader_stem, reader_render), (config.reference_stem, reference_render))
             for region in render.regions
         ]
-        (data_root / "regions.tsv").write_text(
-            "manual\tnode\tlanguage\tunit\tstart\tend\trole\n" + "".join(f"{row}\n" for row in region_rows),
-            encoding="utf-8",
-        )
+        header = "manual\tnode\tlanguage\tunit\tstart\tend\trole\n"
+        chunks: list[bytes] = [header.encode("utf-8")]; offset = len(chunks[0]); region_index: dict[str, list[int]] = {}
+        current_key = None
+        for key, row in sorted(region_rows, key=lambda item: item[0]):
+            encoded = f"{row}\n".encode("utf-8")
+            if key != current_key:
+                region_index[key.replace("\0", "\t")] = [offset, offset]; current_key = key
+            region_index[key.replace("\0", "\t")][1] = offset + len(encoded)
+            chunks.append(encoded); offset += len(encoded)
+        (data_root / "regions.tsv").write_bytes(b"".join(chunks))
+        (data_root / "regions.index.json").write_text(json.dumps(region_index, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
 
         # The edition's translation table: languages, the translations of each
         # (id, title, alignment, coverage by part, default), for the reader's
@@ -599,6 +608,25 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
             translations_payload, glosses_meta = _translations(
                 config, corpus_spec, words, projected, root / "lexicon", allow_download=allow_download
             )
+            # The forms table is read on every lookup; sharded by first letter,
+            # a lookup reads one slice instead of the whole table.
+            forms_path = root / "lexicon" / "forms.tsv"
+            if forms_path.is_file():
+                lines = forms_path.read_text(encoding="utf-8").splitlines()
+                header, rows = lines[0], lines[1:]
+                shards: dict[str, list[str]] = {}
+                for row in rows:
+                    first = row.split("\t", 1)[0][:1].lower()
+                    shards.setdefault(first if first.isalpha() else "_", []).append(row)
+                forms_dir = root / "lexicon" / "forms"
+                forms_dir.mkdir(exist_ok=True)
+                lexicon_payload["files"].pop("forms.tsv", None)
+                for name, shard_rows in sorted(shards.items()):
+                    text = header + "\n" + "".join(f"{row}\n" for row in shard_rows)
+                    (forms_dir / f"{name}.tsv").write_text(text, encoding="utf-8")
+                    encoded = text.encode("utf-8")
+                    lexicon_payload["files"][f"forms/{name}.tsv"] = {"rows": len(shard_rows), "bytes": len(encoded), "sha256": hashlib.sha256(encoded).hexdigest()}
+                forms_path.unlink()
             lexicon_payload["glossLanguage"] = corpus_spec.gloss_language
             lexicon_payload["translations"] = translations_payload
             if glosses_meta is not None:

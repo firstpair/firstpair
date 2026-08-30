@@ -26,12 +26,13 @@ on it.
   data/records.json            records and evidence targets: id, label, kind, section, node, rights, file, quotedIn
   data/references.json         every cross-reference each node contains, per manual
   data/marked.tsv              words the dictionary window explains, by position
-  data/regions.tsv             aligned editions: the lines of each language in each unit
+  data/regions.tsv             grouped by node; data/regions.index.json holds byte offsets so a node's regions load alone             aligned editions: the lines of each language in each unit
   lexicon/LEXICON.json         lexicon description (schema firstpair-lexicon-v1)
   lexicon/entries.tsv          id, headword, part, code, frequency, senses
   lexicon/forms.tsv            form, entry, features, enclitic
   lexicon/stems.tsv            stem, entry, index
   lexicon/endings.tsv          ending, part, declension, variant, stem, features, order, frequency
+  lexicon/forms/<letter>.tsv   form, entry, features, enclitic — one shard per first letter, read per lookup
   lexicon/glosses/<letter>.tsv language, key, kind (form|entry), headword, part, definitions, source — one shard per first letter of the key, read on demand
   evidence/                    delivered evidence files, named by target id
   FIRSTPAIR-EMACS-MANIFEST.json sealed inventory (schema firstpair-emacs-manifest-v1)
