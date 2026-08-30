@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.16
+;; Version: 1.17
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -369,9 +369,11 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
 
 ;;; Presentation
 
-(defface firstpair-lexicon-language
-  '((t :inherit shadow :weight bold))
-  "Face for the language heading of a definition block.")
+(defvar-local firstpair-lexicon-expanded nil
+  "Non-nil when the dictionary buffer shows every available sense.")
+
+(defvar-local firstpair-lexicon-has-more nil
+  "Non-nil when the dictionary entry has senses hidden by compact view.")
 
 (defvar firstpair-lexicon-mode-map
   (let ((map (make-sparse-keymap)))
@@ -380,52 +382,46 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
     (define-key map (kbd "p") #'backward-paragraph)
     (define-key map (kbd "t") #'firstpair-lexicon-next-languages)
     (define-key map (kbd "T") #'firstpair-lexicon-select-languages)
+    (define-key map (kbd "m") #'firstpair-lexicon-toggle-details)
     map)
   "Keymap for `firstpair-lexicon-mode'.")
 
 (define-derived-mode firstpair-lexicon-mode special-mode "Lexicon"
   "Major mode for the FirstPair dictionary window."
-  (setq-local truncate-lines nil)
+  (setq-local truncate-lines t)
+  (setq-local word-wrap nil)
   (setq-local buffer-read-only t))
 
+(defun firstpair-lexicon--sense-lines (definitions)
+  "Return the distinct sense lines in DEFINITIONS, preserving their order."
+  (let (seen senses)
+    (dolist (item definitions (nreverse senses))
+      (dolist (definition (plist-get item :definitions))
+        (let ((sense (string-trim definition)))
+          (unless (or (string-empty-p sense) (member sense seen))
+            (push sense seen)
+            (push sense senses)))))))
+
 (defun firstpair-lexicon--insert-definitions (bundle word readings)
-  "Insert the definitions of WORD from BUNDLE for every selected language."
-  (dolist (language (firstpair-lexicon-selected bundle))
-    (let ((definitions (firstpair-lexicon-definitions bundle (alist-get 'id language) word readings)))
-      (insert "\n" (propertize (alist-get 'label language) 'face 'firstpair-lexicon-language) "\n")
-      (if (null definitions)
-          (insert (format "  No %s entry in this edition.\n" (alist-get 'label language)))
-        (dolist (item definitions)
-          (insert "  " (propertize (plist-get item :headword) 'face 'firstpair-lexicon-headword))
-          (unless (string-empty-p (or (plist-get item :part) ""))
-            (insert "  [" (plist-get item :part) "]"))
-          (insert "\n")
-          (let ((start (point)))
-            (insert "    " (mapconcat #'identity (plist-get item :definitions) "; ") "\n")
-            (fill-region start (point))))))))
+  "Insert compact sense lines for WORD from BUNDLE in each selected language.
+Return non-nil when at least one sense was inserted."
+  (setq firstpair-lexicon-has-more nil)
+  (let (inserted)
+    (dolist (language (firstpair-lexicon-selected bundle))
+      (let* ((definitions (firstpair-lexicon-definitions
+                           bundle (alist-get 'id language) word readings))
+             (senses (firstpair-lexicon--sense-lines definitions)))
+        (when (> (length senses) 2)
+          (setq firstpair-lexicon-has-more t))
+        (dolist (sense (if firstpair-lexicon-expanded senses (seq-take senses 2)))
+          (setq inserted t)
+          (insert sense "\n"))))
+    inserted))
 
 (defun firstpair-lexicon--insert (bundle word readings)
   "Render READINGS of WORD from BUNDLE into the current buffer."
-  (insert (propertize word 'face 'firstpair-lexicon-headword) "\n")
-  (if (null readings)
-      (insert "\nNo entry in this edition's lexicon.\n")
-    (let ((seen (make-hash-table :test #'equal)))
-      (dolist (reading readings)
-        (let* ((id (plist-get reading :entry))
-               (entry (firstpair-lexicon-entry bundle id)))
-          (when entry
-            (unless (gethash id seen)
-              (puthash id t seen)
-              (insert "\n"
-                      (propertize (plist-get entry :headword) 'face 'firstpair-lexicon-headword)
-                      "  [" (plist-get entry :part) "]\n"))
-            (insert "  "
-                    (propertize (plist-get reading :features) 'face 'firstpair-lexicon-analysis)
-                    (if (string-empty-p (or (plist-get reading :enclitic) ""))
-                        ""
-                      (format " + enclitic -%s" (plist-get reading :enclitic)))
-                    "\n"))))
-      (firstpair-lexicon--insert-definitions bundle word readings)))
+  (unless (firstpair-lexicon--insert-definitions bundle word readings)
+    (insert "No entry in the selected dictionaries.\n"))
   (goto-char (point-min)))
 
 (defun firstpair-lexicon-render (bundle word)
@@ -434,21 +430,24 @@ Returns the buffer."
   (let ((buffer (get-buffer-create firstpair-lexicon-buffer))
         (readings (firstpair-lexicon-analyse bundle word)))
     (with-current-buffer buffer
-      (firstpair-lexicon-mode)
+      (let ((same-entry (and (eq firstpair-lexicon-bundle bundle)
+                             (equal firstpair-lexicon-word word))))
+        (unless (derived-mode-p 'firstpair-lexicon-mode)
+          (firstpair-lexicon-mode))
+        (unless same-entry
+          (setq firstpair-lexicon-expanded nil)))
       (setq firstpair-lexicon-bundle bundle
             firstpair-lexicon-word word)
-      (setq header-line-format
-            (cond ((and (firstpair-bundle-translations bundle)
-                        (fboundp 'firstpair-reader-translations-label))
-                   (format " %s   (t: languages, C-c C-v: next translation, C-c C-b: second)"
-                           (firstpair-reader-translations-label bundle)))
-                  ((cdr (firstpair-lexicon-translations bundle))
-                   (format " Translations: %s   (t: next choice, T: choose)"
-                           (firstpair-lexicon-languages-label bundle)))
-                  (t nil)))
+      (setq header-line-format nil
+            truncate-lines (not firstpair-lexicon-expanded)
+            word-wrap firstpair-lexicon-expanded)
       (let ((inhibit-read-only t))
         (erase-buffer)
-        (firstpair-lexicon--insert bundle word readings)))
+        (firstpair-lexicon--insert bundle word readings))
+      (when (and (bound-and-true-p firstpair-reader-touch)
+                 (fboundp 'firstpair-reader--dictionary-bar))
+        (setq mode-line-format (firstpair-reader--dictionary-bar)))
+      (force-mode-line-update t))
     buffer))
 
 (defun firstpair-lexicon-refresh ()
@@ -476,6 +475,16 @@ Returns the buffer."
     (message "Translations: %s" (firstpair-lexicon-choose-languages bundle))
     (firstpair-lexicon-refresh)
     (when (fboundp 'firstpair-reader-refresh-regions) (firstpair-reader-refresh-regions))))
+
+(defun firstpair-lexicon-toggle-details ()
+  "Toggle between two sense lines per language and every available sense."
+  (interactive)
+  (unless (and firstpair-lexicon-bundle firstpair-lexicon-word)
+    (user-error "No dictionary is showing"))
+  (unless (or firstpair-lexicon-expanded firstpair-lexicon-has-more)
+    (user-error "This entry has no additional senses"))
+  (setq firstpair-lexicon-expanded (not firstpair-lexicon-expanded))
+  (firstpair-lexicon-render firstpair-lexicon-bundle firstpair-lexicon-word))
 
 (provide 'firstpair-lexicon)
 ;;; firstpair-lexicon.el ends here

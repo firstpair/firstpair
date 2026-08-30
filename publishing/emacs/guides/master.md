@@ -63,7 +63,7 @@ an Emacs package instead and let it find your bundles:
 
 ```elisp
 ;; From a downloaded firstpair-reader-<version>.tar:
-M-x package-install-file RET /path/to/firstpair-reader-1.6.tar RET
+M-x package-install-file RET /path/to/firstpair-reader.tar RET
 
 ;; Or straight from the FirstPair repository (Emacs 29 or newer):
 (package-vc-install '(firstpair-reader
@@ -147,19 +147,21 @@ one to see a one-line gloss, or use the keys:
 | `C-c C-n` / `C-c C-p` | move to the next / previous underlined word |
 | `C-c C-g` | open the glossary of every explained word in this edition |
 
-The entry shows the dictionary form, the grammatical analysis of the exact
-form in front of you, and the senses. Lookup is a table read from the
-bundle's `lexicon/` folder; it works with no network and no external program.
-`C-c C-d` also works on words that are not underlined, and reports honestly
-when the lexicon has no entry.
+The entry is deliberately small enough for a phone: it shows only senses, one
+per unwrapped row, and at most two rows for each selected language. It spends
+no rows repeating the language, headword, part of speech, or grammatical
+analysis. **More** on the dictionary bar (or `m`) reveals every remaining
+sense; **Less** restores the compact view. A new word starts compact again.
+Lookup reads tables from the bundle's `lexicon/` folder, with no network and
+no external program. `C-c C-d` also works on words that are not underlined,
+and reports honestly when the selected dictionaries have no entry.
 
 An edition may answer in more than one language — say English and Russian
-for a Latin book. The dictionary window's header line shows which languages
-are on. `C-c C-t` in the book (or `t` in the dictionary window) cycles
-through each language alone and then all of them together; `C-u C-c C-t`
-(or `T`) lets you pick by name. The choice sticks for every lookup, for the
-one-line glosses, and for the mouse hover. Each language section names its
-own source, and says plainly when the edition has no entry in that language.
+for a Latin book. Their scripts distinguish the sense rows without headings.
+`C-c C-t` in the book (or `t` in the dictionary window) cycles through each
+language alone and then all of them together; `C-u C-c C-t` (or `T`) lets you
+pick by name. The choice sticks for every lookup, for the one-line glosses,
+and for the mouse hover.
 
 Set `firstpair-reader-highlight` to `nil` in your configuration to turn the
 underlines off while keeping every key.
@@ -171,8 +173,8 @@ tercet of Dante with its English and Russian, say. Each unit shows the
 original first and then the translations you have on; `C-c C-t` cycles the
 choice exactly as it does for the dictionary, hiding the other translation in
 place so the original never moves. Every word of the original can be looked
-up with `C-c C-d`, and the entry says how an old or shortened spelling was
-read (*apocope of amore*, *old form of diceva*).
+up with `C-c C-d`; the compact sense rows leave the original and translations
+as the visible context for how that form is being used.
 
 ## Rearranging windows
 
@@ -291,8 +293,7 @@ holding the depth a scholar or a programmer expects.
 ## Getting the reader package
 
 The standalone reader is at `https://firstpair.org/emacs/firstpair-reader.tar`
-(always the current release; versioned copies sit beside it). Fetch it and
-install it once:
+(always the current release). Fetch it and install it once:
 
 ```sh
 curl -fL -o firstpair-reader.tar https://firstpair.org/emacs/firstpair-reader.tar
@@ -314,17 +315,20 @@ to nil to always open at the top.
 
 On a phone (Emacs under iSH) or anywhere you would rather not type chords,
 the reader offers the same commands as taps and single letters. One button
-bar sits on the book's mode line, just above the references — **◀w · w▶ ·
-Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶** (previous and next word, looked up;
+bar sits on the book's mode line, just above the references — **Next ▶ · ◀w ·
+Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶** (next and previous word, looked up;
 dictionary; languages; next translation; second translation; page up and
 down; previous and next chapter) — and the dictionary window has its own:
-**Close · Lang · ◀w · w▶**. The word arrows step through the source text and
-open each word's entry. Tapping a marked word looks it up; tapping a
+**Close · Lang · More/Less · ◀w · w▶** (More appears only when additional
+senses exist). The word arrows step through the source text and open each
+word's entry. **Next ▶** is deliberately wider and occupies the easiest
+leftmost target. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation, `b` a second one, `,` and `.` step between dictionary
 words, `j` and `k` step to the next or previous word *and open it*, `n` and
-`p` turn cantos, space and backspace page, `?` shows this list, `q` quits. Terminals get mouse reporting switched on automatically
+`p` turn cantos; in the dictionary, `m` toggles More/Less. Space and
+backspace page, `?` shows this list, and `q` quits. Terminals get mouse reporting switched on automatically
 (`xterm-mouse-mode`); if taps still do nothing, the terminal app is not
 forwarding them and the single keys remain. `firstpair-reader-touch` turns
 the layer off.

@@ -226,6 +226,106 @@ class PackageTests(unittest.TestCase):
             self.assertIn('node="Top"', completed.stdout)
             self.assertIn("discover=t", completed.stdout)
 
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_dictionary_is_two_sense_rows_per_language_until_expanded(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (setq debug-on-error t print-escape-newlines t
+        firstpair-reader-touch t firstpair-lexicon-languages nil)
+  (let ((fixture (firstpair-bundle--create :translations nil)))
+  (cl-letf (((symbol-function 'firstpair-lexicon-analyse)
+             (lambda (_bundle _word) '((:entry "amore|noun"))))
+            ((symbol-function 'firstpair-lexicon-selected)
+             (lambda (_bundle)
+               (if (equal firstpair-lexicon-languages '("ru"))
+                   '(((id . "ru") (label . "Русский")))
+                 '(((id . "en") (label . "English"))
+                   ((id . "ru") (label . "Русский"))))))
+            ((symbol-function 'firstpair-lexicon-definitions)
+             (lambda (_bundle language word _readings)
+               (cond
+                ((equal word "short")
+                 (if (equal language "en")
+                     '((:headword "short" :part "adjective" :definitions ("brief")))
+                   '((:headword "краткий" :part "прилагательное"
+                                :definitions ("краткий" "короткий")))))
+                ((equal word "missing") nil)
+                ((equal language "en")
+                 '((:headword "love" :part "noun"
+                              :definitions ("love" "affection"))
+                   (:headword "devotion" :part "noun"
+                              :definitions ("love" "devotion"))))
+                (t
+                 '((:headword "любовь" :part "существительное"
+                              :definitions ("любовь" "чувство"))))))))
+    (princ (format "reader-bar=%s\\n"
+                   (mapconcat (lambda (item)
+                                (if (stringp item) (substring-no-properties item) ""))
+                              (firstpair-reader--reader-bar fixture) "")))
+    (with-current-buffer (firstpair-lexicon-render fixture "amore")
+      (let ((compact (buffer-string)))
+        (princ (format "compact=%S lines=%d header=%S truncated=%S more=%S key=%S bar=%S\\n"
+                       compact (length (split-string compact "\\n" t))
+                       header-line-format truncate-lines firstpair-lexicon-has-more
+                       (key-binding (kbd "m"))
+                       (mapconcat (lambda (item)
+                                    (if (stringp item) (substring-no-properties item) ""))
+                                  mode-line-format "")))
+        (firstpair-lexicon-toggle-details)
+        (princ (format "expanded=%S truncated=%S wrapped=%S bar=%S\\n"
+                       (buffer-string) truncate-lines word-wrap
+                       (mapconcat (lambda (item)
+                                    (if (stringp item) (substring-no-properties item) ""))
+                                  mode-line-format "")))
+        (firstpair-lexicon-toggle-details)
+        (princ (format "collapsed-again=%S\\n" (equal compact (buffer-string))))
+        (firstpair-lexicon-toggle-details)
+        (setq firstpair-lexicon-languages '("ru"))
+        (firstpair-lexicon-render fixture "amore")
+        (princ (format "expanded-ru=%S more=%S bar=%S\\n"
+                       firstpair-lexicon-expanded firstpair-lexicon-has-more
+                       (mapconcat (lambda (item)
+                                    (if (stringp item) (substring-no-properties item) ""))
+                                  mode-line-format "")))
+        (firstpair-lexicon-toggle-details)
+        (princ (format "collapsed-ru=%S\\n" firstpair-lexicon-expanded))
+        (setq firstpair-lexicon-languages nil)
+        (firstpair-lexicon-render fixture "short")
+        (princ (format "short=%S expanded=%S more=%S\\n"
+                       (buffer-string) firstpair-lexicon-expanded firstpair-lexicon-has-more))
+        (setq firstpair-lexicon-languages '("ru"))
+        (firstpair-lexicon-render fixture "short")
+        (princ (format "ru-only=%S\\n" (buffer-string)))
+        (firstpair-lexicon-render fixture "missing")
+        (princ (format "missing=%S\\n" (buffer-string))))))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        output = completed.stdout
+        self.assertIn('compact="love\\naffection\\nлюбовь\\nчувство\\n" lines=4', output)
+        self.assertIn("header=nil truncated=t more=t key=firstpair-lexicon-toggle-details", output)
+        self.assertIn('expanded="love\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
+        self.assertIn("truncated=nil wrapped=t", output)
+        self.assertIn("collapsed-again=t", output)
+        self.assertIn('expanded-ru=t more=nil bar=" Close   Lang   Less ', output)
+        self.assertIn("collapsed-ru=nil", output)
+        self.assertIn('short="brief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
+        self.assertIn('ru-only="краткий\\nкороткий\\n"', output)
+        self.assertIn('missing="No entry in the selected dictionaries.\\n"', output)
+        self.assertIn("reader-bar= Next ▶   ◀w ", output)
+        self.assertLess(output.index("Next ▶"), output.index("◀w"))
+        self.assertNotIn("English", output)
+        self.assertNotIn("Русский", output)
+        self.assertNotIn("adjective", output)
+        self.assertNotIn("существительное", output)
+        self.assertRegex(output, r"bar=.*More")
+        self.assertRegex(output, r"expanded=.*bar=.*Less")
+
 
 class GlossTests(unittest.TestCase):
     def test_indexes_kaikki_rows_by_headword_and_form(self) -> None:
@@ -483,7 +583,7 @@ class BuildTests(Fixture):
             completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
             self.assertEqual(0, completed.returncode, completed.stderr[-2000:])
             self.assertIn("ru-only=t", completed.stdout)
-            self.assertIn("Translations: Русский", completed.stdout)
+            self.assertIn("header=nil", completed.stdout)
             self.assertIn("cycle=English + Русский", completed.stdout)
             self.assertIn("both=t", completed.stdout)
             self.assertIn("писать", completed.stdout)

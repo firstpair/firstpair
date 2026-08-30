@@ -105,4 +105,17 @@ Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the 
 
 Touch layer (reader 1.9): `firstpair-reader-touch` adds header-line button bars (book and dictionary), single-key bindings (d t v b , . r ?), `mouse-1` = look up word or follow link, `mouse-3` = next translation, and enables `xterm-mouse-mode` on terminals. Keep every command reachable by a single key on phones.
 
+Compact dictionary (reader 1.17): the dictionary body is sense-only and has
+no language, headword, part-of-speech, grammar, or spacer rows. In its default
+view it shows at most two distinct senses per selected language, one logical
+and visual row each (`truncate-lines` is on). `m` and a More/Less button in
+the existing dictionary mode line disclose all senses without spending a
+body row; expanded senses may wrap. Refreshing the same word preserves the
+choice, while every new lookup starts compact. Keep this row budget in future
+dictionary presentation changes.
+
+Phone word navigation (reader 1.17): the first two controls on the book mode
+line are **Next ▶** and **◀w**, in that order. Next is intentionally wider and
+gets the easiest left-edge touch target. Preserve that order and target size.
+
 Startup and lookup cost on a phone: the bundle loads nothing large at registration — `data/regions.tsv` is grouped by node with `data/regions.index.json` byte offsets (a node's regions are read with `insert-file-contents BEG END` on first use), `lexicon/forms/<letter>.tsv` and `lexicon/glosses/<letter>.tsv` are read per lookup. Keep every table either small or indexed; the chooser loads every bundle under `firstpair-reader-bundle-directories`, so stale copies there cost startup time.

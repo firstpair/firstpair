@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.16
+;; Version: 1.17
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1014,8 +1014,8 @@ Words and dictionary, translations, paging, cantos; labels are short so
 the bar fits a phone, and `?' lists what they mean."
   (let ((many (firstpair-bundle-translations bundle)))
     (apply #'firstpair-reader--bar
-           (append (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)
-                         (cons "w▶" #'firstpair-reader-next-marked-lookup)
+           (append (list (cons "Next ▶" #'firstpair-reader-next-marked-lookup)
+                         (cons "◀w" #'firstpair-reader-previous-marked-lookup)
                          (cons "Dict" #'firstpair-reader-describe-word)
                          (cons "Lang" #'firstpair-reader-translation-languages))
                    (and many (list (cons "Tr" #'firstpair-reader-rotate-translation)
@@ -1049,10 +1049,15 @@ the bar fits a phone, and `?' lists what they mean."
 
 (defun firstpair-reader--dictionary-bar ()
   "The dictionary window's button bar."
-  (firstpair-reader--bar (cons "Close" #'firstpair-reader-close-dictionary)
-                         (cons "Lang" #'firstpair-lexicon-cycle-languages-command)
-                         (cons "◀w" #'firstpair-reader-previous-marked-lookup)
-                         (cons "w▶" #'firstpair-reader-next-marked-lookup)))
+  (apply #'firstpair-reader--bar
+         (append (list (cons "Close" #'firstpair-reader-close-dictionary)
+                       (cons "Lang" #'firstpair-lexicon-cycle-languages-command))
+                 (and (or (bound-and-true-p firstpair-lexicon-expanded)
+                          (bound-and-true-p firstpair-lexicon-has-more))
+                      (list (cons (if firstpair-lexicon-expanded "Less" "More")
+                                  #'firstpair-lexicon-toggle-details)))
+                 (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)
+                       (cons "w▶" #'firstpair-reader-next-marked-lookup)))))
 
 (defun firstpair-reader-close-dictionary ()
   "Close the dictionary window."
@@ -1099,12 +1104,12 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
     (princ "                                          j   k   next / previous word, looked up at once\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
-    (princ "Bar under the book    ◀w w▶ words · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
-    (princ "Bar under dictionary  Close · Lang · ◀w w▶          SPC DEL   page down / up\n")
+    (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
+    (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
-    (princ "\nIn the dictionary window: t languages, q close.  Everything above also has a C-c C-<letter> form.\n")))
+    (princ "\nIn the dictionary window: m more/less senses, t languages, q close.  Everything above also has a C-c C-<letter> form.\n")))
 
 (defun firstpair-reader--apply-touch (bundle)
   "Give the current reader buffer its button bar and turn on mouse reporting.
