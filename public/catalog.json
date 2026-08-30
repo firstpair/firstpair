@@ -654,6 +654,27 @@
       "source": "https://github.com/firstpair/graph-book",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png"
+    },
+    {
+      "slug": "lakecat-engine-truth",
+      "title": "Getting Out of the Way",
+      "author": "Alexy Khrabrov",
+      "kicker": "Scholarly article",
+      "description": "Getting Out of the Way: Engine Truth, Typed Governance, and the Thin Catalog — how LakeCat binds its catalog proofs to Sail engine truth, delegates governance to TypeSec's unforgeable typed capabilities, projects into Grust, and admits Apache Ossie semantic models through compare-and-swap, evaluated under adversarial reviews and a neutral, unranked catalog benchmark. Delivered as PDF, EPUB, and hosted web readers.",
+      "accent": "#6b5b95",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
+      "html": "/read/lakecat-engine-truth/",
+      "htmlChapters": "/read/lakecat-engine-truth/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/html/1e9043f41c1b08d6-lakecat-engine-truth.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+      "tags": [
+        "finished"
+      ],
+      "shelf": "querygraph",
+      "source": "https://github.com/querygraph/lakecat",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/headboard/055b199ae0f2cb2b-lakecat-engine-truth-headboard.png"
     }
   ]
 }

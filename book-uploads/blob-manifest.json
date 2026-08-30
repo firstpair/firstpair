@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-08-30T06:58:53.009Z",
+  "updatedAt": "2026-08-30T15:32:21.246Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -10072,6 +10072,292 @@
           ]
         }
       }
+    },
+    "lakecat-engine-truth": {
+      "updatedAt": "2026-08-30T15:32:21.246Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth.pdf",
+          "sha256": "964b64c53882ce5caa6a97a2d7205de87cb7169809b8ad10af2ab9647cf59be9",
+          "size": 5056088,
+          "pathname": "books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth.epub",
+          "sha256": "f1eb1410b488ef30548aeb95e88fa8a5d3b0735c1b23313a5656d67e347ee57f",
+          "size": 4657445,
+          "pathname": "books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth.html",
+          "sha256": "1e9043f41c1b08d608ac4fdc09ce522abf4bae57410140e565fdc994100469b8",
+          "size": 6472957,
+          "pathname": "books/lakecat-engine-truth/html/1e9043f41c1b08d6-lakecat-engine-truth.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/html/1e9043f41c1b08d6-lakecat-engine-truth.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-cover.png",
+          "sha256": "d552d866842d4c800721231d10059daca9e4a245ba54c2605dfd818e02c3ea17",
+          "size": 4173551,
+          "pathname": "books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-headboard.png",
+          "sha256": "055b199ae0f2cb2b3789a21b6745b7f3e9a22d300283f80f17bb79ea91cf6c2a",
+          "size": 3574559,
+          "pathname": "books/lakecat-engine-truth/headboard/055b199ae0f2cb2b-lakecat-engine-truth-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/headboard/055b199ae0f2cb2b-lakecat-engine-truth-headboard.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters",
+          "sha256": "f88655c95c89559179f46adce1c5379e943c1863bacd2c277cc006cbfb2b6cd1",
+          "pathnamePrefix": "books/lakecat-engine-truth/chapters/f88655c95c895591",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/assets/engine-truth-cover.png",
+              "relativePath": "assets/engine-truth-cover.png",
+              "sha256": "d552d866842d4c800721231d10059daca9e4a245ba54c2605dfd818e02c3ea17",
+              "size": 4173551,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/assets/engine-truth-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/assets/engine-truth-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "f1f3fe82d3513e29e04e37dc0e2b3301f9f18578afd2afcc1bb423e367a7e055",
+              "size": 649,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "bbb0ec79353d8ace39fdd0d18a582f7cf25b026c1d2a2b50266a6152f6e6cd41",
+              "size": 2419,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "42424aa310d2e30f5166d83647760e04f6399bbc89d0a0b62e32d8b9179a3fa1",
+              "size": 2989,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "7f249a2acd1ca9c474c0ab66af0028b56dbf988b6e639cd44b4d68c48cdc8db6",
+              "size": 7553,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "b15c8c3dee2901b83b064b77e83f8d1c213c9ddc80090927fc757cae71251642",
+              "size": 11583,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "97aee906da4bfb6e7f0d964310b9a10ed43c65e86d202c40880c56d244debe78",
+              "size": 10195,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "b101726284758be534b6786a63ca1426529493493fb085f868d0cadafd1649bb",
+              "size": 20649,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "4c5826af03bc3891334e88880193ef4bb76e22aae634ff0e0cc68aa16edec3f9",
+              "size": 10574,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "a408a01a06a89f88bf34973bd426cea80b906b9bf8569eacd793b9e86304346a",
+              "size": 12729,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "78fddd0d1a7b316e4b0d715d17c85dc5913c4aeb3f51b00736880211082093c2",
+              "size": 10479,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "15d2a2cdf3a4f75b6c3456f3fff9df94a1ae0eb0a7b240abaed6c2d7607f7ac1",
+              "size": 22659,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "71947a1e840014a934ba66f1278584138b5d2924c6af8b301e818c43650c728a",
+              "size": 5362,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "5fc18e13ebd618850e31c3ac9d50a45352ac6daa6e382adbb2b05d928c6bb494",
+              "size": 4454,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "b7d928605ffe5bd526e8e0121118b7a29dceafea7ce912def7aafdc864118897",
+              "size": 4450,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "1651590a0295ff36898d3dc646fa64e9dd4f9f7ae30f94331af961c1f0220f6a",
+              "size": 3925,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "363022a147d5501b5bd7d143992c80c0adf486031ad08d2ab4607adc9df0821a",
+              "size": 3414,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "785c8901ad1462e1a49f2bbe1a8a075bb3a8ddcee0cf0d099f934bb0f068e6c3",
+              "size": 13115,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-01.png",
+              "relativePath": "diagrams/diagram-01.png",
+              "sha256": "9712c53c2efc0ca19da9ff292ba0ce13cb811732bdecfc2eb101b3c36ecf9980",
+              "size": 118475,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-01.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-01.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-02.png",
+              "relativePath": "diagrams/diagram-02.png",
+              "sha256": "4137a7023ea11e8d31d4e1f88bc6c9e52a9a5b9491f6f1de0a51319f1736acc5",
+              "size": 126793,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-02.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-02.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-03.png",
+              "relativePath": "diagrams/diagram-03.png",
+              "sha256": "15e56dd2a446f19061360db88a481a26c25609f9c3920cdec7e6851af361f9d9",
+              "size": 174679,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-03.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-03.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-04.png",
+              "relativePath": "diagrams/diagram-04.png",
+              "sha256": "94d5115435b43e94e7906ecbf9c5dc4ec25b69637f8e3dd08d626a86e25137fb",
+              "size": 107626,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-04.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-04.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-05.png",
+              "relativePath": "diagrams/diagram-05.png",
+              "sha256": "b4cc729e5d08f0af1d602bae25a19466035c66edeb4d815ce747f308fcce5209",
+              "size": 68229,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-05.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-05.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "377f995a46298630782bf16bf4625b1f8d81de059a451a02dfb9618b68d27adf",
+              "size": 13460,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "acac25cc896ef8b7a9b7138fb1e68f1f0c5f6fedc646661266d7969a026b86fd",
+              "size": 9323,
+              "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -11629,6 +11915,31 @@
       "pathname": "books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/headboard/31b2009c944120ae-graph-book-headboard.png",
       "size": 3483577
+    },
+    "964b64c53882ce5caa6a97a2d7205de87cb7169809b8ad10af2ab9647cf59be9:5056088": {
+      "pathname": "books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
+      "size": 5056088
+    },
+    "f1eb1410b488ef30548aeb95e88fa8a5d3b0735c1b23313a5656d67e347ee57f:4657445": {
+      "pathname": "books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
+      "size": 4657445
+    },
+    "1e9043f41c1b08d608ac4fdc09ce522abf4bae57410140e565fdc994100469b8:6472957": {
+      "pathname": "books/lakecat-engine-truth/html/1e9043f41c1b08d6-lakecat-engine-truth.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/html/1e9043f41c1b08d6-lakecat-engine-truth.html",
+      "size": 6472957
+    },
+    "d552d866842d4c800721231d10059daca9e4a245ba54c2605dfd818e02c3ea17:4173551": {
+      "pathname": "books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png",
+      "size": 4173551
+    },
+    "055b199ae0f2cb2b3789a21b6745b7f3e9a22d300283f80f17bb79ea91cf6c2a:3574559": {
+      "pathname": "books/lakecat-engine-truth/headboard/055b199ae0f2cb2b-lakecat-engine-truth-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/headboard/055b199ae0f2cb2b-lakecat-engine-truth-headboard.png",
+      "size": 3574559
     }
   },
   "chapterPackages": {
@@ -29115,6 +29426,237 @@
           "size": 5833,
           "pathname": "books/graph-book/chapters/198e61229834ea4e/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/198e61229834ea4e/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "f88655c95c89559179f46adce1c5379e943c1863bacd2c277cc006cbfb2b6cd1": {
+      "pathnamePrefix": "books/lakecat-engine-truth/chapters/f88655c95c895591",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/assets/engine-truth-cover.png",
+          "relativePath": "assets/engine-truth-cover.png",
+          "sha256": "d552d866842d4c800721231d10059daca9e4a245ba54c2605dfd818e02c3ea17",
+          "size": 4173551,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/assets/engine-truth-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/assets/engine-truth-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "f1f3fe82d3513e29e04e37dc0e2b3301f9f18578afd2afcc1bb423e367a7e055",
+          "size": 649,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "bbb0ec79353d8ace39fdd0d18a582f7cf25b026c1d2a2b50266a6152f6e6cd41",
+          "size": 2419,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "42424aa310d2e30f5166d83647760e04f6399bbc89d0a0b62e32d8b9179a3fa1",
+          "size": 2989,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "7f249a2acd1ca9c474c0ab66af0028b56dbf988b6e639cd44b4d68c48cdc8db6",
+          "size": 7553,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "b15c8c3dee2901b83b064b77e83f8d1c213c9ddc80090927fc757cae71251642",
+          "size": 11583,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "97aee906da4bfb6e7f0d964310b9a10ed43c65e86d202c40880c56d244debe78",
+          "size": 10195,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "b101726284758be534b6786a63ca1426529493493fb085f868d0cadafd1649bb",
+          "size": 20649,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "4c5826af03bc3891334e88880193ef4bb76e22aae634ff0e0cc68aa16edec3f9",
+          "size": 10574,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "a408a01a06a89f88bf34973bd426cea80b906b9bf8569eacd793b9e86304346a",
+          "size": 12729,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "78fddd0d1a7b316e4b0d715d17c85dc5913c4aeb3f51b00736880211082093c2",
+          "size": 10479,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "15d2a2cdf3a4f75b6c3456f3fff9df94a1ae0eb0a7b240abaed6c2d7607f7ac1",
+          "size": 22659,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "71947a1e840014a934ba66f1278584138b5d2924c6af8b301e818c43650c728a",
+          "size": 5362,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "5fc18e13ebd618850e31c3ac9d50a45352ac6daa6e382adbb2b05d928c6bb494",
+          "size": 4454,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "b7d928605ffe5bd526e8e0121118b7a29dceafea7ce912def7aafdc864118897",
+          "size": 4450,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "1651590a0295ff36898d3dc646fa64e9dd4f9f7ae30f94331af961c1f0220f6a",
+          "size": 3925,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "363022a147d5501b5bd7d143992c80c0adf486031ad08d2ab4607adc9df0821a",
+          "size": 3414,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "785c8901ad1462e1a49f2bbe1a8a075bb3a8ddcee0cf0d099f934bb0f068e6c3",
+          "size": 13115,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-01.png",
+          "relativePath": "diagrams/diagram-01.png",
+          "sha256": "9712c53c2efc0ca19da9ff292ba0ce13cb811732bdecfc2eb101b3c36ecf9980",
+          "size": 118475,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-01.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-01.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-02.png",
+          "relativePath": "diagrams/diagram-02.png",
+          "sha256": "4137a7023ea11e8d31d4e1f88bc6c9e52a9a5b9491f6f1de0a51319f1736acc5",
+          "size": 126793,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-02.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-02.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-03.png",
+          "relativePath": "diagrams/diagram-03.png",
+          "sha256": "15e56dd2a446f19061360db88a481a26c25609f9c3920cdec7e6851af361f9d9",
+          "size": 174679,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-03.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-03.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-04.png",
+          "relativePath": "diagrams/diagram-04.png",
+          "sha256": "94d5115435b43e94e7906ecbf9c5dc4ec25b69637f8e3dd08d626a86e25137fb",
+          "size": 107626,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-04.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-04.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/diagrams/diagram-05.png",
+          "relativePath": "diagrams/diagram-05.png",
+          "sha256": "b4cc729e5d08f0af1d602bae25a19466035c66edeb4d815ce747f308fcce5209",
+          "size": 68229,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-05.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/diagrams/diagram-05.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "377f995a46298630782bf16bf4625b1f8d81de059a451a02dfb9618b68d27adf",
+          "size": 13460,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "acac25cc896ef8b7a9b7138fb1e68f1f0c5f6fedc646661266d7969a026b86fd",
+          "size": 9323,
+          "pathname": "books/lakecat-engine-truth/chapters/f88655c95c895591/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/sitemap.json",
           "skipped": false
         }
       ]

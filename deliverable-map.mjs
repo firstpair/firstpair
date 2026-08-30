@@ -201,5 +201,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png"
+  },
+  {
+    "slug": "lakecat-engine-truth",
+    "title": "Getting Out of the Way",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png"
   }
 ]
