@@ -563,6 +563,49 @@ outside the bundle. With those boundaries an Emacs bundle remains
 approachable for a first-time reader while holding the depth a scholar
 or a programmer expects.</p>
 </section>
+<section id="getting-the-reader-package" class="level2">
+<h2>Getting the reader package</h2>
+<p>The standalone reader is at
+<code>https://firstpair.org/emacs/firstpair-reader.tar</code> (always
+the current release; versioned copies sit beside it). Fetch it and
+install it once:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fL</span> <span class="at">-o</span> firstpair-reader.tar https://firstpair.org/emacs/firstpair-reader.tar</span></code></pre></div>
+<p>then
+<code>M-x package-install-file RET firstpair-reader.tar RET</code>.</p>
+</section>
+<section id="picking-up-where-you-left-off" class="level2">
+<h2>Picking up where you left off</h2>
+<p><code>M-x firstpair-read</code> returns to the node and the line
+where you stopped in that bundle, with the same languages, translations,
+and second translations on screen. The reader saves this on every page
+turn, whenever Emacs has been idle for a few seconds, and when Emacs
+exits, in <code>firstpair-reader-state-file</code>
+(<code>~/.emacs.d/firstpair-reader-state.el</code> by default — plain
+Lisp, one entry per bundle). Set <code>firstpair-reader-resume</code> to
+nil to always open at the top.</p>
+</section>
+<section id="reading-by-touch-and-single-keys" class="level2">
+<h2>Reading by touch and single keys</h2>
+<p>On a phone (Emacs under iSH) or anywhere you would rather not type
+chords, the reader offers the same commands as taps and single letters.
+Two button bars frame the book — at the top <strong>◀ word · word ▶ ·
+Dict · Langs · Next tr · 2nd</strong>, at the bottom <strong>▲ page · ▼
+page · ◀ canto · canto ▶ · Top · Refs · ?</strong> — and the dictionary
+window has its own: <strong>Close · Langs · ◀ word · word ▶</strong>.
+The word arrows step through the source text and open each word’s entry.
+Tapping a marked word looks it up; tapping a link follows it; a long
+press (right click) rotates the translation under it. In the book,
+<code>d</code> opens the dictionary, <code>t</code> chooses languages,
+<code>v</code> the next translation, <code>b</code> a second one,
+<code>,</code> and <code>.</code> step between dictionary words,
+<code>j</code> and <code>k</code> step to the next or previous word
+<em>and open it</em>, <code>n</code> and <code>p</code> turn cantos,
+space and backspace page, <code>?</code> shows this list, <code>q</code>
+quits. Terminals get mouse reporting switched on automatically
+(<code>xterm-mouse-mode</code>); if taps still do nothing, the terminal
+app is not forwarding them and the single keys remain.
+<code>firstpair-reader-touch</code> turns the layer off.</p>
+</section>
 </section>
 </body>
 </html>
