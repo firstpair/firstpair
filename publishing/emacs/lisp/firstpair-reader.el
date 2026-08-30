@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.12
+;; Version: 1.13
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1064,13 +1064,21 @@ updated directly.  Returns DIRECTORY."
 Terminals that report only focus (iSH sends ESC [ I on a tap) have those
 sequences decoded as focus events, so a tap never reads as M-[ I."
   (when firstpair-reader-touch
-    (setq header-line-format (firstpair-reader--reader-bar bundle))
-    (setq mode-line-format (append (firstpair-reader--movement-bar) (list " " '(:eval (or Info-current-node "")))))
+    ;; Only the book's own window carries the bars; the references manual
+    ;; below it keeps Info's plain header and mode line.
+    (when (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle))
+      (setq header-line-format (firstpair-reader--reader-bar bundle))
+      (setq mode-line-format (append (firstpair-reader--movement-bar) (list " " '(:eval (or Info-current-node ""))))))
     (unless (display-graphic-p)
       (unless (bound-and-true-p xterm-mouse-mode)
         (ignore-errors (xterm-mouse-mode 1)))
+      ;; A terminal that reports focus (iSH does, on every tap) sends ESC [ I / ESC [ O;
+      ;; decode them to events and let them fall through silently.
       (define-key input-decode-map "\e[I" [focus-in])
-      (define-key input-decode-map "\e[O" [focus-out]))))
+      (define-key input-decode-map "\e[O" [focus-out])
+      (dolist (event '([focus-in] [focus-out]))
+        (unless (lookup-key global-map event)
+          (define-key global-map event #'ignore))))))
 
 (define-minor-mode firstpair-reader-mode
   "Read a FirstPair bundle: references below the text, dictionary below both.
