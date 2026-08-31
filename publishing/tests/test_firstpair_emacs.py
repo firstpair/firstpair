@@ -780,6 +780,7 @@ class BuildTests(Fixture):
             self.assertIn("cycle=English + Русский", completed.stdout)
             self.assertIn("both=t", completed.stdout)
             self.assertIn("писать", completed.stdout)
+            self.assertIn("scribito → scribo", completed.stdout)
 
 
 if __name__ == "__main__":
@@ -805,6 +806,15 @@ class ItalianTests(unittest.TestCase):
         {"word": "inferno", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["hell"]}]},
         {"word": "mostrare", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to show"]}], "forms": [{"form": "mostrò", "tags": ["third-person", "singular", "past", "historic"]}]},
         {"word": "carità", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["charity"]}]},
+        {"word": "essere", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["to be"]}]},
+        {"word": "egli", "pos": "pron", "lang_code": "it", "senses": [{"glosses": ["he"]}]},
+        {"word": "e", "pos": "verb", "lang_code": "it", "senses": [{"glosses": ["third-person singular of essere"], "tags": ["form-of"], "form_of": [{"word": "essere"}]}]},
+        {"word": "e", "pos": "pron", "lang_code": "it", "senses": [{"glosses": ["alternative form of egli"], "tags": ["alt-of"], "alt_of": [{"word": "egli"}]}]},
+        {"word": "e", "pos": "conj", "lang_code": "it", "senses": [{"glosses": ["and"]}]},
+        {"word": "ira", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["anger"]}], "forms": [{"form": "io", "tags": ["historic", "third-person", "singular"]}]},
+        {"word": "io", "pos": "pron", "lang_code": "it", "senses": [{"glosses": ["I"]}]},
+        {"word": "A", "pos": "noun", "lang_code": "it", "senses": [{"glosses": ["the letter A"]}]},
+        {"word": "a", "pos": "prep", "lang_code": "it", "senses": [{"glosses": ["to"]}]},
     ]
 
     def setUp(self) -> None:
@@ -835,6 +845,39 @@ class ItalianTests(unittest.TestCase):
         self.assertEqual({"avere"}, {self.italian.entry(a.entry_id).headword for a in self.italian.analyse("avere")})
         self.assertEqual("eterno", self.first("etterna")[0])
         self.assertEqual({"in", "il"}, {self.italian.entry(a.entry_id).headword for a in self.italian.analyse("nel")})
+
+    def test_exact_common_lemmas_beat_historical_homographs(self) -> None:
+        self.assertEqual("e", self.first("e")[0])
+        self.assertEqual("io", self.first("io")[0])
+        self.assertEqual("a", self.first("a")[0])
+        readings = self.italian.analyse("e")
+        features = {}
+        for reading in readings:
+            features.setdefault(self.italian.entry(reading.entry_id).headword, set()).add(reading.features)
+        self.assertTrue(all("alternative" not in value for value in features["essere"]))
+        self.assertTrue(all("third-person" not in value for value in features["egli"]))
+
+    def test_entry_glosses_prefer_matching_case_and_part(self) -> None:
+        from firstpair_emacs import glosses
+
+        projection = self.italian.project(["a", "e", "io"])
+        rows = {
+            "a": ({"headword": "A", "partOfSpeech": "noun", "definitions": ["Т"]},
+                  {"headword": "a", "partOfSpeech": "prep", "definitions": ["к"]}),
+            "e": ({"headword": "e", "partOfSpeech": "adv", "definitions": ["так"]},
+                  {"headword": "e", "partOfSpeech": "conj", "definitions": ["и"]}),
+            "io": ({"headword": "Io", "partOfSpeech": "name", "definitions": ["Ио"]},
+                   {"headword": "io", "partOfSpeech": "pron", "definitions": ["я"]}),
+        }
+        glossary = glosses.GlossaryIndex(by_headword=rows, by_form=rows)
+        found, _ = glosses.project("ru", projection, fold=self.italian.normalise, glossary=glossary)
+        by_entry = {}
+        for item in found:
+            if item.kind == "entry":
+                by_entry.setdefault(item.key, []).append(item)
+        self.assertEqual("к", by_entry["a|prep"][0].definitions[0])
+        self.assertEqual("и", by_entry["e|conj"][0].definitions[0])
+        self.assertEqual("я", by_entry["io|pron"][0].definitions[0])
 
     def test_dante_restorations_are_named(self) -> None:
         self.assertEqual(("amore", "apocopic alternative", ""), self.first("amor"))

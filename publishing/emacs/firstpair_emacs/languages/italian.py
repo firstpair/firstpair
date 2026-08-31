@@ -38,6 +38,21 @@ FORM_OF_GLOSS = re.compile(
 )
 MINOR_PARTS = {"suffix", "prefix", "infix", "interfix", "abbrev", "symbol", "letter", "character", "punct"}
 LATE_PARTS = {"name", "abbrev"}
+PART_PRIORITY = {
+    "article": 0,
+    "det": 0,
+    "prep": 1,
+    "conj": 1,
+    "pron": 1,
+    "contraction": 1,
+    "adv": 2,
+    "particle": 3,
+    "verb": 4,
+    "adj": 5,
+    "num": 5,
+    "noun": 6,
+    "intj": 7,
+}
 
 # Elided clitics and articles, expanded to the forms a dictionary lists.
 ELISIONS = {
@@ -188,6 +203,7 @@ class Italian:
     lemmas: dict[str, list[str]] = field(default_factory=dict)  # normalised headword -> entry ids
     forms: dict[str, list[tuple[str, str]]] = field(default_factory=dict)  # form -> (entry id, features)
     links: dict[str, list[tuple[str, str]]] = field(default_factory=dict)  # form -> (target lemma, kind)
+    entry_links: dict[str, list[tuple[str, str]]] = field(default_factory=dict)  # form-of entry -> its targets
     own: dict[str, list[str]] = field(default_factory=dict)  # form-of row -> its own entry ids
     relations: dict[str, list[str]] = field(default_factory=dict)  # entry id -> related lemma keys
     link_rows: dict[str, str] = field(default_factory=dict)  # entry id of a form-of row -> its key
@@ -259,6 +275,7 @@ class Italian:
         if related:
             self.relations[entry_id] = related
         if form_links:
+            self.entry_links[entry_id] = form_links
             for target, kind in form_links:
                 self.links.setdefault(key, []).append((target, kind))
             self.own.setdefault(key, []).append(entry_id)
@@ -329,9 +346,16 @@ class Italian:
                 found.extend(self._linked(next_target, f"{kind}; {next_kind}" if kind else next_kind, depth - 1))
         return found
 
-    def _rank(self, analysis: Analysis) -> tuple[int, int, int]:
+    def _rank(self, analysis: Analysis) -> tuple[int, int, int, int, int]:
         entry = self.entries[analysis.entry_id]
-        return (entry.part in LATE_PARTS, entry.headword[:1].isupper(), 0 if analysis.features != "lemma" else 1)
+        exact = normalise(entry.headword) == analysis.form
+        return (
+            0 if exact and analysis.features == "lemma" else 1,
+            0 if exact else 1,
+            PART_PRIORITY.get(entry.part, 8),
+            1 if entry.part in LATE_PARTS else 0,
+            1 if entry.headword[:1].isupper() else 0,
+        )
 
     def _direct(self, form: str, note: str = "", enclitic: str = "") -> list[Analysis]:
         found: list[Analysis] = []
@@ -348,7 +372,11 @@ class Italian:
             if row_key is None:
                 add(entry_id, features)
                 continue
-            resolved = [pair for target, kind in self.links.get(row_key, ()) for pair in self._linked(target, f"{features}; {kind}")]
+            resolved = [
+                pair
+                for target, kind in self.entry_links.get(entry_id, self.links.get(row_key, ()))
+                for pair in self._linked(target, f"{features}; {kind}")
+            ]
             if resolved:
                 for linked_id, linked_features in resolved:
                     add(linked_id, linked_features)

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.18
+;; Version: 1.19
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -224,6 +224,58 @@ Returns the description of the new choice."
   (gethash (concat language "\0" kind "\0" key)
            (firstpair-lexicon--gloss-table bundle key)))
 
+(defconst firstpair-lexicon-part-names
+  '(("n" . "noun") ("v" . "verb") ("adj" . "adjective")
+    ("adv" . "adverb") ("prep" . "preposition")
+    ("conj" . "conjunction") ("pron" . "pronoun")
+    ("pn" . "proper noun") ("name" . "proper noun")
+    ("intj" . "interjection") ("num" . "numeral")
+    ("det" . "determiner"))
+  "Short and long part-of-speech names used by bundled dictionaries.")
+
+(defun firstpair-lexicon--part-name (part)
+  "Return the comparable long name of PART."
+  (let ((value (downcase (string-trim (or part "")))))
+    (or (cdr (assoc value firstpair-lexicon-part-names)) value)))
+
+(defun firstpair-lexicon--gloss-rank (bundle entry gloss)
+  "Rank GLOSS for source-language ENTRY in BUNDLE, best first."
+  (let* ((headword (or (plist-get gloss :headword) ""))
+         (written (mapcar #'string-trim (split-string (or (plist-get entry :headword) "") "," t)))
+         (exact (member headword written))
+         (same-part (equal (firstpair-lexicon--part-name (plist-get gloss :part))
+                           (firstpair-lexicon--part-name (plist-get entry :part))))
+         (same-word (seq-some
+                     (lambda (word)
+                       (equal (firstpair-lexicon-normalise headword bundle)
+                              (firstpair-lexicon-normalise word bundle)))
+                     written)))
+    (+ (if exact 0 4) (if same-part 0 2) (if same-word 0 1))))
+
+(defun firstpair-lexicon--compatible-gloss-p (bundle entry gloss)
+  "Return non-nil when GLOSS can describe source-language ENTRY in BUNDLE."
+  (let* ((headword (or (plist-get gloss :headword) ""))
+         (part (firstpair-lexicon--part-name (plist-get gloss :part)))
+         (source (or (plist-get gloss :source) ""))
+         (written (mapcar #'string-trim (split-string (or (plist-get entry :headword) "") "," t)))
+         (same-word (seq-some
+                     (lambda (word)
+                       (equal (firstpair-lexicon-normalise headword bundle)
+                              (firstpair-lexicon-normalise word bundle)))
+                     written))
+         (same-part (equal part (firstpair-lexicon--part-name (plist-get entry :part)))))
+    (or (and same-word (or (string-empty-p part) same-part))
+        (string-prefix-p "via " source))))
+
+(defun firstpair-lexicon--rank-glosses (bundle entry glosses)
+  "Return GLOSSES ordered by their fit to source-language ENTRY."
+  (cl-stable-sort
+   (seq-filter (lambda (gloss) (firstpair-lexicon--compatible-gloss-p bundle entry gloss))
+               (copy-sequence glosses))
+   (lambda (left right)
+     (< (firstpair-lexicon--gloss-rank bundle entry left)
+        (firstpair-lexicon--gloss-rank bundle entry right)))))
+
 (defun firstpair-lexicon-definitions (bundle language word readings)
   "Return the definitions of WORD in LANGUAGE, given its READINGS.
 Each result is a plist with :headword, :part, :definitions, and :source.
@@ -244,10 +296,17 @@ come from the glosses table, by exact form first and then by entry."
                           :definitions (split-string (plist-get entry :senses) ";" t " ")
                           :source "")
                     found))))))
-    (dolist (gloss (firstpair-lexicon-glosses bundle language "form" form))
-      (push gloss found))
     (dolist (reading readings)
-      (dolist (gloss (firstpair-lexicon-glosses bundle language "entry" (plist-get reading :entry)))
+      (let ((entry (firstpair-lexicon-entry bundle (plist-get reading :entry))))
+        (dolist (gloss (firstpair-lexicon--rank-glosses
+                        bundle entry
+                        (firstpair-lexicon-glosses bundle language "entry" (plist-get reading :entry))))
+          (push gloss found))))
+    (let ((entry (and readings (firstpair-lexicon-entry bundle (plist-get (car readings) :entry)))))
+      (dolist (gloss (if entry
+                         (firstpair-lexicon--rank-glosses
+                          bundle entry (firstpair-lexicon-glosses bundle language "form" form))
+                       (firstpair-lexicon-glosses bundle language "form" form)))
         (push gloss found)))
     (let ((unique nil))
       (dolist (item (nreverse found))
@@ -356,16 +415,27 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
          (first (car readings))
          (entry (and first (firstpair-lexicon-entry bundle (plist-get first :entry)))))
     (when entry
-      (let ((pieces nil))
+      (let ((pieces nil)
+            (surface (string-trim (or word "")))
+            (headword (plist-get entry :headword)))
         (dolist (language (firstpair-lexicon-selected bundle))
-          (let ((definitions (firstpair-lexicon-definitions bundle (alist-get 'id language) word readings)))
+          (let ((definitions (firstpair-lexicon-definitions bundle (alist-get 'id language) word (list first))))
             (when definitions
               (push (mapconcat #'identity (seq-take (plist-get (car definitions) :definitions) 3) "; ")
                     pieces))))
         (format "%s — %s: %s"
-                (plist-get entry :headword)
-                (plist-get first :features)
-                (truncate-string-to-width (mapconcat #'identity (nreverse pieces) " · ") 110 nil nil "…"))))))
+                (if (equal (firstpair-lexicon-normalise surface bundle)
+                           (firstpair-lexicon-normalise headword bundle))
+                    (if (string-empty-p surface) headword surface)
+                  (format "%s → %s" surface headword))
+                (if (equal (plist-get first :features) "lemma")
+                    (plist-get entry :part)
+                  (plist-get first :features))
+                (truncate-string-to-width
+                 (if pieces
+                     (mapconcat #'identity (nreverse pieces) " · ")
+                   (format "no %s entry" (firstpair-lexicon-languages-label bundle)))
+                 110 nil nil "…"))))))
 
 ;;; Presentation
 

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.18
+;; Version: 1.19
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -307,7 +307,8 @@ rendering has moved the text, the word is found again on the same line."
 (defun firstpair-reader--help-echo (_window overlay _position)
   "Return the gloss for the marked word under OVERLAY."
   (or (firstpair-lexicon-gloss (overlay-get overlay 'firstpair-bundle)
-                               (plist-get (overlay-get overlay 'firstpair-marked) :form))
+                               (buffer-substring-no-properties
+                                (overlay-start overlay) (overlay-end overlay)))
       "No dictionary entry"))
 
 (defun firstpair-reader--mark (bundle)

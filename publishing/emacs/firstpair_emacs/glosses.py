@@ -373,6 +373,51 @@ def _glosses_from(language: str, key: str, kind: str, items: Iterable[dict[str, 
     return found
 
 
+PART_NAMES = {
+    "n": "noun",
+    "v": "verb",
+    "adj": "adjective",
+    "adv": "adverb",
+    "prep": "preposition",
+    "conj": "conjunction",
+    "pron": "pronoun",
+    "pn": "proper noun",
+    "name": "proper noun",
+    "intj": "interjection",
+    "num": "numeral",
+    "det": "determiner",
+}
+
+
+def _part_name(value: object) -> str:
+    part = str(value).strip().lower()
+    return PART_NAMES.get(part, part)
+
+
+def _matching_entry_items(
+    entry: Entry, lemma: str, items: Iterable[dict[str, object]], *, fold=normalise
+) -> list[dict[str, object]]:
+    """Keep glosses for ENTRY, excluding case-folded grammatical homographs."""
+
+    written = {part.strip() for part in entry.headword.split(",") if part.strip()}
+    source_part = _part_name(entry.part)
+    enumerated = [
+        (position, item)
+        for position, item in enumerate(items)
+        if fold(str(item.get("headword", ""))) == lemma
+        and (_part_name(item.get("partOfSpeech", "")) in ("", source_part))
+    ]
+    enumerated.sort(
+        key=lambda pair: (
+            0 if str(pair[1].get("headword", "")) in written else 1,
+            0 if _part_name(pair[1].get("partOfSpeech", "")) == source_part else 1,
+            0 if fold(str(pair[1].get("headword", ""))) == lemma else 1,
+            pair[0],
+        )
+    )
+    return [item for _, item in enumerated]
+
+
 def project(
     language: str,
     projection: Projection,
@@ -421,9 +466,11 @@ def project(
     for entry in projection.entries:
         for lemma in _lemmas(entry, fold):
             if glossary is not None:
-                add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", glossary.by_headword.get(lemma, ()), glossary_name))
+                items = _matching_entry_items(entry, lemma, glossary.by_headword.get(lemma, ()), fold=fold)
+                add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", items, glossary_name))
             if dictionary is not None:
-                add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", dictionary.get(lemma, ()), dictionary_name))
+                items = _matching_entry_items(entry, lemma, dictionary.get(lemma, ()), fold=fold)
+                add(entry.entry_id, "entry", _glosses_from(language, entry.entry_id, "entry", items, dictionary_name))
             if supplement is not None and lemma in supplement:
                 add(entry.entry_id, "entry", [Gloss(language, entry.entry_id, "entry", entry.headword, "", supplement[lemma], supplement_name)])
 
