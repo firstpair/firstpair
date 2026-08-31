@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="pandoc 3.10" />
+  <meta name="generator" content="pandoc 3.10.1" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
   <title>The FirstPair Guide to Reading Books in Emacs</title>
   <style>
@@ -283,9 +283,11 @@ M-x package-install-file RET /path/to/firstpair-reader.tar RET
 M-x firstpair-read RET</code></pre>
 <p><code>firstpair-read</code> registers every bundle found in those
 folders and offers a choice when there is more than one. A bundle’s
-<code>init.el</code> still works and, when the package is installed,
-uses the installed reader rather than its own copy. The package also
-installs this handbook as an Info manual:
+<code>init.el</code> still works and uses the installed reader when it
+is at least as new as the bundled copy; otherwise the book uses its own
+reader. Restart Emacs after upgrading the package so an older version
+already loaded in memory cannot linger. The package also installs this
+handbook as an Info manual:
 <code>C-h i m FirstPair Reader RET</code>.</p>
 </section>
 <section id="your-first-five-minutes" class="level2">
