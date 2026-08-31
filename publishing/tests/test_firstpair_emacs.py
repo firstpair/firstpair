@@ -227,7 +227,7 @@ class PackageTests(unittest.TestCase):
             self.assertIn("discover=t", completed.stdout)
 
     @unittest.skipUnless(has("emacs"), "Emacs is not installed")
-    def test_dictionary_is_two_sense_rows_per_language_until_expanded(self) -> None:
+    def test_dictionary_has_source_headword_and_two_sense_rows_per_language(self) -> None:
         script = f'''(progn
   (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
   (require 'firstpair-reader)
@@ -235,7 +235,22 @@ class PackageTests(unittest.TestCase):
         firstpair-reader-touch t firstpair-lexicon-languages nil)
   (let ((fixture (firstpair-bundle--create :translations nil)))
   (cl-letf (((symbol-function 'firstpair-lexicon-analyse)
-             (lambda (_bundle _word) '((:entry "amore|noun"))))
+             (lambda (_bundle word)
+               (cond ((equal word "missing") nil)
+                     ((equal word "short") '((:entry "short|adjective")))
+                     ((equal word "oscura")
+                      '((:entry "oscuro|adjective")
+                        (:entry "Oscuro|name")
+                        (:entry "oscurare|verb")))
+                     (t '((:entry "amore|noun") (:entry "Amore|name"))))))
+            ((symbol-function 'firstpair-lexicon-entry)
+             (lambda (_bundle id)
+               (cond ((string-prefix-p "amore|" id) '(:headword "amore"))
+                     ((string-prefix-p "Amore|" id) '(:headword "Amore"))
+                     ((string-prefix-p "short|" id) '(:headword "short"))
+                     ((string-prefix-p "oscuro|" id) '(:headword "oscuro"))
+                     ((string-prefix-p "Oscuro|" id) '(:headword "Oscuro"))
+                     ((string-prefix-p "oscurare|" id) '(:headword "oscurare")))))
             ((symbol-function 'firstpair-lexicon-selected)
              (lambda (_bundle)
                (if (equal firstpair-lexicon-languages '("ru"))
@@ -264,9 +279,10 @@ class PackageTests(unittest.TestCase):
                                 (if (stringp item) (substring-no-properties item) ""))
                               (firstpair-reader--reader-bar fixture) "")))
     (with-current-buffer (firstpair-lexicon-render fixture "amore")
-      (let ((compact (buffer-string)))
-        (princ (format "compact=%S lines=%d header=%S truncated=%S more=%S key=%S bar=%S\\n"
+      (let ((compact (buffer-substring-no-properties (point-min) (point-max))))
+        (princ (format "compact=%S lines=%d headword-face=%S header=%S truncated=%S more=%S key=%S bar=%S\\n"
                        compact (length (split-string compact "\\n" t))
+                       (get-text-property (point-min) 'face)
                        header-line-format truncate-lines firstpair-lexicon-has-more
                        (key-binding (kbd "m"))
                        (mapconcat (lambda (item)
@@ -274,12 +290,15 @@ class PackageTests(unittest.TestCase):
                                   mode-line-format "")))
         (firstpair-lexicon-toggle-details)
         (princ (format "expanded=%S truncated=%S wrapped=%S bar=%S\\n"
-                       (buffer-string) truncate-lines word-wrap
+                       (buffer-substring-no-properties (point-min) (point-max))
+                       truncate-lines word-wrap
                        (mapconcat (lambda (item)
                                     (if (stringp item) (substring-no-properties item) ""))
                                   mode-line-format "")))
         (firstpair-lexicon-toggle-details)
-        (princ (format "collapsed-again=%S\\n" (equal compact (buffer-string))))
+        (princ (format "collapsed-again=%S\\n"
+                       (equal compact (buffer-substring-no-properties
+                                       (point-min) (point-max)))))
         (firstpair-lexicon-toggle-details)
         (setq firstpair-lexicon-languages '("ru"))
         (firstpair-lexicon-render fixture "amore")
@@ -293,12 +312,20 @@ class PackageTests(unittest.TestCase):
         (setq firstpair-lexicon-languages nil)
         (firstpair-lexicon-render fixture "short")
         (princ (format "short=%S expanded=%S more=%S\\n"
-                       (buffer-string) firstpair-lexicon-expanded firstpair-lexicon-has-more))
+                       (buffer-substring-no-properties (point-min) (point-max))
+                       firstpair-lexicon-expanded firstpair-lexicon-has-more))
         (setq firstpair-lexicon-languages '("ru"))
         (firstpair-lexicon-render fixture "short")
-        (princ (format "ru-only=%S\\n" (buffer-string)))
+        (princ (format "ru-only=%S\\n"
+                       (buffer-substring-no-properties (point-min) (point-max))))
         (firstpair-lexicon-render fixture "missing")
-        (princ (format "missing=%S\\n" (buffer-string))))))))'''
+        (princ (format "missing=%S\\n"
+                       (buffer-substring-no-properties (point-min) (point-max))))
+        (firstpair-lexicon-render fixture "oscura")
+        (princ (format "ambiguous=%S\\n"
+                       (car (split-string
+                             (buffer-substring-no-properties (point-min) (point-max))
+                             "\\n" t))))))))))'''
         completed = subprocess.run(
             ["emacs", "--batch", "-Q", "--eval", script],
             capture_output=True,
@@ -307,16 +334,18 @@ class PackageTests(unittest.TestCase):
         )
         self.assertEqual(0, completed.returncode, completed.stderr)
         output = completed.stdout
-        self.assertIn('compact="love\\naffection\\nлюбовь\\nчувство\\n" lines=4', output)
+        self.assertIn('compact="amore\\nlove\\naffection\\nлюбовь\\nчувство\\n" lines=5', output)
+        self.assertIn("headword-face=firstpair-lexicon-headword", output)
         self.assertIn("header=nil truncated=t more=t key=firstpair-lexicon-toggle-details", output)
-        self.assertIn('expanded="love\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
+        self.assertIn('expanded="amore\\nlove\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
         self.assertIn("truncated=nil wrapped=t", output)
         self.assertIn("collapsed-again=t", output)
         self.assertIn('expanded-ru=t more=nil bar=" Close   Lang   Less ', output)
         self.assertIn("collapsed-ru=nil", output)
-        self.assertIn('short="brief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
-        self.assertIn('ru-only="краткий\\nкороткий\\n"', output)
-        self.assertIn('missing="No entry in the selected dictionaries.\\n"', output)
+        self.assertIn('short="short\\nbrief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
+        self.assertIn('ru-only="short\\nкраткий\\nкороткий\\n"', output)
+        self.assertIn('missing="missing\\nNo entry in the selected dictionaries.\\n"', output)
+        self.assertIn('ambiguous="oscuro · oscurare"', output)
         self.assertIn("reader-bar= Next ▶   ◀w ", output)
         self.assertLess(output.index("Next ▶"), output.index("◀w"))
         self.assertNotIn("English", output)
@@ -325,6 +354,170 @@ class PackageTests(unittest.TestCase):
         self.assertNotIn("существительное", output)
         self.assertRegex(output, r"bar=.*More")
         self.assertRegex(output, r"expanded=.*bar=.*Less")
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_return_advances_poem_but_keeps_info_links(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (princ (format "bindings=%S/%S\\n"
+                 (lookup-key firstpair-reader-mode-map (kbd "RET"))
+                 (lookup-key firstpair-reader-mode-map [return])))
+  (let (called)
+    (cl-letf (((symbol-function 'firstpair-reader--role) (lambda (&optional _buffer) 'reader))
+              ((symbol-function 'firstpair-reader--bundle) (lambda () 'fixture))
+              ((symbol-function 'firstpair-reader--source-node-p)
+               (lambda (_bundle) t))
+              ((symbol-function 'firstpair-reader--link-at-point-p) (lambda () nil))
+              ((symbol-function 'firstpair-reader-next-marked-lookup)
+               (lambda () (interactive) (setq called 'next)))
+              ((symbol-function 'firstpair-reader-follow-nearest-node)
+               (lambda (&optional _fork) (interactive) (setq called 'follow))))
+      (firstpair-reader-return)
+      (princ (format "poem=%S\\n" called))
+      (setq called nil)
+      (cl-letf (((symbol-function 'firstpair-reader--link-at-point-p) (lambda () t)))
+        (firstpair-reader-return))
+      (princ (format "poem-link=%S\\n" called))
+      (setq called nil)
+      (cl-letf (((symbol-function 'firstpair-reader--source-node-p)
+                 (lambda (_bundle) nil)))
+        (firstpair-reader-return))
+      (princ (format "reader-menu=%S\\n" called))
+      (setq called nil)
+      (cl-letf (((symbol-function 'firstpair-reader--role)
+                 (lambda (&optional _buffer) 'references)))
+        (firstpair-reader-return))
+      (princ (format "references=%S\\n" called)))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn("bindings=firstpair-reader-return/firstpair-reader-return", completed.stdout)
+        self.assertIn("poem=next", completed.stdout)
+        self.assertIn("poem-link=follow", completed.stdout)
+        self.assertIn("reader-menu=follow", completed.stdout)
+        self.assertIn("references=follow", completed.stdout)
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_dictionary_window_fits_compact_rows_and_caps_expanded_rows(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (setq debug-on-error t firstpair-reader-touch t
+        firstpair-reader-lexicon-height 10 firstpair-lexicon-languages nil)
+  (let ((fixture (firstpair-bundle--create :translations nil)))
+    (cl-letf (((symbol-function 'firstpair-lexicon-analyse)
+               (lambda (_bundle _word) '((:entry "amore|noun"))))
+              ((symbol-function 'firstpair-lexicon-entry)
+               (lambda (_bundle _id) '(:headword "amore")))
+              ((symbol-function 'firstpair-lexicon-selected)
+               (lambda (_bundle)
+                 (if (equal firstpair-lexicon-languages '("ru"))
+                     '(((id . "ru") (label . "Русский")))
+                   '(((id . "en") (label . "English"))
+                     ((id . "ru") (label . "Русский"))))))
+              ((symbol-function 'firstpair-lexicon-definitions)
+               (lambda (_bundle language _word _readings)
+                 (list (list :headword (if (equal language "ru") "любовь" "love")
+                             :part "noun"
+                             :definitions
+                             (mapcar (lambda (number) (format "%s-%d" language number))
+                                     (number-sequence 1 12)))))))
+      (let ((dictionary (firstpair-lexicon-render fixture "amore"))
+            (reader (get-buffer-create "*FirstPair fit reader*")))
+        (delete-other-windows)
+        (firstpair-reader--reset-roles)
+        (firstpair-reader--claim (selected-window) 'reader)
+        (set-window-buffer (selected-window) reader)
+        (let ((window (firstpair-reader--show dictionary 'lexicon)))
+          (princ (format "both=%d/%d start=%d\\n"
+                         (window-body-height window) (window-total-height window)
+                         (window-start window)))
+          (setq firstpair-lexicon-languages '("ru"))
+          (firstpair-lexicon-render fixture "amore")
+          (princ (format "ru=%d/%d start=%d\\n"
+                         (window-body-height window) (window-total-height window)
+                         (window-start window)))
+          (with-current-buffer dictionary (firstpair-lexicon-toggle-details))
+          (princ (format "expanded=%d/%d start=%d\\n"
+                         (window-body-height window) (window-total-height window)
+                         (window-start window)))
+          (with-current-buffer dictionary (firstpair-lexicon-toggle-details))
+          (princ (format "less=%d/%d start=%d\\n"
+                         (window-body-height window) (window-total-height window)
+                         (window-start window))))))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn("both=5/6 start=1", completed.stdout)
+        self.assertIn("ru=3/4 start=1", completed.stdout)
+        self.assertIn("expanded=9/10 start=1", completed.stdout)
+        self.assertIn("less=3/4 start=1", completed.stdout)
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_dictionary_retries_small_reference_pane_and_restores_borrowed_pane(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (setq debug-on-error t firstpair-reader-lexicon-height 10)
+  (let ((reader-buffer (get-buffer-create "*FirstPair small reader*"))
+        (references-buffer (get-buffer-create "*FirstPair small references*"))
+        (dictionary-buffer (get-buffer-create firstpair-lexicon-buffer)))
+    (with-current-buffer dictionary-buffer
+      (let ((inhibit-read-only t))
+        (erase-buffer)
+        (insert "amore\\nlove\\naffection\\nлюбовь\\nчувство\\n"))
+      (special-mode))
+    (delete-other-windows)
+    (firstpair-reader--reset-roles)
+    (let* ((reader (firstpair-reader--claim (selected-window) 'reader))
+           (references (firstpair-reader--claim
+                        (split-window reader (- window-min-height) 'below)
+                        'references)))
+      (set-window-buffer reader reader-buffer)
+      (set-window-buffer references references-buffer)
+      (let ((lexicon (firstpair-reader--show dictionary-buffer 'lexicon)))
+        (princ (format "retry-same=%S refs-role=%S refs-buffer=%S lex-role=%S\\n"
+                       (eq lexicon references)
+                       (window-parameter references 'firstpair-role)
+                       (eq (window-buffer references) references-buffer)
+                       (window-parameter lexicon 'firstpair-role)))
+        (firstpair-reader-close-dictionary)
+        (princ (format "retry-close=%S/%S lexicon=%S\\n"
+                       (window-parameter references 'firstpair-role)
+                       (eq (window-buffer references) references-buffer)
+                       (firstpair-reader--window 'lexicon))))
+      (cl-letf (((symbol-function 'firstpair-reader--split)
+                 (lambda (_anchor _lines) nil)))
+        (let ((lexicon (firstpair-reader--show dictionary-buffer 'lexicon)))
+          (princ (format "borrow-same=%S role=%S buffer=%S\\n"
+                         (eq lexicon references)
+                         (window-parameter references 'firstpair-role)
+                         (eq (window-buffer references) dictionary-buffer)))
+          (firstpair-reader-close-dictionary)
+          (princ (format "restored=%S/%S lexicon=%S\\n"
+                         (window-parameter references 'firstpair-role)
+                         (eq (window-buffer references) references-buffer)
+                         (firstpair-reader--window 'lexicon))))))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn("retry-same=nil refs-role=references refs-buffer=t lex-role=lexicon", completed.stdout)
+        self.assertIn("retry-close=references/t lexicon=nil", completed.stdout)
+        self.assertIn("borrow-same=t role=lexicon buffer=t", completed.stdout)
+        self.assertIn("restored=references/t lexicon=nil", completed.stdout)
 
 
 class GlossTests(unittest.TestCase):
@@ -723,6 +916,20 @@ class AlignedTests(Fixture):
   (with-current-buffer firstpair-reader-buffer
     (Info-goto-node "(fixture)Inferno — Canto 1")
     (let ((count (lambda () (length (seq-filter (lambda (o) (overlay-get o 'firstpair-region)) firstpair-reader--overlays)))))
+      (goto-char (point-min))
+      (let ((header-link (text-property-not-all
+                          (line-beginning-position) (line-end-position)
+                          'link-args nil))
+            called)
+        (goto-char header-link)
+        (cl-letf (((symbol-function 'firstpair-reader-next-marked-lookup)
+                   (lambda () (interactive) (setq called 'next)))
+                  ((symbol-function 'firstpair-reader-follow-nearest-node)
+                   (lambda (&optional _fork) (interactive) (setq called 'follow))))
+          (firstpair-reader-return))
+        (princ (format "header-link=%S predicate=%S ret=%S\\\\n"
+                       (and header-link t) (and (firstpair-reader--link-at-point-p) t)
+                       called)))
       (princ (format "all=%d\\\\n" (funcall count)))
       (setq firstpair-lexicon-languages '("ru"))
       (firstpair-reader-refresh-regions)
@@ -730,13 +937,24 @@ class AlignedTests(Fixture):
       (goto-char (point-min)) (search-forward "Midway")
       (princ (format "english-hidden=%S\\\\n" (invisible-p (point))))
       (goto-char (point-min)) (search-forward "Земную")
-      (princ (format "russian-visible=%S\\\\n" (not (invisible-p (point))))))))"""
+      (princ (format "russian-visible=%S\\\\n" (not (invisible-p (point)))))
+      (goto-char (point-min)) (search-forward "Nel") (backward-word 1)
+      (princ (format "ret-binding=%S\\\\n" (key-binding (kbd "RET"))))
+      (call-interactively (key-binding (kbd "RET")))
+      (with-current-buffer firstpair-lexicon-buffer
+        (princ (format "ret-word=%S languages=%S first-row=%S\\\\n"
+                       firstpair-lexicon-word firstpair-lexicon-languages
+                       (buffer-substring-no-properties
+                        (point-min) (line-end-position))))))))"""
         completed = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, completed.returncode, completed.stderr[-2000:])
         self.assertIn("all=0", completed.stdout)
+        self.assertIn("header-link=t predicate=t ret=follow", completed.stdout)
         self.assertIn("ru-only=2", completed.stdout)
         self.assertIn("english-hidden=t", completed.stdout)
         self.assertIn("russian-visible=t", completed.stdout)
+        self.assertIn("ret-binding=firstpair-reader-return", completed.stdout)
+        self.assertIn('ret-word="mezzo" languages=("ru") first-row="mezzo"', completed.stdout)
 
     def test_many_translations_per_language_rotate_and_pair(self) -> None:
         chapter = {

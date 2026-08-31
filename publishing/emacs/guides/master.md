@@ -93,7 +93,7 @@ Everything is ordinary Info. The keys you need:
 | `SPC` / `DEL` | scroll forward / back, continuing into the next node |
 | `n` / `p` | next / previous node at the same level |
 | `u` | up to the containing part or the Top node |
-| `RET` | follow the menu item or reference under the cursor |
+| `RET` | follow the item or reference under the cursor; in an aligned poem, advance to and look up the next source word |
 | `l` | back to where you were before the last jump |
 | `t` | the Top node of the current manual |
 | `m` | pick a menu item by name |
@@ -146,14 +146,17 @@ one to see a one-line gloss, or use the keys:
 | `C-c C-d` | look up the word under the cursor |
 | `C-c C-n` / `C-c C-p` | move to the next / previous underlined word |
 | `C-c C-g` | open the glossary of every explained word in this edition |
+| `RET` (aligned poem) | move to the next source-language word and open its entry |
 
-The entry is deliberately small enough for a phone: it shows only senses, one
-per unwrapped row, and at most two rows for each selected language. It spends
-no rows repeating the language, headword, part of speech, or grammatical
-analysis. **More** on the dictionary bar (or `m`) reveals every remaining
-sense; **Less** restores the compact view. A new word starts compact again.
-Lookup reads tables from the bundle's `lexicon/` folder, with no network and
-no external program. `C-c C-d` also works on words that are not underlined,
+The entry is deliberately small enough for a phone. Its first row is the
+source lexicon's headword — Italian in a Dante edition — in bold. Genuine
+ambiguities share that one row. After it come at most two senses for each
+selected language, one per unwrapped row. It spends no rows on language
+headings, translated headwords, parts of speech, grammatical analysis, or
+blank separators. **More** on the dictionary bar (or `m`) reveals every
+remaining sense; **Less** restores the compact view. A new word starts compact
+again. Lookup reads tables from the bundle's `lexicon/` folder, with no network
+and no external program. `C-c C-d` also works on words that are not underlined,
 and reports honestly when the selected dictionaries have no entry.
 
 An edition may answer in more than one language — say English and Russian
@@ -173,16 +176,21 @@ tercet of Dante with its English and Russian, say. Each unit shows the
 original first and then the translations you have on; `C-c C-t` cycles the
 choice exactly as it does for the dictionary, hiding the other translation in
 place so the original never moves. Every word of the original can be looked
-up with `C-c C-d`; the compact sense rows leave the original and translations
-as the visible context for how that form is being used.
+up with `C-c C-d`. `RET` walks forward through the original one word at a time
+and opens each entry with the current dictionary languages. The compact
+headword and sense rows leave the original and translations as the visible
+context for how that form is being used. `RET` on an Info link still follows
+it.
 
 ## Rearranging windows
 
 `C-c C-l` restores the standard layout: book above, references below,
 dictionary under both. The customisation variables
 `firstpair-reader-references-height` (a fraction of the frame) and
-`firstpair-reader-lexicon-height` (a number of lines) adjust the proportions.
-You may also drag the divider between windows.
+`firstpair-reader-lexicon-height` (the expanded dictionary's maximum number of
+lines) adjust the proportions. A compact dictionary pane automatically shrinks
+to its headword plus the available two-per-language sense rows. You may also
+drag the divider between windows.
 
 ## Reading without the FirstPair reader
 
@@ -327,7 +335,9 @@ link follows it; a long press (right click) rotates the translation under
 it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation, `b` a second one, `,` and `.` step between dictionary
 words, `j` and `k` step to the next or previous word *and open it*, `n` and
-`p` turn cantos; in the dictionary, `m` toggles More/Less. Space and
+`p` turn cantos, and `RET` repeatedly advances through the Italian or other
+source text with the current dictionary languages; in the dictionary, `m`
+toggles More/Less. Space and
 backspace page, `?` shows this list, and `q` quits. Terminals get mouse reporting switched on automatically
 (`xterm-mouse-mode`); if taps still do nothing, the terminal app is not
 forwarding them and the single keys remain. `firstpair-reader-touch` turns

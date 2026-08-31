@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.17
+;; Version: 1.18
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -16,7 +16,9 @@
 ;; lexicon can explain and looks them up with a single key.
 ;;
 ;; Load a bundle's init.el, then M-x firstpair-read.  Everything else is
-;; ordinary Info: n, p, u and l move, SPC scrolls, RET follows.
+;; ordinary Info: n, p, u and l move, SPC scrolls, and RET follows links.  In
+;; an aligned book's poem window, RET instead advances to and looks up the
+;; next source-language word.
 
 ;;; Code:
 
@@ -40,7 +42,8 @@
   :type 'number)
 
 (defcustom firstpair-reader-lexicon-height 10
-  "Height in lines of the dictionary window."
+  "Maximum height in lines of the dictionary window.
+Compact entries shrink to their headword and available sense rows."
   :type 'integer)
 
 (defcustom firstpair-reader-highlight t
@@ -115,6 +118,40 @@ mouse reporting in terminals, and one-letter commands in the book."
       (split-window anchor (- (max lines window-min-height)) 'below)
     (error nil)))
 
+(defun firstpair-reader--borrow-window (window role)
+  "Temporarily assign WINDOW to ROLE, remembering what it displayed."
+  (set-window-parameter window 'firstpair-borrowed-role
+                        (window-parameter window 'firstpair-role))
+  (set-window-parameter window 'firstpair-borrowed-buffer (window-buffer window))
+  (set-window-parameter window 'firstpair-borrowed-start (window-start window))
+  (set-window-parameter window 'firstpair-borrowed-point (window-point window))
+  (set-window-parameter window 'firstpair-borrowed-hscroll (window-hscroll window))
+  (firstpair-reader--claim window role))
+
+(defun firstpair-reader--restore-borrowed-window (window)
+  "Restore WINDOW after `firstpair-reader--borrow-window'.
+Return non-nil when WINDOW had a saved role."
+  (let ((role (window-parameter window 'firstpair-borrowed-role)))
+    (when role
+      (let* ((saved (window-parameter window 'firstpair-borrowed-buffer))
+             (buffer (if (buffer-live-p saved)
+                         saved
+                       (get-buffer-create firstpair-reader-references-buffer)))
+             (start (window-parameter window 'firstpair-borrowed-start))
+             (point (window-parameter window 'firstpair-borrowed-point))
+             (hscroll (window-parameter window 'firstpair-borrowed-hscroll)))
+        (set-window-buffer window buffer)
+        (firstpair-reader--claim window role)
+        (with-current-buffer buffer
+          (set-window-point window (min (or point (point-min)) (point-max)))
+          (set-window-start window (min (or start (point-min)) (point-max)) t))
+        (set-window-hscroll window (or hscroll 0))
+        (dolist (parameter '(firstpair-borrowed-role firstpair-borrowed-buffer
+                             firstpair-borrowed-start firstpair-borrowed-point
+                             firstpair-borrowed-hscroll))
+          (set-window-parameter window parameter nil)))
+      t)))
+
 (defun firstpair-reader--ensure-window (role)
   "Return a window for ROLE, creating it below the reader when needed."
   (or (firstpair-reader--window role)
@@ -124,14 +161,48 @@ mouse reporting in terminals, and one-letter commands in the book."
          (let* ((anchor (or (firstpair-reader--window 'reader) (selected-window)))
                 (window (firstpair-reader--split
                          anchor
-                         (round (* (window-height anchor) firstpair-reader-references-height)))))
-           (if window (firstpair-reader--claim window 'references) anchor)))
+                         (round (* (window-height anchor) firstpair-reader-references-height))))
+                (borrowed (seq-find
+                           (lambda (candidate)
+                             (eq (window-parameter candidate 'firstpair-borrowed-role)
+                                 'references))
+                           (window-list nil 'no-minibuffer))))
+           (cond (window (firstpair-reader--claim window 'references))
+                 (borrowed
+                  (firstpair-reader--restore-borrowed-window borrowed)
+                  borrowed)
+                 (t (user-error "Frame is too small for the references window")))))
         ('lexicon
-         (let* ((anchor (or (firstpair-reader--window 'references)
-                            (firstpair-reader--window 'reader)
-                            (selected-window)))
-                (window (firstpair-reader--split anchor firstpair-reader-lexicon-height)))
-           (if window (firstpair-reader--claim window 'lexicon) anchor))))))
+         (let* ((references (firstpair-reader--window 'references))
+                (reader (firstpair-reader--window 'reader))
+                ;; Start at the smallest ordinary window, then fit the rendered
+                ;; headword and senses.  Requesting the expanded maximum here
+                ;; can make an otherwise viable phone split fail.
+                (window (or (and references
+                                 (firstpair-reader--split references window-min-height))
+                            (and reader
+                                 (firstpair-reader--split reader window-min-height)))))
+           (cond (window (firstpair-reader--claim window 'lexicon))
+                 ;; On the smallest frames, lend the references pane to the
+                 ;; dictionary and restore it when Close is tapped.
+                 (references (firstpair-reader--borrow-window references 'lexicon))
+                 (t (user-error "Frame is too small for the dictionary window"))))))))
+
+(defun firstpair-reader--fit-lexicon-window (&optional window)
+  "Fit the dictionary WINDOW to its body, up to its configured maximum.
+When WINDOW is nil, use the window currently playing the lexicon role."
+  (let ((target (or window (firstpair-reader--window 'lexicon))))
+    (when (and (window-live-p target)
+               (eq (window-parameter target 'firstpair-role) 'lexicon))
+      (condition-case nil
+          (progn
+            (with-current-buffer (window-buffer target)
+              (set-window-point target (point-min))
+              (set-window-start target (point-min) t))
+            (fit-window-to-buffer target
+                                  (max firstpair-reader-lexicon-height window-safe-min-height)
+                                  window-safe-min-height))
+        (error nil)))))
 
 (defun firstpair-reader--show (buffer role &optional select)
   "Display BUFFER in the ROLE window and return that window.
@@ -139,6 +210,8 @@ Select the window when SELECT is non-nil."
   (let ((window (firstpair-reader--ensure-window role)))
     (unless (eq (window-buffer window) buffer)
       (set-window-buffer window buffer))
+    (when (eq role 'lexicon)
+      (firstpair-reader--fit-lexicon-window window))
     (when select (select-window window))
     window))
 
@@ -504,6 +577,29 @@ See `firstpair-reader-follow-nearest-node'."
   (let ((firstpair-reader--redirecting t))
     (call-interactively #'Info-follow-reference)))
 
+(defun firstpair-reader--link-at-point-p ()
+  "Return non-nil when point is on an Info note or menu item."
+  (or (get-text-property (point) 'link-args)
+      (and (> (point) (point-min))
+           (get-text-property (1- (point)) 'link-args))
+      (button-at (point))
+      (and (> (point) (point-min)) (button-at (1- (point))))
+      (Info-get-token (point) "\\*note[ \n\t]+"
+                      "\\*note[ \n\t]+\\([^:]*\\):\\(:\\|[ \n\t]*\\(([^)]*)\\|[^.,;\n]*\\)[.,;]\\)")
+      (Info-get-token (point) "\\* +" "\\* +\\([^:]*\\):")))
+
+(defun firstpair-reader-return ()
+  "Follow a link, or advance through the poem and look up its next word.
+RET keeps ordinary Info behavior on links and in the references manual.  In
+an aligned source node away from a link, it performs the same action as
+Next ▶."
+  (interactive)
+  (if (and (eq (firstpair-reader--role) 'reader)
+           (not (firstpair-reader--link-at-point-p))
+           (firstpair-reader--source-node-p (firstpair-reader--bundle)))
+      (firstpair-reader-next-marked-lookup)
+    (firstpair-reader-follow-nearest-node)))
+
 (defun firstpair-reader-describe-word (&optional word)
   "Show the dictionary entry for WORD, by default the word at point.
 The entry opens in the dictionary window below the references."
@@ -521,6 +617,12 @@ The entry opens in the dictionary window below the references."
         (with-current-buffer buffer
           (setq mode-line-format (firstpair-reader--dictionary-bar)))))
     word))
+
+(defun firstpair-reader--source-node-p (bundle)
+  "Return non-nil when the current node of BUNDLE has source regions."
+  (seq-some (lambda (region) (plist-get region :source))
+            (firstpair-bundle-regions-for-node
+             bundle (firstpair-bundle-manual) Info-current-node)))
 
 (defun firstpair-reader--source-spans (bundle)
   "Buffer spans (START . END) of the source-language regions of the current node."
@@ -774,7 +876,10 @@ and finally ask for a bundle directory."
 (defun firstpair-reader--reset-roles ()
   "Forget which windows play which role."
   (dolist (window (window-list nil 'no-minibuffer))
-    (set-window-parameter window 'firstpair-role nil)))
+    (dolist (parameter '(firstpair-role firstpair-borrowed-role
+                         firstpair-borrowed-buffer firstpair-borrowed-start
+                         firstpair-borrowed-point firstpair-borrowed-hscroll))
+      (set-window-parameter window parameter nil))))
 
 (defun firstpair-reader-layout ()
   "Arrange the reader, references, and dictionary windows again."
@@ -969,6 +1074,8 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd ".") #'firstpair-reader-next-marked)
     (define-key map (kbd "j") #'firstpair-reader-next-marked-lookup)
     (define-key map (kbd "k") #'firstpair-reader-previous-marked-lookup)
+    (define-key map (kbd "RET") #'firstpair-reader-return)
+    (define-key map [return] #'firstpair-reader-return)
     (define-key map (kbd "r") #'firstpair-reader-references)
     (define-key map (kbd "?") #'firstpair-reader-help)
     (define-key map [mouse-1] #'firstpair-reader-touch-click)
@@ -1063,7 +1170,9 @@ the bar fits a phone, and `?' lists what they mean."
   "Close the dictionary window."
   (interactive)
   (let ((window (firstpair-reader--window 'lexicon)))
-    (when (window-live-p window) (delete-window window))))
+    (when (window-live-p window)
+      (unless (firstpair-reader--restore-borrowed-window window)
+        (delete-window window)))))
 
 (defun firstpair-lexicon-cycle-languages-command ()
   "Cycle the dictionary languages from the dictionary window."
@@ -1090,8 +1199,7 @@ the bar fits a phone, and `?' lists what they mean."
   (interactive "e")
   (mouse-set-point event)
   (cond ((firstpair-reader--overlay-at (point)) (firstpair-reader-describe-word))
-        ((or (Info-get-token (point) "\\*note[ \n\t]+" "\\*note[ \n\t]+\\([^:]*\\):\\(:\\|[ \n\t]*\\(([^)]*)\\|[^.,;\n]*\\)[.,;]\\)")
-             (Info-get-token (point) "\\* +" "\\* +\\([^:]*\\):"))
+        ((firstpair-reader--link-at-point-p)
          (firstpair-reader-mouse-follow-nearest-node event))
         (t nil)))
 
@@ -1102,7 +1210,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "FirstPair Reader — keys and taps\n\n")
     (princ "Tap a word            look it up          d   dictionary for the word at point\n")
     (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
-    (princ "                                          j   k   next / previous word, looked up at once\n")
+    (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")

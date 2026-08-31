@@ -292,6 +292,10 @@ installs this handbook as an Info manual:
 <h2>Your first five minutes</h2>
 <p>Everything is ordinary Info. The keys you need:</p>
 <table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
 <thead>
 <tr>
 <th>Key</th>
@@ -313,7 +317,8 @@ installs this handbook as an Info manual:
 </tr>
 <tr>
 <td><code>RET</code></td>
-<td>follow the menu item or reference under the cursor</td>
+<td>follow the item or reference under the cursor; in an aligned poem,
+advance to and look up the next source word</td>
 </tr>
 <tr>
 <td><code>l</code></td>
@@ -423,12 +428,18 @@ mouse over one to see a one-line gloss, or use the keys:</p>
 <td><code>C-c C-g</code></td>
 <td>open the glossary of every explained word in this edition</td>
 </tr>
+<tr>
+<td><code>RET</code> (aligned poem)</td>
+<td>move to the next source-language word and open its entry</td>
+</tr>
 </tbody>
 </table>
-<p>The entry is deliberately small enough for a phone: it shows only
-senses, one per unwrapped row, and at most two rows for each selected
-language. It spends no rows repeating the language, headword, part of
-speech, or grammatical analysis. <strong>More</strong> on the dictionary
+<p>The entry is deliberately small enough for a phone. Its first row is
+the source lexicon’s headword — Italian in a Dante edition — in bold.
+Genuine ambiguities share that one row. After it come at most two senses
+for each selected language, one per unwrapped row. It spends no rows on
+language headings, translated headwords, parts of speech, grammatical
+analysis, or blank separators. <strong>More</strong> on the dictionary
 bar (or <code>m</code>) reveals every remaining sense;
 <strong>Less</strong> restores the compact view. A new word starts
 compact again. Lookup reads tables from the bundle’s
@@ -454,16 +465,21 @@ original first and then the translations you have on;
 <code>C-c C-t</code> cycles the choice exactly as it does for the
 dictionary, hiding the other translation in place so the original never
 moves. Every word of the original can be looked up with
-<code>C-c C-d</code>; the compact sense rows leave the original and
-translations as the visible context for how that form is being used.</p>
+<code>C-c C-d</code>. <code>RET</code> walks forward through the
+original one word at a time and opens each entry with the current
+dictionary languages. The compact headword and sense rows leave the
+original and translations as the visible context for how that form is
+being used. <code>RET</code> on an Info link still follows it.</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>
 <p><code>C-c C-l</code> restores the standard layout: book above,
 references below, dictionary under both. The customisation variables
 <code>firstpair-reader-references-height</code> (a fraction of the
-frame) and <code>firstpair-reader-lexicon-height</code> (a number of
-lines) adjust the proportions. You may also drag the divider between
+frame) and <code>firstpair-reader-lexicon-height</code> (the expanded
+dictionary’s maximum number of lines) adjust the proportions. A compact
+dictionary pane automatically shrinks to its headword plus the available
+two-per-language sense rows. You may also drag the divider between
 windows.</p>
 </section>
 <section id="reading-without-the-firstpair-reader" class="level2">
@@ -604,11 +620,13 @@ under it. In the book, <code>d</code> opens the dictionary,
 <code>b</code> a second one, <code>,</code> and <code>.</code> step
 between dictionary words, <code>j</code> and <code>k</code> step to the
 next or previous word <em>and open it</em>, <code>n</code> and
-<code>p</code> turn cantos; in the dictionary, <code>m</code> toggles
-More/Less. Space and backspace page, <code>?</code> shows this list, and
-<code>q</code> quits. Terminals get mouse reporting switched on
-automatically (<code>xterm-mouse-mode</code>); if taps still do nothing,
-the terminal app is not forwarding them and the single keys remain.
+<code>p</code> turn cantos, and <code>RET</code> repeatedly advances
+through the Italian or other source text with the current dictionary
+languages; in the dictionary, <code>m</code> toggles More/Less. Space
+and backspace page, <code>?</code> shows this list, and <code>q</code>
+quits. Terminals get mouse reporting switched on automatically
+(<code>xterm-mouse-mode</code>); if taps still do nothing, the terminal
+app is not forwarding them and the single keys remain.
 <code>firstpair-reader-touch</code> turns the layer off.</p>
 </section>
 </section>

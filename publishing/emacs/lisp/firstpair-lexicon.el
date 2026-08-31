@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.17
+;; Version: 1.18
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -402,6 +402,31 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
             (push sense seen)
             (push sense senses)))))))
 
+(defun firstpair-lexicon--source-headwords (bundle word readings)
+  "Return the distinct source-language headwords for WORD and READINGS.
+Headwords come only from BUNDLE's source lexicon.  When analysis has no
+usable entry, return WORD itself so the dictionary keeps its source identity."
+  (let (seen headwords)
+    (dolist (reading readings)
+      (let* ((entry (firstpair-lexicon-entry bundle (plist-get reading :entry)))
+             (headword (string-trim (or (and entry (plist-get entry :headword)) "")))
+             (key (and (not (string-empty-p headword))
+                       (firstpair-lexicon-normalise headword bundle))))
+        (when (and key (not (member key seen)))
+          (push key seen)
+          (push headword headwords))))
+    (or (nreverse headwords)
+        (list (let ((surface (string-trim (or word ""))))
+                (if (string-empty-p surface) "?" surface))))))
+
+(defun firstpair-lexicon--insert-source-headword (bundle word readings)
+  "Insert one source-language headword row for WORD and READINGS from BUNDLE."
+  (insert (propertize (mapconcat #'identity
+                                 (firstpair-lexicon--source-headwords bundle word readings)
+                                 " · ")
+                      'face 'firstpair-lexicon-headword)
+          "\n"))
+
 (defun firstpair-lexicon--insert-definitions (bundle word readings)
   "Insert compact sense lines for WORD from BUNDLE in each selected language.
 Return non-nil when at least one sense was inserted."
@@ -420,6 +445,7 @@ Return non-nil when at least one sense was inserted."
 
 (defun firstpair-lexicon--insert (bundle word readings)
   "Render READINGS of WORD from BUNDLE into the current buffer."
+  (firstpair-lexicon--insert-source-headword bundle word readings)
   (unless (firstpair-lexicon--insert-definitions bundle word readings)
     (insert "No entry in the selected dictionaries.\n"))
   (goto-char (point-min)))
@@ -447,7 +473,9 @@ Returns the buffer."
       (when (and (bound-and-true-p firstpair-reader-touch)
                  (fboundp 'firstpair-reader--dictionary-bar))
         (setq mode-line-format (firstpair-reader--dictionary-bar)))
-      (force-mode-line-update t))
+      (force-mode-line-update t)
+      (when (fboundp 'firstpair-reader--fit-lexicon-window)
+        (firstpair-reader--fit-lexicon-window)))
     buffer))
 
 (defun firstpair-lexicon-refresh ()
