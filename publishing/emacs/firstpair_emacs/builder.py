@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import shutil
 import tempfile
 from dataclasses import replace
@@ -53,10 +54,19 @@ STOPWORDS = frozenset(
     of on or our so that the their them there they this to us was we were what when who
     will with you your""".split()
 )
+READER_VERSION_HEADER = re.compile(r"^;; Version: (?P<version>\S+)$", re.MULTILINE)
 
 
 def _safe(value: str) -> str:
     return "".join(character if character.isalnum() or character in " -_." else "-" for character in value).strip()
+
+
+def _reader_version() -> str:
+    text = (LISP_ROOT / "firstpair-reader.el").read_text(encoding="utf-8")
+    match = READER_VERSION_HEADER.search(text)
+    if match is None:
+        raise ValueError("firstpair-reader.el declares no Version header")
+    return match.group("version")
 
 
 def plan(config_path: Path, product_name: str) -> dict[str, object]:
@@ -281,6 +291,7 @@ def _dir_file(manuals: list[Manual]) -> str:
 
 
 def _init_file(config: EmacsConfig) -> str:
+    reader_version = _reader_version()
     return f""";;; init.el --- load the {config.core.title} Emacs bundle  -*- lexical-binding: t; -*-
 
 ;; Add these lines to your Emacs configuration, or load this file directly:
@@ -289,15 +300,19 @@ def _init_file(config: EmacsConfig) -> str:
 ;;
 ;; Then run M-x firstpair-read.
 
-(let ((bundle (file-name-directory (or load-file-name buffer-file-name))))
-  ;; Interactively an installed firstpair-reader package wins: activate
-  ;; packages if that has not happened yet, and add the bundled reader to
-  ;; `load-path' only when no package provides it. In batch (validation,
-  ;; scripts) the bundle's own Lisp is used, whatever is installed.
+(let ((bundle (file-name-directory (or load-file-name buffer-file-name)))
+      (minimum-version (version-to-list "{reader_version}")))
+  ;; Interactively an installed firstpair-reader package wins when it is at
+  ;; least as new as this bundle: activate packages if that has not happened
+  ;; yet, and otherwise use the bundled reader. In batch (validation, scripts)
+  ;; the bundle's own Lisp is used, whatever is installed.
   (unless noninteractive
     (when (and (fboundp 'package-initialize) (not (bound-and-true-p package--initialized)))
       (ignore-errors (package-initialize))))
-  (if (and (not noninteractive) (locate-library "firstpair-reader"))
+  (if (and (not noninteractive)
+           (fboundp 'package-installed-p)
+           (package-installed-p 'firstpair-reader minimum-version)
+           (locate-library "firstpair-reader"))
       nil
     (add-to-list 'load-path (expand-file-name "lisp" bundle)))
   (require 'firstpair-reader)

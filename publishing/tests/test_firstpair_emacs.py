@@ -658,7 +658,12 @@ class BuildTests(Fixture):
         self.assertTrue((bundle / "install.sh").stat().st_mode & 0o100)
         init_text = (bundle / "init.el").read_text()
         self.assertIn("(add-to-list 'load-path (expand-file-name \"lisp\" bundle))", init_text)
-        self.assertIn("(locate-library \"firstpair-reader\")", init_text)  # an installed package wins interactively
+        self.assertIn("(locate-library \"firstpair-reader\")", init_text)
+        self.assertIn(
+            f"(minimum-version (version-to-list \"{package.version()}\"))",
+            init_text,
+        )
+        self.assertIn("(package-installed-p 'firstpair-reader minimum-version)", init_text)
         if has("install-info") or has("emacs"):
             info_dir = self.root / "info-dir"
             for mode in ("install", "remove"):

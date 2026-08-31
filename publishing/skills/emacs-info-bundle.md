@@ -101,6 +101,15 @@ Pitfalls:
 - do not mark English words as Latin merely because Whitaker's dictionary
   happens to contain a homograph; use `exclude`.
 
+The loader may use an installed `firstpair-reader` only when its package
+version is at least the version copied into the bundle. A stale global package
+must not shadow corrected bundle code. After changing Reader behavior, build
+and install the matching package, restart Emacs, and verify the actual library
+path and package version before testing the title. Exercise compact glosses on
+short, case-sensitive function words as well as ordinary content words; reject
+cross-entry gloss borrowing and show inflection or restoration explicitly as
+`surface → headword`.
+
 Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the key, `_` otherwise), each listed in `LEXICON.json` `files`; the reader loads one shard per lookup, so a first `C-c C-d` on a phone under iSH no longer parses tens of megabytes. Older bundles with a single `glosses.tsv` still read.
 
 Touch layer (reader 1.9): `firstpair-reader-touch` adds header-line button bars (book and dictionary), single-key bindings (d t v b , . r ?), `mouse-1` = look up word or follow link, `mouse-3` = next translation, and enables `xterm-mouse-mode` on terminals. Keep every command reachable by a single key on phones.

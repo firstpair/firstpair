@@ -111,9 +111,10 @@ own Info manual with its `dir` — for `M-x package-install-file`.
 `package-vc-install` with `:lisp-dir "publishing/emacs/lisp"` installs the
 same files from the repository. Every file's `;; Version:` header must agree;
 the package version is the reader's. Bundles keep shipping `lisp/`, appended
-to `load-path` so an installed package wins when both are present; the
-bundle schema (`firstpair-emacs-bundle-v1`) is the compatibility contract
-between them.
+to `load-path` when necessary. An installed package wins only when its version
+is at least the version shipped by the bundle; an older package must never
+shadow a book's corrected reader. The bundle schema
+(`firstpair-emacs-bundle-v1`) is the compatibility contract between them.
 
 With the package installed, `firstpair-reader-bundle-directories` lists the
 folders `firstpair-read` searches for bundles, and

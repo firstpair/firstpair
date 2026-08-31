@@ -79,9 +79,11 @@ M-x firstpair-read RET
 ```
 
 `firstpair-read` registers every bundle found in those folders and offers a
-choice when there is more than one. A bundle's `init.el` still works and,
-when the package is installed, uses the installed reader rather than its own
-copy. The package also installs this handbook as an Info manual:
+choice when there is more than one. A bundle's `init.el` still works and uses
+the installed reader when it is at least as new as the bundled copy; otherwise
+the book uses its own reader. Restart Emacs after upgrading the package so an
+older version already loaded in memory cannot linger. The package also installs
+this handbook as an Info manual:
 `C-h i m FirstPair Reader RET`.
 
 ## Your first five minutes
