@@ -158,7 +158,7 @@ translation disappears in one action, irrespective of how many editions are
 available. The graphical menu retains **Choose Second Translation...** for
 deliberate selection among many alternatives.
 
-Terminal translation control (reader 1.26): do not send an iSH or other TTY
+Terminal translation control (reader 1.27): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
 Do not use a second overriding keymap: terminal menu rendering merges it with
 the minor-mode map and exposes duplicate controls. Keep the native
@@ -170,9 +170,13 @@ text falls back to the first selected language's primary slot. Both wrap
 through candidates that cover the current part and relocate point to the same
 unit in the replacement region, preserving the slot across repeated taps. A
 TTY menu dismisses its minibuffer after invoking the
-command, so suppress the premature message and schedule the new language and
-edition label for the next timer turn; it must remain in the echo area until
-another command or message replaces it. Keep `=` as the non-mutating status
+command, so suppress the premature message and post the new language and
+edition label from a one-shot `post-command-hook` after the outer menu command
+finishes; it must remain in the echo area until another command or message
+replaces it. Install a persistent header line immediately below the menu bar
+that lists compact visible edition names in actual region order, including
+second translations, and update it on every region refresh. Keep `=` as the
+non-mutating status
 report. Terminal tests must prove next and previous in two independently
 selectable languages and in the second slot, one-action second-slot hiding
 with three or more editions, exact delayed feedback, their order, no

@@ -1088,10 +1088,16 @@ class AlignedTests(Fixture):
            (lambda ()
              (let (shown)
                (message nil)
+               (unless (memq #'firstpair-reader--show-terminal-translation-feedback
+                             post-command-hook)
+                 (error "Translation feedback was not deferred to post-command-hook"))
                (cl-letf (((symbol-function 'message)
                           (lambda (format-string &rest args)
                             (setq shown (apply #'format format-string args)))))
-                 (timer-event-handler firstpair-reader--terminal-translation-feedback-timer))
+                 (run-hooks 'post-command-hook))
+               (when (memq #'firstpair-reader--show-terminal-translation-feedback
+                           post-command-hook)
+                 (error "Translation feedback hook was not one-shot"))
                shown))))
       (goto-char (point-min))
       (firstpair-reader-next-marked)
@@ -1101,10 +1107,12 @@ class AlignedTests(Fixture):
       (let ((a (funcall hidden)))
         (let ((before (copy-tree firstpair-reader-translation-choices))
               (current (firstpair-reader-show-current-translations)))
-          (princ (format "CURRENT %s | unchanged=%S | key=%S | menu=%s\n"
+          (princ (format "CURRENT %s | unchanged=%S | key=%S | menu=%s | header=%S installed=%S\n"
                          current (equal before firstpair-reader-translation-choices)
                          (key-binding "=")
-                         (firstpair-reader--current-translations-menu-label)))
+                         (firstpair-reader--current-translations-menu-label)
+                         (firstpair-reader--translation-header-line)
+                         firstpair-reader--translation-header-installed))
           (let* ((bundle (firstpair-reader--bundle))
                  (windows (length (window-list)))
                  (next-item
@@ -1197,16 +1205,19 @@ class AlignedTests(Fixture):
             (let ((primary-after (firstpair-reader-translation-for bundle "en"))
                   (second-after (alist-get "en" firstpair-reader-second-translations nil nil #'equal))
                   (target-after (firstpair-reader--translation-target-at-point bundle))
-                  (second-feedback (funcall run-feedback)))
+                  (second-feedback (funcall run-feedback))
+                  (second-header (firstpair-reader--translation-header-line)))
             (firstpair-reader-second-translation)
-              (princ (format "%d %d %d %d %s | slots=%s/%s target=%S feedback=%S"
+              (princ (format "%d %d %d %d %s | slots=%s/%s target=%S feedback=%S header=%S"
                              a b c (funcall hidden) label primary-after
-                             second-after target-after second-feedback)))))))))"""
+                             second-after target-after second-feedback
+                             second-header)))))))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
         self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
+        self.assertIn('header=" Longfellow · Мин " installed=t', result.stdout)
         self.assertIn("TERMINAL next=firstpair-reader-terminal-next-translation previous=firstpair-reader-terminal-previous-translation en-next=en-cary/ru-min ru-next=en-cary/ru-lozinsky ru-prev=en-cary/ru-min en-prev=en-longfellow/ru-min", result.stdout)
         self.assertIn('feedback="English: Cary (1814) ≈"/"Русский: Лозинский (1939)"/"Русский: Мин (1855)"/"English: Longfellow (1867)"', result.stdout)
         self.assertIn("windows=2/2 completions=nil override=nil", result.stdout)
@@ -1219,6 +1230,7 @@ class AlignedTests(Fixture):
         self.assertIn("slots=en-cary/en-third", output[4])
         self.assertIn('target=("en" . second)', output[4])
         self.assertIn('feedback="English: Third English"', output[4])
+        self.assertIn('header=" Cary · Third English · Мин "', output[4])
         # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
         state_file = self.root / "reader-state.el"
         script = f"""(progn

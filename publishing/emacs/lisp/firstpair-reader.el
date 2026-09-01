@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.26
+;; Version: 1.27
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -435,6 +435,35 @@ names a translation not to return."
         (when second (push second ids))))
     (nreverse ids)))
 
+(defun firstpair-reader--visible-translations-in-display-order (bundle)
+  "Return BUNDLE's visible translation ids in their current textual order."
+  (let ((chosen (firstpair-reader--shown-translations bundle))
+        ids)
+    (dolist (region
+             (sort (copy-sequence
+                    (firstpair-bundle-regions-for-node
+                     bundle (firstpair-bundle-manual) Info-current-node))
+                   (lambda (left right)
+                     (< (plist-get left :start) (plist-get right :start)))))
+      (let ((id (plist-get region :language)))
+        (when (and (not (plist-get region :source))
+                   (member id chosen)
+                   (not (member id ids)))
+          (push id ids))))
+    (or (nreverse ids) chosen)))
+
+(defun firstpair-reader--translation-header-line ()
+  "Return the persistent list of editions visible in the current reader."
+  (let ((bundle (firstpair-bundle-current)))
+    (when (and bundle (firstpair-bundle-translations bundle))
+      (concat
+       " "
+       (mapconcat
+        (lambda (id) (firstpair-reader--translation-short-title bundle id))
+        (firstpair-reader--visible-translations-in-display-order bundle)
+        " · ")
+       " "))))
+
 (defun firstpair-reader--apply-regions (bundle)
   "Hide the translation regions of the current node that are not selected.
 A region shows when its translation is the one chosen for a selected
@@ -469,7 +498,8 @@ id, the dictionary's choice."
           (firstpair-reader--fontify-emphasis)
           (when Info-hide-note-references
             (firstpair-reader--tidy-references bundle))
-          (firstpair-reader--apply-regions bundle))))))
+          (firstpair-reader--apply-regions bundle)
+          (force-mode-line-update t))))))
 
 (defun firstpair-reader--marked-overlays ()
   "Return the overlays that mark dictionary words, in buffer order."
@@ -492,6 +522,7 @@ id, the dictionary's choice."
            (when Info-hide-note-references
              (firstpair-reader--tidy-references bundle))
            (firstpair-reader--apply-regions bundle)
+           (firstpair-reader--install-translation-header bundle)
            (firstpair-reader--apply-touch bundle)
            (ignore-errors (firstpair-reader-save-state)))
           (firstpair-reader-mode
@@ -852,8 +883,8 @@ The returned label is also used by the top-level Translations menu."
                  ""))))
    (firstpair-lexicon-selected bundle) " | "))
 
-(defvar firstpair-reader--terminal-translation-feedback-timer nil
-  "Pending timer that restores translation feedback after a TTY menu closes.")
+(defvar firstpair-reader--terminal-translation-feedback nil
+  "Translation feedback waiting for the current TTY menu command to finish.")
 
 (defun firstpair-reader--translation-in-slot (bundle lang slot)
   "Return BUNDLE's translation id in LANG's primary or second SLOT."
@@ -861,6 +892,15 @@ The returned label is also used by the top-level Translations menu."
     (if (eq slot 'second)
         (firstpair-reader--second-translation-for bundle lang first)
       first)))
+
+(defun firstpair-reader--show-terminal-translation-feedback ()
+  "Show and clear translation feedback queued by a TTY menu command."
+  (when firstpair-reader--terminal-translation-feedback
+    (let ((label firstpair-reader--terminal-translation-feedback))
+      (setq firstpair-reader--terminal-translation-feedback nil)
+      (remove-hook 'post-command-hook
+                   #'firstpair-reader--show-terminal-translation-feedback)
+      (message "%s" label))))
 
 (defun firstpair-reader--schedule-terminal-translation-feedback (bundle lang slot)
   "Keep BUNDLE's translation in LANG and SLOT visible after a TTY tap."
@@ -870,16 +910,14 @@ The returned label is also used by the top-level Translations menu."
          (label (format "%s: %s"
                         (or (alist-get 'label language) (upcase lang))
                         (firstpair-reader--translation-title bundle id))))
-    (when (timerp firstpair-reader--terminal-translation-feedback-timer)
-      (cancel-timer firstpair-reader--terminal-translation-feedback-timer))
-    ;; The menu's own minibuffer teardown happens after its command returns.
-    ;; Re-post on the next idle turn so that teardown cannot erase the result.
-    (setq firstpair-reader--terminal-translation-feedback-timer
-          (run-at-time
-           0 nil
-           (lambda ()
-             (setq firstpair-reader--terminal-translation-feedback-timer nil)
-             (message "%s" label))))))
+    ;; A terminal menu invokes this command before its own teardown.  Posting
+    ;; from the outer command loop leaves the result in the echo area after
+    ;; that teardown instead of letting the menu erase it.
+    (setq firstpair-reader--terminal-translation-feedback label)
+    (remove-hook 'post-command-hook
+                 #'firstpair-reader--show-terminal-translation-feedback)
+    (add-hook 'post-command-hook
+              #'firstpair-reader--show-terminal-translation-feedback)))
 
 (defun firstpair-reader--move-translation-slot (bundle lang slot step)
   "Move BUNDLE's LANG translation in SLOT by STEP, wrapping in edition order."
@@ -1295,6 +1333,30 @@ updated directly.  Returns DIRECTORY."
 
 ;;; Mode
 
+(defvar-local firstpair-reader--saved-header-line-format nil
+  "The Info header line replaced by the persistent translation names.")
+
+(defvar-local firstpair-reader--translation-header-installed nil
+  "Non-nil when this buffer shows the persistent translation header.")
+
+(defun firstpair-reader--install-translation-header (bundle)
+  "Show BUNDLE's visible edition names directly below the Emacs menu bar."
+  (when (and (equal (firstpair-bundle-manual)
+                    (firstpair-bundle-reader bundle))
+             (firstpair-bundle-translations bundle)
+             (not firstpair-reader--translation-header-installed))
+    (setq firstpair-reader--saved-header-line-format header-line-format
+          firstpair-reader--translation-header-installed t)
+    (setq-local header-line-format
+                '(:eval (firstpair-reader--translation-header-line)))))
+
+(defun firstpair-reader--restore-header-line ()
+  "Restore the Info header line replaced by `firstpair-reader-mode'."
+  (when firstpair-reader--translation-header-installed
+    (setq-local header-line-format firstpair-reader--saved-header-line-format)
+    (setq firstpair-reader--saved-header-line-format nil
+          firstpair-reader--translation-header-installed nil)))
+
 (defvar firstpair-reader-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-d") #'firstpair-reader-describe-word)
@@ -1530,7 +1592,8 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
   :lighter " FirstPair"
   :keymap firstpair-reader-mode-map
   (unless firstpair-reader-mode
-    (firstpair-reader--unmark)))
+    (firstpair-reader--unmark)
+    (firstpair-reader--restore-header-line)))
 
 (provide 'firstpair-reader)
 ;;; firstpair-reader.el ends here

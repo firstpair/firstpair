@@ -493,11 +493,15 @@ in the first changes the primary edition and point in the second changes
 the second edition; Russian works independently, while source text uses
 the first visible language’s primary slot. They wrap in edition order
 and keep point in the newly displayed edition, so repeated taps continue
-in the same slot. They do not invoke Emacs’s large text-mode menu or
-create a <code>*Completions*</code> window. Press <code>=</code> for the
-compact, non-mutating translation report. After either control, the new
-edition name remains in the bottom message line until another command or
-message replaces it. The existing <strong>Lang</strong> button changes
+in the same slot. A persistent line immediately below the top bar lists
+the visible edition names in the same order in which their text appears.
+It updates after <strong>Tr-next</strong>, <strong>Tr-prev</strong>,
+<strong>Lang</strong>, and <strong>2nd</strong>. The controls do not
+invoke Emacs’s large text-mode menu or create a
+<code>*Completions*</code> window. Press <code>=</code> for the compact,
+non-mutating translation report. After either control, the new edition
+name remains in the bottom message line until another command or message
+replaces it. The existing <strong>Lang</strong> button changes
 languages. <strong>2nd</strong> (or <code>b</code>) is a strict
 show/hide toggle, so one action always returns from two editions to one
 even when the bundle carries many alternatives.</p>

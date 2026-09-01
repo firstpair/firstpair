@@ -201,7 +201,10 @@ visible, point in the first changes the primary edition and point in the second
 changes the second edition; Russian works independently, while source text
 uses the first visible language's primary slot. They wrap in edition order
 and keep point in the newly displayed edition, so repeated taps continue in
-the same slot. They do not invoke Emacs's large text-mode menu or create a
+the same slot. A persistent line immediately below the top bar lists the
+visible edition names in the same order in which their text appears. It
+updates after **Tr-next**, **Tr-prev**, **Lang**, and **2nd**. The controls do
+not invoke Emacs's large text-mode menu or create a
 `*Completions*` window. Press `=`
 for the compact, non-mutating translation report. After either control, the
 new edition name remains in the bottom message line until another command or
