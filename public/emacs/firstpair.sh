@@ -60,20 +60,6 @@ cleanup() {
 }
 trap cleanup 0 1 2 15
 
-release=$temporary/firstpair-reader.tar.sha256
-echo "Checking the current FirstPair Reader release..."
-curl -fL --retry 3 --retry-delay 2 -o "$release" "$release_url"
-
-remote_version=$(awk '$1 == "#" && $2 == "version" { print $3; exit }' "$release")
-remote_sha256=$(awk '$1 !~ /^#/ && NF >= 2 { print $1; exit }' "$release")
-case "$remote_version" in
-  ''|*[!0-9A-Za-z.+-]*) fail "invalid Reader version in $release_url" ;;
-esac
-case "$remote_sha256" in
-  *[!0-9a-fA-F]*|'') fail "invalid SHA-256 in $release_url" ;;
-esac
-[ "${#remote_sha256}" -eq 64 ] || fail "invalid SHA-256 length in $release_url"
-
 installed_version=$("$emacs_command" --batch -Q --eval '
 (progn
   (require (quote cl-lib))
@@ -96,15 +82,31 @@ launch() {
     exit 0
   fi
   echo "Opening the FirstPair book in a fresh terminal Emacs..."
-  FIRSTPAIR_BUNDLE=$bundle exec "$emacs_command" -nw --eval '
+  FIRSTPAIR_BUNDLE=$bundle FIRSTPAIR_BUNDLE_INIT=$bundle/init.el \
+    exec "$emacs_command" -nw --eval '
 (progn
-  (require (quote package))
-  (package-initialize)
-  (require (quote firstpair-reader))
+  (load (expand-file-name (getenv "FIRSTPAIR_BUNDLE_INIT")) nil nil)
   (firstpair-read (file-name-as-directory
                    (expand-file-name (getenv "FIRSTPAIR_BUNDLE")))))
 '
 }
+
+release=$temporary/firstpair-reader.tar.sha256
+echo "Checking the current FirstPair Reader release..."
+if ! curl -fL --retry 3 --retry-delay 2 -o "$release" "$release_url"; then
+  echo "Reader update check is unavailable; opening the local book." >&2
+  launch
+fi
+
+remote_version=$(awk '$1 == "#" && $2 == "version" { print $3; exit }' "$release")
+remote_sha256=$(awk '$1 !~ /^#/ && NF >= 2 { print $1; exit }' "$release")
+case "$remote_version" in
+  ''|*[!0-9A-Za-z.+-]*) fail "invalid Reader version in $release_url" ;;
+esac
+case "$remote_sha256" in
+  *[!0-9a-fA-F]*|'') fail "invalid SHA-256 in $release_url" ;;
+esac
+[ "${#remote_sha256}" -eq 64 ] || fail "invalid SHA-256 length in $release_url"
 
 if [ "$installed_version" = "$remote_version" ]; then
   echo "FirstPair Reader $remote_version is already installed; skipping the package download."
@@ -113,7 +115,10 @@ fi
 
 archive=$temporary/firstpair-reader.tar
 echo "Downloading FirstPair Reader $remote_version..."
-curl -fL --retry 3 --retry-delay 2 -o "$archive" "$reader_url"
+if ! curl -fL --retry 3 --retry-delay 2 -o "$archive" "$reader_url"; then
+  echo "Reader download is unavailable; opening the local book." >&2
+  launch
+fi
 
 if command -v sha256sum >/dev/null 2>&1; then
   actual_sha256=$(sha256sum "$archive" | awk '{ print $1 }')

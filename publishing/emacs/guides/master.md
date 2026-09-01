@@ -313,10 +313,13 @@ version is already installed, it skips the package download and immediately
 opens the book. Otherwise it downloads the current package over HTTPS,
 verifies its SHA-256 and package identity, installs it in a clean batch Emacs,
 and only then removes older Reader package versions. It refuses to modify
-packages while an Emacs process is running. Finally it replaces the shell with
-a fresh interactive terminal Emacs and calls `firstpair-read` with the bundle
-directory. It recognises a bundle containing the script, one `Dante-Emacs`
-beside it, or one unambiguous child bundle; a path argument overrides discovery.
+packages while an Emacs process is running. If the update check or package
+download is unavailable, it reports that briefly and opens the local book with
+the installed Reader or the Reader carried inside the bundle. Finally it
+replaces the shell with a fresh interactive terminal Emacs and calls
+`firstpair-read` with the bundle directory. It recognises a bundle containing
+the script, one `Dante-Emacs` beside it, or one unambiguous child bundle; a path
+argument overrides discovery.
 
 This updates the Reader application, not the book's texts, alignments, or
 dictionaries. Download a new bundle ZIP when those edition files change.

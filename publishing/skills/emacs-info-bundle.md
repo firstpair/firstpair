@@ -201,6 +201,12 @@ Otherwise verify the downloaded tar against that SHA-256 and its declared
 package name and version, install before deleting, retain the newest version,
 remove only older Reader descriptors, and `exec emacs -nw` with
 `firstpair-read` pointed explicitly at the discovered or supplied bundle.
+Treat the network as optional at launch: a failed release-record check or tar
+download must report the fallback and immediately open through the bundle's
+`init.el`, which selects a sufficiently new installed Reader or its bundled
+copy. Keep malformed release records and failed integrity checks fatal. Test
+the offline path with a failing `curl` and assert that terminal Emacs still
+receives the canonical bundle and loader paths.
 Discovery must support the launcher inside a bundle and `/root/books/dante.sh`
 beside `/root/books/Dante-Emacs`. Keep URL, release-URL, bundle, Emacs-command,
 and no-restart environment overrides for testing; never force-kill a Reader

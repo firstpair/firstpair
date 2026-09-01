@@ -126,3 +126,47 @@ printf '%s\\n' "$FIRSTPAIR_BUNDLE" > "$EMACS_LOG"
     rmSync(work, { recursive: true, force: true })
   }
 })
+
+test('Dante launcher opens the local bundle when the update check is offline', () => {
+  const work = mkdtempSync(join(tmpdir(), 'firstpair-dante-offline-'))
+  try {
+    const books = join(work, 'books')
+    const bundle = join(books, 'Dante-Emacs')
+    const bin = join(work, 'bin')
+    const emacsLog = join(work, 'emacs.log')
+    mkdirSync(join(bundle, 'data'), { recursive: true })
+    mkdirSync(bin)
+    writeFileSync(join(bundle, 'data', 'bundle.json'), '{"schema":"firstpair-emacs-bundle-v1"}\n')
+    writeFileSync(join(bundle, 'init.el'), ';; bundled Reader loader\n')
+    copyFileSync(join(rootPath, 'publishing', 'emacs', 'reader-launcher.sh'), join(books, 'dante.sh'))
+    writeFileSync(join(bin, 'curl'), '#!/bin/sh\nexit 6\n')
+    writeFileSync(join(bin, 'emacs'), `#!/bin/sh
+case " $* " in
+  *" --batch "*) printf '%s' 1.28; exit 0 ;;
+esac
+printf '%s|%s|%s\n' "$FIRSTPAIR_BUNDLE" "$FIRSTPAIR_BUNDLE_INIT" "$*" > "$EMACS_LOG"
+`)
+    writeFileSync(join(bin, 'pgrep'), '#!/bin/sh\nexit 1\n')
+    for (const path of [join(books, 'dante.sh'), join(bin, 'curl'), join(bin, 'emacs'), join(bin, 'pgrep')]) chmodSync(path, 0o755)
+
+    const result = spawnSync('sh', ['./dante.sh'], {
+      cwd: books,
+      encoding: 'utf8',
+      env: {
+        ...process.env,
+        PATH: `${bin}:/usr/bin:/bin`,
+        EMACS_LOG: emacsLog,
+        FIRSTPAIR_READER_RELEASE_URL: 'mock://offline',
+      },
+    })
+    assert.equal(result.status, 0, result.stderr)
+    assert.match(result.stderr, /update check is unavailable; opening the local book/)
+    assert.equal(
+      readFileSync(emacsLog, 'utf8').split('|').slice(0, 2).join('|'),
+      `${realpathSync(bundle)}|${realpathSync(join(bundle, 'init.el'))}`,
+    )
+    assert.match(readFileSync(emacsLog, 'utf8'), /\|-nw --eval /)
+  } finally {
+    rmSync(work, { recursive: true, force: true })
+  }
+})
