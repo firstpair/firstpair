@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-01T15:03:22.253Z",
+  "updatedAt": "2026-09-01T15:05:58.845Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -8764,35 +8764,35 @@
       }
     },
     "dante-commedia/russian": {
-      "updatedAt": "2026-08-29T23:53:08.330Z",
+      "updatedAt": "2026-09-01T15:05:58.844Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian.pdf",
-          "sha256": "560bf9f6ce1d22d61913fe4f4c5ab27544cc399555f34c6c95e2c8bd048155cd",
-          "size": 4500536,
-          "pathname": "books/dante-commedia/russian/pdf/560bf9f6ce1d22d6-dante-commedia-russian.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/pdf/560bf9f6ce1d22d6-dante-commedia-russian.pdf",
-          "skipped": true
+          "sha256": "6af993b0b6c0ac4f6f8d9075703bca2ef357e259c1606a12f3e98d19625cb865",
+          "size": 4500823,
+          "pathname": "books/dante-commedia/russian/pdf/6af993b0b6c0ac4f-dante-commedia-russian.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/pdf/6af993b0b6c0ac4f-dante-commedia-russian.pdf",
+          "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian.epub",
-          "sha256": "94e56815e9bc7667af5e2fb18465625a8052ec5063ccfd60ac30595f3e99435c",
-          "size": 2924542,
-          "pathname": "books/dante-commedia/russian/epub/94e56815e9bc7667-dante-commedia-russian.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/epub/94e56815e9bc7667-dante-commedia-russian.epub",
-          "skipped": true
+          "sha256": "e96506b199c36487308fe848a0e454b847269f63e339201fc6acb507aa838fe3",
+          "size": 2924452,
+          "pathname": "books/dante-commedia/russian/epub/e96506b199c36487-dante-commedia-russian.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/epub/e96506b199c36487-dante-commedia-russian.epub",
+          "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian.html",
-          "sha256": "e487fc28730071043ef60d330a5796d093151d91f22e39ea511e37da2fb3657b",
-          "size": 5192700,
-          "pathname": "books/dante-commedia/russian/html/e487fc2873007104-dante-commedia-russian.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/e487fc2873007104-dante-commedia-russian.html",
-          "skipped": true
+          "sha256": "beb722aab3acc8a84545d7fa63360819e163613dc793139e519f45e4b8ed8d53",
+          "size": 5192533,
+          "pathname": "books/dante-commedia/russian/html/beb722aab3acc8a8-dante-commedia-russian.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/beb722aab3acc8a8-dante-commedia-russian.html",
+          "skipped": false
         },
         "cover": {
           "kind": "cover",
@@ -8814,55 +8814,55 @@
         },
         "vault": {
           "kind": "vault",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-vault (1.0.0-fe8f3928).zip",
-          "sha256": "82fb6660f4c0eddda978acedd2e152f1f926d86c6edc8b51bb3465f6d826d942",
-          "size": 9385561,
-          "pathname": "books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault (1.0.0-fe8f3928).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault%20%281.0.0-fe8f3928%29.zip",
-          "skipped": true
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-vault (1.0.0-f5747c3c).zip",
+          "sha256": "631dcae03e3d3c9f3d8541c687dc447a2a56214783b69f45f9e8a0b3c97690bb",
+          "size": 9431913,
+          "pathname": "books/dante-commedia/russian/vault/631dcae03e3d3c9f-dante-commedia-russian-full-vault (1.0.0-f5747c3c).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/631dcae03e3d3c9f-dante-commedia-russian-full-vault%20%281.0.0-f5747c3c%29.zip",
+          "skipped": false
         },
         "emacs": {
           "kind": "emacs",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-5ca23eab).zip",
-          "sha256": "db45b28f7b389f3452073b3f69aafefdb93024be731f2a40a1928ac51996a698",
-          "size": 7308388,
-          "pathname": "books/dante-commedia/russian/emacs/db45b28f7b389f34-dante-commedia-russian-full-emacs (1.0.0-5ca23eab).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/db45b28f7b389f34-dante-commedia-russian-full-emacs%20%281.0.0-5ca23eab%29.zip",
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-f5747c3c).zip",
+          "sha256": "80e1948da46cb8af6512b25e25cce71c02ba707e7c81dfd20cd60b22c65ba085",
+          "size": 7320328,
+          "pathname": "books/dante-commedia/russian/emacs/80e1948da46cb8af-dante-commedia-russian-full-emacs (1.0.0-f5747c3c).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/80e1948da46cb8af-dante-commedia-russian-full-emacs%20%281.0.0-f5747c3c%29.zip",
           "skipped": false
         },
         "emacsGuide": {
           "kind": "emacs-guide",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-5ca23eab).html",
-          "sha256": "a854aacb1b9479a98b643451269e38ff994a7bfcf5e478ca1068f393cacef7f5",
-          "size": 27494,
-          "pathname": "books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide (1.0.0-5ca23eab).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide%20%281.0.0-5ca23eab%29.html",
-          "skipped": true
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-f5747c3c).html",
+          "sha256": "90893f5d39d0c57ee379aed49e76bdd243a8e0ddc9517e2ee5d70c9475100613",
+          "size": 36240,
+          "pathname": "books/dante-commedia/russian/emacs-guide/90893f5d39d0c57e-dante-commedia-russian-emacs-guide (1.0.0-f5747c3c).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/90893f5d39d0c57e-dante-commedia-russian-emacs-guide%20%281.0.0-f5747c3c%29.html",
+          "skipped": false
         },
         "vaultGuide": {
           "kind": "vault-guide",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-vault-guide (1.0.0-fe8f3928).html",
-          "sha256": "14b96bd72a01a698198bdf261a75b01c2be40dd660f41dd6e20db42d653e8435",
-          "size": 24854,
-          "pathname": "books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide (1.0.0-fe8f3928).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide%20%281.0.0-fe8f3928%29.html",
-          "skipped": true
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-vault-guide (1.0.0-f5747c3c).html",
+          "sha256": "a8b728a6bf8eec821b03760524a3a2caf6efece54559eee6dea53644cc94138d",
+          "size": 25289,
+          "pathname": "books/dante-commedia/russian/vault-guide/a8b728a6bf8eec82-dante-commedia-russian-vault-guide (1.0.0-f5747c3c).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/a8b728a6bf8eec82-dante-commedia-russian-vault-guide%20%281.0.0-f5747c3c%29.html",
+          "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters",
-          "sha256": "a5a689b9996369035ca5e169575ee7fb06d738bb99f7e785fadcef8457fb5dd3",
-          "pathnamePrefix": "books/dante-commedia/russian/chapters/a5a689b999636903",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/index.html",
-          "skipped": true,
+          "sha256": "c01a7a1e8fd96f06aed810527bdaacf83d903e66a297b6e2f662cf065ab6d310",
+          "pathnamePrefix": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
+          "skipped": false,
           "files": [
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/assets/728049b83ad7-dante-commedia-russian-cover.png",
               "relativePath": "assets/728049b83ad7-dante-commedia-russian-cover.png",
               "sha256": "728049b83ad7d4b8c87c1e5f385342f5ac278fd848180697b06e8a8d1d5f6066",
               "size": 2150508,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/assets/728049b83ad7-dante-commedia-russian-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/assets/728049b83ad7-dante-commedia-russian-cover.png",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/assets/728049b83ad7-dante-commedia-russian-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/assets/728049b83ad7-dante-commedia-russian-cover.png",
               "skipped": false
             },
             {
@@ -8870,962 +8870,962 @@
               "relativePath": "book.css",
               "sha256": "3b4cc4d2398624d0458883ddc59c76a2fae6d20ca94be3a2cbb917f22f4ae8a6",
               "size": 753,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/book.css",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "e3064662deb721a602eb8de2270105923ee8f27bfbffc369eac303e5ffbec0ba",
+              "sha256": "6bbe365848c9c23effcf8f90c41de159735adeeb57c823106987c36b9ff4bcc5",
               "size": 2336,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-001.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "a05a0683e27ef4db0e3d97173bc1249a6adceb9d9f81855b762900fd8b4148f4",
+              "sha256": "cf0e3ba122186132af5db61c364623b58fc53627a69f70a804160c086b832cb3",
               "size": 3440,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-002.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "424d1b6b5bb4e2bf1eba7062282605f1dfb628114df6e6dfdc128864dee9d0b0",
+              "sha256": "ffb6f6fbca79601aeffcd898b0aa6f9e4013d8826bcc28e3127501dfe7ffd9df",
               "size": 2333,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-003.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "04033bf95e075b70a8c304d086772796bf3b28bdb8875447dd97fb19f7f04d9e",
+              "sha256": "0f969951cce14139366d98c5ec757e66126d3d557931def7901899eea3234cc2",
               "size": 24100,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-004.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "bb3e94c7c4a1c4eec330bbf7d3c925a9ff837ab585d4630c9b42c78e8c5976ba",
+              "sha256": "a281a4545f218b8a96cef15eee6ed6a26319ce35efaddcfd2e26b331e43e6d39",
               "size": 25010,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-005.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "76f109fa41de1bac67b36a53badf22b8a3e74b4198830f834b15425ee4f80b06",
+              "sha256": "17aa4cd10c9630560ef9d7466047548c44b4c845ab2b4ca2b7afdca486bf866e",
               "size": 24112,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-006.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "570fd97e1a85b7fc67ede2513bc5334a8b9849d700243516bcb9e4d30aaac5b9",
+              "sha256": "bd2b242318ff48193349055146899f216afb223f97c94f19ee3908d86d42a50c",
               "size": 26205,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-007.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "f7bc6fbf79259ab659ac509b2067aeaf1ce7f016f059b4ab9277221a4824ac1d",
+              "sha256": "f7f906ce02bc34dd6b2070cd91e898a57e9ca36fbc76721b547bc895f3e39fbf",
               "size": 24965,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-008.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "8a727567f8e9887154130e9c04bd428a9f2baa0911b00f947b391ae727eb853e",
+              "sha256": "e7b0cbb16c9a4950a952d390998fe17d1088850a08c2380e8ba92fa191cde771",
               "size": 20819,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-009.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "00ceeb4aa5d92c9cb3ea71b9913449bf5b1ec8eb19a56c524604c4cc0460c0dd",
+              "sha256": "97491cc33a68feb69400e79ed76a303c5b20f2c9791bf5f1c37f1daddbe0437e",
               "size": 23210,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-010.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "a15cb19960592d0a5869e1d6ea0c73261693afe3832e4125e57b463f3dcc0cea",
+              "sha256": "e26ac19e51d9edd14fd45b9e95f9d9ce3d553638d9043fdcececb93871f2e6ce",
               "size": 23560,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-011.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "2840a24b048631aee646deb3cee6ebc79b442aecacfe8b7500f20e945e25ac90",
+              "sha256": "188dadee7aefda2112c31b6cb16d15dbfdcb66c936a213226609204de4d3dba9",
               "size": 23724,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-012.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-012.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "4e940ec7bf7a99e7002650fc5bcde85ad352a7f071c692a7aee44714eaa018f0",
+              "sha256": "281e45c1963ba7e090e17aa83be2dfb073f794bff0b8252ecc6c13067ca0a43a",
               "size": 24169,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-013.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "656fd713f66829b66c7296caf7c74de6a883d95b89eefb609c8ab0ba534f3972",
+              "sha256": "f95cdbc5780623fd70291b7bcfff9bc5cd00e6bab2e88e82aa8131a41f29cb72",
               "size": 20823,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-014.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-014.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-015.html",
               "relativePath": "chapter-015.html",
-              "sha256": "4a9813f594f5f971f812a22cb639c2a07dec24b23c8c5659020bd6797b1f7614",
+              "sha256": "a91c2cc415d8f1bb8c2dcc417fcef1ff666ab40cb57f94424e81309f3e87d12a",
               "size": 24914,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-015.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-015.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-016.html",
               "relativePath": "chapter-016.html",
-              "sha256": "9b83655966b07aa960ff85e6fc0bba377fa711c9521a3eeb45bbd72c33d22601",
+              "sha256": "bb8c925e17ef2e7c78da26418f02ff427e3ff5ed7e6bb24370f71468324b9557",
               "size": 26662,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-016.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-016.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-017.html",
               "relativePath": "chapter-017.html",
-              "sha256": "1df60166034a0527a9369e4824f2229f5e5f7a1e559c78b714cf89b8c45045f2",
+              "sha256": "7af1654d79e80c98f870645a60aa4a7f2bf65be1332a44f92428f254a88dc349",
               "size": 25193,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-017.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-017.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-018.html",
               "relativePath": "chapter-018.html",
-              "sha256": "c2662111077baafaac53dbf1d7ab0610064d77763264229d6365359dfcd0f394",
+              "sha256": "94c2059a7b8b7851f7974b96b06c3f95cefe64d8e59bdb68f38844990ceb98f6",
               "size": 22455,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-018.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-018.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-018.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-019.html",
               "relativePath": "chapter-019.html",
-              "sha256": "5b54fe23292b08efa797bf0ad1da9e93e416d95a2cb7b594e628bdd80340d5ba",
+              "sha256": "ba810ac5af1f37642e2646f83befa088092ba48b0d88c272c5afb5485a8af09c",
               "size": 23205,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-019.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-019.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-019.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-020.html",
               "relativePath": "chapter-020.html",
-              "sha256": "a521d0ee5fb1a199bc231af591337d8eb30447bcb4ac6fdde602ffaeee2be803",
+              "sha256": "a3df8ed348ea4816f7debc303d22918f243e177742f1d158db63cc3c5a83a978",
               "size": 24063,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-020.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-020.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-020.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-020.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-021.html",
               "relativePath": "chapter-021.html",
-              "sha256": "5761cd6ccfc5a1f7584a1ad546ab9612c54bef776c9065417a5beddff334c8f5",
+              "sha256": "c70cfc2d55fe3a876e4b647d786fdfe3e78cdd60d4e7cce0f9ac039db55050df",
               "size": 24031,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-021.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-021.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-021.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-021.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-022.html",
               "relativePath": "chapter-022.html",
-              "sha256": "89fc56c19a6cbe449d346308b260bb559a184659ad2047c37c9d66bd33bbfd49",
+              "sha256": "aba9a32fd1d44b470a3d885c13309e7e3ac1a58b169f7382c328e24b6dea74d2",
               "size": 23516,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-022.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-022.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-022.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-022.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-023.html",
               "relativePath": "chapter-023.html",
-              "sha256": "221ed925974491ac6063924f0892901e868f97d21b54c0ec69cd3639ddbd082d",
+              "sha256": "cf0ba060ad52fa16e5c7ec14a69678e7791fb6ffc88b5921631e715a766035a2",
               "size": 23087,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-023.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-023.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-023.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-023.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-024.html",
               "relativePath": "chapter-024.html",
-              "sha256": "82501588f8b7f35fa02fdbbb884ec1a022b2281dec1140f36e55420c8392907c",
+              "sha256": "0774a34c7bbdec8456cfec76996a637292e1e058d67d6622d5c2e5bdd19f7c6c",
               "size": 24840,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-024.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-024.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-024.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-024.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-025.html",
               "relativePath": "chapter-025.html",
-              "sha256": "700e08566c06f8dbdcc45d7d51e6d91984d826511a97399880ece36313b2a8e9",
+              "sha256": "0e947bd31d6198bc2ab45fcbc1f736dae402d56b8d6b9f6bca8e4972a9d829b0",
               "size": 26508,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-025.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-025.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-025.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-025.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-026.html",
               "relativePath": "chapter-026.html",
-              "sha256": "9098b3752c711f72f25d02266c8ac924fcfb5e147d3625df1809ce989566fdaa",
+              "sha256": "f138cb94d730fcbd197e4f545d471c7f8ed96033be10941c8645bbcf41f440c8",
               "size": 26187,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-026.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-026.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-026.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-026.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-027.html",
               "relativePath": "chapter-027.html",
-              "sha256": "d54d1242d39a5503fe0f0a9e8a094aaefc6eb1dd8a0f56f34ee41d34b869b077",
+              "sha256": "725ab439c91eaca6a59e43ab760e5a03a1b53504b21120c1e50f03edcbdef4e7",
               "size": 26478,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-027.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-027.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-027.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-027.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-028.html",
               "relativePath": "chapter-028.html",
-              "sha256": "9aabf8a5c13d5074756bf552c2f39c33537d07da4ecec7632d558944943d4efa",
+              "sha256": "6e32e22dd977b689ce7a8759aab55e86899d57573486646e7e07bffe39cf0190",
               "size": 26408,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-028.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-028.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-028.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-028.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-029.html",
               "relativePath": "chapter-029.html",
-              "sha256": "aaccac604e26c24067cc5232fa8c2d7d4a679caf88c122d0eb0bbeab765f70d5",
+              "sha256": "7b4931a0ef82b027ab8286a6a214acc3f2e70625ade48d57f1cf3d35629b66b1",
               "size": 25226,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-029.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-029.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-029.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-029.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-030.html",
               "relativePath": "chapter-030.html",
-              "sha256": "d8c6abc7c82c5b71ad45540cd3e00d708b6b31fdd8bfb4db15499e17f7245a88",
+              "sha256": "8d9502302fe68765e9c947b0611bb934e0d5b71f24ff3a26bc223396e866b7e9",
               "size": 24124,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-030.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-030.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-030.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-030.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-031.html",
               "relativePath": "chapter-031.html",
-              "sha256": "0c45f03b6470495ee67726608eb43f448c431faecb2e50cd7005413432cd28d2",
+              "sha256": "7834ad75c62d2f9289f194a4fef75745c141e9dc1a5ae1b38a4d06c9dfdd2067",
               "size": 24924,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-031.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-031.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-031.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-031.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-032.html",
               "relativePath": "chapter-032.html",
-              "sha256": "4f8cd56f3f82fb9a2dd1419310ec468dcaef409ff626ad1acaf9be3b6253196d",
+              "sha256": "bc02b1c172b40bbd2894e649ee9054fb0bd13d637fbc01df876e1b49e185676d",
               "size": 24543,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-032.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-032.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-032.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-032.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-033.html",
               "relativePath": "chapter-033.html",
-              "sha256": "f35906d9aa6423bf7e880e911f56a761803b790adfcca2337b2b20778b41d3ec",
+              "sha256": "6d5411566e237ad8b7563d087763f6762434303799300b8066d5db445789a258",
               "size": 26095,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-033.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-033.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-033.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-033.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-034.html",
               "relativePath": "chapter-034.html",
-              "sha256": "7a590b10fba5bbbf22be5cd5197913b8b7ad0db476182340770bab3d0b48e2f7",
+              "sha256": "3807325ea819778c5513934ced6ba3c57f8bdeb2021e0f570c34a0a82ad5c55b",
               "size": 25557,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-034.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-034.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-034.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-034.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-035.html",
               "relativePath": "chapter-035.html",
-              "sha256": "6b42c696789189e6544b28fb5fe3c84a004e0b69f579d0302dcb181d5d7bdec5",
+              "sha256": "22cab875188edda1ac1f8bff44738688ac78c0acb936d69d784de4c918215aaa",
               "size": 24777,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-035.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-035.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-035.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-035.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-036.html",
               "relativePath": "chapter-036.html",
-              "sha256": "751be66b5f56f7d464638566223c95777826d254df6fac72dabcf972026a4dfc",
+              "sha256": "1372e3de24b20c3b8b96ffa883a981982a1d06376f3489105cf39fabe1eb699a",
               "size": 27806,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-036.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-036.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-036.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-036.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-037.html",
               "relativePath": "chapter-037.html",
-              "sha256": "b740a279ed92a8c7985ac18e08f49e13404d27d2809846fdd7254c9cbe9c15b0",
-              "size": 24904,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-037.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-037.html",
+              "sha256": "0c8ea4d839dbfc0408fc0c6d2114bc4cc2ddffd241d03ccfcf976f864feb0cad",
+              "size": 24880,
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-037.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-037.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-038.html",
               "relativePath": "chapter-038.html",
-              "sha256": "090655318a6f4786a362048d935873547bad3b6441f66363eba7f4948b28052c",
+              "sha256": "cd89874d5c964b70083e7745430eedfd9874ee7d8443acbe53c260826830aa30",
               "size": 2352,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-038.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-038.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-038.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-038.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-039.html",
               "relativePath": "chapter-039.html",
-              "sha256": "afba59fffba219cab0323648f0820e5bd442f4b681158fc2071fc1842a30ee5e",
+              "sha256": "3b1fbfeafb706b6a98aabd29a0a9d248f923ee529934b753d6d0cfdaed04e73d",
               "size": 24039,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-039.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-039.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-039.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-039.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-040.html",
               "relativePath": "chapter-040.html",
-              "sha256": "82742a9f7c74e6259d35078d8a62a9cca00b722e3974651c9241c3e57a94721a",
+              "sha256": "b1778b8560223a6fbc4d6f8999f9f1f55ed763ce26af4aa7729331b697b48e30",
               "size": 23884,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-040.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-040.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-040.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-040.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-041.html",
               "relativePath": "chapter-041.html",
-              "sha256": "d59c5a6a423ad6b08ab086ddfa012ee369840773e94bb8ce3d31310a860b7ba7",
+              "sha256": "7ebe372da86e339e16343ed8e985f71005f7a67676c9bfede58745f58b30ca4f",
               "size": 25854,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-041.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-041.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-041.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-041.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-042.html",
               "relativePath": "chapter-042.html",
-              "sha256": "8a7a41a4492bb8cd031f7c006d13ef013b8237fb9f5e1ada4cd5c01a154b99a5",
+              "sha256": "5b15d54a848b537b761147423b572193a648a519055655b01bb1cadb6b7d6c54",
               "size": 24851,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-042.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-042.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-042.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-042.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-043.html",
               "relativePath": "chapter-043.html",
-              "sha256": "c38c6f16efd34f3785be65196a71752e0ef87c05239a23972aa5416cf45dfcb7",
+              "sha256": "e435e053988b03e36b6c8c5867a84fd4367c9cb9cc267b7c8bb2d7a15284d575",
               "size": 24485,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-043.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-043.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-043.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-043.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-044.html",
               "relativePath": "chapter-044.html",
-              "sha256": "ce97c69a8dd08753dd930e5a3643d5b8594a5e29a15cdfb848bcbec21cca6e2d",
+              "sha256": "4e29988a342d178ab822a52396206f96faf652090098ccea4cc8c28fe1f687d4",
               "size": 26706,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-044.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-044.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-044.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-044.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-045.html",
               "relativePath": "chapter-045.html",
-              "sha256": "cb412ae46479651e01ec1b38426c75e85b3ef7be098caf9fb39882bc62b0a81d",
+              "sha256": "5e435842c32cc80cf219c893fccdf253f015f28417f83d857fe3e2d5051473ab",
               "size": 24375,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-045.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-045.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-045.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-045.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-046.html",
               "relativePath": "chapter-046.html",
-              "sha256": "58156ab6ee353f7634c900f020e4003040cb4c8edd8caa728aa7098d9796490a",
+              "sha256": "9da6bdbddf1d558f4e918141bd65df0d960e9281324fbea5835005b1b85a4dfb",
               "size": 25018,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-046.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-046.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-046.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-046.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-047.html",
               "relativePath": "chapter-047.html",
-              "sha256": "c1616c52fa303f3f8164f2b61b571f23035d89894a4beb0a8b234dc850b7e96a",
+              "sha256": "06d28beb081e9d03ccf315ba01e79ec885a9905e130dde2ca65073eb75026a09",
               "size": 25879,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-047.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-047.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-047.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-047.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-048.html",
               "relativePath": "chapter-048.html",
-              "sha256": "5cd40079ee9d12cb9ddc03d080f62ea7ab90c2b74975276c5606bd38d91ced7d",
+              "sha256": "9ad78f7e9d77b3ac9ff6503b4d207b7c7fd82121b794921e4fa9d03f4675d86c",
               "size": 24801,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-048.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-048.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-048.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-048.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-049.html",
               "relativePath": "chapter-049.html",
-              "sha256": "958cbde7a749ec855d1b3ff80699992211357f708d109c603cc137001674575d",
+              "sha256": "eeedd1c0adceb77a14bca139642445bed4b16b844cebd39bf0af4bd1cf41a4c5",
               "size": 25372,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-049.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-049.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-049.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-049.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-050.html",
               "relativePath": "chapter-050.html",
-              "sha256": "87dbb32649828823b49bdb9295c6172f52c67752687de2aef4fd3895f8d4da4c",
+              "sha256": "083b17ca385726c6866428c18a2b29b592247b1e0866bf9679a46ab4a363cd51",
               "size": 23996,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-050.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-050.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-050.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-050.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-051.html",
               "relativePath": "chapter-051.html",
-              "sha256": "3d3f79b1c0fc7bb86696d2f2535ce35e4c4e355a6dcada3e80abe5e1499a0729",
+              "sha256": "39f20c752c166b4a465d245b1f02150c533ee823f3abb19beb84a1928e40f6fa",
               "size": 27407,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-051.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-051.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-051.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-051.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-052.html",
               "relativePath": "chapter-052.html",
-              "sha256": "5b0fa3c7097e3da1a8afb6858f5ea1cda874cf83f7d3a38ba58a4e837aa9cd18",
+              "sha256": "cffa97bdbca3b930a5bdf46d2dfdef02af956d499b32a4b0044ed55dec5a6457",
               "size": 26830,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-052.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-052.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-052.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-052.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-053.html",
               "relativePath": "chapter-053.html",
-              "sha256": "f1ef55b2b22f11735eca579bed1b322d3a799adb755bdaca69f2911ac84c45ef",
+              "sha256": "de753dad98502779bd9282d8e2f5d19f9e30c8425e5badf60c3e6ed257b7ff9c",
               "size": 25804,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-053.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-053.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-053.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-053.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-054.html",
               "relativePath": "chapter-054.html",
-              "sha256": "6c20ad57fc747607e6ada1f1dfcbde379fa774c030b861620ef54b9cc7bdca7f",
+              "sha256": "304af89db0b7f9aa54b61aa82fb02237033969f46a3a2e3e9a4c58fa0790301f",
               "size": 25928,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-054.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-054.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-054.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-054.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-055.html",
               "relativePath": "chapter-055.html",
-              "sha256": "23ffa80f67b55e983286cf347fc525bc1f14db175c812fd980e62084691de73e",
+              "sha256": "447ca768bda1d3414055ce5c2ee90fb61fc7de0c9d4d31790ab0d8118248baac",
               "size": 24795,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-055.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-055.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-055.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-055.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-056.html",
               "relativePath": "chapter-056.html",
-              "sha256": "c5268b293ed34f98c364155195d59c84870d8b1c6ef2872bec6b7cced385f7a7",
+              "sha256": "928f7b7b81bdec0d1ca9e8fe3e1bfeefaac0132ed63df98165f6080ee8eff273",
               "size": 25655,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-056.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-056.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-056.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-056.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-057.html",
               "relativePath": "chapter-057.html",
-              "sha256": "9ab0baf0659b074f3cedfdc3957af2895fc63e48036d4424039dc3459d21bd58",
+              "sha256": "61a4c1785bd61f2cef20d53a87a1f91941e11495fb88907b92c3cb5eb8469b8a",
               "size": 25974,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-057.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-057.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-057.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-057.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-058.html",
               "relativePath": "chapter-058.html",
-              "sha256": "e27d774f3bbd99f32ca80dcdd258ed1c6f9e38869c6788deacae75e455ae9290",
+              "sha256": "4da2dcd194c474141ea5de024f53dfee7da778dd32f5a9d3a0a97842d0cca1bb",
               "size": 26511,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-058.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-058.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-058.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-058.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-059.html",
               "relativePath": "chapter-059.html",
-              "sha256": "22d5948b4af001449c772193cf54854e4498b48c16b7229e2cf273252aefa7b4",
+              "sha256": "3353205270eb8f9c9f753a4f14caa90d420b4a12a63ca801122e4576611b1ee2",
               "size": 24572,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-059.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-059.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-059.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-059.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-060.html",
               "relativePath": "chapter-060.html",
-              "sha256": "3cc3e8c4c1935348e28bcd0a8f35db21d90b2179528af304d1a122e90479f468",
+              "sha256": "17b8735541a0cd2b880b5a47d0731d1219b12dd657ea656c9c663bd0bde9ee77",
               "size": 27008,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-060.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-060.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-060.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-060.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-061.html",
               "relativePath": "chapter-061.html",
-              "sha256": "b306f971e81ad1183adb8d9f35c1fe64f4d4703074133a8f22cc2f36981dea47",
+              "sha256": "992870e78ab8a893cb1f33ee15003c082c01a4f7912f0d18d9a0db8187088303",
               "size": 23974,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-061.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-061.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-061.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-061.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-062.html",
               "relativePath": "chapter-062.html",
-              "sha256": "5990af974e9e808a2b8917d5a35420f74a9788ee851ce5ecd5e09193d0ce7d0e",
+              "sha256": "5ea26cac74ea6294e6125bd86347302e09dbc95bb90c4f0fbc1100ff035228b3",
               "size": 27350,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-062.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-062.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-062.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-062.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-063.html",
               "relativePath": "chapter-063.html",
-              "sha256": "bbcda073bf62b6e3754eedc81c643a1768337d64aa51271eab9dfd70bd545ab8",
+              "sha256": "efa7587305ca58540824b726d1033bfc77bcf7cea003c8dc29faa45289f820ee",
               "size": 24567,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-063.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-063.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-063.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-063.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-064.html",
               "relativePath": "chapter-064.html",
-              "sha256": "937403e10c4daf3d88c336d21f137e01457367b93e22ace5ba79c5c16e1bf938",
+              "sha256": "083ee36859e1ef8f7424948e983eb41f23ed573f410d6df7bf20a75eea2885ba",
               "size": 26212,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-064.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-064.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-064.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-064.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-065.html",
               "relativePath": "chapter-065.html",
-              "sha256": "e2f6ff611aefd4feaa4bdd57c390d8a0b425eb65a6e82dbecccf216c57238d45",
+              "sha256": "b655740b17331dcfdc4b3f9536ec23df2460739020b74abbf41e1775050259ea",
               "size": 25250,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-065.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-065.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-065.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-065.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-066.html",
               "relativePath": "chapter-066.html",
-              "sha256": "84075fa63ba7f2193638fcc3817d475d52645b679abb229ac820a713424d6e7e",
+              "sha256": "74fbb4d16dd91a25588fe33ffe284c79b33bdbb78ca17ec736dcbbc4b4558653",
               "size": 26236,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-066.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-066.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-066.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-066.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-067.html",
               "relativePath": "chapter-067.html",
-              "sha256": "8917af3a40707bb67664d3c6572ff23ff3e71612b7d176f84ffab10b250c6078",
+              "sha256": "0cf74b9b7c6c29acb9aea16cd5fb4b52b0dadad9cfd638d99b8bc61025f4007b",
               "size": 26828,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-067.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-067.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-067.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-067.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-068.html",
               "relativePath": "chapter-068.html",
-              "sha256": "2768328c706a0cc71152598d98d4f4cfba7e543d38e72c5d2133108caaa602db",
+              "sha256": "92945e3f09b3939b32caad63f6fe51e31b8caffc3b62a05bf89942e6519d1696",
               "size": 25368,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-068.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-068.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-068.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-068.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-069.html",
               "relativePath": "chapter-069.html",
-              "sha256": "585e4204241a11bd2fdc57363e1c888a2ca1f675a2de03fdab044b3d8011decd",
+              "sha256": "605b096949685420dd70bac89a40154d0957b13aa81eb8325f44e30c7bb6a2ee",
               "size": 25625,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-069.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-069.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-069.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-069.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-070.html",
               "relativePath": "chapter-070.html",
-              "sha256": "e28b3fbb637cf8efceb1a0865bd2481502bae074c38f0c8373ce497eca8dcb57",
+              "sha256": "86c3093c04c9b5df5a2ff789add7717e9b3e90623b909df6e309916921c2d4cb",
               "size": 27899,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-070.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-070.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-070.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-070.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-071.html",
               "relativePath": "chapter-071.html",
-              "sha256": "f251887d83b93112dd4b1af16129b214d659d1f4758b0c03fd8116ca153f0f80",
-              "size": 25591,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-071.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-071.html",
+              "sha256": "8a567d3d5f9b7e7fea686abe2c2bd5964a2470cefd590956182438e7cffcd388",
+              "size": 25448,
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-071.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-071.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-072.html",
               "relativePath": "chapter-072.html",
-              "sha256": "34c4f24bf77e4c310eb52eb11bd75d68266ed909a2fc7abe178120304e6d2115",
+              "sha256": "b8aa430e6df18210ab1a6167db1dee35e53418a0fdb701ac009da05dbd81fdab",
               "size": 2336,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-072.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-072.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-072.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-072.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-073.html",
               "relativePath": "chapter-073.html",
-              "sha256": "78c569e7c8e0d6416b5ae779ec6463140c5a3161f4d20bf51272a310a0ca4226",
+              "sha256": "9e98e00e74ae2e28c788eb3c28298972e7c74be03594900bb14040a0fed6b249",
               "size": 25142,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-073.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-073.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-073.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-073.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-074.html",
               "relativePath": "chapter-074.html",
-              "sha256": "adb404eca552b8697b90959162dfc1c0da535324e4ce1d4c855f3c33a872de9f",
+              "sha256": "6aabeca387dacae342939f6a0364deec39abc573613831e421b0b37858eacc8a",
               "size": 26313,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-074.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-074.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-074.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-074.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-075.html",
               "relativePath": "chapter-075.html",
-              "sha256": "e361c3a25d860cce28674d36f9b56949d2cd38b4b7b438fcca9c654157444544",
+              "sha256": "7c008591d4d388b62974bf80f3a29a38eb07c16dfc03497082d786b5478b1758",
               "size": 23273,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-075.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-075.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-075.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-075.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-076.html",
               "relativePath": "chapter-076.html",
-              "sha256": "8b7453f19b490760ca1d1bfc9ef92e742c4f1e4c6fa1e514cb99f9d3b6a8871c",
+              "sha256": "e94df5f35b894198c6caa24593e6e8569dcb984dfbcd4d9371966cced824209c",
               "size": 25200,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-076.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-076.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-076.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-076.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-077.html",
               "relativePath": "chapter-077.html",
-              "sha256": "2191167a656b04e600d1413ed0e38acfe20a1e0a7912b04d2f23d607e198e502",
+              "sha256": "f8f14f43913e48dab24e8532570ccb328c4f38439f0286f111907152272103f6",
               "size": 24693,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-077.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-077.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-077.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-077.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-078.html",
               "relativePath": "chapter-078.html",
-              "sha256": "8291a663cac83e086be243201ea952bb6e77f9863ffecc63ce66d6100969f471",
+              "sha256": "730671476b19095216b9408dfb0cb90468d65aa4809624d691b7e950c8de1404",
               "size": 25256,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-078.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-078.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-078.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-078.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-079.html",
               "relativePath": "chapter-079.html",
-              "sha256": "3841781433535b993d1431aae421408fdfc79a579c020fb54cb95836c706feb1",
+              "sha256": "6409ca3e9e3f7cec94848026244567a83175ed9acccfa647fd1005f254d50b3c",
               "size": 25879,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-079.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-079.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-079.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-079.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-080.html",
               "relativePath": "chapter-080.html",
-              "sha256": "e2f1cc89b45ce3ab7325fc100c4d8cd5bff05953d4154f2ef97d2bd9a0876ddc",
+              "sha256": "0e8359abdca8a300bb470146fb5563ed7ebd2d182cce3f8e5b969b0c31c718eb",
               "size": 26424,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-080.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-080.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-080.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-080.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-081.html",
               "relativePath": "chapter-081.html",
-              "sha256": "044c3970d1b1405b7c615be3adbee9b380fd23cf50015290f8f749ed44e17ce1",
+              "sha256": "4326e78e87eb8f1377a601899f41985ade3ea08c9189b4a7a099c1b379576494",
               "size": 25228,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-081.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-081.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-081.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-081.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-082.html",
               "relativePath": "chapter-082.html",
-              "sha256": "ee0c974b96ef8dc2a96373c63e5f6d0882b9afffa82dcba8696f1b052b89a4e2",
+              "sha256": "b70c5f5ba8132f2f002c07d6afee938f50ff4d59c5da16b411ecd0660b7fc74b",
               "size": 26384,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-082.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-082.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-082.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-082.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-083.html",
               "relativePath": "chapter-083.html",
-              "sha256": "05e146c9bb779877f6463db14fdc1c2758c66009f39bf6e8e477c1c0fe3b1996",
+              "sha256": "c8f560a41dde829df8d7058c4f8ec902eba93e3679b85f1591d5e6118eeb8836",
               "size": 24542,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-083.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-083.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-083.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-083.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-084.html",
               "relativePath": "chapter-084.html",
-              "sha256": "e779c391177dd5cde4168c2ac187003effaf333c5b5d8c5d6721d04374d163c4",
+              "sha256": "4a0a475578ada057053c6e3ff6793e2f090bec52757acaa8bda1076d89201355",
               "size": 25512,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-084.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-084.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-084.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-084.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-085.html",
               "relativePath": "chapter-085.html",
-              "sha256": "44d42e1011ad7f5e1d9e0b79a8a5e8838ea598d2c3e2c55dedcd5f5eedd312aa",
+              "sha256": "2cba3df28cb4c3275bb0eba7617b42830f2bba1a843fdf9d62239ebbc96906d9",
               "size": 25215,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-085.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-085.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-085.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-085.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-086.html",
               "relativePath": "chapter-086.html",
-              "sha256": "2948aafdbe199c1ac438d64635b1a6bd04884239cfba27250fbf98af53890573",
+              "sha256": "ee0e7e1b0164e83ce0cb1b95c9ee5e1cedcad290954812cbdf9dbaab2bf0abe7",
               "size": 24707,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-086.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-086.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-086.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-086.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-087.html",
               "relativePath": "chapter-087.html",
-              "sha256": "e6fe8ae976c344b636472fd0f150b1fd423b8eee968232cbc075b40921f61591",
+              "sha256": "b5ad44559104f66a5a48f007e3f14bdedb3df70bfdc8feaf62c70f3b8ff1d434",
               "size": 25884,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-087.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-087.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-087.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-087.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-088.html",
               "relativePath": "chapter-088.html",
-              "sha256": "d986d09383014180d783842b74668aaf03da3e38d1db7ca87a3b2fd8c1853514",
+              "sha256": "632c6b17d2a41ccf7044080faff4072904d52f0b481d474dae93d7c29472b5f4",
               "size": 26964,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-088.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-088.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-088.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-088.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-089.html",
               "relativePath": "chapter-089.html",
-              "sha256": "0cb2611c2d166f40f1fa6aee54acc7a20395a1eba1c4c708ae0532bb58ff066d",
+              "sha256": "edc9955ebf1d27f03e4bbb3237dafeb3b66aca9b65d98caa5f68e817c0ba531c",
               "size": 25064,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-089.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-089.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-089.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-089.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-090.html",
               "relativePath": "chapter-090.html",
-              "sha256": "2ef87fd847622960ce0ee0c2ec964ccc19361a10a9dadc26ab45f2b4c7d9caef",
+              "sha256": "e72afa71d7d70d00e4cb436018c2c575aa695fcfc1695eca67f28ce71caac6e8",
               "size": 24060,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-090.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-090.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-090.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-090.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-091.html",
               "relativePath": "chapter-091.html",
-              "sha256": "53c336cf2ccc8ae5e79f53b5e102a6a86591af6b574967991f6f40e664d03a28",
+              "sha256": "d6198b2e3d409ce95bf3bb64b01a7a3d80e80b3ad6dd157a19161c304e61ea1d",
               "size": 26079,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-091.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-091.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-091.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-091.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-092.html",
               "relativePath": "chapter-092.html",
-              "sha256": "a8b78b695c343db6bcea57d8b47d412647222ebdb05f3c68ed4e509cbdfddb0d",
+              "sha256": "fc725cdda456044e9ad863c74a0633b213b965b06d563085e127bd50b2614576",
               "size": 26183,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-092.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-092.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-092.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-092.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-093.html",
               "relativePath": "chapter-093.html",
-              "sha256": "a8943fccd2a824a1bf197f4ff86780f5e4dfbff98940d45cf3c7b6823d93dcd8",
+              "sha256": "d49eed3599a5a4be27a27735032eacb4d0bcccab4964d716aff52bf6bb370d24",
               "size": 25376,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-093.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-093.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-093.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-093.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-094.html",
               "relativePath": "chapter-094.html",
-              "sha256": "43520cc42ea4bf149ac8f2fcd3d16f89d34eb939d5f58c47e29773e297ef4b59",
+              "sha256": "586e9fa7901efa80f46f2895f8f07f45e81f2120ba651d474aeedc879f5d86b0",
               "size": 27291,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-094.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-094.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-094.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-094.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-095.html",
               "relativePath": "chapter-095.html",
-              "sha256": "2bab073732cb8c742f3c621d3994f03fb953057fcb0bddd756a2cebb9e9f2dca",
+              "sha256": "9cf4663b21c1d3a8c72de742e7e1b5a1ab7451df6e27c5a51b61028687556c64",
               "size": 24432,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-095.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-095.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-095.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-095.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-096.html",
               "relativePath": "chapter-096.html",
-              "sha256": "f845431f3b2fd5dbd23802d1abc3aa62f55283deca0bbaf87055279c8b67aa3b",
+              "sha256": "04a8cab9b953dff7f2f27239116338d3742c5308a04ec1bf2fa619bcef1be7c8",
               "size": 27053,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-096.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-096.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-096.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-096.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-097.html",
               "relativePath": "chapter-097.html",
-              "sha256": "3276f701f0f6f9808b41516354d4a6a6c3351f1d1633e5ef95fab134eabd1f14",
+              "sha256": "fa33c52fca96a6c1f0275f6c0bba2a58137ec7030a38d1aff2c3f72b8b0ecbb6",
               "size": 25002,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-097.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-097.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-097.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-097.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-098.html",
               "relativePath": "chapter-098.html",
-              "sha256": "02ad47c986ee9be843bbbe9545ef0f1243e248701f6cc8b7be0352e421d972f8",
+              "sha256": "7a94deba8374ba1a24afbed8150e2387e438fcc811b226bf66a3c6f10c516db6",
               "size": 25378,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-098.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-098.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-098.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-098.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-099.html",
               "relativePath": "chapter-099.html",
-              "sha256": "78b5a5ed0234dabf21bf8dd8b4ddf85b7acfa1334cb3d275f67933eeb8210561",
+              "sha256": "396fdb3fb9b09b8ac2a0c53c506192229c3962555702d5beb3df851cdf431865",
               "size": 26101,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-099.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-099.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-099.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-099.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-100.html",
               "relativePath": "chapter-100.html",
-              "sha256": "8638060fb4030409225492af447fec58b3824b10adab4366dd832299b8fbd678",
+              "sha256": "b487ba2ee0b9b7a4984aa73be553995396c0b749ff2be939b38184ee8b1e9c35",
               "size": 24943,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-100.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-100.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-100.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-100.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-101.html",
               "relativePath": "chapter-101.html",
-              "sha256": "4391f3677e444286e07521f82240421668571ddb3f90bfffb7f9e627cf8dcdac",
+              "sha256": "62d6c7436c08859ef21f98561cb5dd1aee292383b517d0eb43f03d54c6e3d6fd",
               "size": 25759,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-101.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-101.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-101.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-101.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-102.html",
               "relativePath": "chapter-102.html",
-              "sha256": "373ef87be4882167dbac9328706008f4902f5d5c3d7c48391e37a17e68b6b976",
+              "sha256": "a35e811b966933f60f52ad361f0f96465a6860cc177df10b11d0b08856e2404f",
               "size": 26222,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-102.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-102.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-102.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-102.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-103.html",
               "relativePath": "chapter-103.html",
-              "sha256": "1c33f02a869da6b443326600541ba5adf0bb2e244d77ef9e3553fe1f130efa8a",
+              "sha256": "5cb51f4c82e705f7e90d1474b48cefde30c56f55e0eee0dd4b642fc53bea8e70",
               "size": 25009,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-103.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-103.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-103.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-103.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-104.html",
               "relativePath": "chapter-104.html",
-              "sha256": "a981db8492eb74fb163b6881b0b83b9bccd1b122bd649f24070d874cd3f3bae4",
+              "sha256": "5a3a0855d08e688951f1b34bd4b623c4e4f1e2975126447c968bb4aaf9c37d6f",
               "size": 26464,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-104.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-104.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-104.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-104.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-105.html",
               "relativePath": "chapter-105.html",
-              "sha256": "f970ca694bdc108b4db9d7cddbced08f59abcb66f4057e8d50afae6ec5a56897",
+              "sha256": "3f21902843604c70dcc0af0137135ac519cbedbd83c8f25403c93da742f133e6",
               "size": 25496,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/chapter-105.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/chapter-105.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-105.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-105.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "f616ab42968badceeb9621797e0c819c9772a028f02d821a1d9ac4fcabd9ae59",
+              "sha256": "4e03c1b6e7cb11060708145bc2c4eeb1eabca6104ba8e66c8014078273eb9d88",
               "size": 16322,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/index.html",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
               "skipped": false
             },
             {
@@ -9833,8 +9833,8 @@
               "relativePath": "sitemap.json",
               "sha256": "8576a47b8d3901200ed17776607c33d3628a893240086a59634bd9aa8c28b537",
               "size": 15370,
-              "pathname": "books/dante-commedia/russian/chapters/a5a689b999636903/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/sitemap.json",
+              "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/sitemap.json",
               "skipped": false
             }
           ]
@@ -12005,6 +12005,41 @@
       "pathname": "books/dante-commedia/vault-guide/3a4b069471dd00a3-dante-commedia-vault-guide (1.0.0-f5747c3c).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/3a4b069471dd00a3-dante-commedia-vault-guide%20%281.0.0-f5747c3c%29.html",
       "size": 24835
+    },
+    "6af993b0b6c0ac4f6f8d9075703bca2ef357e259c1606a12f3e98d19625cb865:4500823": {
+      "pathname": "books/dante-commedia/russian/pdf/6af993b0b6c0ac4f-dante-commedia-russian.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/pdf/6af993b0b6c0ac4f-dante-commedia-russian.pdf",
+      "size": 4500823
+    },
+    "e96506b199c36487308fe848a0e454b847269f63e339201fc6acb507aa838fe3:2924452": {
+      "pathname": "books/dante-commedia/russian/epub/e96506b199c36487-dante-commedia-russian.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/epub/e96506b199c36487-dante-commedia-russian.epub",
+      "size": 2924452
+    },
+    "beb722aab3acc8a84545d7fa63360819e163613dc793139e519f45e4b8ed8d53:5192533": {
+      "pathname": "books/dante-commedia/russian/html/beb722aab3acc8a8-dante-commedia-russian.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/beb722aab3acc8a8-dante-commedia-russian.html",
+      "size": 5192533
+    },
+    "631dcae03e3d3c9f3d8541c687dc447a2a56214783b69f45f9e8a0b3c97690bb:9431913": {
+      "pathname": "books/dante-commedia/russian/vault/631dcae03e3d3c9f-dante-commedia-russian-full-vault (1.0.0-f5747c3c).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/631dcae03e3d3c9f-dante-commedia-russian-full-vault%20%281.0.0-f5747c3c%29.zip",
+      "size": 9431913
+    },
+    "80e1948da46cb8af6512b25e25cce71c02ba707e7c81dfd20cd60b22c65ba085:7320328": {
+      "pathname": "books/dante-commedia/russian/emacs/80e1948da46cb8af-dante-commedia-russian-full-emacs (1.0.0-f5747c3c).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/80e1948da46cb8af-dante-commedia-russian-full-emacs%20%281.0.0-f5747c3c%29.zip",
+      "size": 7320328
+    },
+    "90893f5d39d0c57ee379aed49e76bdd243a8e0ddc9517e2ee5d70c9475100613:36240": {
+      "pathname": "books/dante-commedia/russian/emacs-guide/90893f5d39d0c57e-dante-commedia-russian-emacs-guide (1.0.0-f5747c3c).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/90893f5d39d0c57e-dante-commedia-russian-emacs-guide%20%281.0.0-f5747c3c%29.html",
+      "size": 36240
+    },
+    "a8b728a6bf8eec821b03760524a3a2caf6efece54559eee6dea53644cc94138d:25289": {
+      "pathname": "books/dante-commedia/russian/vault-guide/a8b728a6bf8eec82-dante-commedia-russian-vault-guide (1.0.0-f5747c3c).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/a8b728a6bf8eec82-dante-commedia-russian-vault-guide%20%281.0.0-f5747c3c%29.html",
+      "size": 25289
     }
   },
   "chapterPackages": {
@@ -31090,6 +31125,993 @@
           "size": 15370,
           "pathname": "books/dante-commedia/chapters/33f977f4ffb8fe75/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/33f977f4ffb8fe75/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "c01a7a1e8fd96f06aed810527bdaacf83d903e66a297b6e2f662cf065ab6d310": {
+      "pathnamePrefix": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/assets/728049b83ad7-dante-commedia-russian-cover.png",
+          "relativePath": "assets/728049b83ad7-dante-commedia-russian-cover.png",
+          "sha256": "728049b83ad7d4b8c87c1e5f385342f5ac278fd848180697b06e8a8d1d5f6066",
+          "size": 2150508,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/assets/728049b83ad7-dante-commedia-russian-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/assets/728049b83ad7-dante-commedia-russian-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "3b4cc4d2398624d0458883ddc59c76a2fae6d20ca94be3a2cbb917f22f4ae8a6",
+          "size": 753,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "6bbe365848c9c23effcf8f90c41de159735adeeb57c823106987c36b9ff4bcc5",
+          "size": 2336,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "cf0e3ba122186132af5db61c364623b58fc53627a69f70a804160c086b832cb3",
+          "size": 3440,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "ffb6f6fbca79601aeffcd898b0aa6f9e4013d8826bcc28e3127501dfe7ffd9df",
+          "size": 2333,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "0f969951cce14139366d98c5ec757e66126d3d557931def7901899eea3234cc2",
+          "size": 24100,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "a281a4545f218b8a96cef15eee6ed6a26319ce35efaddcfd2e26b331e43e6d39",
+          "size": 25010,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "17aa4cd10c9630560ef9d7466047548c44b4c845ab2b4ca2b7afdca486bf866e",
+          "size": 24112,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "bd2b242318ff48193349055146899f216afb223f97c94f19ee3908d86d42a50c",
+          "size": 26205,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "f7f906ce02bc34dd6b2070cd91e898a57e9ca36fbc76721b547bc895f3e39fbf",
+          "size": 24965,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "e7b0cbb16c9a4950a952d390998fe17d1088850a08c2380e8ba92fa191cde771",
+          "size": 20819,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "97491cc33a68feb69400e79ed76a303c5b20f2c9791bf5f1c37f1daddbe0437e",
+          "size": 23210,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "e26ac19e51d9edd14fd45b9e95f9d9ce3d553638d9043fdcececb93871f2e6ce",
+          "size": 23560,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "188dadee7aefda2112c31b6cb16d15dbfdcb66c936a213226609204de4d3dba9",
+          "size": 23724,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "281e45c1963ba7e090e17aa83be2dfb073f794bff0b8252ecc6c13067ca0a43a",
+          "size": 24169,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "f95cdbc5780623fd70291b7bcfff9bc5cd00e6bab2e88e82aa8131a41f29cb72",
+          "size": 20823,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "a91c2cc415d8f1bb8c2dcc417fcef1ff666ab40cb57f94424e81309f3e87d12a",
+          "size": 24914,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "bb8c925e17ef2e7c78da26418f02ff427e3ff5ed7e6bb24370f71468324b9557",
+          "size": 26662,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "7af1654d79e80c98f870645a60aa4a7f2bf65be1332a44f92428f254a88dc349",
+          "size": 25193,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "94c2059a7b8b7851f7974b96b06c3f95cefe64d8e59bdb68f38844990ceb98f6",
+          "size": 22455,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "ba810ac5af1f37642e2646f83befa088092ba48b0d88c272c5afb5485a8af09c",
+          "size": 23205,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-020.html",
+          "relativePath": "chapter-020.html",
+          "sha256": "a3df8ed348ea4816f7debc303d22918f243e177742f1d158db63cc3c5a83a978",
+          "size": 24063,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-020.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-020.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-021.html",
+          "relativePath": "chapter-021.html",
+          "sha256": "c70cfc2d55fe3a876e4b647d786fdfe3e78cdd60d4e7cce0f9ac039db55050df",
+          "size": 24031,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-021.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-021.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-022.html",
+          "relativePath": "chapter-022.html",
+          "sha256": "aba9a32fd1d44b470a3d885c13309e7e3ac1a58b169f7382c328e24b6dea74d2",
+          "size": 23516,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-022.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-022.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-023.html",
+          "relativePath": "chapter-023.html",
+          "sha256": "cf0ba060ad52fa16e5c7ec14a69678e7791fb6ffc88b5921631e715a766035a2",
+          "size": 23087,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-023.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-023.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-024.html",
+          "relativePath": "chapter-024.html",
+          "sha256": "0774a34c7bbdec8456cfec76996a637292e1e058d67d6622d5c2e5bdd19f7c6c",
+          "size": 24840,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-024.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-024.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-025.html",
+          "relativePath": "chapter-025.html",
+          "sha256": "0e947bd31d6198bc2ab45fcbc1f736dae402d56b8d6b9f6bca8e4972a9d829b0",
+          "size": 26508,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-025.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-025.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-026.html",
+          "relativePath": "chapter-026.html",
+          "sha256": "f138cb94d730fcbd197e4f545d471c7f8ed96033be10941c8645bbcf41f440c8",
+          "size": 26187,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-026.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-026.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-027.html",
+          "relativePath": "chapter-027.html",
+          "sha256": "725ab439c91eaca6a59e43ab760e5a03a1b53504b21120c1e50f03edcbdef4e7",
+          "size": 26478,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-027.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-027.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-028.html",
+          "relativePath": "chapter-028.html",
+          "sha256": "6e32e22dd977b689ce7a8759aab55e86899d57573486646e7e07bffe39cf0190",
+          "size": 26408,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-028.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-028.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-029.html",
+          "relativePath": "chapter-029.html",
+          "sha256": "7b4931a0ef82b027ab8286a6a214acc3f2e70625ade48d57f1cf3d35629b66b1",
+          "size": 25226,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-029.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-029.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-030.html",
+          "relativePath": "chapter-030.html",
+          "sha256": "8d9502302fe68765e9c947b0611bb934e0d5b71f24ff3a26bc223396e866b7e9",
+          "size": 24124,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-030.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-030.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-031.html",
+          "relativePath": "chapter-031.html",
+          "sha256": "7834ad75c62d2f9289f194a4fef75745c141e9dc1a5ae1b38a4d06c9dfdd2067",
+          "size": 24924,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-031.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-031.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-032.html",
+          "relativePath": "chapter-032.html",
+          "sha256": "bc02b1c172b40bbd2894e649ee9054fb0bd13d637fbc01df876e1b49e185676d",
+          "size": 24543,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-032.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-032.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-033.html",
+          "relativePath": "chapter-033.html",
+          "sha256": "6d5411566e237ad8b7563d087763f6762434303799300b8066d5db445789a258",
+          "size": 26095,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-033.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-033.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-034.html",
+          "relativePath": "chapter-034.html",
+          "sha256": "3807325ea819778c5513934ced6ba3c57f8bdeb2021e0f570c34a0a82ad5c55b",
+          "size": 25557,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-034.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-034.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-035.html",
+          "relativePath": "chapter-035.html",
+          "sha256": "22cab875188edda1ac1f8bff44738688ac78c0acb936d69d784de4c918215aaa",
+          "size": 24777,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-035.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-035.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-036.html",
+          "relativePath": "chapter-036.html",
+          "sha256": "1372e3de24b20c3b8b96ffa883a981982a1d06376f3489105cf39fabe1eb699a",
+          "size": 27806,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-036.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-036.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-037.html",
+          "relativePath": "chapter-037.html",
+          "sha256": "0c8ea4d839dbfc0408fc0c6d2114bc4cc2ddffd241d03ccfcf976f864feb0cad",
+          "size": 24880,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-037.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-037.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-038.html",
+          "relativePath": "chapter-038.html",
+          "sha256": "cd89874d5c964b70083e7745430eedfd9874ee7d8443acbe53c260826830aa30",
+          "size": 2352,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-038.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-038.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-039.html",
+          "relativePath": "chapter-039.html",
+          "sha256": "3b1fbfeafb706b6a98aabd29a0a9d248f923ee529934b753d6d0cfdaed04e73d",
+          "size": 24039,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-039.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-039.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-040.html",
+          "relativePath": "chapter-040.html",
+          "sha256": "b1778b8560223a6fbc4d6f8999f9f1f55ed763ce26af4aa7729331b697b48e30",
+          "size": 23884,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-040.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-040.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-041.html",
+          "relativePath": "chapter-041.html",
+          "sha256": "7ebe372da86e339e16343ed8e985f71005f7a67676c9bfede58745f58b30ca4f",
+          "size": 25854,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-041.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-041.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-042.html",
+          "relativePath": "chapter-042.html",
+          "sha256": "5b15d54a848b537b761147423b572193a648a519055655b01bb1cadb6b7d6c54",
+          "size": 24851,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-042.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-042.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-043.html",
+          "relativePath": "chapter-043.html",
+          "sha256": "e435e053988b03e36b6c8c5867a84fd4367c9cb9cc267b7c8bb2d7a15284d575",
+          "size": 24485,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-043.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-043.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-044.html",
+          "relativePath": "chapter-044.html",
+          "sha256": "4e29988a342d178ab822a52396206f96faf652090098ccea4cc8c28fe1f687d4",
+          "size": 26706,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-044.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-044.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-045.html",
+          "relativePath": "chapter-045.html",
+          "sha256": "5e435842c32cc80cf219c893fccdf253f015f28417f83d857fe3e2d5051473ab",
+          "size": 24375,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-045.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-045.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-046.html",
+          "relativePath": "chapter-046.html",
+          "sha256": "9da6bdbddf1d558f4e918141bd65df0d960e9281324fbea5835005b1b85a4dfb",
+          "size": 25018,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-046.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-046.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-047.html",
+          "relativePath": "chapter-047.html",
+          "sha256": "06d28beb081e9d03ccf315ba01e79ec885a9905e130dde2ca65073eb75026a09",
+          "size": 25879,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-047.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-047.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-048.html",
+          "relativePath": "chapter-048.html",
+          "sha256": "9ad78f7e9d77b3ac9ff6503b4d207b7c7fd82121b794921e4fa9d03f4675d86c",
+          "size": 24801,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-048.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-048.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-049.html",
+          "relativePath": "chapter-049.html",
+          "sha256": "eeedd1c0adceb77a14bca139642445bed4b16b844cebd39bf0af4bd1cf41a4c5",
+          "size": 25372,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-049.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-049.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-050.html",
+          "relativePath": "chapter-050.html",
+          "sha256": "083b17ca385726c6866428c18a2b29b592247b1e0866bf9679a46ab4a363cd51",
+          "size": 23996,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-050.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-050.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-051.html",
+          "relativePath": "chapter-051.html",
+          "sha256": "39f20c752c166b4a465d245b1f02150c533ee823f3abb19beb84a1928e40f6fa",
+          "size": 27407,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-051.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-051.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-052.html",
+          "relativePath": "chapter-052.html",
+          "sha256": "cffa97bdbca3b930a5bdf46d2dfdef02af956d499b32a4b0044ed55dec5a6457",
+          "size": 26830,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-052.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-052.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-053.html",
+          "relativePath": "chapter-053.html",
+          "sha256": "de753dad98502779bd9282d8e2f5d19f9e30c8425e5badf60c3e6ed257b7ff9c",
+          "size": 25804,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-053.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-053.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-054.html",
+          "relativePath": "chapter-054.html",
+          "sha256": "304af89db0b7f9aa54b61aa82fb02237033969f46a3a2e3e9a4c58fa0790301f",
+          "size": 25928,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-054.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-054.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-055.html",
+          "relativePath": "chapter-055.html",
+          "sha256": "447ca768bda1d3414055ce5c2ee90fb61fc7de0c9d4d31790ab0d8118248baac",
+          "size": 24795,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-055.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-055.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-056.html",
+          "relativePath": "chapter-056.html",
+          "sha256": "928f7b7b81bdec0d1ca9e8fe3e1bfeefaac0132ed63df98165f6080ee8eff273",
+          "size": 25655,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-056.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-056.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-057.html",
+          "relativePath": "chapter-057.html",
+          "sha256": "61a4c1785bd61f2cef20d53a87a1f91941e11495fb88907b92c3cb5eb8469b8a",
+          "size": 25974,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-057.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-057.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-058.html",
+          "relativePath": "chapter-058.html",
+          "sha256": "4da2dcd194c474141ea5de024f53dfee7da778dd32f5a9d3a0a97842d0cca1bb",
+          "size": 26511,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-058.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-058.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-059.html",
+          "relativePath": "chapter-059.html",
+          "sha256": "3353205270eb8f9c9f753a4f14caa90d420b4a12a63ca801122e4576611b1ee2",
+          "size": 24572,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-059.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-059.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-060.html",
+          "relativePath": "chapter-060.html",
+          "sha256": "17b8735541a0cd2b880b5a47d0731d1219b12dd657ea656c9c663bd0bde9ee77",
+          "size": 27008,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-060.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-060.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-061.html",
+          "relativePath": "chapter-061.html",
+          "sha256": "992870e78ab8a893cb1f33ee15003c082c01a4f7912f0d18d9a0db8187088303",
+          "size": 23974,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-061.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-061.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-062.html",
+          "relativePath": "chapter-062.html",
+          "sha256": "5ea26cac74ea6294e6125bd86347302e09dbc95bb90c4f0fbc1100ff035228b3",
+          "size": 27350,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-062.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-062.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-063.html",
+          "relativePath": "chapter-063.html",
+          "sha256": "efa7587305ca58540824b726d1033bfc77bcf7cea003c8dc29faa45289f820ee",
+          "size": 24567,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-063.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-063.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-064.html",
+          "relativePath": "chapter-064.html",
+          "sha256": "083ee36859e1ef8f7424948e983eb41f23ed573f410d6df7bf20a75eea2885ba",
+          "size": 26212,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-064.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-064.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-065.html",
+          "relativePath": "chapter-065.html",
+          "sha256": "b655740b17331dcfdc4b3f9536ec23df2460739020b74abbf41e1775050259ea",
+          "size": 25250,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-065.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-065.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-066.html",
+          "relativePath": "chapter-066.html",
+          "sha256": "74fbb4d16dd91a25588fe33ffe284c79b33bdbb78ca17ec736dcbbc4b4558653",
+          "size": 26236,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-066.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-066.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-067.html",
+          "relativePath": "chapter-067.html",
+          "sha256": "0cf74b9b7c6c29acb9aea16cd5fb4b52b0dadad9cfd638d99b8bc61025f4007b",
+          "size": 26828,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-067.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-067.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-068.html",
+          "relativePath": "chapter-068.html",
+          "sha256": "92945e3f09b3939b32caad63f6fe51e31b8caffc3b62a05bf89942e6519d1696",
+          "size": 25368,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-068.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-068.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-069.html",
+          "relativePath": "chapter-069.html",
+          "sha256": "605b096949685420dd70bac89a40154d0957b13aa81eb8325f44e30c7bb6a2ee",
+          "size": 25625,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-069.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-069.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-070.html",
+          "relativePath": "chapter-070.html",
+          "sha256": "86c3093c04c9b5df5a2ff789add7717e9b3e90623b909df6e309916921c2d4cb",
+          "size": 27899,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-070.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-070.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-071.html",
+          "relativePath": "chapter-071.html",
+          "sha256": "8a567d3d5f9b7e7fea686abe2c2bd5964a2470cefd590956182438e7cffcd388",
+          "size": 25448,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-071.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-071.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-072.html",
+          "relativePath": "chapter-072.html",
+          "sha256": "b8aa430e6df18210ab1a6167db1dee35e53418a0fdb701ac009da05dbd81fdab",
+          "size": 2336,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-072.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-072.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-073.html",
+          "relativePath": "chapter-073.html",
+          "sha256": "9e98e00e74ae2e28c788eb3c28298972e7c74be03594900bb14040a0fed6b249",
+          "size": 25142,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-073.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-073.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-074.html",
+          "relativePath": "chapter-074.html",
+          "sha256": "6aabeca387dacae342939f6a0364deec39abc573613831e421b0b37858eacc8a",
+          "size": 26313,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-074.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-074.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-075.html",
+          "relativePath": "chapter-075.html",
+          "sha256": "7c008591d4d388b62974bf80f3a29a38eb07c16dfc03497082d786b5478b1758",
+          "size": 23273,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-075.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-075.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-076.html",
+          "relativePath": "chapter-076.html",
+          "sha256": "e94df5f35b894198c6caa24593e6e8569dcb984dfbcd4d9371966cced824209c",
+          "size": 25200,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-076.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-076.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-077.html",
+          "relativePath": "chapter-077.html",
+          "sha256": "f8f14f43913e48dab24e8532570ccb328c4f38439f0286f111907152272103f6",
+          "size": 24693,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-077.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-077.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-078.html",
+          "relativePath": "chapter-078.html",
+          "sha256": "730671476b19095216b9408dfb0cb90468d65aa4809624d691b7e950c8de1404",
+          "size": 25256,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-078.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-078.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-079.html",
+          "relativePath": "chapter-079.html",
+          "sha256": "6409ca3e9e3f7cec94848026244567a83175ed9acccfa647fd1005f254d50b3c",
+          "size": 25879,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-079.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-079.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-080.html",
+          "relativePath": "chapter-080.html",
+          "sha256": "0e8359abdca8a300bb470146fb5563ed7ebd2d182cce3f8e5b969b0c31c718eb",
+          "size": 26424,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-080.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-080.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-081.html",
+          "relativePath": "chapter-081.html",
+          "sha256": "4326e78e87eb8f1377a601899f41985ade3ea08c9189b4a7a099c1b379576494",
+          "size": 25228,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-081.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-081.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-082.html",
+          "relativePath": "chapter-082.html",
+          "sha256": "b70c5f5ba8132f2f002c07d6afee938f50ff4d59c5da16b411ecd0660b7fc74b",
+          "size": 26384,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-082.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-082.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-083.html",
+          "relativePath": "chapter-083.html",
+          "sha256": "c8f560a41dde829df8d7058c4f8ec902eba93e3679b85f1591d5e6118eeb8836",
+          "size": 24542,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-083.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-083.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-084.html",
+          "relativePath": "chapter-084.html",
+          "sha256": "4a0a475578ada057053c6e3ff6793e2f090bec52757acaa8bda1076d89201355",
+          "size": 25512,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-084.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-084.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-085.html",
+          "relativePath": "chapter-085.html",
+          "sha256": "2cba3df28cb4c3275bb0eba7617b42830f2bba1a843fdf9d62239ebbc96906d9",
+          "size": 25215,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-085.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-085.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-086.html",
+          "relativePath": "chapter-086.html",
+          "sha256": "ee0e7e1b0164e83ce0cb1b95c9ee5e1cedcad290954812cbdf9dbaab2bf0abe7",
+          "size": 24707,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-086.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-086.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-087.html",
+          "relativePath": "chapter-087.html",
+          "sha256": "b5ad44559104f66a5a48f007e3f14bdedb3df70bfdc8feaf62c70f3b8ff1d434",
+          "size": 25884,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-087.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-087.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-088.html",
+          "relativePath": "chapter-088.html",
+          "sha256": "632c6b17d2a41ccf7044080faff4072904d52f0b481d474dae93d7c29472b5f4",
+          "size": 26964,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-088.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-088.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-089.html",
+          "relativePath": "chapter-089.html",
+          "sha256": "edc9955ebf1d27f03e4bbb3237dafeb3b66aca9b65d98caa5f68e817c0ba531c",
+          "size": 25064,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-089.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-089.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-090.html",
+          "relativePath": "chapter-090.html",
+          "sha256": "e72afa71d7d70d00e4cb436018c2c575aa695fcfc1695eca67f28ce71caac6e8",
+          "size": 24060,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-090.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-090.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-091.html",
+          "relativePath": "chapter-091.html",
+          "sha256": "d6198b2e3d409ce95bf3bb64b01a7a3d80e80b3ad6dd157a19161c304e61ea1d",
+          "size": 26079,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-091.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-091.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-092.html",
+          "relativePath": "chapter-092.html",
+          "sha256": "fc725cdda456044e9ad863c74a0633b213b965b06d563085e127bd50b2614576",
+          "size": 26183,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-092.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-092.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-093.html",
+          "relativePath": "chapter-093.html",
+          "sha256": "d49eed3599a5a4be27a27735032eacb4d0bcccab4964d716aff52bf6bb370d24",
+          "size": 25376,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-093.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-093.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-094.html",
+          "relativePath": "chapter-094.html",
+          "sha256": "586e9fa7901efa80f46f2895f8f07f45e81f2120ba651d474aeedc879f5d86b0",
+          "size": 27291,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-094.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-094.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-095.html",
+          "relativePath": "chapter-095.html",
+          "sha256": "9cf4663b21c1d3a8c72de742e7e1b5a1ab7451df6e27c5a51b61028687556c64",
+          "size": 24432,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-095.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-095.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-096.html",
+          "relativePath": "chapter-096.html",
+          "sha256": "04a8cab9b953dff7f2f27239116338d3742c5308a04ec1bf2fa619bcef1be7c8",
+          "size": 27053,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-096.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-096.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-097.html",
+          "relativePath": "chapter-097.html",
+          "sha256": "fa33c52fca96a6c1f0275f6c0bba2a58137ec7030a38d1aff2c3f72b8b0ecbb6",
+          "size": 25002,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-097.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-097.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-098.html",
+          "relativePath": "chapter-098.html",
+          "sha256": "7a94deba8374ba1a24afbed8150e2387e438fcc811b226bf66a3c6f10c516db6",
+          "size": 25378,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-098.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-098.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-099.html",
+          "relativePath": "chapter-099.html",
+          "sha256": "396fdb3fb9b09b8ac2a0c53c506192229c3962555702d5beb3df851cdf431865",
+          "size": 26101,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-099.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-099.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-100.html",
+          "relativePath": "chapter-100.html",
+          "sha256": "b487ba2ee0b9b7a4984aa73be553995396c0b749ff2be939b38184ee8b1e9c35",
+          "size": 24943,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-100.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-100.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-101.html",
+          "relativePath": "chapter-101.html",
+          "sha256": "62d6c7436c08859ef21f98561cb5dd1aee292383b517d0eb43f03d54c6e3d6fd",
+          "size": 25759,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-101.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-101.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-102.html",
+          "relativePath": "chapter-102.html",
+          "sha256": "a35e811b966933f60f52ad361f0f96465a6860cc177df10b11d0b08856e2404f",
+          "size": 26222,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-102.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-102.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-103.html",
+          "relativePath": "chapter-103.html",
+          "sha256": "5cb51f4c82e705f7e90d1474b48cefde30c56f55e0eee0dd4b642fc53bea8e70",
+          "size": 25009,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-103.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-103.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-104.html",
+          "relativePath": "chapter-104.html",
+          "sha256": "5a3a0855d08e688951f1b34bd4b623c4e4f1e2975126447c968bb4aaf9c37d6f",
+          "size": 26464,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-104.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-104.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/chapter-105.html",
+          "relativePath": "chapter-105.html",
+          "sha256": "3f21902843604c70dcc0af0137135ac519cbedbd83c8f25403c93da742f133e6",
+          "size": 25496,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-105.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/chapter-105.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "4e03c1b6e7cb11060708145bc2c4eeb1eabca6104ba8e66c8014078273eb9d88",
+          "size": 16322,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "8576a47b8d3901200ed17776607c33d3628a893240086a59634bd9aa8c28b537",
+          "size": 15370,
+          "pathname": "books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/sitemap.json",
           "skipped": false
         }
       ]

@@ -160,11 +160,11 @@ export const readerBooks = [
     "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/c6b2a7a6f2d8bda7-dante-commedia-emacs-guide%20%281.0.0-f5747c3c%29.html",
     "versions": {
       "russian": {
-        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/e487fc2873007104-dante-commedia-russian.html",
-        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903/index.html",
-        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/a5a689b999636903",
-        "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/14b96bd72a01a698-dante-commedia-russian-vault-guide%20%281.0.0-fe8f3928%29.html",
-        "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a854aacb1b9479a9-dante-commedia-russian-emacs-guide%20%281.0.0-5ca23eab%29.html"
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/beb722aab3acc8a8-dante-commedia-russian.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06",
+        "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/a8b728a6bf8eec82-dante-commedia-russian-vault-guide%20%281.0.0-f5747c3c%29.html",
+        "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/90893f5d39d0c57e-dante-commedia-russian-emacs-guide%20%281.0.0-f5747c3c%29.html"
       }
     }
   },

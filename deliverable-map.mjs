@@ -187,10 +187,10 @@ export const deliverableBooks = [
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/cover/4774fb594f8187d4-dante-commedia-cover.png",
     "versions": {
       "russian": {
-        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/pdf/560bf9f6ce1d22d6-dante-commedia-russian.pdf",
-        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/epub/94e56815e9bc7667-dante-commedia-russian.epub",
-        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/82fb6660f4c0eddd-dante-commedia-russian-full-vault%20%281.0.0-fe8f3928%29.zip",
-        "emacs": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/db45b28f7b389f34-dante-commedia-russian-full-emacs%20%281.0.0-5ca23eab%29.zip",
+        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/pdf/6af993b0b6c0ac4f-dante-commedia-russian.pdf",
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/epub/e96506b199c36487-dante-commedia-russian.epub",
+        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault/631dcae03e3d3c9f-dante-commedia-russian-full-vault%20%281.0.0-f5747c3c%29.zip",
+        "emacs": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/80e1948da46cb8af-dante-commedia-russian-full-emacs%20%281.0.0-f5747c3c%29.zip",
         "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/cover/728049b83ad7d4b8-dante-commedia-cover.png"
       }
     }
