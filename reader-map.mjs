@@ -141,9 +141,9 @@ export const readerBooks = [
   },
   {
     "slug": "eigentimes",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/bf1f7cd8586d932f-eigentimes.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/267da0cc1cb50804/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/267da0cc1cb50804"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/0300342bd9504341-eigentimes.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/7eadd2cae68619f1/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/7eadd2cae68619f1"
   },
   {
     "slug": "eigentimes-math",

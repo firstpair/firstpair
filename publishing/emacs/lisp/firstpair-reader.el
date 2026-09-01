@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.27
+;; Version: 1.28
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -688,6 +688,21 @@ source-reference pane."
             (let ((start (point)))
               (forward-line (1+ (- (plist-get region :end) (plist-get region :start))))
               (push (cons start (point)) spans))))))))
+
+(defun firstpair-reader--source-word-at-point (bundle)
+  "Return the source-language word at point in BUNDLE, or nil."
+  (let ((bounds (bounds-of-thing-at-point 'word)))
+    (when (and bounds
+               (firstpair-reader--in-spans-p
+                (car bounds) (firstpair-reader--source-spans bundle)))
+      (buffer-substring-no-properties (car bounds) (cdr bounds)))))
+
+(defun firstpair-reader--lookup-source-word-at-point (bundle)
+  "Update the dictionary for BUNDLE's source word at point without prompting."
+  (let ((word (firstpair-reader--source-word-at-point bundle)))
+    (when word
+      (firstpair-reader-describe-word word)
+      word)))
 
 (defun firstpair-reader--in-spans-p (position spans)
   (seq-some (lambda (span) (and (<= (car span) position) (< position (cdr span)))) spans))
@@ -1541,10 +1556,16 @@ the bar fits a phone, and `?' lists what they mean."
   "Act on a tap at EVENT: look up a dictionary word, follow a link, or move point."
   (interactive "e")
   (mouse-set-point event)
-  (cond ((firstpair-reader--overlay-at (point)) (firstpair-reader-describe-word))
-        ((firstpair-reader--link-at-point-p)
-         (firstpair-reader-mouse-follow-nearest-node event))
-        (t nil)))
+  (let ((bundle (firstpair-reader--bundle))
+        (overlay (firstpair-reader--overlay-at (point))))
+    (cond ((firstpair-reader--lookup-source-word-at-point bundle))
+          (overlay
+           (firstpair-reader-describe-word
+            (buffer-substring-no-properties
+             (overlay-start overlay) (overlay-end overlay))))
+          ((firstpair-reader--link-at-point-p)
+           (firstpair-reader-mouse-follow-nearest-node event))
+          (t nil))))
 
 (defun firstpair-reader-help ()
   "Show the reader's keys and taps."
@@ -1572,8 +1593,8 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
     ;; Only the book's own window carries the bars; the references manual
     ;; below it keeps Info's plain header and mode line.
     (when (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle))
-      ;; One bar, on the mode line between the book and its references; the
-      ;; header line stays Info's, out of the way of the app's own top edge.
+      ;; One control bar, on the mode line between the book and its references;
+      ;; the persistent edition-name header remains above the book body.
       (setq mode-line-format (append (firstpair-reader--reader-bar bundle) (list " " '(:eval (or Info-current-node ""))))))
     (unless (display-graphic-p)
       (unless (bound-and-true-p xterm-mouse-mode)
@@ -1591,7 +1612,11 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
 \\{firstpair-reader-mode-map}"
   :lighter " FirstPair"
   :keymap firstpair-reader-mode-map
-  (unless firstpair-reader-mode
+  (if firstpair-reader-mode
+      (progn
+        (setq-local buffer-read-only t)
+        (when (boundp 'text-conversion-style)
+          (setq-local text-conversion-style nil)))
     (firstpair-reader--unmark)
     (firstpair-reader--restore-header-line)))
 

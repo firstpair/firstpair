@@ -166,8 +166,8 @@ export const deliverableBooks = [
   {
     "slug": "eigentimes",
     "title": "Eigen Times: A Newspaper in the Eigenbasis of the News",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/c2402c7ccce19662-eigentimes.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/f2c8a66c4dfe5065-eigentimes.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/71b983007a6ac147-eigentimes.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/2828db518e5770fd-eigentimes.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/cover/92379787ecd6cbf9-eigentimes-cover.png"
   },
   {

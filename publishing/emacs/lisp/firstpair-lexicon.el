@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.27
+;; Version: 1.28
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -453,6 +453,8 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
     (define-key map (kbd "t") #'firstpair-lexicon-next-languages)
     (define-key map (kbd "T") #'firstpair-lexicon-select-languages)
     (define-key map (kbd "m") #'firstpair-lexicon-toggle-details)
+    (define-key map [mouse-1] #'ignore)
+    (define-key map [down-mouse-1] #'ignore)
     map)
   "Keymap for `firstpair-lexicon-mode'.")
 
@@ -460,7 +462,9 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
   "Major mode for the FirstPair dictionary window."
   (setq-local truncate-lines t)
   (setq-local word-wrap nil)
-  (setq-local buffer-read-only t))
+  (setq-local buffer-read-only t)
+  (when (boundp 'text-conversion-style)
+    (setq-local text-conversion-style nil)))
 
 (defun firstpair-lexicon--sense-lines (definitions)
   "Return the distinct sense lines in DEFINITIONS, preserving their order."
