@@ -96,6 +96,7 @@ class EmacsConfig:
     author: str
     book_guide: Path | None
     aligned_index: Path | None
+    launcher: str
 
 
 def _object(value: Any, label: str) -> dict[str, Any]:
@@ -274,6 +275,9 @@ def load(path: Path) -> EmacsConfig:
         if guide_raw.get("bookSpecific")
         else core.book_guide
     )
+    launcher = _text(block.get("launcher", "firstpair.sh"), "emacs.launcher")
+    if Path(launcher).name != launcher or not launcher.endswith(".sh"):
+        raise ConfigError("emacs.launcher must be a .sh filename")
 
     return EmacsConfig(
         core=core,
@@ -291,6 +295,7 @@ def load(path: Path) -> EmacsConfig:
         author=str(block.get("author", "")),
         book_guide=book_guide,
         aligned_index=aligned_index,
+        launcher=launcher,
     )
 
 

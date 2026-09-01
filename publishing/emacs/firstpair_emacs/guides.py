@@ -41,7 +41,7 @@ The maintained web edition of the shared handbook is at [{HANDBOOK_URL}]({HANDBO
 """
     sections = [
         introduction.strip(),
-        _read(GUIDE_ROOT / "master.md"),
+        _read(GUIDE_ROOT / "master.md").replace("firstpair.sh", config.launcher),
         _read(GUIDE_ROOT / "profiles" / f"{config.core.profile}.md"),
         _read(GUIDE_ROOT / "products" / f"{projection.product.name}.md"),
     ]

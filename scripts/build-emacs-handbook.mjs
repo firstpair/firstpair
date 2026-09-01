@@ -9,8 +9,9 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const source = join(root, 'publishing', 'emacs', 'guides', 'master.md')
 const destination = join(root, 'public', 'emacs', 'index.html')
 const applicationModule = join(root, 'src', 'generated', 'emacs-handbook.ts')
-const updateReaderSource = join(root, 'publishing', 'emacs', 'update-reader.sh')
-const updateReaderPublic = join(root, 'public', 'emacs', 'update-reader.sh')
+const launcherSource = join(root, 'publishing', 'emacs', 'reader-launcher.sh')
+const firstPairLauncherPublic = join(root, 'public', 'emacs', 'firstpair.sh')
+const danteLauncherPublic = join(root, 'public', 'emacs', 'dante.sh')
 
 await renderVaultGuide({
   source,
@@ -32,7 +33,8 @@ await writeFile(
   applicationModule,
   `// Generated from publishing/emacs/guides/master.md. Do not edit.\nexport const emacsHandbookHtml = ${JSON.stringify(`${embeddedStyles}\n${body}`)}\n`,
 )
-await copyFile(updateReaderSource, updateReaderPublic)
+await copyFile(launcherSource, firstPairLauncherPublic)
+await copyFile(launcherSource, danteLauncherPublic)
 const required = [
   'Install Emacs',
   'Open the book',

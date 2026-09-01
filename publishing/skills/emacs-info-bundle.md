@@ -158,13 +158,19 @@ Terminal tests must prove the active binding is the direct rotation command,
 its label changes with selection, window count is unchanged, and no
 `*Completions*` buffer is created.
 
-Bundle updater: every generated Emacs bundle carries the canonical executable
-`update-reader.sh`, also served at `/emacs/update-reader.sh` for older bundles.
-It must fail when Emacs is already running, validate the downloaded tar as the
-`firstpair-reader` package, install before deleting, retain the newest version,
+Bundle launcher: every generated Emacs bundle carries the executable named by
+`emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public
+Dante launcher is served at `/emacs/dante.sh`; do not retain the developmental
+`/emacs/update-reader.sh` alias. Fetch the small
+`firstpair-reader.tar.sha256` release record before the package: if its declared
+version is already installed, skip the tar download and launch immediately.
+Otherwise verify the downloaded tar against that SHA-256 and its declared
+package name and version, install before deleting, retain the newest version,
 remove only older Reader descriptors, and `exec emacs -nw` with
-`firstpair-read` pointed explicitly at the script's bundle directory. Keep URL,
-Emacs-command, and no-restart environment overrides for testing; never force
-kill a Reader with potentially unsaved buffers.
+`firstpair-read` pointed explicitly at the discovered or supplied bundle.
+Discovery must support the launcher inside a bundle and `/root/books/dante.sh`
+beside `/root/books/Dante-Emacs`. Keep URL, release-URL, bundle, Emacs-command,
+and no-restart environment overrides for testing; never force-kill a Reader
+with potentially unsaved buffers.
 
 Startup and lookup cost on a phone: the bundle loads nothing large at registration — `data/regions.tsv` is grouped by node with `data/regions.index.json` byte offsets (a node's regions are read with `insert-file-contents BEG END` on first use), `lexicon/forms/<letter>.tsv` and `lexicon/glosses/<letter>.tsv` are read per lookup. Keep every table either small or indexed; the chooser loads every bundle under `firstpair-reader-bundle-directories`, so stale copies there cost startup time.

@@ -21,6 +21,7 @@ publishing/scripts/firstpair-emacs build vault.build.json --product preview
 publishing/scripts/firstpair-emacs validate --bundle '/path/to/bundle'
 publishing/scripts/firstpair-emacs guide vault.build.json --product desktop --output build/guide.md
 publishing/scripts/firstpair-emacs package            # dist/firstpair-reader-<version>.tar
+scripts/release-emacs-reader.sh                        # stable public tar + SHA-256 sidecar
 ```
 
 Building requires a clean, committed source worktree and refuses to replace an
@@ -31,6 +32,7 @@ existing bundle. The delivered layout and its guarantees are in
 
 ```json
 "emacs": {
+  "launcher": "cicero.sh",
   "direntry": { "category": "Books", "name": "cicero-on-himself", "description": "..." },
   "subtitle": "How I Outlived Rome",
   "author": "Alexy Khrabrov",

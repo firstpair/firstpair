@@ -260,6 +260,11 @@
         "author": {
           "type": "string"
         },
+        "launcher": {
+          "type": "string",
+          "pattern": "^[^/]+\\.sh$",
+          "description": "Executable launcher filename delivered with the Emacs bundle; defaults to firstpair.sh."
+        },
         "parts": {
           "type": "array",
           "items": {

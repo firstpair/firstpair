@@ -117,6 +117,7 @@ class Fixture(unittest.TestCase):
             ],
             "products": {"desktop": {"output": "candidate/desktop"}},
             "emacs": {
+                "launcher": "dante.sh",
                 "direntry": {"name": "fixture", "description": "A fixture."},
                 "subtitle": "A Test",
                 "author": "Nobody",
@@ -162,6 +163,7 @@ class ConfigTests(Fixture):
         config = load(self.write_config())
         self.assertEqual("fixture", config.reader_stem)
         self.assertEqual("fixture-refs", config.reference_stem)
+        self.assertEqual("dante.sh", config.launcher)
         self.assertEqual({"proem": "Part I", "book-1": "Part I"}, config.page_parts)
         self.assertEqual("latin", config.lexicon.language)
         self.assertEqual(("passages",), tuple(record.set_id for record in config.records))
@@ -632,10 +634,11 @@ class BuildTests(Fixture):
         bundle = self.root / "emacs" / "desktop"
         self.assertEqual("firstpair-emacs-manifest-v1", manifest["schema"])
         self.assertEqual([], manifest["unmatchedAnchors"])
-        for name in ("fixture.info", "fixture-refs.info", "texi/fixture.texi", "init.el", "update-reader.sh", "dir", "lisp/firstpair-reader.el"):
+        for name in ("fixture.info", "fixture-refs.info", "texi/fixture.texi", "init.el", "dante.sh", "dir", "lisp/firstpair-reader.el"):
             self.assertTrue((bundle / name).is_file(), name)
         self.assertFalse((bundle / "lisp" / "firstpair-check.el").exists())
         self.assertEqual((bundle / "Guide.md").read_bytes(), (bundle / "README.md").read_bytes())
+        self.assertIn("./dante.sh", (bundle / "Guide.md").read_text(encoding="utf-8"))
         reader = " ".join((bundle / "fixture.info").read_text(encoding="utf-8").split())
         self.assertIn("(*note Letters to Atticus 4.8a: (fixture-refs)Letters to Atticus 4-8a,)", reader)
         self.assertIn("Node: Part I", reader)
@@ -656,13 +659,16 @@ class BuildTests(Fixture):
         with self.assertRaises(RuntimeError):
             build(path, "desktop", allow_download=False)
         self.assertTrue((bundle / "install.sh").stat().st_mode & 0o100)
-        self.assertTrue((bundle / "update-reader.sh").stat().st_mode & 0o100)
-        updater = (bundle / "update-reader.sh").read_text(encoding="utf-8")
+        self.assertTrue((bundle / "dante.sh").stat().st_mode & 0o100)
+        updater = (bundle / "dante.sh").read_text(encoding="utf-8")
+        self.assertIn('release_url=${FIRSTPAIR_READER_RELEASE_URL:-${reader_url}.sha256}', updater)
+        self.assertIn('if [ "$installed_version" = "$remote_version" ]', updater)
+        self.assertLess(updater.index('if [ "$installed_version" = "$remote_version" ]'), updater.index("archive=$temporary/firstpair-reader.tar"))
         self.assertIn("package-install-file archive", updater)
         self.assertIn("package-delete descriptor t t", updater)
         self.assertLess(updater.index("package-install-file archive"), updater.index("package-delete descriptor t t"))
-        self.assertIn("FIRSTPAIR_BUNDLE=$here exec", updater)
-        self.assertEqual(0, subprocess.run(["sh", "-n", str(bundle / "update-reader.sh")], check=False).returncode)
+        self.assertIn("FIRSTPAIR_BUNDLE=$bundle exec", updater)
+        self.assertEqual(0, subprocess.run(["sh", "-n", str(bundle / "dante.sh")], check=False).returncode)
         init_text = (bundle / "init.el").read_text()
         self.assertIn("(add-to-list 'load-path (expand-file-name \"lisp\" bundle))", init_text)
         self.assertIn("(locate-library \"firstpair-reader\")", init_text)

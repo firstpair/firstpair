@@ -116,6 +116,13 @@ is at least the version shipped by the bundle; an older package must never
 shadow a book's corrected reader. The bundle schema
 (`firstpair-emacs-bundle-v1`) is the compatibility contract between them.
 
+`scripts/release-emacs-reader.sh` rebuilds the stable public tar and
+`firstpair-reader.tar.sha256` together. The sidecar begins with the Reader
+version and then records the tar's full SHA-256. A bundle launcher named by
+`emacs.launcher` fetches that small record first, skips the tar entirely when
+the declared version is already installed, and verifies both the digest and
+the package metadata before installing a changed release.
+
 With the package installed, `firstpair-reader-bundle-directories` lists the
 folders `firstpair-read` searches for bundles, and
 `firstpair-reader-install-info` / `install.sh` put a bundle's manuals into an
