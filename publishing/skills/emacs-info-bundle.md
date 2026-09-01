@@ -120,6 +120,15 @@ Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the 
 
 Touch layer (reader 1.9): `firstpair-reader-touch` adds header-line button bars (book and dictionary), single-key bindings (d t v b , . r ?), `mouse-1` = look up word or follow link, `mouse-3` = next translation, and enables `xterm-mouse-mode` on terminals. Keep every command reachable by a single key on phones.
 
+Direct source-word lookup (reader 1.28): a primary click or tap on any word
+inside an aligned source-language region passes that surface form directly to
+the lexicon and refreshes the existing Dict pane without selecting it or
+opening `read-string`. Do not limit touch lookup to pre-marked overlays. Keep
+the poem Info buffer and the lexicon buffer explicitly read-only, disable text
+conversion in both, and consume primary clicks in the Dict pane. Tests must
+prove that an unmarked source word updates the dictionary with no prompt,
+preserves poem focus, and leaves both buffers read-only.
+
 Compact dictionary (reader 1.18): the first body row is the authoritative
 source-lexicon headword, or several genuinely ambiguous source headwords on
 that same row. Derive it from the analysed source entries, never a translated

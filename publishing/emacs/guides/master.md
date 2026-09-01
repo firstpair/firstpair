@@ -144,7 +144,10 @@ transcription, a data table. It opens inside Emacs, in the lower window, and
 ## The dictionary window
 
 Words the bundle's lexicon can explain are underlined. Hover the mouse over
-one to see a one-line gloss, or use the keys:
+one to see a one-line gloss. In an aligned poem, click or tap any word of the
+original to update the Dict pane immediately; the poem keeps focus and no
+keyboard-input prompt opens. Both the poem and Dict panes are read-only. You
+can also use the keys:
 
 | Key | Action |
 | --- | --- |

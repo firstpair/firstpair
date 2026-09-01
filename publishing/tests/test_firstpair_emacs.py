@@ -1104,6 +1104,20 @@ class AlignedTests(Fixture):
       (princ (format "WORD %s\n" (thing-at-point 'word t)))
       (firstpair-reader-next-marked)
       (princ (format "WORD %s\n" (thing-at-point 'word t)))
+      (goto-char (point-min))
+      (search-forward "cammin")
+      (backward-word 1)
+      (let ((reader-window (selected-window)))
+        (cl-letf (((symbol-function 'mouse-set-point) (lambda (_event) nil))
+                  ((symbol-function 'read-string)
+                   (lambda (&rest _args) (error "Touch lookup opened a prompt"))))
+          (firstpair-reader-touch-click '(mouse-1 nil)))
+        (princ
+         (format "CLICK word=%S reader-read-only=%S dict-read-only=%S focus=%S\n"
+                 (with-current-buffer firstpair-lexicon-buffer firstpair-lexicon-word)
+                 buffer-read-only
+                 (with-current-buffer firstpair-lexicon-buffer buffer-read-only)
+                 (eq reader-window (selected-window)))))
       (let ((a (funcall hidden)))
         (let ((before (copy-tree firstpair-reader-translation-choices))
               (current (firstpair-reader-show-current-translations)))
@@ -1216,6 +1230,7 @@ class AlignedTests(Fixture):
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
+        self.assertIn('CLICK word="cammin" reader-read-only=t dict-read-only=t focus=t', result.stdout)
         self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
         self.assertIn('header=" Longfellow · Мин " installed=t', result.stdout)
         self.assertIn("TERMINAL next=firstpair-reader-terminal-next-translation previous=firstpair-reader-terminal-previous-translation en-next=en-cary/ru-min ru-next=en-cary/ru-lozinsky ru-prev=en-cary/ru-min en-prev=en-longfellow/ru-min", result.stdout)
