@@ -16,7 +16,7 @@ test('standard Reader package is stable and offline', () => {
 })
 
 test('standard Reader preserves navigation and bounded local history', () => {
-  const controls = ['Previous', 'Up', 'Back', 'Top', 'TOC', 'Next']
+  const controls = ['Previous', 'Previous word', 'Up', 'Back', 'Top', 'TOC', 'Next word', 'Next']
   let cursor = -1
   for (const control of controls) {
     const position = source.indexOf(`"${control}"`)
@@ -26,6 +26,9 @@ test('standard Reader preserves navigation and bounded local history', () => {
   assert.match(source, /new ReaderHistory\(\)/)
   assert.match(source, /limit = 64/)
   assert.match(source, /rotate-ccw/)
+  assert.match(source, /chevrons-left/)
+  assert.match(source, /chevrons-right/)
+  assert.match(source, /async stepWord\(direction\)/)
 })
 
 test('standard Reader supports data-driven multilingual editions offline', () => {

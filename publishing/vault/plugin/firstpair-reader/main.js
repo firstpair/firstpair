@@ -43,6 +43,7 @@ class FirstPairReaderView extends ItemView {
   constructor(leaf, plugin) {
     super(leaf); this.plugin = plugin; this.pages = []; this.position = 0;
     this.history = new ReaderHistory(); this.parallel = null; this.enabled = new Set();
+    this.wordPosition = -1;
     // columns: the translations on screen, in order — one per language by
     // default, a second column of a language when the reader asks for it.
     this.columns = [];
@@ -142,7 +143,10 @@ class FirstPairReaderView extends ItemView {
       await this.loadIndex(); this.restoreState(); this.makeToolbar(); this.makeRail(); this.watchLayout(); await this.renderPage();
       const saved = this.savedState();
       if (saved?.scrollTop) this.root.scrollTop = saved.scrollTop;
-      if (saved?.word) await this.openDictionary(saved.word);
+      if (saved?.word) {
+        const button = this.wordButtons().find((candidate) => candidate.textContent === saved.word);
+        if (button) await this.selectWord(button); else await this.openDictionary(saved.word);
+      }
       this.root.addEventListener("scroll", () => this.saveStateSoon(), { passive: true });
     }
     catch (error) { this.showError(error); }
@@ -332,10 +336,12 @@ class FirstPairReaderView extends ItemView {
   }
   makeRail() {
     this.previous = this.makeButton("Previous", "chevron-left", () => this.jump(this.position - 1));
+    this.previousWord = this.makeButton("Previous word", "chevrons-left", () => this.stepWord(-1));
     this.up = this.makeButton("Up", "corner-left-up", () => this.openHome());
     this.back = this.makeButton("Back", "rotate-ccw", () => this.restore());
     this.top = this.makeButton("Top", "arrow-up-to-line", () => this.toTop());
     this.toc = this.makeButton("TOC", "list", () => this.openHome());
+    this.nextWord = this.makeButton("Next word", "chevrons-right", () => this.stepWord(1));
     this.next = this.makeButton("Next", "chevron-right", () => this.jump(this.position + 1));
   }
   snapshot() { return { position: this.position, scrollTop: this.root.scrollTop }; }
@@ -345,6 +351,32 @@ class FirstPairReaderView extends ItemView {
   toTop() { this.history.push(this.snapshot()); this.root.scrollTop = 0; }
   async openHome() { const home = this.app.vault.getAbstractFileByPath("Home.md"); if (home) await this.app.workspace.getLeaf(false).openFile(home); }
 
+  wordButtons() { return Array.from(this.page.querySelectorAll(".firstpair-reader__word")); }
+  updateWordNavigation() {
+    const words = this.wordButtons();
+    if (this.wordPosition >= words.length) this.wordPosition = -1;
+    for (const [index, word] of words.entries()) {
+      const active = index === this.wordPosition;
+      word.toggleClass("firstpair-reader__word--active", active);
+      if (active) word.setAttribute("aria-current", "true"); else word.removeAttribute("aria-current");
+    }
+    this.previousWord.disabled = !words.length || this.wordPosition <= 0;
+    this.nextWord.disabled = !words.length || this.wordPosition === words.length - 1;
+  }
+  async selectWord(button, scroll = false) {
+    const words = this.wordButtons(); const position = words.indexOf(button);
+    if (position < 0) return;
+    this.wordPosition = position; this.updateWordNavigation();
+    if (scroll) button.scrollIntoView?.({ block: "center", behavior: "smooth" });
+    await this.openDictionary(button.textContent);
+  }
+  async stepWord(direction) {
+    const words = this.wordButtons(); if (!words.length) return;
+    const position = this.wordPosition < 0 ? (direction > 0 ? 0 : -1) : this.wordPosition + direction;
+    if (position < 0 || position >= words.length) return;
+    await this.selectWord(words[position], true);
+  }
+
   appendText(container, lines, clickable = false) {
     for (const line of Array.isArray(lines) ? lines : [lines]) {
       const row = container.createDiv({ cls: "firstpair-reader__verse" });
@@ -352,7 +384,7 @@ class FirstPairReaderView extends ItemView {
       for (const token of line.split(/([\p{L}\p{M}]+[’']?)/u)) {
         if (/^[\p{L}\p{M}]/u.test(token)) {
           const word = row.createEl("button", { text: token, cls: "firstpair-reader__word" });
-          word.addEventListener("click", () => this.openDictionary(token));
+          word.addEventListener("click", () => this.selectWord(word));
         } else row.appendText(token);
       }
     }
@@ -510,6 +542,7 @@ class FirstPairReaderView extends ItemView {
     this.saveStateSoon();
   }
   async renderPage(resetScroll = true) {
+    if (resetScroll) this.wordPosition = -1;
     const entry = this.pages[this.position]; this.page.empty(); this.page.removeClass("firstpair-reader__page--parallel");
     try {
       if (this.parallel) await this.renderParallel(entry);
@@ -522,6 +555,7 @@ class FirstPairReaderView extends ItemView {
     if (this.plugin.settings.keepDrawerOpen) this.showDrawer(); else this.sizeDrawer();
     this.previous.disabled = this.position === 0; this.next.disabled = this.position === this.pages.length - 1;
     this.back.disabled = !this.history.items.length;
+    this.updateWordNavigation();
     this.previous.title = this.pages[this.position - 1]?.title ?? "Previous";
     this.next.title = this.pages[this.position + 1]?.title ?? "Next";
     this.saveStateSoon();

@@ -37,14 +37,17 @@ unreadable in Restricted mode.
 6. Use this edge-to-edge control order:
 
    ```text
-   Previous | Up | Back | Top | TOC | Next
+   Previous page | Previous word | Up | Back | Top | TOC | Next word | Next page
    ```
 
-   Previous and Next traverse bounded canonical order and name the destination.
-   Up opens the containing Part, or contents from a Part. Back restores the
-   prior Reader position after footnote, Top, TOC, Up, Previous, and Next
-   jumps. Top returns to the true page start. TOC opens grouped contents and
-   marks the current page.
+   Page controls traverse bounded canonical order, name the destination, and
+   own the flexible outside tracks. The double-chevron word controls sit
+   immediately inside them, step through source-language words on the current
+   page, visibly mark and scroll the selected word, and open its local
+   dictionary entry. They never change pages. Up opens the containing Part, or
+   contents from a Part. Back restores the prior Reader position after
+   footnote, Top, TOC, Up, Previous-page, and Next-page jumps. Top returns to
+   the true page start. TOC opens grouped contents and marks the current page.
 7. Keep first and last boundaries explicit, not circular. Use native buttons,
    accessible labels, visible keyboard focus, fixed dimensions, and clear
    disabled states. Add command-palette actions for opening the Reader,
@@ -63,10 +66,12 @@ unreadable in Restricted mode.
    The Back control uses a fixed-size `rotate-ccw` icon that stays recognizable
    while disabled; do not depend on a Unicode circular arrow or inherited font.
 10. Make the reading column scroll independently. At phone widths, Previous
-    and Next use flexible outside tracks with one ellipsized destination line;
-    Up, Back, Top, and TOC are compact icon-only controls; Next remains at the
-    far right; page-progress text is hidden; and tables and images scroll or
-    scale inside the column without widening the viewport.
+    page and Next page use flexible outside tracks with one ellipsized
+    destination line; Previous word and Next word are compact double-chevron
+    controls nested immediately inside them; Up, Back, Top, and TOC are compact
+    icon-only controls; Next page remains at the far right; page-progress text
+    is hidden; and tables and images scroll or scale inside the column without
+    widening the viewport.
 11. Keep static launcher, contents, Part, and page notes as a complete fallback.
     Place Previous, Next, Up, Top, and TOC links above and below static page
     text because Markdown cannot read the plugin's top-or-bottom setting.

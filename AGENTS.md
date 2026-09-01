@@ -574,13 +574,16 @@ Obsidian and compare the installed plugin version and hashes with the source
 manifest.
 
 The shared Reader contract is one rail, bottom by default and movable to top,
-ordered **Previous | Up | Back | Top | TOC | Next**. Previous and Next own the
-wide outside tracks on phones; the middle controls remain compact and
-touch-sized. Back restores bounded internal Reader continuation after an
-ordinary footnote, Top, TOC, Up, Previous, or Next jump; it never exits to a
-non-Reader note. Capture stable Reader identities, scroll offsets, and exact
-footnote locators before each jump, then pop without recording while Back
-restores. Use Obsidian's fixed-size `rotate-ccw` icon even when disabled. Top
+ordered **Previous page | Previous word | Up | Back | Top | TOC | Next word |
+Next page**. Page controls own the wide outside tracks on phones; compact
+double-chevron word controls sit directly inside them, walk only the current
+page's source-language words, visibly mark the selection, and open the local
+dictionary. The remaining middle controls stay compact and touch-sized. Back
+restores bounded internal Reader continuation after an ordinary footnote, Top,
+TOC, Up, Previous-page, or Next-page jump; it never exits to a non-Reader note.
+Capture stable Reader identities, scroll offsets, and exact footnote locators
+before each jump, then pop without recording while Back restores. Use
+Obsidian's fixed-size `rotate-ccw` icon even when disabled. Top
 targets the true page start, including cover-first and plate-first pages. The
 canonical cover, reviewed bilingual quote rails, exact inline source links, and
 complete static Markdown fallback are required deliverables. Ordinary

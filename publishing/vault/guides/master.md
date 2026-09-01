@@ -66,9 +66,14 @@ example `path:Sources` or `path:Code`.
 FirstPair vaults include a continuous Reader and a complete static Markdown
 fallback. The standard Reader navigation rail is:
 
-**Previous | Up | Back | Top | TOC | Next**
+**Previous page | Previous word | Up | Back | Top | TOC | Next word | Next page**
 
-- **Previous** and **Next** follow canonical book order.
+- **Previous page** and **Next page** follow canonical book order and remain at
+  the outside edges of the rail.
+- **Previous word** and **Next word** are the nested double-chevron controls.
+  In a parallel-language edition they step through the source text on the
+  current page, highlight the selected word, and open its offline dictionary
+  entry. They do not turn the page.
 - **Up** leaves the current page for the Reader’s containing part or Home.
 - **Back** restores the previous position inside the Reader, including the
   position before a footnote, source jump, Top, TOC, Previous, or Next action.

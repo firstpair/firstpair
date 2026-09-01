@@ -290,10 +290,16 @@ also restrict paths, for example <code>path:Sources</code> or
 <h2>The FirstPair Reader</h2>
 <p>FirstPair vaults include a continuous Reader and a complete static
 Markdown fallback. The standard Reader navigation rail is:</p>
-<p><strong>Previous | Up | Back | Top | TOC | Next</strong></p>
+<p><strong>Previous page | Previous word | Up | Back | Top | TOC | Next
+word | Next page</strong></p>
 <ul>
-<li><strong>Previous</strong> and <strong>Next</strong> follow canonical
-book order.</li>
+<li><strong>Previous page</strong> and <strong>Next page</strong> follow
+canonical book order and remain at the outside edges of the rail.</li>
+<li><strong>Previous word</strong> and <strong>Next word</strong> are
+the nested double-chevron controls. In a parallel-language edition they
+step through the source text on the current page, highlight the selected
+word, and open its offline dictionary entry. They do not turn the
+page.</li>
 <li><strong>Up</strong> leaves the current page for the Reader’s
 containing part or Home.</li>
 <li><strong>Back</strong> restores the previous position inside the

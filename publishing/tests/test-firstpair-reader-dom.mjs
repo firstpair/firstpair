@@ -91,6 +91,18 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     assert.equal(strips[0].getAttribute('data-translations'), '2')
     assert.ok(root.querySelector('.firstpair-reader__page--columns'), 'wide pane uses columns')
 
+    const rail = Array.from(root.querySelectorAll('.firstpair-reader__rail button'))
+    assert.deepEqual(rail.map((button) => button.getAttribute('aria-label')), ['Previous', 'Previous word', 'Up', 'Back', 'Top', 'TOC', 'Next word', 'Next'])
+    const previousWord = rail[1]; const nextWord = rail[6]
+    assert.equal(previousWord.disabled, true)
+    assert.equal(nextWord.disabled, false)
+    nextWord.click(); await settle(); await settle()
+    assert.equal(root.querySelector('.firstpair-reader__word--active').textContent, 'Nel')
+    assert.equal(previousWord.disabled, true)
+    nextWord.click(); await settle(); await settle()
+    assert.equal(root.querySelector('.firstpair-reader__word--active').textContent, 'mezzo')
+    assert.equal(previousWord.disabled, false)
+
     const word = Array.from(cells[0].querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'mezzo')
     word.click(); await settle(); await settle()
     const drawer = root.querySelector('.firstpair-reader__drawer')
@@ -118,6 +130,8 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     const next = Array.from(root.querySelectorAll('.firstpair-reader__rail button')).find((button) => button.getAttribute('aria-label') === 'Next')
     next.click(); await settle(); await settle()
     assert.match(root.querySelector('h1').textContent, /Canto 2/)
+    assert.equal(previousWord.disabled, true, 'word navigation resets at a page boundary')
+    assert.equal(nextWord.disabled, false)
 
     // Home links become buttons that open the Reader on a page.
     const home = window.document.body.createDiv()

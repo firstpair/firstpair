@@ -4,6 +4,20 @@ import { mkdirSync } from 'node:fs'
 mkdirSync(out, { recursive: true })
 const browser = await chromium.launch()
 const report = []
+const rail = async (page) => page.evaluate(() => {
+  const element = document.querySelector('.firstpair-reader__rail'); const box = element.getBoundingClientRect()
+  return { labels: [...element.querySelectorAll('button')].map((button) => button.getAttribute('aria-label')),
+    width: [Math.round(element.clientWidth), Math.round(element.scrollWidth)],
+    edges: [...element.querySelectorAll('button')].map((button) => { const rect = button.getBoundingClientRect(); return [Math.round(rect.left - box.left), Math.round(rect.right - box.left)] }) }
+})
+const checkRail = async (page) => {
+  const value = await rail(page)
+  const expected = ['Previous', 'Previous word', 'Up', 'Back', 'Top', 'TOC', 'Next word', 'Next']
+  if (JSON.stringify(value.labels) !== JSON.stringify(expected)) throw new Error(`Reader rail order: ${value.labels.join(' | ')}`)
+  if (value.width[1] > value.width[0] + 1) throw new Error(`Reader rail overflows: ${value.width.join('/')}`)
+  if (value.edges[0][0] < -1 || value.edges.at(-1)[1] > value.width[0] + 1) throw new Error(`Reader rail edges escape: ${JSON.stringify(value.edges)}`)
+  return value
+}
 async function run(name, contextOptions, url, steps) {
   const context = await browser.newContext(contextOptions)
   const page = await context.newPage()
@@ -13,7 +27,7 @@ async function run(name, contextOptions, url, steps) {
   await page.goto(url)
   await page.waitForSelector('.firstpair-reader__strip', { timeout: 15000 })
   await page.evaluate(() => localStorage.clear())
-  try { await steps(page, name) } catch (error) { report.push({ name, failed: String(error).split('\n')[0] }) }
+  try { report.push({ name, step: 'rail', rail: await checkRail(page) }); await steps(page, name) } catch (error) { report.push({ name, failed: String(error).split('\n')[0] }) }
   report.push({ name, errors })
   await context.close()
 }
@@ -71,3 +85,4 @@ await run('phone-landscape', { ...iphone, viewport: { width: 844, height: 390 } 
 })
 await browser.close()
 console.log(JSON.stringify(report, null, 1))
+if (report.some((item) => item.failed)) process.exitCode = 1

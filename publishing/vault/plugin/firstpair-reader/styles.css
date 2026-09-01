@@ -5,7 +5,7 @@
 .firstpair-reader__picker { font-size: var(--font-ui-small); max-width: 14rem; min-height: 36px; }
 .firstpair-reader__toolbar-title { color: var(--text-muted); font-size: var(--font-ui-smaller); }
 .firstpair-reader__language-toggle { align-items: center; display: inline-flex; gap: var(--size-4-1); min-height: 44px; }
-.firstpair-reader__rail { align-items: center; background: var(--background-primary); border-top: 1px solid var(--background-modifier-border); bottom: 0; display: grid; gap: var(--size-4-2); grid-template-columns: minmax(0, 1fr) repeat(4, auto) minmax(0, 1fr); position: sticky; padding: var(--size-4-2) 0; z-index: 5; }
+.firstpair-reader__rail { align-items: center; background: var(--background-primary); border-top: 1px solid var(--background-modifier-border); bottom: 0; display: grid; gap: var(--size-4-2); grid-template-columns: minmax(0, 1fr) repeat(6, auto) minmax(0, 1fr); position: sticky; padding: var(--size-4-2) 0; z-index: 5; }
 .firstpair-reader__rail button { min-height: 44px; min-width: 44px; }
 .firstpair-reader__rail button:first-child { justify-self: start; }
 .firstpair-reader__rail button:last-child { justify-self: end; }
@@ -24,7 +24,7 @@
 .firstpair-reader__cell { min-width: 0; }
 .firstpair-reader__verse { line-height: 1.65; min-height: 1.65em; }
 .firstpair-reader__word { background: none; border: 0; box-shadow: none; color: inherit; cursor: pointer; font: inherit; height: auto; padding: 0; vertical-align: baseline; }
-.firstpair-reader__word:hover, .firstpair-reader__word:focus-visible { background: var(--text-highlight-bg); text-decoration: underline; }
+.firstpair-reader__word:hover, .firstpair-reader__word:focus-visible, .firstpair-reader__word--active { background: var(--text-highlight-bg); text-decoration: underline; }
 .firstpair-reader__frame { height: 100%; position: relative; }
 .firstpair-reader__drawer { background: var(--background-secondary); border-inline-start: 1px solid var(--background-modifier-border); box-shadow: var(--shadow-l); box-sizing: border-box; inset-block: 0; inset-inline-end: 0; max-width: 90%; overflow: auto; padding: var(--size-4-4); position: absolute; width: min(30rem, 90%); z-index: 20; }
 .firstpair-reader__drawer-hint { color: var(--text-muted); }

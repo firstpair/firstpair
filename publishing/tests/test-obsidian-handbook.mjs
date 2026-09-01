@@ -27,5 +27,8 @@ test('canonical handbook is comprehensive and the site page is current', () => {
   }
   assert.match(html, /href="https:\/\/firstpair\.org\/read\/omnighost\/"/)
   assert.match(html, /href="https:\/\/obsidian\.md\/download"/)
+  assert.match(markdown, /Previous page \| Previous word \| Up \| Back \| Top \| TOC \| Next word \| Next page/)
+  assert.match(html, /Previous word/)
+  assert.match(html, /Next word/)
   assert.doesNotMatch(html, /<link\b[^>]*rel=["']stylesheet["']/i)
 })
