@@ -16,6 +16,28 @@ const checkRail = async (page) => {
   if (JSON.stringify(value.labels) !== JSON.stringify(expected)) throw new Error(`Reader rail order: ${value.labels.join(' | ')}`)
   if (value.width[1] > value.width[0] + 1) throw new Error(`Reader rail overflows: ${value.width.join('/')}`)
   if (value.edges[0][0] < -1 || value.edges.at(-1)[1] > value.width[0] + 1) throw new Error(`Reader rail edges escape: ${JSON.stringify(value.edges)}`)
+  if (value.edges.some((edge, index) => index && value.edges[index - 1][1] > edge[0] + 1)) throw new Error(`Reader rail controls overlap: ${JSON.stringify(value.edges)}`)
+  return value
+}
+const toolbar = async (page) => page.evaluate(() => {
+  const element = document.querySelector('.firstpair-reader__toolbar'); const box = element.getBoundingClientRect()
+  const controls = [...element.querySelectorAll('.firstpair-reader__language, .firstpair-reader__layout-toggle')]
+  return {
+    labels: [...element.querySelectorAll('.firstpair-reader__language-toggle span')].map((label) => label.textContent),
+    pickers: [...element.querySelectorAll('.firstpair-reader__picker')].map((picker) => picker.selectedOptions[0]?.textContent),
+    layout: [...element.querySelectorAll('.firstpair-reader__layout-toggle span')].find((label) => getComputedStyle(label).display !== 'none')?.textContent,
+    width: [Math.round(element.clientWidth), Math.round(element.scrollWidth)],
+    height: Math.round(box.height),
+    tops: controls.map((control) => Math.round(control.getBoundingClientRect().top - box.top)),
+  }
+})
+const checkToolbar = async (page) => {
+  const value = await toolbar(page)
+  if (JSON.stringify(value.labels) !== JSON.stringify(['Eng', 'Рус'])) throw new Error(`Reader toolbar labels: ${value.labels.join(' | ')}`)
+  if (value.pickers.some((name) => /\([^)]*\)/.test(name))) throw new Error(`Reader toolbar has edition details: ${value.pickers.join(' | ')}`)
+  if (value.layout !== 'Auto') throw new Error(`Reader toolbar layout is not visible: ${value.layout}`)
+  if (value.width[1] > value.width[0] + 1) throw new Error(`Reader toolbar overflows: ${value.width.join('/')}`)
+  if (Math.max(...value.tops) - Math.min(...value.tops) > 2 || value.height > 50) throw new Error(`Reader toolbar wrapped: ${JSON.stringify(value)}`)
   return value
 }
 async function run(name, contextOptions, url, steps) {
@@ -27,7 +49,11 @@ async function run(name, contextOptions, url, steps) {
   await page.goto(url)
   await page.waitForSelector('.firstpair-reader__strip', { timeout: 15000 })
   await page.evaluate(() => localStorage.clear())
-  try { report.push({ name, step: 'rail', rail: await checkRail(page) }); await steps(page, name) } catch (error) { report.push({ name, failed: String(error).split('\n')[0] }) }
+  try {
+    report.push({ name, step: 'rail', rail: await checkRail(page) })
+    report.push({ name, step: 'toolbar', toolbar: await checkToolbar(page) })
+    await steps(page, name)
+  } catch (error) { report.push({ name, failed: String(error).split('\n')[0] }) }
   report.push({ name, errors })
   await context.close()
 }
@@ -74,6 +100,10 @@ await run('phone-portrait', { ...iphone }, 'http://localhost:8765/harness/index.
   await page.locator('.firstpair-reader__layout-toggle').tap(); await page.waitForTimeout(300)
   report.push({ name, step: 'layout tapped once', ...(await state(page)) })
   await page.screenshot({ path: `${out}/${name}-3-columns.png` })
+})
+await run('phone-small', { ...iphone, viewport: { width: 320, height: 568 } }, 'http://localhost:8765/harness/index.html?mobile', async (page, name) => {
+  await page.screenshot({ path: `${out}/${name}-1-open.png` })
+  report.push({ name, step: 'open', ...(await state(page)) })
 })
 await run('phone-landscape', { ...iphone, viewport: { width: 844, height: 390 } }, 'http://localhost:8765/harness/index.html?mobile', async (page, name) => {
   report.push({ name, step: 'open', ...(await state(page)) })

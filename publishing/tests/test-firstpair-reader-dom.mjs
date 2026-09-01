@@ -111,6 +111,8 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     assert.match(text, /middle; half/)
     assert.match(text, /середина/)
     assert.match(text, /masculine singular/)
+    assert.equal(drawer.querySelectorAll('.firstpair-reader__lang').length, 0, 'dictionary language headings stay hidden')
+    assert.deepEqual(Array.from(drawer.querySelectorAll('.firstpair-reader__definition')).map((section) => section.getAttribute('aria-label')), ['Русский dictionary', 'English dictionary'])
 
     const cammin = Array.from(cells[0].querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'cammin')
     cammin.click(); await settle(); await settle()
@@ -167,13 +169,13 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     // or answer in all languages with the shown ones first.
     const mezzo = () => Array.from(root.querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'mezzo')
     mezzo().click(); await settle(); await settle()
-    let headings = Array.from(drawer.querySelectorAll('.firstpair-reader__lang')).map((h) => h.textContent)
-    assert.deepEqual(headings, ['Русский'])
+    let sections = Array.from(drawer.querySelectorAll('.firstpair-reader__definition')).map((section) => section.getAttribute('aria-label'))
+    assert.deepEqual(sections, ['Русский dictionary'])
     const languages = Array.from(app.settingsContainer.querySelectorAll('select')).find((s) => Array.from(s.options).some((o) => o.value === 'all'))
     languages.value = 'all'; languages.dispatchEvent(new window.Event('change')); await settle()
     mezzo().click(); await settle(); await settle()
-    headings = Array.from(drawer.querySelectorAll('.firstpair-reader__lang')).map((h) => h.textContent)
-    assert.deepEqual(headings, ['Русский', 'English'])
+    sections = Array.from(drawer.querySelectorAll('.firstpair-reader__definition')).map((section) => section.getAttribute('aria-label'))
+    assert.deepEqual(sections, ['Русский dictionary', 'English dictionary'])
 
     // A standing dictionary column opens with the page, has no Close button,
     // and keeps the last entry across page turns.
@@ -222,6 +224,7 @@ test('several translations per language: rotate, second column, coverage', async
     const cellsText = () => Array.from(root.querySelector('.firstpair-reader__strip').querySelectorAll('.firstpair-reader__cell')).map((c) => c.textContent)
     assert.deepEqual(headers(), ['Italiano', 'English · Longfellow (1867)', 'Русский · Мин (1855)'])
     assert.deepEqual(cellsText(), ['Nel mezzo del cammin', 'Midway upon', 'В средине'])
+    assert.deepEqual(Array.from(root.querySelectorAll('.firstpair-reader__language-toggle span')).map((label) => label.textContent), ['Eng', 'Рус'])
     // Rotate English: Longfellow → Cary (≈) → Sibbald → Longfellow
     const rotate = () => root.querySelectorAll('.firstpair-reader__column-name--rotates')[0].click()
     rotate(); await settle(); await settle()
@@ -244,6 +247,9 @@ test('several translations per language: rotate, second column, coverage', async
     // The toolbar picker (for phones, where headers are hidden) changes the translation too.
     const picker = root.querySelector('.firstpair-reader__languages .firstpair-reader__picker')
     assert.ok(picker, 'English has a picker'); assert.equal(picker.value, 'en-longfellow')
+    assert.deepEqual(Array.from(picker.options).map((option) => option.textContent), ['Longfellow', 'Cary'])
+    assert.equal(picker.title, 'Longfellow (1867)')
+    assert.equal(picker.options[0].getAttribute('aria-label'), 'Longfellow (1867)')
     picker.value = 'en-cary'; picker.dispatchEvent(new window.Event('change')); await settle(); await settle()
     assert.deepEqual(headers().slice(1, 2), ['English · Cary (1814) ≈'])
     assert.equal(root.querySelectorAll('.firstpair-reader__languages .firstpair-reader__picker').length, 1, 'Russian has one translation, no picker')

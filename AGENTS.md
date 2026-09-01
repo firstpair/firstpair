@@ -596,6 +596,13 @@ Reader-index Markdown while preserving the canonical manuscript and ordinary
 prose braces. Phone-width visual QA is valid only when the fixture serves the
 real plugin stylesheet and every asset without 404s.
 
+Aligned Reader translation controls occupy one compact, non-wrapping top bar.
+Use short language labels (`Eng`, `Рус`), show only the translator name in each
+picker, preserve the full edition title in tooltip and accessibility metadata,
+and keep the layout choice on the same line. Dictionary sections render their
+senses without visible language headings while retaining semantic language and
+accessible labels in enabled-language order.
+
 Bilingual witness metadata is structured provenance, not display-ready prose.
 When composing edition descriptions, do not append an editor or translator
 credit already embedded in the title. Source-owned tests and validators must

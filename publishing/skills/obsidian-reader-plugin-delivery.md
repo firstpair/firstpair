@@ -195,6 +195,12 @@ first and the enabled translations after it.
    language. The Emacs builder reads the same index through
    `emacs.aligned.index`, renders every translation as a region, ships
    `data/translations.json`, and rotates with `C-c C-v` / `C-c C-b`.
+   On narrow screens, keep the translation controls in one non-wrapping row:
+   compact language labels (`Eng`, `Рус`), name-only picker text with full
+   edition titles preserved in tooltips and accessible labels, and the layout
+   control on that same row. Dictionary sections follow the enabled-language
+   order without visible language headings; preserve `lang` and an accessible
+   language label on each section.
 6. The source-owned validator must check the index schema, every shard's size,
    and the total entry count, and a public edition must refuse any language it
    does not license (Dante's rejects Cyrillic in a public chapter).

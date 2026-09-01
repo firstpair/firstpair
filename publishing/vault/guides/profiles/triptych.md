@@ -19,6 +19,11 @@ choice is remembered. To keep one layout regardless of orientation, set it in
 Settings → FirstPair Reader → *Layout*. On a phone in Columns, each row
 becomes a strip you swipe horizontally, one language per screen.
 
+The compact top bar stays on one line: **Eng** and **Рус** identify the
+translation languages, the selectors show translator names without edition
+dates, and **Auto** remains at the right. The complete edition title is still
+available from the selector's tooltip.
+
 With a translation switched off, the remaining columns stay in place on the
 left and the empty column is where the dictionary drawer opens, so it never
 covers a translation you are reading. Settings → FirstPair Reader → *Reserve
@@ -34,6 +39,8 @@ the drawer covers only the last column, so the source and the other
 translations stay readable beside it. The entry names the headword, the
 grammar of the exact form you touched, how an old or elided spelling was
 restored, and the senses in each translation language you have switched on.
+The senses appear directly, without repeating English or Russian headings;
+their order follows the languages enabled in the top bar.
 The edition does not guess: a form it cannot analyse says so.
 
 `Home.md` opens the Reader directly — the **Open the Reader** link at the top,

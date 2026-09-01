@@ -4,8 +4,9 @@ Runs the real FirstPair Reader plugin (`main.js`, `styles.css`) in Chromium
 against a built aligned vault, inside a leaf that mimics Obsidian's CSS
 containment, at desktop and iPhone sizes: opens a chapter, taps a word,
 closes the drawer, switches layouts, reserves the dictionary column, and
-verifies the edge-to-edge page/word navigation order without overflow. It
-records rail, drawer, and column geometry plus screenshots.
+verifies the edge-to-edge page/word navigation order without overflow, and
+checks that the compact translation toolbar remains one line at phone width.
+It records rail, toolbar, drawer, and column geometry plus screenshots.
 
 ```sh
 cp publishing/vault/plugin/firstpair-reader/{main.js,styles.css} publishing/tests/reader-harness/

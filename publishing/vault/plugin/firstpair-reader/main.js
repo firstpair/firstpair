@@ -58,6 +58,13 @@ class FirstPairReaderView extends ItemView {
     return [...seen.values()];
   }
   translation(id) { return this.parallel.translations.find((item) => item.id === id); }
+  languageShort(language) {
+    return language.short ?? ({ en: "Eng", ru: "Рус" }[language.id] ?? language.label);
+  }
+  translationName(item) {
+    const name = item.title ?? item.translator ?? item.label ?? item.id;
+    return name.replace(/\s*\([^()]*\)\s*$/u, "").trim();
+  }
   currentPart() { return this.pages[this.position]?.part; }
   covers(item, part) { return !item.coverage || !part || item.coverage.includes(part); }
   // The translation to show for a language: the remembered choice if it covers
@@ -206,7 +213,6 @@ class FirstPairReaderView extends ItemView {
   }
   makeToolbar() {
     if (!this.parallel) { this.toolbar.hidden = true; return; }
-    this.toolbar.createSpan({ text: "Translations", cls: "firstpair-reader__toolbar-title" });
     this.languageControls = this.toolbar.createDiv({ cls: "firstpair-reader__languages" });
     this.updateToolbar();
     this.layoutButton = this.toolbar.createEl("button", { cls: "firstpair-reader__layout-toggle" });
@@ -227,23 +233,25 @@ class FirstPairReaderView extends ItemView {
     const part = this.currentPart();
     for (const language of this.languages()) {
       const group = this.languageControls.createDiv({ cls: "firstpair-reader__language" });
-      const label = group.createEl("label", { cls: "firstpair-reader__language-toggle" });
-      const input = label.createEl("input", { type: "checkbox" }); input.checked = this.enabled.has(language.id);
+      const label = group.createEl("label", { cls: "firstpair-reader__language-toggle", attr: { title: language.label } });
+      const input = label.createEl("input", { type: "checkbox", attr: { "aria-label": language.label } }); input.checked = this.enabled.has(language.id);
       input.addEventListener("change", async () => {
         if (input.checked) this.enabled.add(language.id); else this.enabled.delete(language.id);
         await this.renderPage(false);
       });
-      label.createSpan({ text: language.label });
+      label.createSpan({ text: this.languageShort(language), attr: { "aria-hidden": "true" } });
       if (!this.enabled.has(language.id)) continue;
       const available = this.translationsOf(language.id).filter((item) => this.covers(item, part));
       if (available.length < 2) continue;
       const columns = this.columns.map((column, index) => ({ ...column, index })).filter((column) => column.lang === language.id);
       for (const column of columns) {
         const others = columns.filter((other) => other.index !== column.index).map((other) => other.id);
-        const select = group.createEl("select", { cls: "firstpair-reader__picker", attr: { "aria-label": `${language.label} translation` } });
+        const selected = this.translation(column.id);
+        const selectedTitle = selected?.title ?? selected?.translator ?? selected?.label ?? selected?.id ?? column.id;
+        const select = group.createEl("select", { cls: "firstpair-reader__picker", attr: { "aria-label": `${language.label} translation: ${selectedTitle}`, title: selectedTitle } });
         for (const item of available.filter((item) => !others.includes(item.id))) {
-          const approximate = item.alignment && item.alignment !== "line" ? " ≈" : "";
-          const option = select.createEl("option", { text: `${item.title ?? item.translator ?? item.id}${approximate}` }); option.value = item.id;
+          const fullTitle = item.title ?? item.translator ?? item.label ?? item.id;
+          const option = select.createEl("option", { text: this.translationName(item), attr: { title: fullTitle, "aria-label": fullTitle } }); option.value = item.id;
           if (item.id === column.id) option.selected = true;
         }
         select.addEventListener("change", async () => {
@@ -502,8 +510,7 @@ class FirstPairReaderView extends ItemView {
     let found = false;
     for (const language of this.dictionaryLanguages()) {
       const dictionary = this.parallel.dictionaries?.[language.id]; if (!dictionary) continue;
-      const section = this.drawer.createDiv({ cls: "firstpair-reader__definition" });
-      section.createSpan({ text: language.label, cls: "firstpair-reader__lang" });
+      const section = this.drawer.createDiv({ cls: "firstpair-reader__definition", attr: { lang: language.id, role: "group", "aria-label": `${language.label} dictionary` } });
       let entries;
       try { entries = await this.plugin.lookup(dictionary.path, word); }
       catch (error) { section.createEl("p", { text: `This dictionary is not in the vault yet (${error.message}). If the vault is synced, wait for the sync to finish.`, cls: "firstpair-reader__warning" }); continue; }
