@@ -277,6 +277,31 @@ separate file of your own; Org mode links of the form
 
 ## Updating a FirstPair bundle
 
+To update the shared Reader and immediately reopen the current book, quit
+Emacs completely and run this from the extracted bundle directory:
+
+```sh
+./update-reader.sh
+```
+
+Older bundles can acquire the same bundle-relative command once:
+
+```sh
+curl -fL -o update-reader.sh https://firstpair.org/emacs/update-reader.sh
+chmod +x update-reader.sh
+./update-reader.sh
+```
+
+The script downloads the current package over HTTPS, verifies that the tar is
+actually `firstpair-reader`, installs it in a clean batch Emacs, and only then
+removes older Reader package versions. It refuses to modify packages while an
+Emacs process is running. Finally it replaces the shell with a fresh
+interactive terminal Emacs and calls `firstpair-read` with the directory that
+contains the script, so Dante or any other FirstPair bundle resumes directly.
+
+This updates the Reader application, not the book's texts, alignments, or
+dictionaries. Download a new bundle ZIP when those edition files change.
+
 1. Download and verify the new versioned ZIP.
 2. Extract it beside the old folder, not over it.
 3. Change the path in your configuration, or load the new `init.el`, and

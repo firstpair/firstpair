@@ -45,6 +45,7 @@ from .projection import Projection, project
 
 PACKAGE_ROOT = Path(__file__).resolve().parents[1]
 LISP_ROOT = PACKAGE_ROOT / "lisp"
+UPDATE_READER_SCRIPT = PACKAGE_ROOT / "update-reader.sh"
 VERSION = "1.0"
 PRODUCER = f"firstpair-emacs {VERSION}"
 GLOSSARY_PLACES = 8
@@ -666,6 +667,8 @@ def build(config_path: Path, product_name: str, *, allow_download: bool = True) 
         (root / "init.el").write_text(_init_file(config), encoding="utf-8")
         (root / "install.sh").write_text(_install_script(config), encoding="utf-8")
         (root / "install.sh").chmod(0o755)
+        shutil.copy2(UPDATE_READER_SCRIPT, root / "update-reader.sh")
+        (root / "update-reader.sh").chmod(0o755)
         (root / "Guide.md").write_text(guide, encoding="utf-8")
         (root / "README.md").write_text(guide, encoding="utf-8")
 

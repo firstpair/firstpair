@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { mkdir, readFile, writeFile } from 'node:fs/promises'
+import { copyFile, mkdir, readFile, writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { renderVaultGuide } from './render-vault-guide.mjs'
@@ -9,6 +9,8 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)))
 const source = join(root, 'publishing', 'emacs', 'guides', 'master.md')
 const destination = join(root, 'public', 'emacs', 'index.html')
 const applicationModule = join(root, 'src', 'generated', 'emacs-handbook.ts')
+const updateReaderSource = join(root, 'publishing', 'emacs', 'update-reader.sh')
+const updateReaderPublic = join(root, 'public', 'emacs', 'update-reader.sh')
 
 await renderVaultGuide({
   source,
@@ -30,6 +32,7 @@ await writeFile(
   applicationModule,
   `// Generated from publishing/emacs/guides/master.md. Do not edit.\nexport const emacsHandbookHtml = ${JSON.stringify(`${embeddedStyles}\n${body}`)}\n`,
 )
+await copyFile(updateReaderSource, updateReaderPublic)
 const required = [
   'Install Emacs',
   'Open the book',

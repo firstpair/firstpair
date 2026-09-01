@@ -158,4 +158,13 @@ Terminal tests must prove the active binding is the direct rotation command,
 its label changes with selection, window count is unchanged, and no
 `*Completions*` buffer is created.
 
+Bundle updater: every generated Emacs bundle carries the canonical executable
+`update-reader.sh`, also served at `/emacs/update-reader.sh` for older bundles.
+It must fail when Emacs is already running, validate the downloaded tar as the
+`firstpair-reader` package, install before deleting, retain the newest version,
+remove only older Reader descriptors, and `exec emacs -nw` with
+`firstpair-read` pointed explicitly at the script's bundle directory. Keep URL,
+Emacs-command, and no-restart environment overrides for testing; never force
+kill a Reader with potentially unsaved buffers.
+
 Startup and lookup cost on a phone: the bundle loads nothing large at registration — `data/regions.tsv` is grouped by node with `data/regions.index.json` byte offsets (a node's regions are read with `insert-file-contents BEG END` on first use), `lexicon/forms/<letter>.tsv` and `lexicon/glosses/<letter>.tsv` are read per lookup. Keep every table either small or indexed; the chooser loads every bundle under `firstpair-reader-bundle-directories`, so stale copies there cost startup time.

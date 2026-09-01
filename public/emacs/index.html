@@ -558,6 +558,24 @@ back into the book.</p>
 </section>
 <section id="updating-a-firstpair-bundle" class="level2">
 <h2>Updating a FirstPair bundle</h2>
+<p>To update the shared Reader and immediately reopen the current book,
+quit Emacs completely and run this from the extracted bundle
+directory:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">./update-reader.sh</span></span></code></pre></div>
+<p>Older bundles can acquire the same bundle-relative command once:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fL</span> <span class="at">-o</span> update-reader.sh https://firstpair.org/emacs/update-reader.sh</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> +x update-reader.sh</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">./update-reader.sh</span></span></code></pre></div>
+<p>The script downloads the current package over HTTPS, verifies that
+the tar is actually <code>firstpair-reader</code>, installs it in a
+clean batch Emacs, and only then removes older Reader package versions.
+It refuses to modify packages while an Emacs process is running. Finally
+it replaces the shell with a fresh interactive terminal Emacs and calls
+<code>firstpair-read</code> with the directory that contains the script,
+so Dante or any other FirstPair bundle resumes directly.</p>
+<p>This updates the Reader application, not the book’s texts,
+alignments, or dictionaries. Download a new bundle ZIP when those
+edition files change.</p>
 <ol type="1">
 <li>Download and verify the new versioned ZIP.</li>
 <li>Extract it beside the old folder, not over it.</li>
@@ -607,7 +625,7 @@ or a programmer expects.</p>
 <p>The standalone reader is at
 <code>https://firstpair.org/emacs/firstpair-reader.tar</code> (always
 the current release). Fetch it and install it once:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fL</span> <span class="at">-o</span> firstpair-reader.tar https://firstpair.org/emacs/firstpair-reader.tar</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">curl</span> <span class="at">-fL</span> <span class="at">-o</span> firstpair-reader.tar https://firstpair.org/emacs/firstpair-reader.tar</span></code></pre></div>
 <p>then
 <code>M-x package-install-file RET firstpair-reader.tar RET</code>.</p>
 </section>

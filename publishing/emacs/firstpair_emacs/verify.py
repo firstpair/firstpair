@@ -223,7 +223,7 @@ def verify_bundle(root: Path, *, run_emacs: bool = True, run_makeinfo: bool = Tr
     if bundle.get("schema") != "firstpair-emacs-bundle-v1":
         raise BundleError("unsupported bundle description")
     stems = [bundle["readerManual"], bundle["referenceManual"]]
-    for required in ("init.el", "install.sh", "dir", "Guide.md", "README.md", "data/reader.json", "data/records.json", "data/references.json", "data/marked.tsv", "lisp/firstpair-bundle.el", "lisp/firstpair-lexicon.el", "lisp/firstpair-reader.el"):
+    for required in ("init.el", "install.sh", "update-reader.sh", "dir", "Guide.md", "README.md", "data/reader.json", "data/records.json", "data/references.json", "data/marked.tsv", "lisp/firstpair-bundle.el", "lisp/firstpair-lexicon.el", "lisp/firstpair-reader.el"):
         if not (root / required).is_file():
             raise BundleError(f"bundle lacks {required}")
     for stem in stems:

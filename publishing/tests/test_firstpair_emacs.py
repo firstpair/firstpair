@@ -632,7 +632,7 @@ class BuildTests(Fixture):
         bundle = self.root / "emacs" / "desktop"
         self.assertEqual("firstpair-emacs-manifest-v1", manifest["schema"])
         self.assertEqual([], manifest["unmatchedAnchors"])
-        for name in ("fixture.info", "fixture-refs.info", "texi/fixture.texi", "init.el", "dir", "lisp/firstpair-reader.el"):
+        for name in ("fixture.info", "fixture-refs.info", "texi/fixture.texi", "init.el", "update-reader.sh", "dir", "lisp/firstpair-reader.el"):
             self.assertTrue((bundle / name).is_file(), name)
         self.assertFalse((bundle / "lisp" / "firstpair-check.el").exists())
         self.assertEqual((bundle / "Guide.md").read_bytes(), (bundle / "README.md").read_bytes())
@@ -656,6 +656,13 @@ class BuildTests(Fixture):
         with self.assertRaises(RuntimeError):
             build(path, "desktop", allow_download=False)
         self.assertTrue((bundle / "install.sh").stat().st_mode & 0o100)
+        self.assertTrue((bundle / "update-reader.sh").stat().st_mode & 0o100)
+        updater = (bundle / "update-reader.sh").read_text(encoding="utf-8")
+        self.assertIn("package-install-file archive", updater)
+        self.assertIn("package-delete descriptor t t", updater)
+        self.assertLess(updater.index("package-install-file archive"), updater.index("package-delete descriptor t t"))
+        self.assertIn("FIRSTPAIR_BUNDLE=$here exec", updater)
+        self.assertEqual(0, subprocess.run(["sh", "-n", str(bundle / "update-reader.sh")], check=False).returncode)
         init_text = (bundle / "init.el").read_text()
         self.assertIn("(add-to-list 'load-path (expand-file-name \"lisp\" bundle))", init_text)
         self.assertIn("(locate-library \"firstpair-reader\")", init_text)

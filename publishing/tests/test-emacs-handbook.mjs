@@ -6,6 +6,8 @@ const root = new URL('../../', import.meta.url)
 const markdown = readFileSync(new URL('publishing/emacs/guides/master.md', root), 'utf8')
 const html = readFileSync(new URL('public/emacs/index.html', root), 'utf8')
 const generated = readFileSync(new URL('src/generated/emacs-handbook.ts', root), 'utf8')
+const updater = readFileSync(new URL('publishing/emacs/update-reader.sh', root), 'utf8')
+const publicUpdater = readFileSync(new URL('public/emacs/update-reader.sh', root), 'utf8')
 
 const sections = [
   'Install Emacs',
@@ -33,4 +35,6 @@ test('canonical Emacs handbook is comprehensive and the site page is current', (
   assert.match(html, /install-info/)
   assert.doesNotMatch(html, /<link\b[^>]*rel=["']stylesheet["']/i)
   assert.ok(generated.includes('M-x firstpair-read'), 'generated module lacks the handbook body')
+  assert.equal(publicUpdater, updater, 'public Reader updater differs from its canonical source')
+  assert.match(html, /update-reader\.sh/)
 })
