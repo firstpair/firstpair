@@ -191,14 +191,12 @@ and the `≈` mark for an approximate alignment. Reading or clicking that
 **Choose Translation**, **Next Translation**, **Second Translation**,
 **Choose Languages**, and **Cycle Languages**.
 
-In a text terminal such as Emacs under iSH, the item is deliberately simpler.
-It is itself a live compact label such as **Tr:Longfellow**; a trailing `+`
-means a second translation is visible. Tapping it advances directly to the
-next primary translation and updates the label. It never invokes Emacs's large
-text-mode menu or creates a `*Completions*` window. The existing **Lang** and
-**2nd** buttons change languages and the second translation. Pressing `=`
-reports all visible choices in a short form such as
-`EN Longfellow+Cary | RU Min`.
+In a text terminal such as Emacs under iSH, the top bar has two direct items
+instead of a drop-down. **Translations** advances to the next primary
+translation. **Status** prints the same compact, non-mutating report as `=` in
+the bottom line, such as `EN Longfellow+Cary | RU Min`. Neither item invokes
+Emacs's large text-mode menu or creates a `*Completions*` window. The existing
+**Lang** and **2nd** buttons change languages and the second translation.
 
 ## Rearranging windows
 

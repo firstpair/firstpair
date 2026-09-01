@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.22
+;; Version: 1.23
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -827,18 +827,6 @@ The returned label is also used by the top-level Translations menu."
                  ""))))
    (firstpair-lexicon-selected bundle) " | "))
 
-(defun firstpair-reader--terminal-translations-menu-label ()
-  "Return a short live menu-bar label for the active primary translation."
-  (condition-case nil
-      (let* ((bundle (firstpair-reader--bundle))
-             (lang (firstpair-reader--language-at-point bundle))
-             (first (firstpair-reader-translation-for bundle lang))
-             (second (firstpair-reader--second-translation-for bundle lang first)))
-        (format "Tr:%s%s"
-                (if first (firstpair-reader--translation-short-title bundle first) "—")
-                (if second "+" "")))
-    (error "Tr")))
-
 (defun firstpair-reader-terminal-next-translation ()
   "Cycle the primary translation directly from a terminal menu-bar tap."
   (interactive)
@@ -1212,18 +1200,25 @@ updated directly.  Returns DIRECTORY."
     ["Choose Languages..." firstpair-reader-choose-translation-languages t]
     ["Cycle Languages" firstpair-reader-translation-languages t]))
 
-(defvar firstpair-reader--terminal-mode-map nil
-  "Reader keymap whose Translations menu item is a compact terminal command.")
+(defun firstpair-reader--translations-menu-filter (submenu)
+  "Return SUBMENU in a GUI and the direct translation command in a terminal."
+  (if (display-graphic-p)
+      submenu
+    #'firstpair-reader-terminal-next-translation))
 
-(defun firstpair-reader--terminal-mode-map ()
-  "Return the Reader map adapted for a text terminal such as iSH."
-  (or firstpair-reader--terminal-mode-map
-      (let ((map (copy-keymap firstpair-reader-mode-map)))
-        (define-key map [menu-bar translations]
-          '(menu-item "Translations" firstpair-reader-terminal-next-translation
-                      :label (firstpair-reader--terminal-translations-menu-label)
-                      :help "Current translation; tap to show the next one"))
-        (setq firstpair-reader--terminal-mode-map map))))
+;; A second overriding keymap looks harmless to ordinary key lookup, but the
+;; terminal menu renderer merges both maps and shows both entries. Keep one
+;; Translations binding whose action changes with the frame, plus a terminal-
+;; only Status command that reports exactly what `=' reports.
+(define-key firstpair-reader-mode-map [menu-bar translations]
+  `(menu-item "Translations" ,firstpair-reader-translations-menu
+              :filter firstpair-reader--translations-menu-filter
+              :help "Open translation choices in a GUI; tap for the next translation in a terminal"))
+(define-key-after firstpair-reader-mode-map [menu-bar translation-status]
+  '(menu-item "Status" firstpair-reader-show-current-translations
+              :visible (not (display-graphic-p))
+              :help "Report the translations currently visible; this changes nothing")
+  'translations)
 
 ;;;###autoload
 ;;; Touch: single keys, taps, and a button bar
@@ -1349,7 +1344,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
-    (princ "Top Emacs menu        Translations        GUI drop-down; Tr:current tap-to-next in iSH\n")
+    (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Translations next, Status reports\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
     (princ "                                          b   second translation under the first\n")
@@ -1384,14 +1379,7 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
 \\{firstpair-reader-mode-map}"
   :lighter " FirstPair"
   :keymap firstpair-reader-mode-map
-  (if firstpair-reader-mode
-      (if (display-graphic-p)
-          (setq minor-mode-overriding-map-alist
-                (assq-delete-all 'firstpair-reader-mode minor-mode-overriding-map-alist))
-        (setf (alist-get 'firstpair-reader-mode minor-mode-overriding-map-alist)
-              (firstpair-reader--terminal-mode-map)))
-    (setq minor-mode-overriding-map-alist
-          (assq-delete-all 'firstpair-reader-mode minor-mode-overriding-map-alist))
+  (unless firstpair-reader-mode
     (firstpair-reader--unmark)))
 
 (provide 'firstpair-reader)

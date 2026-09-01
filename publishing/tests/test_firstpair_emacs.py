@@ -1075,29 +1075,46 @@ class AlignedTests(Fixture):
       (let ((a (funcall hidden)))
         (let ((before (copy-tree firstpair-reader-translation-choices))
               (current (firstpair-reader-show-current-translations)))
-          (princ (format "CURRENT %s | unchanged=%S | key=%S | menubar=%S | menu=%s\n"
+          (princ (format "CURRENT %s | unchanged=%S | key=%S | direct=%S | menu=%s\n"
                          current (equal before firstpair-reader-translation-choices)
                          (key-binding "=")
-                         (and (keymapp (lookup-key firstpair-reader-mode-map
-                                                  [menu-bar translations])) t)
+                         (eq (lookup-key firstpair-reader-mode-map
+                                         [menu-bar translations])
+                             'firstpair-reader-terminal-next-translation)
                          (firstpair-reader--current-translations-menu-label)))
-          (let ((windows (length (window-list)))
-                (terminal-before (firstpair-reader--terminal-translations-menu-label)))
-            (firstpair-reader-terminal-next-translation)
-            (let* ((override (cdr (assq 'firstpair-reader-mode
-                                        minor-mode-overriding-map-alist)))
-                   (binding (and override
-                                 (lookup-key override [menu-bar translations]))))
-              (princ (format "TERMINAL choice=%s label=%s/%s windows=%d/%d completions=%S binding=%S\n"
+          (let* ((windows (length (window-list)))
+                 (translation-binding
+                  (lookup-key firstpair-reader-mode-map [menu-bar translations]))
+                 (status-binding
+                  (lookup-key firstpair-reader-mode-map [menu-bar translation-status]))
+                 (menu-order
+                  (mapcar #'car (cdr (lookup-key firstpair-reader-mode-map [menu-bar]))))
+                 (status-before (copy-tree firstpair-reader-translation-choices)))
+            (call-interactively status-binding)
+            (let ((status-summary
+                   (firstpair-reader--terminal-translations-summary
+                    (firstpair-reader--bundle)))
+                  (status-unchanged
+                   (equal status-before firstpair-reader-translation-choices)))
+              (call-interactively translation-binding)
+              (princ (format "TERMINAL choice=%s windows=%d/%d completions=%S binding=%S status=%S status-key=%S unchanged=%S summary=%S override=%S order=%S\n"
                              (alist-get "en" firstpair-reader-translation-choices
                                         nil nil #'equal)
-                             terminal-before
-                             (firstpair-reader--terminal-translations-menu-label)
                              windows (length (window-list))
                              (and (get-buffer "*Completions*") t)
-                             (if (listp binding) (nth 2 binding) binding))))
+                             translation-binding status-binding
+                             (eq status-binding (key-binding "="))
+                             status-unchanged status-summary
+                             (assq 'firstpair-reader-mode minor-mode-overriding-map-alist)
+                             menu-order)))
             (setq firstpair-reader-translation-choices before)
-            (firstpair-reader-refresh-regions)))
+            (firstpair-reader-refresh-regions)
+            (cl-letf (((symbol-function 'display-graphic-p)
+                       (lambda (&optional _frame) t)))
+              (princ (format "GUI menu=%S\n"
+                             (keymapp
+                              (lookup-key firstpair-reader-mode-map
+                                          [menu-bar translations])))))))
         (firstpair-reader-rotate-translation)
         (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
           (firstpair-reader-second-translation)
@@ -1106,8 +1123,10 @@ class AlignedTests(Fixture):
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
-        self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menubar=t | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
-        self.assertIn("TERMINAL choice=en-cary label=Tr:Longfellow/Tr:Cary windows=2/2 completions=nil binding=firstpair-reader-terminal-next-translation", result.stdout)
+        self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | direct=t | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
+        self.assertIn("TERMINAL choice=en-cary windows=2/2 completions=nil binding=firstpair-reader-terminal-next-translation status=firstpair-reader-show-current-translations status-key=t unchanged=t", result.stdout)
+        self.assertIn('summary="EN Longfellow | RU Мин" override=nil order=(translations translation-status)', result.stdout)
+        self.assertIn("GUI menu=t", result.stdout)
         output = result.stdout.strip().splitlines()[-1].split(" ", 3)
         self.assertEqual(["2", "2", "0"], output[:3], result.stdout)  # Cary hidden; then Longfellow hidden; then nothing hidden
         self.assertIn("Cary (1814) ≈", output[3])
