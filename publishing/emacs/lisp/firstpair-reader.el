@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.24
+;; Version: 1.25
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -10,10 +10,11 @@
 
 ;; The reading side of a FirstPair Emacs bundle.  A bundle is two Info
 ;; manuals: the book, and the references the book points at.  This mode keeps
-;; them in separate windows -- the book above, its references below, and a
-;; dictionary window under both -- so following a citation never moves the
-;; reading position.  It also underlines the words the bundle's offline
-;; lexicon can explain and looks them up with a single key.
+;; them in separate windows -- the book above and its references below -- so
+;; following a citation never moves the reading position.  The dictionary
+;; reuses an idle references pane or opens below an active source.  It also
+;; underlines the words the bundle's offline lexicon can explain and looks them
+;; up with a single key.
 ;;
 ;; Load a bundle's init.el, then M-x firstpair-read.  Everything else is
 ;; ordinary Info: n, p, u and l move, SPC scrolls, and RET follows links.  In
@@ -153,6 +154,14 @@ Return non-nil when WINDOW had a saved role."
           (set-window-parameter window parameter nil)))
       t)))
 
+(defun firstpair-reader--references-at-top-p (window)
+  "Return non-nil when WINDOW shows the references manual's idle Top node."
+  (and (window-live-p window)
+       (eq (window-parameter window 'firstpair-role) 'references)
+       (with-current-buffer (window-buffer window)
+         (and (derived-mode-p 'Info-mode)
+              (equal Info-current-node "Top")))))
+
 (defun firstpair-reader--ensure-window (role)
   "Return a window for ROLE, creating it below the reader when needed."
   (or (firstpair-reader--window role)
@@ -176,14 +185,18 @@ Return non-nil when WINDOW had a saved role."
         ('lexicon
          (let* ((references (firstpair-reader--window 'references))
                 (reader (firstpair-reader--window 'reader))
+                (replace-references (firstpair-reader--references-at-top-p references))
                 ;; Start at the smallest ordinary window, then fit the rendered
                 ;; headword and senses.  Requesting the expanded maximum here
                 ;; can make an otherwise viable phone split fail.
-                (window (or (and references
-                                 (firstpair-reader--split references window-min-height))
-                            (and reader
-                                 (firstpair-reader--split reader window-min-height)))))
-           (cond (window (firstpair-reader--claim window 'lexicon))
+                (window (and (not replace-references)
+                             (or (and references
+                                      (firstpair-reader--split references window-min-height))
+                                 (and reader
+                                      (firstpair-reader--split reader window-min-height))))))
+           (cond (replace-references
+                  (firstpair-reader--borrow-window references 'lexicon))
+                 (window (firstpair-reader--claim window 'lexicon))
                  ;; On the smallest frames, lend the references pane to the
                  ;; dictionary and restore it when Close is tapped.
                  (references (firstpair-reader--borrow-window references 'lexicon))
@@ -610,7 +623,8 @@ Next ▶."
 
 (defun firstpair-reader-describe-word (&optional word)
   "Show the dictionary entry for WORD, by default the word at point.
-The entry opens in the dictionary window below the references."
+The entry replaces an idle references Top pane, or opens below an active
+source-reference pane."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
          (overlay (firstpair-reader--overlay-at (point)))
@@ -827,15 +841,45 @@ The returned label is also used by the top-level Translations menu."
                  ""))))
    (firstpair-lexicon-selected bundle) " | "))
 
+(defvar firstpair-reader--terminal-translation-feedback-timer nil
+  "Pending timer that restores translation feedback after a TTY menu closes.")
+
+(defun firstpair-reader--schedule-terminal-translation-feedback (bundle lang)
+  "Keep BUNDLE's primary translation for LANG in the echo area after a TTY tap."
+  (let* ((id (firstpair-reader-translation-for bundle lang))
+         (language (seq-find (lambda (row) (equal (alist-get 'id row) lang))
+                             (firstpair-bundle-translation-languages bundle)))
+         (label (format "%s: %s"
+                        (or (alist-get 'label language) (upcase lang))
+                        (firstpair-reader--translation-title bundle id))))
+    (when (timerp firstpair-reader--terminal-translation-feedback-timer)
+      (cancel-timer firstpair-reader--terminal-translation-feedback-timer))
+    ;; The menu's own minibuffer teardown happens after its command returns.
+    ;; Re-post on the next idle turn so that teardown cannot erase the result.
+    (setq firstpair-reader--terminal-translation-feedback-timer
+          (run-at-time
+           0 nil
+           (lambda ()
+             (setq firstpair-reader--terminal-translation-feedback-timer nil)
+             (message "%s" label))))))
+
 (defun firstpair-reader-terminal-next-translation ()
   "Show the next primary translation from a terminal menu-bar tap."
   (interactive)
-  (firstpair-reader-rotate-translation))
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle)))
+    (let ((inhibit-message t))
+      (firstpair-reader-rotate-translation))
+    (firstpair-reader--schedule-terminal-translation-feedback bundle lang)))
 
 (defun firstpair-reader-terminal-previous-translation ()
   "Show the previous primary translation from a terminal menu-bar tap."
   (interactive)
-  (firstpair-reader-previous-translation))
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle)))
+    (let ((inhibit-message t))
+      (firstpair-reader-previous-translation))
+    (firstpair-reader--schedule-terminal-translation-feedback bundle lang)))
 
 (defun firstpair-reader--multiple-translations-p ()
   "Return non-nil when the active language has another primary translation."
@@ -1397,7 +1441,7 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
           (define-key global-map event #'ignore))))))
 
 (define-minor-mode firstpair-reader-mode
-  "Read a FirstPair bundle: references below the text, dictionary below both.
+  "Read a FirstPair bundle: text above, references or dictionary below.
 \\{firstpair-reader-mode-map}"
   :lighter " FirstPair"
   :keymap firstpair-reader-mode-map

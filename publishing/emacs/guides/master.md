@@ -45,8 +45,11 @@ M-x firstpair-read RET
 
 The frame divides into two windows. The book opens in the upper window at its
 Top node with the contents menu. The lower window shows the Top node of the
-references manual. A third window for the dictionary appears the first time
-you look a word up.
+references manual. The first dictionary lookup replaces that introductory
+references pane, keeping the book and dictionary visible without a third
+window. **Close** restores the references introduction. Once a citation has
+opened an actual source below, the dictionary preserves it and uses a third
+window when the frame has room.
 
 To make the bundle available every time Emacs starts, add one line to your
 Emacs configuration file (`~/.emacs.d/init.el` or `~/.config/emacs/init.el`):
@@ -197,8 +200,10 @@ through the editions of the language under the cursor: English text changes
 English, Russian text changes Russian, and the source text uses the first
 visible translation language. They wrap in edition order without invoking
 Emacs's large text-mode menu or creating a `*Completions*` window. Press `=`
-for the compact, non-mutating translation report. The existing **Lang** and
-**2nd** buttons change languages and the second translation.
+for the compact, non-mutating translation report. After either control, the
+new edition name remains in the bottom message line until another command or
+message replaces it. The existing **Lang** and **2nd** buttons change
+languages and the second translation.
 
 ## Rearranging windows
 

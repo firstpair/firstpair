@@ -25,6 +25,12 @@ References manual -> Section -> Record / Evidence / Glossary entry
 Dictionary window -> C-c C-d on any underlined word
 ```
 
+The untouched references **Top** node is an introduction, not active evidence.
+The first dictionary lookup borrows that pane instead of adding a third
+window; closing the dictionary restores it. If a citation has opened a real
+reference node, preserve that source and add or borrow a separate dictionary
+pane according to the frame's capacity.
+
 ## Build Workflow
 
 1. Confirm the source repository, the exact edition and product, the output
@@ -148,7 +154,7 @@ reflected. Keep Choose, Next, Second, Choose Languages, and Cycle Languages in
 that same dedicated menu so inspection and intentional changes remain visibly
 distinct.
 
-Terminal translation control (reader 1.24): do not send an iSH or other TTY
+Terminal translation control (reader 1.25): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
 Do not use a second overriding keymap: terminal menu rendering merges it with
 the minor-mode map and exposes duplicate controls. Keep the native
@@ -156,10 +162,13 @@ the minor-mode map and exposes duplicate controls. Keep the native
 **Tr-next** and **Tr-prev** items. Both resolve the aligned region at point and
 change only that region's translation language; source text falls back to the
 first selected translation language. Both wrap through the candidates that
-cover the current part. Keep `=` as the non-mutating status report. Terminal
-tests must prove next and previous in two independently selectable languages,
-their order, no overriding map, unchanged window count, and no
-`*Completions*` buffer.
+cover the current part. A TTY menu dismisses its minibuffer after invoking the
+command, so suppress the premature message and schedule the new language and
+edition label for the next timer turn; it must remain in the echo area until
+another command or message replaces it. Keep `=` as the non-mutating status
+report. Terminal tests must prove next and previous in two independently
+selectable languages, exact delayed feedback, their order, no overriding map,
+unchanged window count, and no `*Completions*` buffer.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public

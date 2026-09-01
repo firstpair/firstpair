@@ -259,8 +259,12 @@ recovery copy.</p>
 <pre class="text"><code>M-x firstpair-read RET</code></pre>
 <p>The frame divides into two windows. The book opens in the upper
 window at its Top node with the contents menu. The lower window shows
-the Top node of the references manual. A third window for the dictionary
-appears the first time you look a word up.</p>
+the Top node of the references manual. The first dictionary lookup
+replaces that introductory references pane, keeping the book and
+dictionary visible without a third window. <strong>Close</strong>
+restores the references introduction. Once a citation has opened an
+actual source below, the dictionary preserves it and uses a third window
+when the frame has room.</p>
 <p>To make the bundle available every time Emacs starts, add one line to
 your Emacs configuration file (<code>~/.emacs.d/init.el</code> or
 <code>~/.config/emacs/init.el</code>):</p>
@@ -489,8 +493,10 @@ text changes Russian, and the source text uses the first visible
 translation language. They wrap in edition order without invoking
 Emacs’s large text-mode menu or creating a <code>*Completions*</code>
 window. Press <code>=</code> for the compact, non-mutating translation
-report. The existing <strong>Lang</strong> and <strong>2nd</strong>
-buttons change languages and the second translation.</p>
+report. After either control, the new edition name remains in the bottom
+message line until another command or message replaces it. The existing
+<strong>Lang</strong> and <strong>2nd</strong> buttons change languages
+and the second translation.</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>

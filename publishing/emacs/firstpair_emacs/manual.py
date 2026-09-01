@@ -507,7 +507,7 @@ def _top_blocks(config: EmacsConfig, projection: Projection) -> tuple[Block, ...
                 "Press *n* and *p* to move between nodes, *RET* to follow a reference, "
                 "*u* to go up, and *l* to go back. With the FirstPair reader loaded, "
                 "references open in a window below this one and dictionary entries "
-                "open in a third window."
+                "replace the introductory references pane until a source is open."
             )
         ),
     )
