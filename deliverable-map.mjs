@@ -198,8 +198,8 @@ export const deliverableBooks = [
   {
     "slug": "graph-book",
     "title": "The Graph Book",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/1a55b8f80f53e9dc-graph-book.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/c035c237f78ec86b-graph-book.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/pdf/ac257e736fa63255-graph-book.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/epub/f7e664d3965d45f0-graph-book.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/cover/ec4395ce164268c1-graph-book-cover.png"
   },
   {
