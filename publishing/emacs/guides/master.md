@@ -392,10 +392,10 @@ bar sits on the book's mode line, just above the references — **Next ▶ · �
 Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶** (next and previous word, looked up;
 dictionary; languages; next translation at point; show/hide second translation; page up and
 down; previous and next chapter) — and the dictionary window has its own:
-**Close · Lang · More/Less · ◀w · w▶** (More appears only when additional
-senses exist). The word arrows step through the source text and open each
-word's entry. **Next ▶** is deliberately wider and occupies the easiest
-leftmost target. Tapping a marked word looks it up; tapping a
+**Close · Lang · More/Less** at the left, with **◀w · Next ▶** against the
+right edge (More appears only when additional senses exist). The word controls
+step through the source text and open each word's entry. Both **Next ▶**
+controls are deliberately wider targets. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation at point, `b` toggles a second one, `,` and `.` step between dictionary

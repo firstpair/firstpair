@@ -290,6 +290,20 @@ class PackageTests(unittest.TestCase):
                        (mapconcat (lambda (item)
                                     (if (stringp item) (substring-no-properties item) ""))
                                   mode-line-format "")))
+        (let ((alignment
+               (catch 'alignment
+                 (dolist (item mode-line-format)
+                   (when (and (stringp item)
+                              (> (length item) 0)
+                              (get-text-property 0 'display item))
+                     (throw 'alignment (get-text-property 0 'display item))))
+                 nil)))
+          (princ (format "dictionary-bar=%s align=%S\\n"
+                         (mapconcat (lambda (item)
+                                      (if (stringp item)
+                                          (substring-no-properties item) ""))
+                                    mode-line-format "")
+                         alignment)))
         (firstpair-lexicon-toggle-details)
         (princ (format "expanded=%S truncated=%S wrapped=%S bar=%S\\n"
                        (buffer-substring-no-properties (point-min) (point-max))
@@ -350,6 +364,8 @@ class PackageTests(unittest.TestCase):
         self.assertIn('ambiguous="oscuro · oscurare"', output)
         self.assertIn("reader-bar= Next ▶   ◀w ", output)
         self.assertLess(output.index("Next ▶"), output.index("◀w"))
+        self.assertRegex(output, r"dictionary-bar=.*◀w.*Next ▶")
+        self.assertRegex(output, r"dictionary-bar=.* align=\(space :align-to \(- right [0-9]+\)\)")
         self.assertNotIn("English", output)
         self.assertNotIn("Русский", output)
         self.assertNotIn("adjective", output)

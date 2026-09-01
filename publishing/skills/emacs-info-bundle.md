@@ -120,6 +120,12 @@ Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the 
 
 Touch layer (reader 1.9): `firstpair-reader-touch` adds header-line button bars (book and dictionary), single-key bindings (d t v b , . r ?), `mouse-1` = look up word or follow link, `mouse-3` = next translation, and enables `xterm-mouse-mode` on terminals. Keep every command reachable by a single key on phones.
 
+Dictionary navigation (reader 1.29): keep Close, Lang, and conditional
+More/Less at the left of the lowest bar. Right-align the word controls as
+`◀w · Next ▶`; use the same wide Next label and lookup command as the book bar.
+Tests must inspect the mode-line alignment display property as well as button
+order so generated text alone cannot conceal a lost right edge.
+
 Direct source-word lookup (reader 1.28): a primary click or tap on any word
 inside an aligned source-language region passes that surface form directly to
 the lexicon and refreshes the existing Dict pane without selecting it or

@@ -25,6 +25,8 @@ const generated = readFileSync(new URL('src/generated/emacs-handbook.ts', root),
 const launcher = readFileSync(new URL('publishing/emacs/reader-launcher.sh', root), 'utf8')
 const publicLauncher = readFileSync(new URL('public/emacs/firstpair.sh', root), 'utf8')
 const danteLauncher = readFileSync(new URL('public/emacs/dante.sh', root), 'utf8')
+const readerSource = readFileSync(new URL('publishing/emacs/lisp/firstpair-reader.el', root), 'utf8')
+const readerVersion = /^;; Version: (\S+)$/m.exec(readerSource)?.[1]
 
 const sections = [
   'Install Emacs',
@@ -61,10 +63,8 @@ test('canonical Emacs handbook is comprehensive and the site page is current', (
 test('public Reader release record matches the tar and source version', () => {
   const archive = readFileSync(new URL('public/emacs/firstpair-reader.tar', root))
   const sidecar = readFileSync(new URL('public/emacs/firstpair-reader.tar.sha256', root), 'utf8')
-  const source = readFileSync(new URL('publishing/emacs/lisp/firstpair-reader.el', root), 'utf8')
-  const version = /^;; Version: (\S+)$/m.exec(source)?.[1]
   const digest = createHash('sha256').update(archive).digest('hex')
-  assert.match(sidecar, new RegExp(`^# version ${version}\\n`))
+  assert.match(sidecar, new RegExp(`^# version ${readerVersion}\\n`))
   assert.match(sidecar, new RegExp(`^${digest}  firstpair-reader\\.tar$`, 'm'))
 })
 
@@ -80,7 +80,7 @@ test('Dante launcher skips the tar when the installed version is current', () =>
     mkdirSync(join(bundle, 'data'), { recursive: true })
     mkdirSync(bin)
     writeFileSync(join(bundle, 'data', 'bundle.json'), '{"schema":"firstpair-emacs-bundle-v1"}\n')
-    writeFileSync(release, `# version 1.28\n${'a'.repeat(64)}  firstpair-reader.tar\n`)
+    writeFileSync(release, `# version ${readerVersion}\n${'a'.repeat(64)}  firstpair-reader.tar\n`)
     copyFileSync(join(rootPath, 'publishing', 'emacs', 'reader-launcher.sh'), join(books, 'dante.sh'))
     writeFileSync(join(bin, 'curl'), `#!/bin/sh
 out=
@@ -98,7 +98,7 @@ cp "$RELEASE_FIXTURE" "$out"
 `)
     writeFileSync(join(bin, 'emacs'), `#!/bin/sh
 case " $* " in
-  *" --batch "*) printf '%s' 1.28; exit 0 ;;
+  *" --batch "*) printf '%s' ${readerVersion}; exit 0 ;;
 esac
 printf '%s\\n' "$FIRSTPAIR_BUNDLE" > "$EMACS_LOG"
 `)
@@ -142,7 +142,7 @@ test('Dante launcher opens the local bundle when the update check is offline', (
     writeFileSync(join(bin, 'curl'), '#!/bin/sh\nexit 6\n')
     writeFileSync(join(bin, 'emacs'), `#!/bin/sh
 case " $* " in
-  *" --batch "*) printf '%s' 1.28; exit 0 ;;
+  *" --batch "*) printf '%s' ${readerVersion}; exit 0 ;;
 esac
 printf '%s|%s|%s\n' "$FIRSTPAIR_BUNDLE" "$FIRSTPAIR_BUNDLE_INIT" "$*" > "$EMACS_LOG"
 `)

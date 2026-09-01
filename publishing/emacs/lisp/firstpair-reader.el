@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.28
+;; Version: 1.29
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1473,6 +1473,25 @@ acts on the book even while the dictionary window has focus."
   "A header line of BUTTONS (label . command) separated by a space."
   (cons "" (mapcan (lambda (button) (list (firstpair-reader--button (car button) (cdr button)) " ")) buttons)))
 
+(defun firstpair-reader--split-bar (left right)
+  "A bar with LEFT buttons at the start and RIGHT buttons at the right edge."
+  (let* ((left-items
+          (mapcan (lambda (button)
+                    (list (firstpair-reader--button (car button) (cdr button)) " "))
+                  left))
+         (right-items
+          (mapcan (lambda (button)
+                    (list (firstpair-reader--button (car button) (cdr button)) " "))
+                  right))
+         (right-width
+          (apply #'+ (mapcar (lambda (item)
+                               (if (stringp item) (string-width item) 0))
+                             right-items))))
+    (append (cons "" left-items)
+            (list (propertize " " 'display
+                              `(space :align-to (- right ,right-width))))
+            right-items)))
+
 (defun firstpair-reader--reader-bar (bundle)
   "The book's one bar, on its mode line.
 Words and dictionary, translations, paging, cantos; labels are short so
@@ -1514,15 +1533,15 @@ the bar fits a phone, and `?' lists what they mean."
 
 (defun firstpair-reader--dictionary-bar ()
   "The dictionary window's button bar."
-  (apply #'firstpair-reader--bar
-         (append (list (cons "Close" #'firstpair-reader-close-dictionary)
-                       (cons "Lang" #'firstpair-lexicon-cycle-languages-command))
-                 (and (or (bound-and-true-p firstpair-lexicon-expanded)
-                          (bound-and-true-p firstpair-lexicon-has-more))
-                      (list (cons (if firstpair-lexicon-expanded "Less" "More")
-                                  #'firstpair-lexicon-toggle-details)))
-                 (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)
-                       (cons "w▶" #'firstpair-reader-next-marked-lookup)))))
+  (firstpair-reader--split-bar
+   (append (list (cons "Close" #'firstpair-reader-close-dictionary)
+                 (cons "Lang" #'firstpair-lexicon-cycle-languages-command))
+           (and (or (bound-and-true-p firstpair-lexicon-expanded)
+                    (bound-and-true-p firstpair-lexicon-has-more))
+                (list (cons (if firstpair-lexicon-expanded "Less" "More")
+                            #'firstpair-lexicon-toggle-details))))
+   (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)
+         (cons "Next ▶" #'firstpair-reader-next-marked-lookup))))
 
 (defun firstpair-reader-close-dictionary ()
   "Close the dictionary window."
@@ -1579,7 +1598,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "                                          =   show current translations (changes nothing)\n")
     (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-next and Tr-prev act at point\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd (show/hide) · ▲ ▼ page · ◀c c▶ canto\n")
-    (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
+    (princ "Bar under dictionary  Close · Lang · More/Less                 ◀w · Next ▶\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
