@@ -148,16 +148,18 @@ reflected. Keep Choose, Next, Second, Choose Languages, and Cycle Languages in
 that same dedicated menu so inspection and intentional changes remain visibly
 distinct.
 
-Terminal translation control (reader 1.23): do not send an iSH or other TTY
+Terminal translation control (reader 1.24): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
 Do not use a second overriding keymap: terminal menu rendering merges it with
-the minor-mode map and exposes both the direct command and the old submenu.
-Keep one dynamically filtered **Translations** binding: the GUI receives the
-native drop-down, while a terminal receives the direct next-translation
-command. Add a terminal-only **Status** item immediately after it, bound to the
-same compact, non-mutating report as `=`. Terminal tests must prove the two
-commands and their order, no overriding map, unchanged selection after Status,
-unchanged window count, and no `*Completions*` buffer.
+the minor-mode map and exposes duplicate controls. Keep the native
+**Translations** submenu graphical-only. In a terminal expose adjacent direct
+**Tr-next** and **Tr-prev** items. Both resolve the aligned region at point and
+change only that region's translation language; source text falls back to the
+first selected translation language. Both wrap through the candidates that
+cover the current part. Keep `=` as the non-mutating status report. Terminal
+tests must prove next and previous in two independently selectable languages,
+their order, no overriding map, unchanged window count, and no
+`*Completions*` buffer.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public

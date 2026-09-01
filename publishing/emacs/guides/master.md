@@ -192,11 +192,13 @@ and the `≈` mark for an approximate alignment. Reading or clicking that
 **Choose Languages**, and **Cycle Languages**.
 
 In a text terminal such as Emacs under iSH, the top bar has two direct items
-instead of a drop-down. **Translations** advances to the next primary
-translation. **Status** prints the same compact, non-mutating report as `=` in
-the bottom line, such as `EN Longfellow+Cary | RU Min`. Neither item invokes
-Emacs's large text-mode menu or creates a `*Completions*` window. The existing
-**Lang** and **2nd** buttons change languages and the second translation.
+instead of a drop-down. **Tr-next** and **Tr-prev** move forward and backward
+through the editions of the language under the cursor: English text changes
+English, Russian text changes Russian, and the source text uses the first
+visible translation language. They wrap in edition order without invoking
+Emacs's large text-mode menu or creating a `*Completions*` window. Press `=`
+for the compact, non-mutating translation report. The existing **Lang** and
+**2nd** buttons change languages and the second translation.
 
 ## Rearranging windows
 

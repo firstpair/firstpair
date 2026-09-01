@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.23
+;; Version: 1.24
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -828,14 +828,14 @@ The returned label is also used by the top-level Translations menu."
    (firstpair-lexicon-selected bundle) " | "))
 
 (defun firstpair-reader-terminal-next-translation ()
-  "Cycle the primary translation directly from a terminal menu-bar tap."
+  "Show the next primary translation from a terminal menu-bar tap."
   (interactive)
-  (let ((inhibit-message t))
-    (if (firstpair-reader--multiple-translations-p)
-        (firstpair-reader-rotate-translation)
-      (firstpair-reader-show-current-translations)))
-  (force-mode-line-update t)
-  (message nil))
+  (firstpair-reader-rotate-translation))
+
+(defun firstpair-reader-terminal-previous-translation ()
+  "Show the previous primary translation from a terminal menu-bar tap."
+  (interactive)
+  (firstpair-reader-previous-translation))
 
 (defun firstpair-reader--multiple-translations-p ()
   "Return non-nil when the active language has another primary translation."
@@ -877,6 +877,29 @@ for the language until changed."
                         (cdr (assoc (completing-read "Translation: " (mapcar #'car titles) nil t) titles)))
                     (nth (mod (1+ (or (seq-position ids current) -1)) (length ids)) ids))))
         (firstpair-reader--set-primary-translation bundle lang next)))))
+
+(defun firstpair-reader-previous-translation ()
+  "Show the previous translation of the language at point.
+Only translations that cover the current part participate.  The order is the
+reverse of `firstpair-reader-rotate-translation' and wraps at the beginning."
+  (interactive)
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle)))
+    (unless (firstpair-bundle-translations bundle)
+      (user-error "This bundle has one translation per language"))
+    (let* ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal))
+           (candidates (firstpair-reader--candidates bundle lang second))
+           (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
+           (current (firstpair-reader-translation-for bundle lang second))
+           (position (seq-position ids current)))
+      (when (< (length ids) 2)
+        (user-error "No other translation of this language covers this part"))
+      (firstpair-reader--set-primary-translation
+       bundle lang
+       (nth (if position
+                (mod (1- position) (length ids))
+              (1- (length ids)))
+            ids)))))
 
 (defun firstpair-reader-second-translation ()
   "Show a second translation of the language at point under the first, or hide it.
@@ -1200,25 +1223,24 @@ updated directly.  Returns DIRECTORY."
     ["Choose Languages..." firstpair-reader-choose-translation-languages t]
     ["Cycle Languages" firstpair-reader-translation-languages t]))
 
-(defun firstpair-reader--translations-menu-filter (submenu)
-  "Return SUBMENU in a GUI and the direct translation command in a terminal."
-  (if (display-graphic-p)
-      submenu
-    #'firstpair-reader-terminal-next-translation))
-
-;; A second overriding keymap looks harmless to ordinary key lookup, but the
-;; terminal menu renderer merges both maps and shows both entries. Keep one
-;; Translations binding whose action changes with the frame, plus a terminal-
-;; only Status command that reports exactly what `=' reports.
+;; Keep the full translation submenu in graphical Emacs.  A terminal gets two
+;; direct controls: both act on the language of the aligned region at point.
 (define-key firstpair-reader-mode-map [menu-bar translations]
   `(menu-item "Translations" ,firstpair-reader-translations-menu
-              :filter firstpair-reader--translations-menu-filter
-              :help "Open translation choices in a GUI; tap for the next translation in a terminal"))
-(define-key-after firstpair-reader-mode-map [menu-bar translation-status]
-  '(menu-item "Status" firstpair-reader-show-current-translations
+              :visible (display-graphic-p)
+              :help "Open translation choices"))
+(define-key-after firstpair-reader-mode-map [menu-bar translation-next]
+  '(menu-item "Tr-next" firstpair-reader-terminal-next-translation
               :visible (not (display-graphic-p))
-              :help "Report the translations currently visible; this changes nothing")
+              :enable (firstpair-reader--multiple-translations-p)
+              :help "Show the next translation of the language at point")
   'translations)
+(define-key-after firstpair-reader-mode-map [menu-bar translation-previous]
+  '(menu-item "Tr-prev" firstpair-reader-terminal-previous-translation
+              :visible (not (display-graphic-p))
+              :enable (firstpair-reader--multiple-translations-p)
+              :help "Show the previous translation of the language at point")
+  'translation-next)
 
 ;;;###autoload
 ;;; Touch: single keys, taps, and a button bar
@@ -1344,7 +1366,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
-    (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Translations next, Status reports\n")
+    (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-next and Tr-prev act at point\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
     (princ "                                          b   second translation under the first\n")

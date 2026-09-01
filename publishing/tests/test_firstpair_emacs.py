@@ -1022,9 +1022,9 @@ class AlignedTests(Fixture):
             "schema": "firstpair-aligned-chapter-v1", "id": "canto-1", "title": "Inferno — Canto 1",
             "units": [
                 {"id": "u1", "source": ["Nel mezzo del cammin di nostra vita"],
-                 "translations": {"en-longfellow": ["Midway upon the journey of our life"], "en-cary": ["In the midway of this our mortal life,"], "ru-min": ["В средине нашей жизненной дороги,"]}},
+                 "translations": {"en-longfellow": ["Midway upon the journey of our life"], "en-cary": ["In the midway of this our mortal life,"], "ru-min": ["В средине нашей жизненной дороги,"], "ru-lozinsky": ["Земную жизнь пройдя до половины,"]}},
                 {"id": "u2", "source": ["mi ritrovai per una selva oscura,"],
-                 "translations": {"en-longfellow": ["I found myself within a forest dark,"], "en-cary": ["I found me in a gloomy wood, astray"], "ru-min": ["Объятый сном, я в темный лес вступил,"]}},
+                 "translations": {"en-longfellow": ["I found myself within a forest dark,"], "en-cary": ["I found me in a gloomy wood, astray"], "ru-min": ["Объятый сном, я в темный лес вступил,"], "ru-lozinsky": ["Я очутился в сумрачном лесу,"]}},
             ],
         }
         (self.root / "canto-1.json").write_text(json.dumps(chapter, ensure_ascii=False), encoding="utf-8")
@@ -1036,6 +1036,7 @@ class AlignedTests(Fixture):
                 {"id": "en-longfellow", "lang": "en", "label": "English", "title": "Longfellow (1867)", "alignment": "line", "coverage": ["Inferno"], "default": True, "defaultVisible": True},
                 {"id": "en-cary", "lang": "en", "label": "English", "title": "Cary (1814)", "alignment": "proportional", "coverage": ["Inferno"], "default": False, "defaultVisible": False},
                 {"id": "ru-min", "lang": "ru", "label": "Русский", "title": "Мин (1855)", "alignment": "line", "coverage": ["Inferno"], "default": True, "defaultVisible": True},
+                {"id": "ru-lozinsky", "lang": "ru", "label": "Русский", "title": "Лозинский (1939)", "alignment": "line", "coverage": ["Inferno"], "default": False, "defaultVisible": False},
             ],
             "dictionaries": {}, "pages": [{"id": "canto-1", "title": "Inferno — Canto 1", "path": "canto-1.json", "part": "Inferno"}],
         }
@@ -1051,12 +1052,12 @@ class AlignedTests(Fixture):
         self.commit()
         manifest = build(path, "desktop", allow_download=False)
         bundle = self.root / "emacs" / "desktop"
-        self.assertEqual(["en-longfellow", "en-cary", "ru-min"], manifest["translations"])
+        self.assertEqual(["en-longfellow", "en-cary", "ru-min", "ru-lozinsky"], manifest["translations"])
         table = json.loads((bundle / "data" / "translations.json").read_text(encoding="utf-8"))
         self.assertEqual(["en", "ru"], [item["id"] for item in table["languages"]])
         self.assertEqual("proportional", table["translations"][1]["alignment"])
         regions = (bundle / "data" / "regions.tsv").read_text(encoding="utf-8").splitlines()
-        self.assertEqual(9, len(regions))  # header + 2 units x (source + 3 translations)
+        self.assertEqual(11, len(regions))  # header + 2 units x (source + 4 translations)
         self.assertTrue(any("\ten-cary\tu1\t" in row for row in regions))
         self.assertTrue(verify_bundle(bundle, run_makeinfo=False, run_emacs=has("emacs"))["passed"])
         if not has("emacs"):
@@ -1075,38 +1076,72 @@ class AlignedTests(Fixture):
       (let ((a (funcall hidden)))
         (let ((before (copy-tree firstpair-reader-translation-choices))
               (current (firstpair-reader-show-current-translations)))
-          (princ (format "CURRENT %s | unchanged=%S | key=%S | direct=%S | menu=%s\n"
+          (princ (format "CURRENT %s | unchanged=%S | key=%S | menu=%s\n"
                          current (equal before firstpair-reader-translation-choices)
                          (key-binding "=")
-                         (eq (lookup-key firstpair-reader-mode-map
-                                         [menu-bar translations])
-                             'firstpair-reader-terminal-next-translation)
                          (firstpair-reader--current-translations-menu-label)))
-          (let* ((windows (length (window-list)))
-                 (translation-binding
-                  (lookup-key firstpair-reader-mode-map [menu-bar translations]))
-                 (status-binding
-                  (lookup-key firstpair-reader-mode-map [menu-bar translation-status]))
+          (let* ((bundle (firstpair-reader--bundle))
+                 (windows (length (window-list)))
+                 (next-item
+                  (lookup-key firstpair-reader-mode-map [menu-bar translation-next]))
+                 (previous-item
+                  (lookup-key firstpair-reader-mode-map [menu-bar translation-previous]))
+                 (next-binding next-item)
+                 (previous-binding previous-item)
                  (menu-order
                   (mapcar #'car (cdr (lookup-key firstpair-reader-mode-map [menu-bar]))))
-                 (status-before (copy-tree firstpair-reader-translation-choices)))
-            (call-interactively status-binding)
-            (let ((status-summary
-                   (firstpair-reader--terminal-translations-summary
-                    (firstpair-reader--bundle)))
-                  (status-unchanged
-                   (equal status-before firstpair-reader-translation-choices)))
-              (call-interactively translation-binding)
-              (princ (format "TERMINAL choice=%s windows=%d/%d completions=%S binding=%S status=%S status-key=%S unchanged=%S summary=%S override=%S order=%S\n"
-                             (alist-get "en" firstpair-reader-translation-choices
-                                        nil nil #'equal)
-                             windows (length (window-list))
-                             (and (get-buffer "*Completions*") t)
-                             translation-binding status-binding
-                             (eq status-binding (key-binding "="))
-                             status-unchanged status-summary
-                             (assq 'firstpair-reader-mode minor-mode-overriding-map-alist)
-                             menu-order)))
+                 (regions (firstpair-bundle-regions-for-node
+                           bundle (firstpair-bundle-manual) Info-current-node))
+                 (goto-language
+                  (lambda (lang)
+                    (let ((region
+                           (seq-find
+                            (lambda (row)
+                              (let ((translation
+                                     (and (not (plist-get row :source))
+                                          (firstpair-bundle-translation
+                                           bundle (plist-get row :language)))))
+                                (and translation
+                                     (equal (alist-get 'lang translation) lang))))
+                            regions)))
+                      (goto-char (point-min))
+                      (forward-line (1- (plist-get region :start)))))))
+            (funcall goto-language "en")
+            (call-interactively next-binding)
+            (let ((after-en (mapcar (lambda (lang)
+                                      (firstpair-reader-translation-for bundle lang))
+                                    '("en" "ru"))))
+              (funcall goto-language "ru")
+              (call-interactively next-binding)
+              (let ((after-ru-next (mapcar (lambda (lang)
+                                             (firstpair-reader-translation-for bundle lang))
+                                           '("en" "ru"))))
+                (call-interactively previous-binding)
+                (let ((after-ru-prev (mapcar (lambda (lang)
+                                               (firstpair-reader-translation-for bundle lang))
+                                             '("en" "ru"))))
+                  (funcall goto-language "en")
+                  (call-interactively previous-binding)
+                  (require 'tmm)
+                  (defvar tmm-table-undef nil)
+                  (defvar tmm-km-list nil)
+                  (setq tmm-table-undef nil tmm-km-list nil)
+                  (map-keymap
+                   (lambda (event binding)
+                     (tmm-get-keymap (cons event binding)))
+                   (lookup-key firstpair-reader-mode-map [menu-bar]))
+                  (princ
+                   (format "TERMINAL next=%S previous=%S en-next=%s/%s ru-next=%s/%s ru-prev=%s/%s en-prev=%s/%s windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
+                           next-binding previous-binding
+                           (car after-en) (cadr after-en)
+                           (car after-ru-next) (cadr after-ru-next)
+                           (car after-ru-prev) (cadr after-ru-prev)
+                           (firstpair-reader-translation-for bundle "en")
+                           (firstpair-reader-translation-for bundle "ru")
+                           windows (length (window-list))
+                           (and (get-buffer "*Completions*") t)
+                           (assq 'firstpair-reader-mode minor-mode-overriding-map-alist)
+                           menu-order (mapcar #'car tmm-km-list))))))
             (setq firstpair-reader-translation-choices before)
             (firstpair-reader-refresh-regions)
             (cl-letf (((symbol-function 'display-graphic-p)
@@ -1123,12 +1158,13 @@ class AlignedTests(Fixture):
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
-        self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | direct=t | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
-        self.assertIn("TERMINAL choice=en-cary windows=2/2 completions=nil binding=firstpair-reader-terminal-next-translation status=firstpair-reader-show-current-translations status-key=t unchanged=t", result.stdout)
-        self.assertIn('summary="EN Longfellow | RU Мин" override=nil order=(translations translation-status)', result.stdout)
+        self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
+        self.assertIn("TERMINAL next=firstpair-reader-terminal-next-translation previous=firstpair-reader-terminal-previous-translation en-next=en-cary/ru-min ru-next=en-cary/ru-lozinsky ru-prev=en-cary/ru-min en-prev=en-longfellow/ru-min windows=2/2 completions=nil override=nil", result.stdout)
+        self.assertIn("order=(translations translation-next translation-previous)", result.stdout)
+        self.assertIn('tty=("Tr-prev" "Tr-next")', result.stdout)
         self.assertIn("GUI menu=t", result.stdout)
         output = result.stdout.strip().splitlines()[-1].split(" ", 3)
-        self.assertEqual(["2", "2", "0"], output[:3], result.stdout)  # Cary hidden; then Longfellow hidden; then nothing hidden
+        self.assertEqual(["4", "4", "2"], output[:3], result.stdout)  # one hidden edition per language; then both English editions visible
         self.assertIn("Cary (1814) ≈", output[3])
         # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
         state_file = self.root / "reader-state.el"
