@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.20
+;; Version: 1.21
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -777,7 +777,9 @@ The returned label is also used by the top-level Translations menu."
          (label (if (firstpair-bundle-translations bundle)
                     (firstpair-reader-translations-label bundle)
                   "This edition has no switchable translations")))
-    (message "Showing: %s" label)
+    (message "%s" (if (display-graphic-p)
+                       (concat "Showing: " label)
+                     (firstpair-reader--terminal-translations-summary bundle)))
     label))
 
 (defun firstpair-reader--current-translations-menu-label ()
@@ -796,6 +798,56 @@ The returned label is also used by the top-level Translations menu."
   "Choose which translation languages are visible by name."
   (interactive)
   (firstpair-reader-translation-languages t))
+
+(defun firstpair-reader--set-primary-translation (bundle lang id)
+  "Show translation ID as the primary translation for LANG in BUNDLE."
+  (setf (alist-get lang firstpair-reader-translation-choices nil nil #'equal) id)
+  (firstpair-reader-refresh-regions)
+  (firstpair-lexicon-refresh)
+  (message "%s" (firstpair-reader-translations-label bundle)))
+
+(defun firstpair-reader--translation-short-title (bundle id)
+  "Return a compact title for translation ID in BUNDLE."
+  (let* ((item (firstpair-bundle-translation bundle id))
+         (title (or (and item (alist-get 'title item))
+                    (and item (alist-get 'translator item)) id)))
+    (string-trim (car (split-string (or title "—") " (" t)))))
+
+(defun firstpair-reader--terminal-translations-summary (bundle)
+  "Describe BUNDLE's visible translations compactly enough for a phone."
+  (mapconcat
+   (lambda (language)
+     (let* ((lang (alist-get 'id language))
+            (first (firstpair-reader-translation-for bundle lang))
+            (second (firstpair-reader--second-translation-for bundle lang first)))
+       (concat (upcase lang) " "
+               (if first (firstpair-reader--translation-short-title bundle first) "—")
+               (if second
+                   (concat "+" (firstpair-reader--translation-short-title bundle second))
+                 ""))))
+   (firstpair-lexicon-selected bundle) " | "))
+
+(defun firstpair-reader--terminal-translations-menu-label ()
+  "Return a short live menu-bar label for the active primary translation."
+  (condition-case nil
+      (let* ((bundle (firstpair-reader--bundle))
+             (lang (firstpair-reader--language-at-point bundle))
+             (first (firstpair-reader-translation-for bundle lang))
+             (second (firstpair-reader--second-translation-for bundle lang first)))
+        (format "Tr:%s%s"
+                (if first (firstpair-reader--translation-short-title bundle first) "—")
+                (if second "+" "")))
+    (error "Tr")))
+
+(defun firstpair-reader-terminal-next-translation ()
+  "Cycle the primary translation directly from a terminal menu-bar tap."
+  (interactive)
+  (let ((inhibit-message t))
+    (if (firstpair-reader--multiple-translations-p)
+        (firstpair-reader-rotate-translation)
+      (firstpair-reader-show-current-translations)))
+  (force-mode-line-update t)
+  (message nil))
 
 (defun firstpair-reader--multiple-translations-p ()
   "Return non-nil when the active language has another primary translation."
@@ -836,10 +888,7 @@ for the language until changed."
                       (let* ((titles (mapcar (lambda (id) (cons (firstpair-reader--translation-title bundle id) id)) ids)))
                         (cdr (assoc (completing-read "Translation: " (mapcar #'car titles) nil t) titles)))
                     (nth (mod (1+ (or (seq-position ids current) -1)) (length ids)) ids))))
-        (setf (alist-get lang firstpair-reader-translation-choices nil nil #'equal) next)
-        (firstpair-reader-refresh-regions)
-        (firstpair-lexicon-refresh)
-        (message "%s" (firstpair-reader-translations-label bundle))))))
+        (firstpair-reader--set-primary-translation bundle lang next)))))
 
 (defun firstpair-reader-second-translation ()
   "Show a second translation of the language at point under the first, or hide it.
@@ -1163,6 +1212,19 @@ updated directly.  Returns DIRECTORY."
     ["Choose Languages..." firstpair-reader-choose-translation-languages t]
     ["Cycle Languages" firstpair-reader-translation-languages t]))
 
+(defvar firstpair-reader--terminal-mode-map nil
+  "Reader keymap whose Translations menu item is a compact terminal command.")
+
+(defun firstpair-reader--terminal-mode-map ()
+  "Return the Reader map adapted for a text terminal such as iSH."
+  (or firstpair-reader--terminal-mode-map
+      (let ((map (copy-keymap firstpair-reader-mode-map)))
+        (define-key map [menu-bar translations]
+          '(menu-item "Translations" firstpair-reader-terminal-next-translation
+                      :label (firstpair-reader--terminal-translations-menu-label)
+                      :help "Current translation; tap to show the next one"))
+        (setq firstpair-reader--terminal-mode-map map))))
+
 ;;;###autoload
 ;;; Touch: single keys, taps, and a button bar
 
@@ -1287,7 +1349,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
-    (princ "Top Emacs menu        Translations        see current choices; choose or rotate them\n")
+    (princ "Top Emacs menu        Translations        GUI drop-down; Tr:current tap-to-next in iSH\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
     (princ "                                          b   second translation under the first\n")
@@ -1322,7 +1384,14 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
 \\{firstpair-reader-mode-map}"
   :lighter " FirstPair"
   :keymap firstpair-reader-mode-map
-  (unless firstpair-reader-mode
+  (if firstpair-reader-mode
+      (if (display-graphic-p)
+          (setq minor-mode-overriding-map-alist
+                (assq-delete-all 'firstpair-reader-mode minor-mode-overriding-map-alist))
+        (setf (alist-get 'firstpair-reader-mode minor-mode-overriding-map-alist)
+              (firstpair-reader--terminal-mode-map)))
+    (setq minor-mode-overriding-map-alist
+          (assq-delete-all 'firstpair-reader-mode minor-mode-overriding-map-alist))
     (firstpair-reader--unmark)))
 
 (provide 'firstpair-reader)

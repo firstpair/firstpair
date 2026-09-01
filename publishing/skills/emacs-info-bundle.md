@@ -148,4 +148,14 @@ reflected. Keep Choose, Next, Second, Choose Languages, and Cycle Languages in
 that same dedicated menu so inspection and intentional changes remain visibly
 distinct.
 
+Terminal translation control (reader 1.21): do not send an iSH or other TTY
+tap through `tmm-menubar`, which opens a large text-menu/completions window.
+Override only the active terminal Reader map so the top item is a short live
+label such as `Tr:Longfellow` and a tap directly rotates the primary
+translation. A trailing `+` marks a visible second translation; `=` reports a
+compact all-language summary. Graphical frames retain the native drop-down.
+Terminal tests must prove the active binding is the direct rotation command,
+its label changes with selection, window count is unchanged, and no
+`*Completions*` buffer is created.
+
 Startup and lookup cost on a phone: the bundle loads nothing large at registration — `data/regions.tsv` is grouped by node with `data/regions.index.json` byte offsets (a node's regions are read with `insert-file-contents BEG END` on first use), `lexicon/forms/<letter>.tsv` and `lexicon/glosses/<letter>.tsv` are read per lookup. Keep every table either small or indexed; the chooser loads every bundle under `firstpair-reader-bundle-directories`, so stale copies there cost startup time.
