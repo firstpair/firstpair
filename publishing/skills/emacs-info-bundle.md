@@ -150,25 +150,33 @@ Translation inspection (reader 1.20): aligned editions add a top-level Emacs
 **Translations** menu. Its first, live `Showing: …` item and the `=` key report
 the effective primary and second translations on the current page without
 mutating selection; coverage fallbacks and approximate-alignment marks must be
-reflected. Keep Choose, Next, Second, Choose Languages, and Cycle Languages in
-that same dedicated menu so inspection and intentional changes remain visibly
-distinct.
+reflected. Keep Choose Primary, Next at Point, Toggle Second, Choose Second,
+Choose Languages, and Cycle Languages in that same dedicated menu so
+inspection and intentional changes remain visibly distinct. **2nd** and `b`
+are strict show/hide toggles: a visible second
+translation disappears in one action, irrespective of how many editions are
+available. The graphical menu retains **Choose Second Translation...** for
+deliberate selection among many alternatives.
 
-Terminal translation control (reader 1.25): do not send an iSH or other TTY
+Terminal translation control (reader 1.26): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
 Do not use a second overriding keymap: terminal menu rendering merges it with
 the minor-mode map and exposes duplicate controls. Keep the native
 **Translations** submenu graphical-only. In a terminal expose adjacent direct
-**Tr-next** and **Tr-prev** items. Both resolve the aligned region at point and
-change only that region's translation language; source text falls back to the
-first selected translation language. Both wrap through the candidates that
-cover the current part. A TTY menu dismisses its minibuffer after invoking the
+**Tr-next** and **Tr-prev** items. Both resolve the aligned region and the
+primary-or-second slot at point. With two editions of one language visible,
+point in either one changes that edition while preserving the other; source
+text falls back to the first selected language's primary slot. Both wrap
+through candidates that cover the current part and relocate point to the same
+unit in the replacement region, preserving the slot across repeated taps. A
+TTY menu dismisses its minibuffer after invoking the
 command, so suppress the premature message and schedule the new language and
 edition label for the next timer turn; it must remain in the echo area until
 another command or message replaces it. Keep `=` as the non-mutating status
 report. Terminal tests must prove next and previous in two independently
-selectable languages, exact delayed feedback, their order, no overriding map,
-unchanged window count, and no `*Completions*` buffer.
+selectable languages and in the second slot, one-action second-slot hiding
+with three or more editions, exact delayed feedback, their order, no
+overriding map, unchanged window count, and no `*Completions*` buffer.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public

@@ -30,7 +30,7 @@ HANDBOOK = PACKAGE_ROOT / "guides" / "master.md"
 NAME = "firstpair-reader"
 FILES = ("firstpair-bundle.el", "firstpair-lexicon.el", "firstpair-reader.el")
 SUMMARY = "Read FirstPair books in Emacs Info"
-DIRENTRY = ("Emacs", "FirstPair Reader", "Read FirstPair books: text above, references below, dictionary under both.")
+DIRENTRY = ("Emacs", "FirstPair Reader", "Read FirstPair books: text above, references or dictionary below.")
 VERSION_HEADER = re.compile(r"^;; Version: (?P<version>\S+)$", re.MULTILINE)
 REQUIRES_HEADER = re.compile(r"^;; Package-Requires: (?P<requires>.+)$", re.MULTILINE)
 

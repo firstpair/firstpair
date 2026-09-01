@@ -191,24 +191,29 @@ The top Emacs bar has a separate **Translations** menu. Its first line says
 exactly which editions are currently visible, including a second translation
 and the `≈` mark for an approximate alignment. Reading or clicking that
 **Showing** line, or pressing `=`, changes nothing. The rest of the menu offers
-**Choose Translation**, **Next Translation**, **Second Translation**,
-**Choose Languages**, and **Cycle Languages**.
+**Choose Translation**, **Next Translation at Point**, **Toggle Second Translation**,
+**Choose Second Translation**, **Choose Languages**, and **Cycle Languages**.
 
 In a text terminal such as Emacs under iSH, the top bar has two direct items
 instead of a drop-down. **Tr-next** and **Tr-prev** move forward and backward
-through the editions of the language under the cursor: English text changes
-English, Russian text changes Russian, and the source text uses the first
-visible translation language. They wrap in edition order without invoking
-Emacs's large text-mode menu or creating a `*Completions*` window. Press `=`
+through the editions in the slot under the cursor. With two English editions
+visible, point in the first changes the primary edition and point in the second
+changes the second edition; Russian works independently, while source text
+uses the first visible language's primary slot. They wrap in edition order
+and keep point in the newly displayed edition, so repeated taps continue in
+the same slot. They do not invoke Emacs's large text-mode menu or create a
+`*Completions*` window. Press `=`
 for the compact, non-mutating translation report. After either control, the
 new edition name remains in the bottom message line until another command or
-message replaces it. The existing **Lang** and **2nd** buttons change
-languages and the second translation.
+message replaces it. The existing **Lang** button changes languages. **2nd**
+(or `b`) is a strict show/hide toggle, so one action always returns from two
+editions to one even when the bundle carries many alternatives.
 
 ## Rearranging windows
 
-`C-c C-l` restores the standard layout: book above, references below,
-dictionary under both. The customisation variables
+`C-c C-l` restores the standard layout: book above, with the references or
+dictionary below; an active cited source may keep a third dictionary pane. The
+customisation variables
 `firstpair-reader-references-height` (a fraction of the frame) and
 `firstpair-reader-lexicon-height` (the expanded dictionary's maximum number of
 lines) adjust the proportions. A compact dictionary pane automatically shrinks
@@ -376,7 +381,7 @@ On a phone (Emacs under iSH) or anywhere you would rather not type chords,
 the reader offers the same commands as taps and single letters. One button
 bar sits on the book's mode line, just above the references — **Next ▶ · ◀w ·
 Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶** (next and previous word, looked up;
-dictionary; languages; next translation; second translation; page up and
+dictionary; languages; next translation at point; show/hide second translation; page up and
 down; previous and next chapter) — and the dictionary window has its own:
 **Close · Lang · More/Less · ◀w · w▶** (More appears only when additional
 senses exist). The word arrows step through the source text and open each
@@ -384,7 +389,7 @@ word's entry. **Next ▶** is deliberately wider and occupies the easiest
 leftmost target. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
-next translation, `b` a second one, `,` and `.` step between dictionary
+next translation at point, `b` toggles a second one, `,` and `.` step between dictionary
 words, `j` and `k` step to the next or previous word *and open it*, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other
 source text with the current dictionary languages; in the dictionary, `m`

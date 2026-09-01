@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.25
+;; Version: 1.26
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -754,14 +754,25 @@ The choice applies to every lookup, gloss, and glossary until changed."
                 (and (<= (plist-get region :start) line) (<= line (plist-get region :end))))
               (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node))))
 
-(defun firstpair-reader--language-at-point (bundle)
-  "The translation language to act on.
-That of the region under point, else the first selected language."
+(defun firstpair-reader--translation-target-at-point (bundle)
+  "Return (LANG . SLOT) for the translation region at point in BUNDLE.
+SLOT is `primary' or `second'.  Source and non-aligned text use the first
+selected translation language's primary slot."
   (let* ((region (firstpair-reader--region-at-point bundle))
          (translation (and region (not (plist-get region :source))
-                           (firstpair-bundle-translation bundle (plist-get region :language)))))
-    (or (and translation (alist-get 'lang translation))
-        (alist-get 'id (car (firstpair-lexicon-selected bundle))))))
+                           (firstpair-bundle-translation bundle (plist-get region :language))))
+         (lang (or (and translation (alist-get 'lang translation))
+                   (alist-get 'id (car (firstpair-lexicon-selected bundle)))))
+         (second (and lang (alist-get lang firstpair-reader-second-translations
+                                      nil nil #'equal))))
+    (cons lang (if (and translation
+                        (equal (alist-get 'id translation) second))
+                   'second
+                 'primary))))
+
+(defun firstpair-reader--language-at-point (bundle)
+  "The translation language to act on at point in BUNDLE."
+  (car (firstpair-reader--translation-target-at-point bundle)))
 
 (defun firstpair-reader--translation-title (bundle id)
   "The display title of translation ID, marking approximate alignment."
@@ -844,9 +855,16 @@ The returned label is also used by the top-level Translations menu."
 (defvar firstpair-reader--terminal-translation-feedback-timer nil
   "Pending timer that restores translation feedback after a TTY menu closes.")
 
-(defun firstpair-reader--schedule-terminal-translation-feedback (bundle lang)
-  "Keep BUNDLE's primary translation for LANG in the echo area after a TTY tap."
-  (let* ((id (firstpair-reader-translation-for bundle lang))
+(defun firstpair-reader--translation-in-slot (bundle lang slot)
+  "Return BUNDLE's translation id in LANG's primary or second SLOT."
+  (let ((first (firstpair-reader-translation-for bundle lang)))
+    (if (eq slot 'second)
+        (firstpair-reader--second-translation-for bundle lang first)
+      first)))
+
+(defun firstpair-reader--schedule-terminal-translation-feedback (bundle lang slot)
+  "Keep BUNDLE's translation in LANG and SLOT visible after a TTY tap."
+  (let* ((id (firstpair-reader--translation-in-slot bundle lang slot))
          (language (seq-find (lambda (row) (equal (alist-get 'id row) lang))
                              (firstpair-bundle-translation-languages bundle)))
          (label (format "%s: %s"
@@ -863,31 +881,78 @@ The returned label is also used by the top-level Translations menu."
              (setq firstpair-reader--terminal-translation-feedback-timer nil)
              (message "%s" label))))))
 
+(defun firstpair-reader--move-translation-slot (bundle lang slot step)
+  "Move BUNDLE's LANG translation in SLOT by STEP, wrapping in edition order."
+  (let* ((origin (firstpair-reader--region-at-point bundle))
+         (origin-line (line-number-at-pos))
+         (origin-offset (and origin (- origin-line (plist-get origin :start))))
+         (first (firstpair-reader-translation-for bundle lang))
+         (second (firstpair-reader--second-translation-for bundle lang first))
+         (exclude (if (eq slot 'second) first second))
+         (candidates (firstpair-reader--candidates bundle lang exclude))
+         (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
+         (current (if (eq slot 'second) second first))
+         (position (seq-position ids current)))
+    (when (< (length ids) 2)
+      (user-error "No other translation of this language covers this part"))
+    (let ((next (nth (if position
+                         (mod (+ position step) (length ids))
+                       (if (< step 0) (1- (length ids)) 0))
+                     ids)))
+      (if (eq slot 'second)
+          (firstpair-reader--set-second-translation bundle lang next)
+        (firstpair-reader--set-primary-translation bundle lang next))
+      ;; Keep point in the slot it changed.  Otherwise the old region becomes
+      ;; invisible and a second tap can accidentally target the other slot.
+      (when (and origin (not (plist-get origin :source)))
+        (let ((replacement
+               (seq-find
+                (lambda (region)
+                  (and (equal (plist-get region :language) next)
+                       (equal (plist-get region :unit) (plist-get origin :unit))))
+                (firstpair-bundle-regions-for-node
+                 bundle (firstpair-bundle-manual) Info-current-node))))
+          (when replacement
+            (goto-char (point-min))
+            (forward-line
+             (+ (1- (plist-get replacement :start))
+                (min (or origin-offset 0)
+                     (- (plist-get replacement :end)
+                        (plist-get replacement :start)))))))))))
+
 (defun firstpair-reader-terminal-next-translation ()
-  "Show the next primary translation from a terminal menu-bar tap."
+  "Show the next translation in the primary or second slot at point."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
-         (lang (firstpair-reader--language-at-point bundle)))
+         (target (firstpair-reader--translation-target-at-point bundle))
+         (lang (car target))
+         (slot (cdr target)))
     (let ((inhibit-message t))
-      (firstpair-reader-rotate-translation))
-    (firstpair-reader--schedule-terminal-translation-feedback bundle lang)))
+      (firstpair-reader--move-translation-slot bundle lang slot 1))
+    (firstpair-reader--schedule-terminal-translation-feedback bundle lang slot)))
 
 (defun firstpair-reader-terminal-previous-translation ()
-  "Show the previous primary translation from a terminal menu-bar tap."
+  "Show the previous translation in the primary or second slot at point."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
-         (lang (firstpair-reader--language-at-point bundle)))
+         (target (firstpair-reader--translation-target-at-point bundle))
+         (lang (car target))
+         (slot (cdr target)))
     (let ((inhibit-message t))
-      (firstpair-reader-previous-translation))
-    (firstpair-reader--schedule-terminal-translation-feedback bundle lang)))
+      (firstpair-reader--move-translation-slot bundle lang slot -1))
+    (firstpair-reader--schedule-terminal-translation-feedback bundle lang slot)))
 
 (defun firstpair-reader--multiple-translations-p ()
   "Return non-nil when the active language has another primary translation."
   (condition-case nil
       (let* ((bundle (firstpair-reader--bundle))
-             (lang (firstpair-reader--language-at-point bundle))
-             (second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
-        (> (length (firstpair-reader--candidates bundle lang second)) 1))
+             (target (firstpair-reader--translation-target-at-point bundle))
+             (lang (car target))
+             (slot (cdr target))
+             (first (firstpair-reader-translation-for bundle lang))
+             (second (firstpair-reader--second-translation-for bundle lang first))
+             (exclude (if (eq slot 'second) first second)))
+        (> (length (firstpair-reader--candidates bundle lang exclude)) 1))
     (error nil)))
 
 (defun firstpair-reader--second-translation-available-p ()
@@ -901,54 +966,60 @@ The returned label is also used by the top-level Translations menu."
     (error nil)))
 
 (defun firstpair-reader-rotate-translation (&optional choose)
-  "Show the next translation of the language at point (or the first selected one).
-With a prefix argument CHOOSE, pick the translation by name. Only the
-translations that cover the current part are offered; the choice is kept
-for the language until changed."
+  "Show the next translation in the primary or second slot at point.
+With a prefix argument CHOOSE, choose the primary translation by name.  Only
+translations that cover the current part are used; each choice is kept for
+its language until changed."
   (interactive "P")
   (let* ((bundle (firstpair-reader--bundle))
-         (lang (firstpair-reader--language-at-point bundle)))
+         (target (firstpair-reader--translation-target-at-point bundle))
+         (lang (car target))
+         (slot (cdr target)))
     (unless (firstpair-bundle-translations bundle)
       (user-error "This bundle has one translation per language"))
-    (let* ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal))
-           (candidates (firstpair-reader--candidates bundle lang second))
-           (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
-           (current (firstpair-reader-translation-for bundle lang second)))
-      (when (< (length ids) 2)
-        (user-error "No other translation of this language covers this part"))
-      (let ((next (if choose
-                      (let* ((titles (mapcar (lambda (id) (cons (firstpair-reader--translation-title bundle id) id)) ids)))
-                        (cdr (assoc (completing-read "Translation: " (mapcar #'car titles) nil t) titles)))
-                    (nth (mod (1+ (or (seq-position ids current) -1)) (length ids)) ids))))
-        (firstpair-reader--set-primary-translation bundle lang next)))))
+    (if (not choose)
+        (firstpair-reader--move-translation-slot bundle lang slot 1)
+      (let* ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal))
+             (candidates (firstpair-reader--candidates bundle lang second))
+             (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
+             (titles (mapcar (lambda (id)
+                               (cons (firstpair-reader--translation-title bundle id) id))
+                             ids)))
+        (when (< (length ids) 2)
+          (user-error "No other translation of this language covers this part"))
+        (firstpair-reader--set-primary-translation
+         bundle lang
+         (cdr (assoc (completing-read "Translation: " (mapcar #'car titles) nil t)
+                     titles)))))))
 
 (defun firstpair-reader-previous-translation ()
-  "Show the previous translation of the language at point.
-Only translations that cover the current part participate.  The order is the
-reverse of `firstpair-reader-rotate-translation' and wraps at the beginning."
+  "Show the previous translation in the primary or second slot at point."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
-         (lang (firstpair-reader--language-at-point bundle)))
+         (target (firstpair-reader--translation-target-at-point bundle)))
     (unless (firstpair-bundle-translations bundle)
       (user-error "This bundle has one translation per language"))
-    (let* ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal))
-           (candidates (firstpair-reader--candidates bundle lang second))
-           (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
-           (current (firstpair-reader-translation-for bundle lang second))
-           (position (seq-position ids current)))
-      (when (< (length ids) 2)
-        (user-error "No other translation of this language covers this part"))
-      (firstpair-reader--set-primary-translation
-       bundle lang
-       (nth (if position
-                (mod (1- position) (length ids))
-              (1- (length ids)))
-            ids)))))
+    (firstpair-reader--move-translation-slot bundle (car target) (cdr target) -1)))
+
+(defun firstpair-reader--set-second-translation (bundle lang id)
+  "Show ID as LANG's second translation in BUNDLE, or hide it when ID is nil."
+  (setf (alist-get lang firstpair-reader-second-translations nil nil #'equal) id)
+  (firstpair-reader-refresh-regions)
+  (firstpair-lexicon-refresh)
+  (message "%s"
+           (if id
+               (firstpair-reader-translations-label bundle)
+             (let ((language
+                    (seq-find (lambda (row) (equal (alist-get 'id row) lang))
+                              (firstpair-bundle-translation-languages bundle))))
+               (format "Second %s translation hidden"
+                       (or (alist-get 'label language) (upcase lang)))))))
 
 (defun firstpair-reader-second-translation ()
-  "Show a second translation of the language at point under the first, or hide it.
-Repeated, it moves the second translation on to the next one; when none is
-left it hides the second column."
+  "Toggle a second translation of the language at point under the first.
+When a second edition is visible, one invocation hides it regardless of how
+many alternatives exist.  When hidden, one invocation shows the first
+available alternative."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
          (lang (firstpair-reader--language-at-point bundle)))
@@ -957,16 +1028,27 @@ left it hides the second column."
     (let* ((first (firstpair-reader-translation-for bundle lang))
            (ids (mapcar (lambda (item) (alist-get 'id item)) (firstpair-reader--candidates bundle lang first)))
            (current (alist-get lang firstpair-reader-second-translations nil nil #'equal))
-           (position (seq-position ids current))
-           (next (cond ((null ids) nil)
-                       ((null current) (car ids))
-                       ((and position (< (1+ position) (length ids))) (nth (1+ position) ids))
-                       (t nil))))
-      (setf (alist-get lang firstpair-reader-second-translations nil nil #'equal) next)
-      (firstpair-reader-refresh-regions)
-      (firstpair-lexicon-refresh)
-      (message "%s" (if next (firstpair-reader-translations-label bundle)
-                      (format "Second %s translation hidden" (alist-get 'label (firstpair-bundle-translation bundle first))))))))
+           (next (and (null current) (car ids))))
+      (when (and (null current) (null ids))
+        (user-error "No second translation of this language covers this part"))
+      (firstpair-reader--set-second-translation bundle lang next))))
+
+(defun firstpair-reader-choose-second-translation ()
+  "Choose by name the second translation of the language at point."
+  (interactive)
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle))
+         (first (firstpair-reader-translation-for bundle lang))
+         (ids (mapcar (lambda (item) (alist-get 'id item))
+                      (firstpair-reader--candidates bundle lang first))))
+    (unless ids
+      (user-error "No second translation of this language covers this part"))
+    (let* ((titles (mapcar (lambda (id)
+                             (cons (firstpair-reader--translation-title bundle id) id))
+                           ids))
+           (choice (completing-read "Second translation: "
+                                    (mapcar #'car titles) nil t)))
+      (firstpair-reader--set-second-translation bundle lang (cdr (assoc choice titles))))))
 
 (defun firstpair-reader-glossary ()
   "Open the glossary of dictionary words in the references window."
@@ -1259,9 +1341,11 @@ updated directly.  Returns DIRECTORY."
     "---"
     ["Choose Translation..." firstpair-reader-choose-translation
      :enable (firstpair-reader--multiple-translations-p)]
-    ["Next Translation" firstpair-reader-rotate-translation
+    ["Next Translation at Point" firstpair-reader-rotate-translation
      :enable (firstpair-reader--multiple-translations-p)]
-    ["Second Translation" firstpair-reader-second-translation
+    ["Toggle Second Translation" firstpair-reader-second-translation
+     :enable (firstpair-reader--second-translation-available-p)]
+    ["Choose Second Translation..." firstpair-reader-choose-second-translation
      :enable (firstpair-reader--second-translation-available-p)]
     "---"
     ["Choose Languages..." firstpair-reader-choose-translation-languages t]
@@ -1411,7 +1495,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
     (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-next and Tr-prev act at point\n")
-    (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
+    (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd (show/hide) · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")

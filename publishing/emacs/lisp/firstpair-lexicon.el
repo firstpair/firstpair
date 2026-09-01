@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.25
+;; Version: 1.26
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 

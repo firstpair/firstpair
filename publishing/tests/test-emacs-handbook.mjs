@@ -80,7 +80,7 @@ test('Dante launcher skips the tar when the installed version is current', () =>
     mkdirSync(join(bundle, 'data'), { recursive: true })
     mkdirSync(bin)
     writeFileSync(join(bundle, 'data', 'bundle.json'), '{"schema":"firstpair-emacs-bundle-v1"}\n')
-    writeFileSync(release, `# version 1.25\n${'a'.repeat(64)}  firstpair-reader.tar\n`)
+    writeFileSync(release, `# version 1.26\n${'a'.repeat(64)}  firstpair-reader.tar\n`)
     copyFileSync(join(rootPath, 'publishing', 'emacs', 'reader-launcher.sh'), join(books, 'dante.sh'))
     writeFileSync(join(bin, 'curl'), `#!/bin/sh
 out=
@@ -98,7 +98,7 @@ cp "$RELEASE_FIXTURE" "$out"
 `)
     writeFileSync(join(bin, 'emacs'), `#!/bin/sh
 case " $* " in
-  *" --batch "*) printf '%s' 1.25; exit 0 ;;
+  *" --batch "*) printf '%s' 1.26; exit 0 ;;
 esac
 printf '%s\\n' "$FIRSTPAIR_BUNDLE" > "$EMACS_LOG"
 `)

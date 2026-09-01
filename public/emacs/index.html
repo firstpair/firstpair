@@ -481,27 +481,32 @@ Its first line says exactly which editions are currently visible,
 including a second translation and the <code>≈</code> mark for an
 approximate alignment. Reading or clicking that <strong>Showing</strong>
 line, or pressing <code>=</code>, changes nothing. The rest of the menu
-offers <strong>Choose Translation</strong>, <strong>Next
-Translation</strong>, <strong>Second Translation</strong>,
-<strong>Choose Languages</strong>, and <strong>Cycle
-Languages</strong>.</p>
+offers <strong>Choose Translation</strong>, <strong>Next Translation at
+Point</strong>, <strong>Toggle Second Translation</strong>,
+<strong>Choose Second Translation</strong>, <strong>Choose
+Languages</strong>, and <strong>Cycle Languages</strong>.</p>
 <p>In a text terminal such as Emacs under iSH, the top bar has two
 direct items instead of a drop-down. <strong>Tr-next</strong> and
 <strong>Tr-prev</strong> move forward and backward through the editions
-of the language under the cursor: English text changes English, Russian
-text changes Russian, and the source text uses the first visible
-translation language. They wrap in edition order without invoking
-Emacs’s large text-mode menu or creating a <code>*Completions*</code>
-window. Press <code>=</code> for the compact, non-mutating translation
-report. After either control, the new edition name remains in the bottom
-message line until another command or message replaces it. The existing
-<strong>Lang</strong> and <strong>2nd</strong> buttons change languages
-and the second translation.</p>
+in the slot under the cursor. With two English editions visible, point
+in the first changes the primary edition and point in the second changes
+the second edition; Russian works independently, while source text uses
+the first visible language’s primary slot. They wrap in edition order
+and keep point in the newly displayed edition, so repeated taps continue
+in the same slot. They do not invoke Emacs’s large text-mode menu or
+create a <code>*Completions*</code> window. Press <code>=</code> for the
+compact, non-mutating translation report. After either control, the new
+edition name remains in the bottom message line until another command or
+message replaces it. The existing <strong>Lang</strong> button changes
+languages. <strong>2nd</strong> (or <code>b</code>) is a strict
+show/hide toggle, so one action always returns from two editions to one
+even when the bundle carries many alternatives.</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>
-<p><code>C-c C-l</code> restores the standard layout: book above,
-references below, dictionary under both. The customisation variables
+<p><code>C-c C-l</code> restores the standard layout: book above, with
+the references or dictionary below; an active cited source may keep a
+third dictionary pane. The customisation variables
 <code>firstpair-reader-references-height</code> (a fraction of the
 frame) and <code>firstpair-reader-lexicon-height</code> (the expanded
 dictionary’s maximum number of lines) adjust the proportions. A compact
@@ -656,26 +661,27 @@ chords, the reader offers the same commands as taps and single letters.
 One button bar sits on the book’s mode line, just above the references —
 <strong>Next ▶ · ◀w · Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶</strong>
 (next and previous word, looked up; dictionary; languages; next
-translation; second translation; page up and down; previous and next
-chapter) — and the dictionary window has its own: <strong>Close · Lang ·
-More/Less · ◀w · w▶</strong> (More appears only when additional senses
-exist). The word arrows step through the source text and open each
-word’s entry. <strong>Next ▶</strong> is deliberately wider and occupies
-the easiest leftmost target. Tapping a marked word looks it up; tapping
-a link follows it; a long press (right click) rotates the translation
-under it. In the book, <code>d</code> opens the dictionary,
-<code>t</code> chooses languages, <code>v</code> the next translation,
-<code>b</code> a second one, <code>,</code> and <code>.</code> step
-between dictionary words, <code>j</code> and <code>k</code> step to the
-next or previous word <em>and open it</em>, <code>n</code> and
-<code>p</code> turn cantos, and <code>RET</code> repeatedly advances
-through the Italian or other source text with the current dictionary
-languages; in the dictionary, <code>m</code> toggles More/Less. Space
-and backspace page, <code>=</code> reports the translations now showing
-without changing them, <code>?</code> shows this list, and
-<code>q</code> quits. Terminals get mouse reporting switched on
-automatically (<code>xterm-mouse-mode</code>); if taps still do nothing,
-the terminal app is not forwarding them and the single keys remain.
+translation at point; show/hide second translation; page up and down;
+previous and next chapter) — and the dictionary window has its own:
+<strong>Close · Lang · More/Less · ◀w · w▶</strong> (More appears only
+when additional senses exist). The word arrows step through the source
+text and open each word’s entry. <strong>Next ▶</strong> is deliberately
+wider and occupies the easiest leftmost target. Tapping a marked word
+looks it up; tapping a link follows it; a long press (right click)
+rotates the translation under it. In the book, <code>d</code> opens the
+dictionary, <code>t</code> chooses languages, <code>v</code> the next
+translation at point, <code>b</code> toggles a second one,
+<code>,</code> and <code>.</code> step between dictionary words,
+<code>j</code> and <code>k</code> step to the next or previous word
+<em>and open it</em>, <code>n</code> and <code>p</code> turn cantos, and
+<code>RET</code> repeatedly advances through the Italian or other source
+text with the current dictionary languages; in the dictionary,
+<code>m</code> toggles More/Less. Space and backspace page,
+<code>=</code> reports the translations now showing without changing
+them, <code>?</code> shows this list, and <code>q</code> quits.
+Terminals get mouse reporting switched on automatically
+(<code>xterm-mouse-mode</code>); if taps still do nothing, the terminal
+app is not forwarding them and the single keys remain.
 <code>firstpair-reader-touch</code> turns the layer off.</p>
 </section>
 </section>

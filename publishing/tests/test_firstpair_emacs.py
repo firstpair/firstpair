@@ -1037,9 +1037,9 @@ class AlignedTests(Fixture):
             "schema": "firstpair-aligned-chapter-v1", "id": "canto-1", "title": "Inferno — Canto 1",
             "units": [
                 {"id": "u1", "source": ["Nel mezzo del cammin di nostra vita"],
-                 "translations": {"en-longfellow": ["Midway upon the journey of our life"], "en-cary": ["In the midway of this our mortal life,"], "ru-min": ["В средине нашей жизненной дороги,"], "ru-lozinsky": ["Земную жизнь пройдя до половины,"]}},
+                 "translations": {"en-longfellow": ["Midway upon the journey of our life"], "en-cary": ["In the midway of this our mortal life,"], "en-third": ["Halfway through the course of our life"], "ru-min": ["В средине нашей жизненной дороги,"], "ru-lozinsky": ["Земную жизнь пройдя до половины,"]}},
                 {"id": "u2", "source": ["mi ritrovai per una selva oscura,"],
-                 "translations": {"en-longfellow": ["I found myself within a forest dark,"], "en-cary": ["I found me in a gloomy wood, astray"], "ru-min": ["Объятый сном, я в темный лес вступил,"], "ru-lozinsky": ["Я очутился в сумрачном лесу,"]}},
+                 "translations": {"en-longfellow": ["I found myself within a forest dark,"], "en-cary": ["I found me in a gloomy wood, astray"], "en-third": ["I came to myself in a shadowed wood"], "ru-min": ["Объятый сном, я в темный лес вступил,"], "ru-lozinsky": ["Я очутился в сумрачном лесу,"]}},
             ],
         }
         (self.root / "canto-1.json").write_text(json.dumps(chapter, ensure_ascii=False), encoding="utf-8")
@@ -1050,6 +1050,7 @@ class AlignedTests(Fixture):
             "translations": [
                 {"id": "en-longfellow", "lang": "en", "label": "English", "title": "Longfellow (1867)", "alignment": "line", "coverage": ["Inferno"], "default": True, "defaultVisible": True},
                 {"id": "en-cary", "lang": "en", "label": "English", "title": "Cary (1814)", "alignment": "proportional", "coverage": ["Inferno"], "default": False, "defaultVisible": False},
+                {"id": "en-third", "lang": "en", "label": "English", "title": "Third English", "alignment": "line", "coverage": ["Inferno"], "default": False, "defaultVisible": False},
                 {"id": "ru-min", "lang": "ru", "label": "Русский", "title": "Мин (1855)", "alignment": "line", "coverage": ["Inferno"], "default": True, "defaultVisible": True},
                 {"id": "ru-lozinsky", "lang": "ru", "label": "Русский", "title": "Лозинский (1939)", "alignment": "line", "coverage": ["Inferno"], "default": False, "defaultVisible": False},
             ],
@@ -1067,12 +1068,12 @@ class AlignedTests(Fixture):
         self.commit()
         manifest = build(path, "desktop", allow_download=False)
         bundle = self.root / "emacs" / "desktop"
-        self.assertEqual(["en-longfellow", "en-cary", "ru-min", "ru-lozinsky"], manifest["translations"])
+        self.assertEqual(["en-longfellow", "en-cary", "en-third", "ru-min", "ru-lozinsky"], manifest["translations"])
         table = json.loads((bundle / "data" / "translations.json").read_text(encoding="utf-8"))
         self.assertEqual(["en", "ru"], [item["id"] for item in table["languages"]])
         self.assertEqual("proportional", table["translations"][1]["alignment"])
         regions = (bundle / "data" / "regions.tsv").read_text(encoding="utf-8").splitlines()
-        self.assertEqual(11, len(regions))  # header + 2 units x (source + 4 translations)
+        self.assertEqual(13, len(regions))  # header + 2 units x (source + 5 translations)
         self.assertTrue(any("\ten-cary\tu1\t" in row for row in regions))
         self.assertTrue(verify_bundle(bundle, run_makeinfo=False, run_emacs=has("emacs"))["passed"])
         if not has("emacs"):
@@ -1183,7 +1184,24 @@ class AlignedTests(Fixture):
         (firstpair-reader-rotate-translation)
         (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
           (firstpair-reader-second-translation)
-          (princ (format "%d %d %d %s" a b (funcall hidden) label)))))))"""
+          (let* ((c (funcall hidden))
+                 (bundle (firstpair-reader--bundle))
+                 (second (alist-get "en" firstpair-reader-second-translations nil nil #'equal))
+                 (region (seq-find
+                          (lambda (row) (equal (plist-get row :language) second))
+                          (firstpair-bundle-regions-for-node
+                           bundle (firstpair-bundle-manual) Info-current-node))))
+            (goto-char (point-min))
+            (forward-line (1- (plist-get region :start)))
+            (firstpair-reader-terminal-next-translation)
+            (let ((primary-after (firstpair-reader-translation-for bundle "en"))
+                  (second-after (alist-get "en" firstpair-reader-second-translations nil nil #'equal))
+                  (target-after (firstpair-reader--translation-target-at-point bundle))
+                  (second-feedback (funcall run-feedback)))
+            (firstpair-reader-second-translation)
+              (princ (format "%d %d %d %d %s | slots=%s/%s target=%S feedback=%S"
+                             a b c (funcall hidden) label primary-after
+                             second-after target-after second-feedback)))))))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
@@ -1195,9 +1213,12 @@ class AlignedTests(Fixture):
         self.assertIn("order=(translations translation-next translation-previous)", result.stdout)
         self.assertIn('tty=("Tr-prev" "Tr-next")', result.stdout)
         self.assertIn("GUI menu=t", result.stdout)
-        output = result.stdout.strip().splitlines()[-1].split(" ", 3)
-        self.assertEqual(["4", "4", "2"], output[:3], result.stdout)  # one hidden edition per language; then both English editions visible
-        self.assertIn("Cary (1814) ≈", output[3])
+        output = result.stdout.strip().splitlines()[-1].split(" ", 4)
+        self.assertEqual(["6", "6", "4", "6"], output[:4], result.stdout)  # show one second edition, then hide it in one tap despite a third
+        self.assertIn("Cary (1814) ≈", output[4])
+        self.assertIn("slots=en-cary/en-third", output[4])
+        self.assertIn('target=("en" . second)', output[4])
+        self.assertIn('feedback="English: Third English"', output[4])
         # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
         state_file = self.root / "reader-state.el"
         script = f"""(progn
