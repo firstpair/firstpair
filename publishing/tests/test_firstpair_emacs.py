@@ -1060,6 +1060,14 @@ class AlignedTests(Fixture):
       (firstpair-reader-next-marked)
       (princ (format "WORD %s\n" (thing-at-point 'word t)))
       (let ((a (funcall hidden)))
+        (let ((before (copy-tree firstpair-reader-translation-choices))
+              (current (firstpair-reader-show-current-translations)))
+          (princ (format "CURRENT %s | unchanged=%S | key=%S | menubar=%S | menu=%s\n"
+                         current (equal before firstpair-reader-translation-choices)
+                         (key-binding "=")
+                         (and (keymapp (lookup-key firstpair-reader-mode-map
+                                                  [menu-bar translations])) t)
+                         (firstpair-reader--current-translations-menu-label))))
         (firstpair-reader-rotate-translation)
         (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
           (firstpair-reader-second-translation)
@@ -1068,6 +1076,7 @@ class AlignedTests(Fixture):
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
+        self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menubar=t | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
         output = result.stdout.strip().splitlines()[-1].split(" ", 3)
         self.assertEqual(["2", "2", "0"], output[:3], result.stdout)  # Cary hidden; then Longfellow hidden; then nothing hidden
         self.assertIn("Cary (1814) ≈", output[3])

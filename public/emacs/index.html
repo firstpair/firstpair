@@ -472,6 +472,15 @@ original one word at a time and opens each entry with the current
 dictionary languages. The compact headword and sense rows leave the
 original and translations as the visible context for how that form is
 being used. <code>RET</code> on an Info link still follows it.</p>
+<p>The top Emacs bar has a separate <strong>Translations</strong> menu.
+Its first line says exactly which editions are currently visible,
+including a second translation and the <code>≈</code> mark for an
+approximate alignment. Reading or clicking that <strong>Showing</strong>
+line, or pressing <code>=</code>, changes nothing. The rest of the menu
+offers <strong>Choose Translation</strong>, <strong>Next
+Translation</strong>, <strong>Second Translation</strong>,
+<strong>Choose Languages</strong>, and <strong>Cycle
+Languages</strong>.</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>
@@ -625,10 +634,11 @@ next or previous word <em>and open it</em>, <code>n</code> and
 <code>p</code> turn cantos, and <code>RET</code> repeatedly advances
 through the Italian or other source text with the current dictionary
 languages; in the dictionary, <code>m</code> toggles More/Less. Space
-and backspace page, <code>?</code> shows this list, and <code>q</code>
-quits. Terminals get mouse reporting switched on automatically
-(<code>xterm-mouse-mode</code>); if taps still do nothing, the terminal
-app is not forwarding them and the single keys remain.
+and backspace page, <code>=</code> reports the translations now showing
+without changing them, <code>?</code> shows this list, and
+<code>q</code> quits. Terminals get mouse reporting switched on
+automatically (<code>xterm-mouse-mode</code>); if taps still do nothing,
+the terminal app is not forwarding them and the single keys remain.
 <code>firstpair-reader-touch</code> turns the layer off.</p>
 </section>
 </section>

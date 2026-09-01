@@ -140,4 +140,12 @@ nodes, the references manual, and on actual Info links, Return keeps ordinary
 redirected Info-follow behavior. Fit/reset the lexicon pane after every such
 lookup so its source headword is visible at the top.
 
+Translation inspection (reader 1.20): aligned editions add a top-level Emacs
+**Translations** menu. Its first, live `Showing: …` item and the `=` key report
+the effective primary and second translations on the current page without
+mutating selection; coverage fallbacks and approximate-alignment marks must be
+reflected. Keep Choose, Next, Second, Choose Languages, and Cycle Languages in
+that same dedicated menu so inspection and intentional changes remain visibly
+distinct.
+
 Startup and lookup cost on a phone: the bundle loads nothing large at registration — `data/regions.tsv` is grouped by node with `data/regions.index.json` byte offsets (a node's regions are read with `insert-file-contents BEG END` on first use), `lexicon/forms/<letter>.tsv` and `lexicon/glosses/<letter>.tsv` are read per lookup. Keep every table either small or indexed; the chooser loads every bundle under `firstpair-reader-bundle-directories`, so stale copies there cost startup time.

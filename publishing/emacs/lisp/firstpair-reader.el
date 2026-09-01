@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.19
+;; Version: 1.20
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -23,6 +23,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'easymenu)
 (require 'info)
 (require 'seq)
 (require 'subr-x)
@@ -401,18 +402,24 @@ names a translation not to return."
                    (car candidates))))
     (and pick (alist-get 'id pick))))
 
+(defun firstpair-reader--second-translation-for (bundle lang first)
+  "Return the effective second translation of LANG after FIRST, or nil."
+  (let ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
+    (and second
+         (not (equal second first))
+         (member second (mapcar (lambda (item) (alist-get 'id item))
+                                (firstpair-reader--candidates bundle lang first)))
+         second)))
+
 (defun firstpair-reader--shown-translations (bundle)
   "Return the translation ids on screen: one per selected language, plus seconds."
   (let (ids)
     (dolist (language (firstpair-lexicon-selected bundle))
       (let* ((lang (alist-get 'id language))
              (first (firstpair-reader-translation-for bundle lang))
-             (second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
+             (second (firstpair-reader--second-translation-for bundle lang first)))
         (when first (push first ids))
-        (when (and second (not (equal second first))
-                   (member second (mapcar (lambda (item) (alist-get 'id item))
-                                          (firstpair-reader--candidates bundle lang first))))
-          (push second ids))))
+        (when second (push second ids))))
     (nreverse ids)))
 
 (defun firstpair-reader--apply-regions (bundle)
@@ -754,13 +761,60 @@ That of the region under point, else the first selected language."
   (mapconcat (lambda (language)
                (let* ((lang (alist-get 'id language))
                       (first (firstpair-reader-translation-for bundle lang))
-                      (second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
+                      (second (firstpair-reader--second-translation-for bundle lang first)))
                  (concat (alist-get 'label language) ": "
                          (if first (firstpair-reader--translation-title bundle first) "—")
-                         (if (and second (not (equal second first)))
+                         (if second
                              (concat " + " (firstpair-reader--translation-title bundle second))
                            ""))))
              (firstpair-lexicon-selected bundle) "; "))
+
+(defun firstpair-reader-show-current-translations ()
+  "Report the translations currently visible without changing them.
+The returned label is also used by the top-level Translations menu."
+  (interactive)
+  (let* ((bundle (firstpair-reader--bundle))
+         (label (if (firstpair-bundle-translations bundle)
+                    (firstpair-reader-translations-label bundle)
+                  "This edition has no switchable translations")))
+    (message "Showing: %s" label)
+    label))
+
+(defun firstpair-reader--current-translations-menu-label ()
+  "Return the live label for the Translations menu's read-only first item."
+  (condition-case nil
+      (format "Showing: %s" (let ((inhibit-message t))
+                               (firstpair-reader-show-current-translations)))
+    (error "Showing: no FirstPair edition")))
+
+(defun firstpair-reader-choose-translation ()
+  "Choose the primary translation by name rather than rotating it."
+  (interactive)
+  (firstpair-reader-rotate-translation t))
+
+(defun firstpair-reader-choose-translation-languages ()
+  "Choose which translation languages are visible by name."
+  (interactive)
+  (firstpair-reader-translation-languages t))
+
+(defun firstpair-reader--multiple-translations-p ()
+  "Return non-nil when the active language has another primary translation."
+  (condition-case nil
+      (let* ((bundle (firstpair-reader--bundle))
+             (lang (firstpair-reader--language-at-point bundle))
+             (second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
+        (> (length (firstpair-reader--candidates bundle lang second)) 1))
+    (error nil)))
+
+(defun firstpair-reader--second-translation-available-p ()
+  "Return non-nil when the active language has a possible second translation."
+  (condition-case nil
+      (let* ((bundle (firstpair-reader--bundle))
+             (lang (firstpair-reader--language-at-point bundle))
+             (first (firstpair-reader-translation-for bundle lang)))
+        (or (alist-get lang firstpair-reader-second-translations nil nil #'equal)
+            (firstpair-reader--candidates bundle lang first)))
+    (error nil)))
 
 (defun firstpair-reader-rotate-translation (&optional choose)
   "Show the next translation of the language at point (or the first selected one).
@@ -1066,11 +1120,13 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "C-c C-t") #'firstpair-reader-translation-languages)
     (define-key map (kbd "C-c C-v") #'firstpair-reader-rotate-translation)
     (define-key map (kbd "C-c C-b") #'firstpair-reader-second-translation)
+    (define-key map (kbd "C-c C-s") #'firstpair-reader-show-current-translations)
     ;; Single keys for phones: the same commands without the C-c chord.
     (define-key map (kbd "d") #'firstpair-reader-describe-word)
     (define-key map (kbd "t") #'firstpair-reader-translation-languages)
     (define-key map (kbd "v") #'firstpair-reader-rotate-translation)
     (define-key map (kbd "b") #'firstpair-reader-second-translation)
+    (define-key map (kbd "=") #'firstpair-reader-show-current-translations)
     (define-key map (kbd ",") #'firstpair-reader-previous-marked)
     (define-key map (kbd ".") #'firstpair-reader-next-marked)
     (define-key map (kbd "j") #'firstpair-reader-next-marked-lookup)
@@ -1089,6 +1145,23 @@ updated directly.  Returns DIRECTORY."
     (define-key map [remap Info-follow-reference] #'firstpair-reader-follow-reference)
     map)
   "Keymap for `firstpair-reader-mode'.")
+
+(easy-menu-define firstpair-reader-translations-menu firstpair-reader-mode-map
+  "Inspect and change the translations visible in a FirstPair edition."
+  '("Translations"
+    ["Showing" firstpair-reader-show-current-translations
+     :label (firstpair-reader--current-translations-menu-label)
+     :help "Report the translations currently visible; this changes nothing"]
+    "---"
+    ["Choose Translation..." firstpair-reader-choose-translation
+     :enable (firstpair-reader--multiple-translations-p)]
+    ["Next Translation" firstpair-reader-rotate-translation
+     :enable (firstpair-reader--multiple-translations-p)]
+    ["Second Translation" firstpair-reader-second-translation
+     :enable (firstpair-reader--second-translation-available-p)]
+    "---"
+    ["Choose Languages..." firstpair-reader-choose-translation-languages t]
+    ["Cycle Languages" firstpair-reader-translation-languages t]))
 
 ;;;###autoload
 ;;; Touch: single keys, taps, and a button bar
@@ -1213,6 +1286,8 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "Tap a link            follow it           ,   .   previous / next dictionary word\n")
     (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
+    (princ "                                          =   show current translations (changes nothing)\n")
+    (princ "Top Emacs menu        Translations        see current choices; choose or rotate them\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less · ◀w w▶    m   more / less senses\n")
     (princ "                                          b   second translation under the first\n")

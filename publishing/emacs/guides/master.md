@@ -184,6 +184,13 @@ headword and sense rows leave the original and translations as the visible
 context for how that form is being used. `RET` on an Info link still follows
 it.
 
+The top Emacs bar has a separate **Translations** menu. Its first line says
+exactly which editions are currently visible, including a second translation
+and the `≈` mark for an approximate alignment. Reading or clicking that
+**Showing** line, or pressing `=`, changes nothing. The rest of the menu offers
+**Choose Translation**, **Next Translation**, **Second Translation**,
+**Choose Languages**, and **Cycle Languages**.
+
 ## Rearranging windows
 
 `C-c C-l` restores the standard layout: book above, references below,
@@ -340,7 +347,8 @@ words, `j` and `k` step to the next or previous word *and open it*, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other
 source text with the current dictionary languages; in the dictionary, `m`
 toggles More/Less. Space and
-backspace page, `?` shows this list, and `q` quits. Terminals get mouse reporting switched on automatically
+backspace page, `=` reports the translations now showing without changing
+them, `?` shows this list, and `q` quits. Terminals get mouse reporting switched on automatically
 (`xterm-mouse-mode`); if taps still do nothing, the terminal app is not
 forwarding them and the single keys remain. `firstpair-reader-touch` turns
 the layer off.
