@@ -206,6 +206,12 @@ switches directly to it and also restores the language when it was hidden;
 English and Russian remain independent. Neither menu invokes a minibuffer,
 Emacs's large text-mode menu, or a `*Completions*` window.
 
+If every list choice runs its first item, check the ordinary **File** menu:
+**Quit** must quit rather than opening **Find File**. The latter behavior means
+the terminal host is reporting the wrong touched row; it is not a translation
+selection problem. Use a 1Unix build with touch-coordinate correction before
+testing the Reader menus again.
+
 A persistent line immediately below the top bar lists the visible edition
 names in the same order in which their text appears. It updates after either
 language menu, **Lang**, and **2nd**. Press `=` for the compact, non-mutating

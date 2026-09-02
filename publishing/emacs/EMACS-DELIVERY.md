@@ -196,6 +196,12 @@ language, while choosing an edition restores it without altering the other
 language. These menus must not open a minibuffer or completions window. Bind
 every generated item to a stable named interactive command: terminal-app menu
 bridges may not preserve anonymous closures even though stock Emacs `tmm` does.
+The terminal host must also report the touched cell rather than the focused
+element's synthetic click position. Diagnose this independently with a stock
+menu: if **File → Quit** invokes **Find File**, repair touch-to-mouse coordinate
+forwarding in the terminal app before changing Reader menu code. The 1Unix
+host does this by restoring the most recent single-finger touch coordinates on
+WebKit's compatibility mouse press and release before hterm encodes them.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

@@ -199,11 +199,17 @@ one-action second-slot hiding with three or more editions, exact delayed
 feedback, menu order, no overriding map, unchanged window count, and no
 `*Completions*` buffer.
 
-1Unix menu dispatch (reader 1.31): every dynamic submenu item must bind to a
-stable named interactive command, not an anonymous lexical closure. Stock
-Emacs `tmm` accepts either, but terminal-app menu bridges may serialize only
-named commands and otherwise dispatch the first item, **None**. Test both the
-submenu content and that every selectable binding is a command symbol.
+Terminal menu dispatch (reader 1.31 and 1Unix): every dynamic submenu item
+binds to a stable named interactive command, not an anonymous lexical closure.
+Test both the submenu content and that every selectable binding is a command
+symbol. This is Reader-side hardening, not a substitute for correct terminal
+mouse coordinates. If choosing an item below the first one still invokes the
+first item, test a stock Emacs menu immediately: **File → Quit** must not invoke
+**Find File**. Failure there identifies the terminal host, not the Reader.
+1Unix preserves the last single-finger touch coordinates and applies them to
+WebKit's compatibility `mousedown` and `mouseup` before hterm calculates the
+VT cell. Its phone acceptance test must select a non-first item in both the
+stock File menu and each Reader translation menu.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public
