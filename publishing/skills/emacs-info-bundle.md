@@ -206,10 +206,26 @@ symbol. This is Reader-side hardening, not a substitute for correct terminal
 mouse coordinates. If choosing an item below the first one still invokes the
 first item, test a stock Emacs menu immediately: **File → Quit** must not invoke
 **Find File**. Failure there identifies the terminal host, not the Reader.
-1Unix preserves the last single-finger touch coordinates and applies them to
-WebKit's compatibility `mousedown` and `mouseup` before hterm calculates the
-VT cell. Its phone acceptance test must select a non-first item in both the
-stock File menu and each Reader translation menu.
+Do not repair that host failure by rewriting WebKit compatibility mouse-event
+coordinates: on iPhone those events can still arrive at the focused element
+or bypass the rewriting listener. While VT mouse reporting is active, 1Unix
+must prevent the compatibility sequence, convert the active `UITouch`
+directly into one hterm press/drag/release sequence, and use the touch's
+viewport coordinates for hterm's own cell calculation. Test the signed web
+bundle by aiming at a non-first row and column, asserting the exact encoded VT
+cell, then injecting bogus `(0,0)` compatibility events and asserting that no
+extra report appears. Phone acceptance must select a non-first item in both
+the stock File menu and each Reader translation menu.
+
+Terminal font geometry (1Unix build 815): bundled webfonts load
+asynchronously. After setting the selected family and size, wait on the hterm
+document's `FontFaceSet`, resynchronize hterm's font family and size, redraw,
+resynchronize the cursor, and notify native code to refresh floating-cursor
+sensitivity. Disable kerning and standard/contextual ligatures in terminal row
+CSS because visible text, the hterm cursor, and mouse targeting must share one
+fixed cell grid. In the signed-bundle test, require the selected face to report
+loaded and compare a rendered repeated-character run against `count *
+characterSize.width`; reject accumulating horizontal drift.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public
