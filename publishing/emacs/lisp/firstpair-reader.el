@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.33
+;; Version: 1.34
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1512,6 +1512,14 @@ updated directly.  Returns DIRECTORY."
     (define-key map [drag-mouse-1] #'firstpair-reader-touch-click)
     (define-key map [mouse-3] #'firstpair-reader-rotate-translation)
     (define-key map [down-mouse-1] #'ignore)
+    ;; TTY mouse decoding can lose the string-local map while retaining the
+    ;; mode-line area.  Resolve our button property explicitly in that case;
+    ;; never let a miss fall through to Emacs's buffer/window mode-line map.
+    (define-key map [mode-line mouse-1] #'firstpair-reader-mode-line-click)
+    (define-key map [mode-line drag-mouse-1] #'firstpair-reader-mode-line-click)
+    (define-key map [mode-line down-mouse-1] #'ignore)
+    (define-key map [mode-line double-mouse-1] #'ignore)
+    (define-key map [mode-line triple-mouse-1] #'ignore)
     (define-key map (kbd "C-c C-l") #'firstpair-reader-layout)
     (define-key map (kbd "C-c C-o") #'firstpair-reader-other-window)
     (define-key map [remap Info-follow-nearest-node] #'firstpair-reader-follow-nearest-node)
@@ -1575,9 +1583,40 @@ updated directly.  Returns DIRECTORY."
     map)
   "Keymap that keeps gaps in Reader bars from invoking the stock mode line.")
 
+(defun firstpair-reader--no-help-echo (&rest _arguments)
+  "Mask the mode line's inherited mouse help in terminal Reader bars."
+  nil)
+
+(defun firstpair-reader--event-button-command (event)
+  "Return the Reader button command at EVENT, or nil for a non-button cell."
+  (let ((string-position (posn-string (event-start event))))
+    (when (and (consp string-position)
+               (stringp (car string-position))
+               (integer-or-marker-p (cdr string-position)))
+      (get-text-property (cdr string-position)
+                         'firstpair-reader-command
+                         (car string-position)))))
+
+(defun firstpair-reader--run-button-command (event command)
+  "Select EVENT's window and invoke Reader button COMMAND."
+  (let ((window (posn-window (event-start event))))
+    (when (window-live-p window)
+      (select-window window)))
+  (when (commandp command)
+    (call-interactively command)))
+
+(defun firstpair-reader-mode-line-click (event)
+  "Run the Reader button at mode-line EVENT, ignoring every non-button cell."
+  (interactive "e")
+  (let ((command (firstpair-reader--event-button-command event)))
+    (when command
+      (firstpair-reader--run-button-command event command))))
+
 (defun firstpair-reader--bar-gap (&optional display)
   "Return an inert one-cell bar gap, with optional DISPLAY specification."
-  (let ((gap (propertize " " 'local-map firstpair-reader--bar-gap-map)))
+  (let ((gap (propertize " "
+                         'local-map firstpair-reader--bar-gap-map
+                         'help-echo #'firstpair-reader--no-help-echo)))
     (when display
       (put-text-property 0 1 'display display gap))
     gap))
@@ -1589,9 +1628,7 @@ acts on the book even while the dictionary window has focus."
   (let ((map (make-sparse-keymap))
         (action (lambda (event)
                   (interactive "e")
-                  (let ((window (posn-window (event-start event))))
-                    (when (window-live-p window) (select-window window)))
-                  (call-interactively command))))
+                  (firstpair-reader--run-button-command event command))))
     (define-key map [header-line mouse-1] action)
     (define-key map [header-line drag-mouse-1] action)
     (define-key map [header-line down-mouse-1] #'ignore)
@@ -1615,7 +1652,10 @@ acts on the book even while the dictionary window has focus."
     (propertize (concat " " label " ")
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
                 'mouse-face 'highlight 'local-map map
-                'help-echo (and (display-graphic-p) (or help label)))))
+                'firstpair-reader-command command
+                'help-echo (if (display-graphic-p)
+                               (or help label)
+                             #'firstpair-reader--no-help-echo))))
 
 (defun firstpair-reader--bar (&rest buttons)
   "A header line of BUTTONS (label . command) separated by a space."
@@ -1762,6 +1802,8 @@ the bar fits a phone, and `?' lists what they mean."
 Terminals that report only focus (iSH sends ESC [ I on a tap) have those
 sequences decoded as focus events, so a tap never reads as M-[ I."
   (when firstpair-reader-touch
+    (when (boundp 'mode-line-default-help-echo)
+      (setq-local mode-line-default-help-echo nil))
     ;; Only the book's own window carries the bars; the references manual
     ;; below it keeps Info's plain header and mode line.
     (when (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle))
@@ -1772,7 +1814,9 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
                     (list (firstpair-reader--bar-gap)
                           '(:eval
                             (propertize (or Info-current-node "")
-                                        'local-map firstpair-reader--bar-gap-map))))))
+                                        'local-map firstpair-reader--bar-gap-map
+                                        'help-echo
+                                        #'firstpair-reader--no-help-echo))))))
     (unless (display-graphic-p)
       (unless (bound-and-true-p xterm-mouse-mode)
         (ignore-errors (xterm-mouse-mode 1)))
@@ -1795,6 +1839,8 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
         (when (boundp 'text-conversion-style)
           (setq-local text-conversion-style nil)))
     (firstpair-reader--unmark)
+    (when (local-variable-p 'mode-line-default-help-echo)
+      (kill-local-variable 'mode-line-default-help-echo))
     (firstpair-reader--restore-header-line)))
 
 (provide 'firstpair-reader)

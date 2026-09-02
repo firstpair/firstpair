@@ -407,7 +407,8 @@ link follows it; a long press (right click) rotates the translation under
 it. A slight finger drift is treated as the same tap, not as a cancelled
 button. The reader also consumes the initial press and an accidental second
 tap, and the small gaps between buttons are inert, so a near miss cannot resize
-or maximize the neighboring pane. **Dict**
+or maximize the neighboring pane, replace the poem with another buffer, or
+show Emacs's generic mouse instructions. **Dict**
 replaces the introductory References pane; **Next ▶** advances
 the source word and refreshes that dictionary pane. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation at point, `b` toggles a second one, `,` and `.` step between dictionary

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.33
+;; Version: 1.34
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -46,6 +46,7 @@
   "The word this buffer is showing.")
 
 (declare-function firstpair-reader-translations-label "firstpair-reader" (bundle))
+(declare-function firstpair-reader-mode-line-click "firstpair-reader" (event))
 
 (defvar firstpair-lexicon-languages nil
   "Identifiers of the translation languages to show.
@@ -464,6 +465,11 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
     (define-key map (kbd "m") #'firstpair-lexicon-toggle-details)
     (define-key map [mouse-1] #'ignore)
     (define-key map [down-mouse-1] #'ignore)
+    (define-key map [mode-line mouse-1] #'firstpair-reader-mode-line-click)
+    (define-key map [mode-line drag-mouse-1] #'firstpair-reader-mode-line-click)
+    (define-key map [mode-line down-mouse-1] #'ignore)
+    (define-key map [mode-line double-mouse-1] #'ignore)
+    (define-key map [mode-line triple-mouse-1] #'ignore)
     map)
   "Keymap for `firstpair-lexicon-mode'.")
 
@@ -472,6 +478,8 @@ Latin's: lower case, combining marks stripped or kept, replacements applied."
   (setq-local truncate-lines t)
   (setq-local word-wrap nil)
   (setq-local buffer-read-only t)
+  (when (boundp 'mode-line-default-help-echo)
+    (setq-local mode-line-default-help-echo nil))
   (when (boundp 'text-conversion-style)
     (setq-local text-conversion-style nil)))
 

@@ -120,7 +120,7 @@ Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the 
 
 Touch layer (reader 1.9): `firstpair-reader-touch` adds header-line button bars (book and dictionary), single-key bindings (d t v b , . r ?), `mouse-1` = look up word or follow link, `mouse-3` = next translation, and enables `xterm-mouse-mode` on terminals. Keep every command reachable by a single key on phones.
 
-Touch gesture ownership (reader 1.33): a finger can cross a terminal cell
+Touch gesture ownership (reader 1.34): a finger can cross a terminal cell
 between touch-down and touch-up, making Emacs report `drag-mouse-1` instead of
 `mouse-1`. Bind both events to every mode-line and header-line button action,
 and to the book's word/link handler. Button-local maps must also consume
@@ -130,7 +130,13 @@ the reader retries with a second tap. Run the command once on click or drag
 release and suppress terminal `help-echo`; a pointer-motion prelude must not
 leave labels or binding help in the echo area. Give separators, alignment
 spacers, and trailing node text an inert local map too, so a near miss cannot
-fall back to stock mode-line resize or mouse-help behavior. In particular,
+fall back to stock mode-line resize or mouse-help behavior. Because a TTY can
+retain the `mode-line` area while losing the rendered string's local map, bind
+area-qualified click, drag, press, and multiple-click fallbacks in both Reader
+and Lexicon buffer maps. Resolve a command only from the touched string's
+`firstpair-reader-command` property; ignore every other cell. Set
+`mode-line-default-help-echo` buffer-locally to nil in both panes so inherited
+"mouse-1 selects" help cannot replace the echo area. In particular,
 **Next** advances
 and refreshes Dict, while **Dict** lends the idle References Top pane to the
 lexicon instead of adding a third window. Test press ownership, double-click

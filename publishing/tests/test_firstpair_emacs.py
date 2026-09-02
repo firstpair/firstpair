@@ -247,21 +247,31 @@ class PackageTests(unittest.TestCase):
          (help (get-text-property 0 'help-echo button))
          (gap (firstpair-reader--bar-gap))
          (gap-map (get-text-property 0 'local-map gap))
-         called)
+         (gap-help (get-text-property 0 'help-echo gap))
+         (fallback (lookup-key firstpair-reader-mode-map [mode-line mouse-1]))
+         (lexicon-fallback (lookup-key firstpair-lexicon-mode-map [mode-line mouse-1]))
+         (calls 0))
     (cl-letf (((symbol-function 'event-start) (lambda (_event) nil))
               ((symbol-function 'posn-window)
                (lambda (_position) (selected-window)))
               ((symbol-function 'firstpair-reader-next-marked-lookup)
-               (lambda () (interactive) (setq called 'next))))
-      (funcall drag '(drag-mouse-1 nil)))
-    (princ (format "same=%S down=%S double=%S header=%S header-down=%S body=%S body-down=%S help=%S gap-down=%S gap-drag=%S called=%S reader=%S\n"
+               (lambda () (interactive) (setq calls (1+ calls))))
+              ((symbol-function 'posn-string)
+               (lambda (_position) (cons button 1))))
+      (funcall drag '(drag-mouse-1 nil))
+      (firstpair-reader-mode-line-click '(mouse-1 nil)))
+    (princ (format "same=%S down=%S double=%S header=%S header-down=%S body=%S body-down=%S help=%S gap-help=%S gap-down=%S gap-drag=%S fallback=%S lexicon=%S calls=%S reader=%S\n"
                    (eq mouse drag) (eq down 'ignore) (eq double 'ignore)
                    (eq mouse header-drag) (eq header-down 'ignore)
                    (eq mouse body-drag)
-                   (eq body-down 'ignore) help
+                   (eq body-down 'ignore)
+                   (eq help #'firstpair-reader--no-help-echo)
+                   (eq gap-help #'firstpair-reader--no-help-echo)
                    (eq (lookup-key gap-map [mode-line down-mouse-1]) 'ignore)
                    (eq (lookup-key gap-map [mode-line drag-mouse-1]) 'ignore)
-                   called
+                   (eq fallback #'firstpair-reader-mode-line-click)
+                   (eq lexicon-fallback #'firstpair-reader-mode-line-click)
+                   calls
                    (lookup-key firstpair-reader-mode-map [drag-mouse-1])))))'''
         completed = subprocess.run(
             ["emacs", "--batch", "-Q", "--eval", script],
@@ -272,7 +282,8 @@ class PackageTests(unittest.TestCase):
         self.assertEqual(0, completed.returncode, completed.stderr)
         self.assertIn(
             "same=t down=t double=t header=t header-down=t body=t "
-            "body-down=t help=nil gap-down=t gap-drag=t called=next "
+            "body-down=t help=t gap-help=t gap-down=t gap-drag=t "
+            "fallback=t lexicon=t calls=2 "
             "reader=firstpair-reader-touch-click",
             completed.stdout,
         )

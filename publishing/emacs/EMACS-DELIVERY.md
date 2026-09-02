@@ -213,7 +213,11 @@ that release must invoke the visible button. Its local map also consumes the
 preceding `down-mouse-1` and any double/triple-click retry so Emacs cannot start
 a mode-line resize, maximize a pane, or expose unrelated button help. Terminal
 buttons omit `help-echo`, and the gaps plus trailing node label use an inert
-local map rather than the stock mode-line map. **Next** moves and looks up the
+local map rather than the stock mode-line map. Reader and Lexicon buffer maps
+also intercept area-qualified mode-line events in case terminal decoding loses
+the rendered string's map: dispatch only a touched
+`firstpair-reader-command`, ignore all other cells, and disable the inherited
+`mode-line-default-help-echo` in those buffers. **Next** moves and looks up the
 next source word, and
 **Dict** replaces an idle references Top pane with the dictionary.
 
