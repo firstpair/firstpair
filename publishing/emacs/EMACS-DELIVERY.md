@@ -189,6 +189,12 @@ all of them (`C-c C-t`), answering by exact form first and by entry second,
 and states when a language has no entry. Absence is reported, never filled by
 machine translation.
 
+In a terminal menu bar, aligned English/Russian editions expose **Tr-Eng** and
+**Tr-Rus** as real submenus. Each begins with **None** and then the editions in
+declared order. Selection is direct and language-specific: **None** hides that
+language, while choosing an edition restores it without altering the other
+language. These menus must not open a minibuffer or completions window.
+
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join
 the passage's node as ordinary blocks.

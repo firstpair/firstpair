@@ -173,29 +173,31 @@ translation disappears in one action, irrespective of how many editions are
 available. The graphical menu retains **Choose Second Translation...** for
 deliberate selection among many alternatives.
 
-Terminal translation control (reader 1.27): do not send an iSH or other TTY
+Terminal translation control (reader 1.30): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
 Do not use a second overriding keymap: terminal menu rendering merges it with
 the minor-mode map and exposes duplicate controls. Keep the native
-**Translations** submenu graphical-only. In a terminal expose adjacent direct
-**Tr-next** and **Tr-prev** items. Both resolve the aligned region and the
-primary-or-second slot at point. With two editions of one language visible,
-point in either one changes that edition while preserving the other; source
-text falls back to the first selected language's primary slot. Both wrap
-through candidates that cover the current part and relocate point to the same
-unit in the replacement region, preserving the slot across repeated taps. A
-TTY menu dismisses its minibuffer after invoking the
-command, so suppress the premature message and post the new language and
-edition label from a one-shot `post-command-hook` after the outer menu command
-finishes; it must remain in the echo area until another command or message
-replaces it. Install a persistent header line immediately below the menu bar
+**Translations** submenu graphical-only. In a terminal expose adjacent dynamic
+**Tr-Eng** and **Tr-Rus** submenus. Each starts with **None**, then lists in
+declared order every edition of that language that covers the current part.
+Use radio marks for the effective selection. **None** hides only its language;
+choosing an edition selects it as primary and restores that language without
+changing the other language. Represent an explicit all-hidden choice
+separately from the legacy nil meaning "show every declared language," and
+persist it with the Reader state. The submenus must invoke their commands
+directly, with no minibuffer and no `*Completions*` buffer. A TTY menu dismisses
+its own message after invoking the command, so post the new language and
+edition label, including `None`, from a one-shot `post-command-hook` after the
+outer menu command finishes; it must remain in the echo area until another
+command or message replaces it. Install a persistent header line immediately below the menu bar
 that lists compact visible edition names in actual region order, including
 second translations, and update it on every region refresh. Keep `=` as the
 non-mutating status
-report. Terminal tests must prove next and previous in two independently
-selectable languages and in the second slot, one-action second-slot hiding
-with three or more editions, exact delayed feedback, their order, no
-overriding map, unchanged window count, and no `*Completions*` buffer.
+report. Terminal tests must prove ordered English and Russian menu contents,
+independent direct selection, one-language and all-language hiding, restoration,
+one-action second-slot hiding with three or more editions, exact delayed
+feedback, menu order, no overriding map, unchanged window count, and no
+`*Completions*` buffer.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public

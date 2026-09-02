@@ -1148,80 +1148,113 @@ class AlignedTests(Fixture):
                          firstpair-reader--translation-header-installed))
           (let* ((bundle (firstpair-reader--bundle))
                  (windows (length (window-list)))
-                 (next-item
-                  (lookup-key firstpair-reader-mode-map [menu-bar translation-next]))
-                 (previous-item
-                  (lookup-key firstpair-reader-mode-map [menu-bar translation-previous]))
-                 (next-binding next-item)
-                 (previous-binding previous-item)
-                 (menu-order
-                  (mapcar #'car (cdr (lookup-key firstpair-reader-mode-map [menu-bar]))))
-                 (regions (firstpair-bundle-regions-for-node
-                           bundle (firstpair-bundle-manual) Info-current-node))
-                 (goto-language
-                  (lambda (lang)
-                    (let ((region
-                           (seq-find
-                            (lambda (row)
-                              (let ((translation
-                                     (and (not (plist-get row :source))
-                                          (firstpair-bundle-translation
-                                           bundle (plist-get row :language)))))
-                                (and translation
-                                     (equal (alist-get 'lang translation) lang))))
-                            regions)))
-                      (goto-char (point-min))
-                      (forward-line (1- (plist-get region :start)))))))
-            (funcall goto-language "en")
-            (call-interactively next-binding)
-            (let ((after-en (mapcar (lambda (lang)
-                                      (firstpair-reader-translation-for bundle lang))
-                                    '("en" "ru")))
-                  (feedback-en-next (funcall run-feedback)))
-              (funcall goto-language "ru")
-              (call-interactively next-binding)
-              (let ((after-ru-next (mapcar (lambda (lang)
-                                             (firstpair-reader-translation-for bundle lang))
-                                           '("en" "ru")))
-                    (feedback-ru-next (funcall run-feedback)))
-                (call-interactively previous-binding)
-                (let ((after-ru-prev (mapcar (lambda (lang)
-                                               (firstpair-reader-translation-for bundle lang))
-                                             '("en" "ru")))
-                      (feedback-ru-prev (funcall run-feedback)))
-                  (funcall goto-language "en")
-                  (call-interactively previous-binding)
-                  (let ((feedback-en-prev (funcall run-feedback)))
-                  (require 'tmm)
-                  (defvar tmm-table-undef nil)
-                  (defvar tmm-km-list nil)
-                  (setq tmm-table-undef nil tmm-km-list nil)
-                  (map-keymap
-                   (lambda (event binding)
-                     (tmm-get-keymap (cons event binding)))
-                   (lookup-key firstpair-reader-mode-map [menu-bar]))
-                  (princ
-                   (format "TERMINAL next=%S previous=%S en-next=%s/%s ru-next=%s/%s ru-prev=%s/%s en-prev=%s/%s feedback=%S/%S/%S/%S windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
-                           next-binding previous-binding
-                           (car after-en) (cadr after-en)
-                           (car after-ru-next) (cadr after-ru-next)
-                           (car after-ru-prev) (cadr after-ru-prev)
-                           (firstpair-reader-translation-for bundle "en")
-                           (firstpair-reader-translation-for bundle "ru")
-                           feedback-en-next feedback-ru-next
-                           feedback-ru-prev feedback-en-prev
-                           windows (length (window-list))
-                           (and (get-buffer "*Completions*") t)
-                           (assq 'firstpair-reader-mode minor-mode-overriding-map-alist)
-                           menu-order (mapcar #'car tmm-km-list)))))))
-            (setq firstpair-reader-translation-choices before)
+                 (menu-labels
+                  (lambda (menu)
+                    (let (labels)
+                      (map-keymap (lambda (_event binding)
+                                    (push (nth 1 binding) labels))
+                                  menu)
+                      (nreverse labels))))
+                 (menu-command
+                  (lambda (menu label)
+                    (let (command)
+                      (map-keymap
+                       (lambda (_event binding)
+                         (when (equal (nth 1 binding) label)
+                           (setq command (nth 2 binding))))
+                       menu)
+                      (or command (error "No menu command for %s" label)))))
+                 (english-menu
+                  (lookup-key firstpair-reader-mode-map
+                              [menu-bar translation-english]))
+                 (russian-menu
+                  (lookup-key firstpair-reader-mode-map
+                              [menu-bar translation-russian]))
+                 (initial-english (funcall menu-labels english-menu))
+                 (initial-russian (funcall menu-labels russian-menu)))
+            (call-interactively (funcall menu-command english-menu "Cary (1814) ≈"))
+            (let ((after-english
+                   (mapcar (lambda (lang)
+                             (firstpair-reader-translation-for bundle lang))
+                           '("en" "ru")))
+                  (feedback-english (funcall run-feedback)))
+              (call-interactively (funcall menu-command russian-menu "None"))
+              (let ((after-russian-none
+                     (mapcar (lambda (language) (alist-get 'id language))
+                             (firstpair-lexicon-selected bundle)))
+                    (feedback-russian-none (funcall run-feedback))
+                    (russian-hidden-menu
+                     (lookup-key firstpair-reader-mode-map
+                                 [menu-bar translation-russian])))
+                (call-interactively
+                 (funcall menu-command russian-hidden-menu "Лозинский (1939)"))
+                (let ((after-russian
+                       (mapcar (lambda (lang)
+                                 (firstpair-reader-translation-for bundle lang))
+                               '("en" "ru")))
+                      (feedback-russian (funcall run-feedback))
+                      (english-restored-menu
+                       (lookup-key firstpair-reader-mode-map
+                                   [menu-bar translation-english])))
+                  (call-interactively
+                   (funcall menu-command english-restored-menu "None"))
+                  (let ((feedback-english-none (funcall run-feedback))
+                        (russian-only
+                         (mapcar (lambda (language) (alist-get 'id language))
+                                 (firstpair-lexicon-selected bundle))))
+                    (call-interactively
+                     (funcall menu-command
+                              (lookup-key firstpair-reader-mode-map
+                                          [menu-bar translation-russian])
+                              "None"))
+                    (let ((feedback-all-none (funcall run-feedback))
+                          (all-none firstpair-lexicon-languages)
+                          (all-none-hidden (funcall hidden))
+                          (all-none-header (firstpair-reader--translation-header-line)))
+                      (call-interactively
+                       (funcall menu-command
+                                (lookup-key firstpair-reader-mode-map
+                                            [menu-bar translation-english])
+                                "Longfellow (1867)"))
+                      (let ((feedback-english-restored (funcall run-feedback)))
+                        (call-interactively
+                         (funcall menu-command
+                                  (lookup-key firstpair-reader-mode-map
+                                              [menu-bar translation-russian])
+                                  "Мин (1855)"))
+                        (let ((feedback-russian-restored (funcall run-feedback)))
+                          (require 'tmm)
+                          (defvar tmm-table-undef nil)
+                          (defvar tmm-km-list nil)
+                          (setq tmm-table-undef nil tmm-km-list nil)
+                          (map-keymap
+                           (lambda (event binding)
+                             (tmm-get-keymap (cons event binding)))
+                           (lookup-key firstpair-reader-mode-map [menu-bar]))
+                          (princ
+                           (format "TERMINAL menus=%S/%S english=%s/%s russian-none=%S russian=%s/%s russian-only=%S all-none=%S/%d/%S feedback=%S/%S/%S/%S/%S/%S windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
+                                   initial-english initial-russian
+                                   (car after-english) (cadr after-english)
+                                   after-russian-none
+                                   (car after-russian) (cadr after-russian)
+                                   russian-only all-none all-none-hidden all-none-header
+                                   feedback-english feedback-russian-none
+                                   feedback-russian feedback-english-none
+                                   feedback-all-none feedback-russian-restored
+                                   windows (length (window-list))
+                                   (and (get-buffer "*Completions*") t)
+                                   (assq 'firstpair-reader-mode minor-mode-overriding-map-alist)
+                                   (mapcar #'car (cdr (lookup-key firstpair-reader-mode-map [menu-bar])))
+                                   (mapcar #'car tmm-km-list)))))))))))
+            (setq firstpair-reader-translation-choices nil
+                  firstpair-lexicon-languages nil)
             (firstpair-reader-refresh-regions)
             (cl-letf (((symbol-function 'display-graphic-p)
                        (lambda (&optional _frame) t)))
               (princ (format "GUI menu=%S\n"
                              (keymapp
                               (lookup-key firstpair-reader-mode-map
-                                          [menu-bar translations])))))))
+                                          [menu-bar translations]))))))
         (firstpair-reader-rotate-translation)
         (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
           (firstpair-reader-second-translation)
@@ -1252,11 +1285,12 @@ class AlignedTests(Fixture):
         self.assertIn('CLICK word="cammin" reader-read-only=t dict-read-only=t focus=t', result.stdout)
         self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
         self.assertIn('header=" Longfellow · Мин " installed=t', result.stdout)
-        self.assertIn("TERMINAL next=firstpair-reader-terminal-next-translation previous=firstpair-reader-terminal-previous-translation en-next=en-cary/ru-min ru-next=en-cary/ru-lozinsky ru-prev=en-cary/ru-min en-prev=en-longfellow/ru-min", result.stdout)
-        self.assertIn('feedback="English: Cary (1814) ≈"/"Русский: Лозинский (1939)"/"Русский: Мин (1855)"/"English: Longfellow (1867)"', result.stdout)
+        self.assertIn('TERMINAL menus=("None" "Longfellow (1867)" "Cary (1814) ≈" "Third English")/("None" "Мин (1855)" "Лозинский (1939)")', result.stdout)
+        self.assertIn('english=en-cary/ru-min russian-none=("en") russian=en-cary/ru-lozinsky russian-only=("ru") all-none=:none/10/" None "', result.stdout)
+        self.assertIn('feedback="English: Cary (1814) ≈"/"Русский: None"/"Русский: Лозинский (1939)"/"English: None"/"Русский: None"/"Русский: Мин (1855)"', result.stdout)
         self.assertIn("windows=2/2 completions=nil override=nil", result.stdout)
-        self.assertIn("order=(translations translation-next translation-previous)", result.stdout)
-        self.assertIn('tty=("Tr-prev" "Tr-next")', result.stdout)
+        self.assertIn("order=(translations translation-english translation-russian)", result.stdout)
+        self.assertIn('tty=("Tr-Rus" "Tr-Eng")', result.stdout)
         self.assertIn("GUI menu=t", result.stdout)
         output = result.stdout.strip().splitlines()[-1].split(" ", 4)
         self.assertEqual(["6", "6", "4", "6"], output[:4], result.stdout)  # show one second edition, then hide it in one tap despite a third

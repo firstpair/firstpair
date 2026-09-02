@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.29
+;; Version: 1.30
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -456,13 +456,15 @@ names a translation not to return."
   "Return the persistent list of editions visible in the current reader."
   (let ((bundle (firstpair-bundle-current)))
     (when (and bundle (firstpair-bundle-translations bundle))
-      (concat
-       " "
-       (mapconcat
-        (lambda (id) (firstpair-reader--translation-short-title bundle id))
-        (firstpair-reader--visible-translations-in-display-order bundle)
-        " · ")
-       " "))))
+      (let ((ids (firstpair-reader--visible-translations-in-display-order bundle)))
+        (if ids
+            (concat
+             " "
+             (mapconcat
+              (lambda (id) (firstpair-reader--translation-short-title bundle id))
+              ids " · ")
+             " ")
+          " None ")))))
 
 (defun firstpair-reader--apply-regions (bundle)
   "Hide the translation regions of the current node that are not selected.
@@ -829,16 +831,18 @@ selected translation language's primary slot."
 
 (defun firstpair-reader-translations-label (bundle)
   "Describe the translations on screen, per language."
-  (mapconcat (lambda (language)
-               (let* ((lang (alist-get 'id language))
-                      (first (firstpair-reader-translation-for bundle lang))
-                      (second (firstpair-reader--second-translation-for bundle lang first)))
-                 (concat (alist-get 'label language) ": "
-                         (if first (firstpair-reader--translation-title bundle first) "—")
-                         (if second
-                             (concat " + " (firstpair-reader--translation-title bundle second))
-                           ""))))
-             (firstpair-lexicon-selected bundle) "; "))
+  (let ((selected (firstpair-lexicon-selected bundle)))
+    (if (not selected) "None"
+      (mapconcat (lambda (language)
+                   (let* ((lang (alist-get 'id language))
+                          (first (firstpair-reader-translation-for bundle lang))
+                          (second (firstpair-reader--second-translation-for bundle lang first)))
+                     (concat (alist-get 'label language) ": "
+                             (if first (firstpair-reader--translation-title bundle first) "—")
+                             (if second
+                                 (concat " + " (firstpair-reader--translation-title bundle second))
+                               ""))))
+                 selected "; "))))
 
 (defun firstpair-reader-show-current-translations ()
   "Report the translations currently visible without changing them.
@@ -877,6 +881,92 @@ The returned label is also used by the top-level Translations menu."
   (firstpair-lexicon-refresh)
   (message "%s" (firstpair-reader-translations-label bundle)))
 
+(defun firstpair-reader--translation-language-visible-p (bundle lang)
+  "Return non-nil when BUNDLE currently shows translation language LANG."
+  (seq-some (lambda (language) (equal (alist-get 'id language) lang))
+            (firstpair-lexicon-selected bundle)))
+
+(defun firstpair-reader--set-translation-language (bundle lang id)
+  "Show LANG using translation ID in BUNDLE, or hide LANG when ID is nil."
+  (let* ((declared (mapcar (lambda (language) (alist-get 'id language))
+                           (firstpair-bundle-translation-languages bundle)))
+         (selected (mapcar (lambda (language) (alist-get 'id language))
+                           (firstpair-lexicon-selected bundle))))
+    (if id
+        (progn
+          (setq firstpair-lexicon-languages
+                (seq-filter (lambda (candidate)
+                              (or (equal candidate lang) (member candidate selected)))
+                            declared))
+          (setf (alist-get lang firstpair-reader-translation-choices nil nil #'equal) id)
+          (when (equal id (alist-get lang firstpair-reader-second-translations
+                                     nil nil #'equal))
+            (setf (alist-get lang firstpair-reader-second-translations
+                             nil nil #'equal) nil)))
+      (setq selected (delete lang selected)
+            firstpair-lexicon-languages (or selected :none)))
+    (firstpair-reader-refresh-regions)
+    (firstpair-lexicon-refresh)
+    (ignore-errors (firstpair-reader-save-state))
+    (if (display-graphic-p)
+        (message "%s" (firstpair-reader-translations-label bundle))
+      (firstpair-reader--schedule-terminal-language-feedback bundle lang id))))
+
+(defun firstpair-reader-select-language-translation (lang id)
+  "For translation language LANG, select edition ID or hide it when ID is nil."
+  (let ((bundle (firstpair-reader--bundle)))
+    (unless (or (null id)
+                (seq-find (lambda (item) (equal (alist-get 'id item) id))
+                          (firstpair-reader--candidates bundle lang)))
+      (user-error "That translation does not cover this part"))
+    (firstpair-reader--set-translation-language bundle lang id)))
+
+(defun firstpair-reader--translation-language-menu (lang)
+  "Build the terminal translation submenu for language LANG."
+  (let* ((bundle (firstpair-reader--bundle))
+         (language (seq-find (lambda (item) (equal (alist-get 'id item) lang))
+                             (firstpair-bundle-translation-languages bundle)))
+         (visible (firstpair-reader--translation-language-visible-p bundle lang))
+         (current (and visible (firstpair-reader-translation-for bundle lang)))
+         (entries
+          (list
+           (list 'none 'menu-item "None"
+                 (lambda () (interactive)
+                   (firstpair-reader-select-language-translation lang nil))
+                 :help "Hide this translation language"
+                 :button (cons 'radio (not visible))))))
+    (dolist (item (firstpair-reader--candidates bundle lang))
+      (let ((id (alist-get 'id item)))
+        (setq entries
+              (append entries
+                      (list
+                       (list (intern (concat "translation-" id)) 'menu-item
+                             (firstpair-reader--translation-title bundle id)
+                             (lambda () (interactive)
+                               (firstpair-reader-select-language-translation lang id))
+                             :help "Show this edition for the language"
+                             :button (cons 'radio (equal id current))))))))
+    (append (list 'keymap
+                  (format "%s translations"
+                          (or (alist-get 'label language) (upcase lang))))
+            entries)))
+
+(defun firstpair-reader--terminal-english-menu (_binding)
+  "Return the current English translation submenu for a terminal menu bar."
+  (firstpair-reader--translation-language-menu "en"))
+
+(defun firstpair-reader--terminal-russian-menu (_binding)
+  "Return the current Russian translation submenu for a terminal menu bar."
+  (firstpair-reader--translation-language-menu "ru"))
+
+(defun firstpair-reader--translation-language-available-p (lang)
+  "Return non-nil when the active bundle declares translation language LANG."
+  (condition-case nil
+      (seq-some (lambda (item) (equal (alist-get 'id item) lang))
+                (firstpair-bundle-translation-languages
+                 (firstpair-reader--bundle)))
+    (error nil)))
+
 (defun firstpair-reader--translation-short-title (bundle id)
   "Return a compact title for translation ID in BUNDLE."
   (let* ((item (firstpair-bundle-translation bundle id))
@@ -886,17 +976,19 @@ The returned label is also used by the top-level Translations menu."
 
 (defun firstpair-reader--terminal-translations-summary (bundle)
   "Describe BUNDLE's visible translations compactly enough for a phone."
-  (mapconcat
-   (lambda (language)
-     (let* ((lang (alist-get 'id language))
-            (first (firstpair-reader-translation-for bundle lang))
-            (second (firstpair-reader--second-translation-for bundle lang first)))
-       (concat (upcase lang) " "
-               (if first (firstpair-reader--translation-short-title bundle first) "—")
-               (if second
-                   (concat "+" (firstpair-reader--translation-short-title bundle second))
-                 ""))))
-   (firstpair-lexicon-selected bundle) " | "))
+  (let ((selected (firstpair-lexicon-selected bundle)))
+    (if (not selected) "None"
+      (mapconcat
+       (lambda (language)
+         (let* ((lang (alist-get 'id language))
+                (first (firstpair-reader-translation-for bundle lang))
+                (second (firstpair-reader--second-translation-for bundle lang first)))
+           (concat (upcase lang) " "
+                   (if first (firstpair-reader--translation-short-title bundle first) "—")
+                   (if second
+                       (concat "+" (firstpair-reader--translation-short-title bundle second))
+                     ""))))
+       selected " | "))))
 
 (defvar firstpair-reader--terminal-translation-feedback nil
   "Translation feedback waiting for the current TTY menu command to finish.")
@@ -919,12 +1011,18 @@ The returned label is also used by the top-level Translations menu."
 
 (defun firstpair-reader--schedule-terminal-translation-feedback (bundle lang slot)
   "Keep BUNDLE's translation in LANG and SLOT visible after a TTY tap."
-  (let* ((id (firstpair-reader--translation-in-slot bundle lang slot))
-         (language (seq-find (lambda (row) (equal (alist-get 'id row) lang))
+  (firstpair-reader--schedule-terminal-language-feedback
+   bundle lang (firstpair-reader--translation-in-slot bundle lang slot)))
+
+(defun firstpair-reader--schedule-terminal-language-feedback (bundle lang id)
+  "Keep BUNDLE's selected ID for LANG visible after a TTY menu tap.
+When ID is nil, report that the language is hidden."
+  (let* ((language (seq-find (lambda (row) (equal (alist-get 'id row) lang))
                              (firstpair-bundle-translation-languages bundle)))
          (label (format "%s: %s"
                         (or (alist-get 'label language) (upcase lang))
-                        (firstpair-reader--translation-title bundle id))))
+                        (if id (firstpair-reader--translation-title bundle id)
+                          "None"))))
     ;; A terminal menu invokes this command before its own teardown.  Posting
     ;; from the outer command loop leaves the result in the echo area after
     ;; that teardown instead of letting the menu erase it.
@@ -1428,24 +1526,26 @@ updated directly.  Returns DIRECTORY."
     ["Choose Languages..." firstpair-reader-choose-translation-languages t]
     ["Cycle Languages" firstpair-reader-translation-languages t]))
 
-;; Keep the full translation submenu in graphical Emacs.  A terminal gets two
-;; direct controls: both act on the language of the aligned region at point.
+;; Keep the full translation submenu in graphical Emacs.  A terminal gets one
+;; compact submenu per supported language, with None first and then its editions.
 (define-key firstpair-reader-mode-map [menu-bar translations]
   `(menu-item "Translations" ,firstpair-reader-translations-menu
               :visible (display-graphic-p)
               :help "Open translation choices"))
-(define-key-after firstpair-reader-mode-map [menu-bar translation-next]
-  '(menu-item "Tr-next" firstpair-reader-terminal-next-translation
-              :visible (not (display-graphic-p))
-              :enable (firstpair-reader--multiple-translations-p)
-              :help "Show the next translation of the language at point")
+(define-key-after firstpair-reader-mode-map [menu-bar translation-english]
+  '(menu-item "Tr-Eng" ignore
+              :filter firstpair-reader--terminal-english-menu
+              :visible (and (not (display-graphic-p))
+                            (firstpair-reader--translation-language-available-p "en"))
+              :help "Choose or hide the English translation")
   'translations)
-(define-key-after firstpair-reader-mode-map [menu-bar translation-previous]
-  '(menu-item "Tr-prev" firstpair-reader-terminal-previous-translation
-              :visible (not (display-graphic-p))
-              :enable (firstpair-reader--multiple-translations-p)
-              :help "Show the previous translation of the language at point")
-  'translation-next)
+(define-key-after firstpair-reader-mode-map [menu-bar translation-russian]
+  '(menu-item "Tr-Rus" ignore
+              :filter firstpair-reader--terminal-russian-menu
+              :visible (and (not (display-graphic-p))
+                            (firstpair-reader--translation-language-available-p "ru"))
+              :help "Choose or hide the Russian translation")
+  'translation-english)
 
 ;;;###autoload
 ;;; Touch: single keys, taps, and a button bar
@@ -1596,7 +1696,7 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
-    (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-next and Tr-prev act at point\n")
+    (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-Eng and Tr-Rus choose or hide a language\n")
     (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd (show/hide) · ▲ ▼ page · ◀c c▶ canto\n")
     (princ "Bar under dictionary  Close · Lang · More/Less                 ◀w · Next ▶\n")
     (princ "                                          b   second translation under the first\n")

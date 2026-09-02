@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.29
+;; Version: 1.30
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -48,7 +48,8 @@
 (declare-function firstpair-reader-translations-label "firstpair-reader" (bundle))
 
 (defvar firstpair-lexicon-languages nil
-  "Identifiers of the translation languages to show, or nil for all of them.
+  "Identifiers of the translation languages to show.
+Nil means all declared languages; `:none' means no translation language.
 Change it with `firstpair-lexicon-cycle-languages'.")
 
 (defconst firstpair-lexicon-buffer "*FirstPair Lexicon*"
@@ -188,15 +189,22 @@ Its first-letter shard, or the single table of an older bundle."
                     (cons 'label "English"))))))
 
 (defun firstpair-lexicon-selected (bundle)
-  "Return the translations of BUNDLE currently selected, at least one."
-  (let* ((declared (firstpair-lexicon-translations bundle))
-         (chosen (seq-filter (lambda (item) (member (alist-get 'id item) firstpair-lexicon-languages))
-                             declared)))
-    (or chosen declared)))
+  "Return the translation languages of BUNDLE currently selected."
+  (let ((declared (firstpair-lexicon-translations bundle)))
+    (cond ((eq firstpair-lexicon-languages :none) nil)
+          ((null firstpair-lexicon-languages) declared)
+          (t (or (seq-filter
+                  (lambda (item)
+                    (member (alist-get 'id item) firstpair-lexicon-languages))
+                  declared)
+                 declared)))))
 
 (defun firstpair-lexicon-languages-label (bundle)
   "Describe the selected translation languages of BUNDLE."
-  (mapconcat (lambda (item) (alist-get 'label item)) (firstpair-lexicon-selected bundle) " + "))
+  (let ((selected (firstpair-lexicon-selected bundle)))
+    (if selected
+        (mapconcat (lambda (item) (alist-get 'label item)) selected " + ")
+      "None")))
 
 (defun firstpair-lexicon-cycle-languages (bundle)
   "Select the next translation choice for BUNDLE: each language alone, then all.
@@ -215,8 +223,9 @@ Returns the description of the new choice."
          (labels (mapcar (lambda (item) (alist-get 'label item)) declared))
          (chosen (completing-read-multiple "Translations (comma-separated): " labels nil t)))
     (setq firstpair-lexicon-languages
-          (mapcar (lambda (item) (alist-get 'id item))
-                  (seq-filter (lambda (item) (member (alist-get 'label item) chosen)) declared)))
+          (or (mapcar (lambda (item) (alist-get 'id item))
+                      (seq-filter (lambda (item) (member (alist-get 'label item) chosen)) declared))
+              :none))
     (firstpair-lexicon-languages-label bundle)))
 
 (defun firstpair-lexicon-glosses (bundle language kind key)

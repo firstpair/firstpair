@@ -197,23 +197,24 @@ and the `≈` mark for an approximate alignment. Reading or clicking that
 **Choose Translation**, **Next Translation at Point**, **Toggle Second Translation**,
 **Choose Second Translation**, **Choose Languages**, and **Cycle Languages**.
 
-In a text terminal such as Emacs under iSH, the top bar has two direct items
-instead of a drop-down. **Tr-next** and **Tr-prev** move forward and backward
-through the editions in the slot under the cursor. With two English editions
-visible, point in the first changes the primary edition and point in the second
-changes the second edition; Russian works independently, while source text
-uses the first visible language's primary slot. They wrap in edition order
-and keep point in the newly displayed edition, so repeated taps continue in
-the same slot. A persistent line immediately below the top bar lists the
-visible edition names in the same order in which their text appears. It
-updates after **Tr-next**, **Tr-prev**, **Lang**, and **2nd**. The controls do
-not invoke Emacs's large text-mode menu or create a
-`*Completions*` window. Press `=`
-for the compact, non-mutating translation report. After either control, the
-new edition name remains in the bottom message line until another command or
-message replaces it. The existing **Lang** button changes languages. **2nd**
-(or `b`) is a strict show/hide toggle, so one action always returns from two
-editions to one even when the bundle carries many alternatives.
+In a text terminal such as Emacs under 1Unix or iSH, the top bar has two compact
+language menus instead of the graphical drop-down. **Tr-Eng** opens the English
+editions and **Tr-Rus** opens the Russian editions. Each list begins with
+**None**, which hides that language, followed by every edition that covers the
+current part in book order. The current choice is marked. Choosing an edition
+switches directly to it and also restores the language when it was hidden;
+English and Russian remain independent. Neither menu invokes a minibuffer,
+Emacs's large text-mode menu, or a `*Completions*` window.
+
+A persistent line immediately below the top bar lists the visible edition
+names in the same order in which their text appears. It updates after either
+language menu, **Lang**, and **2nd**. Press `=` for the compact, non-mutating
+translation report. After a menu choice, the chosen edition name, or `None`,
+remains in the bottom message line until another command or message replaces
+it. The existing **Lang** button cycles visible languages. **Tr** still moves
+to the next edition under the cursor, and **2nd** (or `b`) remains a strict
+show/hide toggle, so one action always returns from two editions to one even
+when the bundle carries many alternatives.
 
 ## Rearranging windows
 
