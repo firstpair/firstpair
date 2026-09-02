@@ -238,8 +238,15 @@ class PackageTests(unittest.TestCase):
          (map (get-text-property 0 'local-map button))
          (mouse (lookup-key map [mode-line mouse-1]))
          (drag (lookup-key map [mode-line drag-mouse-1]))
+         (down (lookup-key map [mode-line down-mouse-1]))
+         (double (lookup-key map [mode-line double-mouse-1]))
          (header-drag (lookup-key map [header-line drag-mouse-1]))
+         (header-down (lookup-key map [header-line down-mouse-1]))
          (body-drag (lookup-key map [drag-mouse-1]))
+         (body-down (lookup-key map [down-mouse-1]))
+         (help (get-text-property 0 'help-echo button))
+         (gap (firstpair-reader--bar-gap))
+         (gap-map (get-text-property 0 'local-map gap))
          called)
     (cl-letf (((symbol-function 'event-start) (lambda (_event) nil))
               ((symbol-function 'posn-window)
@@ -247,9 +254,14 @@ class PackageTests(unittest.TestCase):
               ((symbol-function 'firstpair-reader-next-marked-lookup)
                (lambda () (interactive) (setq called 'next))))
       (funcall drag '(drag-mouse-1 nil)))
-    (princ (format "same=%S header=%S body=%S called=%S reader=%S\n"
-                   (eq mouse drag) (eq mouse header-drag)
-                   (eq mouse body-drag) called
+    (princ (format "same=%S down=%S double=%S header=%S header-down=%S body=%S body-down=%S help=%S gap-down=%S gap-drag=%S called=%S reader=%S\n"
+                   (eq mouse drag) (eq down 'ignore) (eq double 'ignore)
+                   (eq mouse header-drag) (eq header-down 'ignore)
+                   (eq mouse body-drag)
+                   (eq body-down 'ignore) help
+                   (eq (lookup-key gap-map [mode-line down-mouse-1]) 'ignore)
+                   (eq (lookup-key gap-map [mode-line drag-mouse-1]) 'ignore)
+                   called
                    (lookup-key firstpair-reader-mode-map [drag-mouse-1])))))'''
         completed = subprocess.run(
             ["emacs", "--batch", "-Q", "--eval", script],
@@ -259,7 +271,8 @@ class PackageTests(unittest.TestCase):
         )
         self.assertEqual(0, completed.returncode, completed.stderr)
         self.assertIn(
-            "same=t header=t body=t called=next "
+            "same=t down=t double=t header=t header-down=t body=t "
+            "body-down=t help=nil gap-down=t gap-drag=t called=next "
             "reader=firstpair-reader-touch-click",
             completed.stdout,
         )

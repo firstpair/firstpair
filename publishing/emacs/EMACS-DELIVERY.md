@@ -209,9 +209,13 @@ right cell without this movement still execute the menu's first item.
 
 The Reader accepts both `mouse-1` and `drag-mouse-1` on its text, mode-line,
 and header-line controls. Phone taps commonly drift across a terminal cell;
-that release must invoke the visible button rather than merely leave its
-`help-echo` in the echo area. **Next** moves and looks up the next source word,
-and **Dict** replaces an idle references Top pane with the dictionary.
+that release must invoke the visible button. Its local map also consumes the
+preceding `down-mouse-1` and any double/triple-click retry so Emacs cannot start
+a mode-line resize, maximize a pane, or expose unrelated button help. Terminal
+buttons omit `help-echo`, and the gaps plus trailing node label use an inert
+local map rather than the stock mode-line map. **Next** moves and looks up the
+next source word, and
+**Dict** replaces an idle references Top pane with the dictionary.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.32
+;; Version: 1.33
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1563,6 +1563,25 @@ updated directly.  Returns DIRECTORY."
 ;;;###autoload
 ;;; Touch: single keys, taps, and a button bar
 
+(defvar firstpair-reader--bar-gap-map
+  (let ((map (make-sparse-keymap)))
+    (dolist (area '(header-line mode-line))
+      (dolist (event '(mouse-1 drag-mouse-1 down-mouse-1
+                       double-mouse-1 triple-mouse-1 mouse-2 mouse-3))
+        (define-key map (vector area event) #'ignore)))
+    (dolist (event '(mouse-1 drag-mouse-1 down-mouse-1
+                     double-mouse-1 triple-mouse-1 mouse-2 mouse-3))
+      (define-key map (vector event) #'ignore))
+    map)
+  "Keymap that keeps gaps in Reader bars from invoking the stock mode line.")
+
+(defun firstpair-reader--bar-gap (&optional display)
+  "Return an inert one-cell bar gap, with optional DISPLAY specification."
+  (let ((gap (propertize " " 'local-map firstpair-reader--bar-gap-map)))
+    (when display
+      (put-text-property 0 1 'display display gap))
+    gap))
+
 (defun firstpair-reader--button (label command &optional help)
   "A bar button LABEL running COMMAND on a tap, with HELP as tooltip.
 The command runs with the tapped window selected, so a button on the book
@@ -1575,37 +1594,55 @@ acts on the book even while the dictionary window has focus."
                   (call-interactively command))))
     (define-key map [header-line mouse-1] action)
     (define-key map [header-line drag-mouse-1] action)
+    (define-key map [header-line down-mouse-1] #'ignore)
+    (define-key map [header-line double-mouse-1] #'ignore)
+    (define-key map [header-line triple-mouse-1] #'ignore)
     (define-key map [header-line mouse-2] action)
     (define-key map [mode-line mouse-1] action)
     (define-key map [mode-line drag-mouse-1] action)
+    ;; Own the press as well as the release.  Otherwise the standard mode-line
+    ;; map begins a resize before our release handler runs; a retry can then be
+    ;; interpreted as a double-click and maximize or replace a reading pane.
+    (define-key map [mode-line down-mouse-1] #'ignore)
+    (define-key map [mode-line double-mouse-1] #'ignore)
+    (define-key map [mode-line triple-mouse-1] #'ignore)
     (define-key map [mode-line mouse-2] action)
     (define-key map [mouse-1] action)
     (define-key map [drag-mouse-1] action)
+    (define-key map [down-mouse-1] #'ignore)
+    (define-key map [double-mouse-1] #'ignore)
+    (define-key map [triple-mouse-1] #'ignore)
     (propertize (concat " " label " ")
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
-                'mouse-face 'highlight 'local-map map 'help-echo (or help label))))
+                'mouse-face 'highlight 'local-map map
+                'help-echo (and (display-graphic-p) (or help label)))))
 
 (defun firstpair-reader--bar (&rest buttons)
   "A header line of BUTTONS (label . command) separated by a space."
-  (cons "" (mapcan (lambda (button) (list (firstpair-reader--button (car button) (cdr button)) " ")) buttons)))
+  (cons "" (mapcan (lambda (button)
+                      (list (firstpair-reader--button (car button) (cdr button))
+                            (firstpair-reader--bar-gap)))
+                    buttons)))
 
 (defun firstpair-reader--split-bar (left right)
   "A bar with LEFT buttons at the start and RIGHT buttons at the right edge."
   (let* ((left-items
           (mapcan (lambda (button)
-                    (list (firstpair-reader--button (car button) (cdr button)) " "))
+                    (list (firstpair-reader--button (car button) (cdr button))
+                          (firstpair-reader--bar-gap)))
                   left))
          (right-items
           (mapcan (lambda (button)
-                    (list (firstpair-reader--button (car button) (cdr button)) " "))
+                    (list (firstpair-reader--button (car button) (cdr button))
+                          (firstpair-reader--bar-gap)))
                   right))
          (right-width
           (apply #'+ (mapcar (lambda (item)
                                (if (stringp item) (string-width item) 0))
                              right-items))))
     (append (cons "" left-items)
-            (list (propertize " " 'display
-                              `(space :align-to (- right ,right-width))))
+            (list (firstpair-reader--bar-gap
+                   `(space :align-to (- right ,right-width))))
             right-items)))
 
 (defun firstpair-reader--reader-bar (bundle)
@@ -1730,7 +1767,12 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
     (when (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle))
       ;; One control bar, on the mode line between the book and its references;
       ;; the persistent edition-name header remains above the book body.
-      (setq mode-line-format (append (firstpair-reader--reader-bar bundle) (list " " '(:eval (or Info-current-node ""))))))
+      (setq mode-line-format
+            (append (firstpair-reader--reader-bar bundle)
+                    (list (firstpair-reader--bar-gap)
+                          '(:eval
+                            (propertize (or Info-current-node "")
+                                        'local-map firstpair-reader--bar-gap-map))))))
     (unless (display-graphic-p)
       (unless (bound-and-true-p xterm-mouse-mode)
         (ignore-errors (xterm-mouse-mode 1)))
