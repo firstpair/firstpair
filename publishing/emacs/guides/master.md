@@ -210,7 +210,9 @@ If every list choice runs its first item, check the ordinary **File** menu:
 **Quit** must quit rather than opening **Find File**. The latter behavior means
 the terminal host has lost either the touched row or the pointer-movement
 report Emacs uses to select a TTY menu item; it is not a translation-selection
-problem. Use 1Unix build 817 or newer before testing the Reader menus again.
+problem. Use 1Unix build 818 or newer before testing the Reader menus or
+mode-line buttons again; build 818 completes a DECSET 1003 tap at the initial
+touch cell, before finger drift can move its release.
 
 A persistent line immediately below the top bar lists the visible edition
 names in the same order in which their text appears. It updates after either

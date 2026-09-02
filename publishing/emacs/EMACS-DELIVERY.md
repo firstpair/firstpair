@@ -207,6 +207,13 @@ active item only from pointer movement, so 1Unix emits a movement report at
 the touch-down cell immediately before the press. A press and release at the
 right cell without this movement still execute the menu's first item.
 
+Use 1Unix build 818 or newer for Reader buttons. Emacs waits for terminal
+mouse release before dispatching a mode-line command, while a phone touch can
+drift to another cell first. In DECSET 1003, 1Unix therefore emits movement,
+press, and release atomically at touch-down and consumes the later physical
+move/end. Other mouse modes retain ordinary drag semantics. A single **Next**
+tap must advance once and must not resize a pane or open Messages.
+
 The Reader accepts both `mouse-1` and `drag-mouse-1` on its text, mode-line,
 and header-line controls. Phone taps commonly drift across a terminal cell;
 that release must invoke the visible button. Its local map also consumes the
