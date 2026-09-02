@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.34
+;; Version: 1.35
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -79,6 +79,10 @@ mouse reporting in terminals, and one-letter commands in the book."
   '((t :underline t))
   "Face for words the dictionary window can explain.")
 
+(defface firstpair-reader-current-word
+  '((t :inherit firstpair-reader-marked :underline t :weight bold))
+  "Face for the source word currently displayed in the dictionary.")
+
 (defconst firstpair-reader-buffer "*FirstPair Reader*"
   "Name of the Info buffer showing the book.")
 
@@ -87,6 +91,9 @@ mouse reporting in terminals, and one-letter commands in the book."
 
 (defvar-local firstpair-reader--overlays nil
   "Overlays this mode placed in the current node.")
+
+(defvar-local firstpair-reader--current-word-overlay nil
+  "Overlay underlining the word currently displayed in Dict.")
 
 (defvar firstpair-reader--redirecting nil
   "Non-nil while a reference may be redirected to another window.")
@@ -514,11 +521,45 @@ id, the dictionary's choice."
               (and (<= (overlay-start overlay) position) (< position (overlay-end overlay))))
             (firstpair-reader--marked-overlays)))
 
+(defun firstpair-reader--clear-current-word ()
+  "Remove the current dictionary-word underline from this reader buffer."
+  (when (overlayp firstpair-reader--current-word-overlay)
+    (delete-overlay firstpair-reader--current-word-overlay))
+  (setq firstpair-reader--current-word-overlay nil))
+
+(defun firstpair-reader--underline-current-word (bundle word)
+  "Underline WORD at the reader point for BUNDLE."
+  (let ((window (firstpair-reader--window 'reader)))
+    (when (window-live-p window)
+      (with-current-buffer (window-buffer window)
+        (firstpair-reader--clear-current-word)
+        (save-excursion
+          (goto-char (window-point window))
+          (let* ((marked (firstpair-reader--overlay-at (point)))
+                 (bounds (if marked
+                             (cons (overlay-start marked) (overlay-end marked))
+                           (bounds-of-thing-at-point 'word))))
+            (when (and bounds
+                       (equal (firstpair-lexicon-normalise
+                               (buffer-substring-no-properties
+                                (car bounds) (cdr bounds))
+                               bundle)
+                              (firstpair-lexicon-normalise word bundle)))
+              (setq firstpair-reader--current-word-overlay
+                    (make-overlay (car bounds) (cdr bounds) (current-buffer)))
+              (overlay-put firstpair-reader--current-word-overlay
+                           'face 'firstpair-reader-current-word)
+              (overlay-put firstpair-reader--current-word-overlay 'priority 1000)
+              (overlay-put firstpair-reader--current-word-overlay 'evaporate t))))))))
+
 (defun firstpair-reader--after-select ()
   "Enable the reader in Info buffers that belong to a registered bundle."
   (let ((bundle (firstpair-bundle-current)))
     (cond (bundle
            (unless firstpair-reader-mode (firstpair-reader-mode 1))
+           (when (equal (firstpair-bundle-manual)
+                        (firstpair-bundle-reader bundle))
+             (firstpair-reader--clear-current-word))
            (firstpair-reader--mark bundle)
            (firstpair-reader--fontify-emphasis)
            (when Info-hide-note-references
@@ -667,6 +708,7 @@ source-reference pane."
                    (thing-at-point 'word t)
                    (read-string "Look up word: "))))
     (let ((buffer (firstpair-lexicon-render bundle word)))
+      (firstpair-reader--underline-current-word bundle word)
       (firstpair-reader--show buffer 'lexicon)
       (when firstpair-reader-touch
         (with-current-buffer buffer
@@ -1739,6 +1781,10 @@ the bar fits a phone, and `?' lists what they mean."
 (defun firstpair-reader-close-dictionary ()
   "Close the dictionary window."
   (interactive)
+  (let ((reader (firstpair-reader--window 'reader)))
+    (when (window-live-p reader)
+      (with-current-buffer (window-buffer reader)
+        (firstpair-reader--clear-current-word))))
   (let ((window (firstpair-reader--window 'lexicon)))
     (when (window-live-p window)
       (unless (firstpair-reader--restore-borrowed-window window)
@@ -1839,6 +1885,7 @@ sequences decoded as focus events, so a tap never reads as M-[ I."
         (when (boundp 'text-conversion-style)
           (setq-local text-conversion-style nil)))
     (firstpair-reader--unmark)
+    (firstpair-reader--clear-current-word)
     (when (local-variable-p 'mode-line-default-help-echo)
       (kill-local-variable 'mode-line-default-help-echo))
     (firstpair-reader--restore-header-line)))

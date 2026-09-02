@@ -410,7 +410,9 @@ tap, and the small gaps between buttons are inert, so a near miss cannot resize
 or maximize the neighboring pane, replace the poem with another buffer, or
 show Emacs's generic mouse instructions. **Dict**
 replaces the introductory References pane; **Next ▶** advances
-the source word and refreshes that dictionary pane. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
+the source word and refreshes that dictionary pane. The word represented in
+Dict stays underlined in the poem and the underline moves with every lookup;
+closing Dict removes it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation at point, `b` toggles a second one, `,` and `.` step between dictionary
 words, `j` and `k` step to the next or previous word *and open it*, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other

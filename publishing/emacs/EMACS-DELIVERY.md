@@ -221,6 +221,11 @@ the rendered string's map: dispatch only a touched
 next source word, and
 **Dict** replaces an idle references Top pane with the dictionary.
 
+The source word currently represented in Dict has its own high-priority
+underline in the reading pane. It follows direct taps and Next/Previous lookup
+commands from either bar, survives translation-region refreshes, and clears
+when Dict closes or the reader changes nodes.
+
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join
 the passage's node as ordinary blocks.

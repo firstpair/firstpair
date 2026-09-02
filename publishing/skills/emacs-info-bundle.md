@@ -156,6 +156,12 @@ the poem Info buffer and the lexicon buffer explicitly read-only, disable text
 conversion in both, and consume primary clicks in the Dict pane. Tests must
 prove that an unmarked source word updates the dictionary with no prompt,
 preserves poem focus, and leaves both buffers read-only.
+Current lookup underline (reader 1.35): keep a separate high-priority overlay
+on the source word represented in Dict. Move it after direct word taps and
+Next/Previous lookup commands from either bar; clear it when Dict closes or the
+reader changes nodes. The overlay must not join the general mark/region overlay
+list, because translation refreshes rebuild that list. Use underline plus
+weight so a terminal distinguishes the current word from other marked words.
 
 Compact dictionary (reader 1.18): the first body row is the authoritative
 source-lexicon headword, or several genuinely ambiguous source headwords on

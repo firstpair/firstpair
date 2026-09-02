@@ -1192,8 +1192,14 @@ class AlignedTests(Fixture):
                    (lambda (&rest _args) (error "Touch lookup opened a prompt"))))
           (firstpair-reader-touch-click '(mouse-1 nil)))
         (princ
-         (format "CLICK word=%S reader-read-only=%S dict-read-only=%S focus=%S\n"
+         (format "CLICK word=%S current=%S/%S reader-read-only=%S dict-read-only=%S focus=%S\n"
                  (with-current-buffer firstpair-lexicon-buffer firstpair-lexicon-word)
+                 (and (overlayp firstpair-reader--current-word-overlay)
+                      (buffer-substring-no-properties
+                       (overlay-start firstpair-reader--current-word-overlay)
+                       (overlay-end firstpair-reader--current-word-overlay)))
+                 (and (overlayp firstpair-reader--current-word-overlay)
+                      (overlay-get firstpair-reader--current-word-overlay 'face))
                  buffer-read-only
                  (with-current-buffer firstpair-lexicon-buffer buffer-read-only)
                  (eq reader-window (selected-window)))))
@@ -1361,7 +1367,7 @@ class AlignedTests(Fixture):
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
-        self.assertIn('CLICK word="cammin" reader-read-only=t dict-read-only=t focus=t', result.stdout)
+        self.assertIn('CLICK word="cammin" current="cammin"/firstpair-reader-current-word reader-read-only=t dict-read-only=t focus=t', result.stdout)
         self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
         self.assertIn('header=" Longfellow · Мин " installed=t', result.stdout)
         self.assertIn('TERMINAL menus=("None" "Longfellow (1867)" "Cary (1814) ≈" "Third English")/("None" "Мин (1855)" "Лозинский (1939)") named=t', result.stdout)
