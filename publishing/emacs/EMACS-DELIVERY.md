@@ -200,8 +200,12 @@ The terminal host must also report the touched cell rather than the focused
 element's synthetic click position. Diagnose this independently with a stock
 menu: if **File → Quit** invokes **Find File**, repair touch-to-mouse coordinate
 forwarding in the terminal app before changing Reader menu code. The 1Unix
-host does this by restoring the most recent single-finger touch coordinates on
-WebKit's compatibility mouse press and release before hterm encodes them.
+host suppresses WebKit's compatibility mouse sequence and converts the active
+single-finger `UITouch` directly into hterm reports. It also compensates for
+the bundled hterm 1.91 omitting DECSET 1003: Emacs TTY menus update their
+active item only from pointer movement, so 1Unix emits a movement report at
+the touch-down cell immediately before the press. A press and release at the
+right cell without this movement still execute the menu's first item.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

@@ -221,6 +221,18 @@ document and asserting that no extra report appears. Phone acceptance must
 select a non-first item in both the stock File menu and each Reader translation
 menu.
 
+Terminal menu pointer state (1Unix build 817): a correct press/release cell is
+not sufficient for an Emacs TTY popup. `xterm-mouse-mode` enables DECSET 1003,
+and Emacs updates the menu's active row only after a `mouse-movement` command.
+The hterm 1.91 bundled by 1Unix ignores mode 1003, while a touchscreen has no
+hover event to provide that movement independently. Treat 1003 as pressed
+movement tracking on touch devices and emit a movement at the touch-down cell
+immediately before the button press. Diagnose this exact failure by observing
+that **File -> Quit** opens **Find File** despite press and release logs naming
+the Quit cell. Signed-device acceptance must show **File -> Quit** exiting and
+non-first **Tr-Eng** and **Tr-Rus** entries changing their own translations
+with the software keyboard still hidden.
+
 Terminal font geometry (1Unix build 815): bundled webfonts load
 asynchronously. After setting the selected family and size, wait on the hterm
 document's `FontFaceSet`, resynchronize hterm's font family and size, redraw,
