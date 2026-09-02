@@ -208,9 +208,9 @@ Emacs's large text-mode menu, or a `*Completions*` window.
 
 If every list choice runs its first item, check the ordinary **File** menu:
 **Quit** must quit rather than opening **Find File**. The latter behavior means
-the terminal host is reporting the wrong touched row; it is not a translation
-selection problem. Use a 1Unix build with touch-coordinate correction before
-testing the Reader menus again.
+the terminal host has lost either the touched row or the pointer-movement
+report Emacs uses to select a TTY menu item; it is not a translation-selection
+problem. Use 1Unix build 817 or newer before testing the Reader menus again.
 
 A persistent line immediately below the top bar lists the visible edition
 names in the same order in which their text appears. It updates after either
@@ -404,7 +404,9 @@ right edge (More appears only when additional senses exist). The word controls
 step through the source text and open each word's entry. Both **Next ▶**
 controls are deliberately wider targets. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
-it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
+it. A slight finger drift is treated as the same tap, not as a cancelled
+button. **Dict** replaces the introductory References pane; **Next ▶** advances
+the source word and refreshes that dictionary pane. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
 next translation at point, `b` toggles a second one, `,` and `.` step between dictionary
 words, `j` and `k` step to the next or previous word *and open it*, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other

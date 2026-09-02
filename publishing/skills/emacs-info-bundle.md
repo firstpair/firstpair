@@ -120,6 +120,15 @@ Gloss tables ship as `lexicon/glosses/<letter>.tsv` shards (first letter of the 
 
 Touch layer (reader 1.9): `firstpair-reader-touch` adds header-line button bars (book and dictionary), single-key bindings (d t v b , . r ?), `mouse-1` = look up word or follow link, `mouse-3` = next translation, and enables `xterm-mouse-mode` on terminals. Keep every command reachable by a single key on phones.
 
+Touch release tolerance (reader 1.32): a finger can cross a terminal cell
+between touch-down and touch-up, making Emacs report `drag-mouse-1` instead of
+`mouse-1`. Bind both events to every mode-line and header-line button action,
+and to the book's word/link handler. The drag release must run the command, not
+stop after displaying the button's `help-echo`. In particular, **Next** advances
+and refreshes Dict, while **Dict** lends the idle References Top pane to the
+lexicon instead of adding a third window. Test the actual local maps for plain
+and area-qualified drag events, command dispatch, and idle-pane replacement.
+
 Dictionary navigation (reader 1.29): keep Close, Lang, and conditional
 More/Less at the left of the lowest bar. Right-align the word controls as
 `◀w · Next ▶`; use the same wide Next label and lookup command as the book bar.

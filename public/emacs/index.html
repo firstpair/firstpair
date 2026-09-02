@@ -498,6 +498,13 @@ is marked. Choosing an edition switches directly to it and also restores
 the language when it was hidden; English and Russian remain independent.
 Neither menu invokes a minibuffer, Emacs’s large text-mode menu, or a
 <code>*Completions*</code> window.</p>
+<p>If every list choice runs its first item, check the ordinary
+<strong>File</strong> menu: <strong>Quit</strong> must quit rather than
+opening <strong>Find File</strong>. The latter behavior means the
+terminal host has lost either the touched row or the pointer-movement
+report Emacs uses to select a TTY menu item; it is not a
+translation-selection problem. Use 1Unix build 817 or newer before
+testing the Reader menus again.</p>
 <p>A persistent line immediately below the top bar lists the visible
 edition names in the same order in which their text appears. It updates
 after either language menu, <strong>Lang</strong>, and
@@ -681,20 +688,24 @@ additional senses exist). The word controls step through the source text
 and open each word’s entry. Both <strong>Next ▶</strong> controls are
 deliberately wider targets. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation
-under it. In the book, <code>d</code> opens the dictionary,
-<code>t</code> chooses languages, <code>v</code> the next translation at
-point, <code>b</code> toggles a second one, <code>,</code> and
-<code>.</code> step between dictionary words, <code>j</code> and
-<code>k</code> step to the next or previous word <em>and open it</em>,
-<code>n</code> and <code>p</code> turn cantos, and <code>RET</code>
-repeatedly advances through the Italian or other source text with the
-current dictionary languages; in the dictionary, <code>m</code> toggles
-More/Less. Space and backspace page, <code>=</code> reports the
-translations now showing without changing them, <code>?</code> shows
-this list, and <code>q</code> quits. Terminals get mouse reporting
-switched on automatically (<code>xterm-mouse-mode</code>); if taps still
-do nothing, the terminal app is not forwarding them and the single keys
-remain. <code>firstpair-reader-touch</code> turns the layer off.</p>
+under it. A slight finger drift is treated as the same tap, not as a
+cancelled button. <strong>Dict</strong> replaces the introductory
+References pane; <strong>Next ▶</strong> advances the source word and
+refreshes that dictionary pane. In the book, <code>d</code> opens the
+dictionary, <code>t</code> chooses languages, <code>v</code> the next
+translation at point, <code>b</code> toggles a second one,
+<code>,</code> and <code>.</code> step between dictionary words,
+<code>j</code> and <code>k</code> step to the next or previous word
+<em>and open it</em>, <code>n</code> and <code>p</code> turn cantos, and
+<code>RET</code> repeatedly advances through the Italian or other source
+text with the current dictionary languages; in the dictionary,
+<code>m</code> toggles More/Less. Space and backspace page,
+<code>=</code> reports the translations now showing without changing
+them, <code>?</code> shows this list, and <code>q</code> quits.
+Terminals get mouse reporting switched on automatically
+(<code>xterm-mouse-mode</code>); if taps still do nothing, the terminal
+app is not forwarding them and the single keys remain.
+<code>firstpair-reader-touch</code> turns the layer off.</p>
 </section>
 </section>
 </body>

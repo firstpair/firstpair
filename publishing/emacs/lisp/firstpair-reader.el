@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.31
+;; Version: 1.32
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1509,6 +1509,7 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "r") #'firstpair-reader-references)
     (define-key map (kbd "?") #'firstpair-reader-help)
     (define-key map [mouse-1] #'firstpair-reader-touch-click)
+    (define-key map [drag-mouse-1] #'firstpair-reader-touch-click)
     (define-key map [mouse-3] #'firstpair-reader-rotate-translation)
     (define-key map [down-mouse-1] #'ignore)
     (define-key map (kbd "C-c C-l") #'firstpair-reader-layout)
@@ -1573,10 +1574,13 @@ acts on the book even while the dictionary window has focus."
                     (when (window-live-p window) (select-window window)))
                   (call-interactively command))))
     (define-key map [header-line mouse-1] action)
+    (define-key map [header-line drag-mouse-1] action)
     (define-key map [header-line mouse-2] action)
     (define-key map [mode-line mouse-1] action)
+    (define-key map [mode-line drag-mouse-1] action)
     (define-key map [mode-line mouse-2] action)
     (define-key map [mouse-1] action)
+    (define-key map [drag-mouse-1] action)
     (propertize (concat " " label " ")
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
                 'mouse-face 'highlight 'local-map map 'help-echo (or help label))))

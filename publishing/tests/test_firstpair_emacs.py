@@ -229,6 +229,42 @@ class PackageTests(unittest.TestCase):
             self.assertIn("discover=t", completed.stdout)
 
     @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_touch_buttons_accept_drag_release_and_run_their_command(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (let* ((button (firstpair-reader--button
+                  "Next >" #'firstpair-reader-next-marked-lookup))
+         (map (get-text-property 0 'local-map button))
+         (mouse (lookup-key map [mode-line mouse-1]))
+         (drag (lookup-key map [mode-line drag-mouse-1]))
+         (header-drag (lookup-key map [header-line drag-mouse-1]))
+         (body-drag (lookup-key map [drag-mouse-1]))
+         called)
+    (cl-letf (((symbol-function 'event-start) (lambda (_event) nil))
+              ((symbol-function 'posn-window)
+               (lambda (_position) (selected-window)))
+              ((symbol-function 'firstpair-reader-next-marked-lookup)
+               (lambda () (interactive) (setq called 'next))))
+      (funcall drag '(drag-mouse-1 nil)))
+    (princ (format "same=%S header=%S body=%S called=%S reader=%S\n"
+                   (eq mouse drag) (eq mouse header-drag)
+                   (eq mouse body-drag) called
+                   (lookup-key firstpair-reader-mode-map [drag-mouse-1])))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn(
+            "same=t header=t body=t called=next "
+            "reader=firstpair-reader-touch-click",
+            completed.stdout,
+        )
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
     def test_dictionary_has_source_headword_and_two_sense_rows_per_language(self) -> None:
         script = f'''(progn
   (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")

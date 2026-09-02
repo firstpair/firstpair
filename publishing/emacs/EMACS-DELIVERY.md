@@ -207,6 +207,12 @@ active item only from pointer movement, so 1Unix emits a movement report at
 the touch-down cell immediately before the press. A press and release at the
 right cell without this movement still execute the menu's first item.
 
+The Reader accepts both `mouse-1` and `drag-mouse-1` on its text, mode-line,
+and header-line controls. Phone taps commonly drift across a terminal cell;
+that release must invoke the visible button rather than merely leave its
+`help-echo` in the echo area. **Next** moves and looks up the next source word,
+and **Dict** replaces an idle references Top pane with the dictionary.
+
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join
 the passage's node as ordinary blocks.
