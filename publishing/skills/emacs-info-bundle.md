@@ -173,7 +173,7 @@ translation disappears in one action, irrespective of how many editions are
 available. The graphical menu retains **Choose Second Translation...** for
 deliberate selection among many alternatives.
 
-Terminal translation control (reader 1.30): do not send an iSH or other TTY
+Terminal translation control (reader 1.31): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
 Do not use a second overriding keymap: terminal menu rendering merges it with
 the minor-mode map and exposes duplicate controls. Keep the native
@@ -189,15 +189,21 @@ directly, with no minibuffer and no `*Completions*` buffer. A TTY menu dismisses
 its own message after invoking the command, so post the new language and
 edition label, including `None`, from a one-shot `post-command-hook` after the
 outer menu command finishes; it must remain in the echo area until another
-command or message replaces it. Install a persistent header line immediately below the menu bar
-that lists compact visible edition names in actual region order, including
-second translations, and update it on every region refresh. Keep `=` as the
-non-mutating status
-report. Terminal tests must prove ordered English and Russian menu contents,
+command or message replaces it. Install a persistent header line immediately
+below the menu bar that lists compact visible edition names in actual region
+order, including second translations, and update it on every region refresh.
+Keep `=` as the non-mutating status report. Terminal tests must prove ordered
+English and Russian menu contents,
 independent direct selection, one-language and all-language hiding, restoration,
 one-action second-slot hiding with three or more editions, exact delayed
 feedback, menu order, no overriding map, unchanged window count, and no
 `*Completions*` buffer.
+
+1Unix menu dispatch (reader 1.31): every dynamic submenu item must bind to a
+stable named interactive command, not an anonymous lexical closure. Stock
+Emacs `tmm` accepts either, but terminal-app menu bridges may serialize only
+named commands and otherwise dispatch the first item, **None**. Test both the
+submenu content and that every selectable binding is a command symbol.
 
 Bundle launcher: every generated Emacs bundle carries the executable named by
 `emacs.launcher` (`firstpair.sh` by default; Dante uses `dante.sh`). The public

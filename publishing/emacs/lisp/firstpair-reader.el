@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.30
+;; Version: 1.31
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -921,6 +921,19 @@ The returned label is also used by the top-level Translations menu."
       (user-error "That translation does not cover this part"))
     (firstpair-reader--set-translation-language bundle lang id)))
 
+(defun firstpair-reader--translation-language-menu-command (lang id)
+  "Return a stable named menu command selecting ID for language LANG.
+Terminal-app menu bridges cannot all dispatch anonymous closure commands."
+  (let ((command
+         (intern (format "firstpair-reader-menu-%s-%s" lang (or id "none")))))
+    (fset command
+          `(lambda ()
+             ,(format "Select %s for terminal translation language %s."
+                      (or id "None") lang)
+             (interactive)
+             (firstpair-reader-select-language-translation ,lang ,id)))
+    command))
+
 (defun firstpair-reader--translation-language-menu (lang)
   "Build the terminal translation submenu for language LANG."
   (let* ((bundle (firstpair-reader--bundle))
@@ -928,22 +941,21 @@ The returned label is also used by the top-level Translations menu."
                              (firstpair-bundle-translation-languages bundle)))
          (visible (firstpair-reader--translation-language-visible-p bundle lang))
          (current (and visible (firstpair-reader-translation-for bundle lang)))
-         (entries
-          (list
-           (list 'none 'menu-item "None"
-                 (lambda () (interactive)
-                   (firstpair-reader-select-language-translation lang nil))
-                 :help "Hide this translation language"
-                 :button (cons 'radio (not visible))))))
+         (none-command
+          (firstpair-reader--translation-language-menu-command lang nil))
+         (entries (list (list none-command 'menu-item "None" none-command
+                              :help "Hide this translation language"
+                              :button (cons 'radio (not visible))))))
     (dolist (item (firstpair-reader--candidates bundle lang))
-      (let ((id (alist-get 'id item)))
+      (let* ((id (alist-get 'id item))
+             (command
+              (firstpair-reader--translation-language-menu-command lang id)))
         (setq entries
               (append entries
                       (list
-                       (list (intern (concat "translation-" id)) 'menu-item
+                       (list command 'menu-item
                              (firstpair-reader--translation-title bundle id)
-                             (lambda () (interactive)
-                               (firstpair-reader-select-language-translation lang id))
+                             command
                              :help "Show this edition for the language"
                              :button (cons 'radio (equal id current))))))))
     (append (list 'keymap

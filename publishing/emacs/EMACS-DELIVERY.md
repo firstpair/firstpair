@@ -193,7 +193,9 @@ In a terminal menu bar, aligned English/Russian editions expose **Tr-Eng** and
 **Tr-Rus** as real submenus. Each begins with **None** and then the editions in
 declared order. Selection is direct and language-specific: **None** hides that
 language, while choosing an edition restores it without altering the other
-language. These menus must not open a minibuffer or completions window.
+language. These menus must not open a minibuffer or completions window. Bind
+every generated item to a stable named interactive command: terminal-app menu
+bridges may not preserve anonymous closures even though stock Emacs `tmm` does.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

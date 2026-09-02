@@ -1164,6 +1164,20 @@ class AlignedTests(Fixture):
                            (setq command (nth 2 binding))))
                        menu)
                       (or command (error "No menu command for %s" label)))))
+                 (named-menu-paths-p
+                  (lambda (menu prefix)
+                    (let ((valid t))
+                      (map-keymap
+                       (lambda (event binding)
+                         (let ((command (nth 2 binding)))
+                           (unless (and (symbolp command)
+                                        (commandp command)
+                                        (eq command
+                                            (key-binding
+                                             (vconcat prefix (vector event)))))
+                             (setq valid nil))))
+                       menu)
+                      valid)))
                  (english-menu
                   (lookup-key firstpair-reader-mode-map
                               [menu-bar translation-english]))
@@ -1171,7 +1185,12 @@ class AlignedTests(Fixture):
                   (lookup-key firstpair-reader-mode-map
                               [menu-bar translation-russian]))
                  (initial-english (funcall menu-labels english-menu))
-                 (initial-russian (funcall menu-labels russian-menu)))
+                 (initial-russian (funcall menu-labels russian-menu))
+                 (named-menu-paths
+                  (and (funcall named-menu-paths-p english-menu
+                                [menu-bar translation-english])
+                       (funcall named-menu-paths-p russian-menu
+                                [menu-bar translation-russian]))))
             (call-interactively (funcall menu-command english-menu "Cary (1814) ≈"))
             (let ((after-english
                    (mapcar (lambda (lang)
@@ -1232,8 +1251,8 @@ class AlignedTests(Fixture):
                              (tmm-get-keymap (cons event binding)))
                            (lookup-key firstpair-reader-mode-map [menu-bar]))
                           (princ
-                           (format "TERMINAL menus=%S/%S english=%s/%s russian-none=%S russian=%s/%s russian-only=%S all-none=%S/%d/%S feedback=%S/%S/%S/%S/%S/%S windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
-                                   initial-english initial-russian
+                           (format "TERMINAL menus=%S/%S named=%S english=%s/%s russian-none=%S russian=%s/%s russian-only=%S all-none=%S/%d/%S feedback=%S/%S/%S/%S/%S/%S windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
+                                   initial-english initial-russian named-menu-paths
                                    (car after-english) (cadr after-english)
                                    after-russian-none
                                    (car after-russian) (cadr after-russian)
@@ -1285,7 +1304,7 @@ class AlignedTests(Fixture):
         self.assertIn('CLICK word="cammin" reader-read-only=t dict-read-only=t focus=t', result.stdout)
         self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
         self.assertIn('header=" Longfellow · Мин " installed=t', result.stdout)
-        self.assertIn('TERMINAL menus=("None" "Longfellow (1867)" "Cary (1814) ≈" "Third English")/("None" "Мин (1855)" "Лозинский (1939)")', result.stdout)
+        self.assertIn('TERMINAL menus=("None" "Longfellow (1867)" "Cary (1814) ≈" "Third English")/("None" "Мин (1855)" "Лозинский (1939)") named=t', result.stdout)
         self.assertIn('english=en-cary/ru-min russian-none=("en") russian=en-cary/ru-lozinsky russian-only=("ru") all-none=:none/10/" None "', result.stdout)
         self.assertIn('feedback="English: Cary (1814) ≈"/"Русский: None"/"Русский: Лозинский (1939)"/"English: None"/"Русский: None"/"Русский: Мин (1855)"', result.stdout)
         self.assertIn("windows=2/2 completions=nil override=nil", result.stdout)
