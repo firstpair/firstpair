@@ -513,12 +513,12 @@ after either language menu, <strong>Lang</strong>, and
 <strong>2nd</strong>. Press <code>=</code> for the compact, non-mutating
 translation report. After a menu choice, the chosen edition name, or
 <code>None</code>, remains in the bottom message line until another
-command or message replaces it. The existing <strong>Lang</strong>
-button cycles visible languages. <strong>Tr</strong> still moves to the
-next edition under the cursor, and <strong>2nd</strong> (or
-<code>b</code>) remains a strict show/hide toggle, so one action always
-returns from two editions to one even when the bundle carries many
-alternatives.</p>
+command or message replaces it. The <strong>Lang</strong> button cycles
+visible languages. <strong>Tr&lt;</strong> and <strong>Tr&gt;</strong>
+move backward or forward through editions under the cursor, and
+<strong>2nd</strong> (or <code>b</code>) remains a strict show/hide
+toggle, so one action always returns from two editions to one even when
+the bundle carries many alternatives.</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>
@@ -677,38 +677,43 @@ nil to always open at the top.</p>
 </section>
 <section id="reading-by-touch-and-single-keys" class="level2">
 <h2>Reading by touch and single keys</h2>
-<p>On a phone (Emacs under iSH) or anywhere you would rather not type
-chords, the reader offers the same commands as taps and single letters.
-One button bar sits on the book’s mode line, just above the references —
-<strong>Next ▶ · ◀w · Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶</strong>
-(next and previous word, looked up; dictionary; languages; next
-translation at point; show/hide second translation; page up and down;
-previous and next chapter) — and the dictionary window has its own:
-<strong>Close · Lang · More/Less</strong> at the left, with <strong>◀w ·
-Next ▶</strong> against the right edge (More appears only when
-additional senses exist). The word controls step through the source text
-and open each word’s entry. Both <strong>Next ▶</strong> controls are
-deliberately wider targets. Tapping a marked word looks it up; tapping a
-link follows it; a long press (right click) rotates the translation
-under it. A slight finger drift is treated as the same tap, not as a
-cancelled button. The reader also consumes the initial press and an
-accidental second tap, and the small gaps between buttons are inert, so
-a near miss cannot resize or maximize the neighboring pane, replace the
-poem with another buffer, or show Emacs’s generic mouse instructions.
-<strong>Dict</strong> replaces the introductory References pane;
-<strong>Next ▶</strong> advances the source word and refreshes that
-dictionary pane. The word represented in Dict stays underlined in the
-poem and the underline moves with every lookup; closing Dict removes it.
-In the book, <code>d</code> opens the dictionary, <code>t</code> chooses
-languages, <code>v</code> the next translation at point, <code>b</code>
-toggles a second one, <code>,</code> and <code>.</code> step between
-dictionary words, <code>j</code> and <code>k</code> step to the next or
-previous word <em>and open it</em>, <code>n</code> and <code>p</code>
-turn cantos, and <code>RET</code> repeatedly advances through the
-Italian or other source text with the current dictionary languages; in
-the dictionary, <code>m</code> toggles More/Less. Space and backspace
-page, <code>=</code> reports the translations now showing without
-changing them, <code>?</code> shows this list, and <code>q</code> quits.
+<p>On a phone (Emacs under 1Unix/iSH) or anywhere you would rather not
+type chords, the reader offers the same commands as taps and single
+letters without repeating controls between panes. The middle bar under
+the book carries <strong>Dict · ▲ · ▼ · ◀c · c▶ · Top · Refs ·
+?</strong>. <strong>Dict</strong> opens or closes the dictionary. The
+lowest bar carries <strong>&lt;&lt; · &lt; · &gt; · &gt;&gt; · Tr&lt; ·
+Tr&gt; · 2nd · Lang</strong>. <code>&lt;</code> and <code>&gt;</code>
+move one source word and look it up; <code>&lt;&lt;</code> and
+<code>&gt;&gt;</code> do the same while skipping frequent Italian
+function words, including articles, prepositions, pronouns, and common
+forms of <em>essere</em> and <em>avere</em>. The stopword list is
+customizable through
+<code>firstpair-reader-significant-stopwords</code>.
+<strong>Tr&lt;</strong> and <strong>Tr&gt;</strong> select the previous
+or next translation in the language and slot under point. Tapping a
+marked word looks it up; tapping a link follows it; a long press (right
+click) rotates the translation under it. A slight finger drift is
+treated as the same tap, not as a cancelled button. The reader also
+consumes the initial press and an accidental second tap, and the small
+gaps between buttons are inert, so a near miss cannot resize or maximize
+the neighboring pane, replace the poem with another buffer, or show
+Emacs’s generic mouse instructions. <strong>Dict</strong> replaces the
+introductory References pane. Word movement refreshes that dictionary
+pane. The word represented in Dict stays underlined in the poem and the
+underline moves with every lookup; closing Dict removes it. In the book,
+<code>d</code> opens the dictionary, <code>t</code> chooses languages,
+<code>[</code> and <code>]</code> select the previous or next
+translation at point, <code>b</code> toggles a second one,
+<code>,</code> and <code>.</code> step between dictionary words,
+<code>j</code> and <code>k</code> step to the next or previous word
+<em>and open it</em>, <code>J</code> and <code>K</code> jump between
+significant words, <code>n</code> and <code>p</code> turn cantos, and
+<code>RET</code> repeatedly advances through the Italian or other source
+text with the current dictionary languages; in the dictionary,
+<code>m</code> toggles More/Less. Space and backspace page,
+<code>=</code> reports the translations now showing without changing
+them, <code>?</code> shows this list, and <code>q</code> quits.
 Terminals get mouse reporting switched on automatically
 (<code>xterm-mouse-mode</code>); if taps still do nothing, the terminal
 app is not forwarding them and the single keys remain.

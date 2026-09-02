@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.35
+;; Version: 1.36
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -51,6 +51,25 @@ Compact entries shrink to their headword and available sense rows."
 (defcustom firstpair-reader-highlight t
   "Non-nil underlines the words the dictionary window can explain."
   :type 'boolean)
+
+(defcustom firstpair-reader-significant-stopwords
+  '("a" "ad" "al" "alla" "alle" "allo" "ai" "agli"
+    "da" "dal" "dalla" "dalle" "dallo" "dai" "dagli"
+    "di" "del" "della" "delle" "dello" "dei" "degli"
+    "in" "nel" "nella" "nelle" "nello" "nei" "negli"
+    "con" "su" "sul" "sulla" "sulle" "sullo" "sui" "sugli"
+    "per" "tra" "fra" "e" "ed" "o" "od" "ma" "che" "se"
+    "il" "lo" "la" "i" "gli" "le" "un" "uno" "una"
+    "mi" "ti" "si" "ci" "vi" "ne" "io" "tu" "egli" "ella" "noi" "voi"
+    "essere" "esser" "sono" "sei" "è" "siamo" "siete" "era" "eri" "erano"
+    "fui" "fosti" "fu" "fur" "furono" "sia" "siano" "fosse" "fossero"
+    "sarà" "saranno" "sarei" "sarebbe" "avere" "aver" "ho" "hai" "ha"
+    "hanno" "aveva" "avevano" "ebbe" "ebbero" "abbia" "abbiano")
+  "Lowercase source words skipped by significant-word movement.
+This defaults to frequent Italian function words, pronouns, and common forms
+of essere and avere.  A bundle or reader may customize it for another source
+language."
+  :type '(repeat string))
 
 (defcustom firstpair-reader-bundle-directories nil
   "Directories `firstpair-reader-discover' searches for bundles.
@@ -794,6 +813,36 @@ words of the source-language regions, which are all looked up directly."
   "Move to the previous word the dictionary window can explain."
   (interactive)
   (firstpair-reader--move-marked nil))
+
+(defun firstpair-reader--significant-word-p ()
+  "Return non-nil when the source word at point carries lexical weight."
+  (let ((word (downcase (or (thing-at-point 'word t) ""))))
+    (and (not (string-empty-p word))
+         (not (member word firstpair-reader-significant-stopwords)))))
+
+(defun firstpair-reader--move-significant (forward)
+  "Move to the next significant source word, or previous unless FORWARD."
+  (let ((origin (point)) found)
+    (condition-case nil
+        (while (not found)
+          (firstpair-reader--move-marked forward)
+          (when (firstpair-reader--significant-word-p)
+            (setq found t)))
+      (user-error
+       (goto-char origin)
+       (user-error (if forward "No further significant words"
+                     "No earlier significant words"))))
+    found))
+
+(defun firstpair-reader-next-significant-marked ()
+  "Move to the next significant source word."
+  (interactive)
+  (firstpair-reader--move-significant t))
+
+(defun firstpair-reader-previous-significant-marked ()
+  "Move to the previous significant source word."
+  (interactive)
+  (firstpair-reader--move-significant nil))
 
 (defun firstpair-reader-references ()
   "Choose one of the references quoted in this node and open it below."
@@ -1546,6 +1595,10 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd ".") #'firstpair-reader-next-marked)
     (define-key map (kbd "j") #'firstpair-reader-next-marked-lookup)
     (define-key map (kbd "k") #'firstpair-reader-previous-marked-lookup)
+    (define-key map (kbd "J") #'firstpair-reader-next-significant-marked-lookup)
+    (define-key map (kbd "K") #'firstpair-reader-previous-significant-marked-lookup)
+    (define-key map (kbd "]") #'firstpair-reader-terminal-next-translation)
+    (define-key map (kbd "[") #'firstpair-reader-terminal-previous-translation)
     (define-key map (kbd "RET") #'firstpair-reader-return)
     (define-key map [return] #'firstpair-reader-return)
     (define-key map (kbd "r") #'firstpair-reader-references)
@@ -1728,21 +1781,16 @@ acts on the book even while the dictionary window has focus."
             right-items)))
 
 (defun firstpair-reader--reader-bar (bundle)
-  "The book's one bar, on its mode line.
-Words and dictionary, translations, paging, cantos; labels are short so
-the bar fits a phone, and `?' lists what they mean."
-  (let ((many (firstpair-bundle-translations bundle)))
-    (apply #'firstpair-reader--bar
-           (append (list (cons "Next ▶" #'firstpair-reader-next-marked-lookup)
-                         (cons "◀w" #'firstpair-reader-previous-marked-lookup)
-                         (cons "Dict" #'firstpair-reader-describe-word)
-                         (cons "Lang" #'firstpair-reader-translation-languages))
-                   (and many (list (cons "Tr" #'firstpair-reader-rotate-translation)
-                                   (cons "2nd" #'firstpair-reader-second-translation)))
-                   (list (cons "▲" #'firstpair-reader-page-up)
+  "The book's middle bar: dictionary, pages, cantos, and references."
+  (ignore bundle)
+  (firstpair-reader--bar (cons "Dict" #'firstpair-reader-toggle-dictionary)
+                         (cons "▲" #'firstpair-reader-page-up)
                          (cons "▼" #'firstpair-reader-page-down)
                          (cons "◀c" #'Info-prev)
-                         (cons "c▶" #'Info-next))))))
+                         (cons "c▶" #'Info-next)
+                         (cons "Top" #'Info-top-node)
+                         (cons "Refs" #'firstpair-reader-references)
+                         (cons "?" #'firstpair-reader-help)))
 
 (defun firstpair-reader-page-down ()
   "Show the next screen of the book."
@@ -1767,16 +1815,23 @@ the bar fits a phone, and `?' lists what they mean."
                          (cons "?" #'firstpair-reader-help)))
 
 (defun firstpair-reader--dictionary-bar ()
-  "The dictionary window's button bar."
-  (firstpair-reader--split-bar
-   (append (list (cons "Close" #'firstpair-reader-close-dictionary)
-                 (cons "Lang" #'firstpair-lexicon-cycle-languages-command))
-           (and (or (bound-and-true-p firstpair-lexicon-expanded)
-                    (bound-and-true-p firstpair-lexicon-has-more))
-                (list (cons (if firstpair-lexicon-expanded "Less" "More")
-                            #'firstpair-lexicon-toggle-details))))
-   (list (cons "◀w" #'firstpair-reader-previous-marked-lookup)
-         (cons "Next ▶" #'firstpair-reader-next-marked-lookup))))
+  "The lowest Reader bar: lexical and translation controls."
+  (firstpair-reader--bar
+   (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
+   (cons "<" #'firstpair-reader-previous-marked-lookup)
+   (cons ">" #'firstpair-reader-next-marked-lookup)
+   (cons ">>" #'firstpair-reader-next-significant-marked-lookup)
+   (cons "Tr<" #'firstpair-reader-terminal-previous-translation)
+   (cons "Tr>" #'firstpair-reader-terminal-next-translation)
+   (cons "2nd" #'firstpair-reader-second-translation)
+   (cons "Lang" #'firstpair-lexicon-cycle-languages-command)))
+
+(defun firstpair-reader-toggle-dictionary ()
+  "Open the dictionary at point, or close it when already visible."
+  (interactive)
+  (if (window-live-p (firstpair-reader--window 'lexicon))
+      (firstpair-reader-close-dictionary)
+    (firstpair-reader-describe-word)))
 
 (defun firstpair-reader-close-dictionary ()
   "Close the dictionary window."
@@ -1810,6 +1865,20 @@ the bar fits a phone, and `?' lists what they mean."
     (firstpair-reader-previous-marked)
     (firstpair-reader-describe-word)))
 
+(defun firstpair-reader-next-significant-marked-lookup ()
+  "Look up the next significant source word of the book."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (firstpair-reader-next-significant-marked)
+    (firstpair-reader-describe-word)))
+
+(defun firstpair-reader-previous-significant-marked-lookup ()
+  "Look up the previous significant source word of the book."
+  (interactive)
+  (with-selected-window (or (firstpair-reader--window 'reader) (selected-window))
+    (firstpair-reader-previous-significant-marked)
+    (firstpair-reader-describe-word)))
+
 (defun firstpair-reader-touch-click (event)
   "Act on a tap at EVENT: look up a dictionary word, follow a link, or move point."
   (interactive "e")
@@ -1836,8 +1905,9 @@ the bar fits a phone, and `?' lists what they mean."
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
     (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-Eng and Tr-Rus choose or hide a language\n")
-    (princ "Bar under the book    Next ▶ · ◀w previous · Dict · Lang · Tr (next translation) · 2nd (show/hide) · ▲ ▼ page · ◀c c▶ canto\n")
-    (princ "Bar under dictionary  Close · Lang · More/Less                 ◀w · Next ▶\n")
+    (princ "Middle bar            Dict open/close · ▲ ▼ page · ◀c c▶ canto · Top · Refs · ?\n")
+    (princ "Bottom bar            << < > >> words · Tr< Tr> · 2nd · Lang\n")
+    (princ "                        << and >> skip frequent function words such as prepositions and essere\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")

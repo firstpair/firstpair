@@ -416,22 +416,67 @@ class PackageTests(unittest.TestCase):
         self.assertIn('expanded="amore\\nlove\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
         self.assertIn("truncated=nil wrapped=t", output)
         self.assertIn("collapsed-again=t", output)
-        self.assertIn('expanded-ru=t more=nil bar=" Close   Lang   Less ', output)
+        self.assertIn('expanded-ru=t more=nil bar=" <<   <   >   >>   Tr<   Tr>   2nd   Lang ', output)
         self.assertIn("collapsed-ru=nil", output)
         self.assertIn('short="short\\nbrief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
         self.assertIn('ru-only="short\\nкраткий\\nкороткий\\n"', output)
         self.assertIn('missing="missing\\nNo entry in the selected dictionaries.\\n"', output)
         self.assertIn('ambiguous="oscuro · oscurare"', output)
-        self.assertIn("reader-bar= Next ▶   ◀w ", output)
-        self.assertLess(output.index("Next ▶"), output.index("◀w"))
-        self.assertRegex(output, r"dictionary-bar=.*◀w.*Next ▶")
-        self.assertRegex(output, r"dictionary-bar=.* align=\(space :align-to \(- right [0-9]+\)\)")
+        self.assertIn("reader-bar= Dict   ▲   ▼   ◀c   c▶   Top   Refs   ?", output)
+        self.assertRegex(output, r"dictionary-bar=.*<<.*<.*>.*>>.*Tr<.*Tr>.*2nd.*Lang")
+        self.assertIn("align=nil", output)
         self.assertNotIn("English", output)
         self.assertNotIn("Русский", output)
         self.assertNotIn("adjective", output)
         self.assertNotIn("существительное", output)
-        self.assertRegex(output, r"bar=.*More")
-        self.assertRegex(output, r"expanded=.*bar=.*Less")
+        self.assertNotIn(" More ", output)
+        self.assertNotIn(" Less ", output)
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_significant_word_navigation_skips_italian_function_words(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (with-temp-buffer
+    (insert "Nel mezzo del cammin di nostra vita essere oscura")
+    (goto-char (point-min))
+    (cl-letf (((symbol-function 'firstpair-reader--bundle) (lambda () 'fixture))
+              ((symbol-function 'firstpair-reader--source-spans)
+               (lambda (_bundle) (list (cons (point-min) (point-max))))))
+      (firstpair-reader-next-significant-marked)
+      (princ (format "one=%s " (thing-at-point 'word t)))
+      (firstpair-reader-next-significant-marked)
+      (princ (format "two=%s " (thing-at-point 'word t)))
+      (search-forward "vita")
+      (firstpair-reader-next-significant-marked)
+      (princ (format "after-essere=%s " (thing-at-point 'word t)))
+      (search-backward "cammin")
+      (firstpair-reader-previous-significant-marked)
+      (princ (format "back=%s bindings=%S/%S/%S/%S/%S/%S\n"
+                     (thing-at-point 'word t)
+                     (lookup-key firstpair-reader-mode-map (kbd "K"))
+                     (lookup-key firstpair-reader-mode-map (kbd "k"))
+                     (lookup-key firstpair-reader-mode-map (kbd "j"))
+                     (lookup-key firstpair-reader-mode-map (kbd "J"))
+                     (lookup-key firstpair-reader-mode-map (kbd "["))
+                     (lookup-key firstpair-reader-mode-map (kbd "]")))))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn("one=mezzo two=cammin after-essere=oscura back=mezzo", completed.stdout)
+        self.assertIn(
+            "bindings=firstpair-reader-previous-significant-marked-lookup/"
+            "firstpair-reader-previous-marked-lookup/"
+            "firstpair-reader-next-marked-lookup/"
+            "firstpair-reader-next-significant-marked-lookup/"
+            "firstpair-reader-terminal-previous-translation/"
+            "firstpair-reader-terminal-next-translation",
+            completed.stdout,
+        )
 
     @unittest.skipUnless(has("emacs"), "Emacs is not installed")
     def test_return_advances_poem_but_keeps_info_links(self) -> None:

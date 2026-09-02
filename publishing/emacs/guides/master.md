@@ -219,8 +219,8 @@ names in the same order in which their text appears. It updates after either
 language menu, **Lang**, and **2nd**. Press `=` for the compact, non-mutating
 translation report. After a menu choice, the chosen edition name, or `None`,
 remains in the bottom message line until another command or message replaces
-it. The existing **Lang** button cycles visible languages. **Tr** still moves
-to the next edition under the cursor, and **2nd** (or `b`) remains a strict
+it. The **Lang** button cycles visible languages. **Tr<** and **Tr>** move
+backward or forward through editions under the cursor, and **2nd** (or `b`) remains a strict
 show/hide toggle, so one action always returns from two editions to one even
 when the bundle carries many alternatives.
 
@@ -395,28 +395,28 @@ to nil to always open at the top.
 
 ## Reading by touch and single keys
 
-On a phone (Emacs under iSH) or anywhere you would rather not type chords,
-the reader offers the same commands as taps and single letters. One button
-bar sits on the book's mode line, just above the references — **Next ▶ · ◀w ·
-Dict · Lang · Tr · 2nd · ▲ · ▼ · ◀c · c▶** (next and previous word, looked up;
-dictionary; languages; next translation at point; show/hide second translation; page up and
-down; previous and next chapter) — and the dictionary window has its own:
-**Close · Lang · More/Less** at the left, with **◀w · Next ▶** against the
-right edge (More appears only when additional senses exist). The word controls
-step through the source text and open each word's entry. Both **Next ▶**
-controls are deliberately wider targets. Tapping a marked word looks it up; tapping a
+On a phone (Emacs under 1Unix/iSH) or anywhere you would rather not type chords,
+the reader offers the same commands as taps and single letters without repeating
+controls between panes. The middle bar under the book carries **Dict · ▲ · ▼ ·
+◀c · c▶ · Top · Refs · ?**. **Dict** opens or closes the dictionary. The lowest
+bar carries **<< · < · > · >> · Tr< · Tr> · 2nd · Lang**. `<` and `>` move one
+source word and look it up; `<<` and `>>` do the same while skipping frequent
+Italian function words, including articles, prepositions, pronouns, and common
+forms of *essere* and *avere*. The stopword list is customizable through
+`firstpair-reader-significant-stopwords`. **Tr<** and **Tr>** select the previous
+or next translation in the language and slot under point. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. A slight finger drift is treated as the same tap, not as a cancelled
 button. The reader also consumes the initial press and an accidental second
 tap, and the small gaps between buttons are inert, so a near miss cannot resize
 or maximize the neighboring pane, replace the poem with another buffer, or
-show Emacs's generic mouse instructions. **Dict**
-replaces the introductory References pane; **Next ▶** advances
-the source word and refreshes that dictionary pane. The word represented in
+show Emacs's generic mouse instructions. **Dict** replaces the introductory
+References pane. Word movement refreshes that dictionary pane. The word represented in
 Dict stays underlined in the poem and the underline moves with every lookup;
-closing Dict removes it. In the book, `d` opens the dictionary, `t` chooses languages, `v` the
-next translation at point, `b` toggles a second one, `,` and `.` step between dictionary
-words, `j` and `k` step to the next or previous word *and open it*, `n` and
+closing Dict removes it. In the book, `d` opens the dictionary, `t` chooses languages,
+`[` and `]` select the previous or next translation at point, `b` toggles a second
+one, `,` and `.` step between dictionary words, `j` and `k` step to the next or
+previous word *and open it*, `J` and `K` jump between significant words, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other
 source text with the current dictionary languages; in the dictionary, `m`
 toggles More/Less. Space and
