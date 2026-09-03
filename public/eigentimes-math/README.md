@@ -1,6 +1,6 @@
 # The Mathematics of Eigen Times
 
-The Mathematics of Eigen Times: A Tutorial Companion: Vectors, Covariance, SVD, LSA, Rotations, and the Thresholds of a Newspaper in an Eigenbasis, delivered as PDF, EPUB, and hosted web readers.
+A tutorial companion to the Eigen Times article: how text becomes vectors, what the covariance and its eigenvectors are, the SVD and latent semantic analysis, varimax rotation, projection and the T²/Q statistics, and every clustering and statistical threshold of the newspaper, explained with coloured-square matrix diagrams and worked examples.
 
 ## Current Public Editions
 

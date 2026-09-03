@@ -173,8 +173,8 @@ export const deliverableBooks = [
   {
     "slug": "eigentimes-math",
     "title": "The Mathematics of Eigen Times",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/pdf/a84ed043616ec817-eigentimes-math.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/epub/a15254ac19f32eb1-eigentimes-math.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/pdf/872feda141047dd4-eigentimes-math.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/epub/956ab4ba3076e11c-eigentimes-math.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png"
   },
   {
