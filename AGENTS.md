@@ -676,6 +676,16 @@ its own saved **Show Dante Reader Bar** setting, enabled by default and
 independent of the keyboard-hiding preference. Hiding it must let the terminal
 reclaim the bar's height immediately; showing it must restore the same native
 controls without restarting Emacs.
+Build 826 fixes a destructive hide transition caused by the storyboard's weak
+terminal-bottom constraint disappearing after deactivation. Keep one strong,
+permanently active terminal-to-Reader-bar constraint and hide the bar by
+collapsing its height to zero; never toggle back to the released storyboard
+constraint. After laying out UIKit synchronously, explicitly ask hterm to
+resize its scroll port, invalidate, redraw, and synchronize its cursor on the
+next main-loop turn. Regression tests and signed-phone acceptance must repeat
+show/hide transitions in one live Emacs session and across launches, with the
+software keyboard both hidden and visible; no transition may produce a black
+terminal, stale cursor geometry, or require a force-quit.
 
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it

@@ -286,11 +286,23 @@ their header-line, mode-line, button, and gap maps. Each wheel command must
 scroll one line in the event's window and then restore the previously selected
 window; reaching a buffer boundary is a silent no-op.
 
-Native Reader-bar visibility (1Unix build 825): provide a separate persistent
-**Show Dante Reader Bar** setting, on by default and independent of keyboard
-visibility. Turning it off must hide the native strip and return its height to
-the terminal immediately; turning it on restores the strip without restarting
-Emacs or changing the ordinary keyboard accessory row.
+Native Reader-bar visibility (1Unix builds 825-826): provide a separate
+persistent **Show Dante Reader Bar** setting, on by default and independent of
+keyboard visibility. Turning it off must hide the native strip and return its
+height to the terminal immediately; turning it on restores the strip without
+restarting Emacs or changing the ordinary keyboard accessory row. The
+storyboard terminal-bottom outlet is weak and may be released as soon as its
+constraint is deactivated. Do not alternate between that constraint and a
+terminal-to-Reader-bar constraint. Deactivate the storyboard constraint only
+while constructing the bar, retain and activate one terminal-to-bar constraint
+for the controller's lifetime, and represent hidden state with a zero-height
+bar. After a synchronous native layout, dispatch to the next main-loop turn and
+make hterm resize its scroll port, schedule invalidation and redraw, and
+synchronize the cursor. Test the source invariant and hterm call sequence, then
+repeat on/off transitions in a live signed-phone Emacs session with the
+software keyboard hidden and visible. Also cold-launch once in each saved
+state. A black terminal, stale cell geometry, or required force-quit is a
+release blocker.
 
 Bottom lexical-bar alignment (Reader 1.44): keep **Tr< Tr> 2nd Lang** at the
 left and align **<< < > >>** flush to the right edge with a mode-line alignment
