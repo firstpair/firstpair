@@ -214,12 +214,9 @@
           "label": "Italian, English, and Russian",
           "cover": "book-uploads/staging/dante-commedia/russian/dante-commedia-cover.png",
           "headboard": "book-uploads/staging/dante-commedia/russian/dante-commedia-headboard.png",
-          "vault": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-vault (1.0.0-f5747c3c).zip",
-          "vaultGuideMarkdown": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-vault-guide (1.0.0-f5747c3c).md",
-          "vaultGuideHtml": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-vault-guide (1.0.0-f5747c3c).html",
-          "emacs": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-f5747c3c).zip",
-          "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-f5747c3c).md",
-          "emacsGuideHtml": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-f5747c3c).html"
+          "emacs": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-303dd796).zip",
+          "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-303dd796).md",
+          "emacsGuideHtml": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-303dd796).html"
         }
       },
       "cover": "book-uploads/staging/dante-commedia/dante-commedia-cover.png",

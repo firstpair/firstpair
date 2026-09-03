@@ -164,7 +164,7 @@ export const readerBooks = [
         "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06/index.html",
         "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/chapters/c01a7a1e8fd96f06",
         "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/vault-guide/a8b728a6bf8eec82-dante-commedia-russian-vault-guide%20%281.0.0-f5747c3c%29.html",
-        "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/90893f5d39d0c57e-dante-commedia-russian-emacs-guide%20%281.0.0-f5747c3c%29.html"
+        "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/45b6d0b8c7ae70dc-dante-commedia-russian-emacs-guide%20%281.0.0-303dd796%29.html"
       }
     }
   },
