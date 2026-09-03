@@ -170,9 +170,9 @@ export const readerBooks = [
   },
   {
     "slug": "graph-book",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/html/07186765bf5dad09-graph-book.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/99c50bc0110e6989/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/99c50bc0110e6989"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/html/970bbafad779b774-graph-book.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/8d7637a3f45400e1/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/graph-book/chapters/8d7637a3f45400e1"
   },
   {
     "slug": "lakecat-engine-truth",

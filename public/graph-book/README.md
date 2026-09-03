@@ -1,6 +1,6 @@
 # The Graph Book
 
-How First Pair Press turns a book into a knowledge graph and delivers the graph as a book: chapters as nodes, code and witnesses as evidence, quotes aligned across languages, translations as rotatable columns, dictionaries that help each other, and readers for Obsidian and Emacs — the Sail Rust Book, Lighthouse Republics, Cicero, and Dante.
+How First Pair Press turns a book into a knowledge graph and delivers the graph as a book: chapters as nodes, code and witnesses as evidence, additive translation menus, exact and significant-word dictionary navigation, pane-local touch scrolling, and a persistent native 1Unix Reader bar on iPhone — the Sail Rust Book, Lighthouse Republics, Cicero, and Dante, in Obsidian and Emacs.
 
 ## Current Public Editions
 
