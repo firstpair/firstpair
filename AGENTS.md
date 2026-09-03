@@ -685,7 +685,11 @@ resize its scroll port, invalidate, redraw, and synchronize its cursor on the
 next main-loop turn. Regression tests and signed-phone acceptance must repeat
 show/hide transitions in one live Emacs session and across launches, with the
 software keyboard both hidden and visible; no transition may produce a black
-terminal, stale cursor geometry, or require a force-quit.
+terminal, stale cursor geometry, or require a force-quit. Keep
+`UITests/testReaderBarVisibilityKeepsTerminalVisible` as the simulator
+regression for repeated transitions, control visibility, live terminal text,
+and frame reclamation; it complements rather than replaces signed-phone Emacs
+acceptance.
 
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it

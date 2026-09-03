@@ -302,7 +302,11 @@ synchronize the cursor. Test the source invariant and hterm call sequence, then
 repeat on/off transitions in a live signed-phone Emacs session with the
 software keyboard hidden and visible. Also cold-launch once in each saved
 state. A black terminal, stale cell geometry, or required force-quit is a
-release blocker.
+release blocker. The host repository's
+`UITests/testReaderBarVisibilityKeepsTerminalVisible` must repeat two
+transitions, assert the control and terminal-text states, and verify terminal
+frame reclamation in the simulator; retain the signed-phone check because the
+actual keyboard and embedded Emacs geometry differ.
 
 Bottom lexical-bar alignment (Reader 1.44): keep **Tr< Tr> 2nd Lang** at the
 left and align **<< < > >>** flush to the right edge with a mode-line alignment
