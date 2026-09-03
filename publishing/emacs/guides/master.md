@@ -191,20 +191,23 @@ context for how that form is being used. `RET` on an Info link still follows
 it.
 
 The top Emacs bar has a separate **Translations** menu. Its first line says
-exactly which editions are currently visible, including a second translation
-and the `≈` mark for an approximate alignment. Reading or clicking that
+exactly which editions are currently visible, in their display order and with
+the `≈` mark for an approximate alignment. Reading or clicking that
 **Showing** line, or pressing `=`, changes nothing. The rest of the menu offers
-**Choose Translation**, **Next Translation at Point**, **Toggle Second Translation**,
-**Choose Second Translation**, **Choose Languages**, and **Cycle Languages**.
+**Show or Hide Translation**, **Next Translation at Point**, **This Language
+First**, **Choose Languages**, and **Cycle Languages**.
 
 In a text terminal such as Emacs under 1Unix or iSH, the top bar has two compact
 language menus instead of the graphical drop-down. **Tr-Eng** opens the English
 editions and **Tr-Rus** opens the Russian editions. Each list begins with
 **None**, which hides that language, followed by every edition that covers the
-current part in book order. The current choice is marked. Choosing an edition
-switches directly to it and also restores the language when it was hidden;
-English and Russian remain independent. Neither menu invokes a minibuffer,
-Emacs's large text-mode menu, or a `*Completions*` window.
+current part in book order — each with a checkbox. Choosing an unchecked
+edition shows it in addition to whatever the language already shows (any
+number of editions may be on screen at once); choosing a checked edition hides
+it again, and hiding the last one hides the language. Choosing an edition of a
+hidden language restores the language; English and Russian remain independent.
+Neither menu invokes a minibuffer, Emacs's large text-mode menu, or a
+`*Completions*` window.
 
 If every list choice runs its first item, check the ordinary **File** menu:
 **Quit** must quit rather than opening **Find File**. The latter behavior means
@@ -214,15 +217,18 @@ problem. Use 1Unix build 818 or newer before testing the Reader menus or
 mode-line buttons again; build 818 completes a DECSET 1003 tap at the initial
 touch cell, before finger drift can move its release.
 
-A persistent line immediately below the top bar lists the visible edition
-names in the same order in which their text appears. It updates after either
-language menu, **Lang**, and **2nd**. Press `=` for the compact, non-mutating
-translation report. After a menu choice, the chosen edition name, or `None`,
-remains in the bottom message line until another command or message replaces
-it. The **Lang** button cycles visible languages. **Tr<** and **Tr>** move
-backward or forward through editions under the cursor, and **2nd** (or `b`) remains a strict
-show/hide toggle, so one action always returns from two editions to one even
-when the bundle carries many alternatives.
+A persistent row immediately below the top bar lists the visible edition
+names grouped by language, in the same order in which their text appears —
+and it is itself the ordering control. Tap an edition's name to hide it. Tap
+the **◀** before a name to move that edition one step earlier within its
+language; the tercets rearrange in place, the original text never moving. Tap
+a language tag (**EN**, **RU**) to bring that language's whole block first.
+Press `=` for the compact, non-mutating translation report. After a menu
+choice, the language's edition list, or `None`, remains in the bottom message
+line until another command or message replaces it. The **Lang** button cycles
+visible languages. **Tr<** and **Tr>** swap the edition under the cursor for
+the previous or next unshown one, and `b` adds one more edition of the
+language at point, or returns from several to one.
 
 ## Rearranging windows
 
@@ -386,8 +392,8 @@ then `M-x package-install-file RET firstpair-reader.tar RET`.
 ## Picking up where you left off
 
 `M-x firstpair-read` returns to the node and the line where you stopped in
-that bundle, with the same languages, translations, and second translations
-on screen. The reader saves this on every page turn, whenever Emacs has
+that bundle, with the same languages and the same editions, in the same
+order, on screen. The reader saves this on every page turn, whenever Emacs has
 been idle for a few seconds, and when Emacs exits, in
 `firstpair-reader-state-file` (`~/.emacs.d/firstpair-reader-state.el` by
 default — plain Lisp, one entry per bundle). Set `firstpair-reader-resume`
@@ -399,12 +405,12 @@ On a phone (Emacs under 1Unix/iSH) or anywhere you would rather not type chords,
 the reader offers the same commands as taps and single letters without repeating
 controls between panes. The middle bar under the book carries **Dict · ▲ · ▼ ·
 ◀c · c▶ · Top · Refs · ?**. **Dict** opens or closes the dictionary. The lowest
-bar carries **Tr< · Tr> · 2nd · Lang · << · < · > · >>**. `<` and `>` move one
+bar carries **Tr< · Tr> · Lang · << · < · > · >>**. `<` and `>` move one
 source word and look it up; `<<` and `>>` do the same while skipping frequent
 Italian function words, including articles, prepositions, pronouns, and common
 forms of *essere* and *avere*. The stopword list is customizable through
-`firstpair-reader-significant-stopwords`. **Tr<** and **Tr>** select the previous
-or next translation in the language and slot under point. Tapping a marked word looks it up; tapping a
+`firstpair-reader-significant-stopwords`. **Tr<** and **Tr>** swap the edition
+under point for the previous or next unshown one of its language. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. A slight finger drift is treated as the same tap, not as a cancelled
 button. The reader also consumes the initial press and an accidental second
@@ -414,9 +420,10 @@ show Emacs's generic mouse instructions. **Dict** replaces the introductory
 References pane. Word movement refreshes that dictionary pane. The word represented in
 Dict stays underlined in the poem and the underline moves with every lookup;
 closing Dict removes it. In the book, `d` opens the dictionary, `t` chooses languages,
-`[` and `]` select the previous or next translation at point, `b` toggles a second
-one, and `T` cycles visible languages backward. In 1Unix's native strip, holding
-**Tr<**, **Tr>**, **2nd**, or **Lang** performs the inverse of tapping it. `,` and
+`[` and `]` swap the translation at point, `b` adds one more edition of its
+language (or returns to one), and `T` cycles visible languages backward. In
+1Unix's native strip, holding **Tr<**, **Tr>**, or **Lang** performs the
+inverse of tapping it. `,` and
 `.` step between dictionary words, `j` and `k` step to the next or
 previous word *and open it*, `J` and `K` jump between significant words, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other

@@ -405,12 +405,13 @@ Older Emacs did this itself; current Info leaves the underscores in place."
             (overlay-put overlay 'evaporate t)
             (push overlay firstpair-reader--overlays)))))))
 
-(defvar firstpair-reader-translation-choices nil
-  "Alist of language id to the translation id shown for it.
+(defvar firstpair-reader-translation-selections nil
+  "Alist of language id to the ordered list of translation ids it shows.
 A language without an entry shows its default translation.")
 
-(defvar firstpair-reader-second-translations nil
-  "Alist of language id to a second translation id shown under the first, or nil.")
+(defvar firstpair-reader-language-order nil
+  "Translation language ids in the order their blocks appear on screen.
+Languages not listed follow, in the edition's declared order.")
 
 (defun firstpair-reader--page-part (bundle)
   "Return the part (cantica, chapter group) of the current node, or nil."
@@ -430,78 +431,221 @@ A language without an entry shows its default translation.")
                        (firstpair-reader--covers-p item part)))
                 (firstpair-bundle-translations-of bundle lang))))
 
-(defun firstpair-reader-translation-for (bundle lang &optional exclude)
-  "Return the id of the translation shown for LANG: the chosen one if it covers
-this page, else the language's default, else the first that covers; EXCLUDE
-names a translation not to return."
-  (let* ((candidates (firstpair-reader--candidates bundle lang exclude))
-         (chosen (alist-get lang firstpair-reader-translation-choices nil nil #'equal))
-         (pick (or (seq-find (lambda (item) (equal (alist-get 'id item) chosen)) candidates)
-                   (seq-find (lambda (item) (eq (alist-get 'default item) t)) candidates)
-                   (car candidates))))
-    (and pick (alist-get 'id pick))))
+(defun firstpair-reader--ordered-languages (bundle)
+  "Return BUNDLE's selected translation languages in display order."
+  (let ((selected (firstpair-lexicon-selected bundle)))
+    (append
+     (delq nil (mapcar (lambda (lang)
+                         (seq-find (lambda (item) (equal (alist-get 'id item) lang))
+                                   selected))
+                       firstpair-reader-language-order))
+     (seq-remove (lambda (item)
+                   (member (alist-get 'id item) firstpair-reader-language-order))
+                 selected))))
 
-(defun firstpair-reader--second-translation-for (bundle lang first)
-  "Return the effective second translation of LANG after FIRST, or nil."
-  (let ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal)))
-    (and second
-         (not (equal second first))
-         (member second (mapcar (lambda (item) (alist-get 'id item))
-                                (firstpair-reader--candidates bundle lang first)))
-         second)))
+(defun firstpair-reader--effective-translations (bundle lang)
+  "Return the ordered translation ids LANG shows on the current page.
+Selected ids that do not cover this part are skipped; when none remain,
+the language's default (or first) covering edition fills in, so a page
+never goes blank."
+  (let* ((items (firstpair-reader--candidates bundle lang))
+         (ids (mapcar (lambda (item) (alist-get 'id item)) items))
+         (chosen (alist-get lang firstpair-reader-translation-selections nil nil #'equal))
+         (effective (seq-filter (lambda (id) (member id ids)) chosen)))
+    (or effective
+        (let ((pick (or (seq-find (lambda (item) (eq (alist-get 'default item) t)) items)
+                        (car items))))
+          (and pick (list (alist-get 'id pick)))))))
+
+(defun firstpair-reader-translation-for (bundle lang &optional exclude)
+  "Return the first translation id shown for LANG in BUNDLE, EXCLUDE apart."
+  (car (remove exclude (firstpair-reader--effective-translations bundle lang))))
 
 (defun firstpair-reader--shown-translations (bundle)
-  "Return the translation ids on screen: one per selected language, plus seconds."
-  (let (ids)
-    (dolist (language (firstpair-lexicon-selected bundle))
-      (let* ((lang (alist-get 'id language))
-             (first (firstpair-reader-translation-for bundle lang))
-             (second (firstpair-reader--second-translation-for bundle lang first)))
-        (when first (push first ids))
-        (when second (push second ids))))
-    (nreverse ids)))
+  "Return the translation ids on screen, languages and editions in display order."
+  (apply #'append
+         (mapcar (lambda (language)
+                   (firstpair-reader--effective-translations bundle (alist-get 'id language)))
+                 (firstpair-reader--ordered-languages bundle))))
 
-(defun firstpair-reader--visible-translations-in-display-order (bundle)
-  "Return BUNDLE's visible translation ids in their current textual order."
-  (let ((chosen (firstpair-reader--shown-translations bundle))
-        ids)
-    (dolist (region
-             (sort (copy-sequence
-                    (firstpair-bundle-regions-for-node
-                     bundle (firstpair-bundle-manual) Info-current-node))
-                   (lambda (left right)
-                     (< (plist-get left :start) (plist-get right :start)))))
-      (let ((id (plist-get region :language)))
-        (when (and (not (plist-get region :source))
-                   (member id chosen)
-                   (not (member id ids)))
-          (push id ids))))
-    (or (nreverse ids) chosen)))
+;;; Regions: cached per node, and reordered bodily in the buffer
+
+(defvar-local firstpair-reader--subfile-generation 0
+  "Bumped whenever Info re-reads this buffer's file, invalidating regions.")
+
+(defvar-local firstpair-reader--node-regions nil
+  "Alist of node name to (GENERATION . REGIONS) with buffer-true line numbers.")
+
+(defun firstpair-reader--note-file-read (&rest _arguments)
+  "Record that Info replaced the buffer text with freshly read pristine bytes."
+  (setq firstpair-reader--subfile-generation (1+ firstpair-reader--subfile-generation))
+  (setq firstpair-reader--node-regions nil))
+
+(defun firstpair-reader--regions (bundle)
+  "Return the current node's region rows, with reorder-corrected lines.
+The rows are cached copies whose :start and :end follow the buffer as
+`firstpair-reader--order-regions' moves translation blocks."
+  (let ((cached (assoc Info-current-node firstpair-reader--node-regions)))
+    (if (and cached (equal (cadr cached) firstpair-reader--subfile-generation))
+        (cddr cached)
+      (let ((regions (mapcar #'copy-sequence
+                             (firstpair-bundle-regions-for-node
+                              bundle (firstpair-bundle-manual) Info-current-node))))
+        (setq firstpair-reader--node-regions
+              (cons (cons Info-current-node
+                          (cons firstpair-reader--subfile-generation regions))
+                    (assoc-delete-all Info-current-node firstpair-reader--node-regions)))
+        regions))))
+
+(defun firstpair-reader--region-lines (region)
+  "Return REGION's buffer text as a list of its lines."
+  (save-excursion
+    (goto-char (point-min))
+    (forward-line (1- (plist-get region :start)))
+    (let (lines)
+      (dotimes (_ (1+ (- (plist-get region :end) (plist-get region :start))))
+        (push (buffer-substring (point) (line-end-position)) lines)
+        (forward-line 1))
+      (nreverse lines))))
+
+(defun firstpair-reader--contiguous-blocks-p (blocks)
+  "Non-nil when BLOCKS follow one another separated by single blank lines."
+  (let ((ok t) previous)
+    (dolist (region blocks ok)
+      (when (and previous
+                 (/= (plist-get region :start) (+ (plist-get previous :end) 2)))
+        (setq ok nil))
+      (setq previous region))))
+
+(defun firstpair-reader--desired-block-order (bundle blocks)
+  "Sort a unit's translation BLOCKS by language block and edition order."
+  (let* ((languages (mapcar (lambda (item) (alist-get 'id item))
+                            (firstpair-reader--ordered-languages bundle)))
+         (rank (lambda (region)
+                 (let* ((id (plist-get region :language))
+                        (item (firstpair-bundle-translation bundle id))
+                        (lang (and item (alist-get 'lang item)))
+                        (block (or (and lang (seq-position languages lang))
+                                   (length languages)))
+                        (ids (and lang (firstpair-reader--effective-translations bundle lang)))
+                        (slot (or (seq-position ids id) (length ids))))
+                   (list block slot (plist-get region :start))))))
+    (sort (copy-sequence blocks)
+          (lambda (a b)
+            (let ((ra (funcall rank a)) (rb (funcall rank b)))
+              (or (< (nth 0 ra) (nth 0 rb))
+                  (and (= (nth 0 ra) (nth 0 rb))
+                       (or (< (nth 1 ra) (nth 1 rb))
+                           (and (= (nth 1 ra) (nth 1 rb))
+                                (< (nth 2 ra) (nth 2 rb)))))))))))
+
+(defun firstpair-reader--order-regions (bundle)
+  "Rearrange each unit's translation blocks into the chosen display order.
+Blocks move bodily within their unit — the source lines never move, so
+the lexicon's marked positions stay exact.  The rows returned by
+`firstpair-reader--regions' are updated in place.  A unit whose blocks
+are not separated by single blank lines is left untouched."
+  (when (and (firstpair-bundle-translations bundle)
+             (equal (firstpair-bundle-manual) (firstpair-bundle-reader bundle)))
+    (let ((units (make-hash-table :test #'equal))
+          (order nil))
+      (dolist (region (firstpair-reader--regions bundle))
+        (unless (plist-get region :source)
+          (let ((unit (plist-get region :unit)))
+            (unless (gethash unit units) (push unit order))
+            (push region (gethash unit units)))))
+      (let ((inhibit-read-only t))
+        (dolist (unit (nreverse order))
+          (let* ((blocks (sort (gethash unit units)
+                               (lambda (a b)
+                                 (< (plist-get a :start) (plist-get b :start)))))
+                 (desired (firstpair-reader--desired-block-order bundle blocks)))
+            (when (and (cdr blocks)
+                       (not (equal blocks desired))
+                       (firstpair-reader--contiguous-blocks-p blocks))
+              (let ((texts (mapcar (lambda (region)
+                                     (cons region (firstpair-reader--region-lines region)))
+                                   desired))
+                    (line (plist-get (car blocks) :start)))
+                (save-excursion
+                  (goto-char (point-min))
+                  (forward-line (1- line))
+                  (let ((start (point)))
+                    (goto-char (point-min))
+                    (forward-line (plist-get (car (last blocks)) :end))
+                    (delete-region start (point))
+                    (goto-char start)
+                    (insert (mapconcat (lambda (pair)
+                                         (mapconcat #'identity (cdr pair) "\n"))
+                                       texts "\n\n")
+                            "\n")))
+                (dolist (pair texts)
+                  (let ((region (car pair))
+                        (size (length (cdr pair))))
+                    (plist-put region :start line)
+                    (plist-put region :end (+ line size -1))
+                    (setq line (+ line size 1))))))))))))
+
+(defun firstpair-reader--header-command (action lang id)
+  "Return a stable named command for header-row ACTION on LANG and ID."
+  (let ((command (intern (format "firstpair-reader-header-%s-%s-%s"
+                                 action lang (or id "none")))))
+    (fset command
+          `(lambda ()
+             ,(format "Header row control: %s %s %s." action lang (or id ""))
+             (interactive)
+             (cond ((eq ',action 'first) (firstpair-reader-language-first ,lang))
+                   ((eq ',action 'earlier)
+                    (firstpair-reader-move-translation-earlier ,lang ,id))
+                   (t (firstpair-reader-toggle-language-translation ,lang ,id)))))
+    command))
 
 (defun firstpair-reader--translation-header-line ()
-  "Return the persistent list of editions visible in the current reader."
+  "The active editions, grouped by language — the row that controls them.
+Tap a language tag to show its block first, ◀ to move an edition one
+step earlier within its language, and an edition's name to hide it."
   (let ((bundle (firstpair-bundle-current)))
     (when (and bundle (firstpair-bundle-translations bundle))
-      (let ((ids (firstpair-reader--visible-translations-in-display-order bundle)))
-        (if ids
-            (concat
-             " "
-             (mapconcat
-              (lambda (id) (firstpair-reader--translation-short-title bundle id))
-              ids " · ")
-             " ")
-          " None ")))))
+      (let ((segments nil) (any nil))
+        (dolist (language (firstpair-reader--ordered-languages bundle))
+          (let* ((lang (alist-get 'id language))
+                 (ids (firstpair-reader--effective-translations bundle lang)))
+            (when ids
+              (setq segments
+                    (append segments
+                            (list (if any " | " " ")
+                                  (firstpair-reader--button
+                                   (upcase lang)
+                                   (firstpair-reader--header-command 'first lang nil)
+                                   "Show this language's block first"))))
+              (setq any t)
+              (let ((first t))
+                (dolist (id ids)
+                  (setq segments
+                        (append segments
+                                (list " ")
+                                (unless first
+                                  (list (firstpair-reader--button
+                                         "◀"
+                                         (firstpair-reader--header-command 'earlier lang id)
+                                         "Move this edition one step earlier")))
+                                (list (firstpair-reader--button
+                                       (firstpair-reader--translation-short-title bundle id)
+                                       (firstpair-reader--header-command 'hide lang id)
+                                       "Hide this edition"))))
+                  (setq first nil))))))
+        (if any (cons "" (append segments (list " "))) " None ")))))
 
 (defun firstpair-reader--apply-regions (bundle)
-  "Hide the translation regions of the current node that are not selected.
-A region shows when its translation is the one chosen for a selected
-language (see `firstpair-reader-translation-for'), or that language's
-second translation. Bundles without a translation table select by language
-id, the dictionary's choice."
+  "Hide the translation regions of the current node that are not shown.
+A region shows when its translation is among the ids selected for a
+visible language (see `firstpair-reader--effective-translations').
+Bundles without a translation table select by language id, the
+dictionary's choice."
   (let ((chosen (if (firstpair-bundle-translations bundle)
                     (firstpair-reader--shown-translations bundle)
                   (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-selected bundle)))))
-    (dolist (region (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node))
+    (dolist (region (firstpair-reader--regions bundle))
       (unless (or (plist-get region :source) (member (plist-get region :language) chosen))
         (save-excursion
           (goto-char (point-min))
@@ -517,11 +661,12 @@ id, the dictionary's choice."
                 (push overlay firstpair-reader--overlays)))))))))
 
 (defun firstpair-reader-refresh-regions ()
-  "Apply the language selection to every open reader buffer."
+  "Apply the translation selection and order to every open reader buffer."
   (dolist (buffer (buffer-list))
     (with-current-buffer buffer
       (when (and firstpair-reader-mode (firstpair-bundle-current))
         (let ((bundle (firstpair-bundle-current)))
+          (firstpair-reader--order-regions bundle)
           (firstpair-reader--mark bundle)
           (firstpair-reader--fontify-emphasis)
           (when Info-hide-note-references
@@ -579,6 +724,7 @@ id, the dictionary's choice."
            (when (equal (firstpair-bundle-manual)
                         (firstpair-bundle-reader bundle))
              (firstpair-reader--clear-current-word))
+           (firstpair-reader--order-regions bundle)
            (firstpair-reader--mark bundle)
            (firstpair-reader--fontify-emphasis)
            (when Info-hide-note-references
@@ -628,8 +774,8 @@ id, the dictionary's choice."
       (let* ((key (firstpair-reader--state-key bundle))
              (state (list :node Info-current-node :point (point)
                           :languages firstpair-lexicon-languages
-                          :choices firstpair-reader-translation-choices
-                          :seconds firstpair-reader-second-translations
+                          :selections firstpair-reader-translation-selections
+                          :language-order firstpair-reader-language-order
                           :saved (format-time-string "%FT%T%z")))
              (states (firstpair-reader--load-states)))
         (setf (alist-get key (cdr states) nil nil #'equal) state)
@@ -642,8 +788,17 @@ id, the dictionary's choice."
   (let ((state (and firstpair-reader-resume (firstpair-reader--state-of bundle))))
     (when state
       (when (plist-get state :languages) (setq firstpair-lexicon-languages (plist-get state :languages)))
-      (setq firstpair-reader-translation-choices (plist-get state :choices)
-            firstpair-reader-second-translations (plist-get state :seconds))
+      (setq firstpair-reader-translation-selections
+            (or (plist-get state :selections)
+                (let (selections)
+                  (dolist (pair (plist-get state :choices) (nreverse selections))
+                    (push (cons (car pair)
+                                (delq nil
+                                      (list (cdr pair)
+                                            (alist-get (car pair) (plist-get state :seconds)
+                                                       nil nil #'equal))))
+                          selections))))
+            firstpair-reader-language-order (plist-get state :language-order))
       (condition-case nil
           (progn
             (firstpair-reader--goto 'reader (firstpair-reader--node bundle (firstpair-bundle-reader bundle) (plist-get state :node)))
@@ -737,13 +892,12 @@ source-reference pane."
 (defun firstpair-reader--source-node-p (bundle)
   "Return non-nil when the current node of BUNDLE has source regions."
   (seq-some (lambda (region) (plist-get region :source))
-            (firstpair-bundle-regions-for-node
-             bundle (firstpair-bundle-manual) Info-current-node)))
+            (firstpair-reader--regions bundle)))
 
 (defun firstpair-reader--source-spans (bundle)
   "Buffer spans (START . END) of the source-language regions of the current node."
   (let (spans)
-    (dolist (region (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node) (nreverse spans))
+    (dolist (region (firstpair-reader--regions bundle) (nreverse spans))
       (when (plist-get region :source)
         (save-excursion
           (goto-char (point-min))
@@ -899,23 +1053,20 @@ The choice applies to every lookup, gloss, and glossary until changed."
   (let ((line (line-number-at-pos)))
     (seq-find (lambda (region)
                 (and (<= (plist-get region :start) line) (<= line (plist-get region :end))))
-              (firstpair-bundle-regions-for-node bundle (firstpair-bundle-manual) Info-current-node))))
+              (firstpair-reader--regions bundle))))
 
 (defun firstpair-reader--translation-target-at-point (bundle)
-  "Return (LANG . SLOT) for the translation region at point in BUNDLE.
-SLOT is `primary' or `second'.  Source and non-aligned text use the first
-selected translation language's primary slot."
+  "Return (LANG . ID) for the translation region at point in BUNDLE.
+Source and non-aligned text target the first visible language's first
+edition."
   (let* ((region (firstpair-reader--region-at-point bundle))
          (translation (and region (not (plist-get region :source))
                            (firstpair-bundle-translation bundle (plist-get region :language))))
          (lang (or (and translation (alist-get 'lang translation))
-                   (alist-get 'id (car (firstpair-lexicon-selected bundle)))))
-         (second (and lang (alist-get lang firstpair-reader-second-translations
-                                      nil nil #'equal))))
-    (cons lang (if (and translation
-                        (equal (alist-get 'id translation) second))
-                   'second
-                 'primary))))
+                   (alist-get 'id (car (firstpair-reader--ordered-languages bundle)))))
+         (id (or (and translation (alist-get 'id translation))
+                 (and lang (car (firstpair-reader--effective-translations bundle lang))))))
+    (cons lang id)))
 
 (defun firstpair-reader--language-at-point (bundle)
   "The translation language to act on at point in BUNDLE."
@@ -929,19 +1080,20 @@ selected translation language's primary slot."
               (if (equal (alist-get 'alignment item) "line") "" " ≈")))))
 
 (defun firstpair-reader-translations-label (bundle)
-  "Describe the translations on screen, per language."
-  (let ((selected (firstpair-lexicon-selected bundle)))
-    (if (not selected) "None"
-      (mapconcat (lambda (language)
-                   (let* ((lang (alist-get 'id language))
-                          (first (firstpair-reader-translation-for bundle lang))
-                          (second (firstpair-reader--second-translation-for bundle lang first)))
-                     (concat (alist-get 'label language) ": "
-                             (if first (firstpair-reader--translation-title bundle first) "—")
-                             (if second
-                                 (concat " + " (firstpair-reader--translation-title bundle second))
-                               ""))))
-                 selected "; "))))
+  "Describe the translations on screen, per language and in display order."
+  (let ((languages (firstpair-reader--ordered-languages bundle)))
+    (if (not languages) "None"
+      (mapconcat
+       (lambda (language)
+         (let* ((lang (alist-get 'id language))
+                (ids (firstpair-reader--effective-translations bundle lang)))
+           (concat (alist-get 'label language) ": "
+                   (if ids
+                       (mapconcat (lambda (id)
+                                    (firstpair-reader--translation-title bundle id))
+                                  ids " + ")
+                     "—"))))
+       languages "; "))))
 
 (defun firstpair-reader-show-current-translations ()
   "Report the translations currently visible without changing them.
@@ -963,83 +1115,133 @@ The returned label is also used by the top-level Translations menu."
                                (firstpair-reader-show-current-translations)))
     (error "Showing: no FirstPair edition")))
 
+(defun firstpair-reader--translations-p ()
+  "Non-nil when the active bundle switches between translations."
+  (condition-case nil
+      (and (firstpair-bundle-translations (firstpair-reader--bundle)) t)
+    (error nil)))
+
 (defun firstpair-reader-choose-translation ()
-  "Choose the primary translation by name rather than rotating it."
+  "Show or hide a translation of the language at point, chosen by name."
   (interactive)
-  (firstpair-reader-rotate-translation t))
+  (firstpair-reader-choose-toggle-translation))
 
 (defun firstpair-reader-choose-translation-languages ()
   "Choose which translation languages are visible by name."
   (interactive)
   (firstpair-reader-translation-languages t))
 
-(defun firstpair-reader--set-primary-translation (bundle lang id)
-  "Show translation ID as the primary translation for LANG in BUNDLE."
-  (setf (alist-get lang firstpair-reader-translation-choices nil nil #'equal) id)
-  (firstpair-reader-refresh-regions)
-  (firstpair-lexicon-refresh)
-  (message "%s" (firstpair-reader-translations-label bundle)))
-
 (defun firstpair-reader--translation-language-visible-p (bundle lang)
   "Return non-nil when BUNDLE currently shows translation language LANG."
   (seq-some (lambda (language) (equal (alist-get 'id language) lang))
             (firstpair-lexicon-selected bundle)))
 
-(defun firstpair-reader--set-translation-language (bundle lang id)
-  "Show LANG using translation ID in BUNDLE, or hide LANG when ID is nil."
-  (let* ((declared (mapcar (lambda (language) (alist-get 'id language))
-                           (firstpair-bundle-translation-languages bundle)))
-         (selected (mapcar (lambda (language) (alist-get 'id language))
-                           (firstpair-lexicon-selected bundle))))
-    (if id
-        (progn
-          (setq firstpair-lexicon-languages
-                (seq-filter (lambda (candidate)
-                              (or (equal candidate lang) (member candidate selected)))
-                            declared))
-          (setf (alist-get lang firstpair-reader-translation-choices nil nil #'equal) id)
-          (when (equal id (alist-get lang firstpair-reader-second-translations
-                                     nil nil #'equal))
-            (setf (alist-get lang firstpair-reader-second-translations
-                             nil nil #'equal) nil)))
-      (setq selected (delete lang selected)
-            firstpair-lexicon-languages (or selected :none)))
-    (firstpair-reader-refresh-regions)
-    (firstpair-lexicon-refresh)
-    (ignore-errors (firstpair-reader-save-state))
-    (if (display-graphic-p)
-        (message "%s" (firstpair-reader-translations-label bundle))
-      (firstpair-reader--schedule-terminal-language-feedback bundle lang id))))
+(defun firstpair-reader--show-translation-language (bundle lang)
+  "Add LANG to the visible translation languages of BUNDLE."
+  (let ((declared (mapcar (lambda (language) (alist-get 'id language))
+                          (firstpair-bundle-translation-languages bundle)))
+        (selected (mapcar (lambda (language) (alist-get 'id language))
+                          (firstpair-lexicon-selected bundle))))
+    (setq firstpair-lexicon-languages
+          (seq-filter (lambda (candidate)
+                        (or (equal candidate lang) (member candidate selected)))
+                      declared))))
+
+(defun firstpair-reader--hide-translation-language (bundle lang)
+  "Remove LANG from the visible translation languages of BUNDLE."
+  (let ((selected (mapcar (lambda (language) (alist-get 'id language))
+                          (firstpair-lexicon-selected bundle))))
+    (setq firstpair-lexicon-languages (or (delete lang selected) :none))
+    (setq firstpair-reader-translation-selections
+          (assoc-delete-all lang firstpair-reader-translation-selections))))
+
+(defun firstpair-reader--after-translation-change (bundle lang)
+  "Refresh, persist, and report LANG's editions after a change in BUNDLE."
+  (firstpair-reader-refresh-regions)
+  (firstpair-lexicon-refresh)
+  (ignore-errors (firstpair-reader-save-state))
+  (if (display-graphic-p)
+      (message "%s" (firstpair-reader-translations-label bundle))
+    (firstpair-reader--schedule-terminal-language-feedback bundle lang)))
+
+(defun firstpair-reader-toggle-language-translation (lang id)
+  "Show translation ID of LANG when hidden; hide it when on screen.
+Hiding the last shown edition hides the language; ID nil hides the
+language outright."
+  (let* ((bundle (firstpair-reader--bundle))
+         (visible (firstpair-reader--translation-language-visible-p bundle lang))
+         (effective (and visible (firstpair-reader--effective-translations bundle lang))))
+    (cond
+     ((null id)
+      (firstpair-reader--hide-translation-language bundle lang))
+     ((member id effective)
+      (let ((rest (remove id effective)))
+        (if rest
+            (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+                  rest)
+          (firstpair-reader--hide-translation-language bundle lang))))
+     (t
+      (unless (seq-find (lambda (item) (equal (alist-get 'id item) id))
+                        (firstpair-reader--candidates bundle lang))
+        (user-error "That translation does not cover this part"))
+      (unless visible (firstpair-reader--show-translation-language bundle lang))
+      (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+            (append effective (list id)))))
+    (firstpair-reader--after-translation-change bundle lang)))
 
 (defun firstpair-reader-select-language-translation (lang id)
-  "For translation language LANG, select edition ID or hide it when ID is nil."
+  "Menu command: toggle edition ID of LANG, or hide LANG when ID is nil."
+  (firstpair-reader-toggle-language-translation lang id))
+
+(defun firstpair-reader-language-first (lang)
+  "Show translation language LANG's block before the other languages."
+  (let* ((bundle (firstpair-reader--bundle))
+         (current (mapcar (lambda (item) (alist-get 'id item))
+                          (firstpair-reader--ordered-languages bundle))))
+    (setq firstpair-reader-language-order (cons lang (delete lang current)))
+    (firstpair-reader--after-translation-change bundle lang)))
+
+(defun firstpair-reader-language-first-at-point ()
+  "Show the language at point's block before the other languages."
+  (interactive)
   (let ((bundle (firstpair-reader--bundle)))
-    (unless (or (null id)
-                (seq-find (lambda (item) (equal (alist-get 'id item) id))
-                          (firstpair-reader--candidates bundle lang)))
-      (user-error "That translation does not cover this part"))
-    (firstpair-reader--set-translation-language bundle lang id)))
+    (firstpair-reader-language-first (firstpair-reader--language-at-point bundle))))
+
+(defun firstpair-reader-move-translation-earlier (lang id)
+  "Move edition ID one step earlier among LANG's editions on screen."
+  (let* ((bundle (firstpair-reader--bundle))
+         (effective (firstpair-reader--effective-translations bundle lang))
+         (position (seq-position effective id)))
+    (when (and position (> position 0))
+      (let ((ids (copy-sequence effective)))
+        (setf (nth position ids) (nth (1- position) ids))
+        (setf (nth (1- position) ids) id)
+        (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+              ids)))
+    (firstpair-reader--after-translation-change bundle lang)))
 
 (defun firstpair-reader--translation-language-menu-command (lang id)
-  "Return a stable named menu command selecting ID for language LANG.
+  "Return a stable named menu command toggling ID for language LANG.
 Terminal-app menu bridges cannot all dispatch anonymous closure commands."
   (let ((command
          (intern (format "firstpair-reader-menu-%s-%s" lang (or id "none")))))
     (fset command
           `(lambda ()
-             ,(format "Select %s for terminal translation language %s."
+             ,(format "Toggle %s for terminal translation language %s."
                       (or id "None") lang)
              (interactive)
              (firstpair-reader-select-language-translation ,lang ,id)))
     command))
 
 (defun firstpair-reader--translation-language-menu (lang)
-  "Build the terminal translation submenu for language LANG."
+  "Build the terminal translation submenu for language LANG.
+Every shown edition carries a checked box; selecting an unchecked one
+shows it as well, selecting a checked one hides it."
   (let* ((bundle (firstpair-reader--bundle))
          (language (seq-find (lambda (item) (equal (alist-get 'id item) lang))
                              (firstpair-bundle-translation-languages bundle)))
          (visible (firstpair-reader--translation-language-visible-p bundle lang))
-         (current (and visible (firstpair-reader-translation-for bundle lang)))
+         (effective (and visible (firstpair-reader--effective-translations bundle lang)))
          (none-command
           (firstpair-reader--translation-language-menu-command lang nil))
          (entries (list (list none-command 'menu-item "None" none-command
@@ -1055,8 +1257,9 @@ Terminal-app menu bridges cannot all dispatch anonymous closure commands."
                        (list command 'menu-item
                              (firstpair-reader--translation-title bundle id)
                              command
-                             :help "Show this edition for the language"
-                             :button (cons 'radio (equal id current))))))))
+                             :help "Show or hide this edition"
+                             :button (cons 'checkbox
+                                           (and (member id effective) t))))))))
     (append (list 'keymap
                   (format "%s translations"
                           (or (alist-get 'label language) (upcase lang))))
@@ -1087,29 +1290,22 @@ Terminal-app menu bridges cannot all dispatch anonymous closure commands."
 
 (defun firstpair-reader--terminal-translations-summary (bundle)
   "Describe BUNDLE's visible translations compactly enough for a phone."
-  (let ((selected (firstpair-lexicon-selected bundle)))
-    (if (not selected) "None"
+  (let ((languages (firstpair-reader--ordered-languages bundle)))
+    (if (not languages) "None"
       (mapconcat
        (lambda (language)
          (let* ((lang (alist-get 'id language))
-                (first (firstpair-reader-translation-for bundle lang))
-                (second (firstpair-reader--second-translation-for bundle lang first)))
+                (ids (firstpair-reader--effective-translations bundle lang)))
            (concat (upcase lang) " "
-                   (if first (firstpair-reader--translation-short-title bundle first) "—")
-                   (if second
-                       (concat "+" (firstpair-reader--translation-short-title bundle second))
-                     ""))))
-       selected " | "))))
+                   (if ids
+                       (mapconcat (lambda (id)
+                                    (firstpair-reader--translation-short-title bundle id))
+                                  ids "+")
+                     "—"))))
+       languages " | "))))
 
 (defvar firstpair-reader--terminal-translation-feedback nil
   "Translation feedback waiting for the current TTY menu command to finish.")
-
-(defun firstpair-reader--translation-in-slot (bundle lang slot)
-  "Return BUNDLE's translation id in LANG's primary or second SLOT."
-  (let ((first (firstpair-reader-translation-for bundle lang)))
-    (if (eq slot 'second)
-        (firstpair-reader--second-translation-for bundle lang first)
-      first)))
 
 (defun firstpair-reader--show-terminal-translation-feedback ()
   "Show and clear translation feedback queued by a TTY menu command."
@@ -1120,19 +1316,18 @@ Terminal-app menu bridges cannot all dispatch anonymous closure commands."
                    #'firstpair-reader--show-terminal-translation-feedback)
       (message "%s" label))))
 
-(defun firstpair-reader--schedule-terminal-translation-feedback (bundle lang slot)
-  "Keep BUNDLE's translation in LANG and SLOT visible after a TTY tap."
-  (firstpair-reader--schedule-terminal-language-feedback
-   bundle lang (firstpair-reader--translation-in-slot bundle lang slot)))
-
-(defun firstpair-reader--schedule-terminal-language-feedback (bundle lang id)
-  "Keep BUNDLE's selected ID for LANG visible after a TTY menu tap.
-When ID is nil, report that the language is hidden."
+(defun firstpair-reader--schedule-terminal-language-feedback (bundle lang &optional _id)
+  "Keep LANG's shown edition list visible after a TTY menu tap."
   (let* ((language (seq-find (lambda (row) (equal (alist-get 'id row) lang))
                              (firstpair-bundle-translation-languages bundle)))
+         (ids (and (firstpair-reader--translation-language-visible-p bundle lang)
+                   (firstpair-reader--effective-translations bundle lang)))
          (label (format "%s: %s"
                         (or (alist-get 'label language) (upcase lang))
-                        (if id (firstpair-reader--translation-title bundle id)
+                        (if ids
+                            (mapconcat (lambda (id)
+                                         (firstpair-reader--translation-title bundle id))
+                                       ids " + ")
                           "None"))))
     ;; A terminal menu invokes this command before its own teardown.  Posting
     ;; from the outer command loop leaves the result in the echo area after
@@ -1143,174 +1338,146 @@ When ID is nil, report that the language is hidden."
     (add-hook 'post-command-hook
               #'firstpair-reader--show-terminal-translation-feedback)))
 
-(defun firstpair-reader--move-translation-slot (bundle lang slot step)
-  "Move BUNDLE's LANG translation in SLOT by STEP, wrapping in edition order."
+(defun firstpair-reader--replace-translation (bundle lang id step)
+  "Swap edition ID of LANG for its next unshown alternative, by STEP.
+The replacement takes ID's place in the language's display order, and
+point stays in the block that changed."
   (let* ((origin (firstpair-reader--region-at-point bundle))
          (origin-line (line-number-at-pos))
          (origin-offset (and origin (- origin-line (plist-get origin :start))))
-         (first (firstpair-reader-translation-for bundle lang))
-         (second (firstpair-reader--second-translation-for bundle lang first))
-         (exclude (if (eq slot 'second) first second))
-         (candidates (firstpair-reader--candidates bundle lang exclude))
-         (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
-         (current (if (eq slot 'second) second first))
-         (position (seq-position ids current)))
-    (when (< (length ids) 2)
+         (effective (firstpair-reader--effective-translations bundle lang))
+         (others (remove id effective))
+         (candidates (seq-remove (lambda (candidate) (member candidate others))
+                                 (mapcar (lambda (item) (alist-get 'id item))
+                                         (firstpair-reader--candidates bundle lang))))
+         (position (seq-position candidates id)))
+    (when (< (length candidates) 2)
       (user-error "No other translation of this language covers this part"))
     (let ((next (nth (if position
-                         (mod (+ position step) (length ids))
-                       (if (< step 0) (1- (length ids)) 0))
-                     ids)))
-      (if (eq slot 'second)
-          (firstpair-reader--set-second-translation bundle lang next)
-        (firstpair-reader--set-primary-translation bundle lang next))
-      ;; Keep point in the slot it changed.  Otherwise the old region becomes
-      ;; invisible and a second tap can accidentally target the other slot.
+                         (mod (+ position step) (length candidates))
+                       (if (< step 0) (1- (length candidates)) 0))
+                     candidates))
+          (slot (seq-position effective id)))
+      (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+            (if slot
+                (append (seq-take effective slot) (list next)
+                        (nthcdr (1+ slot) effective))
+              (append effective (list next))))
+      (firstpair-reader-refresh-regions)
+      (firstpair-lexicon-refresh)
+      (ignore-errors (firstpair-reader-save-state))
+      ;; Keep point in the block that changed.  Otherwise the old region
+      ;; becomes invisible and a second tap can accidentally target another.
       (when (and origin (not (plist-get origin :source)))
         (let ((replacement
                (seq-find
                 (lambda (region)
                   (and (equal (plist-get region :language) next)
                        (equal (plist-get region :unit) (plist-get origin :unit))))
-                (firstpair-bundle-regions-for-node
-                 bundle (firstpair-bundle-manual) Info-current-node))))
+                (firstpair-reader--regions bundle))))
           (when replacement
             (goto-char (point-min))
             (forward-line
              (+ (1- (plist-get replacement :start))
                 (min (or origin-offset 0)
                      (- (plist-get replacement :end)
-                        (plist-get replacement :start)))))))))))
+                        (plist-get replacement :start))))))))
+      next)))
 
 (defun firstpair-reader-terminal-next-translation ()
-  "Show the next translation in the primary or second slot at point."
+  "Swap the edition at point for the next one of its language."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
-         (target (firstpair-reader--translation-target-at-point bundle))
-         (lang (car target))
-         (slot (cdr target)))
+         (target (firstpair-reader--translation-target-at-point bundle)))
     (let ((inhibit-message t))
-      (firstpair-reader--move-translation-slot bundle lang slot 1))
-    (firstpair-reader--schedule-terminal-translation-feedback bundle lang slot)))
+      (firstpair-reader--replace-translation bundle (car target) (cdr target) 1))
+    (firstpair-reader--schedule-terminal-language-feedback bundle (car target))))
 
 (defun firstpair-reader-terminal-previous-translation ()
-  "Show the previous translation in the primary or second slot at point."
+  "Swap the edition at point for the previous one of its language."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
-         (target (firstpair-reader--translation-target-at-point bundle))
-         (lang (car target))
-         (slot (cdr target)))
+         (target (firstpair-reader--translation-target-at-point bundle)))
     (let ((inhibit-message t))
-      (firstpair-reader--move-translation-slot bundle lang slot -1))
-    (firstpair-reader--schedule-terminal-translation-feedback bundle lang slot)))
+      (firstpair-reader--replace-translation bundle (car target) (cdr target) -1))
+    (firstpair-reader--schedule-terminal-language-feedback bundle (car target))))
 
 (defun firstpair-reader--multiple-translations-p ()
-  "Return non-nil when the active language has another primary translation."
+  "Non-nil when the language at point has an unshown edition to swap in."
   (condition-case nil
       (let* ((bundle (firstpair-reader--bundle))
              (target (firstpair-reader--translation-target-at-point bundle))
-             (lang (car target))
-             (slot (cdr target))
-             (first (firstpair-reader-translation-for bundle lang))
-             (second (firstpair-reader--second-translation-for bundle lang first))
-             (exclude (if (eq slot 'second) first second)))
-        (> (length (firstpair-reader--candidates bundle lang exclude)) 1))
-    (error nil)))
-
-(defun firstpair-reader--second-translation-available-p ()
-  "Return non-nil when the active language has a possible second translation."
-  (condition-case nil
-      (let* ((bundle (firstpair-reader--bundle))
-             (lang (firstpair-reader--language-at-point bundle))
-             (first (firstpair-reader-translation-for bundle lang)))
-        (or (alist-get lang firstpair-reader-second-translations nil nil #'equal)
-            (firstpair-reader--candidates bundle lang first)))
+             (effective (firstpair-reader--effective-translations bundle (car target))))
+        (> (length (firstpair-reader--candidates bundle (car target)))
+           (length effective)))
     (error nil)))
 
 (defun firstpair-reader-rotate-translation (&optional choose)
-  "Show the next translation in the primary or second slot at point.
-With a prefix argument CHOOSE, choose the primary translation by name.  Only
-translations that cover the current part are used; each choice is kept for
-its language until changed."
+  "Swap the edition at point for the next one of its language.
+With a prefix argument CHOOSE, show or hide an edition by name.  Only
+translations that cover the current part are used; every choice is kept
+for its language until changed."
   (interactive "P")
   (let* ((bundle (firstpair-reader--bundle))
-         (target (firstpair-reader--translation-target-at-point bundle))
-         (lang (car target))
-         (slot (cdr target)))
+         (target (firstpair-reader--translation-target-at-point bundle)))
     (unless (firstpair-bundle-translations bundle)
       (user-error "This bundle has one translation per language"))
-    (if (not choose)
-        (firstpair-reader--move-translation-slot bundle lang slot 1)
-      (let* ((second (alist-get lang firstpair-reader-second-translations nil nil #'equal))
-             (candidates (firstpair-reader--candidates bundle lang second))
-             (ids (mapcar (lambda (item) (alist-get 'id item)) candidates))
-             (titles (mapcar (lambda (id)
-                               (cons (firstpair-reader--translation-title bundle id) id))
-                             ids)))
-        (when (< (length ids) 2)
-          (user-error "No other translation of this language covers this part"))
-        (firstpair-reader--set-primary-translation
-         bundle lang
-         (cdr (assoc (completing-read "Translation: " (mapcar #'car titles) nil t)
-                     titles)))))))
+    (if choose
+        (firstpair-reader-choose-toggle-translation)
+      (firstpair-reader--replace-translation bundle (car target) (cdr target) 1)
+      (message "%s" (firstpair-reader-translations-label bundle)))))
 
 (defun firstpair-reader-previous-translation ()
-  "Show the previous translation in the primary or second slot at point."
+  "Swap the edition at point for the previous one of its language."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
          (target (firstpair-reader--translation-target-at-point bundle)))
     (unless (firstpair-bundle-translations bundle)
       (user-error "This bundle has one translation per language"))
-    (firstpair-reader--move-translation-slot bundle (car target) (cdr target) -1)))
+    (firstpair-reader--replace-translation bundle (car target) (cdr target) -1)
+    (message "%s" (firstpair-reader-translations-label bundle))))
 
-(defun firstpair-reader--set-second-translation (bundle lang id)
-  "Show ID as LANG's second translation in BUNDLE, or hide it when ID is nil."
-  (setf (alist-get lang firstpair-reader-second-translations nil nil #'equal) id)
-  (firstpair-reader-refresh-regions)
-  (firstpair-lexicon-refresh)
-  (message "%s"
-           (if id
-               (firstpair-reader-translations-label bundle)
-             (let ((language
-                    (seq-find (lambda (row) (equal (alist-get 'id row) lang))
-                              (firstpair-bundle-translation-languages bundle))))
-               (format "Second %s translation hidden"
-                       (or (alist-get 'label language) (upcase lang)))))))
+(defun firstpair-reader-choose-toggle-translation ()
+  "Show or hide an edition of the language at point, chosen by name."
+  (interactive)
+  (let* ((bundle (firstpair-reader--bundle))
+         (lang (firstpair-reader--language-at-point bundle))
+         (effective (firstpair-reader--effective-translations bundle lang))
+         (titles (mapcar (lambda (item)
+                           (let ((id (alist-get 'id item)))
+                             (cons (concat (if (member id effective) "✓ " "  ")
+                                           (firstpair-reader--translation-title bundle id))
+                                   id)))
+                         (firstpair-reader--candidates bundle lang))))
+    (unless titles
+      (user-error "No translation of this language covers this part"))
+    (firstpair-reader-toggle-language-translation
+     lang
+     (cdr (assoc (completing-read "Show or hide translation: "
+                                  (mapcar #'car titles) nil t)
+                 titles)))))
 
 (defun firstpair-reader-second-translation ()
-  "Toggle a second translation of the language at point under the first.
-When a second edition is visible, one invocation hides it regardless of how
-many alternatives exist.  When hidden, one invocation shows the first
-available alternative."
+  "Show one more edition of the language at point, or collapse to one.
+The header row and the Tr menus are the first-class controls; this key
+keeps its old rhythm: it adds an edition when one is shown, and returns
+to a single edition when several are."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
          (lang (firstpair-reader--language-at-point bundle)))
     (unless (firstpair-bundle-translations bundle)
       (user-error "This bundle has one translation per language"))
-    (let* ((first (firstpair-reader-translation-for bundle lang))
-           (ids (mapcar (lambda (item) (alist-get 'id item)) (firstpair-reader--candidates bundle lang first)))
-           (current (alist-get lang firstpair-reader-second-translations nil nil #'equal))
-           (next (and (null current) (car ids))))
-      (when (and (null current) (null ids))
-        (user-error "No second translation of this language covers this part"))
-      (firstpair-reader--set-second-translation bundle lang next))))
-
-(defun firstpair-reader-choose-second-translation ()
-  "Choose by name the second translation of the language at point."
-  (interactive)
-  (let* ((bundle (firstpair-reader--bundle))
-         (lang (firstpair-reader--language-at-point bundle))
-         (first (firstpair-reader-translation-for bundle lang))
-         (ids (mapcar (lambda (item) (alist-get 'id item))
-                      (firstpair-reader--candidates bundle lang first))))
-    (unless ids
-      (user-error "No second translation of this language covers this part"))
-    (let* ((titles (mapcar (lambda (id)
-                             (cons (firstpair-reader--translation-title bundle id) id))
-                           ids))
-           (choice (completing-read "Second translation: "
-                                    (mapcar #'car titles) nil t)))
-      (firstpair-reader--set-second-translation bundle lang (cdr (assoc choice titles))))))
+    (let* ((effective (firstpair-reader--effective-translations bundle lang))
+           (unshown (seq-remove (lambda (id) (member id effective))
+                                (mapcar (lambda (item) (alist-get 'id item))
+                                        (firstpair-reader--candidates bundle lang)))))
+      (cond ((cdr effective)
+             (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+                   (list (car effective)))
+             (firstpair-reader--after-translation-change bundle lang))
+            (unshown
+             (firstpair-reader-toggle-language-translation lang (car unshown)))
+            (t (user-error "No second translation of this language covers this part"))))))
 
 (defun firstpair-reader-glossary ()
   "Open the glossary of dictionary words in the references window."
@@ -1553,6 +1720,7 @@ updated directly.  Returns DIRECTORY."
   (let ((bundle (firstpair-bundle-register root)))
     (add-hook 'Info-selection-hook #'firstpair-reader--after-select)
     (advice-add 'Info-goto-node :around #'firstpair-reader--goto-node-advice)
+    (advice-add 'Info-insert-file-contents :after #'firstpair-reader--note-file-read)
     bundle))
 
 ;;; Mode
@@ -1624,6 +1792,11 @@ updated directly.  Returns DIRECTORY."
     (define-key map [mode-line down-mouse-1] #'ignore)
     (define-key map [mode-line double-mouse-1] #'ignore)
     (define-key map [mode-line triple-mouse-1] #'ignore)
+    (define-key map [header-line mouse-1] #'firstpair-reader-mode-line-click)
+    (define-key map [header-line drag-mouse-1] #'firstpair-reader-mode-line-click)
+    (define-key map [header-line down-mouse-1] #'ignore)
+    (define-key map [header-line double-mouse-1] #'ignore)
+    (define-key map [header-line triple-mouse-1] #'ignore)
     (define-key map (kbd "C-c C-l") #'firstpair-reader-layout)
     (define-key map (kbd "C-c C-o") #'firstpair-reader-other-window)
     (define-key map [remap Info-follow-nearest-node] #'firstpair-reader-follow-nearest-node)
@@ -1639,14 +1812,12 @@ updated directly.  Returns DIRECTORY."
      :label (firstpair-reader--current-translations-menu-label)
      :help "Report the translations currently visible; this changes nothing"]
     "---"
-    ["Choose Translation..." firstpair-reader-choose-translation
-     :enable (firstpair-reader--multiple-translations-p)]
+    ["Show or Hide Translation..." firstpair-reader-choose-toggle-translation
+     :enable (firstpair-reader--translations-p)]
     ["Next Translation at Point" firstpair-reader-rotate-translation
      :enable (firstpair-reader--multiple-translations-p)]
-    ["Toggle Second Translation" firstpair-reader-second-translation
-     :enable (firstpair-reader--second-translation-available-p)]
-    ["Choose Second Translation..." firstpair-reader-choose-second-translation
-     :enable (firstpair-reader--second-translation-available-p)]
+    ["This Language First" firstpair-reader-language-first-at-point
+     :enable (firstpair-reader--translations-p)]
     "---"
     ["Choose Languages..." firstpair-reader-choose-translation-languages t]
     ["Cycle Languages" firstpair-reader-translation-languages t]))
@@ -1828,7 +1999,6 @@ acts on the book even while the dictionary window has focus."
   (firstpair-reader--bar
    (cons "Tr<" #'firstpair-reader-terminal-previous-translation)
    (cons "Tr>" #'firstpair-reader-terminal-next-translation)
-   (cons "2nd" #'firstpair-reader-second-translation)
    (cons "Lang" #'firstpair-lexicon-cycle-languages-command)
    (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
    (cons "<" #'firstpair-reader-previous-marked-lookup)
@@ -1913,11 +2083,12 @@ acts on the book even while the dictionary window has focus."
     (princ "                                      RET / j   next source word, looked up at once; k previous\n")
     (princ "Long press / right    next translation    t   languages: English, Русский, both\n")
     (princ "                                          =   show current translations (changes nothing)\n")
-    (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-Eng and Tr-Rus choose or hide a language\n")
+    (princ "Top Emacs menu        Translations        in iSH: Tr-Eng and Tr-Rus are checkboxes — any number of editions per language\n")
+    (princ "Second row            EN Longfellow ◀Cary | RU Мин   tap a name to hide it, ◀ to move it earlier, EN/RU to put that block first\n")
     (princ "Middle bar            Dict open/close · ▲ ▼ page · ◀c c▶ canto · Top · Refs · ?\n")
-    (princ "Bottom bar            Tr< Tr> · 2nd · Lang · << < > >> words\n")
+    (princ "Bottom bar            Tr< Tr> · Lang · << < > >> words\n")
     (princ "                        << and >> skip frequent function words such as prepositions and essere\n")
-    (princ "                                          b   second translation under the first\n")
+    (princ "                                          b   one more edition of the language at point / back to one\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
     (princ "\nIn the dictionary window: m more/less senses, t languages, q close.  Everything above also has a C-c C-<letter> form.\n")))
