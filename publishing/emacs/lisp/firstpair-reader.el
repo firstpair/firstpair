@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.46
+;; Version: 1.47
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1787,7 +1787,7 @@ updated directly.  Returns DIRECTORY."
   (let ((bundle (firstpair-bundle-register root)))
     (add-hook 'Info-selection-hook #'firstpair-reader--after-select)
     (advice-add 'Info-goto-node :around #'firstpair-reader--goto-node-advice)
-    (advice-add 'Info-insert-file-contents :after #'firstpair-reader--note-file-read)
+    (advice-add 'info-insert-file-contents :after #'firstpair-reader--note-file-read)
     bundle))
 
 ;;; Mode

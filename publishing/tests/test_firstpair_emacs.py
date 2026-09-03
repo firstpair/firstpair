@@ -1699,11 +1699,12 @@ class AlignedTests(Fixture):
   (setq firstpair-reader--states nil firstpair-reader-translation-selections nil)
   (firstpair-read)
   (with-current-buffer firstpair-reader-buffer
-    (princ (format "%s|%s|%s|%s" Info-current-node (car (alist-get "en" firstpair-reader-translation-selections nil nil #'equal))
-                   (key-binding "d") (and (string-match-p "Dict" (format "%S" mode-line-format)) t)))))"""
+    (princ (format "%s|%s|%s|%s|%s" Info-current-node (car (alist-get "en" firstpair-reader-translation-selections nil nil #'equal))
+                   (key-binding "d") (and (string-match-p "Dict" (format "%S" mode-line-format)) t)
+                   (and (advice-member-p #'firstpair-reader--note-file-read 'info-insert-file-contents) t)))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
-        self.assertEqual("Inferno — Canto 1|en-cary|firstpair-reader-describe-word|t", result.stdout.strip().splitlines()[-1], result.stdout)
+        self.assertEqual("Inferno — Canto 1|en-cary|firstpair-reader-describe-word|t|t", result.stdout.strip().splitlines()[-1], result.stdout)  # the region cache is invalidated by Info's real reader, info-insert-file-contents
         self.assertIn(":node", state_file.read_text(encoding="utf-8"))
 
 
