@@ -415,7 +415,9 @@ References pane. Word movement refreshes that dictionary pane. The word represen
 Dict stays underlined in the poem and the underline moves with every lookup;
 closing Dict removes it. In the book, `d` opens the dictionary, `t` chooses languages,
 `[` and `]` select the previous or next translation at point, `b` toggles a second
-one, `,` and `.` step between dictionary words, `j` and `k` step to the next or
+one, and `T` cycles visible languages backward. In 1Unix's native strip, holding
+**Tr<**, **Tr>**, **2nd**, or **Lang** performs the inverse of tapping it. `,` and
+`.` step between dictionary words, `j` and `k` step to the next or
 previous word *and open it*, `J` and `K` jump between significant words, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other
 source text with the current dictionary languages; in the dictionary, `m`

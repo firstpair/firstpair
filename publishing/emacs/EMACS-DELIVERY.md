@@ -242,6 +242,9 @@ articles, prepositions, pronouns, and forms of *essere* and *avere*. Bind these
 to `K`, `k`, `j`, `J`, `[`, `]`, `b`, and `t` respectively so a terminal host
 can expose a persistent native row and send ordinary keyboard events without
 depending on terminal mouse release.
+The host may add inverse long presses: `]`, `[`, `b`, and `T` undo normal taps
+on **Tr<**, **Tr>**, **2nd**, and **Lang**. The recognizer must cancel the
+button's release action so one hold emits exactly one inverse command.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

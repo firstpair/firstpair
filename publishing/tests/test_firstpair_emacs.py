@@ -452,14 +452,23 @@ class PackageTests(unittest.TestCase):
       (princ (format "after-essere=%s " (thing-at-point 'word t)))
       (search-backward "cammin")
       (firstpair-reader-previous-significant-marked)
-      (princ (format "back=%s bindings=%S/%S/%S/%S/%S/%S\n"
+      (princ (format "back=%s bindings=%S/%S/%S/%S/%S/%S/%S\n"
                      (thing-at-point 'word t)
                      (lookup-key firstpair-reader-mode-map (kbd "K"))
                      (lookup-key firstpair-reader-mode-map (kbd "k"))
                      (lookup-key firstpair-reader-mode-map (kbd "j"))
                      (lookup-key firstpair-reader-mode-map (kbd "J"))
                      (lookup-key firstpair-reader-mode-map (kbd "["))
-                     (lookup-key firstpair-reader-mode-map (kbd "]")))))))'''
+                     (lookup-key firstpair-reader-mode-map (kbd "]"))
+                     (lookup-key firstpair-reader-mode-map (kbd "T"))))))
+  (let ((firstpair-lexicon-languages nil))
+    (cl-letf (((symbol-function 'firstpair-lexicon-translations)
+               (lambda (_bundle)
+                 '(((id . "en") (label . "English"))
+                   ((id . "ru") (label . "Русский"))))))
+      (princ (format "reverse=%s forward=%s\n"
+                     (firstpair-lexicon-cycle-languages 'fixture -1)
+                     (firstpair-lexicon-cycle-languages 'fixture 1))))))'''
         completed = subprocess.run(
             ["emacs", "--batch", "-Q", "--eval", script],
             capture_output=True,
@@ -474,9 +483,11 @@ class PackageTests(unittest.TestCase):
             "firstpair-reader-next-marked-lookup/"
             "firstpair-reader-next-significant-marked-lookup/"
             "firstpair-reader-terminal-previous-translation/"
-            "firstpair-reader-terminal-next-translation",
+            "firstpair-reader-terminal-next-translation/"
+            "firstpair-reader-previous-translation-languages",
             completed.stdout,
         )
+        self.assertIn("reverse=Русский forward=English + Русский", completed.stdout)
 
     @unittest.skipUnless(has("emacs"), "Emacs is not installed")
     def test_return_advances_poem_but_keeps_info_links(self) -> None:

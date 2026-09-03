@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.37
+;; Version: 1.38
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -886,6 +886,14 @@ The choice applies to every lookup, gloss, and glossary until changed."
     (firstpair-lexicon-refresh)
     (firstpair-reader-refresh-regions)))
 
+(defun firstpair-reader-previous-translation-languages ()
+  "Select the previous dictionary and visible-translation language state."
+  (interactive)
+  (let ((bundle (firstpair-reader--bundle)))
+    (message "Translations: %s" (firstpair-lexicon-cycle-languages bundle -1))
+    (firstpair-lexicon-refresh)
+    (firstpair-reader-refresh-regions)))
+
 (defun firstpair-reader--region-at-point (bundle)
   "Return the aligned region containing point, or nil."
   (let ((line (line-number-at-pos)))
@@ -1588,6 +1596,7 @@ updated directly.  Returns DIRECTORY."
     ;; Single keys for phones: the same commands without the C-c chord.
     (define-key map (kbd "d") #'firstpair-reader-describe-word)
     (define-key map (kbd "t") #'firstpair-reader-translation-languages)
+    (define-key map (kbd "T") #'firstpair-reader-previous-translation-languages)
     (define-key map (kbd "v") #'firstpair-reader-rotate-translation)
     (define-key map (kbd "b") #'firstpair-reader-second-translation)
     (define-key map (kbd "=") #'firstpair-reader-show-current-translations)

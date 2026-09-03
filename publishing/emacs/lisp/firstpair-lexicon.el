@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.37
+;; Version: 1.38
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -207,14 +207,15 @@ Its first-letter shard, or the single table of an older bundle."
         (mapconcat (lambda (item) (alist-get 'label item)) selected " + ")
       "None")))
 
-(defun firstpair-lexicon-cycle-languages (bundle)
-  "Select the next translation choice for BUNDLE: each language alone, then all.
+(defun firstpair-lexicon-cycle-languages (bundle &optional step)
+  "Move by STEP through BUNDLE's language choices: each alone, then all.
+STEP defaults to one; a negative value moves backward.
 Returns the description of the new choice."
   (let* ((declared (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-translations bundle)))
          (choices (append (mapcar #'list declared) (and (cdr declared) (list declared))))
          (current (mapcar (lambda (item) (alist-get 'id item)) (firstpair-lexicon-selected bundle)))
          (position (seq-position choices current #'equal))
-         (next (nth (mod (1+ (or position -1)) (length choices)) choices)))
+         (next (nth (mod (+ (or position -1) (or step 1)) (length choices)) choices)))
     (setq firstpair-lexicon-languages next)
     (firstpair-lexicon-languages-label bundle)))
 
