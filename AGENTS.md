@@ -633,6 +633,15 @@ book-specific guide fragment. Never produce the delivered `.info` with
 is validated only when the inventory, structural Info, link, lexicon,
 `makeinfo`, and `emacs --batch` gates all pass.
 
+Keep Emacs aligned-edition translation state bounded: one primary and one
+optional second edition per visible language. The persistent edition line is
+read-only status; **Tr<** and **Tr>** replace the slot under point, **2nd**
+strictly toggles the optional slot, and **Lang** changes visible languages.
+Do not add arbitrary selected-edition lists, user-reordered language blocks,
+or runtime rewriting of Info node text. The bounded model keeps narrow phone
+controls legible, marked-word positions stable, saved state small, and native
+tap/long-press actions exact inverses.
+
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it
 against the resolved vault and fail closed before staging or ZIP creation. A
