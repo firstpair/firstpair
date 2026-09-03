@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-03T04:53:10.591Z",
+  "updatedAt": "2026-09-03T04:53:51.997Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -8746,7 +8746,7 @@
       }
     },
     "dante-commedia/russian": {
-      "updatedAt": "2026-09-03T04:42:02.150Z",
+      "updatedAt": "2026-09-03T04:53:51.997Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -8796,20 +8796,20 @@
         },
         "emacs": {
           "kind": "emacs",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-028a531b).zip",
-          "sha256": "37168eea19e66e7a7ac17b6b568f49556ec8ccab227cc886b962c367480c2727",
-          "size": 7329440,
-          "pathname": "books/dante-commedia/russian/emacs/37168eea19e66e7a-dante-commedia-russian-full-emacs (1.0.0-028a531b).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/37168eea19e66e7a-dante-commedia-russian-full-emacs%20%281.0.0-028a531b%29.zip",
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-full-emacs (1.0.0-c7b59a2a).zip",
+          "sha256": "9b6bcb240f5949b6cdc8a90946390feabd2baf2e52cae5a2cf52a02680699ec1",
+          "size": 7330612,
+          "pathname": "books/dante-commedia/russian/emacs/9b6bcb240f5949b6-dante-commedia-russian-full-emacs (1.0.0-c7b59a2a).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/9b6bcb240f5949b6-dante-commedia-russian-full-emacs%20%281.0.0-c7b59a2a%29.zip",
           "skipped": false
         },
         "emacsGuide": {
           "kind": "emacs-guide",
-          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-028a531b).html",
-          "sha256": "da77695f3bddccb8f277633a21dee0014bc18abf56f4d8b638107e584402959e",
-          "size": 38690,
-          "pathname": "books/dante-commedia/russian/emacs-guide/da77695f3bddccb8-dante-commedia-russian-emacs-guide (1.0.0-028a531b).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/da77695f3bddccb8-dante-commedia-russian-emacs-guide%20%281.0.0-028a531b%29.html",
+          "localPath": "book-uploads/staging/dante-commedia/russian/dante-commedia-russian-emacs-guide (1.0.0-c7b59a2a).html",
+          "sha256": "a675dda631193057bb1f1ffa8cad73df0c360a392274a0c775d0184471a1e10b",
+          "size": 39117,
+          "pathname": "books/dante-commedia/russian/emacs-guide/a675dda631193057-dante-commedia-russian-emacs-guide (1.0.0-c7b59a2a).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a675dda631193057-dante-commedia-russian-emacs-guide%20%281.0.0-c7b59a2a%29.html",
           "skipped": false
         },
         "htmlChapters": {
@@ -12054,6 +12054,16 @@
       "pathname": "books/dante-commedia/emacs-guide/c6bf860337fef0dd-dante-commedia-emacs-guide (1.0.0-c7b59a2a).html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/c6bf860337fef0dd-dante-commedia-emacs-guide%20%281.0.0-c7b59a2a%29.html",
       "size": 38683
+    },
+    "9b6bcb240f5949b6cdc8a90946390feabd2baf2e52cae5a2cf52a02680699ec1:7330612": {
+      "pathname": "books/dante-commedia/russian/emacs/9b6bcb240f5949b6-dante-commedia-russian-full-emacs (1.0.0-c7b59a2a).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs/9b6bcb240f5949b6-dante-commedia-russian-full-emacs%20%281.0.0-c7b59a2a%29.zip",
+      "size": 7330612
+    },
+    "a675dda631193057bb1f1ffa8cad73df0c360a392274a0c775d0184471a1e10b:39117": {
+      "pathname": "books/dante-commedia/russian/emacs-guide/a675dda631193057-dante-commedia-russian-emacs-guide (1.0.0-c7b59a2a).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/emacs-guide/a675dda631193057-dante-commedia-russian-emacs-guide%20%281.0.0-c7b59a2a%29.html",
+      "size": 39117
     }
   },
   "chapterPackages": {
