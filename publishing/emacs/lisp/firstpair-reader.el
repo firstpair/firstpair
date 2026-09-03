@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.36
+;; Version: 1.37
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1817,14 +1817,14 @@ acts on the book even while the dictionary window has focus."
 (defun firstpair-reader--dictionary-bar ()
   "The lowest Reader bar: lexical and translation controls."
   (firstpair-reader--bar
-   (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
-   (cons "<" #'firstpair-reader-previous-marked-lookup)
-   (cons ">" #'firstpair-reader-next-marked-lookup)
-   (cons ">>" #'firstpair-reader-next-significant-marked-lookup)
    (cons "Tr<" #'firstpair-reader-terminal-previous-translation)
    (cons "Tr>" #'firstpair-reader-terminal-next-translation)
    (cons "2nd" #'firstpair-reader-second-translation)
-   (cons "Lang" #'firstpair-lexicon-cycle-languages-command)))
+   (cons "Lang" #'firstpair-lexicon-cycle-languages-command)
+   (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
+   (cons "<" #'firstpair-reader-previous-marked-lookup)
+   (cons ">" #'firstpair-reader-next-marked-lookup)
+   (cons ">>" #'firstpair-reader-next-significant-marked-lookup)))
 
 (defun firstpair-reader-toggle-dictionary ()
   "Open the dictionary at point, or close it when already visible."
@@ -1906,7 +1906,7 @@ acts on the book even while the dictionary window has focus."
     (princ "                                          =   show current translations (changes nothing)\n")
     (princ "Top Emacs menu        Translations        GUI drop-down; in iSH: Tr-Eng and Tr-Rus choose or hide a language\n")
     (princ "Middle bar            Dict open/close · ▲ ▼ page · ◀c c▶ canto · Top · Refs · ?\n")
-    (princ "Bottom bar            << < > >> words · Tr< Tr> · 2nd · Lang\n")
+    (princ "Bottom bar            Tr< Tr> · 2nd · Lang · << < > >> words\n")
     (princ "                        << and >> skip frequent function words such as prepositions and essere\n")
     (princ "                                          b   second translation under the first\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")

@@ -235,7 +235,7 @@ when Dict closes or the reader changes nodes.
 
 Reader 1.36 separates navigation by responsibility. The middle book bar owns
 dictionary open/close, page, canto, Top, References, and Help. The lowest
-dictionary bar owns one lexical strip only: **<< < > >> Tr< Tr> 2nd Lang**.
+dictionary bar owns one lexical strip only: **Tr< Tr> 2nd Lang << < > >>**.
 There is no duplicate **Tr** or word control. `<`/`>` move one source word;
 `<<`/`>>` skip a customizable lowercase stopword set containing common Italian
 articles, prepositions, pronouns, and forms of *essere* and *avere*. Bind these
