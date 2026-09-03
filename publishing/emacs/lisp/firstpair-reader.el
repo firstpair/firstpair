@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.41
+;; Version: 1.42
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -70,6 +70,19 @@ This defaults to frequent Italian function words, pronouns, and common forms
 of essere and avere.  A bundle or reader may customize it for another source
 language."
   :type '(repeat string))
+
+(defcustom firstpair-reader-favorite-translations
+  '(("en" . "en-palma")
+    ("ru" . "ru-ilyushin"))
+  "Preferred comparison translation for each language.
+The `firstpair-reader-second-translation' command adds every configured
+favorite available in the current bundle and part.  Its inverse,
+`firstpair-reader-only-favorite-translations', keeps those favorites and
+removes the other editions of the same languages.  Translation ids absent
+  from a bundle are ignored."
+  :type '(alist :key-type (string :tag "Language id")
+                :value-type (string :tag "Translation id"))
+  :group 'firstpair)
 
 (defcustom firstpair-reader-bundle-directories nil
   "Directories `firstpair-reader-discover' searches for bundles.
@@ -1465,27 +1478,73 @@ for its language until changed."
                                   (mapcar #'car titles) nil t)
                  titles)))))
 
+(defun firstpair-reader--available-favorite-translations (bundle)
+  "Return configured (LANG . ID) favorites available in BUNDLE here."
+  (seq-filter
+   (lambda (pair)
+     (and (stringp (car-safe pair))
+          (stringp (cdr-safe pair))
+          (seq-find (lambda (item) (equal (alist-get 'id item) (cdr pair)))
+                    (firstpair-reader--candidates bundle (car pair)))))
+   firstpair-reader-favorite-translations))
+
+(defun firstpair-reader--after-favorite-change (bundle action)
+  "Refresh BUNDLE and report ACTION after changing its favorite editions."
+  (firstpair-reader-refresh-regions)
+  (firstpair-lexicon-refresh)
+  (ignore-errors (firstpair-reader-save-state))
+  (message "%s: %s" action (firstpair-reader-translations-label bundle)))
+
 (defun firstpair-reader-second-translation ()
-  "Show one more edition of the language at point, or collapse to one.
-The header row and the Tr menus are the first-class controls; this key
-keeps its old rhythm: it adds an edition when one is shown, and returns
-to a single edition when several are."
+  "Add the configured favorite translations to the editions on screen.
+This is the ordinary `b' or 2nd action.  It never removes an edition;
+use `firstpair-reader-only-favorite-translations' to keep only favorites."
   (interactive)
   (let* ((bundle (firstpair-reader--bundle))
-         (lang (firstpair-reader--language-at-point bundle)))
-    (unless (firstpair-bundle-translations bundle)
-      (user-error "This bundle has one translation per language"))
-    (let* ((effective (firstpair-reader--effective-translations bundle lang))
-           (unshown (seq-remove (lambda (id) (member id effective))
-                                (mapcar (lambda (item) (alist-get 'id item))
-                                        (firstpair-reader--candidates bundle lang)))))
-      (cond ((cdr effective)
-             (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
-                   (list (car effective)))
-             (firstpair-reader--after-translation-change bundle lang))
-            (unshown
-             (firstpair-reader-toggle-language-translation lang (car unshown)))
-            (t (user-error "No second translation of this language covers this part"))))))
+         (favorites (firstpair-reader--available-favorite-translations bundle))
+         changed)
+    (unless favorites
+      (user-error "This bundle has none of the configured favorite translations"))
+    (dolist (pair favorites)
+      (let* ((lang (car pair))
+             (id (cdr pair))
+             (visible (firstpair-reader--translation-language-visible-p bundle lang))
+             (effective (and visible (firstpair-reader--effective-translations bundle lang))))
+        (unless (member id effective)
+          (unless visible (firstpair-reader--show-translation-language bundle lang))
+          (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+                (append effective (list id)))
+          (setq changed t))))
+    (if changed
+        (firstpair-reader--after-favorite-change bundle "Added favorites")
+      (message "Favorite translations are already shown: %s"
+               (firstpair-reader-translations-label bundle)))))
+
+(defun firstpair-reader-only-favorite-translations ()
+  "Keep configured favorites and remove other editions of their languages.
+This is the inverse, long-press 2nd action.  It may be used directly: a
+favorite not yet shown is added, while only nonfavorite editions actually
+present in that language are removed."
+  (interactive)
+  (let* ((bundle (firstpair-reader--bundle))
+         (favorites (firstpair-reader--available-favorite-translations bundle))
+         changed)
+    (unless favorites
+      (user-error "This bundle has none of the configured favorite translations"))
+    (dolist (pair favorites)
+      (let* ((lang (car pair))
+             (id (cdr pair))
+             (visible (firstpair-reader--translation-language-visible-p bundle lang))
+             (effective (and visible (firstpair-reader--effective-translations bundle lang))))
+        (unless visible (firstpair-reader--show-translation-language bundle lang))
+        (unless (equal effective (list id))
+          (setf (alist-get lang firstpair-reader-translation-selections nil nil #'equal)
+                (list id))
+          (setq changed t))))
+    (if changed
+        (firstpair-reader--after-favorite-change bundle "Favorites only")
+      (message "Only favorite translations are already shown: %s"
+               (firstpair-reader-translations-label bundle)))))
 
 (defun firstpair-reader-glossary ()
   "Open the glossary of dictionary words in the references window."
@@ -1775,6 +1834,7 @@ updated directly.  Returns DIRECTORY."
     (define-key map (kbd "T") #'firstpair-reader-previous-translation-languages)
     (define-key map (kbd "v") #'firstpair-reader-rotate-translation)
     (define-key map (kbd "b") #'firstpair-reader-second-translation)
+    (define-key map (kbd "B") #'firstpair-reader-only-favorite-translations)
     (define-key map (kbd "=") #'firstpair-reader-show-current-translations)
     (define-key map (kbd ",") #'firstpair-reader-previous-marked)
     (define-key map (kbd ".") #'firstpair-reader-next-marked)
@@ -1824,6 +1884,10 @@ updated directly.  Returns DIRECTORY."
      :enable (firstpair-reader--translations-p)]
     ["Next Translation at Point" firstpair-reader-rotate-translation
      :enable (firstpair-reader--multiple-translations-p)]
+    ["Add Favorite Translations" firstpair-reader-second-translation
+     :enable (firstpair-reader--translations-p)]
+    ["Favorite Translations Only" firstpair-reader-only-favorite-translations
+     :enable (firstpair-reader--translations-p)]
     ["This Language First" firstpair-reader-language-first-at-point
      :enable (firstpair-reader--translations-p)]
     "---"
@@ -2007,6 +2071,7 @@ acts on the book even while the dictionary window has focus."
   (firstpair-reader--bar
    (cons "Tr<" #'firstpair-reader-terminal-previous-translation)
    (cons "Tr>" #'firstpair-reader-terminal-next-translation)
+   (cons "2nd" #'firstpair-reader-second-translation)
    (cons "Lang" #'firstpair-lexicon-cycle-languages-command)
    (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
    (cons "<" #'firstpair-reader-previous-marked-lookup)
@@ -2094,9 +2159,9 @@ acts on the book even while the dictionary window has focus."
     (princ "Top Emacs menu        Translations        in iSH: Tr-Eng and Tr-Rus are checkboxes — any number of editions per language\n")
     (princ "Second row            EN Longfellow ◀Cary | RU Мин   tap a name to hide it, ◀ to move it earlier, EN/RU to put that block first\n")
     (princ "Middle bar            Dict open/close · ▲ ▼ page · ◀c c▶ canto · Top · Refs · ?\n")
-    (princ "Bottom bar            Tr< Tr> · Lang · << < > >> words\n")
+    (princ "Bottom bar            Tr< Tr> · 2nd · Lang · << < > >> words\n")
     (princ "                        << and >> skip frequent function words such as prepositions and essere\n")
-    (princ "                                          b   one more edition of the language at point / back to one\n")
+    (princ "                                          b   add configured favorites; B keep favorites only\n")
     (princ "                                          n   p   next / previous canto     SPC  DEL  page down / up\n")
     (princ "                                          r   references    g   glossary    l   back    ?   this help    q   quit\n")
     (princ "\nIn the dictionary window: m more/less senses, t languages, q close.  Everything above also has a C-c C-<letter> form.\n")))

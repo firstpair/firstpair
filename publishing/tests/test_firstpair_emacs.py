@@ -416,7 +416,7 @@ class PackageTests(unittest.TestCase):
         self.assertIn('expanded="amore\\nlove\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
         self.assertIn("truncated=nil wrapped=t", output)
         self.assertIn("collapsed-again=t", output)
-        self.assertIn('expanded-ru=t more=nil bar=" Tr<   Tr>   Lang   <<   <   >   >> ', output)
+        self.assertIn('expanded-ru=t more=nil bar=" Tr<   Tr>   2nd   Lang   <<   <   >   >> ', output)
         self.assertIn("collapsed-ru=nil", output)
         self.assertIn('short="short\\nbrief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
         self.assertIn('ru-only="short\\nкраткий\\nкороткий\\n"', output)
@@ -1215,6 +1215,9 @@ class AlignedTests(Fixture):
             return
         script = f"""(progn
   (load "{(bundle / 'init.el').as_posix()}")
+  (princ (format "DEFAULT-FAVORITES=%S\n" firstpair-reader-favorite-translations))
+  (setq firstpair-reader-favorite-translations
+        '(("en" . "en-longfellow") ("ru" . "ru-lozinsky")))
   (firstpair-read)
   (with-current-buffer firstpair-reader-buffer
     (Info-goto-node "(fixture)Inferno — Canto 1")
@@ -1430,7 +1433,8 @@ class AlignedTests(Fixture):
           (firstpair-reader-second-translation)
           (let* ((c (funcall hidden))
                  (bundle (firstpair-reader--bundle))
-                 (selection-add (copy-sequence (alist-get "en" firstpair-reader-translation-selections nil nil #'equal))))
+                 (selection-add (copy-sequence (alist-get "en" firstpair-reader-translation-selections nil nil #'equal)))
+                 (selection-add-ru (copy-sequence (alist-get "ru" firstpair-reader-translation-selections nil nil #'equal))))
             (firstpair-reader-move-translation-earlier "en" "en-longfellow")
             (let* ((selection-move (copy-sequence (alist-get "en" firstpair-reader-translation-selections nil nil #'equal)))
                    (u1 (lambda (id)
@@ -1454,11 +1458,33 @@ class AlignedTests(Fixture):
                     (firstpair-reader-terminal-next-translation)
                     (let ((swap-feedback (funcall run-feedback))
                           (target (firstpair-reader--translation-target-at-point bundle)))
-                      (princ (format "%d %d %d %d %s | add=%S move=%S longfellow-first=%S russian-first=%S summary=%s word=%s target=%S feedback=%S header=%S"
-                                     a b c d label selection-add selection-move
+                      (princ (format "%d %d %d %d %s | add=%S add-ru=%S move=%S longfellow-first=%S russian-first=%S summary=%s word=%s target=%S feedback=%S header=%S"
+                                     a b c d label selection-add selection-add-ru selection-move
                                      longfellow-first russian-first summary
                                      word-after-reorder target swap-feedback
-                                     header-after)))))))))))))"""
+                                     header-after))
+                      (firstpair-reader-only-favorite-translations)
+                      (princ (format "\nFAVORITES only=%S/%S keys=%S/%S"
+                                     (alist-get "en" firstpair-reader-translation-selections nil nil #'equal)
+                                     (alist-get "ru" firstpair-reader-translation-selections nil nil #'equal)
+                                     (key-binding "b") (key-binding "B")))
+                      (setq firstpair-lexicon-languages '("en")
+                            firstpair-reader-translation-selections
+                            '(("en" "en-cary")))
+                      (firstpair-reader-refresh-regions)
+                      (firstpair-reader-second-translation)
+                      (let ((sparse-add (copy-tree firstpair-reader-translation-selections)))
+                        (firstpair-reader-only-favorite-translations)
+                        (princ (format "\nFAVORITES sparse=%S->%S"
+                                       sparse-add firstpair-reader-translation-selections)))
+                      (setq firstpair-lexicon-languages :none
+                            firstpair-reader-translation-selections nil)
+                      (firstpair-reader-refresh-regions)
+                      (firstpair-reader-second-translation)
+                      (firstpair-reader-only-favorite-translations)
+                      (princ (format "\nFAVORITES empty=%S/%S"
+                                     firstpair-lexicon-languages
+                                     firstpair-reader-translation-selections)))))))))))))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
@@ -1475,17 +1501,22 @@ class AlignedTests(Fixture):
         self.assertIn('tty=("Tr-Rus" "Tr-Eng")', result.stdout)
         self.assertIn("GUI menu=t", result.stdout)
         self.assertIn('MIGRATION=(("en" "en-longfellow" "en-cary") ("ru" "ru-min"))', result.stdout)
-        output = result.stdout.strip().splitlines()[-1].split(" ", 4)
-        self.assertEqual(["6", "6", "4", "6"], output[:4], result.stdout)  # rotate keeps one shown; adding shows two; hiding returns to one
+        self.assertIn('DEFAULT-FAVORITES=(("en" . "en-palma") ("ru" . "ru-ilyushin"))', result.stdout)
+        self.assertIn('FAVORITES only=("en-longfellow")/("ru-lozinsky") keys=firstpair-reader-second-translation/firstpair-reader-only-favorite-translations', result.stdout)
+        self.assertIn('FAVORITES sparse=(("ru" "ru-lozinsky") ("en" "en-cary" "en-longfellow"))->(("ru" "ru-lozinsky") ("en" "en-longfellow"))', result.stdout)
+        self.assertIn('FAVORITES empty=("en" "ru")/(("ru" "ru-lozinsky") ("en" "en-longfellow"))', result.stdout)
+        output = next(line for line in result.stdout.splitlines() if line.startswith("6 ")).split(" ", 4)
+        self.assertEqual(["6", "6", "2", "4"], output[:4], result.stdout)  # add both favorites, then hide one English edition
         self.assertIn("Cary (1814) ≈", output[4])
         self.assertIn('add=("en-cary" "en-longfellow")', output[4])
+        self.assertIn('add-ru=("ru-min" "ru-lozinsky")', output[4])
         self.assertIn('move=("en-longfellow" "en-cary")', output[4])
         self.assertIn("longfellow-first=t russian-first=t", output[4])
-        self.assertIn("summary=RU Мин | EN Longfellow+Cary", output[4])
+        self.assertIn("summary=RU Мин+Лозинский | EN Longfellow+Cary", output[4])
         self.assertIn("word=Nel", output[4])
         self.assertIn('target=("en" . "en-cary")', output[4])
         self.assertIn('feedback="English: Cary (1814) ≈"', output[4])
-        self.assertIn('header=" RU Мин | EN Longfellow ◀ Cary "', output[4])
+        self.assertIn('header=" RU Мин ◀ Лозинский | EN Longfellow ◀ Cary "', output[4])
         # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
         state_file = self.root / "reader-state.el"
         script = f"""(progn

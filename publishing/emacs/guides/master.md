@@ -194,8 +194,9 @@ The top Emacs bar has a separate **Translations** menu. Its first line says
 exactly which editions are currently visible, in their display order and with
 the `≈` mark for an approximate alignment. Reading or clicking that
 **Showing** line, or pressing `=`, changes nothing. The rest of the menu offers
-**Show or Hide Translation**, **Next Translation at Point**, **This Language
-First**, **Choose Languages**, and **Cycle Languages**.
+**Show or Hide Translation**, **Next Translation at Point**, **Add Favorite
+Translations**, **Favorite Translations Only**, **This Language First**,
+**Choose Languages**, and **Cycle Languages**.
 
 In a text terminal such as Emacs under 1Unix or iSH, the top bar has two compact
 language menus instead of the graphical drop-down. **Tr-Eng** opens the English
@@ -227,8 +228,11 @@ Press `=` for the compact, non-mutating translation report. After a menu
 choice, the language's edition list, or `None`, remains in the bottom message
 line until another command or message replaces it. The **Lang** button cycles
 visible languages. **Tr<** and **Tr>** swap the edition under the cursor for
-the previous or next unshown one, and `b` adds one more edition of the
-language at point, or returns from several to one.
+the previous or next unshown one. **2nd** (or `b`) adds every configured
+favorite edition without replacing anything already shown; `B` keeps the
+favorites and removes the other editions of those languages. The defaults are
+Palma for English and Ilyushin for Russian. Change them with `M-x
+customize-option RET firstpair-reader-favorite-translations RET`.
 
 ## Rearranging windows
 
@@ -405,7 +409,7 @@ On a phone (Emacs under 1Unix/iSH) or anywhere you would rather not type chords,
 the reader offers the same commands as taps and single letters without repeating
 controls between panes. The middle bar under the book carries **Dict · ▲ · ▼ ·
 ◀c · c▶ · Top · Refs · ?**. **Dict** opens or closes the dictionary. The lowest
-bar carries **Tr< · Tr> · Lang · << · < · > · >>**. `<` and `>` move one
+bar carries **Tr< · Tr> · 2nd · Lang · << · < · > · >>**. `<` and `>` move one
 source word and look it up; `<<` and `>>` do the same while skipping frequent
 Italian function words, including articles, prepositions, pronouns, and common
 forms of *essere* and *avere*. The stopword list is customizable through
@@ -420,10 +424,10 @@ show Emacs's generic mouse instructions. **Dict** replaces the introductory
 References pane. Word movement refreshes that dictionary pane. The word represented in
 Dict stays underlined in the poem and the underline moves with every lookup;
 closing Dict removes it. In the book, `d` opens the dictionary, `t` chooses languages,
-`[` and `]` swap the translation at point, `b` adds one more edition of its
-language (or returns to one), and `T` cycles visible languages backward. In
-1Unix's native strip, holding **Tr<**, **Tr>**, or **Lang** performs the
-inverse of tapping it. `,` and
+`[` and `]` swap the translation at point, `b` adds the configured favorite
+translations, `B` keeps only those favorites, and `T` cycles visible languages
+backward. In 1Unix's native strip, holding **Tr<**, **Tr>**, **2nd**, or
+**Lang** performs the paired inverse or narrowing action. `,` and
 `.` step between dictionary words, `j` and `k` step to the next or
 previous word *and open it*, `J` and `K` jump between significant words, `n` and
 `p` turn cantos, and `RET` repeatedly advances through the Italian or other

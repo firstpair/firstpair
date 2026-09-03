@@ -234,19 +234,19 @@ commands from either bar, survives translation-region refreshes, and clears
 when Dict closes or the reader changes nodes.
 
 Reader 1.36 separates navigation by responsibility. The middle book bar owns
-dictionary open/close, page, canto, Top, References, and Help. The lowest
-dictionary bar owns one lexical strip only: **Tr< Tr> Lang << < > >>**.
+dictionary open/close, page, canto, Top, References, and Help. Reader 1.42's
+lowest dictionary bar owns one lexical strip only: **Tr< Tr> 2nd Lang << < > >>**.
 There is no duplicate **Tr** or word control. `<`/`>` move one source word;
 `<<`/`>>` skip a customizable lowercase stopword set containing common Italian
-articles, prepositions, pronouns, and forms of *essere* and *avere*. Bind these
-to `K`, `k`, `j`, `J`, `[`, `]`, `b`, and `t` respectively so a terminal host
+articles, prepositions, pronouns, and forms of *essere* and *avere*. Bind the
+strip to `[`, `]`, `b`, `t`, `K`, `k`, `j`, and `J` respectively so a terminal host
 can expose a persistent native row and send ordinary keyboard events without
 depending on terminal mouse release.
-The host may add inverse long presses: `]`, `[`, and `T` undo normal taps
-on **Tr<**, **Tr>**, and **Lang**. The recognizer must cancel the
+The host may add paired long presses: `]`, `[`, `B`, and `T` act on
+**Tr<**, **Tr>**, **2nd**, and **Lang**. The recognizer must cancel the
 button's release action so one hold emits exactly one inverse command.
 
-Reader 1.41 replaces the primary/second slot model with an ordered
+Reader 1.42 uses the ordered
 selection per language (`firstpair-reader-translation-selections`) plus a
 language block order (`firstpair-reader-language-order`): any number of
 editions of a language may be shown, the Tr menus are checkboxes, and the
@@ -256,6 +256,13 @@ Reordering rewrites each unit's translation blocks bodily in the buffer —
 source lines never move, so marked-word positions stay exact — and the
 region rows served by `firstpair-reader--regions` track the moved lines,
 invalidated whenever Info re-reads the (sub)file.
+
+The **2nd**/`b` control is a configured favorite-pair action, not a second
+slot. `firstpair-reader-favorite-translations` is an Emacs `defcustom`, with
+Palma (`en-palma`) and Ilyushin (`ru-ilyushin`) as the current defaults. A tap
+adds every favorite available in the active bundle and part without replacing
+anything; `B`, sent by a native long press, keeps those favorites and removes
+only other editions of the same languages.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

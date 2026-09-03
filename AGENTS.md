@@ -640,13 +640,16 @@ unchecked edition adds it without replacing those already visible, selecting a
 checked edition removes it, and **None** hides only that language. The header
 row exposes the same state: tap an edition name to remove it, its left control
 to move it earlier, or a language label to move that language block first.
-**Tr<** and **Tr>** replace only the edition block under point, the `b` key adds
-one more edition or collapses several to one, and **Lang** changes visible
-languages. Persist only these two ordered lists; preserve source-word
+**Tr<** and **Tr>** replace only the edition block under point. **2nd**/`b`
+adds the available editions named by the
+`firstpair-reader-favorite-translations` `defcustom` without replacing current
+selections; `B` keeps those favorites and removes only other editions in their
+languages. **Lang** changes visible languages. Persist only the two ordered
+selection/order lists; preserve source-word
 positions and pristine reload recovery while projecting that state into the
 Reader. Tests must prove menu checkbox marks, additive selection, removal,
-both levels of ordering, saved-state migration, and dictionary-word navigation
-after reordering.
+both levels of ordering, favorite add/solo behavior with missing languages,
+saved-state migration, and dictionary-word navigation after reordering.
 
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it

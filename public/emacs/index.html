@@ -485,8 +485,10 @@ their display order and with the <code>≈</code> mark for an approximate
 alignment. Reading or clicking that <strong>Showing</strong> line, or
 pressing <code>=</code>, changes nothing. The rest of the menu offers
 <strong>Show or Hide Translation</strong>, <strong>Next Translation at
-Point</strong>, <strong>This Language First</strong>, <strong>Choose
-Languages</strong>, and <strong>Cycle Languages</strong>.</p>
+Point</strong>, <strong>Add Favorite Translations</strong>,
+<strong>Favorite Translations Only</strong>, <strong>This Language
+First</strong>, <strong>Choose Languages</strong>, and <strong>Cycle
+Languages</strong>.</p>
 <p>In a text terminal such as Emacs under 1Unix or iSH, the top bar has
 two compact language menus instead of the graphical drop-down.
 <strong>Tr-Eng</strong> opens the English editions and
@@ -521,9 +523,13 @@ translation report. After a menu choice, the language’s edition list, or
 <code>None</code>, remains in the bottom message line until another
 command or message replaces it. The <strong>Lang</strong> button cycles
 visible languages. <strong>Tr&lt;</strong> and <strong>Tr&gt;</strong>
-swap the edition under the cursor for the previous or next unshown one,
-and <code>b</code> adds one more edition of the language at point, or
-returns from several to one.</p>
+swap the edition under the cursor for the previous or next unshown one.
+<strong>2nd</strong> (or <code>b</code>) adds every configured favorite
+edition without replacing anything already shown; <code>B</code> keeps
+the favorites and removes the other editions of those languages. The
+defaults are Palma for English and Ilyushin for Russian. Change them
+with
+<code>M-x customize-option RET firstpair-reader-favorite-translations RET</code>.</p>
 </section>
 <section id="rearranging-windows" class="level2">
 <h2>Rearranging windows</h2>
@@ -687,9 +693,9 @@ type chords, the reader offers the same commands as taps and single
 letters without repeating controls between panes. The middle bar under
 the book carries <strong>Dict · ▲ · ▼ · ◀c · c▶ · Top · Refs ·
 ?</strong>. <strong>Dict</strong> opens or closes the dictionary. The
-lowest bar carries <strong>Tr&lt; · Tr&gt; · Lang · &lt;&lt; · &lt; ·
-&gt; · &gt;&gt;</strong>. <code>&lt;</code> and <code>&gt;</code> move
-one source word and look it up; <code>&lt;&lt;</code> and
+lowest bar carries <strong>Tr&lt; · Tr&gt; · 2nd · Lang · &lt;&lt; ·
+&lt; · &gt; · &gt;&gt;</strong>. <code>&lt;</code> and <code>&gt;</code>
+move one source word and look it up; <code>&lt;&lt;</code> and
 <code>&gt;&gt;</code> do the same while skipping frequent Italian
 function words, including articles, prepositions, pronouns, and common
 forms of <em>essere</em> and <em>avere</em>. The stopword list is
@@ -709,17 +715,18 @@ dictionary pane. The word represented in Dict stays underlined in the
 poem and the underline moves with every lookup; closing Dict removes it.
 In the book, <code>d</code> opens the dictionary, <code>t</code> chooses
 languages, <code>[</code> and <code>]</code> swap the translation at
-point, <code>b</code> adds one more edition of its language (or returns
-to one), and <code>T</code> cycles visible languages backward. In
-1Unix’s native strip, holding <strong>Tr&lt;</strong>,
-<strong>Tr&gt;</strong>, or <strong>Lang</strong> performs the inverse
-of tapping it. <code>,</code> and <code>.</code> step between dictionary
-words, <code>j</code> and <code>k</code> step to the next or previous
-word <em>and open it</em>, <code>J</code> and <code>K</code> jump
-between significant words, <code>n</code> and <code>p</code> turn
-cantos, and <code>RET</code> repeatedly advances through the Italian or
-other source text with the current dictionary languages; in the
-dictionary, <code>m</code> toggles More/Less. Space and backspace page,
+point, <code>b</code> adds the configured favorite translations,
+<code>B</code> keeps only those favorites, and <code>T</code> cycles
+visible languages backward. In 1Unix’s native strip, holding
+<strong>Tr&lt;</strong>, <strong>Tr&gt;</strong>, <strong>2nd</strong>,
+or <strong>Lang</strong> performs the paired inverse or narrowing
+action. <code>,</code> and <code>.</code> step between dictionary words,
+<code>j</code> and <code>k</code> step to the next or previous word
+<em>and open it</em>, <code>J</code> and <code>K</code> jump between
+significant words, <code>n</code> and <code>p</code> turn cantos, and
+<code>RET</code> repeatedly advances through the Italian or other source
+text with the current dictionary languages; in the dictionary,
+<code>m</code> toggles More/Less. Space and backspace page,
 <code>=</code> reports the translations now showing without changing
 them, <code>?</code> shows this list, and <code>q</code> quits.
 Terminals get mouse reporting switched on automatically

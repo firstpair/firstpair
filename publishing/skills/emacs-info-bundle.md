@@ -189,15 +189,18 @@ nodes, the references manual, and on actual Info links, Return keeps ordinary
 redirected Info-follow behavior. Fit/reset the lexicon pane after every such
 lookup so its source headword is visible at the top.
 
-Translation inspection (Reader 1.41): aligned editions
+Translation inspection (Reader 1.42): aligned editions
 add a top-level Emacs **Translations** menu. Its first, live `Showing: …` item
 and the `=` key report every edition on the current page, in display order,
 without mutating selection; coverage fallbacks and approximate-alignment marks
 must be reflected. Keep Show or Hide, Next at Point, This Language First,
 Choose Languages, and Cycle Languages in that same dedicated menu so
 inspection and intentional changes remain visibly distinct. Each language
-keeps an *ordered list* of shown editions — there is no second slot and no
-**2nd** button; `b` adds one more edition or returns to one.
+keeps an *ordered list* of shown editions; there is no fixed second slot.
+**2nd**/`b` adds every available pair in
+`firstpair-reader-favorite-translations` without replacing current editions,
+and `B` keeps only those favorites in their languages. Keep favorites in a
+`defcustom` so standard Emacs Customize can inspect or edit them.
 
 Terminal translation control (reader 1.31): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
