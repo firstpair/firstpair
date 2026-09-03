@@ -275,6 +275,16 @@ recorded position so dragging the poem cannot unexpectedly scroll Dictionary.
 In 1Unix build 825, **Show Dante Reader Bar** independently hides or restores
 the persistent native strip and lets the terminal reclaim its height.
 
+Reader 1.45 makes the first lazy dictionary load visible. While form, entry,
+and gloss tables are parsed, the echo line cycles through **Loading
+dictionary.**, **..**, and **...**, forcing redisplay periodically during long
+table reads; completion leaves **Dictionary ready: WORD** visible. Later
+lookups do not show loading progress. Reader-bar commands run temporarily in
+the pane that owns the tapped bar and then restore the prior focus. Controls
+whose purpose is not navigation also restore that pane's exact buffer point,
+so tapping **Dict**, a translation control, or **Lang** cannot pull the poem
+cursor down to the bar.
+
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join
 the passage's node as ordinary blocks.

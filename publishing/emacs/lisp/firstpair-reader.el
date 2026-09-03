@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.44
+;; Version: 1.45
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1976,13 +1976,38 @@ updated directly.  Returns DIRECTORY."
                          'firstpair-reader-command
                          (car string-position)))))
 
+(defconst firstpair-reader--point-moving-button-commands
+  '(firstpair-reader-page-up firstpair-reader-page-down
+    Info-prev Info-next Info-top-node
+    firstpair-reader-previous-significant-marked-lookup
+    firstpair-reader-previous-marked-lookup
+    firstpair-reader-next-marked-lookup
+    firstpair-reader-next-significant-marked-lookup)
+  "Reader-bar commands whose purpose includes moving the source point.")
+
 (defun firstpair-reader--run-button-command (event command)
-  "Select EVENT's window and invoke Reader button COMMAND."
-  (let ((window (posn-window (event-start event))))
-    (when (window-live-p window)
-      (select-window window)))
-  (when (commandp command)
-    (call-interactively command)))
+  "Invoke Reader button COMMAND in EVENT's window without stealing focus.
+Commands that do not navigate also restore that window's buffer point."
+  (let* ((window (posn-window (event-start event)))
+         (buffer (and (window-live-p window) (window-buffer window)))
+         (preserve-point
+          (and buffer
+               (not (memq command firstpair-reader--point-moving-button-commands))))
+         (saved-point
+          (and preserve-point
+               (with-current-buffer buffer
+                 (copy-marker (window-point window))))))
+    (unwind-protect
+        (when (commandp command)
+          (if (window-live-p window)
+              (with-selected-window window
+                (call-interactively command))
+            (call-interactively command)))
+      (when (markerp saved-point)
+        (when (and (window-live-p window)
+                   (eq (window-buffer window) buffer))
+          (set-window-point window saved-point))
+        (set-marker saved-point nil)))))
 
 (defun firstpair-reader-mode-line-click (event)
   "Run the Reader button at mode-line EVENT, ignoring every non-button cell."

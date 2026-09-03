@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.44
+;; Version: 1.45
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, i18n
 
@@ -56,6 +56,28 @@ Change it with `firstpair-lexicon-cycle-languages'.")
 (defconst firstpair-lexicon-buffer "*FirstPair Lexicon*"
   "Name of the buffer holding dictionary entries.")
 
+(defvar firstpair-lexicon--progress-active nil
+  "Non-nil while the first dictionary lookup is loading its tables.")
+
+(defvar firstpair-lexicon--progress-dots 0
+  "Number of dots in the current first-load progress message.")
+
+(defun firstpair-lexicon--progress-step ()
+  "Advance and display the first dictionary-load progress indicator."
+  (when firstpair-lexicon--progress-active
+    (setq firstpair-lexicon--progress-dots
+          (1+ (% firstpair-lexicon--progress-dots 3)))
+    (message "Loading dictionary%s"
+             (make-string firstpair-lexicon--progress-dots ?.))
+    (unless noninteractive
+      (redisplay t))))
+
+(defun firstpair-lexicon--tables (bundle)
+  "Return BUNDLE's lazy table cache, creating it when absent."
+  (or (firstpair-bundle-tables bundle)
+      (setf (firstpair-bundle-tables bundle)
+            (make-hash-table :test #'equal))))
+
 ;;; Tables
 
 (defun firstpair-lexicon--rows (file)
@@ -65,12 +87,15 @@ Change it with `firstpair-lexicon-cycle-languages'.")
       (insert-file-contents file)
       (goto-char (point-min))
       (forward-line 1)
-      (let (rows)
+      (let (rows (count 0))
         (while (not (eobp))
           (push (split-string (buffer-substring-no-properties
                                (line-beginning-position) (line-end-position))
                               "\t")
                 rows)
+          (setq count (1+ count))
+          (when (zerop (% count 512))
+            (firstpair-lexicon--progress-step))
           (forward-line 1))
         (nreverse rows)))))
 
@@ -123,17 +148,23 @@ Change it with `firstpair-lexicon-cycle-languages'.")
 
 (defun firstpair-lexicon-table (bundle name)
   "Return table NAME of BUNDLE, reading it the first time it is needed."
-  (firstpair-bundle-table
-   bundle (concat "lexicon/" name)
-   (pcase name
-     ("entries.tsv" #'firstpair-lexicon--entries)
-     ("forms.tsv" #'firstpair-lexicon--forms)
-     ((pred (lambda (n) (string-prefix-p "forms/" n))) #'firstpair-lexicon--forms)
-     ("stems.tsv" #'firstpair-lexicon--stems)
-     ("endings.tsv" #'firstpair-lexicon--endings)
-     ("glosses.tsv" #'firstpair-lexicon--glosses)
-     ((pred (lambda (n) (string-prefix-p "glosses/" n))) #'firstpair-lexicon--glosses)
-     (_ #'firstpair-lexicon--rows))))
+  (let* ((key (concat "lexicon/" name))
+         (missing (make-symbol "missing"))
+         (cached (gethash key (firstpair-lexicon--tables bundle) missing)))
+    (if (not (eq cached missing))
+        cached
+      (firstpair-lexicon--progress-step)
+      (firstpair-bundle-table
+       bundle key
+       (pcase name
+         ("entries.tsv" #'firstpair-lexicon--entries)
+         ("forms.tsv" #'firstpair-lexicon--forms)
+         ((pred (lambda (n) (string-prefix-p "forms/" n))) #'firstpair-lexicon--forms)
+         ("stems.tsv" #'firstpair-lexicon--stems)
+         ("endings.tsv" #'firstpair-lexicon--endings)
+         ("glosses.tsv" #'firstpair-lexicon--glosses)
+         ((pred (lambda (n) (string-prefix-p "glosses/" n))) #'firstpair-lexicon--glosses)
+         (_ #'firstpair-lexicon--rows))))))
 
 (defun firstpair-lexicon--gloss-shard (key)
   "The gloss shard KEY lives in: its first letter, lowercased, or \"_\"."
@@ -545,8 +576,18 @@ Return non-nil when at least one sense was inserted."
 (defun firstpair-lexicon-render (bundle word)
   "Show the entries for WORD from BUNDLE in the lexicon buffer.
 Returns the buffer."
-  (let ((buffer (get-buffer-create firstpair-lexicon-buffer))
-        (readings (firstpair-lexicon-analyse bundle word)))
+  (let* ((missing (make-symbol "missing"))
+         (first-load
+          (eq (gethash "lexicon/entries.tsv"
+                       (firstpair-lexicon--tables bundle) missing)
+              missing))
+         (firstpair-lexicon--progress-active first-load)
+         (firstpair-lexicon--progress-dots 0)
+         (buffer (get-buffer-create firstpair-lexicon-buffer))
+         readings)
+    (when first-load
+      (firstpair-lexicon--progress-step))
+    (setq readings (firstpair-lexicon-analyse bundle word))
     (with-current-buffer buffer
       (let ((same-entry (and (eq firstpair-lexicon-bundle bundle)
                              (equal firstpair-lexicon-word word))))
@@ -568,6 +609,8 @@ Returns the buffer."
       (force-mode-line-update t)
       (when (fboundp 'firstpair-reader--fit-lexicon-window)
         (firstpair-reader--fit-lexicon-window)))
+    (when first-load
+      (message "Dictionary ready: %s" word))
     buffer))
 
 (defun firstpair-lexicon-refresh ()

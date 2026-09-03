@@ -298,6 +298,15 @@ space sized from the rendered right block. The right block must end in the
 final button, not a trailing gap, so it remains truly edge-aligned in narrow
 Dictionary windows.
 
+First dictionary feedback and focus (Reader 1.45): detect the first uncached
+entry-table lookup, show a cycling dotted **Loading dictionary** message, and
+force periodic echo-area redisplay while large TSV tables are parsed. End with
+**Dictionary ready: WORD** and keep later cached lookups quiet. Run every bar
+command with its owning window selected only temporarily. Restore the previous
+selected window afterward, and restore the tapped window's point for controls
+that do not intentionally navigate; word, page, canto, and Top commands retain
+their point-moving semantics.
+
 Terminal font geometry (1Unix build 815): bundled webfonts load
 asynchronously. After setting the selected family and size, wait on the hterm
 document's `FontFaceSet`, resynchronize hterm's font family and size, redraw,

@@ -425,6 +425,11 @@ with the software keyboard hidden in Reader 1.43 and 1Unix build 824 or newer.
 In 1Unix build 825 or newer, **Show Dante Reader Bar** in Settings hides or
 restores that native strip independently and gives its height back to the
 terminal while hidden.
+On the first **Dict** lookup, Reader 1.45 shows a cycling **Loading
+dictionary.**, **..**, **...** message while its local tables are parsed, then
+leaves the loaded headword in the echo line. Bar taps borrow their pane only
+for the command and restore the prior focus; non-navigation controls also
+preserve the poem's exact point.
 The Reader binds terminal wheel events itself, including on Emacs builds that
 do not enable their optional global mouse-wheel commands. The reader also
 consumes the initial press and an accidental second

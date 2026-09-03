@@ -289,6 +289,97 @@ class PackageTests(unittest.TestCase):
         )
 
     @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_bar_commands_preserve_focus_and_nonnavigation_point(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (let* ((origin (selected-window))
+         (target (split-window origin nil 'below))
+         (buffer (generate-new-buffer " *FirstPair button focus*"))
+         (dict (firstpair-reader--button
+                "Dict" #'firstpair-reader-toggle-dictionary))
+         (dict-action (lookup-key (get-text-property 0 'local-map dict)
+                                  [mode-line mouse-1]))
+         (next (firstpair-reader--button
+                ">" #'firstpair-reader-next-marked-lookup))
+         (next-action (lookup-key (get-text-property 0 'local-map next)
+                                  [mode-line mouse-1]))
+         dict-selected next-selected)
+    (set-window-buffer target buffer)
+    (with-current-buffer buffer
+      (insert "one two three\n"))
+    (set-window-point target 2)
+    (cl-letf (((symbol-function 'event-start) (lambda (_event) nil))
+              ((symbol-function 'posn-window) (lambda (_position) target))
+              ((symbol-function 'firstpair-reader-toggle-dictionary)
+               (lambda ()
+                 (interactive)
+                 (setq dict-selected (eq (selected-window) target))
+                 (goto-char (point-max))))
+              ((symbol-function 'firstpair-reader-next-marked-lookup)
+               (lambda ()
+                 (interactive)
+                 (setq next-selected (eq (selected-window) target))
+                 (goto-char (point-max)))))
+      (funcall dict-action '(mouse-1))
+      (princ (format "dict-selected=%S focus=%S point=%S\n"
+                     dict-selected (eq (selected-window) origin)
+                     (window-point target)))
+      (funcall next-action '(mouse-1))
+      (princ (format "next-selected=%S focus=%S moved=%S\n"
+                     next-selected (eq (selected-window) origin)
+                     (= (window-point target)
+                        (with-current-buffer buffer (point-max))))))
+    (delete-window target)
+    (kill-buffer buffer)))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn("dict-selected=t focus=t point=2", completed.stdout)
+        self.assertIn("next-selected=t focus=t moved=t", completed.stdout)
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_first_dictionary_lookup_reports_dotted_progress_once(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (let* ((tables (make-hash-table :test #'equal))
+         (bundle (firstpair-bundle--create :tables tables :lexicon nil))
+         messages active)
+    (cl-letf (((symbol-function 'message)
+               (lambda (format-string &rest arguments)
+                 (push (apply #'format format-string arguments) messages)))
+              ((symbol-function 'firstpair-lexicon-analyse)
+               (lambda (_bundle _word)
+                 (push firstpair-lexicon--progress-active active)
+                 (firstpair-lexicon--progress-step)
+                 (puthash "lexicon/entries.tsv"
+                          (make-hash-table :test #'equal) tables)
+                 nil))
+              ((symbol-function 'firstpair-lexicon--insert)
+               (lambda (_bundle word _readings) (insert word "\n"))))
+      (firstpair-lexicon-render bundle "amore")
+      (firstpair-lexicon-render bundle "vita"))
+    (princ (format "messages=%S active=%S\n"
+                   (nreverse messages) (nreverse active)))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn(
+            'messages=("Loading dictionary." "Loading dictionary.." '
+            '"Dictionary ready: amore") active=(t nil)',
+            completed.stdout,
+        )
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
     def test_terminal_wheel_scrolls_only_the_window_under_the_finger(self) -> None:
         script = f'''(progn
   (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")

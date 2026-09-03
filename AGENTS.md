@@ -665,6 +665,12 @@ restore the previously selected window, and treat buffer boundaries as silent.
 Reader 1.44 keeps **Tr< Tr> 2nd Lang** at the left of the lower lexical bar and
 aligns **<< < > >>** flush right. Compute the alignment from the actual right
 block and omit a trailing gap after its final button.
+Reader 1.45 must expose the first lazy dictionary parse through a cycling
+dotted echo-line message, with periodic redisplay inside long TSV reads and a
+persistent ready message at completion. Cached lookups stay quiet. Bar taps
+must temporarily select their owning pane and then restore prior focus;
+non-navigation controls also restore exact point, while word, page, canto, and
+Top controls remain intentionally point-moving.
 Starting with 1Unix build 825, expose the persistent Dante Reader bar through
 its own saved **Show Dante Reader Bar** setting, enabled by default and
 independent of the keyboard-hiding preference. Hiding it must let the terminal
