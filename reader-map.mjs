@@ -157,7 +157,7 @@ export const readerBooks = [
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/33f977f4ffb8fe75/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/chapters/33f977f4ffb8fe75",
     "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/vault-guide/3a4b069471dd00a3-dante-commedia-vault-guide%20%281.0.0-f5747c3c%29.html",
-    "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/c6b2a7a6f2d8bda7-dante-commedia-emacs-guide%20%281.0.0-f5747c3c%29.html",
+    "emacsGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/emacs-guide/b3ea9c1978bc1da5-dante-commedia-emacs-guide%20%281.0.0-303dd796%29.html",
     "versions": {
       "russian": {
         "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dante-commedia/russian/html/beb722aab3acc8a8-dante-commedia-russian.html",
