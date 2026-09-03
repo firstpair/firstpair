@@ -651,6 +651,14 @@ Reader. Tests must prove menu checkbox marks, additive selection, removal,
 both levels of ordering, favorite add/solo behavior with missing languages,
 saved-state migration, and dictionary-word navigation after reordering.
 
+In 1Unix build 824 or newer, DECSET 1003 touch input distinguishes a stable-cell
+tap from a vertical scroll gesture. A tap emits movement, press, and release at
+its touch-down cell; a drag emits terminal wheel steps at that same cell so
+Emacs scrolls only the window where the gesture began. Keep the threshold tied
+to the rendered line height, preserve non-1003 press/drag/release behavior, and
+rerun Reader-button, stock File-menu, translation-menu, hidden-keyboard, and
+poem-versus-Dictionary pane checks whenever this host contract changes.
+
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it
 against the resolved vault and fail closed before staging or ZIP creation. A

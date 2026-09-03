@@ -417,7 +417,10 @@ forms of *essere* and *avere*. The stopword list is customizable through
 under point for the previous or next unshown one of its language. Tapping a marked word looks it up; tapping a
 link follows it; a long press (right click) rotates the translation under
 it. A slight finger drift is treated as the same tap, not as a cancelled
-button. The reader also consumes the initial press and an accidental second
+button. A deliberate vertical drag in the poem scrolls that window naturally
+without opening the word beneath the finger; the gesture remains available
+with the software keyboard hidden in 1Unix build 824 or newer. The reader also
+consumes the initial press and an accidental second
 tap, and the small gaps between buttons are inert, so a near miss cannot resize
 or maximize the neighboring pane, replace the poem with another buffer, or
 show Emacs's generic mouse instructions. **Dict** replaces the introductory

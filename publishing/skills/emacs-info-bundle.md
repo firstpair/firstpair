@@ -268,15 +268,19 @@ the Quit cell. Signed-device acceptance must show **File -> Quit** exiting and
 non-first **Tr-Eng** and **Tr-Rus** entries changing their own translations
 with the software keyboard still hidden.
 
-Atomic terminal taps (1Unix build 818): Emacs dispatches a mode-line mouse
-command only after terminal release, so Reader-side `down-mouse-1` bindings do
-not make a phone control immediate. In DECSET 1003 only, report movement,
-press, and release together at the touch-down cell, then consume the physical
-finger's later move/end events. This prevents drift from changing the release
-cell while preserving ordinary press/drag/release behavior for other terminal
-mouse modes. Verify that one touch on **Next** advances exactly once, without
-resizing a pane, opening Messages, or requiring a second tap; rerun the stock
-File and translation-menu checks because they share the 1003 path.
+Atomic terminal taps and scrolling (1Unix builds 818 and 824): Emacs dispatches
+a mode-line mouse command only after terminal release. In DECSET 1003 only,
+hold a touch pending until it either ends or accumulates deliberate vertical
+movement. A tap reports movement, press, and release together at its touch-down
+cell; a drag reports natural-direction terminal wheel steps at that cell so
+Emacs scrolls the window where the gesture began without clicking its text.
+Use three quarters of the current text-line height as the scroll step and tap
+tolerance. Preserve ordinary press/drag/release behavior for other terminal
+mouse modes. Verify that one touch on **Next** advances exactly once, and that
+dragging the poem scrolls only that pane without looking up a word, following a
+link, resizing a pane, opening Messages, showing the keyboard, or moving the
+Dictionary. Rerun the stock File and translation-menu checks because they share
+the 1003 path.
 
 Terminal font geometry (1Unix build 815): bundled webfonts load
 asynchronously. After setting the selected family and size, wait on the hterm
