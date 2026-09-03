@@ -651,13 +651,22 @@ Reader. Tests must prove menu checkbox marks, additive selection, removal,
 both levels of ordering, favorite add/solo behavior with missing languages,
 saved-state migration, and dictionary-word navigation after reordering.
 
-In 1Unix build 824 or newer, DECSET 1003 touch input distinguishes a stable-cell
+In Reader 1.43 and 1Unix build 824 or newer, DECSET 1003 touch input distinguishes a stable-cell
 tap from a vertical scroll gesture. A tap emits movement, press, and release at
 its touch-down cell; a drag emits terminal wheel steps at that same cell so
 Emacs scrolls only the window where the gesture began. Keep the threshold tied
 to the rendered line height, preserve non-1003 press/drag/release behavior, and
 rerun Reader-button, stock File-menu, translation-menu, hidden-keyboard, and
 poem-versus-Dictionary pane checks whenever this host contract changes.
+Reader and Lexicon maps must bind `mouse-4` and `mouse-5` themselves in body,
+header-line, mode-line, button, and gap maps; terminal-only Emacs builds may not
+provide a global `mwheel-scroll` binding. Scroll the event's window one line,
+restore the previously selected window, and treat buffer boundaries as silent.
+Starting with 1Unix build 825, expose the persistent Dante Reader bar through
+its own saved **Show Dante Reader Bar** setting, enabled by default and
+independent of the keyboard-hiding preference. Hiding it must let the terminal
+reclaim the bar's height immediately; showing it must restore the same native
+controls without restarting Emacs.
 
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it

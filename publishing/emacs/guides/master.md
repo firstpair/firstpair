@@ -419,7 +419,12 @@ link follows it; a long press (right click) rotates the translation under
 it. A slight finger drift is treated as the same tap, not as a cancelled
 button. A deliberate vertical drag in the poem scrolls that window naturally
 without opening the word beneath the finger; the gesture remains available
-with the software keyboard hidden in 1Unix build 824 or newer. The reader also
+with the software keyboard hidden in Reader 1.43 and 1Unix build 824 or newer.
+In 1Unix build 825 or newer, **Show Dante Reader Bar** in Settings hides or
+restores that native strip independently and gives its height back to the
+terminal while hidden.
+The Reader binds terminal wheel events itself, including on Emacs builds that
+do not enable their optional global mouse-wheel commands. The reader also
 consumes the initial press and an accidental second
 tap, and the small gaps between buttons are inert, so a near miss cannot resize
 or maximize the neighboring pane, replace the poem with another buffer, or

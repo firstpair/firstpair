@@ -234,7 +234,7 @@ commands from either bar, survives translation-region refreshes, and clears
 when Dict closes or the reader changes nodes.
 
 Reader 1.36 separates navigation by responsibility. The middle book bar owns
-dictionary open/close, page, canto, Top, References, and Help. Reader 1.42's
+dictionary open/close, page, canto, Top, References, and Help. Reader 1.43's
 lowest dictionary bar owns one lexical strip only: **Tr< Tr> 2nd Lang << < > >>**.
 There is no duplicate **Tr** or word control. `<`/`>` move one source word;
 `<<`/`>>` skip a customizable lowercase stopword set containing common Italian
@@ -246,7 +246,7 @@ The host may add paired long presses: `]`, `[`, `B`, and `T` act on
 **Tr<**, **Tr>**, **2nd**, and **Lang**. The recognizer must cancel the
 button's release action so one hold emits exactly one inverse command.
 
-Reader 1.42 uses the ordered
+Reader 1.43 uses the ordered
 selection per language (`firstpair-reader-translation-selections`) plus a
 language block order (`firstpair-reader-language-order`): any number of
 editions of a language may be shown, the Tr menus are checkboxes, and the
@@ -263,6 +263,14 @@ Palma (`en-palma`) and Ilyushin (`ru-ilyushin`) as the current defaults. A tap
 adds every favorite available in the active bundle and part without replacing
 anything; `B`, sent by a native long press, keeps those favorites and removes
 only other editions of the same languages.
+
+Reader 1.43 binds terminal `mouse-4` and `mouse-5` explicitly in Reader and
+Dictionary bodies, headers, mode lines, controls, and inert gaps. A touch host
+may therefore turn a vertical drag into wheel steps without depending on a
+global `mwheel-scroll` binding. Dispatch each event to the window under its
+recorded position so dragging the poem cannot unexpectedly scroll Dictionary.
+In 1Unix build 825, **Show Dante Reader Bar** independently hides or restores
+the persistent native strip and lets the terminal reclaim its height.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

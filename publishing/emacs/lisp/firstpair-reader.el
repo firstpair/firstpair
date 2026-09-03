@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.42
+;; Version: 1.43
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -1816,6 +1816,36 @@ updated directly.  Returns DIRECTORY."
     (setq firstpair-reader--saved-header-line-format nil
           firstpair-reader--translation-header-installed nil)))
 
+(defun firstpair-reader--touch-scroll (event forward)
+  "Scroll EVENT's window one line FORWARD, without changing the active pane."
+  (let ((window (and event (posn-window (event-start event)))))
+    (when (window-live-p window)
+      (with-selected-window window
+        (condition-case nil
+            (if forward (scroll-up-line 1) (scroll-down-line 1))
+          (error nil))))))
+
+(defun firstpair-reader-touch-scroll-forward (event)
+  "Scroll the Reader window under terminal wheel EVENT one line forward."
+  (interactive "e")
+  (firstpair-reader--touch-scroll event t))
+
+(defun firstpair-reader-touch-scroll-backward (event)
+  "Scroll the Reader window under terminal wheel EVENT one line backward."
+  (interactive "e")
+  (firstpair-reader--touch-scroll event nil))
+
+(defun firstpair-reader--bind-touch-scroll (map)
+  "Bind terminal wheel scrolling in body and chrome areas of MAP."
+  (define-key map [mouse-4] #'firstpair-reader-touch-scroll-backward)
+  (define-key map [mouse-5] #'firstpair-reader-touch-scroll-forward)
+  (dolist (area '(header-line mode-line))
+    (define-key map (vector area 'mouse-4)
+      #'firstpair-reader-touch-scroll-backward)
+    (define-key map (vector area 'mouse-5)
+      #'firstpair-reader-touch-scroll-forward))
+  map)
+
 (defvar firstpair-reader-mode-map
   (let ((map (make-sparse-keymap)))
     (define-key map (kbd "C-c C-d") #'firstpair-reader-describe-word)
@@ -1870,8 +1900,10 @@ updated directly.  Returns DIRECTORY."
     (define-key map [remap Info-follow-nearest-node] #'firstpair-reader-follow-nearest-node)
     (define-key map [remap Info-mouse-follow-nearest-node] #'firstpair-reader-mouse-follow-nearest-node)
     (define-key map [remap Info-follow-reference] #'firstpair-reader-follow-reference)
-    map)
+    (firstpair-reader--bind-touch-scroll map))
   "Keymap for `firstpair-reader-mode'.")
+
+(firstpair-reader--bind-touch-scroll firstpair-lexicon-mode-map)
 
 (easy-menu-define firstpair-reader-translations-menu firstpair-reader-mode-map
   "Inspect and change the translations visible in a FirstPair edition."
@@ -1927,7 +1959,7 @@ updated directly.  Returns DIRECTORY."
     (dolist (event '(mouse-1 drag-mouse-1 down-mouse-1
                      double-mouse-1 triple-mouse-1 mouse-2 mouse-3))
       (define-key map (vector event) #'ignore))
-    map)
+    (firstpair-reader--bind-touch-scroll map))
   "Keymap that keeps gaps in Reader bars from invoking the stock mode line.")
 
 (defun firstpair-reader--no-help-echo (&rest _arguments)
@@ -1996,6 +2028,7 @@ acts on the book even while the dictionary window has focus."
     (define-key map [down-mouse-1] #'ignore)
     (define-key map [double-mouse-1] #'ignore)
     (define-key map [triple-mouse-1] #'ignore)
+    (firstpair-reader--bind-touch-scroll map)
     (propertize (concat " " label " ")
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
                 'mouse-face 'highlight 'local-map map

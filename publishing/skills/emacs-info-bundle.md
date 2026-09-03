@@ -268,7 +268,7 @@ the Quit cell. Signed-device acceptance must show **File -> Quit** exiting and
 non-first **Tr-Eng** and **Tr-Rus** entries changing their own translations
 with the software keyboard still hidden.
 
-Atomic terminal taps and scrolling (1Unix builds 818 and 824): Emacs dispatches
+Atomic terminal taps and scrolling (Reader 1.43; 1Unix builds 818 and 824): Emacs dispatches
 a mode-line mouse command only after terminal release. In DECSET 1003 only,
 hold a touch pending until it either ends or accumulates deliberate vertical
 movement. A tap reports movement, press, and release together at its touch-down
@@ -280,7 +280,17 @@ mouse modes. Verify that one touch on **Next** advances exactly once, and that
 dragging the poem scrolls only that pane without looking up a word, following a
 link, resizing a pane, opening Messages, showing the keyboard, or moving the
 Dictionary. Rerun the stock File and translation-menu checks because they share
-the 1003 path.
+the 1003 path. Do not depend on Emacs's optional global `mwheel-scroll` setup:
+bind `mouse-4` and `mouse-5` explicitly in Reader and Lexicon body maps and in
+their header-line, mode-line, button, and gap maps. Each wheel command must
+scroll one line in the event's window and then restore the previously selected
+window; reaching a buffer boundary is a silent no-op.
+
+Native Reader-bar visibility (1Unix build 825): provide a separate persistent
+**Show Dante Reader Bar** setting, on by default and independent of keyboard
+visibility. Turning it off must hide the native strip and return its height to
+the terminal immediately; turning it on restores the strip without restarting
+Emacs or changing the ordinary keyboard accessory row.
 
 Terminal font geometry (1Unix build 815): bundled webfonts load
 asynchronously. After setting the selected family and size, wait on the hterm

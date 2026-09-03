@@ -289,6 +289,61 @@ class PackageTests(unittest.TestCase):
         )
 
     @unittest.skipUnless(has("emacs"), "Emacs is not installed")
+    def test_terminal_wheel_scrolls_only_the_window_under_the_finger(self) -> None:
+        script = f'''(progn
+  (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
+  (require 'firstpair-reader)
+  (let* ((origin (selected-window))
+         (target (split-window origin nil 'below))
+         (button (firstpair-reader--button "Next" #'ignore))
+         (button-map (get-text-property 0 'local-map button))
+         (gap-map (get-text-property 0 'local-map (firstpair-reader--bar-gap)))
+         calls)
+    (cl-letf (((symbol-function 'event-start) (lambda (_event) 'position))
+              ((symbol-function 'posn-window) (lambda (_position) target))
+              ((symbol-function 'scroll-up-line)
+               (lambda (&optional count)
+                 (push (list 'forward count (eq (selected-window) target)) calls)))
+              ((symbol-function 'scroll-down-line)
+               (lambda (&optional count)
+                 (push (list 'backward count (eq (selected-window) target)) calls))))
+      (funcall (lookup-key firstpair-reader-mode-map [mouse-5]) '(mouse-5))
+      (funcall (lookup-key firstpair-reader-mode-map [mouse-4]) '(mouse-4))
+      (funcall (lookup-key firstpair-lexicon-mode-map [mouse-5]) '(mouse-5))
+      (funcall (lookup-key button-map [mode-line mouse-4]) '(mouse-4))
+      (funcall (lookup-key gap-map [header-line mouse-5]) '(mouse-5)))
+    (princ (format "reader=%S/%S lexicon=%S/%S button=%S gap=%S calls=%S restored=%S\n"
+                   (lookup-key firstpair-reader-mode-map [mouse-4])
+                   (lookup-key firstpair-reader-mode-map [mouse-5])
+                   (lookup-key firstpair-lexicon-mode-map [mouse-4])
+                   (lookup-key firstpair-lexicon-mode-map [mouse-5])
+                   (lookup-key button-map [mode-line mouse-4])
+                   (lookup-key gap-map [header-line mouse-5])
+                   (nreverse calls)
+                   (eq (selected-window) origin)))))'''
+        completed = subprocess.run(
+            ["emacs", "--batch", "-Q", "--eval", script],
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        self.assertEqual(0, completed.returncode, completed.stderr)
+        self.assertIn(
+            "reader=firstpair-reader-touch-scroll-backward/"
+            "firstpair-reader-touch-scroll-forward "
+            "lexicon=firstpair-reader-touch-scroll-backward/"
+            "firstpair-reader-touch-scroll-forward "
+            "button=firstpair-reader-touch-scroll-backward "
+            "gap=firstpair-reader-touch-scroll-forward",
+            completed.stdout,
+        )
+        self.assertIn(
+            "calls=((forward 1 t) (backward 1 t) (forward 1 t) "
+            "(backward 1 t) (forward 1 t)) restored=t",
+            completed.stdout,
+        )
+
+    @unittest.skipUnless(has("emacs"), "Emacs is not installed")
     def test_dictionary_has_source_headword_and_two_sense_rows_per_language(self) -> None:
         script = f'''(progn
   (add-to-list 'load-path "{package.LISP_ROOT.as_posix()}")
