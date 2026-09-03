@@ -179,5 +179,11 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/html/1e9043f41c1b08d6-lakecat-engine-truth.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/chapters/f88655c95c895591"
+  },
+  {
+    "slug": "emacs-reader",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572"
   }
 ]

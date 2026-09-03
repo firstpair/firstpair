@@ -208,5 +208,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/pdf/964b64c53882ce5c-lakecat-engine-truth.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/epub/f1eb1410b488ef30-lakecat-engine-truth.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png"
+  },
+  {
+    "slug": "emacs-reader",
+    "title": "The First Pair Emacs Reader Book",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png"
   }
 ]

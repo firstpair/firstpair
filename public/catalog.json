@@ -675,6 +675,33 @@
       "source": "https://github.com/querygraph/lakecat",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/cover/d552d866842d4c80-lakecat-engine-truth-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lakecat-engine-truth/headboard/055b199ae0f2cb2b-lakecat-engine-truth-headboard.png"
+    },
+    {
+      "slug": "emacs-reader",
+      "title": "The First Pair Emacs Reader Book",
+      "author": "Alexy Khrabrov",
+      "kicker": "Field guide",
+      "description": "How First Pair Press built a reader for parallel texts inside GNU Emacs Info — two manuals and three windows, a dictionary that answers every word, any number of translations toggled and reordered in place, touch bars in a terminal, indirect Info files for big books, a self-verifying update path, and 1Unix, the iSH fork that turns an iPhone terminal into a full-screen hypertext reader — with the Emacs Lisp that does it.",
+      "accent": "#6b5b95",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
+      "html": "/read/emacs-reader/",
+      "htmlChapters": "/read/emacs-reader/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+      "tags": [
+        "finished",
+        "publishing",
+        "emacs",
+        "info",
+        "dante",
+        "1unix"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/firstpair/emacs-reader",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/headboard/7c0358aeb5891e7c-emacs-reader-headboard.png",
+      "post": "https://firstpair.press/emacs-reader"
     }
   ]
 }

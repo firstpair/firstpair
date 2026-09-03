@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-03T15:34:15.005Z",
+  "updatedAt": "2026-09-03T17:45:50.673Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -10367,6 +10367,256 @@
           ]
         }
       }
+    },
+    "emacs-reader": {
+      "updatedAt": "2026-09-03T17:45:50.672Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader.pdf",
+          "sha256": "be43e94816a0612bb7a03ee7dc10e52edf85e0400e036b528134065b10cab338",
+          "size": 4859735,
+          "pathname": "books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader.epub",
+          "sha256": "38a3660e94bfe73f9b6091df08907bead44feb7ed4d808facb0002d64273191d",
+          "size": 4177959,
+          "pathname": "books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader.html",
+          "sha256": "2079a704eb84484ed6103067efe7f0de12f5772aa7b4d160c2d4588f837c639b",
+          "size": 5818206,
+          "pathname": "books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-cover.png",
+          "sha256": "6bb1c266c848bbaf01263dee3a97e3d8e791e8e0a3cc97f2d0ea15107d0105a9",
+          "size": 4021087,
+          "pathname": "books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-headboard.png",
+          "sha256": "7c0358aeb5891e7c4993142fda8944e934b6dcdaaf882b7a035af8ea4091717c",
+          "size": 3700669,
+          "pathname": "books/emacs-reader/headboard/7c0358aeb5891e7c-emacs-reader-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/headboard/7c0358aeb5891e7c-emacs-reader-headboard.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters",
+          "sha256": "2a4b2dcfd9224572f160e5aba2737f0230fa548ea73bb0ac58a7b6522d378d4a",
+          "pathnamePrefix": "books/emacs-reader/chapters/2a4b2dcfd9224572",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/assets/6bb1c266c848-emacs-reader-cover.png",
+              "relativePath": "assets/6bb1c266c848-emacs-reader-cover.png",
+              "sha256": "6bb1c266c848bbaf01263dee3a97e3d8e791e8e0a3cc97f2d0ea15107d0105a9",
+              "size": 4021087,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/assets/6bb1c266c848-emacs-reader-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/assets/6bb1c266c848-emacs-reader-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "71338e821c5db359769cf4529c953ffce47959b487793bc3e72f2e19f9b32a77",
+              "size": 504,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "a6a7d6e83292713937b374a07afc799fa05ad4a703f90f878d7c2d5ce6f836f5",
+              "size": 2840,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "d7362e7b5c80c077126160f638aa07a928899b487ec9116ac39712c0b583d1ea",
+              "size": 5311,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "82d522196ad99441dacf493477cc77114c64cd782213d3feab6dc7c765df1ee4",
+              "size": 7432,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "ab48eb6673974bfbe4971485ed3030225ac3b0c091bd08cfbe0971940702d2b9",
+              "size": 8868,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "268c18948ed4518e79c092c873665b4a2be1acebb8af835ebae5c01f371c47fe",
+              "size": 11614,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "eceb7e5886dd1e6fc628a67322411cbe951588085ad33a2d1026e01607814908",
+              "size": 21323,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "d2c01821dd8ce9e6c4d6a423ee02c9b9cf378ea6134b4d2b106a2c6549fac196",
+              "size": 22482,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "ab64854f82393c639c2c4fbea81aea83f0727b07eb95882c5c6c1405f6b8e3da",
+              "size": 25682,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "a865c1c1638fd43d0a6faefde7588ac86be1b8a043b2d551f11d0288f19b801b",
+              "size": 12478,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "941e425bad8556a8f22791f94a7a6afddefa97af216807894be249529dc29088",
+              "size": 29175,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "f279c18dd1ee1145ad991380ab426492398cdf4fd267624fbc1374bf9ed35225",
+              "size": 13827,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "9e257f3e41a828c6fab052518787c795b160fd516f890baeda1e3b895a262e9b",
+              "size": 36210,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "fc78805fb3a36f4f6d0baf5516dbb2e3afcf129d1b290ce9356b957d08bdcff0",
+              "size": 8600,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "6d73e6f837248daa96177660be3705c312d3194fe457711ac01083b0390b1ba6",
+              "size": 4642,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "5fe5c65544ca81ad436ea3d1e9ec57d8df26111bfc12ca554f20343983371b70",
+              "size": 4325,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "c903ad27fd91bde8e67814391848ea6f39cec7e85baf0f4df4e8be7d46eb965f",
+              "size": 3608,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/images/1unix-emacs.jpeg",
+              "relativePath": "images/1unix-emacs.jpeg",
+              "sha256": "65c75198420e947bb4afd4ac9f076f20fc64cb20b3ac6853247faaffbbec223c",
+              "size": 203761,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/images/1unix-emacs.jpeg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/images/1unix-emacs.jpeg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "f140e94e14f1fdc39a0430e1fb194e9bb894144c8f4d2126e4afa42497b8f8f3",
+              "size": 13907,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "18f0c42b789874d61c23fd1f1c167fa024988fe58994ff32ed176123f96319ad",
+              "size": 11926,
+              "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -12154,6 +12404,31 @@
       "pathname": "books/eigentimes/html/7a023abb616a302f-eigentimes.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/7a023abb616a302f-eigentimes.html",
       "size": 1096525
+    },
+    "be43e94816a0612bb7a03ee7dc10e52edf85e0400e036b528134065b10cab338:4859735": {
+      "pathname": "books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
+      "size": 4859735
+    },
+    "38a3660e94bfe73f9b6091df08907bead44feb7ed4d808facb0002d64273191d:4177959": {
+      "pathname": "books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
+      "size": 4177959
+    },
+    "2079a704eb84484ed6103067efe7f0de12f5772aa7b4d160c2d4588f837c639b:5818206": {
+      "pathname": "books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
+      "size": 5818206
+    },
+    "6bb1c266c848bbaf01263dee3a97e3d8e791e8e0a3cc97f2d0ea15107d0105a9:4021087": {
+      "pathname": "books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png",
+      "size": 4021087
+    },
+    "7c0358aeb5891e7c4993142fda8944e934b6dcdaaf882b7a035af8ea4091717c:3700669": {
+      "pathname": "books/emacs-reader/headboard/7c0358aeb5891e7c-emacs-reader-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/headboard/7c0358aeb5891e7c-emacs-reader-headboard.png",
+      "size": 3700669
     }
   },
   "chapterPackages": {
@@ -32982,6 +33257,201 @@
           "size": 6494,
           "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "2a4b2dcfd9224572f160e5aba2737f0230fa548ea73bb0ac58a7b6522d378d4a": {
+      "pathnamePrefix": "books/emacs-reader/chapters/2a4b2dcfd9224572",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/assets/6bb1c266c848-emacs-reader-cover.png",
+          "relativePath": "assets/6bb1c266c848-emacs-reader-cover.png",
+          "sha256": "6bb1c266c848bbaf01263dee3a97e3d8e791e8e0a3cc97f2d0ea15107d0105a9",
+          "size": 4021087,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/assets/6bb1c266c848-emacs-reader-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/assets/6bb1c266c848-emacs-reader-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "71338e821c5db359769cf4529c953ffce47959b487793bc3e72f2e19f9b32a77",
+          "size": 504,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "a6a7d6e83292713937b374a07afc799fa05ad4a703f90f878d7c2d5ce6f836f5",
+          "size": 2840,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "d7362e7b5c80c077126160f638aa07a928899b487ec9116ac39712c0b583d1ea",
+          "size": 5311,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "82d522196ad99441dacf493477cc77114c64cd782213d3feab6dc7c765df1ee4",
+          "size": 7432,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "ab48eb6673974bfbe4971485ed3030225ac3b0c091bd08cfbe0971940702d2b9",
+          "size": 8868,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "268c18948ed4518e79c092c873665b4a2be1acebb8af835ebae5c01f371c47fe",
+          "size": 11614,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "eceb7e5886dd1e6fc628a67322411cbe951588085ad33a2d1026e01607814908",
+          "size": 21323,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "d2c01821dd8ce9e6c4d6a423ee02c9b9cf378ea6134b4d2b106a2c6549fac196",
+          "size": 22482,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "ab64854f82393c639c2c4fbea81aea83f0727b07eb95882c5c6c1405f6b8e3da",
+          "size": 25682,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "a865c1c1638fd43d0a6faefde7588ac86be1b8a043b2d551f11d0288f19b801b",
+          "size": 12478,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "941e425bad8556a8f22791f94a7a6afddefa97af216807894be249529dc29088",
+          "size": 29175,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "f279c18dd1ee1145ad991380ab426492398cdf4fd267624fbc1374bf9ed35225",
+          "size": 13827,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "9e257f3e41a828c6fab052518787c795b160fd516f890baeda1e3b895a262e9b",
+          "size": 36210,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "fc78805fb3a36f4f6d0baf5516dbb2e3afcf129d1b290ce9356b957d08bdcff0",
+          "size": 8600,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "6d73e6f837248daa96177660be3705c312d3194fe457711ac01083b0390b1ba6",
+          "size": 4642,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "5fe5c65544ca81ad436ea3d1e9ec57d8df26111bfc12ca554f20343983371b70",
+          "size": 4325,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "c903ad27fd91bde8e67814391848ea6f39cec7e85baf0f4df4e8be7d46eb965f",
+          "size": 3608,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/images/1unix-emacs.jpeg",
+          "relativePath": "images/1unix-emacs.jpeg",
+          "sha256": "65c75198420e947bb4afd4ac9f076f20fc64cb20b3ac6853247faaffbbec223c",
+          "size": 203761,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/images/1unix-emacs.jpeg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/images/1unix-emacs.jpeg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "f140e94e14f1fdc39a0430e1fb194e9bb894144c8f4d2126e4afa42497b8f8f3",
+          "size": 13907,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/emacs-reader/emacs-reader-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "18f0c42b789874d61c23fd1f1c167fa024988fe58994ff32ed176123f96319ad",
+          "size": 11926,
+          "pathname": "books/emacs-reader/chapters/2a4b2dcfd9224572/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/sitemap.json",
           "skipped": false
         }
       ]

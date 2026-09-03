@@ -240,6 +240,14 @@
       "htmlChapters": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-chapters",
       "cover": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-cover.png",
       "headboard": "book-uploads/staging/lakecat-engine-truth/lakecat-engine-truth-headboard.png"
+    },
+    "emacs-reader": {
+      "pdf": "book-uploads/staging/emacs-reader/emacs-reader.pdf",
+      "epub": "book-uploads/staging/emacs-reader/emacs-reader.epub",
+      "html": "book-uploads/staging/emacs-reader/emacs-reader.html",
+      "htmlChapters": "book-uploads/staging/emacs-reader/emacs-reader-chapters",
+      "cover": "book-uploads/staging/emacs-reader/emacs-reader-cover.png",
+      "headboard": "book-uploads/staging/emacs-reader/emacs-reader-headboard.png"
     }
   }
 }
