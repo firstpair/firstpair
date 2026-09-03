@@ -221,9 +221,9 @@
       },
       "cover": "book-uploads/staging/dante-commedia/dante-commedia-cover.png",
       "headboard": "book-uploads/staging/dante-commedia/dante-commedia-headboard.png",
-      "emacs": "book-uploads/staging/dante-commedia/dante-commedia-full-emacs (1.0.0-028a531b).zip",
-      "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-028a531b).md",
-      "emacsGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-028a531b).html"
+      "emacs": "book-uploads/staging/dante-commedia/dante-commedia-full-emacs (1.0.0-c7b59a2a).zip",
+      "emacsGuideMarkdown": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-c7b59a2a).md",
+      "emacsGuideHtml": "book-uploads/staging/dante-commedia/dante-commedia-emacs-guide (1.0.0-c7b59a2a).html"
     },
     "graph-book": {
       "pdf": "book-uploads/staging/graph-book/graph-book.pdf",
