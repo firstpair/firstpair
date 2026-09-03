@@ -413,12 +413,15 @@ class PackageTests(unittest.TestCase):
                               (get-text-property 0 'display item))
                      (throw 'alignment (get-text-property 0 'display item))))
                  nil)))
-          (princ (format "dictionary-bar=%s align=%S\\n"
+          (princ (format "dictionary-bar=%s align=%S rightmost=%S\\n"
                          (mapconcat (lambda (item)
                                       (if (stringp item)
                                           (substring-no-properties item) ""))
                                     mode-line-format "")
-                         alignment)))
+                         alignment
+                         (get-text-property
+                          0 'firstpair-reader-command
+                          (car (last mode-line-format))))))
         (firstpair-lexicon-toggle-details)
         (princ (format "expanded=%S truncated=%S wrapped=%S bar=%S\\n"
                        (buffer-substring-no-properties (point-min) (point-max))
@@ -479,7 +482,10 @@ class PackageTests(unittest.TestCase):
         self.assertIn('ambiguous="oscuro · oscurare"', output)
         self.assertIn("reader-bar= Dict   ▲   ▼   ◀c   c▶   Top   Refs   ?", output)
         self.assertRegex(output, r"dictionary-bar=.*Tr<.*Tr>.*Lang.*<<.*<.*>.*>>")
-        self.assertIn("align=nil", output)
+        self.assertIn("align=(space :align-to (- right 17))", output)
+        self.assertIn(
+            "rightmost=firstpair-reader-next-significant-marked-lookup", output
+        )
         self.assertNotIn("English", output)
         self.assertNotIn("Русский", output)
         self.assertNotIn("adjective", output)

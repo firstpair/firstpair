@@ -662,6 +662,9 @@ Reader and Lexicon maps must bind `mouse-4` and `mouse-5` themselves in body,
 header-line, mode-line, button, and gap maps; terminal-only Emacs builds may not
 provide a global `mwheel-scroll` binding. Scroll the event's window one line,
 restore the previously selected window, and treat buffer boundaries as silent.
+Reader 1.44 keeps **Tr< Tr> 2nd Lang** at the left of the lower lexical bar and
+aligns **<< < > >>** flush right. Compute the alignment from the actual right
+block and omit a trailing gap after its final button.
 Starting with 1Unix build 825, expose the persistent Dante Reader bar through
 its own saved **Show Dante Reader Bar** setting, enabled by default and
 independent of the keyboard-hiding preference. Hiding it must let the terminal

@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.43
+;; Version: 1.44
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 

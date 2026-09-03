@@ -409,7 +409,9 @@ On a phone (Emacs under 1Unix/iSH) or anywhere you would rather not type chords,
 the reader offers the same commands as taps and single letters without repeating
 controls between panes. The middle bar under the book carries **Dict · ▲ · ▼ ·
 ◀c · c▶ · Top · Refs · ?**. **Dict** opens or closes the dictionary. The lowest
-bar carries **Tr< · Tr> · 2nd · Lang · << · < · > · >>**. `<` and `>` move one
+bar carries **Tr< · Tr> · 2nd · Lang · << · < · > · >>**. Reader 1.44 keeps
+the four translation controls at the left and flushes **<< · < · > · >>** to
+the right edge. `<` and `>` move one
 source word and look it up; `<<` and `>>` do the same while skipping frequent
 Italian function words, including articles, prepositions, pronouns, and common
 forms of *essere* and *avere*. The stopword list is customizable through

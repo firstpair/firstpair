@@ -292,6 +292,12 @@ visibility. Turning it off must hide the native strip and return its height to
 the terminal immediately; turning it on restores the strip without restarting
 Emacs or changing the ordinary keyboard accessory row.
 
+Bottom lexical-bar alignment (Reader 1.44): keep **Tr< Tr> 2nd Lang** at the
+left and align **<< < > >>** flush to the right edge with a mode-line alignment
+space sized from the rendered right block. The right block must end in the
+final button, not a trailing gap, so it remains truly edge-aligned in narrow
+Dictionary windows.
+
 Terminal font geometry (1Unix build 815): bundled webfonts load
 asynchronously. After setting the selected family and size, wait on the hterm
 document's `FontFaceSet`, resynchronize hterm's font family and size, redraw,

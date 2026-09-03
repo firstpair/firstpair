@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.43
+;; Version: 1.44
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -2047,15 +2047,17 @@ acts on the book even while the dictionary window has focus."
 (defun firstpair-reader--split-bar (left right)
   "A bar with LEFT buttons at the start and RIGHT buttons at the right edge."
   (let* ((left-items
-          (mapcan (lambda (button)
-                    (list (firstpair-reader--button (car button) (cdr button))
-                          (firstpair-reader--bar-gap)))
-                  left))
+          (butlast
+           (mapcan (lambda (button)
+                     (list (firstpair-reader--button (car button) (cdr button))
+                           (firstpair-reader--bar-gap)))
+                   left)))
          (right-items
-          (mapcan (lambda (button)
-                    (list (firstpair-reader--button (car button) (cdr button))
-                          (firstpair-reader--bar-gap)))
-                  right))
+          (butlast
+           (mapcan (lambda (button)
+                     (list (firstpair-reader--button (car button) (cdr button))
+                           (firstpair-reader--bar-gap)))
+                   right)))
          (right-width
           (apply #'+ (mapcar (lambda (item)
                                (if (stringp item) (string-width item) 0))
@@ -2101,15 +2103,15 @@ acts on the book even while the dictionary window has focus."
 
 (defun firstpair-reader--dictionary-bar ()
   "The lowest Reader bar: lexical and translation controls."
-  (firstpair-reader--bar
-   (cons "Tr<" #'firstpair-reader-terminal-previous-translation)
-   (cons "Tr>" #'firstpair-reader-terminal-next-translation)
-   (cons "2nd" #'firstpair-reader-second-translation)
-   (cons "Lang" #'firstpair-lexicon-cycle-languages-command)
-   (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
-   (cons "<" #'firstpair-reader-previous-marked-lookup)
-   (cons ">" #'firstpair-reader-next-marked-lookup)
-   (cons ">>" #'firstpair-reader-next-significant-marked-lookup)))
+  (firstpair-reader--split-bar
+   (list (cons "Tr<" #'firstpair-reader-terminal-previous-translation)
+         (cons "Tr>" #'firstpair-reader-terminal-next-translation)
+         (cons "2nd" #'firstpair-reader-second-translation)
+         (cons "Lang" #'firstpair-lexicon-cycle-languages-command))
+   (list (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
+         (cons "<" #'firstpair-reader-previous-marked-lookup)
+         (cons ">" #'firstpair-reader-next-marked-lookup)
+         (cons ">>" #'firstpair-reader-next-significant-marked-lookup))))
 
 (defun firstpair-reader-toggle-dictionary ()
   "Open the dictionary at point, or close it when already visible."

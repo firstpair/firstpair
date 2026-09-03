@@ -234,7 +234,7 @@ commands from either bar, survives translation-region refreshes, and clears
 when Dict closes or the reader changes nodes.
 
 Reader 1.36 separates navigation by responsibility. The middle book bar owns
-dictionary open/close, page, canto, Top, References, and Help. Reader 1.43's
+dictionary open/close, page, canto, Top, References, and Help. Reader 1.44's
 lowest dictionary bar owns one lexical strip only: **Tr< Tr> 2nd Lang << < > >>**.
 There is no duplicate **Tr** or word control. `<`/`>` move one source word;
 `<<`/`>>` skip a customizable lowercase stopword set containing common Italian
@@ -242,6 +242,9 @@ articles, prepositions, pronouns, and forms of *essere* and *avere*. Bind the
 strip to `[`, `]`, `b`, `t`, `K`, `k`, `j`, and `J` respectively so a terminal host
 can expose a persistent native row and send ordinary keyboard events without
 depending on terminal mouse release.
+Keep the four translation controls at the left edge and align the lexical
+`<< < > >>` block flush with the right edge, including when the Dictionary pane
+is narrower than the poem.
 The host may add paired long presses: `]`, `[`, `B`, and `T` act on
 **Tr<**, **Tr>**, **2nd**, and **Lang**. The recognizer must cancel the
 button's release action so one hold emits exactly one inverse command.
