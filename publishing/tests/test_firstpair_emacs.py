@@ -416,14 +416,14 @@ class PackageTests(unittest.TestCase):
         self.assertIn('expanded="amore\\nlove\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
         self.assertIn("truncated=nil wrapped=t", output)
         self.assertIn("collapsed-again=t", output)
-        self.assertIn('expanded-ru=t more=nil bar=" Tr<   Tr>   2nd   Lang   <<   <   >   >> ', output)
+        self.assertIn('expanded-ru=t more=nil bar=" Tr<   Tr>   Lang   <<   <   >   >> ', output)
         self.assertIn("collapsed-ru=nil", output)
         self.assertIn('short="short\\nbrief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
         self.assertIn('ru-only="short\\nкраткий\\nкороткий\\n"', output)
         self.assertIn('missing="missing\\nNo entry in the selected dictionaries.\\n"', output)
         self.assertIn('ambiguous="oscuro · oscurare"', output)
         self.assertIn("reader-bar= Dict   ▲   ▼   ◀c   c▶   Top   Refs   ?", output)
-        self.assertRegex(output, r"dictionary-bar=.*Tr<.*Tr>.*2nd.*Lang.*<<.*<.*>.*>>")
+        self.assertRegex(output, r"dictionary-bar=.*Tr<.*Tr>.*Lang.*<<.*<.*>.*>>")
         self.assertIn("align=nil", output)
         self.assertNotIn("English", output)
         self.assertNotIn("Русский", output)
@@ -1218,8 +1218,14 @@ class AlignedTests(Fixture):
   (firstpair-read)
   (with-current-buffer firstpair-reader-buffer
     (Info-goto-node "(fixture)Inferno — Canto 1")
-    (let ((pristine (buffer-string))
-          (hidden (lambda () (length (seq-filter (lambda (o) (overlay-get o 'firstpair-region)) firstpair-reader--overlays))))
+    (let ((hidden (lambda () (length (seq-filter (lambda (o) (overlay-get o 'firstpair-region)) firstpair-reader--overlays))))
+          (header-flat
+           (lambda ()
+             (let ((header (firstpair-reader--translation-header-line)))
+               (replace-regexp-in-string
+                " +" " "
+                (mapconcat (lambda (part) (if (stringp part) (substring-no-properties part) ""))
+                           (if (listp header) header (list header)) "")))))
           (run-feedback
            (lambda ()
              (let (shown)
@@ -1261,13 +1267,13 @@ class AlignedTests(Fixture):
                  (with-current-buffer firstpair-lexicon-buffer buffer-read-only)
                  (eq reader-window (selected-window)))))
       (let ((a (funcall hidden)))
-        (let ((before (copy-tree firstpair-reader-translation-choices))
+        (let ((before (copy-tree firstpair-reader-translation-selections))
               (current (firstpair-reader-show-current-translations)))
           (princ (format "CURRENT %s | unchanged=%S | key=%S | menu=%s | header=%S installed=%S\n"
-                         current (equal before firstpair-reader-translation-choices)
+                         current (equal before firstpair-reader-translation-selections)
                          (key-binding "=")
                          (firstpair-reader--current-translations-menu-label)
-                         (firstpair-reader--translation-header-line)
+                         (funcall header-flat)
                          firstpair-reader--translation-header-installed))
           (let* ((bundle (firstpair-reader--bundle))
                  (windows (length (window-list)))
@@ -1278,6 +1284,15 @@ class AlignedTests(Fixture):
                                     (push (nth 1 binding) labels))
                                   menu)
                       (nreverse labels))))
+                 (menu-buttons
+                  (lambda (menu)
+                    (let (buttons)
+                      (map-keymap
+                       (lambda (_event binding)
+                         (let ((button (plist-get (nthcdr 3 binding) :button)))
+                           (push (cons (nth 1 binding) button) buttons)))
+                       menu)
+                      (nreverse buttons))))
                  (menu-command
                   (lambda (menu label)
                     (let (command)
@@ -1309,13 +1324,18 @@ class AlignedTests(Fixture):
                               [menu-bar translation-russian]))
                  (initial-english (funcall menu-labels english-menu))
                  (initial-russian (funcall menu-labels russian-menu))
+                 (initial-english-buttons (funcall menu-buttons english-menu))
                  (named-menu-paths
                   (and (funcall named-menu-paths-p english-menu
                                 [menu-bar translation-english])
                        (funcall named-menu-paths-p russian-menu
                                 [menu-bar translation-russian]))))
             (call-interactively (funcall menu-command english-menu "Cary (1814) ≈"))
-            (let ((after-english
+            (let ((after-english-buttons
+                   (funcall menu-buttons
+                            (lookup-key firstpair-reader-mode-map
+                                        [menu-bar translation-english])))
+                  (after-english
                    (mapcar (lambda (lang)
                              (firstpair-reader-translation-for bundle lang))
                            '("en" "ru")))
@@ -1352,7 +1372,7 @@ class AlignedTests(Fixture):
                     (let ((feedback-all-none (funcall run-feedback))
                           (all-none firstpair-lexicon-languages)
                           (all-none-hidden (funcall hidden))
-                          (all-none-header (firstpair-reader--translation-header-line)))
+                          (all-none-header (funcall header-flat)))
                       (call-interactively
                        (funcall menu-command
                                 (lookup-key firstpair-reader-mode-map
@@ -1374,8 +1394,10 @@ class AlignedTests(Fixture):
                              (tmm-get-keymap (cons event binding)))
                            (lookup-key firstpair-reader-mode-map [menu-bar]))
                           (princ
-                           (format "TERMINAL menus=%S/%S named=%S english=%s/%s russian-none=%S russian=%s/%s russian-only=%S all-none=%S/%d/%S feedback=%S/%S/%S/%S/%S/%S windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
-                                   initial-english initial-russian named-menu-paths
+                           (format "TERMINAL menus=%S/%S buttons=%S->%S named=%S english=%s/%s russian-none=%S russian=%s/%s russian-only=%S all-none=%S/%d/%S feedback=%S/%S/%S/%S/%S/%S windows=%d/%d completions=%S override=%S order=%S tty=%S\n"
+                                   initial-english initial-russian
+                                   initial-english-buttons after-english-buttons
+                                   named-menu-paths
                                    (car after-english) (cadr after-english)
                                    after-russian-none
                                    (car after-russian) (cadr after-russian)
@@ -1388,7 +1410,8 @@ class AlignedTests(Fixture):
                                    (assq 'firstpair-reader-mode minor-mode-overriding-map-alist)
                                    (mapcar #'car (cdr (lookup-key firstpair-reader-mode-map [menu-bar])))
                                    (mapcar #'car tmm-km-list)))))))))))
-            (setq firstpair-reader-translation-choices nil
+            (setq firstpair-reader-translation-selections nil
+                  firstpair-reader-language-order nil
                   firstpair-lexicon-languages nil)
             (firstpair-reader-refresh-regions)
             (cl-letf (((symbol-function 'display-graphic-p)
@@ -1396,52 +1419,73 @@ class AlignedTests(Fixture):
               (princ (format "GUI menu=%S\n"
                              (keymapp
                               (lookup-key firstpair-reader-mode-map
-                                          [menu-bar translations]))))))
+                                          [menu-bar translations])))))
+            (princ
+             (format "MIGRATION=%S\n"
+                     (firstpair-reader--saved-selections
+                      '(:choices (("en" . "en-longfellow") ("ru" . "ru-min"))
+                        :seconds (("en" . "en-cary")))))))
         (firstpair-reader-rotate-translation)
         (let ((b (funcall hidden)) (label (firstpair-reader-translations-label (firstpair-bundle-current))))
           (firstpair-reader-second-translation)
           (let* ((c (funcall hidden))
                  (bundle (firstpair-reader--bundle))
-                 (second (alist-get "en" firstpair-reader-second-translations nil nil #'equal))
-                 (region (seq-find
-                          (lambda (row) (equal (plist-get row :language) second))
-                          (firstpair-bundle-regions-for-node
-                           bundle (firstpair-bundle-manual) Info-current-node))))
-            (goto-char (point-min))
-            (forward-line (1- (plist-get region :start)))
-            (firstpair-reader-terminal-next-translation)
-            (let ((primary-after (firstpair-reader-translation-for bundle "en"))
-                  (second-after (alist-get "en" firstpair-reader-second-translations nil nil #'equal))
-                  (target-after (firstpair-reader--translation-target-at-point bundle))
-                  (second-feedback (funcall run-feedback))
-                  (second-header (firstpair-reader--translation-header-line)))
-            (firstpair-reader-second-translation)
-              (princ (format "%d %d %d %d %s | slots=%s/%s target=%S feedback=%S header=%S immutable=%S"
-                             a b c (funcall hidden) label primary-after
-                             second-after target-after second-feedback
-                             second-header (equal pristine (buffer-string)))))))))))"""
+                 (selection-add (copy-sequence (alist-get "en" firstpair-reader-translation-selections nil nil #'equal))))
+            (firstpair-reader-move-translation-earlier "en" "en-longfellow")
+            (let* ((selection-move (copy-sequence (alist-get "en" firstpair-reader-translation-selections nil nil #'equal)))
+                   (u1 (lambda (id)
+                         (plist-get (seq-find (lambda (row)
+                                                (and (equal (plist-get row :language) id)
+                                                     (equal (plist-get row :unit) "u1")))
+                                              (firstpair-reader--regions bundle))
+                                    :start)))
+                   (longfellow-first (< (funcall u1 "en-longfellow") (funcall u1 "en-cary"))))
+              (firstpair-reader-language-first "ru")
+              (let ((russian-first (< (funcall u1 "ru-min") (funcall u1 "en-longfellow")))
+                    (summary (firstpair-reader--terminal-translations-summary bundle))
+                    (header-after (funcall header-flat)))
+                (goto-char (point-min))
+                (firstpair-reader-next-marked)
+                (let ((word-after-reorder (thing-at-point 'word t)))
+                  (firstpair-reader-toggle-language-translation "en" "en-cary")
+                  (let ((d (funcall hidden)))
+                    (goto-char (point-min))
+                    (forward-line (1- (funcall u1 "en-longfellow")))
+                    (firstpair-reader-terminal-next-translation)
+                    (let ((swap-feedback (funcall run-feedback))
+                          (target (firstpair-reader--translation-target-at-point bundle)))
+                      (princ (format "%d %d %d %d %s | add=%S move=%S longfellow-first=%S russian-first=%S summary=%s word=%s target=%S feedback=%S header=%S"
+                                     a b c d label selection-add selection-move
+                                     longfellow-first russian-first summary
+                                     word-after-reorder target swap-feedback
+                                     header-after)))))))))))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
         words = [line.split(" ", 1)[1] for line in result.stdout.splitlines() if line.startswith("WORD ")]
         self.assertEqual(["Nel", "mezzo"], words, result.stdout)  # the arrows walk the Italian, not the translations
         self.assertIn('CLICK word="cammin" current="cammin"/firstpair-reader-current-word reader-read-only=t dict-read-only=t focus=t', result.stdout)
         self.assertIn("CURRENT English: Longfellow (1867); Русский: Мин (1855) | unchanged=t | key=firstpair-reader-show-current-translations | menu=Showing: English: Longfellow (1867); Русский: Мин (1855)", result.stdout)
-        self.assertIn('header=" Longfellow · Мин " installed=t', result.stdout)
-        self.assertIn('TERMINAL menus=("None" "Longfellow (1867)" "Cary (1814) ≈" "Third English")/("None" "Мин (1855)" "Лозинский (1939)") named=t', result.stdout)
-        self.assertIn('english=en-cary/ru-min russian-none=("en") russian=en-cary/ru-lozinsky russian-only=("ru") all-none=:none/10/" None "', result.stdout)
-        self.assertIn('feedback="English: Cary (1814) ≈"/"Русский: None"/"Русский: Лозинский (1939)"/"English: None"/"Русский: None"/"Русский: Мин (1855)"', result.stdout)
+        self.assertIn('header=" EN Longfellow | RU Мин " installed=t', result.stdout)
+        self.assertIn('TERMINAL menus=("None" "Longfellow (1867)" "Cary (1814) ≈" "Third English")/("None" "Мин (1855)" "Лозинский (1939)")', result.stdout)
+        self.assertIn('buttons=(("None" radio) ("Longfellow (1867)" checkbox . t) ("Cary (1814) ≈" checkbox) ("Third English" checkbox))->(("None" radio) ("Longfellow (1867)" checkbox . t) ("Cary (1814) ≈" checkbox . t) ("Third English" checkbox)) named=t', result.stdout)
+        self.assertIn('english=en-longfellow/ru-min russian-none=("en") russian=en-longfellow/ru-lozinsky russian-only=("ru") all-none=:none/10/" None "', result.stdout)
+        self.assertIn('feedback="English: Longfellow (1867) + Cary (1814) ≈"/"Русский: None"/"Русский: Лозинский (1939)"/"English: None"/"Русский: None"/"Русский: Мин (1855)"', result.stdout)
         self.assertIn("windows=2/2 completions=nil override=nil", result.stdout)
         self.assertIn("order=(translations translation-english translation-russian)", result.stdout)
         self.assertIn('tty=("Tr-Rus" "Tr-Eng")', result.stdout)
         self.assertIn("GUI menu=t", result.stdout)
+        self.assertIn('MIGRATION=(("en" "en-longfellow" "en-cary") ("ru" "ru-min"))', result.stdout)
         output = result.stdout.strip().splitlines()[-1].split(" ", 4)
-        self.assertEqual(["6", "6", "4", "6"], output[:4], result.stdout)  # show one second edition, then hide it in one tap despite a third
+        self.assertEqual(["6", "6", "4", "6"], output[:4], result.stdout)  # rotate keeps one shown; adding shows two; hiding returns to one
         self.assertIn("Cary (1814) ≈", output[4])
-        self.assertIn("slots=en-cary/en-third", output[4])
-        self.assertIn('target=("en" . second)', output[4])
-        self.assertIn('feedback="English: Third English"', output[4])
-        self.assertIn('header=" Cary · Third English · Мин "', output[4])
-        self.assertIn("immutable=t", output[4])
+        self.assertIn('add=("en-cary" "en-longfellow")', output[4])
+        self.assertIn('move=("en-longfellow" "en-cary")', output[4])
+        self.assertIn("longfellow-first=t russian-first=t", output[4])
+        self.assertIn("summary=RU Мин | EN Longfellow+Cary", output[4])
+        self.assertIn("word=Nel", output[4])
+        self.assertIn('target=("en" . "en-cary")', output[4])
+        self.assertIn('feedback="English: Cary (1814) ≈"', output[4])
+        self.assertIn('header=" RU Мин | EN Longfellow ◀ Cary "', output[4])
         # Resume: the state file records the node and the choices; a fresh Emacs returns to them.
         state_file = self.root / "reader-state.el"
         script = f"""(progn
@@ -1452,19 +1496,14 @@ class AlignedTests(Fixture):
     (Info-goto-node "(fixture)Inferno — Canto 1")
     (firstpair-reader-rotate-translation)
     (firstpair-reader-save-state))
-  (setq firstpair-reader--states nil firstpair-reader-translation-choices nil)
+  (setq firstpair-reader--states nil firstpair-reader-translation-selections nil)
   (firstpair-read)
   (with-current-buffer firstpair-reader-buffer
-    (let* ((selections '(("en" "one" "two" "discarded")))
-           (primary (firstpair-reader--selection-state-slot selections 0))
-           (second (firstpair-reader--selection-state-slot selections 1)))
-      (princ (format "%s|%s|%s|%s|%s|%s" Info-current-node (alist-get "en" firstpair-reader-translation-choices nil nil #'equal)
-                     (key-binding "d") (and (string-match-p "Dict" (format "%S" mode-line-format)) t)
-                     (alist-get "en" primary nil nil #'equal)
-                     (alist-get "en" second nil nil #'equal))))))"""
+    (princ (format "%s|%s|%s|%s" Info-current-node (car (alist-get "en" firstpair-reader-translation-selections nil nil #'equal))
+                   (key-binding "d") (and (string-match-p "Dict" (format "%S" mode-line-format)) t)))))"""
         result = subprocess.run(["emacs", "--batch", "-Q", "--eval", script], capture_output=True, text=True, check=False)
         self.assertEqual(0, result.returncode, result.stderr)
-        self.assertEqual("Inferno — Canto 1|en-cary|firstpair-reader-describe-word|t|one|two", result.stdout.strip().splitlines()[-1], result.stdout)
+        self.assertEqual("Inferno — Canto 1|en-cary|firstpair-reader-describe-word|t", result.stdout.strip().splitlines()[-1], result.stdout)
         self.assertIn(":node", state_file.read_text(encoding="utf-8"))
 
 

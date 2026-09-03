@@ -189,17 +189,15 @@ nodes, the references manual, and on actual Info links, Return keeps ordinary
 redirected Info-follow behavior. Fit/reset the lexicon pane after every such
 lookup so its source headword is visible at the top.
 
-Translation inspection (reader 1.20): aligned editions add a top-level Emacs
-**Translations** menu. Its first, live `Showing: …` item and the `=` key report
-the effective primary and second translations on the current page without
-mutating selection; coverage fallbacks and approximate-alignment marks must be
-reflected. Keep Choose Primary, Next at Point, Toggle Second, Choose Second,
+Translation inspection (Reader 1.41): aligned editions
+add a top-level Emacs **Translations** menu. Its first, live `Showing: …` item
+and the `=` key report every edition on the current page, in display order,
+without mutating selection; coverage fallbacks and approximate-alignment marks
+must be reflected. Keep Show or Hide, Next at Point, This Language First,
 Choose Languages, and Cycle Languages in that same dedicated menu so
-inspection and intentional changes remain visibly distinct. **2nd** and `b`
-are strict show/hide toggles: a visible second
-translation disappears in one action, irrespective of how many editions are
-available. The graphical menu retains **Choose Second Translation...** for
-deliberate selection among many alternatives.
+inspection and intentional changes remain visibly distinct. Each language
+keeps an *ordered list* of shown editions — there is no second slot and no
+**2nd** button; `b` adds one more edition or returns to one.
 
 Terminal translation control (reader 1.31): do not send an iSH or other TTY
 tap through `tmm-menubar`, which opens a large text-menu/completions window.
@@ -208,34 +206,30 @@ the minor-mode map and exposes duplicate controls. Keep the native
 **Translations** submenu graphical-only. In a terminal expose adjacent dynamic
 **Tr-Eng** and **Tr-Rus** submenus. Each starts with **None**, then lists in
 declared order every edition of that language that covers the current part.
-Use radio marks for the effective selection. **None** hides only its language;
-choosing an edition selects it as primary and restores that language without
-changing the other language. Represent an explicit all-hidden choice
+Use a radio mark on **None** and checkboxes on the editions: an unchecked
+edition is shown in addition to those already on screen, a checked one is
+hidden, and hiding the last hides the language. **None** hides only its
+language; choosing an edition of a hidden language restores that language
+without changing the other one. Represent an explicit all-hidden choice
 separately from the legacy nil meaning "show every declared language," and
 persist it with the Reader state. The submenus must invoke their commands
 directly, with no minibuffer and no `*Completions*` buffer. A TTY menu dismisses
 its own message after invoking the command, so post the new language and
 edition label, including `None`, from a one-shot `post-command-hook` after the
 outer menu command finishes; it must remain in the echo area until another
-command or message replaces it. Install a persistent header line immediately
-below the menu bar that lists compact visible edition names in actual region
-order, including second translations, and update it on every region refresh.
+command or message replaces it. Install a persistent header row immediately below the menu bar that lists
+compact visible edition names grouped by language in actual region order, and
+update it on every region refresh. The row is also the ordering control: an
+edition's name hides it, **◀** moves it one step earlier in its language, and
+the language tag brings that block first, physically reordering each unit's
+translation blocks in the buffer without moving the source lines.
 Keep `=` as the non-mutating status report. Terminal tests must prove ordered
 English and Russian menu contents,
 independent direct selection, one-language and all-language hiding, restoration,
-one-action second-slot hiding with three or more editions, exact delayed
+checkbox toggling with three or more editions, in-language reordering,
+language block order, exact delayed
 feedback, menu order, no overriding map, unchanged window count, and no
 `*Completions*` buffer.
-
-Bounded translation state (reader 1.40): retain exactly one primary and one
-optional second edition per visible language. The edition header is a compact,
-read-only status line. Do not turn it into a destructive selection or ordering
-surface, keep arbitrary-length selected-edition lists, reorder language blocks,
-or rewrite aligned translation blocks inside an Info buffer. **Tr<**/**Tr>**
-replace the slot under point, **2nd** strictly toggles the optional slot, and
-**Lang** controls language visibility. This bounded model is part of the phone
-interaction contract: each native tap has a deterministic inverse long press,
-and the whole state remains visible at narrow terminal widths.
 
 Terminal menu dispatch (reader 1.31 and 1Unix): every dynamic submenu item
 binds to a stable named interactive command, not an anonymous lexical closure.

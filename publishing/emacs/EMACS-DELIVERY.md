@@ -235,25 +235,27 @@ when Dict closes or the reader changes nodes.
 
 Reader 1.36 separates navigation by responsibility. The middle book bar owns
 dictionary open/close, page, canto, Top, References, and Help. The lowest
-dictionary bar owns one lexical strip only: **Tr< Tr> 2nd Lang << < > >>**.
+dictionary bar owns one lexical strip only: **Tr< Tr> Lang << < > >>**.
 There is no duplicate **Tr** or word control. `<`/`>` move one source word;
 `<<`/`>>` skip a customizable lowercase stopword set containing common Italian
 articles, prepositions, pronouns, and forms of *essere* and *avere*. Bind these
 to `K`, `k`, `j`, `J`, `[`, `]`, `b`, and `t` respectively so a terminal host
 can expose a persistent native row and send ordinary keyboard events without
 depending on terminal mouse release.
-The host may add inverse long presses: `]`, `[`, `b`, and `T` undo normal taps
-on **Tr<**, **Tr>**, **2nd**, and **Lang**. The recognizer must cancel the
+The host may add inverse long presses: `]`, `[`, and `T` undo normal taps
+on **Tr<**, **Tr>**, and **Lang**. The recognizer must cancel the
 button's release action so one hold emits exactly one inverse command.
 
-Reader 1.40 deliberately keeps translation state bounded: each visible
-language has one primary edition and, optionally, one second edition. **Tr<**
-and **Tr>** replace the slot under point, **2nd** is a strict show/hide toggle,
-and **Lang** changes language visibility. The persistent edition line is status,
-not a destructive or reordering surface. Do not replace this model with
-arbitrary selected-edition lists, user-ordered language blocks, or physical
-rewriting of an Info node; those features make phone controls overflow and make
-saved reading state and marked-word positions unnecessarily fragile.
+Reader 1.41 replaces the primary/second slot model with an ordered
+selection per language (`firstpair-reader-translation-selections`) plus a
+language block order (`firstpair-reader-language-order`): any number of
+editions of a language may be shown, the Tr menus are checkboxes, and the
+header row below the menu bar is the control surface for hiding (tap a name),
+in-language reordering (**◀**), and language block order (tap **EN**/**RU**).
+Reordering rewrites each unit's translation blocks bodily in the buffer —
+source lines never move, so marked-word positions stay exact — and the
+region rows served by `firstpair-reader--regions` track the moved lines,
+invalidated whenever Info re-reads the (sub)file.
 
 Record sets may `merge` further files by identifier, so translations kept in
 a separate map (for example a reviewed Russian reading of each passage) join

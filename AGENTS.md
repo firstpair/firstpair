@@ -633,14 +633,20 @@ book-specific guide fragment. Never produce the delivered `.info` with
 is validated only when the inventory, structural Info, link, lexicon,
 `makeinfo`, and `emacs --batch` gates all pass.
 
-Keep Emacs aligned-edition translation state bounded: one primary and one
-optional second edition per visible language. The persistent edition line is
-read-only status; **Tr<** and **Tr>** replace the slot under point, **2nd**
-strictly toggles the optional slot, and **Lang** changes visible languages.
-Do not add arbitrary selected-edition lists, user-reordered language blocks,
-or runtime rewriting of Info node text. The bounded model keeps narrow phone
-controls legible, marked-word positions stable, saved state small, and native
-tap/long-press actions exact inverses.
+Keep Emacs aligned-edition translation state compact and explicit: one ordered
+list of checked edition ids per language, plus one ordered list of visible
+language ids. The **Tr-Eng** and **Tr-Rus** menus use checkboxes; selecting an
+unchecked edition adds it without replacing those already visible, selecting a
+checked edition removes it, and **None** hides only that language. The header
+row exposes the same state: tap an edition name to remove it, its left control
+to move it earlier, or a language label to move that language block first.
+**Tr<** and **Tr>** replace only the edition block under point, the `b` key adds
+one more edition or collapses several to one, and **Lang** changes visible
+languages. Persist only these two ordered lists; preserve source-word
+positions and pristine reload recovery while projecting that state into the
+Reader. Tests must prove menu checkbox marks, additive selection, removal,
+both levels of ordering, saved-state migration, and dictionary-word navigation
+after reordering.
 
 Before resolving even a dry-run vault plan, look for the source repository's
 `scripts/check-obsidian-vault.py`. If present, `library:publish` must run it
