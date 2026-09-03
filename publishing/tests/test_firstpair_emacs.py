@@ -513,6 +513,22 @@ class PackageTests(unittest.TestCase):
                          (get-text-property
                           0 'firstpair-reader-command
                           (car (last mode-line-format))))))
+        (let ((commands
+               '(firstpair-reader-previous-significant-marked-lookup
+                 firstpair-reader-previous-marked-lookup
+                 firstpair-reader-next-marked-lookup
+                 firstpair-reader-next-significant-marked-lookup)))
+          (princ (format "word-widths=%S\n"
+                         (delq nil
+                               (mapcar
+                                (lambda (item)
+                                  (when (and (stringp item)
+                                             (> (length item) 0)
+                                             (memq (get-text-property
+                                                    0 'firstpair-reader-command item)
+                                                   commands))
+                                    (string-width item)))
+                                mode-line-format)))))
         (firstpair-lexicon-toggle-details)
         (princ (format "expanded=%S truncated=%S wrapped=%S bar=%S\\n"
                        (buffer-substring-no-properties (point-min) (point-max))
@@ -565,7 +581,7 @@ class PackageTests(unittest.TestCase):
         self.assertIn('expanded="amore\\nlove\\naffection\\ndevotion\\nлюбовь\\nчувство\\n"', output)
         self.assertIn("truncated=nil wrapped=t", output)
         self.assertIn("collapsed-again=t", output)
-        self.assertIn('expanded-ru=t more=nil bar=" Tr<   Tr>   2nd   Lang   <<   <   >   >> ', output)
+        self.assertIn('expanded-ru=t more=nil bar=" Tr<   Tr>   2nd   Lang     <<      <      >       >>   ', output)
         self.assertIn("collapsed-ru=nil", output)
         self.assertIn('short="short\\nbrief\\nкраткий\\nкороткий\\n" expanded=nil more=nil', output)
         self.assertIn('ru-only="short\\nкраткий\\nкороткий\\n"', output)
@@ -573,7 +589,8 @@ class PackageTests(unittest.TestCase):
         self.assertIn('ambiguous="oscuro · oscurare"', output)
         self.assertIn("reader-bar= Dict   ▲   ▼   ◀c   c▶   Top   Refs   ?", output)
         self.assertRegex(output, r"dictionary-bar=.*Tr<.*Tr>.*Lang.*<<.*<.*>.*>>")
-        self.assertIn("align=(space :align-to (- right 17))", output)
+        self.assertIn("align=(space :align-to (- right 31))", output)
+        self.assertIn("word-widths=(8 6 6 8)", output)
         self.assertIn(
             "rightmost=firstpair-reader-next-significant-marked-lookup", output
         )

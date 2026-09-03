@@ -411,7 +411,9 @@ controls between panes. The middle bar under the book carries **Dict · ▲ · �
 ◀c · c▶ · Top · Refs · ?**. **Dict** opens or closes the dictionary. The lowest
 bar carries **Tr< · Tr> · 2nd · Lang · << · < · > · >>**. Reader 1.44 keeps
 the four translation controls at the left and flushes **<< · < · > · >>** to
-the right edge. `<` and `>` move one
+the right edge. Reader 1.46 doubles the boxed width of each of those four word
+controls, giving the thumb a larger target without moving `>>` away from the
+edge. `<` and `>` move one
 source word and look it up; `<<` and `>>` do the same while skipping frequent
 Italian function words, including articles, prepositions, pronouns, and common
 forms of *essere* and *avere*. The stopword list is customizable through

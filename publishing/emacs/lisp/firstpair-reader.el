@@ -2,7 +2,7 @@
 
 ;; Copyright (C) 2026 First Pair Press
 ;; Author: First Pair Press
-;; Version: 1.45
+;; Version: 1.46
 ;; Package-Requires: ((emacs "27.1"))
 ;; Keywords: docs, hypermedia
 
@@ -2025,14 +2025,20 @@ Commands that do not navigate also restore that window's buffer point."
       (put-text-property 0 1 'display display gap))
     gap))
 
-(defun firstpair-reader--button (label command &optional help)
+(defun firstpair-reader--button (label command &optional help width)
   "A bar button LABEL running COMMAND on a tap, with HELP as tooltip.
+When WIDTH is non-nil, pad the button to that many terminal columns.
 The command runs with the tapped window selected, so a button on the book
 acts on the book even while the dictionary window has focus."
-  (let ((map (make-sparse-keymap))
-        (action (lambda (event)
-                  (interactive "e")
-                  (firstpair-reader--run-button-command event command))))
+  (let* ((map (make-sparse-keymap))
+         (action (lambda (event)
+                   (interactive "e")
+                   (firstpair-reader--run-button-command event command)))
+         (label-width (string-width label))
+         (button-width (max (+ label-width 2) (or width 0)))
+         (padding (- button-width label-width))
+         (left-padding (/ padding 2))
+         (right-padding (- padding left-padding)))
     (define-key map [header-line mouse-1] action)
     (define-key map [header-line drag-mouse-1] action)
     (define-key map [header-line down-mouse-1] #'ignore)
@@ -2054,7 +2060,9 @@ acts on the book even while the dictionary window has focus."
     (define-key map [double-mouse-1] #'ignore)
     (define-key map [triple-mouse-1] #'ignore)
     (firstpair-reader--bind-touch-scroll map)
-    (propertize (concat " " label " ")
+    (propertize (concat (make-string left-padding ?\s)
+                        label
+                        (make-string right-padding ?\s))
                 'face '(:box (:line-width 1) :inherit mode-line-highlight)
                 'mouse-face 'highlight 'local-map map
                 'firstpair-reader-command command
@@ -2069,8 +2077,9 @@ acts on the book even while the dictionary window has focus."
                             (firstpair-reader--bar-gap)))
                     buttons)))
 
-(defun firstpair-reader--split-bar (left right)
-  "A bar with LEFT buttons at the start and RIGHT buttons at the right edge."
+(defun firstpair-reader--split-bar (left right &optional double-right)
+  "A bar with LEFT buttons at the start and RIGHT buttons at the right edge.
+When DOUBLE-RIGHT is non-nil, make each RIGHT button twice its natural width."
   (let* ((left-items
           (butlast
            (mapcan (lambda (button)
@@ -2080,8 +2089,12 @@ acts on the book even while the dictionary window has focus."
          (right-items
           (butlast
            (mapcan (lambda (button)
-                     (list (firstpair-reader--button (car button) (cdr button))
-                           (firstpair-reader--bar-gap)))
+                     (let* ((label (car button))
+                            (width (and double-right
+                                        (* 2 (+ (string-width label) 2)))))
+                       (list (firstpair-reader--button
+                              label (cdr button) nil width)
+                             (firstpair-reader--bar-gap))))
                    right)))
          (right-width
           (apply #'+ (mapcar (lambda (item)
@@ -2136,7 +2149,8 @@ acts on the book even while the dictionary window has focus."
    (list (cons "<<" #'firstpair-reader-previous-significant-marked-lookup)
          (cons "<" #'firstpair-reader-previous-marked-lookup)
          (cons ">" #'firstpair-reader-next-marked-lookup)
-         (cons ">>" #'firstpair-reader-next-significant-marked-lookup))))
+         (cons ">>" #'firstpair-reader-next-significant-marked-lookup))
+   t))
 
 (defun firstpair-reader-toggle-dictionary ()
   "Open the dictionary at point, or close it when already visible."

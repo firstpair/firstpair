@@ -671,6 +671,11 @@ persistent ready message at completion. Cached lookups stay quiet. Bar taps
 must temporarily select their owning pane and then restore prior focus;
 non-navigation controls also restore exact point, while word, page, canto, and
 Top controls remain intentionally point-moving.
+Reader 1.46 doubles the boxed widths of the four lower lexical controls while
+preserving their labels and flush-right alignment: **<<**, **<**, **>**, and
+**>>** occupy exactly 8, 6, 6, and 8 terminal columns. Compute alignment from
+the widened strings, including only the three one-cell gaps between them, for
+a 31-column right block.
 Starting with 1Unix build 825, expose the persistent Dante Reader bar through
 its own saved **Show Dante Reader Bar** setting, enabled by default and
 independent of the keyboard-hiding preference. Hiding it must let the terminal

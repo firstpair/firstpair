@@ -323,6 +323,13 @@ selected window afterward, and restore the tapped window's point for controls
 that do not intentionally navigate; word, page, canto, and Top commands retain
 their point-moving semantics.
 
+Lower lexical target width (Reader 1.46): preserve the flush-right
+**<< < > >>** order, but make those four boxed controls exactly twice their
+former widths. Their terminal-column widths are **8, 6, 6, 8**; with only the
+three one-cell inter-button gaps, the right block is 31 columns. Derive the
+mode-line alignment from the actual widened strings and test both the four
+individual widths and the total alignment width.
+
 Terminal font geometry (1Unix build 815): bundled webfonts load
 asynchronously. After setting the selected family and size, wait on the hterm
 document's `FontFaceSet`, resynchronize hterm's font family and size, redraw,

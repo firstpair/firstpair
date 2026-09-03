@@ -244,7 +244,10 @@ can expose a persistent native row and send ordinary keyboard events without
 depending on terminal mouse release.
 Keep the four translation controls at the left edge and align the lexical
 `<< < > >>` block flush with the right edge, including when the Dictionary pane
-is narrower than the poem.
+is narrower than the poem. Reader 1.46 renders those four boxed lexical buttons
+at exactly twice their original widths: 8, 6, 6, and 8 terminal columns. Keep
+only one cell between adjacent buttons and derive the 31-column right alignment
+from the rendered strings.
 The host may add paired long presses: `]`, `[`, `B`, and `T` act on
 **Tr<**, **Tr>**, **2nd**, and **Lang**. The recognizer must cancel the
 button's release action so one hold emits exactly one inverse command.
