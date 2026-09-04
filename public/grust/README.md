@@ -1,8 +1,6 @@
-# Grust Book
+# Grust
 
-Grust is a short technical book for the Grust project, a backend-neutral Rust
-property graph API for building, validating, traversing, and persisting graph
-data across in-memory and database-backed stores.
+A short technical book for the Grust project, delivered as PDF, EPUB, and hosted web readers.
 
 ## Current Public Editions
 
@@ -11,12 +9,9 @@ data across in-memory and database-backed stores.
 - [Read online](/read/grust/)
 - [Chapter reader](/read/grust/chapters/)
 
-The manuscript, metadata, version manifest, and build pipeline are maintained in
-the original Grust repository. First Pair owns the public catalog and delivery
-URLs.
 
-## Source Repository
 
-- [querygraph/grust](https://github.com/querygraph/grust)
-- Source path on this machine: `/Users/alexy/src/grust`
-- Source manifest: `docs/book/build/dist/VERSION.md`
+The source repository owns the manuscript, metadata, version manifest, build
+pipeline, and canonical generated artifacts:
+
+[https://github.com/querygraph/grust](https://github.com/querygraph/grust)
