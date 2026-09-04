@@ -32,8 +32,8 @@ export const deliverableBooks = [
   {
     "slug": "grust",
     "title": "Grust",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/bf169287967a19d6-grust.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/88b5730cdd475fe9-grust.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/732da442fb7f6464-grust.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/6b0e5027af4969f5-grust.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/cover/05f645403201dc06-grust-cover.png"
   },
   {
