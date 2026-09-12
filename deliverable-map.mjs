@@ -215,5 +215,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/pdf/be43e94816a0612b-emacs-reader.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/epub/38a3660e94bfe73f-emacs-reader.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/cover/6bb1c266c848bbaf-emacs-reader-cover.png"
+  },
+  {
+    "slug": "fihrist",
+    "title": "Fihrist",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png"
   }
 ]

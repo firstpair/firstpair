@@ -185,5 +185,11 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/html/2079a704eb84484e-emacs-reader.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/emacs-reader/chapters/2a4b2dcfd9224572"
+  },
+  {
+    "slug": "fihrist",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/html/528092ed43681321-fihrist.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558"
   }
 ]

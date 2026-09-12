@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-04T20:48:06.340Z",
+  "updatedAt": "2026-09-12T17:08:15.486Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -10617,6 +10617,229 @@
           ]
         }
       }
+    },
+    "fihrist": {
+      "updatedAt": "2026-09-12T17:08:15.486Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/fihrist/fihrist.pdf",
+          "sha256": "991d5cb5f34cc5eb453a4bc491594978f9b712018edbb706d3780a741c32dcc8",
+          "size": 3568351,
+          "pathname": "books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/fihrist/fihrist.epub",
+          "sha256": "6abb2b5e88d63311faf65805bd68ec670e3f768db3f2e6450b4d1f0c4ef0b5d9",
+          "size": 2428803,
+          "pathname": "books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/fihrist/fihrist.html",
+          "sha256": "528092ed43681321a385f080c137eb08e4cb04e64d906400c98c6d97c312a278",
+          "size": 3334562,
+          "pathname": "books/fihrist/html/528092ed43681321-fihrist.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/html/528092ed43681321-fihrist.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/fihrist/fihrist-cover.png",
+          "sha256": "0c73406bfe11b7a838c223254665d2fe3f81fab8b668cc4f2de47819517f0338",
+          "size": 2456503,
+          "pathname": "books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/fihrist/fihrist-headboard.png",
+          "sha256": "49d3b1c8d759413ab492ba005a07a3a3631939d99d6f6e3d0f094da0b99420c3",
+          "size": 2681336,
+          "pathname": "books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters",
+          "sha256": "59abc0f73977f5587ee43ccf51f6467814bd25c6352825544d3d4f019d609e1f",
+          "pathnamePrefix": "books/fihrist/chapters/59abc0f73977f558",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/assets/0c73406bfe11-fihrist-cover.png",
+              "relativePath": "assets/0c73406bfe11-fihrist-cover.png",
+              "sha256": "0c73406bfe11b7a838c223254665d2fe3f81fab8b668cc4f2de47819517f0338",
+              "size": 2456503,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/assets/0c73406bfe11-fihrist-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/assets/0c73406bfe11-fihrist-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "d92be2fc3a954d6a6a7638bdd5be2f7bb8dadeb2d4d54c75efad478a81307680",
+              "size": 5045,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "4c11f304034d124f73c4bca6f791d33804e8aef5d3117f446a33ba430fa76ef2",
+              "size": 7489,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "9ed993cdba82b65b59df584e699442735bbbaaed0db2b4a324c7f1bb47c4146a",
+              "size": 7985,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "540cc15c01bff104ec948235548096373725205f9bf27586cd6d577b8056c602",
+              "size": 18242,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "65c55bb95046cf80c635d99f28250e2b67445513cf3714027e82a7d39841612f",
+              "size": 11861,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "cd89dc9e1472205a30e3f436909fb6438c627772ea8f6a7983325633fc804c8e",
+              "size": 11744,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "b734b2b5d4584377459f67f8be21309431db482321d605a24da9939da5f5d08d",
+              "size": 12311,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "07880474f10ab6ed7702d2fa476cf5c09ed41460736607c6e02e82cb8e4f6fd8",
+              "size": 7370,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "f3c51df3b2ab3c8fb50676dfe8afeda0f7504f054d61212559d09a52aca1dbc3",
+              "size": 12147,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "112e4796b7fc5d1f92ec7ee7b9e596a81dc4f00012c467410609415cdb59d6c3",
+              "size": 7453,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "d350f3c74c64fa05917b4d922c30093f778f324bbb90a144d4c65db699295f09",
+              "size": 10773,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "a1954ecce606a3216db535ce7f5b305ba968038e6dae2fe6588b18acec12ef1b",
+              "size": 11786,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "1d6abc98fb9e65156cfeb51a85cd6ae92cb2c6ed39afbbbbcfeed60245b37041",
+              "size": 7669,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "fd953638df76209a8ad9c90a395781c32cac52bd646c772b8c74f078ce5201d3",
+              "size": 5851,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "3f2724147af9a12648541f413cd8c0dc8f186c09a2393403442b6aedcf5ff59e",
+              "size": 6034,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "8be8d94af1783e7cd71a29ba1634b831c9fe5ce1ca5d368f75e8f5b7da1953e4",
+              "size": 11159,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "335e2fc663c3c606298b30e18b5410655b3eac352fdbef7c0241d26aee652653",
+              "size": 6660,
+              "pathname": "books/fihrist/chapters/59abc0f73977f558/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -12459,6 +12682,31 @@
       "pathname": "books/grust/html/89473805b807e772-grust.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/89473805b807e772-grust.html",
       "size": 3919401
+    },
+    "991d5cb5f34cc5eb453a4bc491594978f9b712018edbb706d3780a741c32dcc8:3568351": {
+      "pathname": "books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
+      "size": 3568351
+    },
+    "6abb2b5e88d63311faf65805bd68ec670e3f768db3f2e6450b4d1f0c4ef0b5d9:2428803": {
+      "pathname": "books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
+      "size": 2428803
+    },
+    "528092ed43681321a385f080c137eb08e4cb04e64d906400c98c6d97c312a278:3334562": {
+      "pathname": "books/fihrist/html/528092ed43681321-fihrist.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/html/528092ed43681321-fihrist.html",
+      "size": 3334562
+    },
+    "0c73406bfe11b7a838c223254665d2fe3f81fab8b668cc4f2de47819517f0338:2456503": {
+      "pathname": "books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
+      "size": 2456503
+    },
+    "49d3b1c8d759413ab492ba005a07a3a3631939d99d6f6e3d0f094da0b99420c3:2681336": {
+      "pathname": "books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
+      "size": 2681336
     }
   },
   "chapterPackages": {
@@ -33980,6 +34228,174 @@
           "size": 6178,
           "pathname": "books/grust/chapters/059d319cf76c0e6c/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/059d319cf76c0e6c/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "59abc0f73977f5587ee43ccf51f6467814bd25c6352825544d3d4f019d609e1f": {
+      "pathnamePrefix": "books/fihrist/chapters/59abc0f73977f558",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/assets/0c73406bfe11-fihrist-cover.png",
+          "relativePath": "assets/0c73406bfe11-fihrist-cover.png",
+          "sha256": "0c73406bfe11b7a838c223254665d2fe3f81fab8b668cc4f2de47819517f0338",
+          "size": 2456503,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/assets/0c73406bfe11-fihrist-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/assets/0c73406bfe11-fihrist-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "d92be2fc3a954d6a6a7638bdd5be2f7bb8dadeb2d4d54c75efad478a81307680",
+          "size": 5045,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "4c11f304034d124f73c4bca6f791d33804e8aef5d3117f446a33ba430fa76ef2",
+          "size": 7489,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "9ed993cdba82b65b59df584e699442735bbbaaed0db2b4a324c7f1bb47c4146a",
+          "size": 7985,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "540cc15c01bff104ec948235548096373725205f9bf27586cd6d577b8056c602",
+          "size": 18242,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "65c55bb95046cf80c635d99f28250e2b67445513cf3714027e82a7d39841612f",
+          "size": 11861,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "cd89dc9e1472205a30e3f436909fb6438c627772ea8f6a7983325633fc804c8e",
+          "size": 11744,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "b734b2b5d4584377459f67f8be21309431db482321d605a24da9939da5f5d08d",
+          "size": 12311,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "07880474f10ab6ed7702d2fa476cf5c09ed41460736607c6e02e82cb8e4f6fd8",
+          "size": 7370,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "f3c51df3b2ab3c8fb50676dfe8afeda0f7504f054d61212559d09a52aca1dbc3",
+          "size": 12147,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "112e4796b7fc5d1f92ec7ee7b9e596a81dc4f00012c467410609415cdb59d6c3",
+          "size": 7453,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "d350f3c74c64fa05917b4d922c30093f778f324bbb90a144d4c65db699295f09",
+          "size": 10773,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "a1954ecce606a3216db535ce7f5b305ba968038e6dae2fe6588b18acec12ef1b",
+          "size": 11786,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "1d6abc98fb9e65156cfeb51a85cd6ae92cb2c6ed39afbbbbcfeed60245b37041",
+          "size": 7669,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "fd953638df76209a8ad9c90a395781c32cac52bd646c772b8c74f078ce5201d3",
+          "size": 5851,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "3f2724147af9a12648541f413cd8c0dc8f186c09a2393403442b6aedcf5ff59e",
+          "size": 6034,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "8be8d94af1783e7cd71a29ba1634b831c9fe5ce1ca5d368f75e8f5b7da1953e4",
+          "size": 11159,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/fihrist/fihrist-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "335e2fc663c3c606298b30e18b5410655b3eac352fdbef7c0241d26aee652653",
+          "size": 6660,
+          "pathname": "books/fihrist/chapters/59abc0f73977f558/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/sitemap.json",
           "skipped": false
         }
       ]
