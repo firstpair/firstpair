@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-13T09:51:25.410Z",
+  "updatedAt": "2026-09-13T10:41:43.994Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -10619,7 +10619,7 @@
       }
     },
     "pinax": {
-      "updatedAt": "2026-09-13T09:51:25.409Z",
+      "updatedAt": "2026-09-13T10:41:43.994Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -10629,7 +10629,7 @@
           "size": 4202320,
           "pathname": "books/pinax/pdf/4a306414891c69d0-pinax.pdf",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/pdf/4a306414891c69d0-pinax.pdf",
-          "skipped": false
+          "skipped": true
         },
         "epub": {
           "kind": "epub",
@@ -10638,7 +10638,7 @@
           "size": 2858399,
           "pathname": "books/pinax/epub/7a7d36730e043991-pinax.epub",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/epub/7a7d36730e043991-pinax.epub",
-          "skipped": false
+          "skipped": true
         },
         "html": {
           "kind": "html",
@@ -10647,7 +10647,7 @@
           "size": 3876968,
           "pathname": "books/pinax/html/ab238e06e116082b-pinax.html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/html/ab238e06e116082b-pinax.html",
-          "skipped": false
+          "skipped": true
         },
         "cover": {
           "kind": "cover",
@@ -10656,7 +10656,7 @@
           "size": 2863380,
           "pathname": "books/pinax/cover/a52258b869318035-pinax-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/cover/a52258b869318035-pinax-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "headboard": {
           "kind": "headboard",
@@ -10665,7 +10665,7 @@
           "size": 2853683,
           "pathname": "books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
-          "skipped": false
+          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
@@ -10673,7 +10673,7 @@
           "sha256": "b61e2d32d722bf9282c522dc22bac02dd1c0600178d5b15bdec3165b590f55c7",
           "pathnamePrefix": "books/pinax/chapters/b61e2d32d722bf92",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
-          "skipped": false,
+          "skipped": true,
           "files": [
             {
               "localPath": "book-uploads/staging/pinax/pinax-chapters/assets/a52258b86931-pinax-cover.png",
