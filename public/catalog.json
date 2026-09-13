@@ -707,8 +707,8 @@
     {
       "slug": "pinax",
       "title": "Pinax",
-      "kicker": "Enterprise registry in Rust",
-      "description": "A practical guide to validated enterprise table contracts, governed agent reads, and the QueryGraph stack.",
+      "kicker": "Semantic discovery for agents",
+      "description": "From business questions to shared meaning and executable data: Pinax is the agentic entrypoint to the QueryGraph stack.",
       "accent": "#8a4f3d",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/pdf/4a306414891c69d0-pinax.pdf",
       "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/epub/7a7d36730e043991-pinax.epub",

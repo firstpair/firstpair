@@ -1,6 +1,6 @@
 # Pinax
 
-A practical guide to validated enterprise table contracts, governed agent reads, and the QueryGraph stack.
+From business questions to shared meaning and executable data: Pinax is the agentic entrypoint to the QueryGraph stack.
 
 ## Current Public Editions
 
