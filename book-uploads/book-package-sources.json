@@ -249,13 +249,13 @@
       "cover": "book-uploads/staging/emacs-reader/emacs-reader-cover.png",
       "headboard": "book-uploads/staging/emacs-reader/emacs-reader-headboard.png"
     },
-    "fihrist": {
-      "pdf": "book-uploads/staging/fihrist/fihrist.pdf",
-      "epub": "book-uploads/staging/fihrist/fihrist.epub",
-      "html": "book-uploads/staging/fihrist/fihrist.html",
-      "htmlChapters": "book-uploads/staging/fihrist/fihrist-chapters",
-      "cover": "book-uploads/staging/fihrist/fihrist-cover.png",
-      "headboard": "book-uploads/staging/fihrist/fihrist-headboard.png"
+    "pinax": {
+      "pdf": "book-uploads/staging/pinax/pinax.pdf",
+      "epub": "book-uploads/staging/pinax/pinax.epub",
+      "html": "book-uploads/staging/pinax/pinax.html",
+      "htmlChapters": "book-uploads/staging/pinax/pinax-chapters",
+      "cover": "book-uploads/staging/pinax/pinax-cover.png",
+      "headboard": "book-uploads/staging/pinax/pinax-headboard.png"
     }
   }
 }

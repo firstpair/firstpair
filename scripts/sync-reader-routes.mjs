@@ -39,6 +39,16 @@ function chapterBase(url) {
 function readerRoutes() {
   return [
     {
+      src: '^/read/fihrist(/.*)?$',
+      status: 308,
+      headers: { Location: '/read/pinax$1' },
+    },
+    {
+      src: '^/fihrist(/.*)?$',
+      status: 308,
+      headers: { Location: '/pinax$1' },
+    },
+    {
       src: '^/read(?:/(.*))?$',
       dest: '/api/reader?path=$1',
     },

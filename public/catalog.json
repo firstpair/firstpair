@@ -705,28 +705,28 @@
       "post": "https://firstpair.press/emacs-reader"
     },
     {
-      "slug": "fihrist",
-      "title": "Fihrist",
+      "slug": "pinax",
+      "title": "Pinax",
       "kicker": "Enterprise registry in Rust",
       "description": "A practical guide to validated enterprise table contracts, governed agent reads, and the QueryGraph stack.",
       "accent": "#8a4f3d",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
       "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
-      "html": "/read/fihrist/",
-      "htmlChapters": "/read/fihrist/chapters/",
+      "html": "/read/pinax/",
+      "htmlChapters": "/read/pinax/chapters/",
       "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/html/528092ed43681321-fihrist.html",
       "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
       "tags": [
-        "fihrist",
+        "pinax",
         "querygraph",
         "rust",
         "lakehouse"
       ],
       "shelf": "querygraph",
-      "source": "https://github.com/querygraph/fihrist",
+      "source": "https://github.com/querygraph/pinax",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
-      "post": "https://querygraph.ai/announcing-fihrist/"
+      "post": "https://querygraph.ai/announcing-pinax/"
     }
   ]
 }
