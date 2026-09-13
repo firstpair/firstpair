@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-13T10:41:43.994Z",
+  "updatedAt": "2026-09-13T11:48:49.560Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -6488,34 +6488,34 @@
       }
     },
     "adversarial-cognition": {
-      "updatedAt": "2026-08-07T20:18:15.993Z",
+      "updatedAt": "2026-09-13T11:48:49.559Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition.pdf",
-          "sha256": "98382e815156acbc0b32476f8b3e4de009a2b4b8af71a3c6f0855f2016d9f1c9",
-          "size": 4844925,
-          "pathname": "books/adversarial-cognition/pdf/98382e815156acbc-adversarial-cognition.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/pdf/98382e815156acbc-adversarial-cognition.pdf",
+          "sha256": "82eb1b5d97c6237daead724dcbd9b05ec192e90adbca4ba9927ab711888ea522",
+          "size": 4911857,
+          "pathname": "books/adversarial-cognition/pdf/82eb1b5d97c6237d-adversarial-cognition.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/pdf/82eb1b5d97c6237d-adversarial-cognition.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition.epub",
-          "sha256": "41062fdfa509b962faf309cfcd263144432872a6bdec65d100c2ffa084943684",
-          "size": 3138596,
-          "pathname": "books/adversarial-cognition/epub/41062fdfa509b962-adversarial-cognition.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/epub/41062fdfa509b962-adversarial-cognition.epub",
+          "sha256": "6fc02a55adc632c709dc1e33d52f1e660fc34e6aa2ef9c2dfba72d3d359a7085",
+          "size": 3157412,
+          "pathname": "books/adversarial-cognition/epub/6fc02a55adc632c7-adversarial-cognition.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/epub/6fc02a55adc632c7-adversarial-cognition.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition.html",
-          "sha256": "bbcb40c3dc20d774cf4833b82f52f288ba8ba8cf5e43e8d85dd9c655fa4041ee",
-          "size": 4270817,
-          "pathname": "books/adversarial-cognition/html/bbcb40c3dc20d774-adversarial-cognition.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/bbcb40c3dc20d774-adversarial-cognition.html",
+          "sha256": "72a1e91ab9a50e97c1f2d6351e88830928239a0d9631371d47c9771d55f8fd9d",
+          "size": 4308584,
+          "pathname": "books/adversarial-cognition/html/72a1e91ab9a50e97-adversarial-cognition.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/72a1e91ab9a50e97-adversarial-cognition.html",
           "skipped": false
         },
         "cover": {
@@ -6539,9 +6539,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters",
-          "sha256": "76d017ff09c0e56b54df90256dcf9bb3fc7c535930aff34b57513e55a4971c30",
-          "pathnamePrefix": "books/adversarial-cognition/chapters/76d017ff09c0e56b",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/index.html",
+          "sha256": "752b41ca0a6f72b7abbe380c970cc508f98ecdb9b82c1992d992eaf6621aa1fe",
+          "pathnamePrefix": "books/adversarial-cognition/chapters/752b41ca0a6f72b7",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
           "skipped": false,
           "files": [
             {
@@ -6549,8 +6549,8 @@
               "relativePath": "assets/0dd207b818bf-diagram-1.png",
               "sha256": "0dd207b818bfe33b0187b248d2ed431c67a0083c4a1037889e1ba10b33b66a73",
               "size": 56783,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/assets/0dd207b818bf-diagram-1.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/assets/0dd207b818bf-diagram-1.png",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/0dd207b818bf-diagram-1.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/0dd207b818bf-diagram-1.png",
               "skipped": false
             },
             {
@@ -6558,8 +6558,8 @@
               "relativePath": "assets/1d23b97dc652-adversarial-cognition-cover.png",
               "sha256": "1d23b97dc652439ff14171d2570e7df392874709dc99bfb8d3a3eedbd0b6e56e",
               "size": 232649,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/assets/1d23b97dc652-adversarial-cognition-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/assets/1d23b97dc652-adversarial-cognition-cover.png",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/1d23b97dc652-adversarial-cognition-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/1d23b97dc652-adversarial-cognition-cover.png",
               "skipped": false
             },
             {
@@ -6567,8 +6567,8 @@
               "relativePath": "assets/7d10a8d50744-diagram-2.png",
               "sha256": "7d10a8d50744ece51667dbf12db357f88804b6afdcd3778e21f508557b1c630b",
               "size": 12165,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/assets/7d10a8d50744-diagram-2.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/assets/7d10a8d50744-diagram-2.png",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/7d10a8d50744-diagram-2.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/7d10a8d50744-diagram-2.png",
               "skipped": false
             },
             {
@@ -6576,161 +6576,179 @@
               "relativePath": "book.css",
               "sha256": "4a33326d7659b0d038ed65587e85defb1fe971989cf7b2cb5b047ac1fe2e7df5",
               "size": 884,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/book.css",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "39b5ad6629bf4aff5e63baf1f7e1fe3c782f353f5b5ef30e1db68fb4540230d0",
+              "sha256": "51b744a8fe2d6667dae9738e87221389b7d0b056eab7b9048172ff1063d892c1",
               "size": 2974,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-001.html",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "c9b2fde7b327dd04b58f1e18f903bad843ac538323c5f5ebd8fff694f74d1caf",
-              "size": 5706,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-002.html",
+              "sha256": "02d0aa709f9ef2ace175a016ef51d2dea32e9d30894119dcef0965b742a45742",
+              "size": 6452,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "6010918f1890080686186b26b608870f621556493af022f27c4350ee38558c9f",
+              "sha256": "96ce8b4deb38f6217ab824b6eec74159842ba2b9ed4bef14e387cb88065748a1",
               "size": 15049,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-003.html",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "6a9407314ab47291fc06c841b5929963f511d46461eb9ae2fc6db9d745b2ba9a",
+              "sha256": "df223e9282be595f6c84b2ebec32f4320474b204afaee69d28b82a80412355db",
               "size": 8332,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-004.html",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "ed28b513c1864a4c816e603213e82a7216f8e0773b48124bca39de6acb052dec",
+              "sha256": "b6fcef8fe8ca2c22c58966b38a7c8abfbeaab5c2100fd0338ac22924106d0fe4",
               "size": 14367,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-005.html",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "1f617b59f8fe66b3cbfaad2dd9db2621750ffe6c7aaad2dfa9ac76d10fc17d4f",
-              "size": 9454,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-006.html",
+              "sha256": "f2beba2353e965c4add8d78b68a817c19d891884a17459493282c96709d188b7",
+              "size": 17886,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "476a6185f5251835fa13dc4fead4771353fd1dfdcaf07db20c4f27c7d779cc3a",
-              "size": 17312,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-007.html",
+              "sha256": "adf86de73ae616cf6f8cd4e3796292afda77a89b6dc7df554e7c596fdc151d56",
+              "size": 22942,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "626b77e1e9eacf18e01a772f14276c2b7373258a62ae17b1f4bb17f02e3f2b74",
+              "sha256": "620e04796c10c1ffe91d2c812610b18655b066bb93b481bff6cd2a487fd72ce7",
               "size": 17109,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-008.html",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "2008e3159f0aae1f012c0bbebeeb68598c58a2fec529cd322de7badd46421062",
-              "size": 17324,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-009.html",
+              "sha256": "205ea0669c05923483ff8920140e162f89d6d2903c0bd9bbe01d6825063e136f",
+              "size": 23027,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "9e06dcf113890563ff7559bb4cdb550df4513dfa78b9f8996d8e7320c4a62cc0",
-              "size": 13585,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-010.html",
+              "sha256": "e133868b18a3985ac85c712dd601dff538e94f7f77ee2468face4a504bbc9c78",
+              "size": 21554,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "c3daab628968dc4b51756227099b19105f00a0d1e82d328216e7f5da11b80cbf",
-              "size": 12172,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-011.html",
+              "sha256": "4fee59e6ab367884cc754d45aadd8e65a1693d738e7fd6f62d3304f195ab7899",
+              "size": 11381,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "35e9da107a16875dbf58c25ceb1147ed7a64ab082232fef63854b7770c320e3f",
-              "size": 3757,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-012.html",
+              "sha256": "89a350d1e3f14b508dc3a057653abb7e90cc6d00e60411fede217117f09be471",
+              "size": 16402,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-012.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "dedb65997e033c8e23612575bf6a4ca1dc46336e9b343fa67172a5ad5fab8d54",
-              "size": 5271,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-013.html",
+              "sha256": "13551bf4619864631f6d8b970463c30fd36728e36386f16d0c4c0cdffd5c8644",
+              "size": 12846,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "b576f35c08769622d579093f55d05f7cd012122fd17e97ad7b3169e5ff2c5906",
-              "size": 6808,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-014.html",
+              "sha256": "39d1291bd1a985457cc83ca8440d34ca5aab031fffe2eb11e603ed2ad24f0345",
+              "size": 3757,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-014.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-015.html",
               "relativePath": "chapter-015.html",
-              "sha256": "111f8811ed49683f4d214d26b1d3e94a9db56029c3660c52b1b5c915a6b9ec7f",
-              "size": 7495,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-015.html",
+              "sha256": "7e003b3920a76a334b72d733b56f1c045191fb639437bc03db1ca63786064c12",
+              "size": 5271,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-015.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-016.html",
               "relativePath": "chapter-016.html",
-              "sha256": "2b12915e2714f5a4641b3bbc8fb52be2243dd14f6c34561f058fa00997ec07d4",
-              "size": 17061,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-016.html",
+              "sha256": "23b0b4cfc33d13169d6f2e4005d4eb06b0e05c323d366618f9587708fa66ce19",
+              "size": 6808,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-016.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-017.html",
               "relativePath": "chapter-017.html",
-              "sha256": "bfa7c31fd71dccdd1944370bb10cdc3bd31af149c49ed64f28e678d6ff890a65",
+              "sha256": "d2988fbd473850e8b5a227832c3b0d4ac1a0723448c7ec66d22a24196c8438b2",
+              "size": 7495,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-017.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-018.html",
+              "relativePath": "chapter-018.html",
+              "sha256": "4ca09994fbb7f42bdd8a83bd35fa80b618285fded066548600cd1c84a37965b7",
+              "size": 17061,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-018.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-019.html",
+              "relativePath": "chapter-019.html",
+              "sha256": "43f285c11948035988f00a66cb8d73a304af476bfa9dc257bf063ea96c9b07a7",
               "size": 6710,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/chapter-017.html",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-019.html",
               "skipped": false
             },
             {
@@ -6738,26 +6756,26 @@
               "relativePath": "cover/adversarial-cognition-headboard.png",
               "sha256": "6953b9920530eeed3f541fc78ca2d60f3b064847a4114171ea1cb5969ab792b2",
               "size": 2784840,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/cover/adversarial-cognition-headboard.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/cover/adversarial-cognition-headboard.png",
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/cover/adversarial-cognition-headboard.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/cover/adversarial-cognition-headboard.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "d0666eeccdb79116e67b0d35228cc25c7544b6b4fe410f8a01e4ce1559a1ab73",
-              "size": 14319,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/index.html",
+              "sha256": "72426aa665729e853cab6cf0caf9dc9125bfc87f53be820b318a7f522ab2b0ae",
+              "size": 16599,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "13e6498a51a8f8e1148e2e7e29f762cb118c07a524c6a71825b643492dd44f4c",
-              "size": 12693,
-              "pathname": "books/adversarial-cognition/chapters/76d017ff09c0e56b/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/sitemap.json",
+              "sha256": "4e0ca026ac6d6b5c5eb7251394cbc14b2684afc2bf032a239b613f491fd82935",
+              "size": 15037,
+              "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/sitemap.json",
               "skipped": false
             }
           ]
@@ -12732,6 +12750,21 @@
       "pathname": "books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
       "size": 2853683
+    },
+    "82eb1b5d97c6237daead724dcbd9b05ec192e90adbca4ba9927ab711888ea522:4911857": {
+      "pathname": "books/adversarial-cognition/pdf/82eb1b5d97c6237d-adversarial-cognition.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/pdf/82eb1b5d97c6237d-adversarial-cognition.pdf",
+      "size": 4911857
+    },
+    "6fc02a55adc632c709dc1e33d52f1e660fc34e6aa2ef9c2dfba72d3d359a7085:3157412": {
+      "pathname": "books/adversarial-cognition/epub/6fc02a55adc632c7-adversarial-cognition.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/epub/6fc02a55adc632c7-adversarial-cognition.epub",
+      "size": 3157412
+    },
+    "72a1e91ab9a50e97c1f2d6351e88830928239a0d9631371d47c9771d55f8fd9d:4308584": {
+      "pathname": "books/adversarial-cognition/html/72a1e91ab9a50e97-adversarial-cognition.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/72a1e91ab9a50e97-adversarial-cognition.html",
+      "size": 4308584
     }
   },
   "chapterPackages": {
@@ -34589,6 +34622,246 @@
           "size": 6658,
           "pathname": "books/pinax/chapters/b61e2d32d722bf92/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "752b41ca0a6f72b7abbe380c970cc508f98ecdb9b82c1992d992eaf6621aa1fe": {
+      "pathnamePrefix": "books/adversarial-cognition/chapters/752b41ca0a6f72b7",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/assets/0dd207b818bf-diagram-1.png",
+          "relativePath": "assets/0dd207b818bf-diagram-1.png",
+          "sha256": "0dd207b818bfe33b0187b248d2ed431c67a0083c4a1037889e1ba10b33b66a73",
+          "size": 56783,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/0dd207b818bf-diagram-1.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/0dd207b818bf-diagram-1.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/assets/1d23b97dc652-adversarial-cognition-cover.png",
+          "relativePath": "assets/1d23b97dc652-adversarial-cognition-cover.png",
+          "sha256": "1d23b97dc652439ff14171d2570e7df392874709dc99bfb8d3a3eedbd0b6e56e",
+          "size": 232649,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/1d23b97dc652-adversarial-cognition-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/1d23b97dc652-adversarial-cognition-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/assets/7d10a8d50744-diagram-2.png",
+          "relativePath": "assets/7d10a8d50744-diagram-2.png",
+          "sha256": "7d10a8d50744ece51667dbf12db357f88804b6afdcd3778e21f508557b1c630b",
+          "size": 12165,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/7d10a8d50744-diagram-2.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/assets/7d10a8d50744-diagram-2.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "4a33326d7659b0d038ed65587e85defb1fe971989cf7b2cb5b047ac1fe2e7df5",
+          "size": 884,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "51b744a8fe2d6667dae9738e87221389b7d0b056eab7b9048172ff1063d892c1",
+          "size": 2974,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "02d0aa709f9ef2ace175a016ef51d2dea32e9d30894119dcef0965b742a45742",
+          "size": 6452,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "96ce8b4deb38f6217ab824b6eec74159842ba2b9ed4bef14e387cb88065748a1",
+          "size": 15049,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "df223e9282be595f6c84b2ebec32f4320474b204afaee69d28b82a80412355db",
+          "size": 8332,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "b6fcef8fe8ca2c22c58966b38a7c8abfbeaab5c2100fd0338ac22924106d0fe4",
+          "size": 14367,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "f2beba2353e965c4add8d78b68a817c19d891884a17459493282c96709d188b7",
+          "size": 17886,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "adf86de73ae616cf6f8cd4e3796292afda77a89b6dc7df554e7c596fdc151d56",
+          "size": 22942,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "620e04796c10c1ffe91d2c812610b18655b066bb93b481bff6cd2a487fd72ce7",
+          "size": 17109,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "205ea0669c05923483ff8920140e162f89d6d2903c0bd9bbe01d6825063e136f",
+          "size": 23027,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "e133868b18a3985ac85c712dd601dff538e94f7f77ee2468face4a504bbc9c78",
+          "size": 21554,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "4fee59e6ab367884cc754d45aadd8e65a1693d738e7fd6f62d3304f195ab7899",
+          "size": 11381,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "89a350d1e3f14b508dc3a057653abb7e90cc6d00e60411fede217117f09be471",
+          "size": 16402,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "13551bf4619864631f6d8b970463c30fd36728e36386f16d0c4c0cdffd5c8644",
+          "size": 12846,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "39d1291bd1a985457cc83ca8440d34ca5aab031fffe2eb11e603ed2ad24f0345",
+          "size": 3757,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "7e003b3920a76a334b72d733b56f1c045191fb639437bc03db1ca63786064c12",
+          "size": 5271,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "23b0b4cfc33d13169d6f2e4005d4eb06b0e05c323d366618f9587708fa66ce19",
+          "size": 6808,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "d2988fbd473850e8b5a227832c3b0d4ac1a0723448c7ec66d22a24196c8438b2",
+          "size": 7495,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "4ca09994fbb7f42bdd8a83bd35fa80b618285fded066548600cd1c84a37965b7",
+          "size": 17061,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "43f285c11948035988f00a66cb8d73a304af476bfa9dc257bf063ea96c9b07a7",
+          "size": 6710,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/cover/adversarial-cognition-headboard.png",
+          "relativePath": "cover/adversarial-cognition-headboard.png",
+          "sha256": "6953b9920530eeed3f541fc78ca2d60f3b064847a4114171ea1cb5969ab792b2",
+          "size": 2784840,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/cover/adversarial-cognition-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/cover/adversarial-cognition-headboard.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "72426aa665729e853cab6cf0caf9dc9125bfc87f53be820b318a7f522ab2b0ae",
+          "size": 16599,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/adversarial-cognition/adversarial-cognition-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "4e0ca026ac6d6b5c5eb7251394cbc14b2684afc2bf032a239b613f491fd82935",
+          "size": 15037,
+          "pathname": "books/adversarial-cognition/chapters/752b41ca0a6f72b7/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/sitemap.json",
           "skipped": false
         }
       ]

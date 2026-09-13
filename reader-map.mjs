@@ -129,9 +129,9 @@ export const readerBooks = [
   },
   {
     "slug": "adversarial-cognition",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/bbcb40c3dc20d774-adversarial-cognition.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/76d017ff09c0e56b"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/html/72a1e91ab9a50e97-adversarial-cognition.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/adversarial-cognition/chapters/752b41ca0a6f72b7"
   },
   {
     "slug": "lakecat-catalog-foundation",

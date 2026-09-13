@@ -1,6 +1,6 @@
 # Adversarial Cognition
 
-An adversarial benchmark trilogy for the QueryGraph stack — governed memory, provable catalog transactions, and unforgeable authority — each boundary attacked on purpose, on the type-level TypeSec and TypeDID foundation that holds them.
+Adversarial benchmarks for governed memory, transactions, authority, agents, and graph algorithms, with reproducible evidence and explicit output contracts.
 
 ## Current Public Editions
 
