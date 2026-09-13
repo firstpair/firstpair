@@ -219,8 +219,8 @@ export const deliverableBooks = [
   {
     "slug": "pinax",
     "title": "Pinax",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/pdf/4a306414891c69d0-pinax.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/epub/7a7d36730e043991-pinax.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/cover/a52258b869318035-pinax-cover.png"
   }
 ]

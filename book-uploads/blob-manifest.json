@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-12T17:08:15.486Z",
+  "updatedAt": "2026-09-13T09:51:25.410Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -10619,222 +10619,222 @@
       }
     },
     "pinax": {
-      "updatedAt": "2026-09-12T17:08:15.486Z",
+      "updatedAt": "2026-09-13T09:51:25.409Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
-          "localPath": "book-uploads/staging/fihrist/fihrist.pdf",
-          "sha256": "991d5cb5f34cc5eb453a4bc491594978f9b712018edbb706d3780a741c32dcc8",
-          "size": 3568351,
-          "pathname": "books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/pdf/991d5cb5f34cc5eb-fihrist.pdf",
+          "localPath": "book-uploads/staging/pinax/pinax.pdf",
+          "sha256": "4a306414891c69d03413d98253537aba0672fcfc41e34fb69e94dbe7dccf03da",
+          "size": 4202320,
+          "pathname": "books/pinax/pdf/4a306414891c69d0-pinax.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/pdf/4a306414891c69d0-pinax.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
-          "localPath": "book-uploads/staging/fihrist/fihrist.epub",
-          "sha256": "6abb2b5e88d63311faf65805bd68ec670e3f768db3f2e6450b4d1f0c4ef0b5d9",
-          "size": 2428803,
-          "pathname": "books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/epub/6abb2b5e88d63311-fihrist.epub",
+          "localPath": "book-uploads/staging/pinax/pinax.epub",
+          "sha256": "7a7d36730e043991a88bbb5ec926c80dfe420c167381737f30075974ecffce85",
+          "size": 2858399,
+          "pathname": "books/pinax/epub/7a7d36730e043991-pinax.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/epub/7a7d36730e043991-pinax.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
-          "localPath": "book-uploads/staging/fihrist/fihrist.html",
-          "sha256": "528092ed43681321a385f080c137eb08e4cb04e64d906400c98c6d97c312a278",
-          "size": 3334562,
-          "pathname": "books/fihrist/html/528092ed43681321-fihrist.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/html/528092ed43681321-fihrist.html",
+          "localPath": "book-uploads/staging/pinax/pinax.html",
+          "sha256": "ab238e06e116082be86b78650c7325e9c0f8d98e88ed00be340910a35107163b",
+          "size": 3876968,
+          "pathname": "books/pinax/html/ab238e06e116082b-pinax.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/html/ab238e06e116082b-pinax.html",
           "skipped": false
         },
         "cover": {
           "kind": "cover",
-          "localPath": "book-uploads/staging/fihrist/fihrist-cover.png",
-          "sha256": "0c73406bfe11b7a838c223254665d2fe3f81fab8b668cc4f2de47819517f0338",
-          "size": 2456503,
-          "pathname": "books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/cover/0c73406bfe11b7a8-fihrist-cover.png",
+          "localPath": "book-uploads/staging/pinax/pinax-cover.png",
+          "sha256": "a52258b86931803527f6498444e5df660f6843c05e944ffe586fb162d50f1ee2",
+          "size": 2863380,
+          "pathname": "books/pinax/cover/a52258b869318035-pinax-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/cover/a52258b869318035-pinax-cover.png",
           "skipped": false
         },
         "headboard": {
           "kind": "headboard",
-          "localPath": "book-uploads/staging/fihrist/fihrist-headboard.png",
-          "sha256": "49d3b1c8d759413ab492ba005a07a3a3631939d99d6f6e3d0f094da0b99420c3",
-          "size": 2681336,
-          "pathname": "books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
+          "localPath": "book-uploads/staging/pinax/pinax-headboard.png",
+          "sha256": "45a949bce6e05ff005de4b203e8df309f7602b49fae533cee56b5d9527ad0696",
+          "size": 2853683,
+          "pathname": "books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
           "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
-          "localPath": "book-uploads/staging/fihrist/fihrist-chapters",
-          "sha256": "59abc0f73977f5587ee43ccf51f6467814bd25c6352825544d3d4f019d609e1f",
-          "pathnamePrefix": "books/fihrist/chapters/59abc0f73977f558",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+          "localPath": "book-uploads/staging/pinax/pinax-chapters",
+          "sha256": "b61e2d32d722bf9282c522dc22bac02dd1c0600178d5b15bdec3165b590f55c7",
+          "pathnamePrefix": "books/pinax/chapters/b61e2d32d722bf92",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
           "skipped": false,
           "files": [
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/assets/0c73406bfe11-fihrist-cover.png",
-              "relativePath": "assets/0c73406bfe11-fihrist-cover.png",
-              "sha256": "0c73406bfe11b7a838c223254665d2fe3f81fab8b668cc4f2de47819517f0338",
-              "size": 2456503,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/assets/0c73406bfe11-fihrist-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/assets/0c73406bfe11-fihrist-cover.png",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/assets/a52258b86931-pinax-cover.png",
+              "relativePath": "assets/a52258b86931-pinax-cover.png",
+              "sha256": "a52258b86931803527f6498444e5df660f6843c05e944ffe586fb162d50f1ee2",
+              "size": 2863380,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/assets/a52258b86931-pinax-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/assets/a52258b86931-pinax-cover.png",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-001.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "d92be2fc3a954d6a6a7638bdd5be2f7bb8dadeb2d4d54c75efad478a81307680",
-              "size": 5045,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-001.html",
+              "sha256": "17c447483b1b14733c894d46e8f0b5692f03a0a881589b0714f27d3fd1635dde",
+              "size": 5033,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-001.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-002.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "4c11f304034d124f73c4bca6f791d33804e8aef5d3117f446a33ba430fa76ef2",
-              "size": 7489,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-002.html",
+              "sha256": "c1788ea8ba8673d4349595e9227f2887592578ceec252fee1c4159a31d9c9e42",
+              "size": 7477,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-002.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-003.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "9ed993cdba82b65b59df584e699442735bbbaaed0db2b4a324c7f1bb47c4146a",
-              "size": 7985,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-003.html",
+              "sha256": "4872e1c9c4d3161b848ca5c7e90b9697aebf6cee366546c0bf8349637abe5f16",
+              "size": 7973,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-003.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-004.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "540cc15c01bff104ec948235548096373725205f9bf27586cd6d577b8056c602",
-              "size": 18242,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-004.html",
+              "sha256": "0333e3d988e41adc7549885e77ac1f973930d62c739fd694f09aa9222bb6a48c",
+              "size": 18228,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-004.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-005.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "65c55bb95046cf80c635d99f28250e2b67445513cf3714027e82a7d39841612f",
-              "size": 11861,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-005.html",
+              "sha256": "72a1ad88a82f2aa9a1f36e4c2d3a7d1186c9895d5d986e1f16db1d488599a6c1",
+              "size": 11847,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-005.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-006.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "cd89dc9e1472205a30e3f436909fb6438c627772ea8f6a7983325633fc804c8e",
-              "size": 11744,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-006.html",
+              "sha256": "82fac7a757ac41bd5c3f90deccda6ff6c84b85e7192b86ebe2b4179ece51cc6c",
+              "size": 11732,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-006.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-007.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "b734b2b5d4584377459f67f8be21309431db482321d605a24da9939da5f5d08d",
-              "size": 12311,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-007.html",
+              "sha256": "53194425282cb6e2c1e688fbf0bbfdda75ca1e9c948302aef0af731683617311",
+              "size": 12307,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-007.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-008.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "07880474f10ab6ed7702d2fa476cf5c09ed41460736607c6e02e82cb8e4f6fd8",
-              "size": 7370,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-008.html",
+              "sha256": "cc3c00fd7225ae552a63b309d0589f71628e94cc4d705b32e25c07f1463b7b53",
+              "size": 7364,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-008.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-009.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "f3c51df3b2ab3c8fb50676dfe8afeda0f7504f054d61212559d09a52aca1dbc3",
-              "size": 12147,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-009.html",
+              "sha256": "0872c0dac7101f6412b757ab1f09528585ad33f35f1edd49291e6e1c610dd760",
+              "size": 12137,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-009.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-010.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "112e4796b7fc5d1f92ec7ee7b9e596a81dc4f00012c467410609415cdb59d6c3",
-              "size": 7453,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-010.html",
+              "sha256": "06c88a8741accbba854d185a4b634159326166422eaf5292f839947c73e0f457",
+              "size": 7447,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-010.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-011.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "d350f3c74c64fa05917b4d922c30093f778f324bbb90a144d4c65db699295f09",
-              "size": 10773,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-011.html",
+              "sha256": "acd80d478617af2f25eea2201a3f31138c8b578d6f530df494cc5e3dbbc6573f",
+              "size": 10767,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-011.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-012.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "a1954ecce606a3216db535ce7f5b305ba968038e6dae2fe6588b18acec12ef1b",
-              "size": 11786,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-012.html",
+              "sha256": "fb9387deded396466af7f5dc4747de77bc8ed7b389e78468b39ea991d7584953",
+              "size": 11768,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-012.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-013.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "1d6abc98fb9e65156cfeb51a85cd6ae92cb2c6ed39afbbbbcfeed60245b37041",
-              "size": 7669,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-013.html",
+              "sha256": "241e9dddd2401578348ebbac3353703a3e3559283df15981351e1b78c6521673",
+              "size": 7665,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-013.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-014.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "fd953638df76209a8ad9c90a395781c32cac52bd646c772b8c74f078ce5201d3",
-              "size": 5851,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-014.html",
+              "sha256": "de92ae75ee8dd35afa75bc8bebdea369c3d0f98d768d094ac3ffad61651b9e66",
+              "size": 5845,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-014.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/chapter-015.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-015.html",
               "relativePath": "chapter-015.html",
-              "sha256": "3f2724147af9a12648541f413cd8c0dc8f186c09a2393403442b6aedcf5ff59e",
-              "size": 6034,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/chapter-015.html",
+              "sha256": "307eb4531d72aac294a38e91f0f131ac0b4fc62da40ffa24b0c2317f38a4e9a2",
+              "size": 6014,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-015.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/index.html",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "8be8d94af1783e7cd71a29ba1634b831c9fe5ce1ca5d368f75e8f5b7da1953e4",
-              "size": 11159,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
+              "sha256": "1334d7bbec0a5cc8d55cbb326856e68e586e3a1e7825e3d00c05aac9ec8db340",
+              "size": 11153,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
               "skipped": false
             },
             {
-              "localPath": "book-uploads/staging/fihrist/fihrist-chapters/sitemap.json",
+              "localPath": "book-uploads/staging/pinax/pinax-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "335e2fc663c3c606298b30e18b5410655b3eac352fdbef7c0241d26aee652653",
-              "size": 6660,
-              "pathname": "books/fihrist/chapters/59abc0f73977f558/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/sitemap.json",
+              "sha256": "902dd2f6f56692ce9f3de5136ed5fc9678b8b26945f4ff6807f710a8ff2c4105",
+              "size": 6658,
+              "pathname": "books/pinax/chapters/b61e2d32d722bf92/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/sitemap.json",
               "skipped": false
             }
           ]
@@ -12707,6 +12707,31 @@
       "pathname": "books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/headboard/49d3b1c8d759413a-fihrist-headboard.png",
       "size": 2681336
+    },
+    "4a306414891c69d03413d98253537aba0672fcfc41e34fb69e94dbe7dccf03da:4202320": {
+      "pathname": "books/pinax/pdf/4a306414891c69d0-pinax.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/pdf/4a306414891c69d0-pinax.pdf",
+      "size": 4202320
+    },
+    "7a7d36730e043991a88bbb5ec926c80dfe420c167381737f30075974ecffce85:2858399": {
+      "pathname": "books/pinax/epub/7a7d36730e043991-pinax.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/epub/7a7d36730e043991-pinax.epub",
+      "size": 2858399
+    },
+    "ab238e06e116082be86b78650c7325e9c0f8d98e88ed00be340910a35107163b:3876968": {
+      "pathname": "books/pinax/html/ab238e06e116082b-pinax.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/html/ab238e06e116082b-pinax.html",
+      "size": 3876968
+    },
+    "a52258b86931803527f6498444e5df660f6843c05e944ffe586fb162d50f1ee2:2863380": {
+      "pathname": "books/pinax/cover/a52258b869318035-pinax-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/cover/a52258b869318035-pinax-cover.png",
+      "size": 2863380
+    },
+    "45a949bce6e05ff005de4b203e8df309f7602b49fae533cee56b5d9527ad0696:2853683": {
+      "pathname": "books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
+      "size": 2853683
     }
   },
   "chapterPackages": {
@@ -34396,6 +34421,174 @@
           "size": 6660,
           "pathname": "books/fihrist/chapters/59abc0f73977f558/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "b61e2d32d722bf9282c522dc22bac02dd1c0600178d5b15bdec3165b590f55c7": {
+      "pathnamePrefix": "books/pinax/chapters/b61e2d32d722bf92",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/assets/a52258b86931-pinax-cover.png",
+          "relativePath": "assets/a52258b86931-pinax-cover.png",
+          "sha256": "a52258b86931803527f6498444e5df660f6843c05e944ffe586fb162d50f1ee2",
+          "size": 2863380,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/assets/a52258b86931-pinax-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/assets/a52258b86931-pinax-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "17c447483b1b14733c894d46e8f0b5692f03a0a881589b0714f27d3fd1635dde",
+          "size": 5033,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "c1788ea8ba8673d4349595e9227f2887592578ceec252fee1c4159a31d9c9e42",
+          "size": 7477,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "4872e1c9c4d3161b848ca5c7e90b9697aebf6cee366546c0bf8349637abe5f16",
+          "size": 7973,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "0333e3d988e41adc7549885e77ac1f973930d62c739fd694f09aa9222bb6a48c",
+          "size": 18228,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "72a1ad88a82f2aa9a1f36e4c2d3a7d1186c9895d5d986e1f16db1d488599a6c1",
+          "size": 11847,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "82fac7a757ac41bd5c3f90deccda6ff6c84b85e7192b86ebe2b4179ece51cc6c",
+          "size": 11732,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "53194425282cb6e2c1e688fbf0bbfdda75ca1e9c948302aef0af731683617311",
+          "size": 12307,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "cc3c00fd7225ae552a63b309d0589f71628e94cc4d705b32e25c07f1463b7b53",
+          "size": 7364,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "0872c0dac7101f6412b757ab1f09528585ad33f35f1edd49291e6e1c610dd760",
+          "size": 12137,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "06c88a8741accbba854d185a4b634159326166422eaf5292f839947c73e0f457",
+          "size": 7447,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "acd80d478617af2f25eea2201a3f31138c8b578d6f530df494cc5e3dbbc6573f",
+          "size": 10767,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "fb9387deded396466af7f5dc4747de77bc8ed7b389e78468b39ea991d7584953",
+          "size": 11768,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "241e9dddd2401578348ebbac3353703a3e3559283df15981351e1b78c6521673",
+          "size": 7665,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "de92ae75ee8dd35afa75bc8bebdea369c3d0f98d768d094ac3ffad61651b9e66",
+          "size": 5845,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "307eb4531d72aac294a38e91f0f131ac0b4fc62da40ffa24b0c2317f38a4e9a2",
+          "size": 6014,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "1334d7bbec0a5cc8d55cbb326856e68e586e3a1e7825e3d00c05aac9ec8db340",
+          "size": 11153,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/pinax/pinax-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "902dd2f6f56692ce9f3de5136ed5fc9678b8b26945f4ff6807f710a8ff2c4105",
+          "size": 6658,
+          "pathname": "books/pinax/chapters/b61e2d32d722bf92/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/sitemap.json",
           "skipped": false
         }
       ]

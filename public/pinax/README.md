@@ -8,7 +8,6 @@ A practical guide to validated enterprise table contracts, governed agent reads,
 - [EPUB](/pinax/epub/)
 - [Read online](/read/pinax/)
 - [Chapter reader](/read/pinax/chapters/)
-- [Announcement](https://querygraph.ai/announcing-pinax/)
 
 
 

@@ -188,8 +188,8 @@ export const readerBooks = [
   },
   {
     "slug": "pinax",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/html/528092ed43681321-fihrist.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/fihrist/chapters/59abc0f73977f558"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/html/ab238e06e116082b-pinax.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92"
   }
 ]
