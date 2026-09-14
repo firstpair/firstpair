@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-09-14T21:27:37.241Z",
+  "updatedAt": "2026-09-14T21:56:56.604Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -343,34 +343,34 @@
       }
     },
     "grust": {
-      "updatedAt": "2026-09-14T21:27:37.239Z",
+      "updatedAt": "2026-09-14T21:56:56.603Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/grust/grust.pdf",
-          "sha256": "1b6a89fdbed9428d062e33de726790740fd602e190e66977464e9064daa554b7",
-          "size": 3749858,
-          "pathname": "books/grust/pdf/1b6a89fdbed9428d-grust.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/1b6a89fdbed9428d-grust.pdf",
+          "sha256": "f143ec88739cc5b84ad2f3d915a3df420d5f751bcc595437bd3b1dd86db790ee",
+          "size": 3752320,
+          "pathname": "books/grust/pdf/f143ec88739cc5b8-grust.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/f143ec88739cc5b8-grust.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/grust/grust.epub",
-          "sha256": "7a619d21e0f0feb9fa9572cd67ac10f30dae05cb14e532de673982cf4fcbd930",
-          "size": 3004912,
-          "pathname": "books/grust/epub/7a619d21e0f0feb9-grust.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/7a619d21e0f0feb9-grust.epub",
+          "sha256": "8669b4c9f38372a5b413fee233e74211cde3a6ecb4a54ac9a4c34c491cb169f6",
+          "size": 3005470,
+          "pathname": "books/grust/epub/8669b4c9f38372a5-grust.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/8669b4c9f38372a5-grust.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/grust/grust.html",
-          "sha256": "e9680fd62183fd69d6ca97956cc32ff3e57d7505732e34b3e4d693f723170538",
-          "size": 4179751,
-          "pathname": "books/grust/html/e9680fd62183fd69-grust.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/e9680fd62183fd69-grust.html",
+          "sha256": "b866bfd23daaa4214ec6ee037dc1fbbb96e173722b38a7ae23b7fc90a24f71a2",
+          "size": 4181554,
+          "pathname": "books/grust/html/b866bfd23daaa421-grust.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/b866bfd23daaa421-grust.html",
           "skipped": false
         },
         "cover": {
@@ -385,9 +385,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/grust/grust-chapters",
-          "sha256": "8dd49aa5f1b4259ec5e210c6d0c7bf9a152848ffcd193661ec5c17a83c0f7081",
-          "pathnamePrefix": "books/grust/chapters/8dd49aa5f1b4259e",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/index.html",
+          "sha256": "c283f33ec850c37cd8fce81ce857416b956874945defb15bd0b4958d039f3d9c",
+          "pathnamePrefix": "books/grust/chapters/c283f33ec850c37c",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/index.html",
           "skipped": false,
           "files": [
             {
@@ -395,8 +395,8 @@
               "relativePath": "assets/05f645403201-grust-cover.png",
               "sha256": "05f645403201dc068a29de878d71dbba50504b8050243ab714c5f7b93757ba19",
               "size": 2418988,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/assets/05f645403201-grust-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/assets/05f645403201-grust-cover.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/assets/05f645403201-grust-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/assets/05f645403201-grust-cover.png",
               "skipped": false
             },
             {
@@ -404,8 +404,8 @@
               "relativePath": "book.css",
               "sha256": "767b4d88a7772b3db110d3018245d82b484fb949ac3cdbea6805bb2886aad15f",
               "size": 1124,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/book.css",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/book.css",
               "skipped": false
             },
             {
@@ -413,8 +413,8 @@
               "relativePath": "chapter-001.html",
               "sha256": "9bbfe5181c8ee2f6c6daa9da68d88610ddc92ff86b714cd0b4ff2853a33a6323",
               "size": 2265,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-001.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-001.html",
               "skipped": false
             },
             {
@@ -422,8 +422,8 @@
               "relativePath": "chapter-002.html",
               "sha256": "bfbd2fb524b42a136daa981964f0db80d6864e9dfa4ee65e88ef4647176664e1",
               "size": 3203,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-002.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-002.html",
               "skipped": false
             },
             {
@@ -431,8 +431,8 @@
               "relativePath": "chapter-003.html",
               "sha256": "96a1e903ba9b0b192e2c59cceb06b13f9e43a07ad833f8a19b6e39e398602b1d",
               "size": 3844,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-003.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-003.html",
               "skipped": false
             },
             {
@@ -440,8 +440,8 @@
               "relativePath": "chapter-004.html",
               "sha256": "da2ebb9428d9224db9e59abe47ceda17dc99b9bbe07f535e23fce3215a2b648a",
               "size": 12912,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-004.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-004.html",
               "skipped": false
             },
             {
@@ -449,17 +449,17 @@
               "relativePath": "chapter-005.html",
               "sha256": "a63bcc1351f4fcea7cf0e2d081acac9aa842c24e7fc260ecb56e89c4cbdef0f3",
               "size": 23056,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-005.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/grust/grust-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "af2cad6f3db3e2539369700effa9a9e6ca5e5bd7884456c793216ea67cd0bee5",
+              "sha256": "f9cd6344ba2fa5697533e22c5b3bd710909e34303022cee9b019ed41a2868290",
               "size": 51400,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-006.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-006.html",
               "skipped": false
             },
             {
@@ -467,8 +467,8 @@
               "relativePath": "chapter-007.html",
               "sha256": "5321aeaa41d07af7d89b6d22bdeb29d900f950c7f57f9075d72c52de1564035a",
               "size": 8369,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-007.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-007.html",
               "skipped": false
             },
             {
@@ -476,8 +476,8 @@
               "relativePath": "chapter-008.html",
               "sha256": "d65099c9226ad328630311bf3f33c74f762d9bc3ce80e97a51ac05b90a4d025e",
               "size": 14202,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-008.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-008.html",
               "skipped": false
             },
             {
@@ -485,8 +485,8 @@
               "relativePath": "chapter-009.html",
               "sha256": "247e081c24ef099e65127ff55924e1c259fb004aa99d49f72e492f1f8bceb9d3",
               "size": 3987,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-009.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-009.html",
               "skipped": false
             },
             {
@@ -494,8 +494,8 @@
               "relativePath": "chapter-010.html",
               "sha256": "f976544293fbaccf730b2467d265fb8f04bbd8afec3ad5f64109a1c3421d7a3b",
               "size": 63445,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-010.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-010.html",
               "skipped": false
             },
             {
@@ -503,8 +503,8 @@
               "relativePath": "chapter-011.html",
               "sha256": "2264cbc914a0580e4008168d65a6bc62a7e4019bc9a401f2776016364d6ba7b5",
               "size": 18931,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-011.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-011.html",
               "skipped": false
             },
             {
@@ -512,8 +512,8 @@
               "relativePath": "chapter-012.html",
               "sha256": "be095f34c6dfe0658553e8aca74df91f6509964647514080a7bf6cdd04a4f4a5",
               "size": 23175,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-012.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-012.html",
               "skipped": false
             },
             {
@@ -521,8 +521,8 @@
               "relativePath": "chapter-013.html",
               "sha256": "0409170f50d6062e25187ab536895d011d1d04b51060a41c75d68bdc7edf8226",
               "size": 8984,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-013.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-013.html",
               "skipped": false
             },
             {
@@ -530,8 +530,8 @@
               "relativePath": "chapter-014.html",
               "sha256": "47d7e18d0fa9a36013b0d6be95c67c229e8241ee6b9169047d1047bcaf3898c1",
               "size": 2927,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-014.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-014.html",
               "skipped": false
             },
             {
@@ -539,8 +539,8 @@
               "relativePath": "chapter-015.html",
               "sha256": "e5adc76bd33e2d41058260f8e9705189fbf86bd0a4f28b565cf62a331b8aa71e",
               "size": 9386,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-015.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-015.html",
               "skipped": false
             },
             {
@@ -548,26 +548,26 @@
               "relativePath": "chapter-016.html",
               "sha256": "c6d25c982823921493a3c1539ceeb29faa20e0cc4605159fd7f3cd18188af208",
               "size": 6146,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-016.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-016.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/grust/grust-chapters/chapter-017.html",
               "relativePath": "chapter-017.html",
-              "sha256": "ade5599db32c429a14581ec0c1d26c59401e999c681b108faa8e7504111ed87c",
-              "size": 20917,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-017.html",
+              "sha256": "0b842c8a6c24f6ccb0b370049c214f49c17875afc3f9abe3a81ce0ecef335ead",
+              "size": 21053,
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-017.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/grust/grust-chapters/chapter-018.html",
               "relativePath": "chapter-018.html",
-              "sha256": "86f89c3ac2413f890fcf90a9301b73941f9e78814bf8d575af2743d1bb7c23e6",
-              "size": 28681,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-018.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-018.html",
+              "sha256": "afdc010f81637d8ea2de953763c3597093df5679777b613dd18c9c2f09ef2166",
+              "size": 30348,
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-018.html",
               "skipped": false
             },
             {
@@ -575,8 +575,8 @@
               "relativePath": "chapter-019.html",
               "sha256": "e36af44d917e06caa447491df7a4f6f2dc743a3988684b9098b3fd23b392921b",
               "size": 2987,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/chapter-019.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/chapter-019.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-019.html",
               "skipped": false
             },
             {
@@ -584,8 +584,8 @@
               "relativePath": "diagrams/diagram-01.png",
               "sha256": "920110e9ccd4e6021ce6071dbd30c9edf05eff01ef292b16d4c7d2ed3d03713d",
               "size": 81503,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-01.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-01.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-01.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-01.png",
               "skipped": false
             },
             {
@@ -593,8 +593,8 @@
               "relativePath": "diagrams/diagram-02.png",
               "sha256": "e24599dee7a7a8ed6414df9649da1fb6c360b2556c0ce9cb6c914bf85ee9acd1",
               "size": 28289,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-02.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-02.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-02.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-02.png",
               "skipped": false
             },
             {
@@ -602,8 +602,8 @@
               "relativePath": "diagrams/diagram-03.png",
               "sha256": "8592dee0ca01659cc799d3eb6a7784206aa736c5180a6c2e5fd05a3c64972eec",
               "size": 84151,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-03.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-03.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-03.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-03.png",
               "skipped": false
             },
             {
@@ -611,8 +611,8 @@
               "relativePath": "diagrams/diagram-04.png",
               "sha256": "a502cb4dc4e5819a35c7de6d30373dfab79cbe3010ecfd4477218ce692032b8e",
               "size": 23819,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-04.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-04.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-04.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-04.png",
               "skipped": false
             },
             {
@@ -620,8 +620,8 @@
               "relativePath": "diagrams/diagram-05.png",
               "sha256": "227d76f3db6d0270ad6c77e824cd5f013e1755f772d46b839b47c193d270ea81",
               "size": 57884,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-05.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-05.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-05.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-05.png",
               "skipped": false
             },
             {
@@ -629,8 +629,8 @@
               "relativePath": "diagrams/diagram-06.png",
               "sha256": "3e7ab3b67ce94a3a2c06b73bf207e20b8ae499b9a727e29fcbbc8af7754cefda",
               "size": 29236,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-06.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-06.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-06.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-06.png",
               "skipped": false
             },
             {
@@ -638,8 +638,8 @@
               "relativePath": "diagrams/diagram-07.png",
               "sha256": "d1773f8de8da06c2c56cf8def88e626bea9058bd56d02e15a29c78fc47316637",
               "size": 75299,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-07.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-07.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-07.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-07.png",
               "skipped": false
             },
             {
@@ -647,8 +647,8 @@
               "relativePath": "diagrams/diagram-08.png",
               "sha256": "3cb0ccf786742050df9d84e5ff308f7aa453ae0c2bcd94b3581c0c27dc763328",
               "size": 84961,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-08.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-08.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-08.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-08.png",
               "skipped": false
             },
             {
@@ -656,8 +656,8 @@
               "relativePath": "diagrams/diagram-09.png",
               "sha256": "6f2d905dd9c3696a76fce956b701e910fd97627ffcd6a997e8e47eb9192a3b36",
               "size": 64757,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-09.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/diagrams/diagram-09.png",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-09.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-09.png",
               "skipped": false
             },
             {
@@ -665,17 +665,17 @@
               "relativePath": "index.html",
               "sha256": "1b9c1094ddd129ef2b6cbfc9f5842795caa64d907d9e85ec8b9bb2b7908db7a3",
               "size": 10021,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/index.html",
+              "pathname": "books/grust/chapters/c283f33ec850c37c/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/index.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/grust/grust-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "1677c49b29205ffe550f4f14f12453427508687ee4f93b28424af0101f795555",
-              "size": 10246,
-              "pathname": "books/grust/chapters/8dd49aa5f1b4259e/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/sitemap.json",
+              "sha256": "f164e21fba6aa3c7d90f071c92d9d9fbfa50c6a74041d0e3686d8482060db42d",
+              "size": 10460,
+              "pathname": "books/grust/chapters/c283f33ec850c37c/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/sitemap.json",
               "skipped": false
             }
           ]
@@ -12915,6 +12915,21 @@
       "pathname": "books/grust/html/e9680fd62183fd69-grust.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/e9680fd62183fd69-grust.html",
       "size": 4179751
+    },
+    "f143ec88739cc5b84ad2f3d915a3df420d5f751bcc595437bd3b1dd86db790ee:3752320": {
+      "pathname": "books/grust/pdf/f143ec88739cc5b8-grust.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/f143ec88739cc5b8-grust.pdf",
+      "size": 3752320
+    },
+    "8669b4c9f38372a5b413fee233e74211cde3a6ecb4a54ac9a4c34c491cb169f6:3005470": {
+      "pathname": "books/grust/epub/8669b4c9f38372a5-grust.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/8669b4c9f38372a5-grust.epub",
+      "size": 3005470
+    },
+    "b866bfd23daaa4214ec6ee037dc1fbbb96e173722b38a7ae23b7fc90a24f71a2:4181554": {
+      "pathname": "books/grust/html/b866bfd23daaa421-grust.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/b866bfd23daaa421-grust.html",
+      "size": 4181554
     }
   },
   "chapterPackages": {
@@ -37061,6 +37076,300 @@
           "size": 10246,
           "pathname": "books/grust/chapters/8dd49aa5f1b4259e/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/8dd49aa5f1b4259e/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "c283f33ec850c37cd8fce81ce857416b956874945defb15bd0b4958d039f3d9c": {
+      "pathnamePrefix": "books/grust/chapters/c283f33ec850c37c",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/assets/05f645403201-grust-cover.png",
+          "relativePath": "assets/05f645403201-grust-cover.png",
+          "sha256": "05f645403201dc068a29de878d71dbba50504b8050243ab714c5f7b93757ba19",
+          "size": 2418988,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/assets/05f645403201-grust-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/assets/05f645403201-grust-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "767b4d88a7772b3db110d3018245d82b484fb949ac3cdbea6805bb2886aad15f",
+          "size": 1124,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "9bbfe5181c8ee2f6c6daa9da68d88610ddc92ff86b714cd0b4ff2853a33a6323",
+          "size": 2265,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "bfbd2fb524b42a136daa981964f0db80d6864e9dfa4ee65e88ef4647176664e1",
+          "size": 3203,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "96a1e903ba9b0b192e2c59cceb06b13f9e43a07ad833f8a19b6e39e398602b1d",
+          "size": 3844,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "da2ebb9428d9224db9e59abe47ceda17dc99b9bbe07f535e23fce3215a2b648a",
+          "size": 12912,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "a63bcc1351f4fcea7cf0e2d081acac9aa842c24e7fc260ecb56e89c4cbdef0f3",
+          "size": 23056,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "f9cd6344ba2fa5697533e22c5b3bd710909e34303022cee9b019ed41a2868290",
+          "size": 51400,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "5321aeaa41d07af7d89b6d22bdeb29d900f950c7f57f9075d72c52de1564035a",
+          "size": 8369,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "d65099c9226ad328630311bf3f33c74f762d9bc3ce80e97a51ac05b90a4d025e",
+          "size": 14202,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "247e081c24ef099e65127ff55924e1c259fb004aa99d49f72e492f1f8bceb9d3",
+          "size": 3987,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "f976544293fbaccf730b2467d265fb8f04bbd8afec3ad5f64109a1c3421d7a3b",
+          "size": 63445,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "2264cbc914a0580e4008168d65a6bc62a7e4019bc9a401f2776016364d6ba7b5",
+          "size": 18931,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "be095f34c6dfe0658553e8aca74df91f6509964647514080a7bf6cdd04a4f4a5",
+          "size": 23175,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "0409170f50d6062e25187ab536895d011d1d04b51060a41c75d68bdc7edf8226",
+          "size": 8984,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "47d7e18d0fa9a36013b0d6be95c67c229e8241ee6b9169047d1047bcaf3898c1",
+          "size": 2927,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "e5adc76bd33e2d41058260f8e9705189fbf86bd0a4f28b565cf62a331b8aa71e",
+          "size": 9386,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "c6d25c982823921493a3c1539ceeb29faa20e0cc4605159fd7f3cd18188af208",
+          "size": 6146,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "0b842c8a6c24f6ccb0b370049c214f49c17875afc3f9abe3a81ce0ecef335ead",
+          "size": 21053,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "afdc010f81637d8ea2de953763c3597093df5679777b613dd18c9c2f09ef2166",
+          "size": 30348,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "e36af44d917e06caa447491df7a4f6f2dc743a3988684b9098b3fd23b392921b",
+          "size": 2987,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-01.png",
+          "relativePath": "diagrams/diagram-01.png",
+          "sha256": "920110e9ccd4e6021ce6071dbd30c9edf05eff01ef292b16d4c7d2ed3d03713d",
+          "size": 81503,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-01.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-01.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-02.png",
+          "relativePath": "diagrams/diagram-02.png",
+          "sha256": "e24599dee7a7a8ed6414df9649da1fb6c360b2556c0ce9cb6c914bf85ee9acd1",
+          "size": 28289,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-02.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-02.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-03.png",
+          "relativePath": "diagrams/diagram-03.png",
+          "sha256": "8592dee0ca01659cc799d3eb6a7784206aa736c5180a6c2e5fd05a3c64972eec",
+          "size": 84151,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-03.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-03.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-04.png",
+          "relativePath": "diagrams/diagram-04.png",
+          "sha256": "a502cb4dc4e5819a35c7de6d30373dfab79cbe3010ecfd4477218ce692032b8e",
+          "size": 23819,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-04.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-04.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-05.png",
+          "relativePath": "diagrams/diagram-05.png",
+          "sha256": "227d76f3db6d0270ad6c77e824cd5f013e1755f772d46b839b47c193d270ea81",
+          "size": 57884,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-05.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-05.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-06.png",
+          "relativePath": "diagrams/diagram-06.png",
+          "sha256": "3e7ab3b67ce94a3a2c06b73bf207e20b8ae499b9a727e29fcbbc8af7754cefda",
+          "size": 29236,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-06.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-06.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-07.png",
+          "relativePath": "diagrams/diagram-07.png",
+          "sha256": "d1773f8de8da06c2c56cf8def88e626bea9058bd56d02e15a29c78fc47316637",
+          "size": 75299,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-07.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-07.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-08.png",
+          "relativePath": "diagrams/diagram-08.png",
+          "sha256": "3cb0ccf786742050df9d84e5ff308f7aa453ae0c2bcd94b3581c0c27dc763328",
+          "size": 84961,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-08.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-08.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/diagrams/diagram-09.png",
+          "relativePath": "diagrams/diagram-09.png",
+          "sha256": "6f2d905dd9c3696a76fce956b701e910fd97627ffcd6a997e8e47eb9192a3b36",
+          "size": 64757,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/diagrams/diagram-09.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/diagrams/diagram-09.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "1b9c1094ddd129ef2b6cbfc9f5842795caa64d907d9e85ec8b9bb2b7908db7a3",
+          "size": 10021,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/grust/grust-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "f164e21fba6aa3c7d90f071c92d9d9fbfa50c6a74041d0e3686d8482060db42d",
+          "size": 10460,
+          "pathname": "books/grust/chapters/c283f33ec850c37c/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/c283f33ec850c37c/sitemap.json",
           "skipped": false
         }
       ]
