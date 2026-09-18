@@ -102,8 +102,8 @@
       "accent": "#6a4b2d",
       "shelf": "querygraph",
       "source": "https://github.com/querygraph/grust",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/1a6e2e4c2ed2da22-grust.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/25771c983c35fd84-grust.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/pdf/2aea053264e2bb90-grust.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/epub/48d85fb1ba53a208-grust.epub",
       "html": "/read/grust/",
       "htmlChapters": "/read/grust/chapters/",
       "tags": [
@@ -111,8 +111,8 @@
         "graphs",
         "Rust"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/f04defddaa2d227c-grust.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/1d92cdb4b3350fd0/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/0bf114c08b831ca7-grust.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/0a846074bf0810d0/index.html",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/cover/05f645403201dc06-grust-cover.png",
       "author": "Alexy Khrabrov"
     },
