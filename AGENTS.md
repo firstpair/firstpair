@@ -779,3 +779,29 @@ delivery if the hosting surface cannot update code without resending binaries.
 The worktree may contain unrelated application or preview changes. Preserve
 them. Stage or commit only the public-book delivery and guidance files when the
 user asks for a commit.
+
+### A publish is not finished until its manifests are committed and pushed
+
+`library:publish` uploads blobs and then rewrites the files that point at them:
+`book-uploads/blob-manifest.json`, `public/catalog.json`, `deliverable-map.mjs`
+and `reader-map.mjs`. Uploading is the irreversible half; committing is what
+makes the catalog agree with what was uploaded. **Leaving those four files
+uncommitted leaves the repository in a state where the working tree records a
+publish the history does not**, and the next publish cannot start at all,
+because the preflight requires every participating repository to be clean,
+attached to its upstream and exactly synchronised with it — it fails with
+`repository is not clean (M book-uploads/blob-manifest.json; ...)` and refuses
+to run.
+
+This happened on 2026-09-20: a Grust book publish uploaded new PDF, EPUB, HTML
+and chapter blobs, and its four manifest files sat uncommitted for three days
+until the 0.23.0 release publish was blocked by them. The blobs were live the
+whole time; only the record was missing.
+
+So: after any `library:publish` that uploads, commit those four files in the
+same working session, with a message naming the book and the version stamp, and
+push. If you find them already dirty from an earlier run, do not revert them
+blind — the blobs they name have been uploaded, and reverting points the catalog
+back at objects an earlier publish replaced. Commit them for what they are,
+saying in the message which publish produced them and that it is being recorded
+after the fact.
