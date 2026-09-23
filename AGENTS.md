@@ -38,6 +38,12 @@ shared rules.
 - Regenerate derived editions from source, then run the source-owned validators
   and FirstPair checks before staging, uploading, or publishing. A failed
   validator is a stop condition, not something to route around.
+- **Leave FirstPair in a committed, pushed state after every publication.** A
+  publish that uploads blobs and does not commit the manifests naming them is
+  unfinished, whatever it printed. This is a requirement, not a preference: the
+  publish preflight enforces it on the next run and will refuse to start. See
+  [Repository Hygiene](#repository-hygiene) for what to commit and why
+  reverting is the wrong repair.
 - Use stable FirstPair deliverable routes in reader-facing prose:
   `/<book-stem>/pdf/`, `/<book-stem>/epub/`, and, when present,
   `/<book-stem>/vault/` and `/<book-stem>/emacs/`. Raw Vercel Blob URLs belong in `public/catalog.json`,
@@ -781,6 +787,10 @@ them. Stage or commit only the public-book delivery and guidance files when the
 user asks for a commit.
 
 ### A publish is not finished until its manifests are committed and pushed
+
+FirstPair is left in a committed, pushed state after every publication. This is
+a requirement of the publishing workflow, enforced by the preflight, not a
+tidiness convention.
 
 `library:publish` uploads blobs and then rewrites the files that point at them:
 `book-uploads/blob-manifest.json`, `public/catalog.json`, `deliverable-map.mjs`
