@@ -7,6 +7,8 @@ builder="$firstpair_root/publishing/scripts/build-library-book.sh"
 work="$(mktemp -d)"
 trap 'rm -rf "$work"' EXIT
 
+node --test "$firstpair_root/publishing/tests/test-pdf-layout.mjs"
+
 cp -R "$fixture_source/." "$work/"
 printf '%s  \n%s\n' \
   '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20">' \

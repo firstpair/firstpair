@@ -4,6 +4,7 @@ import { spawnSync } from 'node:child_process'
 import { existsSync, mkdtempSync, readFileSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { basename, join } from 'node:path'
+import { isStructuredDependencyPage } from './pdf-structured-lines.mjs'
 
 const args = process.argv.slice(2)
 const pdf = args.find((arg) => !arg.startsWith('--'))
@@ -132,7 +133,10 @@ for (let index = 0; index < pageMatches.length; index += 1) {
     Math.min(...lineBoxes.map((line) => line.xMin))
   ) / pageBox.width
 
-  if (shortRatio >= 0.65 && medianWidthRatio <= 0.28 && occupiedWidthRatio <= 0.45) {
+  if (shortRatio >= 0.65 && medianWidthRatio <= 0.28 && occupiedWidthRatio <= 0.45 &&
+      !isStructuredDependencyPage(lines.map((line) => ({
+        ...attributes(line[1]), xml: line[2],
+      })), pageBox.height)) {
     failures.push(
       `page ${pageNumber} resembles a one-word column ` +
         `(short-line ratio ${shortRatio.toFixed(2)}, median width ${medianWidthRatio.toFixed(2)}, ` +
