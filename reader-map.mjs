@@ -191,5 +191,11 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/html/ab238e06e116082b-pinax.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/chapters/b61e2d32d722bf92"
+  },
+  {
+    "slug": "anthropology",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/html/13fa4a93d0ffc25f-anthropology.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5"
   }
 ]

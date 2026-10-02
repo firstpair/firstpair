@@ -256,6 +256,13 @@
       "htmlChapters": "book-uploads/staging/pinax/pinax-chapters",
       "cover": "book-uploads/staging/pinax/pinax-cover.png",
       "headboard": "book-uploads/staging/pinax/pinax-headboard.png"
+    },
+    "anthropology": {
+      "pdf": "book-uploads/staging/anthropology/anthropology.pdf",
+      "epub": "book-uploads/staging/anthropology/anthropology.epub",
+      "html": "book-uploads/staging/anthropology/anthropology.html",
+      "htmlChapters": "book-uploads/staging/anthropology/anthropology-chapters",
+      "cover": "book-uploads/staging/anthropology/anthropology-cover.png"
     }
   }
 }

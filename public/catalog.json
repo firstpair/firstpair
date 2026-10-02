@@ -727,6 +727,29 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/cover/a52258b869318035-pinax-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/pinax/headboard/45a949bce6e05ff0-pinax-headboard.png",
       "post": "https://querygraph.ai/announcing-pinax/"
+    },
+    {
+      "slug": "anthropology",
+      "title": "The Dual Geometry of People and News",
+      "author": "Alexy Khrabrov",
+      "kicker": "Research working paper",
+      "description": "A research working paper on people and news vectors, navigation duality, ontology calibration, and the sourced Anthropology graph, including the expanded catalog, financing evidence, and a Jeff Dean exploration.",
+      "accent": "#7a6a3e",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/pdf/2f4ac821d99eeed4-anthropology.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/epub/c6e70366ca76272d-anthropology.epub",
+      "html": "/read/anthropology/",
+      "htmlChapters": "/read/anthropology/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/html/13fa4a93d0ffc25f-anthropology.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/index.html",
+      "tags": [
+        "research",
+        "people-vectors",
+        "news",
+        "knowledge-graphs"
+      ],
+      "shelf": "querygraph",
+      "source": "https://firstpair.org/read/anthropology/chapters/anthropology-paper-sources.zip",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/cover/84a91d6e7001fc2b-anthropology-cover.png"
     }
   ]
 }
