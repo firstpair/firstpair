@@ -750,6 +750,30 @@
       "shelf": "querygraph",
       "source": "https://firstpair.org/read/anthropology/chapters/anthropology-paper-sources.zip",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/cover/84a91d6e7001fc2b-anthropology-cover.png"
+    },
+    {
+      "slug": "anthropology-math",
+      "title": "The Mathematics of Anthropology",
+      "author": "Alexy Khrabrov",
+      "kicker": "Mathematical companion",
+      "description": "A step-by-step companion to The Dual Geometry of People and News: from article coordinates to people vectors, navigation in both directions, changing coverage, and ontology calibration. Includes reproducible examples, diagrams, and a linked Jeff Dean exploration.",
+      "accent": "#8a4f3d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/5f0ba012dfc2c461-anthropology-math.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/913a58c367cfd136-anthropology-math.epub",
+      "html": "/read/anthropology-math/",
+      "htmlChapters": "/read/anthropology-math/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/a7fb56736e0b1c23-anthropology-math.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/index.html",
+      "tags": [
+        "mathematics",
+        "people-vectors",
+        "news",
+        "knowledge-graphs"
+      ],
+      "shelf": "querygraph",
+      "source": "https://firstpair.org/read/anthropology-math/chapters/anthropology-math-sources.zip",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png"
     }
   ]
 }

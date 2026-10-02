@@ -263,6 +263,14 @@
       "html": "book-uploads/staging/anthropology/anthropology.html",
       "htmlChapters": "book-uploads/staging/anthropology/anthropology-chapters",
       "cover": "book-uploads/staging/anthropology/anthropology-cover.png"
+    },
+    "anthropology-math": {
+      "pdf": "book-uploads/staging/anthropology-math/anthropology-math.pdf",
+      "epub": "book-uploads/staging/anthropology-math/anthropology-math.epub",
+      "html": "book-uploads/staging/anthropology-math/anthropology-math.html",
+      "htmlChapters": "book-uploads/staging/anthropology-math/anthropology-math-chapters",
+      "cover": "book-uploads/staging/anthropology-math/anthropology-math-cover.png",
+      "headboard": "book-uploads/staging/anthropology-math/anthropology-math-headboard.png"
     }
   }
 }
