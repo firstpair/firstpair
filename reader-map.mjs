@@ -26,9 +26,9 @@ export const readerBooks = [
   },
   {
     "slug": "grust",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/aceb9b48e2886106-grust.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/a58d2a0a7fb7d4a0/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/a58d2a0a7fb7d4a0"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/html/8d62e7c8605b1ae2-grust.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/e9e33793cb33f3b2/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/grust/chapters/e9e33793cb33f3b2"
   },
   {
     "slug": "lakecat",
