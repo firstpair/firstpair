@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-02T21:46:32.893Z",
+  "updatedAt": "2026-10-03T03:18:05.770Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -10923,34 +10923,34 @@
       }
     },
     "anthropology": {
-      "updatedAt": "2026-10-02T20:45:26.923Z",
+      "updatedAt": "2026-10-03T03:18:05.770Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/anthropology/anthropology.pdf",
-          "sha256": "2f4ac821d99eeed4fbf31d8e03eb0c2d9b4d53db819666c58a2bfd6316d01eaf",
-          "size": 783260,
-          "pathname": "books/anthropology/pdf/2f4ac821d99eeed4-anthropology.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/pdf/2f4ac821d99eeed4-anthropology.pdf",
+          "sha256": "f1d093095aa59dd68b36c4aeb51477237e6c2de8ab0319a420e64e3546fd3cbe",
+          "size": 822111,
+          "pathname": "books/anthropology/pdf/f1d093095aa59dd6-anthropology.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/pdf/f1d093095aa59dd6-anthropology.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/anthropology/anthropology.epub",
-          "sha256": "c6e70366ca76272d4f7abb7107e56729c4cb441facbe4cd0b7b8a64e5a7b932e",
-          "size": 522287,
-          "pathname": "books/anthropology/epub/c6e70366ca76272d-anthropology.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/epub/c6e70366ca76272d-anthropology.epub",
+          "sha256": "cc656942375120b1e6f7342492c433dcb36a02c6493fb8b735447543f177267f",
+          "size": 526542,
+          "pathname": "books/anthropology/epub/cc656942375120b1-anthropology.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/epub/cc656942375120b1-anthropology.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/anthropology/anthropology.html",
-          "sha256": "13fa4a93d0ffc25f92737466bdb2e7aca9f304712f14d0bb23e03c71b0a0b23a",
-          "size": 861990,
-          "pathname": "books/anthropology/html/13fa4a93d0ffc25f-anthropology.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/html/13fa4a93d0ffc25f-anthropology.html",
+          "sha256": "9f5104690a0fa9be12e2372361d6b08109c6682c0d720c6541d4f6c53bc86ab5",
+          "size": 877511,
+          "pathname": "books/anthropology/html/9f5104690a0fa9be-anthropology.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/html/9f5104690a0fa9be-anthropology.html",
           "skipped": false
         },
         "cover": {
@@ -10960,158 +10960,158 @@
           "size": 1457996,
           "pathname": "books/anthropology/cover/84a91d6e7001fc2b-anthropology-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/cover/84a91d6e7001fc2b-anthropology-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/anthropology/anthropology-chapters",
-          "sha256": "f14b9007702c84f556af157f10f149a31fc7f8c1def5d2b3c9c17ba77f8754b2",
-          "pathnamePrefix": "books/anthropology/chapters/f14b9007702c84f5",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/index.html",
+          "sha256": "c069074bbbcfe16060a5a314344eb85d60eb3eb708c3b4edd5662e1543458a17",
+          "pathnamePrefix": "books/anthropology/chapters/c069074bbbcfe160",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/index.html",
           "skipped": false,
           "files": [
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/anthropology-paper-sources.zip",
               "relativePath": "anthropology-paper-sources.zip",
-              "sha256": "8633ea5188dc11c240dc3fcc52e8c0eba34860e3cac02750ecf319e792d078e7",
-              "size": 4460651,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/anthropology-paper-sources.zip",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/anthropology-paper-sources.zip",
+              "sha256": "93be40a99b20f0ccdc64ba784384de9cd5a2a8abcf9a40ea019eea9431407b91",
+              "size": 4463691,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/anthropology-paper-sources.zip",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/anthropology-paper-sources.zip",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-01.html",
               "relativePath": "chapter-01.html",
-              "sha256": "7db391bf5bf3e086f69e92d84ec22ec631add850d0a297df23de3a120bbadcd4",
-              "size": 4466,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-01.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-01.html",
+              "sha256": "5aabe470c6127179cfd9ab4d0aa1127517b481874b7deb53754726e65e2d63e8",
+              "size": 4459,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-01.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-01.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-02.html",
               "relativePath": "chapter-02.html",
-              "sha256": "ccae8d326f43d610c0c72341a6fa33b87ffdb995f9fb2c46596ea8c85593a54d",
-              "size": 5656,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-02.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-02.html",
+              "sha256": "194b232d1516c1997a4c32dc1a8286f3426c7041b6e2e4a798df3d1fbe14ea96",
+              "size": 5649,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-02.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-02.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-03.html",
               "relativePath": "chapter-03.html",
-              "sha256": "1aa622210a87fc45d926167e94ae906fadf8049ee4231212bde16bef107b8d86",
-              "size": 641187,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-03.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-03.html",
+              "sha256": "4a82abcd0be30f4d1d858053d82d913b4c58f4a424f67d89fed9f1ea39b6e508",
+              "size": 641180,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-03.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-03.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-04.html",
               "relativePath": "chapter-04.html",
-              "sha256": "4656cf1fdd34b9d94b1923f392b32b6c62f2ee84d9ca1251b90a18ee03b8ad16",
-              "size": 66303,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-04.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-04.html",
+              "sha256": "f78f70d09de4e2cc64c1060aac371695b9ff87ee75a0fa6c948c95c89e1e17c0",
+              "size": 66296,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-04.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-04.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-05.html",
               "relativePath": "chapter-05.html",
-              "sha256": "39316d3e4ad348db3ccff3aeb3489cad2f280a29645aa77d406ea787c76be55d",
-              "size": 10138,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-05.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-05.html",
+              "sha256": "20ad069eb2884dc27fcc92acf4d87451d95cf0ce2072ca40f9810a87a3a69f9b",
+              "size": 13984,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-05.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-05.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-06.html",
               "relativePath": "chapter-06.html",
-              "sha256": "3a05b6485d84eae45673ef53f087af1e6b414f8edb083c0f9fa01f015503bf66",
-              "size": 12157,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-06.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-06.html",
+              "sha256": "4a9f70662eb2b182b6a5e18644f4bb69c07138d07d42250d316686f6cc9e6422",
+              "size": 15596,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-06.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-06.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-07.html",
               "relativePath": "chapter-07.html",
-              "sha256": "5bd6a58a3cea92fdba7ae0a0e1134fd7a3b10100767178e7dd5fe42e1d32a8de",
-              "size": 48461,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-07.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-07.html",
+              "sha256": "13636ac453a8d78f9c0950ed20d5dd023b55f0f9d13e2f33ec9faecea482937f",
+              "size": 51678,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-07.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-07.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-08.html",
               "relativePath": "chapter-08.html",
-              "sha256": "3b91e6902390e1a9fdb94448179cef5062e58ae119f6f3d9730ca0c38a827c8b",
-              "size": 7626,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-08.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-08.html",
+              "sha256": "1a72f6dc3bbcd106919a39f7c819af3edcfbd5916ffde24fa66b546a3877968b",
+              "size": 8456,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-08.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-08.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-09.html",
               "relativePath": "chapter-09.html",
-              "sha256": "82130b3768b9230e7aafe3d6b78d873282df096016b3c2ae2dba3e4307aee0aa",
-              "size": 50453,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-09.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-09.html",
+              "sha256": "e7bb7de4b46661934c6fdedc9af03a16e08183f7f1847f4ef65037a022934052",
+              "size": 52750,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-09.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-09.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-10.html",
               "relativePath": "chapter-10.html",
-              "sha256": "1e267322b701b241bb0f1b8f844e6ece74891e246bfbf274dee19f8ca40efec0",
-              "size": 12717,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-10.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-10.html",
+              "sha256": "56cc6eb18be46108087f6ff70f01558837e1400fe164fcef5bd496d323c6ddf6",
+              "size": 13392,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-10.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-10.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-11.html",
               "relativePath": "chapter-11.html",
-              "sha256": "89f2de2112e85c53dc5d0ab1ac22ebdb5554b7f1c0a5b8193d3a1740a2b23a2c",
-              "size": 9374,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-11.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-11.html",
+              "sha256": "9c4fcefe16914add75dc88bd7f5905769699ab0aa239e954f5dcf23450500ee7",
+              "size": 10304,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-11.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-11.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-12.html",
               "relativePath": "chapter-12.html",
-              "sha256": "492b643e9917a2e244791c2b50e529a5f2e25d990f69524ef6dd95c1ccefd9e6",
-              "size": 3958,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-12.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-12.html",
+              "sha256": "f516a119b1ec4e6f37c996bd24869b8666b6a83c8d8eee4e2e492c9d1532bb8c",
+              "size": 3951,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-12.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-12.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-13.html",
               "relativePath": "chapter-13.html",
-              "sha256": "0326b8ee7a7c1b7511db33ba63eeaa5f7ff77667984197de2481da8cf7123d94",
-              "size": 7865,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-13.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-13.html",
+              "sha256": "334ec3a12e857b0f645c377906d490c02488c11a0f5467309ecf13e5d4c337dd",
+              "size": 8118,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-13.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-13.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-14.html",
               "relativePath": "chapter-14.html",
-              "sha256": "c9e3ab225f1eff8c6eae9bd605f27063262c6318bf8decaa5e5d14dee36e0ce3",
-              "size": 15701,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/chapter-14.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/chapter-14.html",
+              "sha256": "86676be03851df3cfa27283e7a4dfcfe59e8b1965cdaf7c15b9d1e77c8a6add7",
+              "size": 15694,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-14.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-14.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology/anthropology-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "63fb19274b82649a82e641bbae02286dc26055821d95411e9fb43e31db948c00",
-              "size": 3497,
-              "pathname": "books/anthropology/chapters/f14b9007702c84f5/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/f14b9007702c84f5/index.html",
+              "sha256": "a581a841f496efdddf956a3e71b9a5f9a6ad93b0d51ad6538587f882b5285440",
+              "size": 3490,
+              "pathname": "books/anthropology/chapters/c069074bbbcfe160/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/index.html",
               "skipped": false
             }
           ]
@@ -13635,6 +13635,21 @@
       "pathname": "books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
       "size": 2598565
+    },
+    "f1d093095aa59dd68b36c4aeb51477237e6c2de8ab0319a420e64e3546fd3cbe:822111": {
+      "pathname": "books/anthropology/pdf/f1d093095aa59dd6-anthropology.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/pdf/f1d093095aa59dd6-anthropology.pdf",
+      "size": 822111
+    },
+    "cc656942375120b1e6f7342492c433dcb36a02c6493fb8b735447543f177267f:526542": {
+      "pathname": "books/anthropology/epub/cc656942375120b1-anthropology.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/epub/cc656942375120b1-anthropology.epub",
+      "size": 526542
+    },
+    "9f5104690a0fa9be12e2372361d6b08109c6682c0d720c6541d4f6c53bc86ab5:877511": {
+      "pathname": "books/anthropology/html/9f5104690a0fa9be-anthropology.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/html/9f5104690a0fa9be-anthropology.html",
+      "size": 877511
     }
   },
   "chapterPackages": {
@@ -40907,6 +40922,156 @@
           "size": 12450,
           "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "c069074bbbcfe16060a5a314344eb85d60eb3eb708c3b4edd5662e1543458a17": {
+      "pathnamePrefix": "books/anthropology/chapters/c069074bbbcfe160",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/anthropology-paper-sources.zip",
+          "relativePath": "anthropology-paper-sources.zip",
+          "sha256": "93be40a99b20f0ccdc64ba784384de9cd5a2a8abcf9a40ea019eea9431407b91",
+          "size": 4463691,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/anthropology-paper-sources.zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/anthropology-paper-sources.zip",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-01.html",
+          "relativePath": "chapter-01.html",
+          "sha256": "5aabe470c6127179cfd9ab4d0aa1127517b481874b7deb53754726e65e2d63e8",
+          "size": 4459,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-01.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-01.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-02.html",
+          "relativePath": "chapter-02.html",
+          "sha256": "194b232d1516c1997a4c32dc1a8286f3426c7041b6e2e4a798df3d1fbe14ea96",
+          "size": 5649,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-02.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-02.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-03.html",
+          "relativePath": "chapter-03.html",
+          "sha256": "4a82abcd0be30f4d1d858053d82d913b4c58f4a424f67d89fed9f1ea39b6e508",
+          "size": 641180,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-03.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-03.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-04.html",
+          "relativePath": "chapter-04.html",
+          "sha256": "f78f70d09de4e2cc64c1060aac371695b9ff87ee75a0fa6c948c95c89e1e17c0",
+          "size": 66296,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-04.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-04.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-05.html",
+          "relativePath": "chapter-05.html",
+          "sha256": "20ad069eb2884dc27fcc92acf4d87451d95cf0ce2072ca40f9810a87a3a69f9b",
+          "size": 13984,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-05.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-05.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-06.html",
+          "relativePath": "chapter-06.html",
+          "sha256": "4a9f70662eb2b182b6a5e18644f4bb69c07138d07d42250d316686f6cc9e6422",
+          "size": 15596,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-06.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-06.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-07.html",
+          "relativePath": "chapter-07.html",
+          "sha256": "13636ac453a8d78f9c0950ed20d5dd023b55f0f9d13e2f33ec9faecea482937f",
+          "size": 51678,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-07.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-07.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-08.html",
+          "relativePath": "chapter-08.html",
+          "sha256": "1a72f6dc3bbcd106919a39f7c819af3edcfbd5916ffde24fa66b546a3877968b",
+          "size": 8456,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-08.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-08.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-09.html",
+          "relativePath": "chapter-09.html",
+          "sha256": "e7bb7de4b46661934c6fdedc9af03a16e08183f7f1847f4ef65037a022934052",
+          "size": 52750,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-09.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-09.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-10.html",
+          "relativePath": "chapter-10.html",
+          "sha256": "56cc6eb18be46108087f6ff70f01558837e1400fe164fcef5bd496d323c6ddf6",
+          "size": 13392,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-10.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-10.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-11.html",
+          "relativePath": "chapter-11.html",
+          "sha256": "9c4fcefe16914add75dc88bd7f5905769699ab0aa239e954f5dcf23450500ee7",
+          "size": 10304,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-11.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-11.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-12.html",
+          "relativePath": "chapter-12.html",
+          "sha256": "f516a119b1ec4e6f37c996bd24869b8666b6a83c8d8eee4e2e492c9d1532bb8c",
+          "size": 3951,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-12.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-12.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-13.html",
+          "relativePath": "chapter-13.html",
+          "sha256": "334ec3a12e857b0f645c377906d490c02488c11a0f5467309ecf13e5d4c337dd",
+          "size": 8118,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-13.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-13.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/chapter-14.html",
+          "relativePath": "chapter-14.html",
+          "sha256": "86676be03851df3cfa27283e7a4dfcfe59e8b1965cdaf7c15b9d1e77c8a6add7",
+          "size": 15694,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/chapter-14.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/chapter-14.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology/anthropology-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "a581a841f496efdddf956a3e71b9a5f9a6ad93b0d51ad6538587f882b5285440",
+          "size": 3490,
+          "pathname": "books/anthropology/chapters/c069074bbbcfe160/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/index.html",
           "skipped": false
         }
       ]

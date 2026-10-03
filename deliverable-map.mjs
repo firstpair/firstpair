@@ -226,8 +226,8 @@ export const deliverableBooks = [
   {
     "slug": "anthropology",
     "title": "The Dual Geometry of People and News",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/pdf/2f4ac821d99eeed4-anthropology.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/epub/c6e70366ca76272d-anthropology.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/pdf/f1d093095aa59dd6-anthropology.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/epub/cc656942375120b1-anthropology.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/cover/84a91d6e7001fc2b-anthropology-cover.png"
   },
   {

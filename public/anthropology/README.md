@@ -9,7 +9,8 @@ A research working paper on people and news vectors, navigation duality, ontolog
 - [Read online](/read/anthropology/)
 - [Chapter reader](/read/anthropology/chapters/)
 
-Release: **2026-10-02.1**. The supplied Anthropology artwork is used for the
+Release: **1.0.1-282e9b2b**. This patch defines mathematical symbols before
+first use, including the article vector in Equation 5; numerical results are unchanged. The supplied Anthropology artwork is used for the
 library shelf cover; the paper editions retain their scholarly title layout.
 
 The private Anthropology repository owns the manuscript, metadata, version
