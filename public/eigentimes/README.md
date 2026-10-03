@@ -2,6 +2,8 @@
 
 How Eigen Times was built: a 1.09-million-article public news corpus, two constructions of the eigenbasis of the news (term-space LSA and an embedding eigenbasis), the statistics that turn coordinates into a daily issue, and a comparison against human event categories.
 
+Current release: **0.2.1-0343d6cc**. This patch defines notation before use, corrects matrix and statistical conventions, and supplies validated native MathML in EPUB. The reported empirical results retain their original evidence dates.
+
 ## Current Public Editions
 
 - [PDF](/eigentimes/pdf/)

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-03T03:48:56.497Z",
+  "updatedAt": "2026-10-03T04:21:38.053Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -7123,34 +7123,34 @@
       }
     },
     "eigentimes": {
-      "updatedAt": "2026-09-03T15:34:15.005Z",
+      "updatedAt": "2026-10-03T04:21:38.052Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/eigentimes/eigentimes.pdf",
-          "sha256": "aae4c3c06707c3a90cf5b03d157e6a51156207d4859ce5221b71e01433bc549f",
-          "size": 794207,
-          "pathname": "books/eigentimes/pdf/aae4c3c06707c3a9-eigentimes.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/aae4c3c06707c3a9-eigentimes.pdf",
+          "sha256": "a353fe81fd01ff217ae043f4ff0925b620aa89bd04eba512fc8b92dc33bab1e1",
+          "size": 821655,
+          "pathname": "books/eigentimes/pdf/a353fe81fd01ff21-eigentimes.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/a353fe81fd01ff21-eigentimes.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/eigentimes/eigentimes.epub",
-          "sha256": "4cf7048905c8fee8951bfbfad386f28188310b1f8c65b5b15e4fdd02fd656abc",
-          "size": 863088,
-          "pathname": "books/eigentimes/epub/4cf7048905c8fee8-eigentimes.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/4cf7048905c8fee8-eigentimes.epub",
+          "sha256": "799740fd6bc9decc8420923c7329a94992cd1afa514a4535933d97c3f13b4322",
+          "size": 751087,
+          "pathname": "books/eigentimes/epub/799740fd6bc9decc-eigentimes.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/799740fd6bc9decc-eigentimes.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/eigentimes/eigentimes.html",
-          "sha256": "7a023abb616a302f2785f331b5ed1856a7771fd7d791eb76d1c0847a0dfbe233",
-          "size": 1096525,
-          "pathname": "books/eigentimes/html/7a023abb616a302f-eigentimes.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/7a023abb616a302f-eigentimes.html",
+          "sha256": "8608229f0fee51c7ec8c92c6bd8d730166ea9addcd61d3cf6bf6f9320b9159d4",
+          "size": 1139852,
+          "pathname": "books/eigentimes/html/8608229f0fee51c7-eigentimes.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/8608229f0fee51c7-eigentimes.html",
           "skipped": false
         },
         "cover": {
@@ -7174,9 +7174,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters",
-          "sha256": "23ca2a5a1f1a6ec1e8cd7453934c7b382262aa5faac3e91ce5f7b9c2cde5fae9",
-          "pathnamePrefix": "books/eigentimes/chapters/23ca2a5a1f1a6ec1",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/index.html",
+          "sha256": "4229f86e55eeb5f52689453e83626233a92c3e1a389bcd51c2036ed2ab3e6649",
+          "pathnamePrefix": "books/eigentimes/chapters/4229f86e55eeb5f5",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/index.html",
           "skipped": false,
           "files": [
             {
@@ -7184,161 +7184,161 @@
               "relativePath": "assets/92379787ecd6-eigentimes-cover.png",
               "sha256": "92379787ecd6cbf94709bee2247a2d699803f271e3ce862b9bf2d4af7d1c1866",
               "size": 123922,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/assets/92379787ecd6-eigentimes-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/assets/92379787ecd6-eigentimes-cover.png",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/assets/92379787ecd6-eigentimes-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/assets/92379787ecd6-eigentimes-cover.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "52a51479097a2a054d0e3726d71584d6fde4eea234502c02119a3a7aca0c9e6a",
+              "sha256": "295bacf9630a2a9b3c68c3a915d6c53d0d1e039db1de629e087650f4e242e3fa",
               "size": 5190,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-001.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "17d0cf0923c3e62d70d5bfc5c5bf5653786f737ad6de2eb53c8469f6d92672ad",
-              "size": 7918,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-002.html",
+              "sha256": "8686485086f095daa265557c4cb0956ba25b122893d1447d1aa165f6d5781a3b",
+              "size": 8029,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "5f6fc4d2d201aa0beeed130d8d230fba0f03cce7a6e43e39089595f5b22da0e1",
-              "size": 7300,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-003.html",
+              "sha256": "c47490cc999fe3e2cdbec42d2cc4f44c112e34cbb3b2306bfdb9140d1c9aa438",
+              "size": 8115,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "20008452317faa3f48c68ce658f166076b01f731be2b6b20fd36891225231f31",
-              "size": 10368,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-004.html",
+              "sha256": "8b39a2818f7d408bede2e46e27f66eee8e8b01ff2687b760f387b39a7f4dd009",
+              "size": 10524,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "93b3b67ea5b399e1d84584068742a5b6e1bcf9a9602974e5e13154ba1fe543e2",
-              "size": 23737,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-005.html",
+              "sha256": "5d03c4f0f6f6980f4e6a88a1fb2b3c3a48d582530e8bbcb44c947cfd740cea35",
+              "size": 48787,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "2e6524f5545676ad1fef55f02a42f9b3c33e9c81b58c9d6ca1c1f764ddc60558",
-              "size": 9971,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-006.html",
+              "sha256": "ac47ea3ecdca2a364a6ca15c8ad4ab98ea2adf38114988fd5c095f256f204240",
+              "size": 10133,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "9c085ac168592ea9dd150ed6fd353ca76d20c477b898901d7353803ba5b21d6c",
-              "size": 14616,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-007.html",
+              "sha256": "2e1b9b923e8f04d41aca31ecce1133dd661e43f96d535f42512bcf1d8a260f49",
+              "size": 18885,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "0a2ee6890a4f6089aeb61814f364670b1a29fc31ddf597bc59809ff28c705c58",
-              "size": 11225,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-008.html",
+              "sha256": "d662e3b90b3b6ce06d10f4d3ec14ea330e866885db3e62ab98249618735bfd99",
+              "size": 15470,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "507610d402c07617a8035ba250444152f80850aac8703608f8ba31b21241564a",
-              "size": 12552,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-009.html",
+              "sha256": "f7bc32cef8a19e2a91e3ceb2f8a5efb320b4d414a3fd5824932a2f47881376f0",
+              "size": 14441,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "1f19ed5d78585e3760948ce90eebc5a5031ff25004cab6887cab2a76066317db",
+              "sha256": "7c3b882cca7121fdb512afa84e65d2e42d0f0167df9c13664b8a2b853f5ee976",
               "size": 12676,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-010.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "5548f7e3bf0e937073fccd7c79bd79c3be24c220dafba32505233a6f5ac89de4",
-              "size": 8995,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-011.html",
+              "sha256": "f5387eddd0de1fde99a24be864d0149a1fdb2aacefd431720e1e551a237189e6",
+              "size": 9177,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "72100c09a998e39bd4d39911968dc0aaff08fe83a81d92b548ba0bce8ac9cfe4",
-              "size": 17810,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-012.html",
+              "sha256": "7b5d1412e5ddac3914cb79896ca12c2f12fa92ab67d306df7578b24e8db89673",
+              "size": 23654,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-012.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "044296fbe7cd75c15f18e4384e3f41d08115dbcc431ede1238202cd282638e9a",
-              "size": 8620,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-013.html",
+              "sha256": "39986ca615d70c1fafc1e0cdde92f4a45a52cc926e8e95e5f140fffd86504472",
+              "size": 9228,
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "35ff308bbe22ef5786b4a0a3643b6ae6301932fcce3eeb7a7cb7cbb027b9d3f5",
+              "sha256": "598ec46dac5222185789ca2765c05cf8f68fa4a908816068407e2a239afafb58",
               "size": 7462,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-014.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-014.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-015.html",
               "relativePath": "chapter-015.html",
-              "sha256": "ea430281c4572d9a6beed9b721e6c11e15012eda33a6157edec406027d669426",
+              "sha256": "7d073c37f69d7403d1e1ef10c409347ca27a88b1fcbbc5fa5daf3c5d481b298d",
               "size": 5806,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-015.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-015.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-016.html",
               "relativePath": "chapter-016.html",
-              "sha256": "61a945ad896e7e656c6c256f42560abd35c6d89248f49a319805b87902802a07",
+              "sha256": "d07dc0100c8cf8e08cc1f0e48bbeb8210ff8e74bf674f376c652cf113dedbbb5",
               "size": 5262,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-016.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-016.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-017.html",
               "relativePath": "chapter-017.html",
-              "sha256": "6bccd66df062934ae93cb3e95f9a3b3ba1279f8fdff975612ba44eb441b44ca0",
+              "sha256": "8be5aa76cadbdf34dde2611a4689aed982e70c3511377b5698a4cdd58e68d7b7",
               "size": 9015,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/chapter-017.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-017.html",
               "skipped": false
             },
             {
@@ -7346,8 +7346,8 @@
               "relativePath": "figures/axis-eigen-18.png",
               "sha256": "a8786c6f9458ff39a5829c9b9a535c0d6eb84bcdd4e71fe0a44988fac492d0f3",
               "size": 88900,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/axis-eigen-18.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/axis-eigen-18.png",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/axis-eigen-18.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/axis-eigen-18.png",
               "skipped": false
             },
             {
@@ -7355,8 +7355,8 @@
               "relativePath": "figures/compare.png",
               "sha256": "fcab7104366392a7aab7f856fc3b881154dc8b0b663514771c9e8f2934fe89ef",
               "size": 207068,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/compare.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/compare.png",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/compare.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/compare.png",
               "skipped": false
             },
             {
@@ -7364,8 +7364,8 @@
               "relativePath": "figures/day-2001-09-12.png",
               "sha256": "adeb708dd05431eeec21a6247d1c5a7305446bb51e78e7d431ab47517180c94c",
               "size": 163818,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/day-2001-09-12.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/day-2001-09-12.png",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2001-09-12.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2001-09-12.png",
               "skipped": false
             },
             {
@@ -7373,17 +7373,17 @@
               "relativePath": "figures/day-2022-02-24.png",
               "sha256": "be250f05449cc96b9cb9b0fc1c2074cb7041851178f32bafb69a9da5ce121d2c",
               "size": 160338,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/day-2022-02-24.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/figures/day-2022-02-24.png",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2022-02-24.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2022-02-24.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "7399b11ed29f1cac88048c7249123f1a84731dc5ab4972ab5c0a50714f3b5bc0",
+              "sha256": "6b4a8db3b58a5c18df82cd86044a1fdb488b1912083faee1777f59eee3c65427",
               "size": 10908,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/index.html",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/index.html",
               "skipped": false
             },
             {
@@ -7391,8 +7391,8 @@
               "relativePath": "sitemap.json",
               "sha256": "1589dad1fc8c684f3697c7b895fdb53622f858766a84817b7e87d39a0322ad04",
               "size": 6494,
-              "pathname": "books/eigentimes/chapters/23ca2a5a1f1a6ec1/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/23ca2a5a1f1a6ec1/sitemap.json",
+              "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/sitemap.json",
               "skipped": false
             }
           ]
@@ -13665,6 +13665,21 @@
       "pathname": "books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
       "size": 2253255
+    },
+    "a353fe81fd01ff217ae043f4ff0925b620aa89bd04eba512fc8b92dc33bab1e1:821655": {
+      "pathname": "books/eigentimes/pdf/a353fe81fd01ff21-eigentimes.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/pdf/a353fe81fd01ff21-eigentimes.pdf",
+      "size": 821655
+    },
+    "799740fd6bc9decc8420923c7329a94992cd1afa514a4535933d97c3f13b4322:751087": {
+      "pathname": "books/eigentimes/epub/799740fd6bc9decc-eigentimes.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/epub/799740fd6bc9decc-eigentimes.epub",
+      "size": 751087
+    },
+    "8608229f0fee51c7ec8c92c6bd8d730166ea9addcd61d3cf6bf6f9320b9159d4:1139852": {
+      "pathname": "books/eigentimes/html/8608229f0fee51c7-eigentimes.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/html/8608229f0fee51c7-eigentimes.html",
+      "size": 1139852
     }
   },
   "chapterPackages": {
@@ -41363,6 +41378,228 @@
           "size": 12450,
           "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "4229f86e55eeb5f52689453e83626233a92c3e1a389bcd51c2036ed2ab3e6649": {
+      "pathnamePrefix": "books/eigentimes/chapters/4229f86e55eeb5f5",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/assets/92379787ecd6-eigentimes-cover.png",
+          "relativePath": "assets/92379787ecd6-eigentimes-cover.png",
+          "sha256": "92379787ecd6cbf94709bee2247a2d699803f271e3ce862b9bf2d4af7d1c1866",
+          "size": 123922,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/assets/92379787ecd6-eigentimes-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/assets/92379787ecd6-eigentimes-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "295bacf9630a2a9b3c68c3a915d6c53d0d1e039db1de629e087650f4e242e3fa",
+          "size": 5190,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "8686485086f095daa265557c4cb0956ba25b122893d1447d1aa165f6d5781a3b",
+          "size": 8029,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "c47490cc999fe3e2cdbec42d2cc4f44c112e34cbb3b2306bfdb9140d1c9aa438",
+          "size": 8115,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "8b39a2818f7d408bede2e46e27f66eee8e8b01ff2687b760f387b39a7f4dd009",
+          "size": 10524,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "5d03c4f0f6f6980f4e6a88a1fb2b3c3a48d582530e8bbcb44c947cfd740cea35",
+          "size": 48787,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "ac47ea3ecdca2a364a6ca15c8ad4ab98ea2adf38114988fd5c095f256f204240",
+          "size": 10133,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "2e1b9b923e8f04d41aca31ecce1133dd661e43f96d535f42512bcf1d8a260f49",
+          "size": 18885,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "d662e3b90b3b6ce06d10f4d3ec14ea330e866885db3e62ab98249618735bfd99",
+          "size": 15470,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "f7bc32cef8a19e2a91e3ceb2f8a5efb320b4d414a3fd5824932a2f47881376f0",
+          "size": 14441,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "7c3b882cca7121fdb512afa84e65d2e42d0f0167df9c13664b8a2b853f5ee976",
+          "size": 12676,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "f5387eddd0de1fde99a24be864d0149a1fdb2aacefd431720e1e551a237189e6",
+          "size": 9177,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "7b5d1412e5ddac3914cb79896ca12c2f12fa92ab67d306df7578b24e8db89673",
+          "size": 23654,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "39986ca615d70c1fafc1e0cdde92f4a45a52cc926e8e95e5f140fffd86504472",
+          "size": 9228,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "598ec46dac5222185789ca2765c05cf8f68fa4a908816068407e2a239afafb58",
+          "size": 7462,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "7d073c37f69d7403d1e1ef10c409347ca27a88b1fcbbc5fa5daf3c5d481b298d",
+          "size": 5806,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "d07dc0100c8cf8e08cc1f0e48bbeb8210ff8e74bf674f376c652cf113dedbbb5",
+          "size": 5262,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "8be5aa76cadbdf34dde2611a4689aed982e70c3511377b5698a4cdd58e68d7b7",
+          "size": 9015,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/figures/axis-eigen-18.png",
+          "relativePath": "figures/axis-eigen-18.png",
+          "sha256": "a8786c6f9458ff39a5829c9b9a535c0d6eb84bcdd4e71fe0a44988fac492d0f3",
+          "size": 88900,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/axis-eigen-18.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/axis-eigen-18.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/figures/compare.png",
+          "relativePath": "figures/compare.png",
+          "sha256": "fcab7104366392a7aab7f856fc3b881154dc8b0b663514771c9e8f2934fe89ef",
+          "size": 207068,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/compare.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/compare.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/figures/day-2001-09-12.png",
+          "relativePath": "figures/day-2001-09-12.png",
+          "sha256": "adeb708dd05431eeec21a6247d1c5a7305446bb51e78e7d431ab47517180c94c",
+          "size": 163818,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2001-09-12.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2001-09-12.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/figures/day-2022-02-24.png",
+          "relativePath": "figures/day-2022-02-24.png",
+          "sha256": "be250f05449cc96b9cb9b0fc1c2074cb7041851178f32bafb69a9da5ce121d2c",
+          "size": 160338,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2022-02-24.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/figures/day-2022-02-24.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "6b4a8db3b58a5c18df82cd86044a1fdb488b1912083faee1777f59eee3c65427",
+          "size": 10908,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes/eigentimes-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "1589dad1fc8c684f3697c7b895fdb53622f858766a84817b7e87d39a0322ad04",
+          "size": 6494,
+          "pathname": "books/eigentimes/chapters/4229f86e55eeb5f5/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/chapters/4229f86e55eeb5f5/sitemap.json",
           "skipped": false
         }
       ]
