@@ -200,8 +200,8 @@ export const readerBooks = [
   },
   {
     "slug": "anthropology-math",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/a7fb56736e0b1c23-anthropology-math.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60"
   }
 ]

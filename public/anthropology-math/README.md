@@ -13,7 +13,8 @@ Times*.
 - [Read online](/read/anthropology-math/)
 - [Chapter reader](/read/anthropology-math/chapters/)
 
-Release: **1.0.0**. The supplied `cover/anthropology-math.png` headboard is used
+Release: **1.0.1-429e1f79**. This correction defines notation and technical
+terms before first use; worked calculations and empirical values are unchanged. The supplied `cover/anthropology-math.png` headboard is used
 unchanged for the shelf cover and book banner. The reading editions retain their
 text title pages.
 

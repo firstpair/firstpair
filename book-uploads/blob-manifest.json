@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-03T03:18:05.770Z",
+  "updatedAt": "2026-10-03T03:48:56.497Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -11119,34 +11119,34 @@
       }
     },
     "anthropology-math": {
-      "updatedAt": "2026-10-02T21:46:32.892Z",
+      "updatedAt": "2026-10-03T03:48:56.496Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/anthropology-math/anthropology-math.pdf",
-          "sha256": "5f0ba012dfc2c46166a8df377d4ca9c7b87e582c533a684ab82a10777b9aa5d7",
-          "size": 1681084,
-          "pathname": "books/anthropology-math/pdf/5f0ba012dfc2c461-anthropology-math.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/5f0ba012dfc2c461-anthropology-math.pdf",
+          "sha256": "f4aea5b5e4c73cecd504eff5b7c8420daaf083724474bbb74029379fdc820cd1",
+          "size": 1744225,
+          "pathname": "books/anthropology-math/pdf/f4aea5b5e4c73cec-anthropology-math.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/f4aea5b5e4c73cec-anthropology-math.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/anthropology-math/anthropology-math.epub",
-          "sha256": "913a58c367cfd13644b743a5910bf196f4365bf3acc3135fc6cb3795cfc42aee",
-          "size": 1497934,
-          "pathname": "books/anthropology-math/epub/913a58c367cfd136-anthropology-math.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/913a58c367cfd136-anthropology-math.epub",
+          "sha256": "bc50f11c69355d643ba6d34c7f0ee3708a4061d478fac237709e1da75b9ba714",
+          "size": 1504911,
+          "pathname": "books/anthropology-math/epub/bc50f11c69355d64-anthropology-math.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/bc50f11c69355d64-anthropology-math.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/anthropology-math/anthropology-math.html",
-          "sha256": "a7fb56736e0b1c23290c8d787155e6468da97712f69b0a4d25e5958225a54098",
-          "size": 2200949,
-          "pathname": "books/anthropology-math/html/a7fb56736e0b1c23-anthropology-math.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/a7fb56736e0b1c23-anthropology-math.html",
+          "sha256": "791c4a181e35d05b6072256d1af015b587178cae16f75ffc70aeaf7c2f5ce8f3",
+          "size": 2253255,
+          "pathname": "books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
           "skipped": false
         },
         "cover": {
@@ -11156,7 +11156,7 @@
           "size": 2598565,
           "pathname": "books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "headboard": {
           "kind": "headboard",
@@ -11170,18 +11170,18 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters",
-          "sha256": "63b1a0e898b5fae51474490fdf20a3549d39f56707737059471cf36952ae102a",
-          "pathnamePrefix": "books/anthropology-math/chapters/63b1a0e898b5fae5",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/index.html",
+          "sha256": "2f6c1cd223270d6007283ca6bcb6cac11e186d49bac8ab3d38f360cd4c930c23",
+          "pathnamePrefix": "books/anthropology-math/chapters/2f6c1cd223270d60",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
           "skipped": false,
           "files": [
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/anthropology-math-sources.zip",
               "relativePath": "anthropology-math-sources.zip",
-              "sha256": "1dc53de6139a4279497c2d791d265a26465e90cb15d865f4c0a934627157036c",
-              "size": 4105828,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/anthropology-math-sources.zip",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/anthropology-math-sources.zip",
+              "sha256": "0a337724a08f72809c56563e0d8f48e1ae83d0c43ff9746f2d12852d00bae0bb",
+              "size": 4110161,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/anthropology-math-sources.zip",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/anthropology-math-sources.zip",
               "skipped": false
             },
             {
@@ -11189,134 +11189,134 @@
               "relativePath": "book.css",
               "sha256": "8b8f3f45c5f93a605bcaba424a37d826bcc1b11f2513c18e5ef7c7065d2b0ca5",
               "size": 2124,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/book.css",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "f63ae9b074cd52dcbf15f976cf9e9202d7d95ea0bf92f80346ffe5fa1c30800d",
-              "size": 6926,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-001.html",
+              "sha256": "e88fe00086cd3b56350ff3819850f6a593ff2360e5fdb58cb91688ceec574fb0",
+              "size": 7213,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "ee98547244555072a6a9674cc110aa27d07f602a35823af9ef848a21784d17ba",
-              "size": 5221,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-002.html",
+              "sha256": "41cc03e1f3d78737abea6701e1500bf27855d6807fce5642a07ed27a24319bbc",
+              "size": 5742,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "479f3cf9c7c4dd8dfc953761f3d5a5c1a265af29524b89ef7d39c99114c5c415",
-              "size": 13455,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-003.html",
+              "sha256": "774668f1ed0d886e9655effd220c6927cb08525388f6288b433680bdb0623d5c",
+              "size": 17637,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "353953d3c5d3bdc23e369803761fc1e1be448201c5f0b2b5f0d17d7802af077f",
-              "size": 16873,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-004.html",
+              "sha256": "4ec42dda4258f51b884deed63d913ad03c0b712308b7649f1d1d5a08c3c34893",
+              "size": 23782,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "29d4c4cbcef5e35cf54ad2d92a1be684389b1e2d2c67e49053dccd5d48f85591",
-              "size": 20560,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-005.html",
+              "sha256": "bcd7e74897ce61d3c7d5a4374b5e515e6f62b8d5c1994c46dafa17613e12c16f",
+              "size": 24425,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "afadc944e7e8919827964d4a88a4ad8b4b8ff68b8539db94b9840c9809d92b55",
-              "size": 14798,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-006.html",
+              "sha256": "4f1f119a040818b2d9802aab885af616686ed4b9a245a6e05ab31931a40591e6",
+              "size": 20137,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "386938c70f32b82ac12a9f3cc1a2292943a63ae600cfac135f3dc74444922453",
-              "size": 7535,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-007.html",
+              "sha256": "e88c82cc0d1538b99592ee53704ccb62705290011514ef2e66c30c8947217bba",
+              "size": 10758,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "66354c8455a75fb1b976f71279b8a401d4d42482246774a5f6f59a380228fcd1",
-              "size": 14532,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-008.html",
+              "sha256": "ff2587c670c97a98210564201ee936097dd1f039110530c104d5f34013e24a67",
+              "size": 23886,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "85195086a3ae01d758340c6bca29f73bf279a59628d4e318b11f5701242def10",
-              "size": 7044,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-009.html",
+              "sha256": "f13d4ffeb0ff28bd48120bc661e4b8358123b38f0751799c143d58903ca6023d",
+              "size": 9692,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "1af52ced2799b5a20583d8d190780082df126920e1df3e02a0e7efd56b99fc08",
-              "size": 12680,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-010.html",
+              "sha256": "f3f7639268b360c4c94cd5ccbd915a17a9d125aae29c17bfcfae0db5c26f9916",
+              "size": 18315,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "25a09e0528bcdea9940fb89d70a8b927e62a990105e29b21f66f57982558012e",
-              "size": 7525,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-011.html",
+              "sha256": "56416ca403719ed55f0317849c03972dc0ea3380e82d1d2f6ffcd00516c83ed9",
+              "size": 8432,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "61082191f64cc90d35f80cde8efb213e0d6ebede72398ddec760b3e8f8bc6d4a",
-              "size": 27634,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-012.html",
+              "sha256": "0ac6c7967fa2fc465322cc66cc278d24d44b90857d1d2f30aa8f9b8047ce7b1c",
+              "size": 32168,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-012.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "d14a52767a0ad5a86a05b159bdc369758b232d950a0b601d64b0d063d8559296",
-              "size": 12193,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-013.html",
+              "sha256": "7ea3e1166d9e11a0c2cccd256c5a62445eac4c5ffbac4275e1db2a700a2f9dc3",
+              "size": 13346,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "0a1e54c875c95b391a8b98293f7a075a459f44439898918ec4b5244c0ebd7eb2",
-              "size": 17215,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-014.html",
+              "sha256": "170f451c02a28a29e544e6475be511b5846658dbae2eed4e288494eb1e50e5e2",
+              "size": 20974,
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-014.html",
               "skipped": false
             },
             {
@@ -11324,8 +11324,8 @@
               "relativePath": "chapter-015.html",
               "sha256": "94a31fc000a81cd4a1cafbf6c35d89eb5326927b68c3eb162f7002c96edbe195",
               "size": 7055,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-015.html",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-015.html",
               "skipped": false
             },
             {
@@ -11333,8 +11333,8 @@
               "relativePath": "chapter-016.html",
               "sha256": "60546d768730a211b51695821ce7c054e7dabadd823a00b05b6e267d832923d2",
               "size": 7900,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/chapter-016.html",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-016.html",
               "skipped": false
             },
             {
@@ -11342,8 +11342,8 @@
               "relativePath": "figures/duality.png",
               "sha256": "8a1736ffde47dc7b26e47a46ecb549d5adab2b69e3b78388f835e627ac4abaf3",
               "size": 132544,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/duality.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/duality.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/duality.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/duality.png",
               "skipped": false
             },
             {
@@ -11351,8 +11351,8 @@
               "relativePath": "figures/fig-cell-balance.png",
               "sha256": "970f899c92ae67b43273d690169ae2e75ef3c6d130171c0ffb0fc5f78f4d1ec1",
               "size": 145573,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-cell-balance.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-cell-balance.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cell-balance.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cell-balance.png",
               "skipped": false
             },
             {
@@ -11360,8 +11360,8 @@
               "relativePath": "figures/fig-cosine-change.png",
               "sha256": "92b481a33967a7ea009e4b2a29a06cf389f728e32441c203682b16280a107ca2",
               "size": 152089,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-cosine-change.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-cosine-change.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cosine-change.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cosine-change.png",
               "skipped": false
             },
             {
@@ -11369,8 +11369,8 @@
               "relativePath": "figures/fig-incidence.png",
               "sha256": "a6fd73eb63fea937054fb7c06d06a4c1bb50dfea6c861824395355c76e93d961",
               "size": 122829,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-incidence.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-incidence.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-incidence.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-incidence.png",
               "skipped": false
             },
             {
@@ -11378,8 +11378,8 @@
               "relativePath": "figures/fig-ontology-ridge.png",
               "sha256": "a52523acbebb0fbe50f91cce4bb3eaccfea8419f31932afa6d94bdbe058cadc9",
               "size": 138969,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-ontology-ridge.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-ontology-ridge.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-ontology-ridge.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-ontology-ridge.png",
               "skipped": false
             },
             {
@@ -11387,8 +11387,8 @@
               "relativePath": "figures/fig-people-pca.png",
               "sha256": "c548408d23618e860a7aab595665cc8c4e238d74ecf45749df3dd2e334f2ec14",
               "size": 188419,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-people-pca.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-people-pca.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-people-pca.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-people-pca.png",
               "skipped": false
             },
             {
@@ -11396,8 +11396,8 @@
               "relativePath": "figures/fig-rotation-scaling.png",
               "sha256": "979fc4f7613b1d1aca5042220a6c4bdc6946d452e995175fab4b9c7f4c399b5e",
               "size": 171199,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-rotation-scaling.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-rotation-scaling.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-rotation-scaling.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-rotation-scaling.png",
               "skipped": false
             },
             {
@@ -11405,8 +11405,8 @@
               "relativePath": "figures/fig-round-trip.png",
               "sha256": "7160a3e699420e3043bee48e74e4688e8896c0ee8ee6d1d06b0a1151ef3e6c2e",
               "size": 173338,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-round-trip.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-round-trip.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-round-trip.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-round-trip.png",
               "skipped": false
             },
             {
@@ -11414,8 +11414,8 @@
               "relativePath": "figures/fig-time-mixture.png",
               "sha256": "d6ff421cf16a8fb4420e8c1178abd30bc08efff97763dda268101efe1f86fa62",
               "size": 194172,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-time-mixture.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/fig-time-mixture.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-time-mixture.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-time-mixture.png",
               "skipped": false
             },
             {
@@ -11423,8 +11423,8 @@
               "relativePath": "figures/pipeline.png",
               "sha256": "ffb55b91783e84c7189382e789f9d7651f718798a712db70290069f7a4bf0828",
               "size": 97148,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/figures/pipeline.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/figures/pipeline.png",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/pipeline.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/pipeline.png",
               "skipped": false
             },
             {
@@ -11432,8 +11432,8 @@
               "relativePath": "index.html",
               "sha256": "5827768047a3d72f05f4ec6bf4cf4d90f1caa8267e9b1ee4aa4140a86783c3d8",
               "size": 14088,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/index.html",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
               "skipped": false
             },
             {
@@ -11441,8 +11441,8 @@
               "relativePath": "sitemap.json",
               "sha256": "2f9f8f2e32a5fc011444cdf4562a85ca887b7fdd6c18d75e8d719d2f06a304b2",
               "size": 12450,
-              "pathname": "books/anthropology-math/chapters/63b1a0e898b5fae5/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/63b1a0e898b5fae5/sitemap.json",
+              "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/sitemap.json",
               "skipped": false
             }
           ]
@@ -13650,6 +13650,21 @@
       "pathname": "books/anthropology/html/9f5104690a0fa9be-anthropology.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/html/9f5104690a0fa9be-anthropology.html",
       "size": 877511
+    },
+    "f4aea5b5e4c73cecd504eff5b7c8420daaf083724474bbb74029379fdc820cd1:1744225": {
+      "pathname": "books/anthropology-math/pdf/f4aea5b5e4c73cec-anthropology-math.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/f4aea5b5e4c73cec-anthropology-math.pdf",
+      "size": 1744225
+    },
+    "bc50f11c69355d643ba6d34c7f0ee3708a4061d478fac237709e1da75b9ba714:1504911": {
+      "pathname": "books/anthropology-math/epub/bc50f11c69355d64-anthropology-math.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/bc50f11c69355d64-anthropology-math.epub",
+      "size": 1504911
+    },
+    "791c4a181e35d05b6072256d1af015b587178cae16f75ffc70aeaf7c2f5ce8f3:2253255": {
+      "pathname": "books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/html/791c4a181e35d05b-anthropology-math.html",
+      "size": 2253255
     }
   },
   "chapterPackages": {
@@ -41072,6 +41087,282 @@
           "size": 3490,
           "pathname": "books/anthropology/chapters/c069074bbbcfe160/index.html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/chapters/c069074bbbcfe160/index.html",
+          "skipped": false
+        }
+      ]
+    },
+    "2f6c1cd223270d6007283ca6bcb6cac11e186d49bac8ab3d38f360cd4c930c23": {
+      "pathnamePrefix": "books/anthropology-math/chapters/2f6c1cd223270d60",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/anthropology-math-sources.zip",
+          "relativePath": "anthropology-math-sources.zip",
+          "sha256": "0a337724a08f72809c56563e0d8f48e1ae83d0c43ff9746f2d12852d00bae0bb",
+          "size": 4110161,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/anthropology-math-sources.zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/anthropology-math-sources.zip",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "8b8f3f45c5f93a605bcaba424a37d826bcc1b11f2513c18e5ef7c7065d2b0ca5",
+          "size": 2124,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "e88fe00086cd3b56350ff3819850f6a593ff2360e5fdb58cb91688ceec574fb0",
+          "size": 7213,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "41cc03e1f3d78737abea6701e1500bf27855d6807fce5642a07ed27a24319bbc",
+          "size": 5742,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "774668f1ed0d886e9655effd220c6927cb08525388f6288b433680bdb0623d5c",
+          "size": 17637,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "4ec42dda4258f51b884deed63d913ad03c0b712308b7649f1d1d5a08c3c34893",
+          "size": 23782,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "bcd7e74897ce61d3c7d5a4374b5e515e6f62b8d5c1994c46dafa17613e12c16f",
+          "size": 24425,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "4f1f119a040818b2d9802aab885af616686ed4b9a245a6e05ab31931a40591e6",
+          "size": 20137,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "e88c82cc0d1538b99592ee53704ccb62705290011514ef2e66c30c8947217bba",
+          "size": 10758,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "ff2587c670c97a98210564201ee936097dd1f039110530c104d5f34013e24a67",
+          "size": 23886,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "f13d4ffeb0ff28bd48120bc661e4b8358123b38f0751799c143d58903ca6023d",
+          "size": 9692,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "f3f7639268b360c4c94cd5ccbd915a17a9d125aae29c17bfcfae0db5c26f9916",
+          "size": 18315,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "56416ca403719ed55f0317849c03972dc0ea3380e82d1d2f6ffcd00516c83ed9",
+          "size": 8432,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "0ac6c7967fa2fc465322cc66cc278d24d44b90857d1d2f30aa8f9b8047ce7b1c",
+          "size": 32168,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "7ea3e1166d9e11a0c2cccd256c5a62445eac4c5ffbac4275e1db2a700a2f9dc3",
+          "size": 13346,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "170f451c02a28a29e544e6475be511b5846658dbae2eed4e288494eb1e50e5e2",
+          "size": 20974,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "94a31fc000a81cd4a1cafbf6c35d89eb5326927b68c3eb162f7002c96edbe195",
+          "size": 7055,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "60546d768730a211b51695821ce7c054e7dabadd823a00b05b6e267d832923d2",
+          "size": 7900,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/duality.png",
+          "relativePath": "figures/duality.png",
+          "sha256": "8a1736ffde47dc7b26e47a46ecb549d5adab2b69e3b78388f835e627ac4abaf3",
+          "size": 132544,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/duality.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/duality.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-cell-balance.png",
+          "relativePath": "figures/fig-cell-balance.png",
+          "sha256": "970f899c92ae67b43273d690169ae2e75ef3c6d130171c0ffb0fc5f78f4d1ec1",
+          "size": 145573,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cell-balance.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cell-balance.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-cosine-change.png",
+          "relativePath": "figures/fig-cosine-change.png",
+          "sha256": "92b481a33967a7ea009e4b2a29a06cf389f728e32441c203682b16280a107ca2",
+          "size": 152089,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cosine-change.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-cosine-change.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-incidence.png",
+          "relativePath": "figures/fig-incidence.png",
+          "sha256": "a6fd73eb63fea937054fb7c06d06a4c1bb50dfea6c861824395355c76e93d961",
+          "size": 122829,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-incidence.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-incidence.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-ontology-ridge.png",
+          "relativePath": "figures/fig-ontology-ridge.png",
+          "sha256": "a52523acbebb0fbe50f91cce4bb3eaccfea8419f31932afa6d94bdbe058cadc9",
+          "size": 138969,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-ontology-ridge.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-ontology-ridge.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-people-pca.png",
+          "relativePath": "figures/fig-people-pca.png",
+          "sha256": "c548408d23618e860a7aab595665cc8c4e238d74ecf45749df3dd2e334f2ec14",
+          "size": 188419,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-people-pca.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-people-pca.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-rotation-scaling.png",
+          "relativePath": "figures/fig-rotation-scaling.png",
+          "sha256": "979fc4f7613b1d1aca5042220a6c4bdc6946d452e995175fab4b9c7f4c399b5e",
+          "size": 171199,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-rotation-scaling.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-rotation-scaling.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-round-trip.png",
+          "relativePath": "figures/fig-round-trip.png",
+          "sha256": "7160a3e699420e3043bee48e74e4688e8896c0ee8ee6d1d06b0a1151ef3e6c2e",
+          "size": 173338,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-round-trip.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-round-trip.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/fig-time-mixture.png",
+          "relativePath": "figures/fig-time-mixture.png",
+          "sha256": "d6ff421cf16a8fb4420e8c1178abd30bc08efff97763dda268101efe1f86fa62",
+          "size": 194172,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-time-mixture.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/fig-time-mixture.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/figures/pipeline.png",
+          "relativePath": "figures/pipeline.png",
+          "sha256": "ffb55b91783e84c7189382e789f9d7651f718798a712db70290069f7a4bf0828",
+          "size": 97148,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/figures/pipeline.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/figures/pipeline.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "5827768047a3d72f05f4ec6bf4cf4d90f1caa8267e9b1ee4aa4140a86783c3d8",
+          "size": 14088,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/anthropology-math/anthropology-math-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "2f9f8f2e32a5fc011444cdf4562a85ca887b7fdd6c18d75e8d719d2f06a304b2",
+          "size": 12450,
+          "pathname": "books/anthropology-math/chapters/2f6c1cd223270d60/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/chapters/2f6c1cd223270d60/sitemap.json",
           "skipped": false
         }
       ]

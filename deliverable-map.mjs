@@ -233,8 +233,8 @@ export const deliverableBooks = [
   {
     "slug": "anthropology-math",
     "title": "The Mathematics of Anthropology",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/5f0ba012dfc2c461-anthropology-math.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/913a58c367cfd136-anthropology-math.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/f4aea5b5e4c73cec-anthropology-math.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/bc50f11c69355d64-anthropology-math.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png"
   }
 ]
