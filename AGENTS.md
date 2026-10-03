@@ -66,6 +66,13 @@ shared rules.
 
 ## Content Ownership
 
+### Mathematics companions
+
+By user instruction, every new math companion includes PDF, EPUB, HTML, and
+complete executable notebooks in Python and native OCaml. Use the shared
+[math-companion standard](publishing/skills/math-companions.md) for common text,
+definitions, glossary/index, execution, parity, versioning, and delivery.
+
 Do not deposit project-owned editorial content in FirstPair unless the user
 explicitly names an exception. Announcements, blog posts, textpacks, pitch
 packets, manuscript excerpts, and their assets belong in the specific project
