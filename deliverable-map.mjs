@@ -236,5 +236,11 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/pdf/ab5559fa15dee185-anthropology-math.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/epub/166d3ac333b5b9e5-anthropology-math.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png"
+  },
+  {
+    "slug": "eigentimes-history-math",
+    "title": "Eigen Times History Math",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/pdf/722ff9efa4770dc1-eigentimes-history-math.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/000a88707efa9357-eigentimes-history-math.epub"
   }
 ]

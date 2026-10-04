@@ -782,6 +782,31 @@
         "python": "https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-python.ipynb",
         "ocaml": "https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-ocaml.ipynb"
       }
+    },
+    {
+      "slug": "eigentimes-history-math",
+      "title": "Eigen Times History Math",
+      "author": "Alexy Khrabrov",
+      "kicker": "Mathematical companion",
+      "description": "A worked companion to Eigen Times Math History: twenty-one step-by-step lessons on least squares, probability, matrix methods, calibration, concept lattices, and neural representations, with a glossary, index, and complete executable Python and OCaml notebooks.",
+      "accent": "#476a7c",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/pdf/722ff9efa4770dc1-eigentimes-history-math.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/000a88707efa9357-eigentimes-history-math.epub",
+      "html": "/read/eigentimes-history-math/",
+      "htmlChapters": "/read/eigentimes-history-math/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/chapters/485ad02907994f5b/index.html",
+      "tags": [
+        "mathematics",
+        "history",
+        "tutorial"
+      ],
+      "shelf": "publishing",
+      "source": "https://github.com/querygraph/eigenmath",
+      "notebooks": {
+        "python": "https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-history-math-python.ipynb",
+        "ocaml": "https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-history-math-ocaml.ipynb"
+      }
     }
   ]
 }
