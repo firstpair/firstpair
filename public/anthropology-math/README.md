@@ -15,10 +15,10 @@ Times*.
 - [Python notebook](https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-python.ipynb)
 - [OCaml notebook](https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-ocaml.ipynb)
 
-Release: **1.0.1-429e1f79**. This correction defines notation and technical
-terms before first use; worked calculations and empirical values are unchanged. The supplied `cover/anthropology-math.png` headboard is used
-unchanged for the shelf cover and book banner. The reading editions retain their
-text title pages.
+Release: **1.1.0-9ce09c2a**. The expanded edition adds step-by-step definitions,
+intermediate derivations, a glossary and index, and complete executable Python
+and native OCaml notebooks. The supplied `cover/anthropology-math.png` headboard
+remains unchanged on the shelf and book banner.
 
 The private Anthropology repository owns the manuscript, numerical examples,
 figures, metadata, build pipeline, and canonical artifacts. Its visibility is
