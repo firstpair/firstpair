@@ -936,6 +936,9 @@ function readmeFor(plan, catalogEntry) {
       ? `${catalogEntry.vault ? `- [Download the Obsidian vault](${stableDeliverablePath(plan.slug, 'vault')})\n` : ''}${catalogEntry.mobileVault ? `- [Download the Mobile Obsidian vault](${stableDeliverablePath(plan.slug, 'mobile-vault')})\n` : ''}${catalogEntry.vaultGuide ? `- [Read the Obsidian vault guide](${catalogEntry.vaultGuide})\n` : ''}`
       : ''
   const emacsLinks = emacsReadmeLinks(plan, catalogEntry)
+  const notebookLinks = catalogEntry.notebooks
+    ? `- [Python notebook](${catalogEntry.notebooks.python})\n- [OCaml notebook](${catalogEntry.notebooks.ocaml})\n`
+    : ''
   const sourceText = source
     ? `\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts:\n\n[${source}](${source})\n`
     : '\nThe source repository owns the manuscript, metadata, version manifest, build\npipeline, and canonical generated artifacts. Record the upstream URL in\n`public/catalog.json` when it becomes available.\n'
@@ -951,7 +954,7 @@ ${catalogEntry.description}
 - [Read online](/read/${plan.slug}/)
 - [Chapter reader](/read/${plan.slug}/chapters/)
 ${plan.tutorial ? `- [Interactive tutorial](/learn/${plan.slug}/)\n` : ''}
-${vaultLinks}${emacsLinks}${versionsReadme(plan, catalogEntry)}
+${vaultLinks}${emacsLinks}${notebookLinks}${versionsReadme(plan, catalogEntry)}
 ${sourceText}`
 }
 

@@ -578,7 +578,11 @@
       "source": "https://github.com/alexy/eigentimes-math",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
-      "post": "https://firstpair.org/read/eigentimes/"
+      "post": "https://firstpair.org/read/eigentimes/",
+      "notebooks": {
+        "python": "https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-math-python.ipynb",
+        "ocaml": "https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-math-ocaml.ipynb"
+      }
     },
     {
       "slug": "dante-commedia",
@@ -773,7 +777,11 @@
       "shelf": "querygraph",
       "source": "https://firstpair.org/read/anthropology-math/chapters/anthropology-math-sources.zip",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
+      "notebooks": {
+        "python": "https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-python.ipynb",
+        "ocaml": "https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-ocaml.ipynb"
+      }
     }
   ]
 }

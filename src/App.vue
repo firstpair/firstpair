@@ -18,6 +18,7 @@ import {
 import { isPreviewBook } from './library-status.js'
 import { obsidianHandbookHtml } from './generated/obsidian-handbook.js'
 import { emacsHandbookHtml } from './generated/emacs-handbook.js'
+import NotebookLinks from './NotebookLinks.vue'
 
 const libraryShelfConfig = [
   {
@@ -87,6 +88,7 @@ type Book = {
   emacs?: string
   emacsGuide?: string
   emacsGuideSource?: string
+  notebooks?: { python: string; ocaml: string }
   tags: string[]
   versionLabel?: string
   versions?: BookVersion[]
@@ -360,6 +362,7 @@ const fragments = [
             <a :href="stableDeliverableHref(selectedBook, 'epub')">EPUB</a>
             <a :href="selectedBook.html" target="_blank" rel="noopener noreferrer">Hosted HTML</a>
             <a :href="selectedBook.htmlChapters" target="_blank" rel="noopener noreferrer">Chapter HTML</a>
+            <NotebookLinks :notebooks="selectedBook.notebooks" />
             <a
               v-if="selectedBook.vault"
               :href="stableDeliverableHref(selectedBook, 'vault')"
@@ -685,6 +688,7 @@ const fragments = [
                     <a :href="stableDeliverableHref(book, 'epub')">EPUB</a>
                     <a :href="book.html" target="_blank" rel="noopener noreferrer">Read</a>
                     <a :href="book.htmlChapters" target="_blank" rel="noopener noreferrer">Chapters</a>
+                    <NotebookLinks :notebooks="book.notebooks" />
                     <a v-if="book.vault" :href="stableDeliverableHref(book, 'vault')" download>Vault</a>
                     <a v-if="book.mobileVault" :href="stableDeliverableHref(book, 'mobile-vault')" download>Mobile Vault</a>
                     <a v-if="book.vaultGuide" :href="book.vaultGuide" target="_blank" rel="noopener noreferrer">Vault guide</a>

@@ -80,6 +80,14 @@ const invalidShelves = []
 const staleDeliverableMap = []
 
 for (const book of catalog.books) {
+  if (book.notebooks) {
+    for (const language of ['python', 'ocaml']) {
+      const href = book.notebooks[language]
+      if (typeof href !== 'string' || !URL.canParse(href) || new URL(href).protocol !== 'https:' || !new URL(href).pathname.endsWith('.ipynb')) {
+        invalidSourceUrls.push({ slug: book.slug, field: `notebooks.${language}`, url: href })
+      }
+    }
+  }
   if (book.author !== undefined && (typeof book.author !== 'string' || !book.author.trim())) {
     invalidAuthors.push({ slug: book.slug, author: book.author })
   }

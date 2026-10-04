@@ -10,6 +10,8 @@ Current release: **1.1.1-ef4d3687**. This patch introduces terms before their fo
 - [EPUB](/eigentimes-math/epub/)
 - [Read online](/read/eigentimes-math/)
 - [Chapter reader](/read/eigentimes-math/chapters/)
+- [Python notebook](https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-math-python.ipynb)
+- [OCaml notebook](https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-math-ocaml.ipynb)
 
 
 

@@ -12,6 +12,8 @@ Times*.
 - [EPUB](/anthropology-math/epub/)
 - [Read online](/read/anthropology-math/)
 - [Chapter reader](/read/anthropology-math/chapters/)
+- [Python notebook](https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-python.ipynb)
+- [OCaml notebook](https://github.com/querygraph/eigenmath/blob/main/notebooks/anthropology-math-ocaml.ipynb)
 
 Release: **1.0.1-429e1f79**. This correction defines notation and technical
 terms before first use; worked calculations and empirical values are unchanged. The supplied `cover/anthropology-math.png` headboard is used
