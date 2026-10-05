@@ -27,6 +27,16 @@ const libraryShelfConfig = [
     deck: 'The graph, catalog, security, and data systems bookshelf.',
   },
   {
+    id: 'eigentimes',
+    label: 'Eigen Times',
+    deck: 'Papers on news, people, mathematical history, and learning.',
+  },
+  {
+    id: 'math',
+    label: 'Math',
+    deck: 'Mathematical companions with worked examples and notebooks.',
+  },
+  {
     id: 'history',
     label: 'History',
     deck: 'Historical previews and arguments from Venice to Russophobia.',
@@ -146,7 +156,7 @@ const bookVersions = (book: Book): VersionRow[] =>
     : []
 const versionHref = (book: Book, version: VersionRow, format: 'pdf' | 'epub' | 'vault' | 'mobile-vault' | 'emacs'): string =>
   version.id ? `/${book.slug}/${version.id}/${format}/` : stableDeliverableHref(book, format)
-const bookHeroImage = (book: Book): string => book.headboard ?? book.cover ?? ''
+const bookHeroImage = (book: Book): string => book.headboard ?? ''
 
 const knownLibraryShelfIds = new Set<string>(libraryShelfConfig.map((shelf) => shelf.id))
 
@@ -334,9 +344,15 @@ const fragments = [
 
       <div
         class="book-detail__hero"
-        :class="{ 'book-detail__hero--image': bookHeroImage(selectedBook) }"
+        :class="{ 'book-detail__hero--image': bookHeroImage(selectedBook), 'book-detail__hero--cover': selectedBook.cover && !selectedBook.headboard }"
         :style="bookHeroImage(selectedBook) ? { backgroundImage: `linear-gradient(90deg, rgba(12, 16, 19, 0.84), rgba(12, 16, 19, 0.54), rgba(12, 16, 19, 0.18)), url('${bookHeroImage(selectedBook)}')` } : undefined"
       >
+        <img
+          v-if="selectedBook.cover && !selectedBook.headboard"
+          class="book-detail__cover-image"
+          :src="selectedBook.cover"
+          :alt="`${selectedBook.title} cover`"
+        />
         <div class="book-detail__copy">
           <p class="eyebrow">{{ selectedBook.kicker }}</p>
           <h1 :id="`book-detail-${selectedBook.slug}`">{{ selectedBook.title }}</h1>

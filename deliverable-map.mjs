@@ -241,6 +241,21 @@ export const deliverableBooks = [
     "slug": "eigentimes-history-math",
     "title": "Eigen Times History Math",
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/pdf/722ff9efa4770dc1-eigentimes-history-math.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/000a88707efa9357-eigentimes-history-math.epub"
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/029245b6d4430daa-eigentimes-history-math.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/cover/4834efabd6cfad6e-eigentimes-history-math-cover.png"
+  },
+  {
+    "slug": "eigentimes-math-history",
+    "title": "Eigen Times Math History",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/pdf/7f90f3a30639b5dd-eigentimes-math-history.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/epub/ad2e523745eeeabc-eigentimes-math-history.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/cover/9fdcec111ed6910e-eigentimes-math-history-cover.png"
+  },
+  {
+    "slug": "personalized-computational-pedagogy",
+    "title": "Personalized Learning from Working Systems",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png"
   }
 ]

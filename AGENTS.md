@@ -267,7 +267,7 @@ Cicero (`~/src/cicero`) shows the preview/full split.
 
 1. **Contract.** Write `FIRSTPAIR.md` at the source root with the unbulleted
    key-value header `slug:`, `shelf:` (one of `history`, `literature`,
-   `music`, `technology`, `publishing`, `querygraph`, `other` — the set in
+   `music`, `technology`, `publishing`, `querygraph`, `eigentimes`, `math`, `other` — the set in
    `scripts/check-public-catalog.mjs` and `src/App.vue`), and
    `default_edition:` (`preview` or `full`), then Ownership, Build, and
    Publish sections that record the exact commands below. The catalog

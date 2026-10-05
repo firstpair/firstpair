@@ -1,0 +1,149 @@
+{
+  "schema": "firstpair-per-format-publication-v1",
+  "slug": "eigentimes-history-math",
+  "title": "Eigen Times History Math",
+  "author": "Alexy Khrabrov",
+  "publisher": "First Pair Press",
+  "sourceRepository": "https://github.com/alexy/eigentimes-math",
+  "scope": "Preserve the validated PDF and HTML edition; publish the separately validated covered EPUB patch without restamping older formats.",
+  "formats": {
+    "pdf": {
+      "versionStamp": "1.1.0-99aa176a",
+      "sourceCommit": "99aa176aa927e3e9a92718a2983900de5144c561",
+      "builtAt": "2026-10-04T19:32:50Z",
+      "sourcePath": "papers/eigentimes-history-math/dist/eigentimes-history-math.pdf",
+      "stagedPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.pdf",
+      "sha256": "722ff9efa4770dc10f6c2b7e6af7f529cde35c26a48d6fc7e3afb6949d99fd3a",
+      "bytes": 1288729
+    },
+    "html": {
+      "versionStamp": "1.1.0-99aa176a",
+      "sourceCommit": "99aa176aa927e3e9a92718a2983900de5144c561",
+      "builtAt": "2026-10-04T19:32:50Z",
+      "sourcePath": "papers/eigentimes-history-math/dist/eigentimes-history-math.html",
+      "stagedPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.html",
+      "sha256": "e49ce24272122be501da8035205faca8a6ceb17b15670dfd7765b589ed879e27",
+      "bytes": 746017
+    },
+    "epub": {
+      "versionStamp": "1.1.1-d80e6728",
+      "sourceCommit": "d80e6728f6e4b0a23f6bb682c9718fb345567274",
+      "builtAt": "2026-10-05T00:14:01Z",
+      "sourcePath": "papers/eigentimes-history-math/dist-epub/eigentimes-history-math (1.1.1-d80e6728).epub",
+      "stagedPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.epub",
+      "sha256": "029245b6d4430daa26b4ce943a35f99887e8701c469be550a6f8e9368a7b7054",
+      "bytes": 2300252
+    },
+    "htmlChapters": {
+      "versionStamp": "1.1.0-99aa176a",
+      "sourceCommit": "99aa176aa927e3e9a92718a2983900de5144c561",
+      "builtAt": "2026-10-04T19:32:50Z",
+      "sourcePath": "papers/eigentimes-history-math/dist/eigentimes-history-math-chapters",
+      "stagedPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-chapters",
+      "sourceFilesUnchanged": true,
+      "sourceFileCount": 14,
+      "fileCount": 14,
+      "sourcePackageSha256": "485ad02907994f5b2c396fd78c1d4022221827d0e9a9e3e383fb56d37e3c6f54",
+      "packageSha256": "485ad02907994f5b2c396fd78c1d4022221827d0e9a9e3e383fb56d37e3c6f54",
+      "digestAlgorithm": "SHA-256 over sorted relative path, NUL, file SHA-256, NUL",
+      "files": [
+        {
+          "path": "book.css",
+          "sha256": "b6abd264c2eb5e3ee1a9f103bf88119298d92a2d1928fb2955971b463f82652b",
+          "bytes": 948
+        },
+        {
+          "path": "chapter-001.html",
+          "sha256": "929a0232a86c56ab04b0f0137a07f0c4d2e9c801b46dc97deb3f77b597cbc077",
+          "bytes": 8559
+        },
+        {
+          "path": "chapter-002.html",
+          "sha256": "49c73570ce642d75fc992fa5ea9b6fab5797a055b4bffcce59339fe9a5517248",
+          "bytes": 27942
+        },
+        {
+          "path": "chapter-003.html",
+          "sha256": "98c795e18f6fb9a250219c24d9ac3ee34520978badd6fc73caba1902ef7636b1",
+          "bytes": 163953
+        },
+        {
+          "path": "chapter-004.html",
+          "sha256": "7f9ad987e28c9c6f9d24d1f401c96eb53384496deb00a36bb8b9ba526139add3",
+          "bytes": 191905
+        },
+        {
+          "path": "chapter-005.html",
+          "sha256": "e2b87d9a1c59fbaf2b98272bb7640d3cd08df0a527ba6d92ee19226cfb8c65cf",
+          "bytes": 6684
+        },
+        {
+          "path": "chapter-006.html",
+          "sha256": "6d724bf94fc0a22dc2c92a3a4419efb5c88484b985465d9994158a151281907e",
+          "bytes": 17849
+        },
+        {
+          "path": "chapter-007.html",
+          "sha256": "df999aee889045854e612c8c2331bc4ef07d5bc3731260daf3c237d213aede41",
+          "bytes": 25214
+        },
+        {
+          "path": "chapter-008.html",
+          "sha256": "0895bb8a72d037c76655401054a40ccef6471f3273716181b048311cbc6286fa",
+          "bytes": 15620
+        },
+        {
+          "path": "chapter-009.html",
+          "sha256": "653e838f24bda5db7fddcb66ef414237d87693870d25f51ea952734cfc79a791",
+          "bytes": 36221
+        },
+        {
+          "path": "figures/evidence-route.png",
+          "sha256": "8f8ac8916327ced97586d95a9cd0bfbcab581f47ad8d44b4155067683fc97a01",
+          "bytes": 72671
+        },
+        {
+          "path": "figures/learning-route.png",
+          "sha256": "3797f72624c1f2129672fe10277698840545aae496c6d51ce6b7506e4c779233",
+          "bytes": 129455
+        },
+        {
+          "path": "index.html",
+          "sha256": "6c3589c3d766c7f00e5c4614c0656710d89a53fdea887e35559e08af27fb8f26",
+          "bytes": 8530
+        },
+        {
+          "path": "sitemap.json",
+          "sha256": "64785aeaff22cdeb11e57ea1da405b9050c618c53905c7dd0f5aaff0e86cae1c",
+          "bytes": 10321
+        }
+      ]
+    }
+  },
+  "cover": {
+    "sourceCommit": "d80e6728f6e4b0a23f6bb682c9718fb345567274",
+    "sourcePath": "papers/eigentimes-history-math/assets/eigentimes-history-math-epub-cover.png",
+    "stagedPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-cover.png",
+    "sha256": "4834efabd6cfad6e3f7ae6d31d11cc7bb1b57cef8ccad75262726394a0a2b238",
+    "bytes": 1020596
+  },
+  "sourceArchive": null,
+  "validation": {
+    "fullPackage": {
+      "sourcePath": "papers/eigentimes-history-math/dist/package-validation.json",
+      "sha256": "a9d5ac7c24a9cc20013fd25741bb105d20c5b13246cff9b39197a43d94f1c87e",
+      "artifactHashesVerified": true
+    },
+    "epubRelease": {
+      "sourcePath": "papers/eigentimes-history-math/dist-epub/epub-release.json",
+      "sha256": "b84a1d8c1d3892a50d36f8c45368e88f5284d2fc3f146d00d9a2667feedc0d7e",
+      "artifactSha256Verified": true
+    },
+    "epubcheck": {
+      "sourcePath": "papers/eigentimes-history-math/dist-epub/epubcheck.json",
+      "sha256": "6013fba1bda6eab107aace1de9748d70d6411c2185a2d059874c01bdcb74d998",
+      "messages": 0
+    },
+    "copiedFilesMatchSource": true
+  }
+}

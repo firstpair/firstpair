@@ -1,0 +1,209 @@
+{
+  "schema": "firstpair-per-format-publication-v1",
+  "slug": "personalized-computational-pedagogy",
+  "title": "Personalized Learning from Working Systems",
+  "author": "Alexy Khrabrov",
+  "publisher": "First Pair Press",
+  "sourceRepository": "https://github.com/alexy/eigentimes-math",
+  "scope": "Preserve the validated PDF and HTML edition; publish the separately validated covered EPUB patch without restamping older formats.",
+  "formats": {
+    "pdf": {
+      "versionStamp": "1.0.0-4c178b67",
+      "sourceCommit": "4c178b6759f58192b5644591841a5422e2cdb639",
+      "builtAt": "2026-10-04T21:10:31Z",
+      "sourcePath": "papers/personalized-computational-pedagogy/dist/personalized-computational-pedagogy.pdf",
+      "stagedPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.pdf",
+      "sha256": "fa4c0cb8d8187e1b83104b687ff0d81e2a4ae1f7802d3e74f767339695f4c731",
+      "bytes": 591413
+    },
+    "html": {
+      "versionStamp": "1.0.0-4c178b67",
+      "sourceCommit": "4c178b6759f58192b5644591841a5422e2cdb639",
+      "builtAt": "2026-10-04T21:10:31Z",
+      "sourcePath": "papers/personalized-computational-pedagogy/dist/personalized-computational-pedagogy.html",
+      "stagedPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.html",
+      "sha256": "2154f6289cb61aeb378e33c3d114a336658cf433affa7ca18f4f2e67a7f11b08",
+      "bytes": 397988
+    },
+    "epub": {
+      "versionStamp": "1.0.1-fe10f615",
+      "sourceCommit": "fe10f615bf9594fda0c9a4c178bd26d226a0aa77",
+      "builtAt": "2026-10-05T00:25:55Z",
+      "sourcePath": "papers/personalized-computational-pedagogy/dist-epub/personalized-computational-pedagogy (1.0.1-fe10f615).epub",
+      "stagedPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.epub",
+      "sha256": "940c1a2f934504bf04932a7609782a78e85674831dab13f9e8748c195cc12398",
+      "bytes": 2298832
+    },
+    "htmlChapters": {
+      "versionStamp": "1.0.0-4c178b67",
+      "sourceCommit": "4c178b6759f58192b5644591841a5422e2cdb639",
+      "builtAt": "2026-10-04T21:10:31Z",
+      "sourcePath": "papers/personalized-computational-pedagogy/dist/personalized-computational-pedagogy-chapters",
+      "stagedPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters",
+      "sourceFilesUnchanged": true,
+      "sourceFileCount": 23,
+      "fileCount": 24,
+      "sourcePackageSha256": "dab746518a3921267e8846d24b016e36405c932e3355ac3d28c373624371c25c",
+      "packageSha256": "65d96319d0075a5a1595e0d100ca508508419c82163fccf8519aa2784af30cd0",
+      "digestAlgorithm": "SHA-256 over sorted relative path, NUL, file SHA-256, NUL",
+      "files": [
+        {
+          "path": "book.css",
+          "sha256": "67bf68b49dcefd121ef3bd5364e3f0ce96c75df59102e114548cec6571e35e40",
+          "bytes": 1251
+        },
+        {
+          "path": "chapter-001.html",
+          "sha256": "292abb81b2f8997000e6dae76e2816d8b014ae23748f89b3f61d453bdbb25494",
+          "bytes": 4168
+        },
+        {
+          "path": "chapter-002.html",
+          "sha256": "6479885f3f590e984c474a0caab54e95941949086935453560e25ba48548d46e",
+          "bytes": 4869
+        },
+        {
+          "path": "chapter-003.html",
+          "sha256": "bc2de85da292981dfbae936b90e6dd5f280ebe3d6dd3f9f3909153b1555c4a24",
+          "bytes": 6182
+        },
+        {
+          "path": "chapter-004.html",
+          "sha256": "b1e15785839840d5a24344d12c860c46cb22d869f25fc78d5085dfa98f6300ea",
+          "bytes": 8508
+        },
+        {
+          "path": "chapter-005.html",
+          "sha256": "fdfd7493e4f280dc6b623e55147efcfab71ca08b455053d488f19f15da71a621",
+          "bytes": 8004
+        },
+        {
+          "path": "chapter-006.html",
+          "sha256": "012153212edac019bbff34a003a197aca6d20e884b14145ae9ec05fd871c058b",
+          "bytes": 11749
+        },
+        {
+          "path": "chapter-007.html",
+          "sha256": "cfbe01edcf04d5374b515fb4e535cce941b02f813b355ed1b01d3643fc8526a3",
+          "bytes": 9904
+        },
+        {
+          "path": "chapter-008.html",
+          "sha256": "b9dc20eefaff6ffe51e8019752d1a2920c6317b7e8e195c45041dc2bce513ac8",
+          "bytes": 33379
+        },
+        {
+          "path": "chapter-009.html",
+          "sha256": "eabb454a47d506788820c8ad572abaff76f783cac4ccc3efe8e42aba5c9aec1c",
+          "bytes": 6388
+        },
+        {
+          "path": "chapter-010.html",
+          "sha256": "fa8d10195d69bbbb69419e30f7c1a986c43ca4a3a6bd2e4b0d4a778fce91ada3",
+          "bytes": 9114
+        },
+        {
+          "path": "chapter-011.html",
+          "sha256": "acb8f65ccd776ec82bc6eeca5fedcc7f35960a4152ad535e3ac8822c2a49dfc2",
+          "bytes": 7184
+        },
+        {
+          "path": "chapter-012.html",
+          "sha256": "c5fa34301b46074e23094e8f0b172418ded0a10d55583b11557ee61544a820d0",
+          "bytes": 7865
+        },
+        {
+          "path": "chapter-013.html",
+          "sha256": "31d4e3c8e0fd26cf9d95c197713541b9bad06fc1f138e76672178e9afdb0f8f1",
+          "bytes": 3654
+        },
+        {
+          "path": "chapter-014.html",
+          "sha256": "c5dfc9c022903ba525b1485fec9a99fecbcc2dc98410e324ae76c15f815e0b58",
+          "bytes": 3215
+        },
+        {
+          "path": "chapter-015.html",
+          "sha256": "b39e0ce2b1f12a846f958c29677fa350780431fc0197a017523810265ea6ef5f",
+          "bytes": 11738
+        },
+        {
+          "path": "chapter-016.html",
+          "sha256": "c7aeaadff7382fedc463184d17170f06e9a7940fb74c6e60a1d74bf1349210b5",
+          "bytes": 9332
+        },
+        {
+          "path": "chapter-017.html",
+          "sha256": "a4a4ac399dcbb01bf47555caf5ccc8836aee01827f3759e16b3c774ba8e81d76",
+          "bytes": 2946
+        },
+        {
+          "path": "chapter-018.html",
+          "sha256": "bcb66457a12834c41dee3104a4e06da83cadba12a07f98c20c2b9ee558a51848",
+          "bytes": 11238
+        },
+        {
+          "path": "figures/revision-cycle.png",
+          "sha256": "722c5ccae256ed46e91baa11453e55c916f4f91df044197fca79d531399da3df",
+          "bytes": 116342
+        },
+        {
+          "path": "figures/three-orders.png",
+          "sha256": "b7d14e7b8a362b4c072c7e648d0674312111c3b6c1739146457cbd69ebcb8a6c",
+          "bytes": 85309
+        },
+        {
+          "path": "index.html",
+          "sha256": "a73568e7c29d44fb1df364afad4f3361afd515e0e9e82b2bd3f75404169cda83",
+          "bytes": 10779
+        },
+        {
+          "path": "personalized-computational-pedagogy-sources.zip",
+          "sha256": "6dad9cfa33f7c8cd77017fbf847be542c015622733f4c2176aa3bfa5a828fd13",
+          "bytes": 257100
+        },
+        {
+          "path": "sitemap.json",
+          "sha256": "75925aedd54de49f376ec97960d9e3c27a5348c4ad775f62bc4313f383d789b5",
+          "bytes": 9358
+        }
+      ]
+    }
+  },
+  "cover": {
+    "sourceCommit": "fe10f615bf9594fda0c9a4c178bd26d226a0aa77",
+    "sourcePath": "papers/personalized-computational-pedagogy/assets/personalized-computational-pedagogy-epub-cover.png",
+    "stagedPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-cover.png",
+    "sha256": "fe81517bfa8c2b9136c9aacd6d83a6b4e08d5eb4df2440b9a0193b4bfb7b0f7f",
+    "bytes": 1039474
+  },
+  "sourceArchive": {
+    "versionStamp": "1.0.0-4c178b67",
+    "sourceCommit": "4c178b6759f58192b5644591841a5422e2cdb639",
+    "sourcePath": "papers/personalized-computational-pedagogy/dist/personalized-computational-pedagogy (1.0.0-4c178b67)-source.zip",
+    "stagedPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/personalized-computational-pedagogy-sources.zip",
+    "publicRoute": "/read/personalized-computational-pedagogy/chapters/personalized-computational-pedagogy-sources.zip",
+    "embeddedManifest": "SOURCE-MANIFEST.json",
+    "embeddedFilesVerified": 26,
+    "sha256": "6dad9cfa33f7c8cd77017fbf847be542c015622733f4c2176aa3bfa5a828fd13",
+    "bytes": 257100
+  },
+  "validation": {
+    "fullPackage": {
+      "sourcePath": "papers/personalized-computational-pedagogy/dist/package-validation.json",
+      "sha256": "6e7eddc0b15bd437a7fccad2a2d9275ac261b725e7accfd5b3b1e6ecaef3ab2f",
+      "artifactHashesVerified": true
+    },
+    "epubRelease": {
+      "sourcePath": "papers/personalized-computational-pedagogy/dist-epub/epub-release.json",
+      "sha256": "785d5b8b86694cdec9639c8deb67569874efb95c5937e2a4667d844635ed3a33",
+      "artifactSha256Verified": true
+    },
+    "epubcheck": {
+      "sourcePath": "papers/personalized-computational-pedagogy/dist-epub/epubcheck.json",
+      "sha256": "e4b5f544b414feeb48f9328d9cec95924a83b0a7dbc96898c949ccb2d2a32684",
+      "messages": 0
+    },
+    "copiedFilesMatchSource": true
+  }
+}

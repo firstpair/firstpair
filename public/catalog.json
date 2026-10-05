@@ -549,7 +549,7 @@
         "news-automation",
         "scholarly-article"
       ],
-      "shelf": "publishing",
+      "shelf": "eigentimes",
       "source": "https://github.com/alexy/eigentimes",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/cover/92379787ecd6cbf9-eigentimes-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes/headboard/bb96e5795e5c435a-eigentimes-headboard.png",
@@ -574,7 +574,7 @@
         "linear-algebra",
         "tutorial"
       ],
-      "shelf": "publishing",
+      "shelf": "math",
       "source": "https://github.com/querygraph/eigenmath",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/cover/5cea5eff45a15dfd-eigentimes-math-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math/headboard/609cd3773edabefc-eigentimes-math-headboard.png",
@@ -751,7 +751,7 @@
         "news",
         "knowledge-graphs"
       ],
-      "shelf": "querygraph",
+      "shelf": "eigentimes",
       "source": "https://firstpair.org/read/anthropology/chapters/anthropology-paper-sources.zip",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology/cover/84a91d6e7001fc2b-anthropology-cover.png"
     },
@@ -774,7 +774,7 @@
         "news",
         "knowledge-graphs"
       ],
-      "shelf": "querygraph",
+      "shelf": "math",
       "source": "https://firstpair.org/read/anthropology-math/chapters/anthropology-math-sources.zip",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/anthropology-math/cover/71e133e361915529-anthropology-math-cover.png",
@@ -791,7 +791,7 @@
       "description": "A worked companion to Eigen Times Math History: twenty-one step-by-step lessons on least squares, probability, matrix methods, calibration, concept lattices, and neural representations, with a glossary, index, and complete executable Python and OCaml notebooks.",
       "accent": "#476a7c",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/pdf/722ff9efa4770dc1-eigentimes-history-math.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/000a88707efa9357-eigentimes-history-math.epub",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/029245b6d4430daa-eigentimes-history-math.epub",
       "html": "/read/eigentimes-history-math/",
       "htmlChapters": "/read/eigentimes-history-math/chapters/",
       "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
@@ -801,12 +801,59 @@
         "history",
         "tutorial"
       ],
-      "shelf": "publishing",
+      "shelf": "math",
       "source": "https://github.com/querygraph/eigenmath",
       "notebooks": {
         "python": "https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-history-math-python.ipynb",
         "ocaml": "https://github.com/querygraph/eigenmath/blob/main/notebooks/eigentimes-history-math-ocaml.ipynb"
-      }
+      },
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/cover/4834efabd6cfad6e-eigentimes-history-math-cover.png"
+    },
+    {
+      "slug": "eigentimes-math-history",
+      "title": "Eigen Times Math History",
+      "author": "Alexy Khrabrov",
+      "kicker": "Historical textbook and literature review",
+      "description": "A historical teaching arc through the mathematics of Eigen Times, Eigen Hacks, and Anthropology: foundational papers, step-by-step explanations, unified notation, a glossary and index, and links to the mathematical companions and executable notebooks.",
+      "accent": "#9b6541",
+      "shelf": "eigentimes",
+      "source": "https://firstpair.org/read/eigentimes-math-history/chapters/eigentimes-math-history-sources.zip",
+      "tags": [
+        "eigentimes",
+        "mathematics",
+        "history",
+        "research"
+      ],
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/pdf/7f90f3a30639b5dd-eigentimes-math-history.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/epub/ad2e523745eeeabc-eigentimes-math-history.epub",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/html/45c7ef9513b6e8e4-eigentimes-math-history.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+      "html": "/read/eigentimes-math-history/",
+      "htmlChapters": "/read/eigentimes-math-history/chapters/",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/cover/9fdcec111ed6910e-eigentimes-math-history-cover.png"
+    },
+    {
+      "slug": "personalized-computational-pedagogy",
+      "title": "Personalized Learning from Working Systems",
+      "author": "Alexy Khrabrov",
+      "kicker": "Pedagogical methodology paper",
+      "description": "A method for learning from working software through mathematical companions, executable notebooks, definitions before use, gradual explanations, and a historical teaching arc, grounded in education research and illustrated by Eigen Times and Anthropology.",
+      "accent": "#496e69",
+      "shelf": "eigentimes",
+      "source": "https://firstpair.org/read/personalized-computational-pedagogy/chapters/personalized-computational-pedagogy-sources.zip",
+      "tags": [
+        "eigentimes",
+        "pedagogy",
+        "notebooks",
+        "research"
+      ],
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+      "html": "/read/personalized-computational-pedagogy/",
+      "htmlChapters": "/read/personalized-computational-pedagogy/chapters/",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png"
     }
   ]
 }

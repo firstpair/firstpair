@@ -1,0 +1,219 @@
+{
+  "schema": "firstpair-per-format-publication-v1",
+  "slug": "eigentimes-math-history",
+  "title": "Eigen Times Math History",
+  "author": "Alexy Khrabrov",
+  "publisher": "First Pair Press",
+  "sourceRepository": "https://github.com/alexy/eigentimes-math",
+  "scope": "Preserve the validated PDF and HTML edition; publish the separately validated covered EPUB patch without restamping older formats.",
+  "formats": {
+    "pdf": {
+      "versionStamp": "1.0.1-567e246b",
+      "sourceCommit": "567e246b93985204011211e39b95bb7ed60d23c9",
+      "builtAt": "2026-10-04T16:24:53Z",
+      "sourcePath": "papers/eigentimes-math-history/dist/eigentimes-math-history.pdf",
+      "stagedPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.pdf",
+      "sha256": "7f90f3a30639b5ddd7e8ff07b2d19bb0a2293484757b97415e12497728f2ed18",
+      "bytes": 2071413
+    },
+    "html": {
+      "versionStamp": "1.0.1-567e246b",
+      "sourceCommit": "567e246b93985204011211e39b95bb7ed60d23c9",
+      "builtAt": "2026-10-04T16:24:53Z",
+      "sourcePath": "papers/eigentimes-math-history/dist/eigentimes-math-history.html",
+      "stagedPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.html",
+      "sha256": "45c7ef9513b6e8e40a1e64e4a6a0ba4ab20d6c4c566b3b3223c11530399147fe",
+      "bytes": 1092136
+    },
+    "epub": {
+      "versionStamp": "1.0.2-d80e6728",
+      "sourceCommit": "d80e6728f6e4b0a23f6bb682c9718fb345567274",
+      "builtAt": "2026-10-05T00:14:01Z",
+      "sourcePath": "papers/eigentimes-math-history/dist-epub/eigentimes-math-history (1.0.2-d80e6728).epub",
+      "stagedPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.epub",
+      "sha256": "ad2e523745eeeabce3fa0a17d4ea387ba853bb0f2c5dcdc05a0c7d7f9e8acd82",
+      "bytes": 2290710
+    },
+    "htmlChapters": {
+      "versionStamp": "1.0.1-567e246b",
+      "sourceCommit": "567e246b93985204011211e39b95bb7ed60d23c9",
+      "builtAt": "2026-10-04T16:24:53Z",
+      "sourcePath": "papers/eigentimes-math-history/dist/eigentimes-math-history-chapters",
+      "stagedPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters",
+      "sourceFilesUnchanged": true,
+      "sourceFileCount": 25,
+      "fileCount": 26,
+      "sourcePackageSha256": "0b0c2eb92a723afa1e8987fa68b44b88229e820cb5f74fe6523dd9de02d4d8c3",
+      "packageSha256": "7b158e518303f787a260df007e0a5e1f0e23302e2b694cf7d9ddea0b59423fe7",
+      "digestAlgorithm": "SHA-256 over sorted relative path, NUL, file SHA-256, NUL",
+      "files": [
+        {
+          "path": "book.css",
+          "sha256": "a1bcc4fcff9a29786c47cbdceed19c855d4dd046d506db01815458f4527b49c8",
+          "bytes": 658
+        },
+        {
+          "path": "chapter-001.html",
+          "sha256": "9b60571eae7ed759103121a15a4fb2f19aadff67c447cd1d078c6f90bbf362c1",
+          "bytes": 11760
+        },
+        {
+          "path": "chapter-002.html",
+          "sha256": "de3face0e93aea42a0ee638cf586cafdbb3684380b50a2c84525748e80164a0f",
+          "bytes": 44640
+        },
+        {
+          "path": "chapter-003.html",
+          "sha256": "df5a06db73be7a6dd8ff1303378e0b3fefac3c6120889bab08100ebf1c11a4ef",
+          "bytes": 31289
+        },
+        {
+          "path": "chapter-004.html",
+          "sha256": "167c97968da47591e58fb5b25beb376b7fff7092da37a48b25803205b90a9cf3",
+          "bytes": 125479
+        },
+        {
+          "path": "chapter-005.html",
+          "sha256": "099729c079f935c83cc19b45a1594eba1cc2fb2eea3bdf947f096dbb0df4af37",
+          "bytes": 57754
+        },
+        {
+          "path": "chapter-006.html",
+          "sha256": "8840d176a343b60af7c7f9b691d3c96f3ea3da472d65c0c7a49ff217cfeec2b3",
+          "bytes": 63675
+        },
+        {
+          "path": "chapter-007.html",
+          "sha256": "2c2e10ff58bad6a33aefab4eeef8ee34deae345fa690bf63f51984f5aa269f33",
+          "bytes": 57353
+        },
+        {
+          "path": "chapter-008.html",
+          "sha256": "a4b7b2ea00b43cfc0787056b53a803f0a6d69564f26462f57cdb0162b92c404c",
+          "bytes": 31479
+        },
+        {
+          "path": "chapter-009.html",
+          "sha256": "0ed71633bc54c1b7f905bf27111ffe3f903e56a7283ceb3c0f1f681e936efd84",
+          "bytes": 22490
+        },
+        {
+          "path": "chapter-010.html",
+          "sha256": "2cdbb4c3fac5b7cb85bba130cb0e45144690b04a26b75b9764657bf46733eaab",
+          "bytes": 34455
+        },
+        {
+          "path": "chapter-011.html",
+          "sha256": "4d43fb5cdac1e7a9010413816997bc6f3eeac6a01d19475a407d3cf5a1c698b3",
+          "bytes": 42551
+        },
+        {
+          "path": "chapter-012.html",
+          "sha256": "e7f17e57cf22cb203fcf61345725494cbbc3d9d7b0b23294a954aee911416261",
+          "bytes": 18310
+        },
+        {
+          "path": "chapter-013.html",
+          "sha256": "b590e27e5e189c32f8817636ebf71ae0d43cfe47c82dfc21c8cf02676c718152",
+          "bytes": 12406
+        },
+        {
+          "path": "chapter-014.html",
+          "sha256": "f9a9c3218aa2990093dc869f5646cc5bc60578c2af48edd7bcab4f6231f70c93",
+          "bytes": 12595
+        },
+        {
+          "path": "chapter-015.html",
+          "sha256": "1c19ce636a27a97e6d819629830d205e217ed10545b90f58af741659ee7c5b60",
+          "bytes": 58027
+        },
+        {
+          "path": "chapter-016.html",
+          "sha256": "232ecb237673c54147115b81cc628c650bbba8f27df60bc7a839187b7c08c284",
+          "bytes": 16746
+        },
+        {
+          "path": "chapter-017.html",
+          "sha256": "451c1d2b9ae86ac756cab98d43fc40205bc9e8e92403d20d0abe72d90045cc90",
+          "bytes": 103508
+        },
+        {
+          "path": "chapter-018.html",
+          "sha256": "3f5d8fe97bbf5294f09c71ca3d2c721cb10147023500505a0023eecbdc687744",
+          "bytes": 26967
+        },
+        {
+          "path": "chapter-019.html",
+          "sha256": "9f1083469e8866468472f7d3e720bb59fac3a2887c9772eb6a171ffa798f471f",
+          "bytes": 56402
+        },
+        {
+          "path": "eigentimes-math-history-sources.zip",
+          "sha256": "57cae569e12b1d21bcb92947ee95d4a0939cb41cb566fdad220212152ff07d74",
+          "bytes": 13788601
+        },
+        {
+          "path": "figures/duality.svg",
+          "sha256": "f848a3d5ab10158e86c4a3a7d403893b50dba456a78e4f94490451a983aca2f9",
+          "bytes": 36297
+        },
+        {
+          "path": "figures/history-arc.png",
+          "sha256": "9036290d8edba85c0212a24c5c1188d2283c0438a4b39bd106562ef172e55759",
+          "bytes": 157336
+        },
+        {
+          "path": "figures/projection.svg",
+          "sha256": "fd3c8bce1585de426605d533f952c89eed0781babc2186f68819d20c08e44583",
+          "bytes": 30088
+        },
+        {
+          "path": "index.html",
+          "sha256": "b536498261eb00853008e4a3e9e83dd583c882a8d8cf357d5a5d3922fbbc5274",
+          "bytes": 16316
+        },
+        {
+          "path": "sitemap.json",
+          "sha256": "278a5bd3f00f563b4e23ae4a7776b3cf2355d62c7945722d699ce898082c0c69",
+          "bytes": 19750
+        }
+      ]
+    }
+  },
+  "cover": {
+    "sourceCommit": "d80e6728f6e4b0a23f6bb682c9718fb345567274",
+    "sourcePath": "papers/eigentimes-math-history/assets/eigentimes-math-history-epub-cover.png",
+    "stagedPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-cover.png",
+    "sha256": "9fdcec111ed6910ea4863d96ccb8ca27ffd4a58ca3a8af392aff5c989b99bd2f",
+    "bytes": 986325
+  },
+  "sourceArchive": {
+    "versionStamp": "1.0.1-567e246b",
+    "sourceCommit": "567e246b93985204011211e39b95bb7ed60d23c9",
+    "sourcePath": "papers/eigentimes-math-history/dist/eigentimes-math-history (1.0.1-567e246b)-source-and-study.zip",
+    "stagedPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/eigentimes-math-history-sources.zip",
+    "publicRoute": "/read/eigentimes-math-history/chapters/eigentimes-math-history-sources.zip",
+    "embeddedManifest": "SOURCE-MANIFEST.json",
+    "embeddedFilesVerified": 79,
+    "sha256": "57cae569e12b1d21bcb92947ee95d4a0939cb41cb566fdad220212152ff07d74",
+    "bytes": 13788601
+  },
+  "validation": {
+    "fullPackage": {
+      "sourcePath": "papers/eigentimes-math-history/dist/package-validation.json",
+      "sha256": "d0af99fd9fccb188138f960d730070dcc2dc5fc1411a834b2834d7718390e816",
+      "artifactHashesVerified": true
+    },
+    "epubRelease": {
+      "sourcePath": "papers/eigentimes-math-history/dist-epub/epub-release.json",
+      "sha256": "1d1124d7e704f294bcbef9df1a8ab4e6abad39452e91490513a8d746a9f89d5d",
+      "artifactSha256Verified": true
+    },
+    "epubcheck": {
+      "sourcePath": "papers/eigentimes-math-history/dist-epub/epubcheck.json",
+      "sha256": "7a662d8b0e96c823f79798d7ea4df301e603ee7a4b421f4f660e292c81ee44e9",
+      "messages": 0
+    },
+    "copiedFilesMatchSource": true
+  }
+}

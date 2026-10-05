@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-04T20:15:31.374Z",
+  "updatedAt": "2026-10-05T22:18:56.186Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -11504,7 +11504,7 @@
       }
     },
     "eigentimes-history-math": {
-      "updatedAt": "2026-10-04T20:15:31.373Z",
+      "updatedAt": "2026-10-05T22:18:42.951Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -11514,15 +11514,15 @@
           "size": 1288729,
           "pathname": "books/eigentimes-history-math/pdf/722ff9efa4770dc1-eigentimes-history-math.pdf",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/pdf/722ff9efa4770dc1-eigentimes-history-math.pdf",
-          "skipped": false
+          "skipped": true
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.epub",
-          "sha256": "000a88707efa935746886c96adc74a8f0b6a57a58ae17adeb376a592adc82254",
-          "size": 282935,
-          "pathname": "books/eigentimes-history-math/epub/000a88707efa9357-eigentimes-history-math.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/000a88707efa9357-eigentimes-history-math.epub",
+          "sha256": "029245b6d4430daa26b4ce943a35f99887e8701c469be550a6f8e9368a7b7054",
+          "size": 2300252,
+          "pathname": "books/eigentimes-history-math/epub/029245b6d4430daa-eigentimes-history-math.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/029245b6d4430daa-eigentimes-history-math.epub",
           "skipped": false
         },
         "html": {
@@ -11532,6 +11532,15 @@
           "size": 746017,
           "pathname": "books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
+          "skipped": true
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-cover.png",
+          "sha256": "4834efabd6cfad6e3f7ae6d31d11cc7bb1b57cef8ccad75262726394a0a2b238",
+          "size": 1020596,
+          "pathname": "books/eigentimes-history-math/cover/4834efabd6cfad6e-eigentimes-history-math-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/cover/4834efabd6cfad6e-eigentimes-history-math-cover.png",
           "skipped": false
         },
         "htmlChapters": {
@@ -11540,7 +11549,7 @@
           "sha256": "485ad02907994f5b2c396fd78c1d4022221827d0e9a9e3e383fb56d37e3c6f54",
           "pathnamePrefix": "books/eigentimes-history-math/chapters/485ad02907994f5b",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/chapters/485ad02907994f5b/index.html",
-          "skipped": false,
+          "skipped": true,
           "files": [
             {
               "localPath": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-chapters/book.css",
@@ -11666,6 +11675,560 @@
               "size": 10321,
               "pathname": "books/eigentimes-history-math/chapters/485ad02907994f5b/sitemap.json",
               "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/chapters/485ad02907994f5b/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
+    },
+    "eigentimes-math-history": {
+      "updatedAt": "2026-10-05T22:18:22.920Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.pdf",
+          "sha256": "7f90f3a30639b5ddd7e8ff07b2d19bb0a2293484757b97415e12497728f2ed18",
+          "size": 2071413,
+          "pathname": "books/eigentimes-math-history/pdf/7f90f3a30639b5dd-eigentimes-math-history.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/pdf/7f90f3a30639b5dd-eigentimes-math-history.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.epub",
+          "sha256": "ad2e523745eeeabce3fa0a17d4ea387ba853bb0f2c5dcdc05a0c7d7f9e8acd82",
+          "size": 2290710,
+          "pathname": "books/eigentimes-math-history/epub/ad2e523745eeeabc-eigentimes-math-history.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/epub/ad2e523745eeeabc-eigentimes-math-history.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.html",
+          "sha256": "45c7ef9513b6e8e40a1e64e4a6a0ba4ab20d6c4c566b3b3223c11530399147fe",
+          "size": 1092136,
+          "pathname": "books/eigentimes-math-history/html/45c7ef9513b6e8e4-eigentimes-math-history.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/html/45c7ef9513b6e8e4-eigentimes-math-history.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-cover.png",
+          "sha256": "9fdcec111ed6910ea4863d96ccb8ca27ffd4a58ca3a8af392aff5c989b99bd2f",
+          "size": 986325,
+          "pathname": "books/eigentimes-math-history/cover/9fdcec111ed6910e-eigentimes-math-history-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/cover/9fdcec111ed6910e-eigentimes-math-history-cover.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters",
+          "sha256": "7b158e518303f787a260df007e0a5e1f0e23302e2b694cf7d9ddea0b59423fe7",
+          "pathnamePrefix": "books/eigentimes-math-history/chapters/7b158e518303f787",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "a1bcc4fcff9a29786c47cbdceed19c855d4dd046d506db01815458f4527b49c8",
+              "size": 658,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "9b60571eae7ed759103121a15a4fb2f19aadff67c447cd1d078c6f90bbf362c1",
+              "size": 11760,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "de3face0e93aea42a0ee638cf586cafdbb3684380b50a2c84525748e80164a0f",
+              "size": 44640,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "df5a06db73be7a6dd8ff1303378e0b3fefac3c6120889bab08100ebf1c11a4ef",
+              "size": 31289,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "167c97968da47591e58fb5b25beb376b7fff7092da37a48b25803205b90a9cf3",
+              "size": 125479,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "099729c079f935c83cc19b45a1594eba1cc2fb2eea3bdf947f096dbb0df4af37",
+              "size": 57754,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "8840d176a343b60af7c7f9b691d3c96f3ea3da472d65c0c7a49ff217cfeec2b3",
+              "size": 63675,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "2c2e10ff58bad6a33aefab4eeef8ee34deae345fa690bf63f51984f5aa269f33",
+              "size": 57353,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "a4b7b2ea00b43cfc0787056b53a803f0a6d69564f26462f57cdb0162b92c404c",
+              "size": 31479,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "0ed71633bc54c1b7f905bf27111ffe3f903e56a7283ceb3c0f1f681e936efd84",
+              "size": 22490,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "2cdbb4c3fac5b7cb85bba130cb0e45144690b04a26b75b9764657bf46733eaab",
+              "size": 34455,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "4d43fb5cdac1e7a9010413816997bc6f3eeac6a01d19475a407d3cf5a1c698b3",
+              "size": 42551,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "e7f17e57cf22cb203fcf61345725494cbbc3d9d7b0b23294a954aee911416261",
+              "size": 18310,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "b590e27e5e189c32f8817636ebf71ae0d43cfe47c82dfc21c8cf02676c718152",
+              "size": 12406,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "f9a9c3218aa2990093dc869f5646cc5bc60578c2af48edd7bcab4f6231f70c93",
+              "size": 12595,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "1c19ce636a27a97e6d819629830d205e217ed10545b90f58af741659ee7c5b60",
+              "size": 58027,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "232ecb237673c54147115b81cc628c650bbba8f27df60bc7a839187b7c08c284",
+              "size": 16746,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-017.html",
+              "relativePath": "chapter-017.html",
+              "sha256": "451c1d2b9ae86ac756cab98d43fc40205bc9e8e92403d20d0abe72d90045cc90",
+              "size": 103508,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-017.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-018.html",
+              "relativePath": "chapter-018.html",
+              "sha256": "3f5d8fe97bbf5294f09c71ca3d2c721cb10147023500505a0023eecbdc687744",
+              "size": 26967,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-018.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-019.html",
+              "relativePath": "chapter-019.html",
+              "sha256": "9f1083469e8866468472f7d3e720bb59fac3a2887c9772eb6a171ffa798f471f",
+              "size": 56402,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-019.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/eigentimes-math-history-sources.zip",
+              "relativePath": "eigentimes-math-history-sources.zip",
+              "sha256": "57cae569e12b1d21bcb92947ee95d4a0939cb41cb566fdad220212152ff07d74",
+              "size": 13788601,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/eigentimes-math-history-sources.zip",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/eigentimes-math-history-sources.zip",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/figures/duality.svg",
+              "relativePath": "figures/duality.svg",
+              "sha256": "f848a3d5ab10158e86c4a3a7d403893b50dba456a78e4f94490451a983aca2f9",
+              "size": 36297,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/figures/duality.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/figures/duality.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/figures/history-arc.png",
+              "relativePath": "figures/history-arc.png",
+              "sha256": "9036290d8edba85c0212a24c5c1188d2283c0438a4b39bd106562ef172e55759",
+              "size": 157336,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/figures/history-arc.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/figures/history-arc.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/figures/projection.svg",
+              "relativePath": "figures/projection.svg",
+              "sha256": "fd3c8bce1585de426605d533f952c89eed0781babc2186f68819d20c08e44583",
+              "size": 30088,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/figures/projection.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/figures/projection.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "b536498261eb00853008e4a3e9e83dd583c882a8d8cf357d5a5d3922fbbc5274",
+              "size": 16316,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "278a5bd3f00f563b4e23ae4a7776b3cf2355d62c7945722d699ce898082c0c69",
+              "size": 19750,
+              "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
+    },
+    "personalized-computational-pedagogy": {
+      "updatedAt": "2026-10-05T22:18:56.185Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.pdf",
+          "sha256": "fa4c0cb8d8187e1b83104b687ff0d81e2a4ae1f7802d3e74f767339695f4c731",
+          "size": 591413,
+          "pathname": "books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.epub",
+          "sha256": "940c1a2f934504bf04932a7609782a78e85674831dab13f9e8748c195cc12398",
+          "size": 2298832,
+          "pathname": "books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.html",
+          "sha256": "2154f6289cb61aeb378e33c3d114a336658cf433affa7ca18f4f2e67a7f11b08",
+          "size": 397988,
+          "pathname": "books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-cover.png",
+          "sha256": "fe81517bfa8c2b9136c9aacd6d83a6b4e08d5eb4df2440b9a0193b4bfb7b0f7f",
+          "size": 1039474,
+          "pathname": "books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters",
+          "sha256": "65d96319d0075a5a1595e0d100ca508508419c82163fccf8519aa2784af30cd0",
+          "pathnamePrefix": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "67bf68b49dcefd121ef3bd5364e3f0ce96c75df59102e114548cec6571e35e40",
+              "size": 1251,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "292abb81b2f8997000e6dae76e2816d8b014ae23748f89b3f61d453bdbb25494",
+              "size": 4168,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "6479885f3f590e984c474a0caab54e95941949086935453560e25ba48548d46e",
+              "size": 4869,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "bc2de85da292981dfbae936b90e6dd5f280ebe3d6dd3f9f3909153b1555c4a24",
+              "size": 6182,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "b1e15785839840d5a24344d12c860c46cb22d869f25fc78d5085dfa98f6300ea",
+              "size": 8508,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "fdfd7493e4f280dc6b623e55147efcfab71ca08b455053d488f19f15da71a621",
+              "size": 8004,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "012153212edac019bbff34a003a197aca6d20e884b14145ae9ec05fd871c058b",
+              "size": 11749,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "cfbe01edcf04d5374b515fb4e535cce941b02f813b355ed1b01d3643fc8526a3",
+              "size": 9904,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "b9dc20eefaff6ffe51e8019752d1a2920c6317b7e8e195c45041dc2bce513ac8",
+              "size": 33379,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "eabb454a47d506788820c8ad572abaff76f783cac4ccc3efe8e42aba5c9aec1c",
+              "size": 6388,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "fa8d10195d69bbbb69419e30f7c1a986c43ca4a3a6bd2e4b0d4a778fce91ada3",
+              "size": 9114,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "acb8f65ccd776ec82bc6eeca5fedcc7f35960a4152ad535e3ac8822c2a49dfc2",
+              "size": 7184,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "c5fa34301b46074e23094e8f0b172418ded0a10d55583b11557ee61544a820d0",
+              "size": 7865,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "31d4e3c8e0fd26cf9d95c197713541b9bad06fc1f138e76672178e9afdb0f8f1",
+              "size": 3654,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "c5dfc9c022903ba525b1485fec9a99fecbcc2dc98410e324ae76c15f815e0b58",
+              "size": 3215,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "b39e0ce2b1f12a846f958c29677fa350780431fc0197a017523810265ea6ef5f",
+              "size": 11738,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "c7aeaadff7382fedc463184d17170f06e9a7940fb74c6e60a1d74bf1349210b5",
+              "size": 9332,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-017.html",
+              "relativePath": "chapter-017.html",
+              "sha256": "a4a4ac399dcbb01bf47555caf5ccc8836aee01827f3759e16b3c774ba8e81d76",
+              "size": 2946,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-017.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-018.html",
+              "relativePath": "chapter-018.html",
+              "sha256": "bcb66457a12834c41dee3104a4e06da83cadba12a07f98c20c2b9ee558a51848",
+              "size": 11238,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-018.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/figures/revision-cycle.png",
+              "relativePath": "figures/revision-cycle.png",
+              "sha256": "722c5ccae256ed46e91baa11453e55c916f4f91df044197fca79d531399da3df",
+              "size": 116342,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/revision-cycle.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/revision-cycle.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/figures/three-orders.png",
+              "relativePath": "figures/three-orders.png",
+              "sha256": "b7d14e7b8a362b4c072c7e648d0674312111c3b6c1739146457cbd69ebcb8a6c",
+              "size": 85309,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/three-orders.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/three-orders.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "a73568e7c29d44fb1df364afad4f3361afd515e0e9e82b2bd3f75404169cda83",
+              "size": 10779,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/personalized-computational-pedagogy-sources.zip",
+              "relativePath": "personalized-computational-pedagogy-sources.zip",
+              "sha256": "6dad9cfa33f7c8cd77017fbf847be542c015622733f4c2176aa3bfa5a828fd13",
+              "size": 257100,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/personalized-computational-pedagogy-sources.zip",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/personalized-computational-pedagogy-sources.zip",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "75925aedd54de49f376ec97960d9e3c27a5348c4ad775f62bc4313f383d789b5",
+              "size": 9358,
+              "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/sitemap.json",
               "skipped": false
             }
           ]
@@ -13963,6 +14526,56 @@
       "pathname": "books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
       "size": 746017
+    },
+    "7f90f3a30639b5ddd7e8ff07b2d19bb0a2293484757b97415e12497728f2ed18:2071413": {
+      "pathname": "books/eigentimes-math-history/pdf/7f90f3a30639b5dd-eigentimes-math-history.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/pdf/7f90f3a30639b5dd-eigentimes-math-history.pdf",
+      "size": 2071413
+    },
+    "ad2e523745eeeabce3fa0a17d4ea387ba853bb0f2c5dcdc05a0c7d7f9e8acd82:2290710": {
+      "pathname": "books/eigentimes-math-history/epub/ad2e523745eeeabc-eigentimes-math-history.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/epub/ad2e523745eeeabc-eigentimes-math-history.epub",
+      "size": 2290710
+    },
+    "45c7ef9513b6e8e40a1e64e4a6a0ba4ab20d6c4c566b3b3223c11530399147fe:1092136": {
+      "pathname": "books/eigentimes-math-history/html/45c7ef9513b6e8e4-eigentimes-math-history.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/html/45c7ef9513b6e8e4-eigentimes-math-history.html",
+      "size": 1092136
+    },
+    "9fdcec111ed6910ea4863d96ccb8ca27ffd4a58ca3a8af392aff5c989b99bd2f:986325": {
+      "pathname": "books/eigentimes-math-history/cover/9fdcec111ed6910e-eigentimes-math-history-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/cover/9fdcec111ed6910e-eigentimes-math-history-cover.png",
+      "size": 986325
+    },
+    "029245b6d4430daa26b4ce943a35f99887e8701c469be550a6f8e9368a7b7054:2300252": {
+      "pathname": "books/eigentimes-history-math/epub/029245b6d4430daa-eigentimes-history-math.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/epub/029245b6d4430daa-eigentimes-history-math.epub",
+      "size": 2300252
+    },
+    "4834efabd6cfad6e3f7ae6d31d11cc7bb1b57cef8ccad75262726394a0a2b238:1020596": {
+      "pathname": "books/eigentimes-history-math/cover/4834efabd6cfad6e-eigentimes-history-math-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/cover/4834efabd6cfad6e-eigentimes-history-math-cover.png",
+      "size": 1020596
+    },
+    "fa4c0cb8d8187e1b83104b687ff0d81e2a4ae1f7802d3e74f767339695f4c731:591413": {
+      "pathname": "books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
+      "size": 591413
+    },
+    "940c1a2f934504bf04932a7609782a78e85674831dab13f9e8748c195cc12398:2298832": {
+      "pathname": "books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
+      "size": 2298832
+    },
+    "2154f6289cb61aeb378e33c3d114a336658cf433affa7ca18f4f2e67a7f11b08:397988": {
+      "pathname": "books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
+      "size": 397988
+    },
+    "fe81517bfa8c2b9136c9aacd6d83a6b4e08d5eb4df2440b9a0193b4bfb7b0f7f:1039474": {
+      "pathname": "books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png",
+      "size": 1039474
     }
   },
   "chapterPackages": {
@@ -43041,6 +43654,468 @@
           "size": 10321,
           "pathname": "books/eigentimes-history-math/chapters/485ad02907994f5b/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/chapters/485ad02907994f5b/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "7b158e518303f787a260df007e0a5e1f0e23302e2b694cf7d9ddea0b59423fe7": {
+      "pathnamePrefix": "books/eigentimes-math-history/chapters/7b158e518303f787",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "a1bcc4fcff9a29786c47cbdceed19c855d4dd046d506db01815458f4527b49c8",
+          "size": 658,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "9b60571eae7ed759103121a15a4fb2f19aadff67c447cd1d078c6f90bbf362c1",
+          "size": 11760,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "de3face0e93aea42a0ee638cf586cafdbb3684380b50a2c84525748e80164a0f",
+          "size": 44640,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "df5a06db73be7a6dd8ff1303378e0b3fefac3c6120889bab08100ebf1c11a4ef",
+          "size": 31289,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "167c97968da47591e58fb5b25beb376b7fff7092da37a48b25803205b90a9cf3",
+          "size": 125479,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "099729c079f935c83cc19b45a1594eba1cc2fb2eea3bdf947f096dbb0df4af37",
+          "size": 57754,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "8840d176a343b60af7c7f9b691d3c96f3ea3da472d65c0c7a49ff217cfeec2b3",
+          "size": 63675,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "2c2e10ff58bad6a33aefab4eeef8ee34deae345fa690bf63f51984f5aa269f33",
+          "size": 57353,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "a4b7b2ea00b43cfc0787056b53a803f0a6d69564f26462f57cdb0162b92c404c",
+          "size": 31479,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "0ed71633bc54c1b7f905bf27111ffe3f903e56a7283ceb3c0f1f681e936efd84",
+          "size": 22490,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "2cdbb4c3fac5b7cb85bba130cb0e45144690b04a26b75b9764657bf46733eaab",
+          "size": 34455,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "4d43fb5cdac1e7a9010413816997bc6f3eeac6a01d19475a407d3cf5a1c698b3",
+          "size": 42551,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "e7f17e57cf22cb203fcf61345725494cbbc3d9d7b0b23294a954aee911416261",
+          "size": 18310,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "b590e27e5e189c32f8817636ebf71ae0d43cfe47c82dfc21c8cf02676c718152",
+          "size": 12406,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "f9a9c3218aa2990093dc869f5646cc5bc60578c2af48edd7bcab4f6231f70c93",
+          "size": 12595,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "1c19ce636a27a97e6d819629830d205e217ed10545b90f58af741659ee7c5b60",
+          "size": 58027,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "232ecb237673c54147115b81cc628c650bbba8f27df60bc7a839187b7c08c284",
+          "size": 16746,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "451c1d2b9ae86ac756cab98d43fc40205bc9e8e92403d20d0abe72d90045cc90",
+          "size": 103508,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "3f5d8fe97bbf5294f09c71ca3d2c721cb10147023500505a0023eecbdc687744",
+          "size": 26967,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "9f1083469e8866468472f7d3e720bb59fac3a2887c9772eb6a171ffa798f471f",
+          "size": 56402,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/eigentimes-math-history-sources.zip",
+          "relativePath": "eigentimes-math-history-sources.zip",
+          "sha256": "57cae569e12b1d21bcb92947ee95d4a0939cb41cb566fdad220212152ff07d74",
+          "size": 13788601,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/eigentimes-math-history-sources.zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/eigentimes-math-history-sources.zip",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/figures/duality.svg",
+          "relativePath": "figures/duality.svg",
+          "sha256": "f848a3d5ab10158e86c4a3a7d403893b50dba456a78e4f94490451a983aca2f9",
+          "size": 36297,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/figures/duality.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/figures/duality.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/figures/history-arc.png",
+          "relativePath": "figures/history-arc.png",
+          "sha256": "9036290d8edba85c0212a24c5c1188d2283c0438a4b39bd106562ef172e55759",
+          "size": 157336,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/figures/history-arc.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/figures/history-arc.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/figures/projection.svg",
+          "relativePath": "figures/projection.svg",
+          "sha256": "fd3c8bce1585de426605d533f952c89eed0781babc2186f68819d20c08e44583",
+          "size": 30088,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/figures/projection.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/figures/projection.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "b536498261eb00853008e4a3e9e83dd583c882a8d8cf357d5a5d3922fbbc5274",
+          "size": 16316,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "278a5bd3f00f563b4e23ae4a7776b3cf2355d62c7945722d699ce898082c0c69",
+          "size": 19750,
+          "pathname": "books/eigentimes-math-history/chapters/7b158e518303f787/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "65d96319d0075a5a1595e0d100ca508508419c82163fccf8519aa2784af30cd0": {
+      "pathnamePrefix": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "67bf68b49dcefd121ef3bd5364e3f0ce96c75df59102e114548cec6571e35e40",
+          "size": 1251,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "292abb81b2f8997000e6dae76e2816d8b014ae23748f89b3f61d453bdbb25494",
+          "size": 4168,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "6479885f3f590e984c474a0caab54e95941949086935453560e25ba48548d46e",
+          "size": 4869,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "bc2de85da292981dfbae936b90e6dd5f280ebe3d6dd3f9f3909153b1555c4a24",
+          "size": 6182,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "b1e15785839840d5a24344d12c860c46cb22d869f25fc78d5085dfa98f6300ea",
+          "size": 8508,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "fdfd7493e4f280dc6b623e55147efcfab71ca08b455053d488f19f15da71a621",
+          "size": 8004,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "012153212edac019bbff34a003a197aca6d20e884b14145ae9ec05fd871c058b",
+          "size": 11749,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "cfbe01edcf04d5374b515fb4e535cce941b02f813b355ed1b01d3643fc8526a3",
+          "size": 9904,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "b9dc20eefaff6ffe51e8019752d1a2920c6317b7e8e195c45041dc2bce513ac8",
+          "size": 33379,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "eabb454a47d506788820c8ad572abaff76f783cac4ccc3efe8e42aba5c9aec1c",
+          "size": 6388,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "fa8d10195d69bbbb69419e30f7c1a986c43ca4a3a6bd2e4b0d4a778fce91ada3",
+          "size": 9114,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "acb8f65ccd776ec82bc6eeca5fedcc7f35960a4152ad535e3ac8822c2a49dfc2",
+          "size": 7184,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "c5fa34301b46074e23094e8f0b172418ded0a10d55583b11557ee61544a820d0",
+          "size": 7865,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "31d4e3c8e0fd26cf9d95c197713541b9bad06fc1f138e76672178e9afdb0f8f1",
+          "size": 3654,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "c5dfc9c022903ba525b1485fec9a99fecbcc2dc98410e324ae76c15f815e0b58",
+          "size": 3215,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "b39e0ce2b1f12a846f958c29677fa350780431fc0197a017523810265ea6ef5f",
+          "size": 11738,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "c7aeaadff7382fedc463184d17170f06e9a7940fb74c6e60a1d74bf1349210b5",
+          "size": 9332,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "a4a4ac399dcbb01bf47555caf5ccc8836aee01827f3759e16b3c774ba8e81d76",
+          "size": 2946,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "bcb66457a12834c41dee3104a4e06da83cadba12a07f98c20c2b9ee558a51848",
+          "size": 11238,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/figures/revision-cycle.png",
+          "relativePath": "figures/revision-cycle.png",
+          "sha256": "722c5ccae256ed46e91baa11453e55c916f4f91df044197fca79d531399da3df",
+          "size": 116342,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/revision-cycle.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/revision-cycle.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/figures/three-orders.png",
+          "relativePath": "figures/three-orders.png",
+          "sha256": "b7d14e7b8a362b4c072c7e648d0674312111c3b6c1739146457cbd69ebcb8a6c",
+          "size": 85309,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/three-orders.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/figures/three-orders.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "a73568e7c29d44fb1df364afad4f3361afd515e0e9e82b2bd3f75404169cda83",
+          "size": 10779,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/personalized-computational-pedagogy-sources.zip",
+          "relativePath": "personalized-computational-pedagogy-sources.zip",
+          "sha256": "6dad9cfa33f7c8cd77017fbf847be542c015622733f4c2176aa3bfa5a828fd13",
+          "size": 257100,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/personalized-computational-pedagogy-sources.zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/personalized-computational-pedagogy-sources.zip",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "75925aedd54de49f376ec97960d9e3c27a5348c4ad775f62bc4313f383d789b5",
+          "size": 9358,
+          "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/sitemap.json",
           "skipped": false
         }
       ]

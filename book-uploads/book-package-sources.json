@@ -276,7 +276,25 @@
       "pdf": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.pdf",
       "epub": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.epub",
       "html": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math.html",
-      "htmlChapters": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-chapters"
+      "htmlChapters": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-chapters",
+      "cover": "book-uploads/staging/eigentimes-history-math/eigentimes-history-math-cover.png",
+      "publicationMetadata": "book-uploads/publications/eigentimes-history-math.json"
+    },
+    "eigentimes-math-history": {
+      "pdf": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.pdf",
+      "epub": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.epub",
+      "html": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history.html",
+      "htmlChapters": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-chapters",
+      "cover": "book-uploads/staging/eigentimes-math-history/eigentimes-math-history-cover.png",
+      "publicationMetadata": "book-uploads/publications/eigentimes-math-history.json"
+    },
+    "personalized-computational-pedagogy": {
+      "pdf": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.pdf",
+      "epub": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.epub",
+      "html": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy.html",
+      "htmlChapters": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters",
+      "cover": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-cover.png",
+      "publicationMetadata": "book-uploads/publications/personalized-computational-pedagogy.json"
     }
   }
 }

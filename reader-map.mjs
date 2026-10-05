@@ -209,5 +209,17 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/html/e49ce24272122be5-eigentimes-history-math.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/chapters/485ad02907994f5b/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-history-math/chapters/485ad02907994f5b"
+  },
+  {
+    "slug": "eigentimes-math-history",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/html/45c7ef9513b6e8e4-eigentimes-math-history.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/eigentimes-math-history/chapters/7b158e518303f787"
+  },
+  {
+    "slug": "personalized-computational-pedagogy",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a"
   }
 ]
