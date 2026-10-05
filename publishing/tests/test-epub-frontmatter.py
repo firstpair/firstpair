@@ -97,7 +97,8 @@ class ImprintTest(unittest.TestCase):
         config = {'schemaVersion': 1, 'bookRoot': '.', 'manuscript': 'book.md', 'metadata': 'metadata.yaml',
                   'version': '1.2.4', 'dist': 'dist', 'mobi': False, 'cleanDist': True,
                   'epub': {'coverImage': 'cover.png', 'imprint': True},
-                  'hooks': {'postEpub': 'cp "${repoRoot}/custom.epub" "${epub}"',
+                  'hooks': {'prebuild': 'mkdir -p "${distDir}" && printf prepared > "${distDir}/prebuild.log"',
+                            'postEpub': 'cp "${repoRoot}/custom.epub" "${epub}"',
                             'postBuild': 'exit 61'},
                   'validators': 'exit 62', 'pdfFormats': [{'name': 'forbidden', 'renderer': 'hook', 'run': 'exit 63'}]}
         (self.path / 'book.build.json').write_text(json.dumps(config))
@@ -112,6 +113,7 @@ class ImprintTest(unittest.TestCase):
         self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
         self.assertEqual(before, {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in dist.iterdir()})
         output = self.path / 'dist-epub'
+        self.assertEqual((output / 'prebuild.log').read_text(), 'prepared')
         receipt = json.loads((output / 'epub-release.json').read_text())
         self.assertTrue(receipt['frontmatter']['passed'])
         self.assertFalse((output / receipt['file']).is_symlink())

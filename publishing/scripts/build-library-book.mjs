@@ -749,7 +749,7 @@ try {
     ...baseContext,
     bookRoot: resolve(repoRoot, config.bookRoot ?? '.'),
     buildDir: resolve(repoRoot, config.buildDir ?? join(config.bookRoot ?? '.', 'build', 'firstpair')),
-    distDir: resolve(repoRoot, config.dist ?? join(config.bookRoot ?? '.', 'dist')),
+    distDir: resolve(repoRoot, options.dist ?? ((config.dist ?? join(config.bookRoot ?? '.', 'dist')) + (baseContext.epubOnly ? '-epub' : ''))),
     tmpDir: mkdtempSync(join(tmpdir(), 'firstpair-prebuild-')),
   }
 
@@ -767,7 +767,7 @@ try {
       editions: editions.map(([edition, editionConfig]) => ({
         edition,
         bookRoot: resolve(repoRoot, editionConfig.bookRoot ?? '.'),
-        dist: resolve(repoRoot, options.dist ?? editionConfig.dist ?? join(editionConfig.bookRoot ?? '.', 'dist')),
+        dist: resolve(repoRoot, options.dist ?? ((editionConfig.dist ?? join(editionConfig.bookRoot ?? '.', 'dist')) + (baseContext.epubOnly ? '-epub' : ''))),
         manuscript: editionConfig.manuscript,
       })),
     }, null, 2))
