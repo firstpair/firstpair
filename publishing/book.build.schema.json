@@ -79,6 +79,20 @@
       "type": "object",
       "properties": {
         "titlePage": { "type": "boolean" },
+        "imprint": {
+          "description": "Insert a dated, version-stamped publication-information page immediately after the image cover. Defaults to First Pair Press and https://firstpair.press.",
+          "oneOf": [
+            { "type": "boolean" },
+            {
+              "type": "object",
+              "properties": {
+                "publisher": { "type": "string" },
+                "publisherUrl": { "type": "string", "format": "uri" }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
         "includeRenderedCover": { "type": "boolean" },
         "coverImage": { "type": "string" },
         "args": { "type": "array", "items": { "type": "string" } }

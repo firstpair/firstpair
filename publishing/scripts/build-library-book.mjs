@@ -31,6 +31,7 @@ Options:
   --config <file>         Config path (default: <repo-root>/book.build.json)
   --edition <mode>        preview, full, or both
   --dist <dir>            Override dist for a single-edition build
+  --epub-only             Build only EPUB into a separate dist-epub package
   --print-plan            Resolve configuration without building
   --help                  Show this help
 
@@ -42,7 +43,7 @@ function parseArgs(argv) {
   const options = {}
   const positional = []
   const valueFlags = new Set(['repo-root', 'config', 'edition', 'dist'])
-  const booleanFlags = new Set(['print-plan', 'help'])
+  const booleanFlags = new Set(['print-plan', 'help', 'epub-only'])
 
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index]
@@ -429,7 +430,7 @@ function ensureSymlink(targetName, linkPath) {
 function buildEpub(config, context) {
   const output = join(context.distDir, `${context.stem}.epub`)
   const epub = config.epub ?? {}
-  const sources = context.renderedCover && epub.includeRenderedCover !== false
+  const sources = !epub.imprint && context.renderedCover && epub.includeRenderedCover !== false
     ? [context.renderedCover, context.manuscript]
     : [context.manuscript]
   const args = [
@@ -440,11 +441,55 @@ function buildEpub(config, context) {
   ]
   args.push('--metadata', `title=${context.title}`)
   if (context.css) args.push('--css', context.css)
-  if (epub.titlePage !== true) args.push('--epub-title-page=false')
+  if (epub.imprint || epub.titlePage !== true) args.push('--epub-title-page=false')
   if (epub.coverImage) args.push('--epub-cover-image', resolvePath(epub.coverImage, context))
   args.push(...(epub.args ?? []).map((arg) => expand(String(arg), context)))
   runPandoc(args, config, context)
   return output
+}
+
+function imprintEpub(config, context, epubPath) {
+  if (!config.epub?.imprint) return null
+  const imprint = typeof config.epub.imprint === 'object' ? config.epub.imprint : {}
+  const python = existsSync('/usr/bin/python3') ? '/usr/bin/python3' : 'python3'
+  const args = [join(scriptDir, 'epub_frontmatter.py'), 'add', epubPath,
+    '--title', context.title, '--subtitle', context.subtitle, '--author', context.author,
+    '--date', context.builtDate, '--version', context.versionStamp, '--stem', context.stem,
+    '--publisher', imprint.publisher ?? 'First Pair Press',
+    '--publisher-url', imprint.publisherUrl ?? 'https://firstpair.press']
+  if (config.epub.coverImage) args.push('--cover-image', resolvePath(config.epub.coverImage, context))
+  return JSON.parse(commandOutput(python, args, context.repoRoot))
+}
+
+function finishEpubOnly(config, context, epubPath, imprint) {
+  const versioned = join(context.distDir, `${context.versionedStem}.epub`)
+  if (epubPath !== versioned) {
+    if (existsSync(versioned) && !readFileSync(versioned).equals(readFileSync(epubPath))) {
+      throw new Error(`immutable EPUB release already exists with different bytes: ${versioned}`)
+    }
+    copyFileSync(epubPath, versioned)
+  }
+  const bytes = readFileSync(epubPath)
+  const release = {
+    schema: 'firstpair-epub-release-v1',
+    title: context.title, author: context.author, edition: context.edition,
+    version: context.version, versionStamp: context.versionStamp,
+    sourceCommit: commandOutput('git', ['rev-parse', 'HEAD'], context.repoRoot),
+    builderCommit: commandOutput('git', ['rev-parse', 'HEAD'], firstpairRoot),
+    builtAt: context.builtAt, date: context.builtDate,
+    file: basename(versioned), stableFile: basename(epubPath),
+    sha256: createHash('sha256').update(bytes).digest('hex'), size: bytes.length,
+    frontmatter: imprint,
+  }
+  writeFileSync(join(context.distDir, 'epub-release.json'), `${JSON.stringify(release, null, 2)}\n`)
+  writeFileSync(join(context.distDir, 'EPUB-VERSION.md'), [
+    ['title', context.title], ['author', context.author], ['title_stem', context.stem],
+    ['edition', context.edition], ['version', context.version], ['version_stamp', context.versionStamp],
+    ['source_commit', release.sourceCommit], ['built_at', context.builtAt],
+    ['epub_file', basename(epubPath)], ['epub_link', basename(versioned)], ['epub_sha256', release.sha256],
+  ].map(([key, value]) => `${key}: ${value}`).join('\n') + '\n')
+  run('unzip', ['-tqq', epubPath], { cwd: context.repoRoot })
+  console.log(`Built EPUB-only release ${context.title} (${context.versionStamp}) in ${context.distDir}`)
 }
 
 function buildHtml(config, context) {
@@ -554,9 +599,9 @@ function buildEdition(config, baseContext, distOverride) {
     preliminary.buildDir = resolvePath(config.buildDir ?? join(config.bookRoot ?? '.', 'build', 'firstpair'), preliminary)
     preliminary.distDir = distOverride
       ? resolve(baseContext.repoRoot, distOverride)
-      : resolvePath(config.dist ?? join(config.bookRoot ?? '.', 'dist'), preliminary)
+      : resolvePath((config.dist ?? join(config.bookRoot ?? '.', 'dist')) + (baseContext.epubOnly ? '-epub' : ''), preliminary)
     mkdirSync(preliminary.buildDir, { recursive: true })
-    if (config.cleanDist) rmSync(preliminary.distDir, { recursive: true, force: true })
+    if (config.cleanDist && !baseContext.epubOnly) rmSync(preliminary.distDir, { recursive: true, force: true })
     mkdirSync(preliminary.distDir, { recursive: true })
     mkdirSync(join(tmpDir, 'calibre-config'), { recursive: true })
 
@@ -604,8 +649,22 @@ function buildEdition(config, baseContext, distOverride) {
       }))
     const primary = variants.find((variant) => variant.primary) ?? variants[0]
     preliminary.primaryFormat = config.primaryFormat ?? primary.name
-    cleanVersionedArtifacts(preliminary)
+    if (!baseContext.epubOnly) cleanVersionedArtifacts(preliminary)
+    else {
+      // Existing version labels must never begin pointing to a different book.
+      // Normal EPUB-only output is separate; this also protects an explicit
+      // --dist pointing at a legacy package with symlinked version names.
+      for (const entry of readdirSync(preliminary.distDir)) {
+        const path = join(preliminary.distDir, entry)
+        if (entry.endsWith('.epub') && entry.includes(' (') && lstatSync(path).isSymbolicLink()) {
+          const content = readFileSync(path)
+          rmSync(path)
+          writeFileSync(path, content)
+        }
+      }
+    }
 
+    if (!baseContext.epubOnly) {
     for (const variant of variants) {
       if (variant.renderer === 'typst') buildTypstPdf(variant, config, preliminary)
       else if (variant.renderer === 'neatroff') buildNeatroffPdf(variant, config, preliminary)
@@ -624,9 +683,15 @@ function buildEdition(config, baseContext, distOverride) {
     const stablePdf = join(preliminary.distDir, `${preliminary.stem}.pdf`)
     if (primaryPdf !== stablePdf) copyFileSync(primaryPdf, stablePdf)
     runHooks(config.hooks?.postPdf, config, { ...preliminary, pdf: stablePdf })
+    }
 
     const epub = buildEpub(config, preliminary)
     runHooks(config.hooks?.postEpub, config, { ...preliminary, epub })
+    const imprint = imprintEpub(config, preliminary, epub)
+    if (baseContext.epubOnly) {
+      finishEpubOnly(config, preliminary, epub, imprint)
+      return preliminary
+    }
     buildHtml(config, preliminary)
 
     if (config.mobi !== false) {
@@ -679,7 +744,7 @@ try {
   }
 
   run(join(scriptDir, 'verify-toolchain.mjs'), ['--quiet'], { cwd: firstpairRoot })
-  const baseContext = { repoRoot, configPath, firstpairRoot }
+  const baseContext = { repoRoot, configPath, firstpairRoot, epubOnly: Boolean(options['epub-only']) }
   const bootstrapContext = {
     ...baseContext,
     bookRoot: resolve(repoRoot, config.bookRoot ?? '.'),
