@@ -50,7 +50,9 @@ shared rules.
   `book-uploads/blob-manifest.json`, and generated route maps, not in blog
   posts, public README text, or long-lived external links.
 - Treat Vercel deployments, Blob uploads, iCloud delivery, and full-edition
-  releases as outward-facing actions. Use dry-runs when the target is unclear,
+  releases as outward-facing actions. The one exception is a blog textpack:
+  delivering its stamped, pushed pack to `~/icloud/blogs` is automatic (see
+  [Git-Versioned Blog Textpacks](#git-versioned-blog-textpacks)). Use dry-runs when the target is unclear,
   and require explicit user confirmation before replacing a public preview with
   a full book.
 - Preserve unrelated user or generated worktree changes. Stage, commit, and push
@@ -108,8 +110,10 @@ BLOG_EXCERPT="Short summary" \
 ```
 
 This writes the stable textpack, its source-hash versioned link, and
-`dist/VERSION.md`. Verify them, then commit and push all three. Only from that
-new clean and pushed handoff may the delivery wrapper copy the pack to iCloud:
+`dist/VERSION.md`. Verify them, then commit and push all three. Then, from that
+new clean and pushed handoff, always deliver the pack to iCloud with the
+delivery wrapper. This step is automatic: run it as part of every textpack build,
+without asking for separate confirmation:
 
 ```sh
 cd /absolute/path/to/project
@@ -130,7 +134,8 @@ never commits or pushes. The delivery wrapper does not rebuild or alter the
 handoff: it independently requires the repository to be clean and pushed,
 requires the pack, marker, and versioned link to be tracked at HEAD, validates
 the embedded source commit, and only then copies the versioned pack. Delivery
-to iCloud or a public service still requires the appropriate authorization.
+to `~/icloud/blogs` needs no separate authorization; posting to a public service
+still does.
 
 After building, verify the source commit, provenance block, archive, and
 repository state:
@@ -142,8 +147,7 @@ unzip -t docs/blog/<slug>/dist/<slug>.textpack
 git status --short
 ```
 
-When delivery was authorized, also compare the stable pack with the delivered
-versioned copy:
+After delivery, also compare the stable pack with the delivered versioned copy:
 
 ```sh
 cmp -s docs/blog/<slug>/dist/<slug>.textpack \
