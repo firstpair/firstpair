@@ -221,5 +221,12 @@ export const readerBooks = [
     "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/html/2154f6289cb61aeb-personalized-computational-pedagogy.html",
     "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/index.html",
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a"
+  },
+  {
+    "slug": "arnold-meanders",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/76cbef83856dc3f2-arnold-meanders.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1",
+    "tutorialSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/ac88feb688730610-arnold-meanders-visualization.html"
   }
 ]

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-05T22:18:56.186Z",
+  "updatedAt": "2026-10-07T20:11:25.272Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -12234,6 +12234,283 @@
           ]
         }
       }
+    },
+    "arnold-meanders": {
+      "updatedAt": "2026-10-07T20:11:25.271Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders.pdf",
+          "sha256": "4eb09ccfbefbe436b1027107b2c2cd16b35b04dfa4607b6d3b718828e2407d15",
+          "size": 467807,
+          "pathname": "books/arnold-meanders/pdf/4eb09ccfbefbe436-arnold-meanders.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/4eb09ccfbefbe436-arnold-meanders.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders.epub",
+          "sha256": "d5374b43c94f28da20cf689e756f316c5c5d15169dda4ab8463e7edecc600ecd",
+          "size": 9855304,
+          "pathname": "books/arnold-meanders/epub/d5374b43c94f28da-arnold-meanders.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/d5374b43c94f28da-arnold-meanders.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders.html",
+          "sha256": "76cbef83856dc3f2f31b90437100fe3d61878f1efbb63b825a14ea0799581d0a",
+          "size": 87476,
+          "pathname": "books/arnold-meanders/html/76cbef83856dc3f2-arnold-meanders.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/76cbef83856dc3f2-arnold-meanders.html",
+          "skipped": false
+        },
+        "tutorial": {
+          "kind": "tutorial",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-visualization.html",
+          "sha256": "ac88feb68873061036bcfa47c84b7f80be921f1701280745eb4a8a892e7f5427",
+          "size": 253305,
+          "pathname": "books/arnold-meanders/tutorial/ac88feb688730610-arnold-meanders-visualization.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/ac88feb688730610-arnold-meanders-visualization.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-cover.png",
+          "sha256": "fee3a4fccbd5d14f44e779ef48a7313081513def47c0fd579b1d88023776e327",
+          "size": 4926195,
+          "pathname": "books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-headboard.png",
+          "sha256": "fee3a4fccbd5d14f44e779ef48a7313081513def47c0fd579b1d88023776e327",
+          "size": 4926195,
+          "pathname": "books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+          "skipped": true
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters",
+          "sha256": "98689173bc8033a11d476b6287de858daa948fe3ff3b315f712983c3fbe30572",
+          "pathnamePrefix": "books/arnold-meanders/chapters/98689173bc8033a1",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/2fbe6d5ef6ba-n5-4.svg",
+              "relativePath": "assets/2fbe6d5ef6ba-n5-4.svg",
+              "sha256": "2fbe6d5ef6bac8dcb5d9d61da9b8553835b549ac273f88b46fd54944db93bb98",
+              "size": 896,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/2fbe6d5ef6ba-n5-4.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/2fbe6d5ef6ba-n5-4.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/39ed5be87887-n5-1.svg",
+              "relativePath": "assets/39ed5be87887-n5-1.svg",
+              "sha256": "39ed5be8788755e5ef8ab467c2b8b8dfed134d433bdb07793577919da62dfbe7",
+              "size": 890,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/39ed5be87887-n5-1.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/39ed5be87887-n5-1.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/6063b41aa148-n4-2.svg",
+              "relativePath": "assets/6063b41aa148-n4-2.svg",
+              "sha256": "6063b41aa148f4a42b84959dcd1255ff42ef987441c313f80dcd3276a782302d",
+              "size": 792,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/6063b41aa148-n4-2.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/6063b41aa148-n4-2.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/823a1d003520-n5-5.svg",
+              "relativePath": "assets/823a1d003520-n5-5.svg",
+              "sha256": "823a1d003520dfae9fc97ce535cf4b6a6d2310e06cee429b9a55bc1e9ade518d",
+              "size": 890,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/823a1d003520-n5-5.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/823a1d003520-n5-5.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/865cbfe527d2-n4-3.svg",
+              "relativePath": "assets/865cbfe527d2-n4-3.svg",
+              "sha256": "865cbfe527d2edfdef62a5c36718b40b70c3a7ac3bf863ee87910892eadb28cd",
+              "size": 798,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/865cbfe527d2-n4-3.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/865cbfe527d2-n4-3.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/a7c62f047f11-n9-138.svg",
+              "relativePath": "assets/a7c62f047f11-n9-138.svg",
+              "sha256": "a7c62f047f11fabccf500f2c8aaaccfca6299df96e7b7d10262dba8375cabfb2",
+              "size": 1249,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/a7c62f047f11-n9-138.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/a7c62f047f11-n9-138.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/a95245f8de0b-n5-7.svg",
+              "relativePath": "assets/a95245f8de0b-n5-7.svg",
+              "sha256": "a95245f8de0ba45c0f3392f8a340ab92bba48e6415b2f97cc4c98b9cdc85d515",
+              "size": 892,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/a95245f8de0b-n5-7.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/a95245f8de0b-n5-7.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/dd88855229b3-n5-8.svg",
+              "relativePath": "assets/dd88855229b3-n5-8.svg",
+              "sha256": "dd88855229b3d37f68d1963d53501971507900b1709c2d510bede6d98e866508",
+              "size": 886,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/dd88855229b3-n5-8.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/dd88855229b3-n5-8.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/e2b9730fa0e1-n5-3.svg",
+              "relativePath": "assets/e2b9730fa0e1-n5-3.svg",
+              "sha256": "e2b9730fa0e18e565b0815b135fd88c2be97147991d0e1e508c096a9f1fbe934",
+              "size": 894,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/e2b9730fa0e1-n5-3.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/e2b9730fa0e1-n5-3.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/e4b27b34c672-n4-1.svg",
+              "relativePath": "assets/e4b27b34c672-n4-1.svg",
+              "sha256": "e4b27b34c6728bbc1088d7f6b0ab2b75ed20efb079a9e8d5bbe23c243c845fca",
+              "size": 796,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/e4b27b34c672-n4-1.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/e4b27b34c672-n4-1.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/fda44bc5dabf-n5-6.svg",
+              "relativePath": "assets/fda44bc5dabf-n5-6.svg",
+              "sha256": "fda44bc5dabfc1fb7c70065d2475437df24e7e2aa99f1a832b7dea711f6a66bb",
+              "size": 890,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/fda44bc5dabf-n5-6.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/fda44bc5dabf-n5-6.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/fdbfdae3feb8-n5-2.svg",
+              "relativePath": "assets/fdbfdae3feb8-n5-2.svg",
+              "sha256": "fdbfdae3feb82155eed77a2145ebfff4f13b77cfb570755353f0807feaf86cad",
+              "size": 890,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/fdbfdae3feb8-n5-2.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/fdbfdae3feb8-n5-2.svg",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "893b918392ed06ff71041a6ba373ccb337111fdaca3bc50814cdad500c51daf1",
+              "size": 7991,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "84a742009a3b123d0b42c23ced2ae7362221f9f8fa43941d0b26af8944202611",
+              "size": 12156,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "af03f88a76f07b6b0ff87f0a4e85742c66c65a4dfa98b7c39ee5153cca8389ed",
+              "size": 19493,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "2dfebeb69569d189eb40defff46891121748e04896c6b64d38d564c85bc4a410",
+              "size": 16911,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "e9db4c44bab294b335ecd96e3b550027359e49a26926b1187e9b552c87db7485",
+              "size": 14764,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "92efb1c51f6addeb08e67b63e567f37c3ab4715740ef2f3395b401c1b9c42b51",
+              "size": 16086,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "c7a30db8df02f75a12fba7d2543e4bbc6f6a33dd6d51f2493c363275640e75de",
+              "size": 11287,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "6fcbcca23d3a939daa933b2c2c0bc24452a10694b988cd419c4539fff4a20360",
+              "size": 7413,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "6811f4a8f602eb69d756c8b19c77afb0f632b69f82cd266203297be92fc4e8a1",
+              "size": 7074,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "0d21793762fdfc911c09c3217d2e45a9ae2613a8dc54518cd517dd4a6eee9a28",
+              "size": 5604,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "a9c0a6d3c29d33b64c12f7df810b45d7fe0d7dfebf302f8ac058a135960e244f",
+              "size": 3275,
+              "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -14576,6 +14853,31 @@
       "pathname": "books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png",
       "size": 1039474
+    },
+    "4eb09ccfbefbe436b1027107b2c2cd16b35b04dfa4607b6d3b718828e2407d15:467807": {
+      "pathname": "books/arnold-meanders/pdf/4eb09ccfbefbe436-arnold-meanders.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/4eb09ccfbefbe436-arnold-meanders.pdf",
+      "size": 467807
+    },
+    "d5374b43c94f28da20cf689e756f316c5c5d15169dda4ab8463e7edecc600ecd:9855304": {
+      "pathname": "books/arnold-meanders/epub/d5374b43c94f28da-arnold-meanders.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/d5374b43c94f28da-arnold-meanders.epub",
+      "size": 9855304
+    },
+    "76cbef83856dc3f2f31b90437100fe3d61878f1efbb63b825a14ea0799581d0a:87476": {
+      "pathname": "books/arnold-meanders/html/76cbef83856dc3f2-arnold-meanders.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/76cbef83856dc3f2-arnold-meanders.html",
+      "size": 87476
+    },
+    "ac88feb68873061036bcfa47c84b7f80be921f1701280745eb4a8a892e7f5427:253305": {
+      "pathname": "books/arnold-meanders/tutorial/ac88feb688730610-arnold-meanders-visualization.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/ac88feb688730610-arnold-meanders-visualization.html",
+      "size": 253305
+    },
+    "fee3a4fccbd5d14f44e779ef48a7313081513def47c0fd579b1d88023776e327:4926195": {
+      "pathname": "books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+      "size": 4926195
     }
   },
   "chapterPackages": {
@@ -44116,6 +44418,219 @@
           "size": 9358,
           "pathname": "books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/chapters/65d96319d0075a5a/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "98689173bc8033a11d476b6287de858daa948fe3ff3b315f712983c3fbe30572": {
+      "pathnamePrefix": "books/arnold-meanders/chapters/98689173bc8033a1",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/2fbe6d5ef6ba-n5-4.svg",
+          "relativePath": "assets/2fbe6d5ef6ba-n5-4.svg",
+          "sha256": "2fbe6d5ef6bac8dcb5d9d61da9b8553835b549ac273f88b46fd54944db93bb98",
+          "size": 896,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/2fbe6d5ef6ba-n5-4.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/2fbe6d5ef6ba-n5-4.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/39ed5be87887-n5-1.svg",
+          "relativePath": "assets/39ed5be87887-n5-1.svg",
+          "sha256": "39ed5be8788755e5ef8ab467c2b8b8dfed134d433bdb07793577919da62dfbe7",
+          "size": 890,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/39ed5be87887-n5-1.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/39ed5be87887-n5-1.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/6063b41aa148-n4-2.svg",
+          "relativePath": "assets/6063b41aa148-n4-2.svg",
+          "sha256": "6063b41aa148f4a42b84959dcd1255ff42ef987441c313f80dcd3276a782302d",
+          "size": 792,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/6063b41aa148-n4-2.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/6063b41aa148-n4-2.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/823a1d003520-n5-5.svg",
+          "relativePath": "assets/823a1d003520-n5-5.svg",
+          "sha256": "823a1d003520dfae9fc97ce535cf4b6a6d2310e06cee429b9a55bc1e9ade518d",
+          "size": 890,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/823a1d003520-n5-5.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/823a1d003520-n5-5.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/865cbfe527d2-n4-3.svg",
+          "relativePath": "assets/865cbfe527d2-n4-3.svg",
+          "sha256": "865cbfe527d2edfdef62a5c36718b40b70c3a7ac3bf863ee87910892eadb28cd",
+          "size": 798,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/865cbfe527d2-n4-3.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/865cbfe527d2-n4-3.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/a7c62f047f11-n9-138.svg",
+          "relativePath": "assets/a7c62f047f11-n9-138.svg",
+          "sha256": "a7c62f047f11fabccf500f2c8aaaccfca6299df96e7b7d10262dba8375cabfb2",
+          "size": 1249,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/a7c62f047f11-n9-138.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/a7c62f047f11-n9-138.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/a95245f8de0b-n5-7.svg",
+          "relativePath": "assets/a95245f8de0b-n5-7.svg",
+          "sha256": "a95245f8de0ba45c0f3392f8a340ab92bba48e6415b2f97cc4c98b9cdc85d515",
+          "size": 892,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/a95245f8de0b-n5-7.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/a95245f8de0b-n5-7.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/dd88855229b3-n5-8.svg",
+          "relativePath": "assets/dd88855229b3-n5-8.svg",
+          "sha256": "dd88855229b3d37f68d1963d53501971507900b1709c2d510bede6d98e866508",
+          "size": 886,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/dd88855229b3-n5-8.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/dd88855229b3-n5-8.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/e2b9730fa0e1-n5-3.svg",
+          "relativePath": "assets/e2b9730fa0e1-n5-3.svg",
+          "sha256": "e2b9730fa0e18e565b0815b135fd88c2be97147991d0e1e508c096a9f1fbe934",
+          "size": 894,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/e2b9730fa0e1-n5-3.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/e2b9730fa0e1-n5-3.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/e4b27b34c672-n4-1.svg",
+          "relativePath": "assets/e4b27b34c672-n4-1.svg",
+          "sha256": "e4b27b34c6728bbc1088d7f6b0ab2b75ed20efb079a9e8d5bbe23c243c845fca",
+          "size": 796,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/e4b27b34c672-n4-1.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/e4b27b34c672-n4-1.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/fda44bc5dabf-n5-6.svg",
+          "relativePath": "assets/fda44bc5dabf-n5-6.svg",
+          "sha256": "fda44bc5dabfc1fb7c70065d2475437df24e7e2aa99f1a832b7dea711f6a66bb",
+          "size": 890,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/fda44bc5dabf-n5-6.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/fda44bc5dabf-n5-6.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/assets/fdbfdae3feb8-n5-2.svg",
+          "relativePath": "assets/fdbfdae3feb8-n5-2.svg",
+          "sha256": "fdbfdae3feb82155eed77a2145ebfff4f13b77cfb570755353f0807feaf86cad",
+          "size": 890,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/assets/fdbfdae3feb8-n5-2.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/assets/fdbfdae3feb8-n5-2.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "893b918392ed06ff71041a6ba373ccb337111fdaca3bc50814cdad500c51daf1",
+          "size": 7991,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "84a742009a3b123d0b42c23ced2ae7362221f9f8fa43941d0b26af8944202611",
+          "size": 12156,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "af03f88a76f07b6b0ff87f0a4e85742c66c65a4dfa98b7c39ee5153cca8389ed",
+          "size": 19493,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "2dfebeb69569d189eb40defff46891121748e04896c6b64d38d564c85bc4a410",
+          "size": 16911,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "e9db4c44bab294b335ecd96e3b550027359e49a26926b1187e9b552c87db7485",
+          "size": 14764,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "92efb1c51f6addeb08e67b63e567f37c3ab4715740ef2f3395b401c1b9c42b51",
+          "size": 16086,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "c7a30db8df02f75a12fba7d2543e4bbc6f6a33dd6d51f2493c363275640e75de",
+          "size": 11287,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "6fcbcca23d3a939daa933b2c2c0bc24452a10694b988cd419c4539fff4a20360",
+          "size": 7413,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "6811f4a8f602eb69d756c8b19c77afb0f632b69f82cd266203297be92fc4e8a1",
+          "size": 7074,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "0d21793762fdfc911c09c3217d2e45a9ae2613a8dc54518cd517dd4a6eee9a28",
+          "size": 5604,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "a9c0a6d3c29d33b64c12f7df810b45d7fe0d7dfebf302f8ac058a135960e244f",
+          "size": 3275,
+          "pathname": "books/arnold-meanders/chapters/98689173bc8033a1/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/sitemap.json",
           "skipped": false
         }
       ]

@@ -295,6 +295,15 @@
       "htmlChapters": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-chapters",
       "cover": "book-uploads/staging/personalized-computational-pedagogy/personalized-computational-pedagogy-cover.png",
       "publicationMetadata": "book-uploads/publications/personalized-computational-pedagogy.json"
+    },
+    "arnold-meanders": {
+      "pdf": "book-uploads/staging/arnold-meanders/arnold-meanders.pdf",
+      "epub": "book-uploads/staging/arnold-meanders/arnold-meanders.epub",
+      "html": "book-uploads/staging/arnold-meanders/arnold-meanders.html",
+      "htmlChapters": "book-uploads/staging/arnold-meanders/arnold-meanders-chapters",
+      "tutorial": "book-uploads/staging/arnold-meanders/arnold-meanders-visualization.html",
+      "cover": "book-uploads/staging/arnold-meanders/arnold-meanders-cover.png",
+      "headboard": "book-uploads/staging/arnold-meanders/arnold-meanders-headboard.png"
     }
   }
 }

@@ -257,5 +257,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/pdf/fa4c0cb8d8187e1b-personalized-computational-pedagogy.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/epub/940c1a2f934504bf-personalized-computational-pedagogy.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png"
+  },
+  {
+    "slug": "arnold-meanders",
+    "title": "Counting Arnold's Meanders with Verified Algorithms",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/4eb09ccfbefbe436-arnold-meanders.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/d5374b43c94f28da-arnold-meanders.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png"
   }
 ]

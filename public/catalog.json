@@ -854,6 +854,33 @@
       "html": "/read/personalized-computational-pedagogy/",
       "htmlChapters": "/read/personalized-computational-pedagogy/chapters/",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/personalized-computational-pedagogy/cover/fe81517bfa8c2b91-personalized-computational-pedagogy-cover.png"
+    },
+    {
+      "slug": "arnold-meanders",
+      "title": "Counting Arnold's Meanders with Verified Algorithms",
+      "author": "Alexy Khrabrov",
+      "kicker": "Scholarly article",
+      "description": "In how many ways can a river cross a straight road n times? No closed formula is known. This paper formalizes Arnold's meander problem in Lean 4 and gives two counting algorithms proved, for every n, to return exactly the specified count: a search with parity pruning and a transfer matrix with merged and pruned states. The verified transfer matrix computes the counts up to n = 32; values up to n = 13 are checked by the Lean kernel alone. With an animated visualization of the rivers.",
+      "accent": "#52734d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/4eb09ccfbefbe436-arnold-meanders.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/d5374b43c94f28da-arnold-meanders.epub",
+      "html": "/read/arnold-meanders/",
+      "htmlChapters": "/read/arnold-meanders/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/76cbef83856dc3f2-arnold-meanders.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/98689173bc8033a1/index.html",
+      "tags": [
+        "mathematics",
+        "combinatorics",
+        "lean",
+        "formal-verification",
+        "meanders"
+      ],
+      "shelf": "math",
+      "source": "https://github.com/querygraph/meander",
+      "tutorialSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/ac88feb688730610-arnold-meanders-visualization.html",
+      "tutorial": "/learn/arnold-meanders/",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png"
     }
   ]
 }
