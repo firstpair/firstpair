@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-07T20:15:44.385Z",
+  "updatedAt": "2026-10-07T20:17:57.421Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -12236,25 +12236,25 @@
       }
     },
     "arnold-meanders": {
-      "updatedAt": "2026-10-07T20:15:44.385Z",
+      "updatedAt": "2026-10-07T20:17:57.420Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders.pdf",
-          "sha256": "38fe75afe2305d28dd91ce2b112933c28b25261bd2b72ba47b7ef027571c77f1",
+          "sha256": "186087d99112c1134334deac70cea5345b2b12961a8f982cbda9417a6eadafef",
           "size": 467807,
-          "pathname": "books/arnold-meanders/pdf/38fe75afe2305d28-arnold-meanders.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/38fe75afe2305d28-arnold-meanders.pdf",
+          "pathname": "books/arnold-meanders/pdf/186087d99112c113-arnold-meanders.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/186087d99112c113-arnold-meanders.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders.epub",
-          "sha256": "b1220ac6d80d55001e7ad3fdfac6f5038f26ec498043d2cb63433fa7973ac1c7",
-          "size": 9855303,
-          "pathname": "books/arnold-meanders/epub/b1220ac6d80d5500-arnold-meanders.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/b1220ac6d80d5500-arnold-meanders.epub",
+          "sha256": "4da5febf9e3e616d4e2bdc818148e8b6a2d1c4fea1e975d20245e0b399bba6c8",
+          "size": 9855304,
+          "pathname": "books/arnold-meanders/epub/4da5febf9e3e616d-arnold-meanders.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/4da5febf9e3e616d-arnold-meanders.epub",
           "skipped": false
         },
         "html": {
@@ -12269,10 +12269,10 @@
         "tutorial": {
           "kind": "tutorial",
           "localPath": "book-uploads/staging/arnold-meanders/arnold-meanders-visualization.html",
-          "sha256": "cdbb8a3a26d990968bbcfb34f94c8c5471cdc647797b383b95cadbadff0b30b1",
-          "size": 253650,
-          "pathname": "books/arnold-meanders/tutorial/cdbb8a3a26d99096-arnold-meanders-visualization.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/cdbb8a3a26d99096-arnold-meanders-visualization.html",
+          "sha256": "fc2d747610c98a5ffe36da5dd42705523d3c4de01b2038076b09e070d2914f59",
+          "size": 253674,
+          "pathname": "books/arnold-meanders/tutorial/fc2d747610c98a5f-arnold-meanders-visualization.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/fc2d747610c98a5f-arnold-meanders-visualization.html",
           "skipped": false
         },
         "cover": {
@@ -14893,6 +14893,21 @@
       "pathname": "books/arnold-meanders/tutorial/cdbb8a3a26d99096-arnold-meanders-visualization.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/cdbb8a3a26d99096-arnold-meanders-visualization.html",
       "size": 253650
+    },
+    "186087d99112c1134334deac70cea5345b2b12961a8f982cbda9417a6eadafef:467807": {
+      "pathname": "books/arnold-meanders/pdf/186087d99112c113-arnold-meanders.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/186087d99112c113-arnold-meanders.pdf",
+      "size": 467807
+    },
+    "4da5febf9e3e616d4e2bdc818148e8b6a2d1c4fea1e975d20245e0b399bba6c8:9855304": {
+      "pathname": "books/arnold-meanders/epub/4da5febf9e3e616d-arnold-meanders.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/4da5febf9e3e616d-arnold-meanders.epub",
+      "size": 9855304
+    },
+    "fc2d747610c98a5ffe36da5dd42705523d3c4de01b2038076b09e070d2914f59:253674": {
+      "pathname": "books/arnold-meanders/tutorial/fc2d747610c98a5f-arnold-meanders-visualization.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/fc2d747610c98a5f-arnold-meanders-visualization.html",
+      "size": 253674
     }
   },
   "chapterPackages": {
