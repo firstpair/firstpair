@@ -261,8 +261,8 @@ export const deliverableBooks = [
   {
     "slug": "arnold-meanders",
     "title": "Counting Arnold's Meanders with Verified Algorithms",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/db36e79e1e0548df-arnold-meanders.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/0b1546726c6dfcb8-arnold-meanders.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/pdf/53b9ed796ba3b8cd-arnold-meanders.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/epub/beb45e3cca0731ff-arnold-meanders.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png"
   }
 ]

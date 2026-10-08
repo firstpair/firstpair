@@ -224,9 +224,9 @@ export const readerBooks = [
   },
   {
     "slug": "arnold-meanders",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/b025d67405e4b43c-arnold-meanders.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/47159396dee2de65/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/47159396dee2de65",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/d6af1099776399a2-arnold-meanders.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/b8b908dc2e31e4c7/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/b8b908dc2e31e4c7",
     "tutorialSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/tutorial/fc2d747610c98a5f-arnold-meanders-visualization.html"
   }
 ]
