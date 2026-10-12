@@ -303,6 +303,19 @@ function setPdfMetadata(pdf, context) {
   )
 }
 
+function mergePdfPages(inputs, output, context) {
+  publishingPython ??= commandOutput(
+    join(scriptDir, 'ensure-python-env.sh'),
+    [join(firstpairRoot, 'publishing', 'python')],
+    firstpairRoot,
+  )
+  run(
+    publishingPython,
+    [join(firstpairRoot, 'publishing', 'python', 'merge_book_pdf.py'), '--output', output, ...inputs],
+    { cwd: context.repoRoot },
+  )
+}
+
 function buildTypstPdf(variant, config, context) {
   const output = join(context.distDir, `${variant.stem}.pdf`)
   const body = join(context.tmpDir, `${variant.name}.body.pdf`)
@@ -338,7 +351,7 @@ function buildTypstPdf(variant, config, context) {
     )
     const coverPdf = join(context.tmpDir, `${variant.name}.cover.pdf`)
     run('typst', ['compile', '--root', '/', coverTyp, coverPdf], { cwd: context.repoRoot })
-    run('pdfunite', [coverPdf, body, output], { cwd: context.repoRoot })
+    mergePdfPages([coverPdf, body], output, context)
   } else if (context.renderedCover && pdfConfig.separateCover !== false) {
     const coverPdf = join(context.tmpDir, `${variant.name}.cover.pdf`)
     runPandoc([
@@ -347,7 +360,7 @@ function buildTypstPdf(variant, config, context) {
       '--pdf-engine=typst',
       ...(pdfConfig.coverArgs ?? []).map((arg) => expand(String(arg), context)),
     ], config, context)
-    run('pdfunite', [coverPdf, body, output], { cwd: context.repoRoot })
+    mergePdfPages([coverPdf, body], output, context)
   } else {
     copyFileSync(body, output)
   }
