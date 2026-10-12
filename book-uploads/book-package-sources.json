@@ -312,6 +312,14 @@
       "htmlChapters": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters",
       "cover": "book-uploads/staging/lightroom-repair/lightroom-repair-cover.png",
       "headboard": "book-uploads/staging/lightroom-repair/lightroom-repair-headboard.png"
+    },
+    "dng-compare": {
+      "pdf": "book-uploads/staging/dng-compare/dng-compare.pdf",
+      "epub": "book-uploads/staging/dng-compare/dng-compare.epub",
+      "html": "book-uploads/staging/dng-compare/dng-compare.html",
+      "htmlChapters": "book-uploads/staging/dng-compare/dng-compare-chapters",
+      "cover": "book-uploads/staging/dng-compare/dng-compare-cover.png",
+      "headboard": "book-uploads/staging/dng-compare/dng-compare-headboard.png"
     }
   }
 }

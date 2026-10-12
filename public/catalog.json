@@ -907,6 +907,31 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
       "post": "https://firstpair.press/lightroom-repair/"
+    },
+    {
+      "slug": "dng-compare",
+      "title": "DNG Compare",
+      "author": "FirstPair contributors",
+      "kicker": "Same samples, different metadata",
+      "description": "A manual for comparing DNG raw samples, examining metadata changes and preserving exact recoverable bytes with Python, Rust and OCaml.",
+      "accent": "#7c5147",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/pdf/f7155f4d50fe2193-dng-compare.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/epub/a0afc5e033fb3b78-dng-compare.epub",
+      "html": "/read/dng-compare/",
+      "htmlChapters": "/read/dng-compare/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/bded2bc2e366b06b-dng-compare.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/3537060fcddbd7c5/index.html",
+      "tags": [
+        "photography",
+        "dng",
+        "metadata",
+        "rust",
+        "ocaml"
+      ],
+      "shelf": "howto",
+      "source": "https://github.com/firstpair/dng-compare",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/cover/71c328c81eeb6f41-dng-compare-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/cover/71c328c81eeb6f41-dng-compare-cover.png"
     }
   ]
 }
