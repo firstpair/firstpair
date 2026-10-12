@@ -52,6 +52,11 @@ const libraryShelfConfig = [
     deck: 'Practical music guides and listening-led learning books.',
   },
   {
+    id: 'howto',
+    label: 'HOWTO',
+    deck: 'Practical manuals for installing tools, repairing systems, and checking results.',
+  },
+  {
     id: 'technology',
     label: 'Technology',
     deck: 'Books about software, startups, and technical culture.',
