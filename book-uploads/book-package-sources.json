@@ -304,6 +304,14 @@
       "tutorial": "book-uploads/staging/arnold-meanders/arnold-meanders-visualization.html",
       "cover": "book-uploads/staging/arnold-meanders/arnold-meanders-cover.png",
       "headboard": "book-uploads/staging/arnold-meanders/arnold-meanders-headboard.png"
+    },
+    "lightroom-repair": {
+      "pdf": "book-uploads/staging/lightroom-repair/lightroom-repair.pdf",
+      "epub": "book-uploads/staging/lightroom-repair/lightroom-repair.epub",
+      "html": "book-uploads/staging/lightroom-repair/lightroom-repair.html",
+      "htmlChapters": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters",
+      "cover": "book-uploads/staging/lightroom-repair/lightroom-repair-cover.png",
+      "headboard": "book-uploads/staging/lightroom-repair/lightroom-repair-headboard.png"
     }
   }
 }

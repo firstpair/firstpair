@@ -882,6 +882,30 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/cover/fee3a4fccbd5d14f-arnold-meanders-cover.png",
       "post": "https://querygraph.ai/arnold-meanders/"
+    },
+    {
+      "slug": "lightroom-repair",
+      "title": "FirstPair Lightroom Repair",
+      "author": "FirstPair contributors",
+      "kicker": "A verified repair cookbook",
+      "description": "A practical cookbook for preserving and repairing a large Lightroom catalog, Smart Previews, settings and Sync, with a guarded macOS performance starter.",
+      "accent": "#8a4f3d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/pdf/1a167c59c0634551-lightroom-repair.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/epub/4248fe9942df2040-lightroom-repair.epub",
+      "html": "/read/lightroom-repair/",
+      "htmlChapters": "/read/lightroom-repair/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/html/40ecfebb02f53148-lightroom-repair.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+      "tags": [
+        "lightroom",
+        "photography",
+        "sqlite",
+        "repair"
+      ],
+      "shelf": "technology",
+      "source": "https://github.com/firstpair/lightroom",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png"
     }
   ]
 }

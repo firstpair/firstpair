@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-11T17:03:34.330Z",
+  "updatedAt": "2026-10-12T17:32:02.180Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -12511,6 +12511,373 @@
           ]
         }
       }
+    },
+    "lightroom-repair": {
+      "updatedAt": "2026-10-12T17:32:02.179Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair.pdf",
+          "sha256": "1a167c59c06345510c3469b0330e491161680f6ea114685a65a3cdc323077a5d",
+          "size": 4122962,
+          "pathname": "books/lightroom-repair/pdf/1a167c59c0634551-lightroom-repair.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/pdf/1a167c59c0634551-lightroom-repair.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair.epub",
+          "sha256": "4248fe9942df2040ba98d4874f48791732ae83da1ce42feb00ad6c83ea25eae9",
+          "size": 5474779,
+          "pathname": "books/lightroom-repair/epub/4248fe9942df2040-lightroom-repair.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/epub/4248fe9942df2040-lightroom-repair.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair.html",
+          "sha256": "40ecfebb02f531488cd73b16507be02f26498a6b155dba187e1eae008b2f7722",
+          "size": 3766659,
+          "pathname": "books/lightroom-repair/html/40ecfebb02f53148-lightroom-repair.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/html/40ecfebb02f53148-lightroom-repair.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-cover.png",
+          "sha256": "0189f72c3b5edbd02cb873867c1bfccb9ce30604c0dc85cf5d0e83b64682aa3c",
+          "size": 2756948,
+          "pathname": "books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-headboard.png",
+          "sha256": "0189f72c3b5edbd02cb873867c1bfccb9ce30604c0dc85cf5d0e83b64682aa3c",
+          "size": 2756948,
+          "pathname": "books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+          "skipped": true
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters",
+          "sha256": "b36056f90eac42fd0397b6a799c0003e0339f5b5de757dfb8fd00b026041dec4",
+          "pathnamePrefix": "books/lightroom-repair/chapters/b36056f90eac42fd",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "a6efef22e66280a60216b5a37840c39275c264bbd992524e9187523aceb1fb70",
+              "size": 1008,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "cf505d91e2711e40545715eb07fa7ad296ffb81dd5b98da302e14d9d3067b6c3",
+              "size": 2606,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "537385dbaf04e7f701b3b567920a4fdb42f721f1b1c41e5d31b4ff810f1f519c",
+              "size": 3460,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "c9a2f556490829599b1ff1a47ac2ba3b1d82c92c19f11dd6bdc0eb8826083de9",
+              "size": 6358,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "384ebb2e1afe1409161d5292422d5fc09e8722752611ec61fc6c74b3b9bbeb1e",
+              "size": 5063,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "7d9e06e86ecdf4582ea023c352b2fc507dd50e83b2cb2045016607ab25dc336e",
+              "size": 9416,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "3c76b8320e48a5279b3c5e1da2af43282d3436781610103e174422e7cc52e09b",
+              "size": 5733,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "744eefdc0c75191fe54717675dc4d8cf1eae802f7649d6ee3958ca233bac673d",
+              "size": 4686,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "f05ac4122a095789e83feb8ca5d03e7b9f7aee6ae2c087eb5abfa3d2e18db26b",
+              "size": 4436,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "8d90a0a3e726a0f4edef4fdc591cacead7e7fef2985a55338fae6c9d4611849c",
+              "size": 4737,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "ad576463d007978ceb08ba1f958ffa40ed06695d763c743ed22cc88cfbe54f0e",
+              "size": 5479,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "4b2fcfce3f726396db1b526b1170a925a7c0796b04b66914cf5549c37776e1f0",
+              "size": 10402,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "118d7a370398dd68b5c33f0dab1ea98deee3c9761814cb390e8c000425137aeb",
+              "size": 7226,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "334c15a61ed120802ba9570abe29bfd7e82d65f157c8a71f655c17bde4a52b88",
+              "size": 5363,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "d2e403b6b77018dd4130b419bdf4e1486941770de54fbb366de8953e3b718934",
+              "size": 4998,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "2b688d79ea87ec911274b7b4d589116b8147697ac187514acd28eb5e5fb78919",
+              "size": 4669,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "d3be38275d27fb9457506dce2190d3b8a2bb8bb62265526aca2ea76e108ccc15",
+              "size": 4547,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-017.html",
+              "relativePath": "chapter-017.html",
+              "sha256": "5cdc5dfdde7be14477270317ff727d4298b2c5e678444ef2127d12400d562b2c",
+              "size": 5127,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-017.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-018.html",
+              "relativePath": "chapter-018.html",
+              "sha256": "9c65433df298c8a6a4878809bb763fb88cbc284cf03b04139b39132c661a3880",
+              "size": 4802,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-018.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-019.html",
+              "relativePath": "chapter-019.html",
+              "sha256": "29cae211f2cf78579c8a13097ada5aadcd4617c41026a9ffa05a86e917b86a71",
+              "size": 4719,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-019.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-020.html",
+              "relativePath": "chapter-020.html",
+              "sha256": "c8ed5417a04de11d7115a3bf34655767e1fc7ffe7bd15392684bf7aa0700cd56",
+              "size": 5362,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-020.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-020.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-021.html",
+              "relativePath": "chapter-021.html",
+              "sha256": "faece4f825594f68b4d8142c7e8942158662a6eb0d96a1ad43faa529465298da",
+              "size": 5554,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-021.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-021.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-022.html",
+              "relativePath": "chapter-022.html",
+              "sha256": "510ec7a712602500292667c36dc8c58fffb9b3d3de41c600d848f50720f631ca",
+              "size": 4940,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-022.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-022.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-023.html",
+              "relativePath": "chapter-023.html",
+              "sha256": "aea6fdc8d11c42b7da3d8ed389faa50133e52f7093b3355e8e730a2643bd84ee",
+              "size": 5278,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-023.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-023.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-024.html",
+              "relativePath": "chapter-024.html",
+              "sha256": "14cdf7bcf400d67aaccf000f132c2c19d0916279ac62745e2316a22dde6ad837",
+              "size": 5467,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-024.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-024.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-025.html",
+              "relativePath": "chapter-025.html",
+              "sha256": "83951aa58c6f12fbc47c2bb9c6e8c29e370362e60fff38df77036c236a050384",
+              "size": 8045,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-025.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-025.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-026.html",
+              "relativePath": "chapter-026.html",
+              "sha256": "a6588646c15706660ff79e63a5a0b820e5499a95f1e101f0dce9af93745a8118",
+              "size": 5257,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-026.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-026.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-027.html",
+              "relativePath": "chapter-027.html",
+              "sha256": "05675cf33d10b12e1b985ec57ec8e4e6dc8a4127032975c9c4d57bd8c3985011",
+              "size": 6031,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-027.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-027.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-028.html",
+              "relativePath": "chapter-028.html",
+              "sha256": "fcfb71f8d4191060bd5e2d915bbc666e4ad84d168e6d23505f589dacb570df55",
+              "size": 5260,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-028.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-028.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-029.html",
+              "relativePath": "chapter-029.html",
+              "sha256": "42636e4f236825fae78fbbe5ed511255155092ccc6c9a4f61ad1e4ce14a69bb4",
+              "size": 3372,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-029.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-029.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-030.html",
+              "relativePath": "chapter-030.html",
+              "sha256": "d02a3e984ebbb022125feff860e96fcf6ef393a378b572388246b8663b5a5d6a",
+              "size": 3237,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-030.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-030.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/cover/lightroom-halfdome.png",
+              "relativePath": "cover/lightroom-halfdome.png",
+              "sha256": "0189f72c3b5edbd02cb873867c1bfccb9ce30604c0dc85cf5d0e83b64682aa3c",
+              "size": 2756948,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/cover/lightroom-halfdome.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/cover/lightroom-halfdome.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "6fd0a8d09bbf19f3c397616e2439456e4daeec1b3d463117fae7638ba1577aff",
+              "size": 8639,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "7901aaca309f22e268b6b31af43227d91c00cb2bc1ccbfd015418fa4d333f2c2",
+              "size": 6703,
+              "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -14968,6 +15335,26 @@
       "pathname": "books/arnold-meanders/html/cf41ea4fac22825d-arnold-meanders.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/html/cf41ea4fac22825d-arnold-meanders.html",
       "size": 133903
+    },
+    "1a167c59c06345510c3469b0330e491161680f6ea114685a65a3cdc323077a5d:4122962": {
+      "pathname": "books/lightroom-repair/pdf/1a167c59c0634551-lightroom-repair.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/pdf/1a167c59c0634551-lightroom-repair.pdf",
+      "size": 4122962
+    },
+    "4248fe9942df2040ba98d4874f48791732ae83da1ce42feb00ad6c83ea25eae9:5474779": {
+      "pathname": "books/lightroom-repair/epub/4248fe9942df2040-lightroom-repair.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/epub/4248fe9942df2040-lightroom-repair.epub",
+      "size": 5474779
+    },
+    "40ecfebb02f531488cd73b16507be02f26498a6b155dba187e1eae008b2f7722:3766659": {
+      "pathname": "books/lightroom-repair/html/40ecfebb02f53148-lightroom-repair.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/html/40ecfebb02f53148-lightroom-repair.html",
+      "size": 3766659
+    },
+    "0189f72c3b5edbd02cb873867c1bfccb9ce30604c0dc85cf5d0e83b64682aa3c:2756948": {
+      "pathname": "books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png",
+      "size": 2756948
     }
   },
   "chapterPackages": {
@@ -45574,6 +45961,318 @@
           "pathname": "books/arnold-meanders/chapters/15e5bdfba8de6325/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/arnold-meanders/chapters/15e5bdfba8de6325/sitemap.json",
           "skipped": true
+        }
+      ]
+    },
+    "b36056f90eac42fd0397b6a799c0003e0339f5b5de757dfb8fd00b026041dec4": {
+      "pathnamePrefix": "books/lightroom-repair/chapters/b36056f90eac42fd",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "a6efef22e66280a60216b5a37840c39275c264bbd992524e9187523aceb1fb70",
+          "size": 1008,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "cf505d91e2711e40545715eb07fa7ad296ffb81dd5b98da302e14d9d3067b6c3",
+          "size": 2606,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "537385dbaf04e7f701b3b567920a4fdb42f721f1b1c41e5d31b4ff810f1f519c",
+          "size": 3460,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "c9a2f556490829599b1ff1a47ac2ba3b1d82c92c19f11dd6bdc0eb8826083de9",
+          "size": 6358,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "384ebb2e1afe1409161d5292422d5fc09e8722752611ec61fc6c74b3b9bbeb1e",
+          "size": 5063,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "7d9e06e86ecdf4582ea023c352b2fc507dd50e83b2cb2045016607ab25dc336e",
+          "size": 9416,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "3c76b8320e48a5279b3c5e1da2af43282d3436781610103e174422e7cc52e09b",
+          "size": 5733,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "744eefdc0c75191fe54717675dc4d8cf1eae802f7649d6ee3958ca233bac673d",
+          "size": 4686,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "f05ac4122a095789e83feb8ca5d03e7b9f7aee6ae2c087eb5abfa3d2e18db26b",
+          "size": 4436,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "8d90a0a3e726a0f4edef4fdc591cacead7e7fef2985a55338fae6c9d4611849c",
+          "size": 4737,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "ad576463d007978ceb08ba1f958ffa40ed06695d763c743ed22cc88cfbe54f0e",
+          "size": 5479,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "4b2fcfce3f726396db1b526b1170a925a7c0796b04b66914cf5549c37776e1f0",
+          "size": 10402,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "118d7a370398dd68b5c33f0dab1ea98deee3c9761814cb390e8c000425137aeb",
+          "size": 7226,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "334c15a61ed120802ba9570abe29bfd7e82d65f157c8a71f655c17bde4a52b88",
+          "size": 5363,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "d2e403b6b77018dd4130b419bdf4e1486941770de54fbb366de8953e3b718934",
+          "size": 4998,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "2b688d79ea87ec911274b7b4d589116b8147697ac187514acd28eb5e5fb78919",
+          "size": 4669,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "d3be38275d27fb9457506dce2190d3b8a2bb8bb62265526aca2ea76e108ccc15",
+          "size": 4547,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "5cdc5dfdde7be14477270317ff727d4298b2c5e678444ef2127d12400d562b2c",
+          "size": 5127,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "9c65433df298c8a6a4878809bb763fb88cbc284cf03b04139b39132c661a3880",
+          "size": 4802,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "29cae211f2cf78579c8a13097ada5aadcd4617c41026a9ffa05a86e917b86a71",
+          "size": 4719,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-020.html",
+          "relativePath": "chapter-020.html",
+          "sha256": "c8ed5417a04de11d7115a3bf34655767e1fc7ffe7bd15392684bf7aa0700cd56",
+          "size": 5362,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-020.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-020.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-021.html",
+          "relativePath": "chapter-021.html",
+          "sha256": "faece4f825594f68b4d8142c7e8942158662a6eb0d96a1ad43faa529465298da",
+          "size": 5554,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-021.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-021.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-022.html",
+          "relativePath": "chapter-022.html",
+          "sha256": "510ec7a712602500292667c36dc8c58fffb9b3d3de41c600d848f50720f631ca",
+          "size": 4940,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-022.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-022.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-023.html",
+          "relativePath": "chapter-023.html",
+          "sha256": "aea6fdc8d11c42b7da3d8ed389faa50133e52f7093b3355e8e730a2643bd84ee",
+          "size": 5278,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-023.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-023.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-024.html",
+          "relativePath": "chapter-024.html",
+          "sha256": "14cdf7bcf400d67aaccf000f132c2c19d0916279ac62745e2316a22dde6ad837",
+          "size": 5467,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-024.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-024.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-025.html",
+          "relativePath": "chapter-025.html",
+          "sha256": "83951aa58c6f12fbc47c2bb9c6e8c29e370362e60fff38df77036c236a050384",
+          "size": 8045,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-025.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-025.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-026.html",
+          "relativePath": "chapter-026.html",
+          "sha256": "a6588646c15706660ff79e63a5a0b820e5499a95f1e101f0dce9af93745a8118",
+          "size": 5257,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-026.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-026.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-027.html",
+          "relativePath": "chapter-027.html",
+          "sha256": "05675cf33d10b12e1b985ec57ec8e4e6dc8a4127032975c9c4d57bd8c3985011",
+          "size": 6031,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-027.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-027.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-028.html",
+          "relativePath": "chapter-028.html",
+          "sha256": "fcfb71f8d4191060bd5e2d915bbc666e4ad84d168e6d23505f589dacb570df55",
+          "size": 5260,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-028.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-028.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-029.html",
+          "relativePath": "chapter-029.html",
+          "sha256": "42636e4f236825fae78fbbe5ed511255155092ccc6c9a4f61ad1e4ce14a69bb4",
+          "size": 3372,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-029.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-029.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/chapter-030.html",
+          "relativePath": "chapter-030.html",
+          "sha256": "d02a3e984ebbb022125feff860e96fcf6ef393a378b572388246b8663b5a5d6a",
+          "size": 3237,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/chapter-030.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/chapter-030.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/cover/lightroom-halfdome.png",
+          "relativePath": "cover/lightroom-halfdome.png",
+          "sha256": "0189f72c3b5edbd02cb873867c1bfccb9ce30604c0dc85cf5d0e83b64682aa3c",
+          "size": 2756948,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/cover/lightroom-halfdome.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/cover/lightroom-halfdome.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "6fd0a8d09bbf19f3c397616e2439456e4daeec1b3d463117fae7638ba1577aff",
+          "size": 8639,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lightroom-repair/lightroom-repair-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "7901aaca309f22e268b6b31af43227d91c00cb2bc1ccbfd015418fa4d333f2c2",
+          "size": 6703,
+          "pathname": "books/lightroom-repair/chapters/b36056f90eac42fd/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/b36056f90eac42fd/sitemap.json",
+          "skipped": false
         }
       ]
     }
