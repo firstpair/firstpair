@@ -169,6 +169,14 @@ pack-only commit must preserve both `gitCommit` and the complete archive bytes.
 
 ## Public Book Delivery
 
+Every PDF and EPUB reading edition must begin with the image cover, followed
+immediately by a title/information page displaying `firstpair.press`, the exact
+semantic version of the book, and its source Git commit hash. Use the full
+commit hash. When refreshing artwork on an existing edition, identify the
+separate cover revision explicitly; do not imply that unchanged book content
+was rebuilt from the cover revision. Validate the page order and version text
+in both formats before publishing.
+
 Public books have one lightweight metadata directory under `public/`. Use the
 book's stable stem for the directory name:
 

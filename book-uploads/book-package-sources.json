@@ -92,8 +92,8 @@
       "headboard": "book-uploads/staging/zucchero/zucchero-headboard.png"
     },
     "querygraph": {
-      "pdf": "book-uploads/staging/querygraph/querygraph.pdf",
-      "epub": "book-uploads/staging/querygraph/querygraph.epub",
+      "pdf": "../querygraph/docs/guide/dist/querygraph.pdf",
+      "epub": "../querygraph/docs/guide/dist/querygraph.epub",
       "html": "book-uploads/staging/querygraph/querygraph.html",
       "htmlChapters": "book-uploads/staging/querygraph/querygraph-chapters",
       "cover": "book-uploads/staging/querygraph/querygraph-cover.png",
