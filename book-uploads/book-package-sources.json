@@ -95,7 +95,9 @@
       "pdf": "book-uploads/staging/querygraph/querygraph.pdf",
       "epub": "book-uploads/staging/querygraph/querygraph.epub",
       "html": "book-uploads/staging/querygraph/querygraph.html",
-      "htmlChapters": "book-uploads/staging/querygraph/querygraph-chapters"
+      "htmlChapters": "book-uploads/staging/querygraph/querygraph-chapters",
+      "cover": "book-uploads/staging/querygraph/querygraph-cover.png",
+      "headboard": "book-uploads/staging/querygraph/querygraph-headboard.png"
     },
     "sail-iggy": {
       "pdf": "book-uploads/staging/sail-iggy/sail-iggy-connector.pdf",
