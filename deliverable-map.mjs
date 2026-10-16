@@ -83,8 +83,8 @@ export const deliverableBooks = [
   {
     "slug": "querygraph",
     "title": "The QueryGraph Stack",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/525f0b6e2c971704-querygraph.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/8a202c7a334a9cd1-querygraph.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/0d6117418b8a9ac4-querygraph.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/ffe5b0dd9e880652-querygraph.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/9efce9d9675bf768-querygraph-cover.png"
   },
   {

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-16T03:31:51.110Z",
+  "updatedAt": "2026-10-16T03:44:31.608Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -4238,26 +4238,26 @@
       }
     },
     "querygraph": {
-      "updatedAt": "2026-10-16T03:31:51.110Z",
+      "updatedAt": "2026-10-16T03:44:31.607Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
-          "localPath": "book-uploads/staging/querygraph/querygraph.pdf",
-          "sha256": "525f0b6e2c9717049a133067a46752e5b6c27b896963c773fbd1b794d7472755",
-          "size": 2367740,
-          "pathname": "books/querygraph/pdf/525f0b6e2c971704-querygraph.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/525f0b6e2c971704-querygraph.pdf",
-          "skipped": true
+          "localPath": "/Users/alexy/src/querygraph/docs/guide/dist/querygraph.pdf",
+          "sha256": "0d6117418b8a9ac4dff4e8de89edbaff76f3db71054d2299676132fd484d3d53",
+          "size": 15309733,
+          "pathname": "books/querygraph/pdf/0d6117418b8a9ac4-querygraph.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/0d6117418b8a9ac4-querygraph.pdf",
+          "skipped": false
         },
         "epub": {
           "kind": "epub",
-          "localPath": "book-uploads/staging/querygraph/querygraph.epub",
-          "sha256": "8a202c7a334a9cd150425f423c226f8cf8981e89a00ea0ef30c384cba83ce62b",
-          "size": 2121864,
-          "pathname": "books/querygraph/epub/8a202c7a334a9cd1-querygraph.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/8a202c7a334a9cd1-querygraph.epub",
-          "skipped": true
+          "localPath": "/Users/alexy/src/querygraph/docs/guide/dist/querygraph.epub",
+          "sha256": "ffe5b0dd9e880652a72c07b093183c3cd85629d53a10276739b3e6955299158c",
+          "size": 10175428,
+          "pathname": "books/querygraph/epub/ffe5b0dd9e880652-querygraph.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/ffe5b0dd9e880652-querygraph.epub",
+          "skipped": false
         },
         "html": {
           "kind": "html",
@@ -4275,7 +4275,7 @@
           "size": 8064487,
           "pathname": "books/querygraph/cover/9efce9d9675bf768-querygraph-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/9efce9d9675bf768-querygraph-cover.png",
-          "skipped": false
+          "skipped": true
         },
         "headboard": {
           "kind": "headboard",
@@ -4284,7 +4284,7 @@
           "size": 6311366,
           "pathname": "books/querygraph/headboard/6f38643de21e97b4-querygraph-headboard.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/headboard/6f38643de21e97b4-querygraph-headboard.png",
-          "skipped": false
+          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
@@ -15707,6 +15707,16 @@
       "pathname": "books/querygraph/headboard/6f38643de21e97b4-querygraph-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/headboard/6f38643de21e97b4-querygraph-headboard.png",
       "size": 6311366
+    },
+    "0d6117418b8a9ac4dff4e8de89edbaff76f3db71054d2299676132fd484d3d53:15309733": {
+      "pathname": "books/querygraph/pdf/0d6117418b8a9ac4-querygraph.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/0d6117418b8a9ac4-querygraph.pdf",
+      "size": 15309733
+    },
+    "ffe5b0dd9e880652a72c07b093183c3cd85629d53a10276739b3e6955299158c:10175428": {
+      "pathname": "books/querygraph/epub/ffe5b0dd9e880652-querygraph.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/ffe5b0dd9e880652-querygraph.epub",
+      "size": 10175428
     }
   },
   "chapterPackages": {
