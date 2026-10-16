@@ -279,8 +279,9 @@
       "shelf": "querygraph",
       "source": "https://github.com/querygraph/querygraph",
       "post": "https://firstpair.press/announcing-querygraph-stack",
-      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/d56a81bcbdca6dfd-querygraph-cover.png",
-      "author": "Alexy Khrabrov and Slava Tykhonov"
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/9efce9d9675bf768-querygraph-cover.png",
+      "author": "Alexy Khrabrov and Slava Tykhonov",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/headboard/6f38643de21e97b4-querygraph-headboard.png"
     },
     {
       "slug": "sail-iggy",

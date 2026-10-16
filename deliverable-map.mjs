@@ -85,7 +85,7 @@ export const deliverableBooks = [
     "title": "The QueryGraph Stack",
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/pdf/525f0b6e2c971704-querygraph.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/epub/8a202c7a334a9cd1-querygraph.epub",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/d56a81bcbdca6dfd-querygraph-cover.png"
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/querygraph/cover/9efce9d9675bf768-querygraph-cover.png"
   },
   {
     "slug": "sail-iggy",
