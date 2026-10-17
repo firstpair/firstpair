@@ -213,6 +213,17 @@ for (const book of catalog.books) {
 
   // Versions of a title: each has its own routes one segment deeper and its
   // own Blob sources; ids must be slugs that cannot be mistaken for an area.
+  // Languages: optional BCP 47 codes on the title and its versions; a title
+  // may list each language once, so the library can show one tab per language.
+  const langPattern = /^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/
+  const seenLangs = new Set()
+  for (const [where, lang] of [[book.slug, book.lang], ...(book.versions ?? []).map((item) => [`${book.slug}/${item.id}`, item.lang])]) {
+    if (lang === undefined) continue
+    if (!langPattern.test(lang)) invalidVersions.push({ slug: where, field: 'lang', value: lang })
+    else if (seenLangs.has(lang)) invalidVersions.push({ slug: where, field: 'lang (duplicate)', value: lang })
+    seenLangs.add(lang)
+  }
+
   for (const version of book.versions ?? []) {
     const prefix = `${book.slug}/${version.id}`
     const problem = (field, value) => invalidVersions.push({ slug: prefix, field, value })
