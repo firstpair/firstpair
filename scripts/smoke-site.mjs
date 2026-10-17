@@ -6,7 +6,15 @@ const rosettaStoryUrl = 'https://firstpair.press/comparative-voice-engineering-f
 
 const browser = await chromium.launch()
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } })
-await page.goto(target, { waitUntil: 'networkidle' })
+
+// Wait for the app to render, then give third-party assets (Blob covers) a
+// bounded chance to settle; a slow image host must not fail the site checks.
+async function visit(url, ready = 'body') {
+  await page.goto(url, { waitUntil: 'load' })
+  await page.waitForSelector(ready, { timeout: 30000 })
+  await page.waitForLoadState('networkidle', { timeout: 15000 }).catch(() => {})
+}
+await visit(target, '.book-card')
 await page.screenshot({ path: 'dist-prod/firstpair-site-smoke.png', fullPage: true })
 
 const checks = await page.evaluate(({ queryGraphStoryUrl, rosettaStoryUrl }) => {
@@ -64,7 +72,7 @@ const checks = await page.evaluate(({ queryGraphStoryUrl, rosettaStoryUrl }) => 
   }
 }, { queryGraphStoryUrl, rosettaStoryUrl })
 
-await page.goto(new URL('/books/sail-rust-book/', target).href, { waitUntil: 'networkidle' })
+await visit(new URL('/books/sail-rust-book/', target).href)
 
 const bookPageChecks = await page.evaluate(() => {
   const links = [...document.querySelectorAll('a')].map((link) => link.getAttribute('href') ?? '')
@@ -85,7 +93,7 @@ const bookPageChecks = await page.evaluate(() => {
   }
 })
 
-await page.goto(new URL('/books/querygraph/', target).href, { waitUntil: 'networkidle' })
+await visit(new URL('/books/querygraph/', target).href)
 
 const queryGraphBookPageChecks = await page.evaluate((storyUrl) => {
   const links = [...document.querySelectorAll('a')].map((link) => link.getAttribute('href') ?? '')
@@ -97,7 +105,7 @@ const queryGraphBookPageChecks = await page.evaluate((storyUrl) => {
   }
 }, queryGraphStoryUrl)
 
-await page.goto(new URL('/books/rosetta/', target).href, { waitUntil: 'networkidle' })
+await visit(new URL('/books/rosetta/', target).href)
 
 const rosettaBookPageChecks = await page.evaluate((storyUrl) => {
   const links = [...document.querySelectorAll('a')].map((link) => link.getAttribute('href') ?? '')
@@ -109,7 +117,7 @@ const rosettaBookPageChecks = await page.evaluate((storyUrl) => {
   }
 }, rosettaStoryUrl)
 
-await page.goto(new URL('/obsidian/', target).href, { waitUntil: 'networkidle' })
+await visit(new URL('/obsidian/', target).href)
 const obsidianGuideChecks = await page.evaluate(() => ({
   title: document.title,
   hasInstall: document.body.textContent?.includes('Install Obsidian') ?? false,

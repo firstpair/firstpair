@@ -14,8 +14,7 @@
       "epub": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.epub",
       "html": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.html",
       "htmlChapters": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters",
-      "cover": "book-uploads/staging/lighthouse-republics/lighthouse-republics-cover.png",
-      "mobileVault": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-mobile-vault (4.0.0-deb590f3).zip"
+      "cover": "book-uploads/staging/lighthouse-republics/lighthouse-republics-cover.png"
     },
     "rio-grande": {
       "pdf": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.pdf",

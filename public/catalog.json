@@ -33,8 +33,8 @@
       "accent": "#7d4e23",
       "shelf": "history",
       "homepage": "/lighthouse-republics/preview/",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/9633908ce749be05-lighthouse-republics-preview.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/44bec6bfcdcd9ef7-lighthouse-republics-preview.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/9e077a8bea2530d1-lighthouse-republics-preview.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/e2d7205a0eb5a27d-lighthouse-republics-preview.epub",
       "html": "/read/lighthouse-republics/",
       "htmlChapters": "/read/lighthouse-republics/chapters/",
       "tags": [
@@ -42,13 +42,15 @@
         "history",
         "South"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/67d4949da86b2065-lighthouse-republics-preview.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/0ed998be056c002e/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/d389f8edc82aae1d-lighthouse-republics-preview.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/index.html",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/cover/4150691fc877ad04-lighthouse-republics-cover.png",
       "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/619ef92912a8bb54-lighthouse-republics-preview-vault%20%284.0.0-deb590f3%29.zip",
       "vaultGuide": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/6aeb8914a482954c-lighthouse-republics-vault-guide%20%284.0.0-deb590f3%29.md",
       "author": "Alexy Khrabrov (chiefscientist.org)",
-      "mobileVault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/mobile-vault/4e28b477c7e6adb1-lighthouse-republics-preview-mobile-vault%20%284.0.0-deb590f3%29.zip"
+      "mobileVault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/mobile-vault/4e28b477c7e6adb1-lighthouse-republics-preview-mobile-vault%20%284.0.0-deb590f3%29.zip",
+      "versionLabel": "English",
+      "lang": "en"
     },
     {
       "slug": "rio-grande",
