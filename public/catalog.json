@@ -62,6 +62,17 @@
           "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/html/79ca32394a3e68d2-lighthouse-republics-it-preview.html",
           "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/chapters/64dcb3684a0a2c5e/index.html",
           "lang": "it"
+        },
+        {
+          "id": "ru",
+          "label": "Русский",
+          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/1bd38e2db2a925eb-lighthouse-republics-ru-preview.pdf",
+          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/010b86d7b3b0b2ff-lighthouse-republics-ru-preview.epub",
+          "html": "/read/lighthouse-republics/ru/",
+          "htmlChapters": "/read/lighthouse-republics/ru/chapters/",
+          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/00c5ca69a949119b-lighthouse-republics-ru-preview.html",
+          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/307cc0b10ee92625/index.html",
+          "lang": "ru"
         }
       ]
     },

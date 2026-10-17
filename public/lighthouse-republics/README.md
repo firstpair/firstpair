@@ -17,6 +17,7 @@ A public preview of the Venezia history, with the full table of contents and ope
 
 - English: the links above
 - Italiano: [PDF](/lighthouse-republics/it/pdf/) · [EPUB](/lighthouse-republics/it/epub/) · [Read online](/read/lighthouse-republics/it/) · [Chapter reader](/read/lighthouse-republics/it/chapters/)
+- Русский: [PDF](/lighthouse-republics/ru/pdf/) · [EPUB](/lighthouse-republics/ru/epub/) · [Read online](/read/lighthouse-republics/ru/) · [Chapter reader](/read/lighthouse-republics/ru/chapters/)
 
 
 The source repository owns the manuscript, metadata, version manifest, build

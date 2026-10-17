@@ -16,6 +16,11 @@ export const readerBooks = [
         "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/html/79ca32394a3e68d2-lighthouse-republics-it-preview.html",
         "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/chapters/64dcb3684a0a2c5e/index.html",
         "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/chapters/64dcb3684a0a2c5e"
+      },
+      "ru": {
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/00c5ca69a949119b-lighthouse-republics-ru-preview.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/307cc0b10ee92625/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/307cc0b10ee92625"
       }
     }
   },
