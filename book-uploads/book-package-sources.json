@@ -28,7 +28,8 @@
           "epub": "book-uploads/staging/lighthouse-republics/ru/lighthouse-republics-ru-preview.epub",
           "html": "book-uploads/staging/lighthouse-republics/ru/lighthouse-republics-ru-preview.html",
           "htmlChapters": "book-uploads/staging/lighthouse-republics/ru/lighthouse-republics-ru-preview-chapters",
-          "label": "Русский"
+          "label": "Русский",
+          "vault": "book-uploads/staging/lighthouse-republics/ru/lighthouse-republics-ru-preview-vault (4.1.0-4d9b3066).zip"
         }
       },
       "cover": "book-uploads/staging/lighthouse-republics/lighthouse-republics-cover.png",

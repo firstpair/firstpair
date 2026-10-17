@@ -22,7 +22,8 @@ export const deliverableBooks = [
       },
       "ru": {
         "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/1bd38e2db2a925eb-lighthouse-republics-ru-preview.pdf",
-        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/010b86d7b3b0b2ff-lighthouse-republics-ru-preview.epub"
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/010b86d7b3b0b2ff-lighthouse-republics-ru-preview.epub",
+        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault/c394e3a9adc837a2-lighthouse-republics-ru-preview-vault%20%284.1.0-4d9b3066%29.zip"
       }
     }
   },
