@@ -834,3 +834,57 @@ blind — the blobs they name have been uploaded, and reverting points the catal
 back at objects an earlier publish replaced. Commit them for what they are,
 saying in the message which publish produced them and that it is being recorded
 after the fact.
+
+## Native Toolchains And Shared Engines On This Machine
+
+Facts that every repository under `~/src` relies on and that no single repo
+records. Verify versions before quoting them; this section was written on
+2026-10-16.
+
+- OCaml. `ocamlopt` on `PATH` is Homebrew OCaml 5.5.1 with no dune or
+  ocamlfind; it builds the plain `ocamlopt` workers (dng-compare's
+  `make build-oxcaml`) only. Dune lives in the opam switches: `default`
+  (stock OCaml 5.2.0, dune 3.16) and `5.2.0+ox` (OxCaml, dune 3.22, with
+  `stdlib_stable`, `parallel`, `core`). Use `opam exec --switch <name> -- dune …`
+  and say which compiler a claim is about: stock OCaml and OxCaml are not
+  interchangeable.
+- OxCaml parallelism. `Domain.spawn` is alerted; use `Domain.Safe.spawn`,
+  whose closures must be portable: capture immutable data (`string iarray`
+  from `Stdlib_stable.Iarray`, lists), `Atomic` counters, and externals
+  declared `external f : … @@ portable = "stub"`. A dune `select` on the
+  `stdlib_stable` library is the working way to pick an OxCaml-only module
+  while keeping the stock build; `link_deps` exists on `executable` but not on
+  `test` stanzas.
+- Rust. Each repo pins its toolchain in `rust-toolchain.toml` (dng-compare:
+  1.99.0, edition 2024). `rustc --print native-static-libs` lists what a
+  static Rust library needs when linked from OCaml (macOS: `-liconv -lc -lm`).
+- ExifTool. Perl ExifTool 13.10 is on `PATH` (Homebrew). For parity work
+  against a specific release, fetch the pure-Perl tarball from SourceForge
+  (`exiftool.org` returned 404 on 2026-10-16) and run `perl Image-ExifTool-X/exiftool`;
+  the crate `exiftool-rs` mirrors 13.59.
+- exiftool-rs fork. https://github.com/alexy/exiftool-rs, branch
+  `dng-compare-parity`, clone at `~/src/exiftool-rs` with `upstream` =
+  Le-Syl21/exiftool-rs; pull request https://github.com/Le-Syl21/exiftool-rs/pull/20.
+  It adds `-struct`, multi-family `-G0:1:4`, `-n` in JSON and numeric raw
+  values; gates are `cargo fmt --check`, `cargo clippy --release --all-targets
+  -- -D warnings`, `cargo test --release` (ratcheting baselines under `tests/`,
+  regenerate with `UPDATE_*_BASELINE=1` only for intended changes). Parity is
+  measured as per-key JSON diffs under `-j -a -G0:1:4 -n -struct -b -u -U`
+  against Perl 13.59. Remaining gaps and the design are in
+  dng-compare's `XMP.md`.
+- dng-compare engine. `rust-scanner/exiftool-ffi` (crate `dng-exiftool-ffi`,
+  C ABI `dng_exiftool_rs_*`, GPL-3.0-or-later once linked) wraps the fork,
+  pinned by commit; the OCaml wrapper is the dune project
+  `~/src/dng-compare/ocaml-exiftool-rs` (opam package `dng-exiftool-rs`,
+  module `Dng_exiftool_rs`, worker `metadata-extract-exiftool-rs-oxcaml`).
+  `make build-exiftool-rs` in dng-compare builds both; `make build-rust`
+  afterwards drops the feature from `metadata-extract` again.
+- Using the wrapper from another repo. It is not installed in any switch.
+  Pin it per switch with the Rust library directory made explicit, because a
+  pinned build runs from opam's copy of the sources:
+  `DNG_EXIFTOOL_FFI_LIBDIR=$HOME/src/dng-compare/rust-scanner/target/release opam pin add --switch 5.2.0+ox dng-exiftool-rs ~/src/dng-compare/ocaml-exiftool-rs`
+  (same for `default`). Re-run `opam upgrade dng-exiftool-rs` after the Rust
+  engine is rebuilt; the static library is baked in at link time. The path
+  to opam-repository is in dng-compare's `opam-publishing-work.md`.
+- Records from the exiftool-rs engine are a separate metadata identity from
+  Perl ExifTool output; never compare archives made by different engines.
