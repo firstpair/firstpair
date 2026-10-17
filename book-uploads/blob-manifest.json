@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-17T22:37:45.008Z",
+  "updatedAt": "2026-10-17T22:44:56.982Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -2252,7 +2252,7 @@
       }
     },
     "lighthouse-republics": {
-      "updatedAt": "2026-10-17T22:37:45.007Z",
+      "updatedAt": "2026-10-17T22:44:56.979Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -2262,7 +2262,7 @@
           "size": 17976038,
           "pathname": "books/lighthouse-republics/pdf/9e077a8bea2530d1-lighthouse-republics-preview.pdf",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/9e077a8bea2530d1-lighthouse-republics-preview.pdf",
-          "skipped": false
+          "skipped": true
         },
         "epub": {
           "kind": "epub",
@@ -2271,7 +2271,7 @@
           "size": 17017135,
           "pathname": "books/lighthouse-republics/epub/e2d7205a0eb5a27d-lighthouse-republics-preview.epub",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/e2d7205a0eb5a27d-lighthouse-republics-preview.epub",
-          "skipped": false
+          "skipped": true
         },
         "html": {
           "kind": "html",
@@ -2280,7 +2280,7 @@
           "size": 19878360,
           "pathname": "books/lighthouse-republics/html/d389f8edc82aae1d-lighthouse-republics-preview.html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/d389f8edc82aae1d-lighthouse-republics-preview.html",
-          "skipped": false
+          "skipped": true
         },
         "cover": {
           "kind": "cover",
@@ -2297,7 +2297,7 @@
           "sha256": "28b47313f4152864ae06de73bc960822a5d69c5e1465412eca959f334ee09ec7",
           "pathnamePrefix": "books/lighthouse-republics/chapters/28b47313f4152864",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/index.html",
-          "skipped": false,
+          "skipped": true,
           "files": [
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/book.css",
