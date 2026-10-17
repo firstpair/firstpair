@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-17T22:54:01.384Z",
+  "updatedAt": "2026-10-17T23:40:24.162Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -2252,7 +2252,7 @@
       }
     },
     "lighthouse-republics": {
-      "updatedAt": "2026-10-17T22:44:56.979Z",
+      "updatedAt": "2026-10-17T23:40:24.161Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -2290,6 +2290,24 @@
           "pathname": "books/lighthouse-republics/cover/4150691fc877ad04-lighthouse-republics-cover.png",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/cover/4150691fc877ad04-lighthouse-republics-cover.png",
           "skipped": true
+        },
+        "vault": {
+          "kind": "vault",
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-vault (4.1.0-4d9b3066).zip",
+          "sha256": "f3f5ea86866157503b4c6a06c66873898f08095058b0c157850c5b1cede0e197",
+          "size": 22723850,
+          "pathname": "books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault (4.1.0-4d9b3066).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault%20%284.1.0-4d9b3066%29.zip",
+          "skipped": false
+        },
+        "vaultGuide": {
+          "kind": "vault-guide",
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-vault-guide (4.1.0-4d9b3066).html",
+          "sha256": "cd622ea003c8842d6ee53a21debdb468bf22ea981f9d1bda916d12ad9b02419d",
+          "size": 12782,
+          "pathname": "books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide (4.1.0-4d9b3066).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide%20%284.1.0-4d9b3066%29.html",
+          "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
@@ -16694,6 +16712,16 @@
       "pathname": "books/lighthouse-republics/ru/html/00c5ca69a949119b-lighthouse-republics-ru-preview.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/00c5ca69a949119b-lighthouse-republics-ru-preview.html",
       "size": 20005996
+    },
+    "f3f5ea86866157503b4c6a06c66873898f08095058b0c157850c5b1cede0e197:22723850": {
+      "pathname": "books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault (4.1.0-4d9b3066).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault%20%284.1.0-4d9b3066%29.zip",
+      "size": 22723850
+    },
+    "cd622ea003c8842d6ee53a21debdb468bf22ea981f9d1bda916d12ad9b02419d:12782": {
+      "pathname": "books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide (4.1.0-4d9b3066).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide%20%284.1.0-4d9b3066%29.html",
+      "size": 12782
     }
   },
   "chapterPackages": {
