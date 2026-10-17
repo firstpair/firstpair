@@ -14,7 +14,16 @@
       "epub": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.epub",
       "html": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.html",
       "htmlChapters": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters",
-      "cover": "book-uploads/staging/lighthouse-republics/lighthouse-republics-cover.png"
+      "cover": "book-uploads/staging/lighthouse-republics/lighthouse-republics-cover.png",
+      "versions": {
+        "it": {
+          "pdf": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview.pdf",
+          "epub": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview.epub",
+          "html": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview.html",
+          "htmlChapters": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview-chapters",
+          "label": "Italiano"
+        }
+      }
     },
     "rio-grande": {
       "pdf": "book-uploads/staging/rio-grande/historia_riograndense_brasil-alexy-preview.pdf",

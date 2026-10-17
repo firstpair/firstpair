@@ -50,7 +50,20 @@
       "author": "Alexy Khrabrov (chiefscientist.org)",
       "mobileVault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/mobile-vault/4e28b477c7e6adb1-lighthouse-republics-preview-mobile-vault%20%284.0.0-deb590f3%29.zip",
       "versionLabel": "English",
-      "lang": "en"
+      "lang": "en",
+      "versions": [
+        {
+          "id": "it",
+          "label": "Italiano",
+          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/pdf/2757c0d6d87be4b1-lighthouse-republics-it-preview.pdf",
+          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/epub/d0c04ea7a811e2e2-lighthouse-republics-it-preview.epub",
+          "html": "/read/lighthouse-republics/it/",
+          "htmlChapters": "/read/lighthouse-republics/it/chapters/",
+          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/html/79ca32394a3e68d2-lighthouse-republics-it-preview.html",
+          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/chapters/64dcb3684a0a2c5e/index.html",
+          "lang": "it"
+        }
+      ]
     },
     {
       "slug": "rio-grande",
