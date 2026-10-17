@@ -858,23 +858,27 @@ records. Verify versions before quoting them; this section was written on
 - Rust. Each repo pins its toolchain in `rust-toolchain.toml` (dng-compare:
   1.99.0, edition 2024). `rustc --print native-static-libs` lists what a
   static Rust library needs when linked from OCaml (macOS: `-liconv -lc -lm`).
-- ExifTool. Perl ExifTool 13.10 is on `PATH` (Homebrew). For parity work
+- ExifTool. Perl ExifTool 13.59 is on `PATH` (checked 2026-10-17; it was
+  13.10 before). For parity work
   against a specific release, fetch the pure-Perl tarball from SourceForge
   (`exiftool.org` returned 404 on 2026-10-16) and run `perl Image-ExifTool-X/exiftool`;
   the crate `exiftool-rs` mirrors 13.59.
-- exiftool-rs fork. https://github.com/alexy/exiftool-rs, branch
-  `dng-compare-parity`, clone at `~/src/exiftool-rs` with `upstream` =
-  Le-Syl21/exiftool-rs; pull request https://github.com/Le-Syl21/exiftool-rs/pull/20.
-  It adds `-struct`, multi-family `-G0:1:4`, `-n` in JSON and numeric raw
-  values; gates are `cargo fmt --check`, `cargo clippy --release --all-targets
+- exiftool-rs. Upstream https://github.com/Le-Syl21/exiftool-rs merged the
+  dng-compare parity work (pull request #20: `-struct`, multi-family
+  `-G0:1:4`, `-n` in JSON, numeric raw values) on 2026-10-17 and released it
+  in 0.11.0; dng-compare links the crates.io release, pinned exactly (0.12.0).
+  The fork https://github.com/alexy/exiftool-rs (clone `~/src/exiftool-rs`,
+  `upstream` remote = Le-Syl21) is for further upstream pull requests only,
+  branched from `upstream/main`. Upstream gates are `cargo fmt --check`, `cargo clippy --release --all-targets
   -- -D warnings`, `cargo test --release` (ratcheting baselines under `tests/`,
   regenerate with `UPDATE_*_BASELINE=1` only for intended changes). Parity is
   measured as per-key JSON diffs under `-j -a -G0:1:4 -n -struct -b -u -U`
   against Perl 13.59. Remaining gaps and the design are in
   dng-compare's `XMP.md`.
 - dng-compare engine. `rust-scanner/exiftool-ffi` (crate `dng-exiftool-ffi`,
-  C ABI `dng_exiftool_rs_*`, GPL-3.0-or-later once linked) wraps the fork,
-  pinned by commit; the OCaml wrapper is the dune project
+  C ABI `dng_exiftool_rs_*`, GPL-3.0-or-later once linked) wraps the
+  crates.io release; bumping it changes the engine identity stamp, so rerun
+  the parity diff and reinstall the opam pins. The OCaml wrapper is the dune project
   `~/src/dng-compare/ocaml-exiftool-rs` (opam package `dng-exiftool-rs`,
   module `Dng_exiftool_rs`, worker `metadata-extract-exiftool-rs-oxcaml`).
   `make build-exiftool-rs` in dng-compare builds both; `make build-rust`
