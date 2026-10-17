@@ -879,12 +879,17 @@ records. Verify versions before quoting them; this section was written on
   module `Dng_exiftool_rs`, worker `metadata-extract-exiftool-rs-oxcaml`).
   `make build-exiftool-rs` in dng-compare builds both; `make build-rust`
   afterwards drops the feature from `metadata-extract` again.
-- Using the wrapper from another repo. It is not installed in any switch.
-  Pin it per switch with the Rust library directory made explicit, because a
-  pinned build runs from opam's copy of the sources:
-  `DNG_EXIFTOOL_FFI_LIBDIR=$HOME/src/dng-compare/rust-scanner/target/release opam pin add --switch 5.2.0+ox dng-exiftool-rs ~/src/dng-compare/ocaml-exiftool-rs`
-  (same for `default`). Re-run `opam upgrade dng-exiftool-rs` after the Rust
-  engine is rebuilt; the static library is baked in at link time. The path
-  to opam-repository is in dng-compare's `opam-publishing-work.md`.
+- Using the wrapper from another repo. It is pinned and installed in both
+  switches (`default` and `5.2.0+ox`) from the local checkout, together with
+  `libdng_exiftool_ffi.a`, so a dune project only needs
+  `(libraries dng-exiftool-rs)` and builds with
+  `opam exec --switch <switch> -- dune build`. Linking prints a harmless
+  `ld: warning: search path 'lib' not found`. To redo the pin in a switch:
+  `DNG_EXIFTOOL_FFI_LIBDIR=$HOME/src/dng-compare/rust-scanner/target/release opam pin add -y --with-test --switch 5.2.0+ox dng-exiftool-rs ~/src/dng-compare/ocaml-exiftool-rs`
+  (same for `default`). After rebuilding the Rust engine run
+  `opam reinstall --switch <switch> dng-exiftool-rs` with the same variable,
+  then rebuild consumers: the archive is copied at install time and baked in
+  at link time, and `opam upgrade` skips it when no OCaml source changed.
+  The path to opam-repository is in dng-compare's `opam-publishing-work.md`.
 - Records from the exiftool-rs engine are a separate metadata identity from
   Perl ExifTool output; never compare archives made by different engines.
