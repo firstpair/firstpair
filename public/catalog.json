@@ -265,7 +265,20 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/cover/5317c69e782bb5d1-invented-enemy-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/headboard/96115345658a786c-invented-enemy-headboard.png",
       "versionLabel": "English",
-      "lang": "en"
+      "lang": "en",
+      "versions": [
+        {
+          "id": "ru",
+          "label": "Русский",
+          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/pdf/b9d871c42cd68d28-invented-enemy-preview.pdf",
+          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/epub/058ac66770b938f5-invented-enemy-preview.epub",
+          "html": "/read/invented-enemy/ru/",
+          "htmlChapters": "/read/invented-enemy/ru/chapters/",
+          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/html/856d650aed842497-invented-enemy-preview.html",
+          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/4e2516128633f638/index.html",
+          "lang": "ru"
+        }
+      ]
     },
     {
       "slug": "from-1-to-0",

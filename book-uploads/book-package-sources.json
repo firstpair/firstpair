@@ -91,7 +91,16 @@
       "html": "book-uploads/staging/invented-enemy/invented-enemy-preview.html",
       "htmlChapters": "book-uploads/staging/invented-enemy/invented-enemy-preview-chapters",
       "cover": "book-uploads/staging/invented-enemy/invented-enemy-cover.png",
-      "headboard": "book-uploads/staging/invented-enemy/invented-enemy-headboard.png"
+      "headboard": "book-uploads/staging/invented-enemy/invented-enemy-headboard.png",
+      "versions": {
+        "ru": {
+          "pdf": "book-uploads/staging/invented-enemy/ru/invented-enemy-preview.pdf",
+          "epub": "book-uploads/staging/invented-enemy/ru/invented-enemy-preview.epub",
+          "html": "book-uploads/staging/invented-enemy/ru/invented-enemy-preview.html",
+          "htmlChapters": "book-uploads/staging/invented-enemy/ru/invented-enemy-preview-chapters",
+          "label": "Русский"
+        }
+      }
     },
     "from-1-to-0": {
       "pdf": "book-uploads/staging/from-1-to-0/from-1-to-0.pdf",
