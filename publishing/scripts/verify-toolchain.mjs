@@ -43,6 +43,14 @@ function checkVersion(kind, name, specification) {
     return
   }
 
+  if (specification.flexible) {
+    // Any working version passes; the lock records what was installed.
+    if (!quiet) {
+      console.log(`${kind} ${name}: ${output.split(/\r?\n/, 1)[0]} (flexible)`)
+    }
+    return
+  }
+
   if (!output.includes(specification.version)) {
     failures.push(
       `${kind} ${name}: expected ${specification.version}, got ${output.split(/\r?\n/, 1)[0]}`,

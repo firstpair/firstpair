@@ -303,8 +303,9 @@ Cicero (`~/src/cicero`) shows the preview/full split.
    Split output into `dist-preview/` and `dist-full/` only when the title has
    both editions. The toolchain policy is latest releases:
    `publishing/scripts/install-toolchain.sh` upgrades every tool (Homebrew
-   formulae, calibre, mermaid-cli, uv-managed CPython, neatroff and utmac
-   upstream heads) and rewrites `publishing/toolchain.lock.json` as the record
+   formulae, mermaid-cli, uv-managed CPython, neatroff and utmac upstream
+   heads; calibre is installed only when missing and upgraded by hand, and any
+   installed calibre version verifies) and rewrites `publishing/toolchain.lock.json` as the record
    of the installed versions. Run it before a build; the builder verifies the
    toolchain against that record, and the refreshed lock is committed with
    the publication. Python is managed by uv alone (no asdf): a source project

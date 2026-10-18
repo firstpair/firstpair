@@ -151,7 +151,9 @@ projects:
 ```
 
 The installer follows a latest-releases policy. It installs and upgrades the
-`publishing/Brewfile` formulae and calibre (no Homebrew pins), updates
+`publishing/Brewfile` formulae (no Homebrew pins), installs calibre only when
+it is missing (it is a large DMG cask that a person upgrades by hand, and the
+verifier accepts any installed calibre version), updates
 mermaid-cli and the uv-managed CPython, checks out the upstream heads of the
 `neatroff_make` root and components, runs `make neat`, rewrites
 `toolchain.lock.json` with the installed versions and commits, verifies them, and

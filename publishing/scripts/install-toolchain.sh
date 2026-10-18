@@ -21,9 +21,11 @@ for formula in "${formulae[@]}"; do
 done
 
 brew update
-brew bundle --file "$publishing_dir/Brewfile"
+# --no-upgrade: bundle only installs what is missing. Formulae are upgraded
+# explicitly below; calibre is a large DMG cask that is installed once and
+# upgraded only by a person, so scripts never upgrade it.
+brew bundle --no-upgrade --file "$publishing_dir/Brewfile"
 brew upgrade "${formulae[@]}" || true
-brew upgrade --cask calibre || true
 
 npm install --prefix "$firstpair_root" --save-dev --save-exact @mermaid-js/mermaid-cli@latest
 npm ci --prefix "$firstpair_root"

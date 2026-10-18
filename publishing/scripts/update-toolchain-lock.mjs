@@ -41,6 +41,8 @@ lock.generatedAt = new Date().toISOString().slice(0, 10)
 lock.policy = 'Latest releases. install-toolchain.sh updates every tool and rewrites this file; it records the versions a build used and is not a pin.'
 for (const [kind, table] of [['formula', lock.homebrew.formulae], ['cask', lock.homebrew.casks]]) {
   for (const [name, specification] of Object.entries(table)) {
+    // Flexible entries (calibre) record the installed version without
+    // requiring a match at verification time.
     specification.version = versionOf(kind, name, specification)
   }
 }
