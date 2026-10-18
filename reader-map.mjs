@@ -257,8 +257,8 @@ export const readerBooks = [
   },
   {
     "slug": "dng-compare",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/bded2bc2e366b06b-dng-compare.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/3537060fcddbd7c5/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/3537060fcddbd7c5"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/331f2d97b52f8e78-dng-compare.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/5e626504a5a0ba1b/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/5e626504a5a0ba1b"
   }
 ]
