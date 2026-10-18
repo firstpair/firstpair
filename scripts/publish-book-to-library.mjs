@@ -1803,6 +1803,9 @@ async function zipVault(vaultDir, destinationZip, guideSource = null) {
 // Stage source-owned visual companions and (when requested) the vault package
 // before the source-map and upload run. Runs after refreshStaging, which resets
 // stageDir.
+// Guide page titles for language versions published with --lang.
+const vaultGuideTitle = { en: 'Obsidian Vault Guide', it: 'Guida al vault di Obsidian', ru: 'Путеводитель по хранилищу Obsidian' }
+
 async function stageCompanions(plan, dryRun) {
   if (dryRun) {
     return
@@ -1820,8 +1823,9 @@ async function stageCompanions(plan, dryRun) {
       await renderVaultGuide({
         source: vault.guideSource,
         destination: join(plan.stageDir, vault.guideHtmlName),
-        title: `${plan.title} — Obsidian Vault Guide`,
+        title: `${plan.title} — ${vaultGuideTitle[plan.lang?.split('-')[0]] ?? 'Obsidian Vault Guide'}`,
         resourcePaths: [vault.dir],
+        lang: plan.lang ?? 'en-US',
       })
     }
   }

@@ -24,6 +24,7 @@ export async function renderVaultGuide({
   title,
   resourcePaths = [],
   stylesheet = defaultStylesheet,
+  lang = 'en-US',
 }) {
   const sourcePath = resolve(source)
   const destinationPath = resolve(destination)
@@ -44,7 +45,7 @@ export async function renderVaultGuide({
     '--metadata',
     `title=${guideTitle}`,
     '--metadata',
-    'lang=en-US',
+    `lang=${lang}`,
     '--resource-path',
     resources.join(delimiter),
     '--css',
