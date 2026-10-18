@@ -87,6 +87,12 @@ if [[ ! -d "$neatroff_root/neatroff" ]]; then
   make -C "$neatroff_root" init
 fi
 
+# `make init` downloads fonts after cloning; an interrupted init (for example
+# without wget) leaves the clones but no fonts, so fetch them separately.
+if ! compgen -G "$neatroff_root/fonts/*.afm" >/dev/null; then
+  (cd "$neatroff_root/fonts" && sh ./fonts.sh)
+fi
+
 for component in neatroff neatpost neatmkfn neateqn neatrefer troff; do
   component_dir="$neatroff_root/$component"
   if [[ ! -d "$component_dir/.git" ]]; then

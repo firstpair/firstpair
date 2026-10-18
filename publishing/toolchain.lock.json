@@ -1,38 +1,38 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-07-31",
+  "generatedAt": "2026-10-18",
   "homebrew": {
     "formulae": {
       "ghostscript": {
-        "version": "10.07.1",
+        "version": "10.08.0",
         "command": "gs",
         "args": [
           "--version"
         ]
       },
       "groff": {
-        "version": "1.24.1",
+        "version": "1.24.2",
         "command": "groff",
         "args": [
           "--version"
         ]
       },
       "node": {
-        "version": "26.5.0",
+        "version": "26.12.0",
         "command": "node",
         "args": [
           "--version"
         ]
       },
       "pandoc": {
-        "version": "3.10",
+        "version": "3.12.1",
         "command": "pandoc",
         "args": [
           "--version"
         ]
       },
       "poppler": {
-        "version": "26.07.0",
+        "version": "26.10.0",
         "command": "pdfinfo",
         "args": [
           "-v"
@@ -46,7 +46,7 @@
         ]
       },
       "uv": {
-        "version": "0.11.32",
+        "version": "0.13.1",
         "command": "uv",
         "args": [
           "--version"
@@ -55,7 +55,7 @@
     },
     "casks": {
       "calibre": {
-        "version": "9.14.0",
+        "version": "9.16.0",
         "command": "/Applications/calibre.app/Contents/MacOS/ebook-convert",
         "args": [
           "--version"
@@ -75,21 +75,21 @@
     "zip"
   ],
   "python": {
-    "versionManager": "asdf",
+    "versionManager": "uv",
     "environmentManager": "uv",
-    "helperVersion": "3.12.3",
-    "policy": "Each Python-owning source repository pins Python in .tool-versions and locks dependencies with uv.lock."
+    "helperVersion": "3.15.0",
+    "policy": "uv alone manages Python and keeps the newest stable CPython. A source repository may pin a version with .python-version; otherwise uv selects the newest installed interpreter."
   },
   "nodePackages": {
-    "@mermaid-js/mermaid-cli": "11.15.0"
+    "@mermaid-js/mermaid-cli": "12.0.0"
   },
   "neatroff": {
     "root": {
       "repository": "https://github.com/aligrudi/neatroff_make.git",
-      "commit": "9c72045f2cd3556a8df3171ea0af3a8940b5ebbd"
+      "commit": "c0505d9c366a1886e8acb291dfda094cbcc397b7"
     },
     "components": {
-      "neatroff": "3a0f4da6c6f699ac1f8ed1dd5eebba3dfc4c22f3",
+      "neatroff": "fdf7a49cc75fce64e8f2c4033dfbd37af0f3031c",
       "neatpost": "48dc8a09e823b8a1606953ded621e6b60ecc28a1",
       "neatmkfn": "0bc55057f9ec80a46ee784c98c0843676200452b",
       "neateqn": "d182414457da5bee66996d6ea92a368b1718ccbd",
@@ -100,5 +100,6 @@
   "utmac": {
     "repository": "https://codeberg.org/pjfichet/utmac.git",
     "commit": "92c362b041a97178662a595d2223cfc3af6921c2"
-  }
+  },
+  "policy": "Latest releases. install-toolchain.sh updates every tool and rewrites this file; it records the versions a build used and is not a pin."
 }
