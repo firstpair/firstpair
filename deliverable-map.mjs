@@ -80,8 +80,8 @@ export const deliverableBooks = [
   {
     "slug": "invented-enemy",
     "title": "The Invented Enemy",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/fc1380fe4efbfeb6-invented-enemy-preview.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/2cec55437e6f5022-invented-enemy-preview.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/cf6ed04e995afea9-invented-enemy-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/7747a11fdf8f062d-invented-enemy-preview.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/cover/5317c69e782bb5d1-invented-enemy-cover.png"
   },
   {

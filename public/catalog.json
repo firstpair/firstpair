@@ -250,8 +250,8 @@
       "accent": "#3b4a68",
       "shelf": "history",
       "homepage": "/invented-enemy/preview/",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/fc1380fe4efbfeb6-invented-enemy-preview.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/2cec55437e6f5022-invented-enemy-preview.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/cf6ed04e995afea9-invented-enemy-preview.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/7747a11fdf8f062d-invented-enemy-preview.epub",
       "html": "/read/invented-enemy/",
       "htmlChapters": "/read/invented-enemy/chapters/",
       "tags": [
@@ -259,11 +259,13 @@
         "history",
         "ideas"
       ],
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/html/db2f7b0859b47a45-invented-enemy-preview.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/dd60ea2640628404/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/html/d49f75299371384e-invented-enemy-preview.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/f1a8c2f5236037c9/index.html",
       "author": "Alexy Khrabrov with Claude",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/cover/5317c69e782bb5d1-invented-enemy-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/headboard/96115345658a786c-invented-enemy-headboard.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/headboard/96115345658a786c-invented-enemy-headboard.png",
+      "versionLabel": "English",
+      "lang": "en"
     },
     {
       "slug": "from-1-to-0",

@@ -10,6 +10,7 @@ A public preview of the history of Russophobia and the anti-Slavic imagination â
 - [Chapter reader](/read/invented-enemy/chapters/)
 
 
+
 The source repository owns the manuscript, metadata, version manifest, build
 pipeline, and canonical generated artifacts:
 
