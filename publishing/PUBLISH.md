@@ -150,13 +150,15 @@ projects:
 ~/src/firstpair/publishing/scripts/install-toolchain.sh
 ```
 
-The installer uses `publishing/Brewfile`, pins the installed formulae with
-Homebrew, verifies their exact versions against `toolchain.lock.json`, checks
-out the locked `neatroff_make` root and component commits, runs `make neat`, and
+The installer follows a latest-releases policy. It installs and upgrades the
+`publishing/Brewfile` formulae and calibre (no Homebrew pins), updates
+mermaid-cli and the uv-managed CPython, checks out the upstream heads of the
+`neatroff_make` root and components, runs `make neat`, rewrites
+`toolchain.lock.json` with the installed versions and commits, verifies them, and
 exposes stable user-level wrappers under
 `~/.local/bin`:
 
-The unified build wrapper also prepends each pinned formula's Homebrew bin
+The unified build wrapper also prepends each toolchain formula's Homebrew bin
 directory before launching Node. This keeps desktop runtimes, language
 managers, and other PATH shims from shadowing verified publishing binaries.
 
@@ -270,7 +272,7 @@ The shared builder owns:
 
 Source-owned hooks retain assembly, diagrams, EPUB repair, specialist format
 variants, preview limits, and title-specific validators. Python hooks declare a
-project path and are run through that repository's asdf-pinned, uv-locked
+project path and are run through that repository's uv-managed, uv-locked
 environment. Working Python book builders are wrapped, not translated into
 shell or JavaScript.
 

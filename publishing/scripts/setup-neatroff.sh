@@ -35,11 +35,21 @@ locked_component_commit() {
   ' "$toolchain_lock" "$1"
 }
 
+# FIRSTPAIR_TOOLCHAIN_LATEST=1 (set by install-toolchain.sh) follows each
+# upstream's default branch instead of the recorded commit; the installer then
+# records the result in toolchain.lock.json.
+upstream_head() {
+  git -C "$1" ls-remote origin HEAD | cut -f1
+}
+
 checkout_locked_commit() {
   local repo_dir="$1"
   local commit="$2"
   local label="$3"
   local current
+  if [[ "${FIRSTPAIR_TOOLCHAIN_LATEST:-}" == 1 ]]; then
+    commit="$(upstream_head "$repo_dir")"
+  fi
 
   current="$(git -C "$repo_dir" rev-parse HEAD 2>/dev/null || true)"
   if [[ "$current" == "$commit" ]]; then
@@ -47,7 +57,7 @@ checkout_locked_commit() {
   fi
 
   if [[ -n "$(git -C "$repo_dir" status --porcelain)" ]]; then
-    printf '%s is dirty and cannot be moved from %s to pinned commit %s\n' \
+    printf '%s is dirty and cannot be moved from %s to commit %s\n' \
       "$label" "${current:-unknown}" "$commit" >&2
     exit 1
   fi

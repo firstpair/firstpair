@@ -17,7 +17,7 @@ if [[ ! -f "$repo_root/pyproject.toml" ]]; then
   cat >&2 <<EOF
 missing $repo_root/pyproject.toml
 
-Publishing projects should pin Python with .tool-versions and declare helper
+Publishing projects may pin Python with uv's .python-version and declare helper
 dependencies such as Pillow in pyproject.toml, then run uv sync.
 EOF
   exit 1
@@ -36,22 +36,14 @@ if [[ -f "$repo_root/uv.lock" ]]; then
   uv_args+=(--locked)
 fi
 
-# A project that pins its interpreter with uv's own .python-version (and may
-# keep managed interpreters under .uv-python) is resolved by uv itself; only
-# projects without that pin take the interpreter asdf selects for them.
-if [[ -f "$repo_root/.python-version" ]]; then
-  if [[ -d "$repo_root/.uv-python" ]]; then
-    export UV_PYTHON_INSTALL_DIR="$repo_root/.uv-python"
-  fi
-  uv "${uv_args[@]}" >/dev/null
-else
-  asdf_python="$(cd "$repo_root" && asdf which python 2>/dev/null || true)"
-  if [[ -n "$asdf_python" && -x "$asdf_python" ]]; then
-    uv "${uv_args[@]}" --python "$asdf_python" >/dev/null
-  else
-    uv "${uv_args[@]}" >/dev/null
-  fi
+# uv alone manages Python. A project may pin its interpreter with
+# .python-version (and keep managed interpreters under .uv-python); otherwise
+# uv picks the newest interpreter it manages, which install-toolchain.sh keeps
+# at the latest stable CPython.
+if [[ -d "$repo_root/.uv-python" ]]; then
+  export UV_PYTHON_INSTALL_DIR="$repo_root/.uv-python"
 fi
+uv "${uv_args[@]}" >/dev/null
 
 if [[ ! -x "$python_path" ]]; then
   echo "Python runtime was not created at $python_path" >&2

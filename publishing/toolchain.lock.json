@@ -3,52 +3,63 @@
   "generatedAt": "2026-07-31",
   "homebrew": {
     "formulae": {
-      "asdf": {
-        "version": "0.20.0",
-        "command": "asdf",
-        "args": ["--version"]
-      },
       "ghostscript": {
         "version": "10.07.1",
         "command": "gs",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       },
       "groff": {
         "version": "1.24.1",
         "command": "groff",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       },
       "node": {
         "version": "26.5.0",
         "command": "node",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       },
       "pandoc": {
         "version": "3.10",
         "command": "pandoc",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       },
       "poppler": {
         "version": "26.07.0",
         "command": "pdfinfo",
-        "args": ["-v"]
+        "args": [
+          "-v"
+        ]
       },
       "typst": {
         "version": "0.15.1",
         "command": "typst",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       },
       "uv": {
         "version": "0.11.32",
         "command": "uv",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       }
     },
     "casks": {
       "calibre": {
         "version": "9.14.0",
         "command": "/Applications/calibre.app/Contents/MacOS/ebook-convert",
-        "args": ["--version"]
+        "args": [
+          "--version"
+        ]
       }
     }
   },

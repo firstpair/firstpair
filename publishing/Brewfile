@@ -1,4 +1,3 @@
-brew "asdf"
 brew "ghostscript"
 brew "groff"
 brew "node"

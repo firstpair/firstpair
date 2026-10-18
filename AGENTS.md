@@ -301,12 +301,15 @@ Cicero (`~/src/cicero`) shows the preview/full split.
    `source_commit`), the PDF, the EPUB, the single-file HTML, and the
    `<stem>-chapters/` directory; the publisher requires all four artifacts.
    Split output into `dist-preview/` and `dist-full/` only when the title has
-   both editions. The builder verifies the toolchain against
-   `publishing/toolchain.lock.json` first; when a workstation upgrade moves a
-   pinned tool (calibre, pandoc, typst), refresh the lock in the same commit
-   as the publication. A source project that pins Python with uv
-   (`.python-version`, optionally `.uv-python/`) is resolved by uv; others take
-   the asdf interpreter.
+   both editions. The toolchain policy is latest releases:
+   `publishing/scripts/install-toolchain.sh` upgrades every tool (Homebrew
+   formulae, calibre, mermaid-cli, uv-managed CPython, neatroff and utmac
+   upstream heads) and rewrites `publishing/toolchain.lock.json` as the record
+   of the installed versions. Run it before a build; the builder verifies the
+   toolchain against that record, and the refreshed lock is committed with
+   the publication. Python is managed by uv alone (no asdf): a source project
+   may pin with `.python-version` (optionally `.uv-python/`), otherwise uv
+   uses the newest interpreter it manages.
 3. **Cover and headboard.** The library card wants a portrait cover image
    and, optionally, a wide headboard banner. The publisher resolves them from
    `metadata.yaml` (`cover_image`, `headboard_image`), from

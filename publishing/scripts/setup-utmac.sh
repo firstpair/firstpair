@@ -15,6 +15,12 @@ if [[ ! -d "$utmac_dir/.git" ]]; then
   git clone "$utmac_url" "$utmac_dir"
 fi
 
+# FIRSTPAIR_TOOLCHAIN_LATEST=1 follows upstream's default branch; the
+# installer records the commit in toolchain.lock.json.
+if [[ "${FIRSTPAIR_TOOLCHAIN_LATEST:-}" == 1 ]]; then
+  utmac_commit="$(git -C "$utmac_dir" ls-remote origin HEAD | cut -f1)"
+fi
+
 current="$(git -C "$utmac_dir" rev-parse HEAD 2>/dev/null || true)"
 if [[ "$current" != "$utmac_commit" ]]; then
   if [[ -n "$(git -C "$utmac_dir" status --porcelain)" ]]; then
