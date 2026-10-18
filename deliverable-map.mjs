@@ -9,11 +9,23 @@ export const deliverableBooks = [
   {
     "slug": "lighthouse-republics",
     "title": "Lighthouse Republics",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/9633908ce749be05-lighthouse-republics-preview.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/44bec6bfcdcd9ef7-lighthouse-republics-preview.epub",
-    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/619ef92912a8bb54-lighthouse-republics-preview-vault%20%284.0.0-deb590f3%29.zip",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/9e077a8bea2530d1-lighthouse-republics-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/e2d7205a0eb5a27d-lighthouse-republics-preview.epub",
+    "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault%20%284.1.0-4d9b3066%29.zip",
     "mobileVault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/mobile-vault/4e28b477c7e6adb1-lighthouse-republics-preview-mobile-vault%20%284.0.0-deb590f3%29.zip",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/cover/4150691fc877ad04-lighthouse-republics-cover.png"
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/cover/4150691fc877ad04-lighthouse-republics-cover.png",
+    "versions": {
+      "it": {
+        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/pdf/2757c0d6d87be4b1-lighthouse-republics-it-preview.pdf",
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/epub/d0c04ea7a811e2e2-lighthouse-republics-it-preview.epub",
+        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/vault/1a6b3dc66b5bcda6-lighthouse-republics-it-preview-vault%20%284.1.0-4d9b3066%29.zip"
+      },
+      "ru": {
+        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/1bd38e2db2a925eb-lighthouse-republics-ru-preview.pdf",
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/010b86d7b3b0b2ff-lighthouse-republics-ru-preview.epub",
+        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault/c394e3a9adc837a2-lighthouse-republics-ru-preview-vault%20%284.1.0-4d9b3066%29.zip"
+      }
+    }
   },
   {
     "slug": "rio-grande",
@@ -68,9 +80,15 @@ export const deliverableBooks = [
   {
     "slug": "invented-enemy",
     "title": "The Invented Enemy",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/fc1380fe4efbfeb6-invented-enemy-preview.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/2cec55437e6f5022-invented-enemy-preview.epub",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/cover/5317c69e782bb5d1-invented-enemy-cover.png"
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/pdf/cf6ed04e995afea9-invented-enemy-preview.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/epub/7747a11fdf8f062d-invented-enemy-preview.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/cover/5317c69e782bb5d1-invented-enemy-cover.png",
+    "versions": {
+      "ru": {
+        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/pdf/b9d871c42cd68d28-invented-enemy-preview.pdf",
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/epub/058ac66770b938f5-invented-enemy-preview.epub"
+      }
+    }
   },
   {
     "slug": "from-1-to-0",

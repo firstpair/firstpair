@@ -1365,3 +1365,90 @@ a.book-card__cover:hover strong {
 .book-versions__item { display: grid; gap: 0.35rem; }
 .book-versions__label { font-weight: 600; }
 .book-links__version { color: var(--text-muted, #6b6b6b); font-size: 0.85em; margin-inline-start: 0.5rem; }
+
+/* Language versions: every language tab always visible; the selected tab
+   opens an accordion panel with all formats for that language. */
+.language-versions {
+  flex-basis: 100%;
+  display: grid;
+  gap: 10px;
+}
+
+.language-versions__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.language-versions__tab {
+  min-height: 36px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid rgba(23, 23, 20, 0.14);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f241f;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 900;
+  cursor: pointer;
+  transition:
+    background 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease;
+}
+
+.language-versions__tab:hover {
+  border-color: var(--book-accent, rgba(23, 23, 20, 0.4));
+}
+
+.language-versions__tab svg {
+  transition: transform 0.16s ease;
+}
+
+.language-versions__tab--active {
+  background: var(--book-accent, #171714);
+  border-color: var(--book-accent, #171714);
+  color: #fffdf6;
+}
+
+.language-versions__tab--active svg {
+  transform: rotate(180deg);
+}
+
+.language-versions__panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px;
+  border: 1px solid rgba(23, 23, 20, 0.1);
+  border-left: 3px solid var(--book-accent, #171714);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.language-versions__panel a {
+  min-height: 34px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid rgba(23, 23, 20, 0.14);
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1f241f;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.language-versions__panel a:hover {
+  transform: translateY(-1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .language-versions__tab,
+  .language-versions__tab svg {
+    transition: none;
+  }
+}

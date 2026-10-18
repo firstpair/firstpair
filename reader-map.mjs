@@ -8,9 +8,22 @@ export const readerBooks = [
   },
   {
     "slug": "lighthouse-republics",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/67d4949da86b2065-lighthouse-republics-preview.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/0ed998be056c002e/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/0ed998be056c002e"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/d389f8edc82aae1d-lighthouse-republics-preview.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864",
+    "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide%20%284.1.0-4d9b3066%29.html",
+    "versions": {
+      "it": {
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/html/79ca32394a3e68d2-lighthouse-republics-it-preview.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/chapters/64dcb3684a0a2c5e/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/chapters/64dcb3684a0a2c5e"
+      },
+      "ru": {
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/00c5ca69a949119b-lighthouse-republics-ru-preview.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/307cc0b10ee92625/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/307cc0b10ee92625"
+      }
+    }
   },
   {
     "slug": "rio-grande",
@@ -57,9 +70,16 @@ export const readerBooks = [
   },
   {
     "slug": "invented-enemy",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/html/db2f7b0859b47a45-invented-enemy-preview.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/dd60ea2640628404/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/dd60ea2640628404"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/html/d49f75299371384e-invented-enemy-preview.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/f1a8c2f5236037c9/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/f1a8c2f5236037c9",
+    "versions": {
+      "ru": {
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/html/856d650aed842497-invented-enemy-preview.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/4e2516128633f638/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/4e2516128633f638"
+      }
+    }
   },
   {
     "slug": "from-1-to-0",

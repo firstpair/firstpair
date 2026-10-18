@@ -68,6 +68,7 @@ const valueFlags = new Set([
   'emacs-guide',
   'version',
   'version-label',
+  'lang',
 ])
 
 function usage() {
@@ -133,6 +134,10 @@ Options:
   --version-label <text>    The version's name on the card ("Italian, English,
                             and Russian"); without --version, names the
                             title's own deliverables ("Italian and English").
+  --lang <code>             BCP 47 language of this package ("en", "it",
+                            "ru"). With --version it marks that language
+                            version; without, the title's own deliverables.
+                            The library shows one tab per language.
   --emacs-guide <file>      Override the Emacs guide (default: the bundle's Guide.md).
   --icloud-dir <dir>        Defaults to "$HOME/icloud/books".
   --stage-only              Only refresh book-uploads/staging and source map.
@@ -1065,7 +1070,19 @@ async function refreshStaging(plan, dryRun) {
     return
   }
 
-  await rm(plan.stageDir, { recursive: true, force: true })
+  if (plan.versionId) {
+    await rm(plan.stageDir, { recursive: true, force: true })
+  } else {
+    // The title's staging directory also holds its versions' staging
+    // (staging/<slug>/<version>/); republishing the title must not wipe them.
+    const catalog = await readJson(join(root, 'public', 'catalog.json'))
+    const keep = new Set((catalog.books.find((book) => book.slug === plan.slug)?.versions ?? []).map((item) => item.id))
+    const entries = await readdir(plan.stageDir, { withFileTypes: true }).catch(() => [])
+    for (const item of entries) {
+      if (item.isDirectory() && keep.has(item.name)) continue
+      await rm(join(plan.stageDir, item.name), { recursive: true, force: true })
+    }
+  }
   await mkdir(plan.stageDir, { recursive: true })
   await copyFile(plan.pdf.sourcePath, join(plan.stageDir, plan.pdf.stableName))
   await copyFile(plan.epub.sourcePath, join(plan.stageDir, plan.epub.stableName))
@@ -1173,9 +1190,12 @@ async function refreshCatalog(plan, dryRun) {
     } else if (plan.versionLabel) {
       version.label = plan.versionLabel
     }
+    if (plan.lang) version.lang = plan.lang
   } else {
     entry = catalogEntryFromPlan(plan, existing)
     if (plan.versionLabel) entry.versionLabel = plan.versionLabel
+    if (plan.lang) entry.lang = plan.lang
+    else if (existing.lang) entry.lang = existing.lang
     if (existing.versions) entry.versions = existing.versions
   }
 
@@ -2119,6 +2139,7 @@ async function runLiveCatalogCheck(plan) {
     'emacsGuide',
     'emacsGuideSource',
     'versionLabel',
+    'lang',
     'versions',
   ]
   const hostedGuides = [
@@ -2231,6 +2252,9 @@ async function buildPlan(inputDir, options) {
   if (options.version && ['guide', 'emacs-guide', 'chapters', 'pdf', 'epub', 'vault', 'mobile-vault', 'emacs', 'cover'].includes(options.version)) {
     throw new Error(`--version ${options.version} collides with a route segment`)
   }
+  if (options.lang && !/^[a-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(options.lang)) {
+    throw new Error(`--lang must be a BCP 47 code such as en, it, ru, pt-BR: ${options.lang}`)
+  }
   const shelf = options.shelf ?? firstpair.shelf
   const title = firstValue(options.title, version.html_title, version.title, metadata.title, titleFromSlug(slug))
   const author = firstValue(version.author, metadata.author)
@@ -2309,6 +2333,7 @@ async function buildPlan(inputDir, options) {
     headboard,
     versionId: options.version ?? null,
     versionLabel: options['version-label'] ?? null,
+    lang: options.lang ?? null,
     stageDir: options.version
       ? join(root, 'book-uploads', 'staging', slug, options.version)
       : join(root, 'book-uploads', 'staging', slug),
@@ -2351,7 +2376,8 @@ function printablePlan(
     stageDir: repoRelative(plan.stageDir),
     publicDir: repoRelative(plan.publicDir),
     source: plan.source,
-    version: plan.versionId ? { id: plan.versionId, label: plan.versionLabel } : null,
+    version: plan.versionId ? { id: plan.versionId, label: plan.versionLabel, lang: plan.lang } : null,
+    lang: plan.lang,
     dryRun,
     catalogEntry,
     artifacts: {

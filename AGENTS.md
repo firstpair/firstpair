@@ -344,7 +344,21 @@ Cicero (`~/src/cicero`) shows the preview/full split.
    catalog, and is listed on the card and the book page. Ids are lowercase
    slugs and may not be `guide`, `emacs-guide`, `chapters`, or a format name.
    Dante's `FIRSTPAIR.md` is the worked example (`dante-commedia` with the
-   `russian` version). An aligned edition with several translations per
+   `russian` version).
+   **Language versions.** Mark each package's language with `--lang <BCP 47>`
+   (`en`, `it`, `ru`): on the title's own publish it sets the entry's `lang`,
+   with `--version` it sets that version's `lang`; `check:catalog` rejects a
+   malformed or repeated language within one title. Use the language's own
+   name as `--version-label` ("Italiano", "Русский") and for the title
+   ("English"). The library card and book page then show one tab per
+   language, all always visible; selecting a tab opens an accordion with every
+   format of that language (PDF, EPUB, Read online, Chapters, vaults, guides,
+   Emacs). Republishing the title preserves its versions' staging. A
+   multi-language source repository builds each language from its own config
+   (`book.build.<lang>.json` into `book/dist-*-<lang>`); publish each language
+   from its dist directory with `--slug`/`--shelf` from `FIRSTPAIR.md` and an
+   explicit `--vault-dir`, since vault discovery is language-blind.
+   `lighthouse-republics` (English, Italian, Russian) is the worked example. An aligned edition with several translations per
    language follows `publishing/skills/obsidian-reader-plugin-delivery.md`
    § Aligned Editions; its Emacs bundle declares `emacs.aligned.index`.
 5. **Rights.** A full edition may be published only for text the source
