@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-10-18",
+  "generatedAt": "2026-10-19",
   "homebrew": {
     "formulae": {
       "ghostscript": {
@@ -55,7 +55,7 @@
     },
     "casks": {
       "calibre": {
-        "version": "9.16.0",
+        "version": "9.14.0",
         "flexible": true,
         "note": "Any installed version is accepted; upgrade by hand (large DMG). install-toolchain.sh installs it only when missing.",
         "command": "/Applications/calibre.app/Contents/MacOS/ebook-convert",

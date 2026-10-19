@@ -24,7 +24,14 @@ brew update
 # --no-upgrade: bundle only installs what is missing. Formulae are upgraded
 # explicitly below; calibre is a large DMG cask that is installed once and
 # upgraded only by a person, so scripts never upgrade it.
-brew bundle --no-upgrade --file "$publishing_dir/Brewfile"
+# A calibre installed outside Homebrew (the DMG dragged into /Applications)
+# counts as installed: drop the cask from the bundle instead of downloading it.
+brewfile="$publishing_dir/Brewfile"
+if command -v ebook-convert >/dev/null 2>&1 || [[ -x /Applications/calibre.app/Contents/MacOS/ebook-convert ]]; then
+  brewfile="$(mktemp -t firstpair-brewfile)"
+  grep -v '^cask "calibre"' "$publishing_dir/Brewfile" > "$brewfile"
+fi
+brew bundle --no-upgrade --file "$brewfile"
 brew upgrade "${formulae[@]}" || true
 
 npm install --prefix "$firstpair_root" --save-dev --save-exact @mermaid-js/mermaid-cli@latest
