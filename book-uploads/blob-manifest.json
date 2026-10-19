@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-18T04:26:52.512Z",
+  "updatedAt": "2026-10-19T07:02:04.382Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -2252,35 +2252,35 @@
       }
     },
     "lighthouse-republics": {
-      "updatedAt": "2026-10-17T23:40:24.161Z",
+      "updatedAt": "2026-10-19T07:02:04.382Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.pdf",
-          "sha256": "9e077a8bea2530d1c507bfb40ecf02ebb995061566e8a5df1ceab6831e558a6c",
-          "size": 17976038,
-          "pathname": "books/lighthouse-republics/pdf/9e077a8bea2530d1-lighthouse-republics-preview.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/9e077a8bea2530d1-lighthouse-republics-preview.pdf",
-          "skipped": true
+          "sha256": "46ebfcfaa32a1b81692788f1130a71195d6f6f9cf5b5f01899cae93f9a1bb2ad",
+          "size": 17976452,
+          "pathname": "books/lighthouse-republics/pdf/46ebfcfaa32a1b81-lighthouse-republics-preview.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/46ebfcfaa32a1b81-lighthouse-republics-preview.pdf",
+          "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.epub",
-          "sha256": "e2d7205a0eb5a27d2f0248fb6d40d17aa99a6b1c085dac642a0033f48bfb620c",
-          "size": 17017135,
-          "pathname": "books/lighthouse-republics/epub/e2d7205a0eb5a27d-lighthouse-republics-preview.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/e2d7205a0eb5a27d-lighthouse-republics-preview.epub",
-          "skipped": true
+          "sha256": "8327e38088734ed062e39dc7ca329957bed2195d7e70323b1f9f58be54977ae0",
+          "size": 17022148,
+          "pathname": "books/lighthouse-republics/epub/8327e38088734ed0-lighthouse-republics-preview.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/8327e38088734ed0-lighthouse-republics-preview.epub",
+          "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview.html",
-          "sha256": "d389f8edc82aae1d8219b74624a534a0afe493fb938c39f1b77eab0b097a4030",
-          "size": 19878360,
-          "pathname": "books/lighthouse-republics/html/d389f8edc82aae1d-lighthouse-republics-preview.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/d389f8edc82aae1d-lighthouse-republics-preview.html",
-          "skipped": true
+          "sha256": "5c08f798cbf24b07ba42ff8f823654ffaaf4b2f751055ba5c290a4c30a31a875",
+          "size": 19879831,
+          "pathname": "books/lighthouse-republics/html/5c08f798cbf24b07-lighthouse-republics-preview.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/5c08f798cbf24b07-lighthouse-republics-preview.html",
+          "skipped": false
         },
         "cover": {
           "kind": "cover",
@@ -2293,343 +2293,343 @@
         },
         "vault": {
           "kind": "vault",
-          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-vault (4.1.0-4d9b3066).zip",
-          "sha256": "f3f5ea86866157503b4c6a06c66873898f08095058b0c157850c5b1cede0e197",
-          "size": 22723850,
-          "pathname": "books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault (4.1.0-4d9b3066).zip",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/f3f5ea8686615750-lighthouse-republics-preview-vault%20%284.1.0-4d9b3066%29.zip",
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-vault (4.2.0-631d089f).zip",
+          "sha256": "3bcdbc92b36183c91b0df73c35128e4df9f22dc0d05e76878df4d620890e4c5f",
+          "size": 22999157,
+          "pathname": "books/lighthouse-republics/vault/3bcdbc92b36183c9-lighthouse-republics-preview-vault (4.2.0-631d089f).zip",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/3bcdbc92b36183c9-lighthouse-republics-preview-vault%20%284.2.0-631d089f%29.zip",
           "skipped": false
         },
         "vaultGuide": {
           "kind": "vault-guide",
-          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-vault-guide (4.1.0-4d9b3066).html",
-          "sha256": "cd622ea003c8842d6ee53a21debdb468bf22ea981f9d1bda916d12ad9b02419d",
-          "size": 12782,
-          "pathname": "books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide (4.1.0-4d9b3066).html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/cd622ea003c8842d-lighthouse-republics-vault-guide%20%284.1.0-4d9b3066%29.html",
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-vault-guide (4.2.0-631d089f).html",
+          "sha256": "e1d82bbc823f8ea3ecfbb964ba6f08d987e81c927ffc5c662b6c3bddcf1d84bf",
+          "size": 12704,
+          "pathname": "books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide (4.2.0-631d089f).html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide%20%284.2.0-631d089f%29.html",
           "skipped": false
         },
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters",
-          "sha256": "28b47313f4152864ae06de73bc960822a5d69c5e1465412eca959f334ee09ec7",
-          "pathnamePrefix": "books/lighthouse-republics/chapters/28b47313f4152864",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/index.html",
-          "skipped": true,
+          "sha256": "5ad5dc62b98d2a897cc160e8e2491da2633fc61191c5e0417a3f4a35def6762f",
+          "pathnamePrefix": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
+          "skipped": false,
           "files": [
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/book.css",
               "relativePath": "book.css",
               "sha256": "6283e962c5a4570783d7874d5a27e63193ca4be4f166b30424f6d4d19e99a894",
               "size": 461,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/book.css",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "723f6750fbe56bbbcc7843e9e3b38a7cb9ae33e8ab743b1465256236e10cb6f3",
-              "size": 12759,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-001.html",
+              "sha256": "3433491f60013c63b750d961d4f63e0c2488e47294e1f303d4bb338c3fb274e5",
+              "size": 12683,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "1931b10301468202a81315d120cb0104183174990ef0f51a4974e84ecf7a4c63",
-              "size": 2286,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-002.html",
+              "sha256": "517c3129a73c9f32dc39a3683f7d65d5b081bc21d9099c33fe8ed118e42a1cce",
+              "size": 2210,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "cca2881a9910e0b1e99a82551c05abde8c56f187aa95b82b3d60bd2d18f204bd",
-              "size": 6218,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-003.html",
+              "sha256": "f0e2a24e8925f561501575446955cd74133fa369c6e6a32b3df7dc42697ce775",
+              "size": 6142,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "6024a0889aa5568466a8b92369ef9350964bab75868b0e11654f0db0ab6ea1d2",
-              "size": 6258,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-004.html",
+              "sha256": "06a40af1213489020bd928e90ecfe158cf71039b17f21bf89c20c60864a944be",
+              "size": 6182,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "49a6e95461e9ed51ec469c37a7911f1d040214953af18ab0f230e9e776917c77",
-              "size": 2392,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-005.html",
+              "sha256": "bfd54c5f1bc660147a37c67cb02cc81e66d10281058a54628a6c1b0dbce4f6be",
+              "size": 2316,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "77aace183cb89360aba656d0c1d8fe47a261be9f0af5fec996686a079d254cae",
-              "size": 6506,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-006.html",
+              "sha256": "bb3432a0bceb28bd7d312c4da0a972057074773b804d5d3bd8b643b9b8480695",
+              "size": 6430,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "921da21896cb1d578af668985dffcd130e83ffcae097f75072ee98f1405159f0",
-              "size": 13947,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-007.html",
+              "sha256": "9e4ef8c7b9562141c794d7da955d6fb575c70c3940a0e1444e5ea4c34bf73a89",
+              "size": 13871,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "94525837afd0cf8564593e5632f3ff42be91121307390ecb234414a0b93ba9dc",
-              "size": 4563,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-008.html",
+              "sha256": "34e712d15ae26b50b699c4357cd2b853acded7db5b1e8886ed390053351bc52a",
+              "size": 4487,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "a56c62f37a2175308832e81e8921838c8f20bc03f9f21ed7e21bb79facdce5f3",
-              "size": 4830,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-009.html",
+              "sha256": "ce479afe05e2a873e67c4abc5295bdf6a943298bbfbe3686750eb7982c9314e8",
+              "size": 4754,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "b23345534d44636c778fbcd5f67fc36b017a97251c60d5063a03e679e6096be9",
-              "size": 6784,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-010.html",
+              "sha256": "60c708d938c3c3a3b1f6c0b98eae49b0ccc8936b80decf2077d5f3a3b3b5c53b",
+              "size": 6708,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "42a50e49d59074ee498aadca484fffdd8c537db02f38e49329424cb2aba4803e",
-              "size": 5591,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-011.html",
+              "sha256": "4878e157ed239ff3f085744d1a08920ea47463cd34caa180f685a1bf98a48ea3",
+              "size": 5515,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "967d4334ac02e8990265bff71b9492c1740069328a0c8ee01f80d99449cb1087",
-              "size": 4891,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-012.html",
+              "sha256": "b8ac42cb91cd3c69de1c780ad90f06e9e4066beae2871eb9d11955d0f35cf3ae",
+              "size": 4815,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-012.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "a3d8262b7b95c7602a114db8b63e42988fc5dc8ccdea05c1a0c79cdd45ba15f0",
-              "size": 5708,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-013.html",
+              "sha256": "45412a8a4dd00e69c4e02803e4c9fc646abd5bb2fffae48f247574aed3f85b4a",
+              "size": 5632,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "c891cd097946040806038daea2d16c01fae299bc504068f528856ab2ff39b1c8",
-              "size": 5447,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-014.html",
+              "sha256": "79507fa517239395ec0269a85b4741b913e6e07a642cbb88d82d56f11a3d1168",
+              "size": 5371,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-014.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-015.html",
               "relativePath": "chapter-015.html",
-              "sha256": "ad817c833e0da302ae7aacbe30d7ef59f1bce7a4aa9b23a814f642bdb9e30f63",
-              "size": 5077,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-015.html",
+              "sha256": "328d37c176ac6be4c1c8a1e7bec8bc61da173f354824de2e939197e72381bbac",
+              "size": 5001,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-015.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-016.html",
               "relativePath": "chapter-016.html",
-              "sha256": "8aab317c66ff72d525a43cc025288242ec9684c644b043f2eab725f7c3f2de3d",
-              "size": 4633,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-016.html",
+              "sha256": "dc11dbe4349f5099d249228c2c044bc7c990812e7f7cf65ad72e4a1076b7612d",
+              "size": 4557,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-016.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-017.html",
               "relativePath": "chapter-017.html",
-              "sha256": "c084baee494d5b7c11317813d1cde60ceae0f1ecc882d0aaa206ffcd932b1e56",
-              "size": 4637,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-017.html",
+              "sha256": "33e9e85f83b0e5fafdbde6d58157a1c75dd4404df572e7fa3cc44bd99ca38b57",
+              "size": 4561,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-017.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-018.html",
               "relativePath": "chapter-018.html",
-              "sha256": "e92b6ba7045db6eddd0e8af4da2d327ac609a749fc25e07c47113ffc65a688b9",
-              "size": 5790,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-018.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-018.html",
+              "sha256": "89c4820f484ede22592e9bafd46d3e444296be98f2d40dd9c2b68cc9a4463573",
+              "size": 5714,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-018.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-018.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-019.html",
               "relativePath": "chapter-019.html",
-              "sha256": "9d5d118c9b316f13d37da9ab1e7a1a4e2de18d1950c0f1baaea22b68fedaeb50",
-              "size": 5625,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-019.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-019.html",
+              "sha256": "5764a2a2c8854ebd9d8911324dc7e0d6c1d844ee756bfd426bf83eed4dc0ff37",
+              "size": 5549,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-019.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-019.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-020.html",
               "relativePath": "chapter-020.html",
-              "sha256": "6ec5be4b70ff69940101ca35e4d5b72b590d9b7d52ea1f6b89466dd443403915",
-              "size": 4676,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-020.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-020.html",
+              "sha256": "f99de54346a4e1eb2cf15f01d2863b911537c0a5c04669ded2d52668faa8226d",
+              "size": 4600,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-020.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-020.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-021.html",
               "relativePath": "chapter-021.html",
-              "sha256": "bf2e9e9afaea0b55e039559055887c954f7cefbae6563b37e6fbe718b0b8b882",
-              "size": 2393,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-021.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-021.html",
+              "sha256": "daa40e3af6a4145f322d7e51fd9dee14ba6287328db74e3a9384f0bfa8265254",
+              "size": 2317,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-021.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-021.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-022.html",
               "relativePath": "chapter-022.html",
-              "sha256": "71589ffa11a27e9fc8a77cd0f868ac1a0ff2cfbbdbc64dc1cdb4bece648d4463",
-              "size": 17172,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-022.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-022.html",
+              "sha256": "3fa2c859bf0f1446d86d6ce92da1e10598464227f990fc18831872b004514765",
+              "size": 17096,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-022.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-022.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-023.html",
               "relativePath": "chapter-023.html",
-              "sha256": "30bd3819042bcec42cfecda3034b21219c844af2a48815f38afda65479009e60",
-              "size": 17880,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-023.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-023.html",
+              "sha256": "cf8cef3d947e9042ea3bc52777214f4eea478977a0d3f26989531124a0a1ed37",
+              "size": 17804,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-023.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-023.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-024.html",
               "relativePath": "chapter-024.html",
-              "sha256": "d88ab8320c3438ab439bd2e0ff2fce0cc81eb8158cb27e83c983ee004359fa4b",
-              "size": 12544,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-024.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-024.html",
+              "sha256": "999e28b0d647fe9f25d6146d2459538cfcc05d4d8d94ca713633ae5709485274",
+              "size": 12468,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-024.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-024.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-025.html",
               "relativePath": "chapter-025.html",
-              "sha256": "865f4ffcbe280aa273366d903cc4c16c20e84a84ab1cde17bfff6ab756e6faeb",
-              "size": 12379,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-025.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-025.html",
+              "sha256": "d8ad6f9ec26bf8fac5c4c33d35ad397bbca142f4173f229fed05157eaf905cbe",
+              "size": 12303,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-025.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-025.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-026.html",
               "relativePath": "chapter-026.html",
-              "sha256": "834a8d32a8bad334f3748ed54a6e722d6c6b9c154351d4964b2750fc5fdf4627",
-              "size": 8373,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-026.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-026.html",
+              "sha256": "d55be44d95fb66a4a80027dae9c414ea982c56f763b07ea1d8f11d51336d9c93",
+              "size": 8297,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-026.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-026.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-027.html",
               "relativePath": "chapter-027.html",
-              "sha256": "6d029e7509016b5d8195bd4f6b8fe4d30b03b6643687d26d729c9ba1f19cb902",
-              "size": 8290,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-027.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-027.html",
+              "sha256": "3eca0f85074102df546a0090960a409e28af427c56adf0782b45af98103456af",
+              "size": 8214,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-027.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-027.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-028.html",
               "relativePath": "chapter-028.html",
-              "sha256": "3966c254ad47d5cc94987bce898b4702f2a0ef321ed18127a6175e44052f8b7c",
-              "size": 19277,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-028.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-028.html",
+              "sha256": "41cdd652f22887af5971b12858774d9cd35f2d834ce170fec621b63c0221a323",
+              "size": 19201,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-028.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-028.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-029.html",
               "relativePath": "chapter-029.html",
-              "sha256": "a13975a336eb4493a73295fed0683a5e50cc7c9f090e66d3c336f814f6affe26",
-              "size": 12155,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-029.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-029.html",
+              "sha256": "0b9d07c1ae22a8a6434b411505204f0a3b029bb81fefc412bb954439d73ff414",
+              "size": 12079,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-029.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-029.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-030.html",
               "relativePath": "chapter-030.html",
-              "sha256": "84e5aafdadc396fb3632294b36d00fd9169c208f4f2b1a3f8e65ab2d2c75f396",
-              "size": 5914,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-030.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-030.html",
+              "sha256": "06e32d58c54715485e47eaed61b5514d48a0c1107e659a698423c7a209b4d88b",
+              "size": 5838,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-030.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-030.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-031.html",
               "relativePath": "chapter-031.html",
-              "sha256": "bc1752dc38955f6d32866d8e1cb91140db3b0d24c8dbb7e361fe9b61a15dd99b",
-              "size": 2348,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/chapter-031.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/chapter-031.html",
+              "sha256": "1e21e16224df96df47048bdbcb34db91e08bc0c4eb3a0380d5463875a57abd10",
+              "size": 2272,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-031.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-031.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/diagrams/founder-travel-routes.png",
               "relativePath": "diagrams/founder-travel-routes.png",
-              "sha256": "32bd443c22088839683d683f666b38b27ed40c321987cbc942a664bc84ba468a",
-              "size": 49428,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/diagrams/founder-travel-routes.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/diagrams/founder-travel-routes.png",
+              "sha256": "d35d13b1b649b6c5b42d5c489c47c8624cca10f5196cbd00c5c2a5735b218bc6",
+              "size": 60006,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/founder-travel-routes.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/founder-travel-routes.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/diagrams/winds-currents-trade-routes.png",
               "relativePath": "diagrams/winds-currents-trade-routes.png",
-              "sha256": "b8f9e40610e303ce46200f890b5067c91af557781edcaab0caaab52fcb4d5b5d",
-              "size": 138974,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/diagrams/winds-currents-trade-routes.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/diagrams/winds-currents-trade-routes.png",
+              "sha256": "97ee9be65f00046b089930ff91974319bb81b033bcbd36985045d271cbb2157d",
+              "size": 136305,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/winds-currents-trade-routes.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/winds-currents-trade-routes.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/diagrams/world-pressure-1776-1797.png",
               "relativePath": "diagrams/world-pressure-1776-1797.png",
-              "sha256": "b25c23c405fc91d09a7aaa755df36bb43ae95511df2525b35441101ac710b65b",
-              "size": 79272,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/diagrams/world-pressure-1776-1797.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/diagrams/world-pressure-1776-1797.png",
+              "sha256": "4944182c5b8b8d4ab7e2f1c35a95e46b4a68922f2e7fbc087b2b0042f564c45b",
+              "size": 75202,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/world-pressure-1776-1797.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/world-pressure-1776-1797.png",
               "skipped": false
             },
             {
@@ -2637,8 +2637,8 @@
               "relativePath": "figures/arsenal-porta-magna.jpg",
               "sha256": "2ee254d95a14bc6391add93227f62c29c1847b45e65048803c0b1ee96b1a1afc",
               "size": 607566,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/figures/arsenal-porta-magna.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/figures/arsenal-porta-magna.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/arsenal-porta-magna.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/arsenal-porta-magna.jpg",
               "skipped": false
             },
             {
@@ -2646,8 +2646,8 @@
               "relativePath": "figures/birch-philadelphia-second-street.jpg",
               "sha256": "d6e32049d24a8b75f15ffc063e8374cc4d4164bb1c5ab271b4fc793a78d867da",
               "size": 555483,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/figures/birch-philadelphia-second-street.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/figures/birch-philadelphia-second-street.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/birch-philadelphia-second-street.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/birch-philadelphia-second-street.jpg",
               "skipped": false
             },
             {
@@ -2655,8 +2655,8 @@
               "relativePath": "figures/franklin-duplessis.jpg",
               "sha256": "93053efa696ea0ebf14c2baee82393ca8316a3125caf3d68530c6ef50f3bd83b",
               "size": 862872,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/figures/franklin-duplessis.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/figures/franklin-duplessis.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/franklin-duplessis.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/franklin-duplessis.jpg",
               "skipped": false
             },
             {
@@ -2664,8 +2664,8 @@
               "relativePath": "figures/guardi-san-marco.jpg",
               "sha256": "feea5799645a2ed56309f2b98137ade561f554713145f147e6ba9cd3545e2b6b",
               "size": 648008,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/figures/guardi-san-marco.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/figures/guardi-san-marco.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/guardi-san-marco.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/guardi-san-marco.jpg",
               "skipped": false
             },
             {
@@ -2673,8 +2673,8 @@
               "relativePath": "figures/new-york-1797-view.jpg",
               "sha256": "61b6b59db58d9da443efb19d705e59d0b87b60a4f78a4f9345ab43c9b2999b3e",
               "size": 581056,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/figures/new-york-1797-view.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/figures/new-york-1797-view.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/new-york-1797-view.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/new-york-1797-view.jpg",
               "skipped": false
             },
             {
@@ -2682,17 +2682,17 @@
               "relativePath": "figures/venice-lagoon-map-1764.jpg",
               "sha256": "71f95476fd1f3dc12eba84aa7b04170346bce23d513a91bbedfa9b74a3493fe2",
               "size": 597994,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/figures/venice-lagoon-map-1764.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/figures/venice-lagoon-map-1764.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/venice-lagoon-map-1764.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/venice-lagoon-map-1764.jpg",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "6c6c4dafccb30e5a19b04b00c69299da6c40bfe85d7aacece9fe193a08148228",
-              "size": 6246,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/index.html",
+              "sha256": "52127ed4f534a7e7b138de8e3554bdeb3a3c0c2ca3281f7086d619c445f1bb41",
+              "size": 6170,
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
               "skipped": false
             },
             {
@@ -2700,8 +2700,8 @@
               "relativePath": "maps/abel-buell-united-states-1784.jpg",
               "sha256": "28edf167877ba06b2593532f9f6a1173d33a247c3d5f32277409d3a0cac22c1e",
               "size": 4044459,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/maps/abel-buell-united-states-1784.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/maps/abel-buell-united-states-1784.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/abel-buell-united-states-1784.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/abel-buell-united-states-1784.jpg",
               "skipped": false
             },
             {
@@ -2709,8 +2709,8 @@
               "relativePath": "maps/republic-of-venice-1796.png",
               "sha256": "27c37247e4bf6e676a2c1097d25775e5d10ee6d26d33fdbbe925d33f189a3e2a",
               "size": 118114,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/maps/republic-of-venice-1796.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/maps/republic-of-venice-1796.png",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/republic-of-venice-1796.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/republic-of-venice-1796.png",
               "skipped": false
             },
             {
@@ -2718,8 +2718,8 @@
               "relativePath": "maps/thomson-venetian-states-1814.jpg",
               "sha256": "cf498dc4ea976740fa6c355f8be32109302c5dd4816c536d808287cfbed1200a",
               "size": 1365957,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/maps/thomson-venetian-states-1814.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/maps/thomson-venetian-states-1814.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/thomson-venetian-states-1814.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/thomson-venetian-states-1814.jpg",
               "skipped": false
             },
             {
@@ -2727,8 +2727,8 @@
               "relativePath": "maps/ughi-venice-1729.jpg",
               "sha256": "d9f61ea0b32c291f501123644acd2ae5807ea346c86d6eebe7fe80ac57c07707",
               "size": 4961313,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/maps/ughi-venice-1729.jpg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/maps/ughi-venice-1729.jpg",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/ughi-venice-1729.jpg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/ughi-venice-1729.jpg",
               "skipped": false
             },
             {
@@ -2736,8 +2736,8 @@
               "relativePath": "maps/venetian-colonies-stato-da-mar.png",
               "sha256": "387eaf3e1026fca89b9d13b1a6fc7f4e33be2ce57726936022af6b529e3590a1",
               "size": 165372,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/maps/venetian-colonies-stato-da-mar.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/maps/venetian-colonies-stato-da-mar.png",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/venetian-colonies-stato-da-mar.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/venetian-colonies-stato-da-mar.png",
               "skipped": false
             },
             {
@@ -2745,8 +2745,8 @@
               "relativePath": "sitemap.json",
               "sha256": "8829a8a096ee4e6e697290998d7c28bfbb867735a41020267a0c190eeb90739c",
               "size": 5746,
-              "pathname": "books/lighthouse-republics/chapters/28b47313f4152864/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/28b47313f4152864/sitemap.json",
+              "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/sitemap.json",
               "skipped": false
             }
           ]
@@ -17225,6 +17225,31 @@
       "pathname": "books/dng-compare/html/331f2d97b52f8e78-dng-compare.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/331f2d97b52f8e78-dng-compare.html",
       "size": 4125548
+    },
+    "46ebfcfaa32a1b81692788f1130a71195d6f6f9cf5b5f01899cae93f9a1bb2ad:17976452": {
+      "pathname": "books/lighthouse-republics/pdf/46ebfcfaa32a1b81-lighthouse-republics-preview.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/46ebfcfaa32a1b81-lighthouse-republics-preview.pdf",
+      "size": 17976452
+    },
+    "8327e38088734ed062e39dc7ca329957bed2195d7e70323b1f9f58be54977ae0:17022148": {
+      "pathname": "books/lighthouse-republics/epub/8327e38088734ed0-lighthouse-republics-preview.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/8327e38088734ed0-lighthouse-republics-preview.epub",
+      "size": 17022148
+    },
+    "5c08f798cbf24b07ba42ff8f823654ffaaf4b2f751055ba5c290a4c30a31a875:19879831": {
+      "pathname": "books/lighthouse-republics/html/5c08f798cbf24b07-lighthouse-republics-preview.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/5c08f798cbf24b07-lighthouse-republics-preview.html",
+      "size": 19879831
+    },
+    "3bcdbc92b36183c91b0df73c35128e4df9f22dc0d05e76878df4d620890e4c5f:22999157": {
+      "pathname": "books/lighthouse-republics/vault/3bcdbc92b36183c9-lighthouse-republics-preview-vault (4.2.0-631d089f).zip",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/3bcdbc92b36183c9-lighthouse-republics-preview-vault%20%284.2.0-631d089f%29.zip",
+      "size": 22999157
+    },
+    "e1d82bbc823f8ea3ecfbb964ba6f08d987e81c927ffc5c662b6c3bddcf1d84bf:12704": {
+      "pathname": "books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide (4.2.0-631d089f).html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide%20%284.2.0-631d089f%29.html",
+      "size": 12704
     }
   },
   "chapterPackages": {
@@ -50740,6 +50765,444 @@
           "size": 4609,
           "pathname": "books/dng-compare/chapters/5e626504a5a0ba1b/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/5e626504a5a0ba1b/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "5ad5dc62b98d2a897cc160e8e2491da2633fc61191c5e0417a3f4a35def6762f": {
+      "pathnamePrefix": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "6283e962c5a4570783d7874d5a27e63193ca4be4f166b30424f6d4d19e99a894",
+          "size": 461,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "3433491f60013c63b750d961d4f63e0c2488e47294e1f303d4bb338c3fb274e5",
+          "size": 12683,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "517c3129a73c9f32dc39a3683f7d65d5b081bc21d9099c33fe8ed118e42a1cce",
+          "size": 2210,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "f0e2a24e8925f561501575446955cd74133fa369c6e6a32b3df7dc42697ce775",
+          "size": 6142,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "06a40af1213489020bd928e90ecfe158cf71039b17f21bf89c20c60864a944be",
+          "size": 6182,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "bfd54c5f1bc660147a37c67cb02cc81e66d10281058a54628a6c1b0dbce4f6be",
+          "size": 2316,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "bb3432a0bceb28bd7d312c4da0a972057074773b804d5d3bd8b643b9b8480695",
+          "size": 6430,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "9e4ef8c7b9562141c794d7da955d6fb575c70c3940a0e1444e5ea4c34bf73a89",
+          "size": 13871,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "34e712d15ae26b50b699c4357cd2b853acded7db5b1e8886ed390053351bc52a",
+          "size": 4487,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "ce479afe05e2a873e67c4abc5295bdf6a943298bbfbe3686750eb7982c9314e8",
+          "size": 4754,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "60c708d938c3c3a3b1f6c0b98eae49b0ccc8936b80decf2077d5f3a3b3b5c53b",
+          "size": 6708,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "4878e157ed239ff3f085744d1a08920ea47463cd34caa180f685a1bf98a48ea3",
+          "size": 5515,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "b8ac42cb91cd3c69de1c780ad90f06e9e4066beae2871eb9d11955d0f35cf3ae",
+          "size": 4815,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "45412a8a4dd00e69c4e02803e4c9fc646abd5bb2fffae48f247574aed3f85b4a",
+          "size": 5632,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "79507fa517239395ec0269a85b4741b913e6e07a642cbb88d82d56f11a3d1168",
+          "size": 5371,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "328d37c176ac6be4c1c8a1e7bec8bc61da173f354824de2e939197e72381bbac",
+          "size": 5001,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "dc11dbe4349f5099d249228c2c044bc7c990812e7f7cf65ad72e4a1076b7612d",
+          "size": 4557,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "33e9e85f83b0e5fafdbde6d58157a1c75dd4404df572e7fa3cc44bd99ca38b57",
+          "size": 4561,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-018.html",
+          "relativePath": "chapter-018.html",
+          "sha256": "89c4820f484ede22592e9bafd46d3e444296be98f2d40dd9c2b68cc9a4463573",
+          "size": 5714,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-018.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-018.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-019.html",
+          "relativePath": "chapter-019.html",
+          "sha256": "5764a2a2c8854ebd9d8911324dc7e0d6c1d844ee756bfd426bf83eed4dc0ff37",
+          "size": 5549,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-019.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-019.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-020.html",
+          "relativePath": "chapter-020.html",
+          "sha256": "f99de54346a4e1eb2cf15f01d2863b911537c0a5c04669ded2d52668faa8226d",
+          "size": 4600,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-020.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-020.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-021.html",
+          "relativePath": "chapter-021.html",
+          "sha256": "daa40e3af6a4145f322d7e51fd9dee14ba6287328db74e3a9384f0bfa8265254",
+          "size": 2317,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-021.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-021.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-022.html",
+          "relativePath": "chapter-022.html",
+          "sha256": "3fa2c859bf0f1446d86d6ce92da1e10598464227f990fc18831872b004514765",
+          "size": 17096,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-022.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-022.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-023.html",
+          "relativePath": "chapter-023.html",
+          "sha256": "cf8cef3d947e9042ea3bc52777214f4eea478977a0d3f26989531124a0a1ed37",
+          "size": 17804,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-023.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-023.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-024.html",
+          "relativePath": "chapter-024.html",
+          "sha256": "999e28b0d647fe9f25d6146d2459538cfcc05d4d8d94ca713633ae5709485274",
+          "size": 12468,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-024.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-024.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-025.html",
+          "relativePath": "chapter-025.html",
+          "sha256": "d8ad6f9ec26bf8fac5c4c33d35ad397bbca142f4173f229fed05157eaf905cbe",
+          "size": 12303,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-025.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-025.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-026.html",
+          "relativePath": "chapter-026.html",
+          "sha256": "d55be44d95fb66a4a80027dae9c414ea982c56f763b07ea1d8f11d51336d9c93",
+          "size": 8297,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-026.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-026.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-027.html",
+          "relativePath": "chapter-027.html",
+          "sha256": "3eca0f85074102df546a0090960a409e28af427c56adf0782b45af98103456af",
+          "size": 8214,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-027.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-027.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-028.html",
+          "relativePath": "chapter-028.html",
+          "sha256": "41cdd652f22887af5971b12858774d9cd35f2d834ce170fec621b63c0221a323",
+          "size": 19201,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-028.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-028.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-029.html",
+          "relativePath": "chapter-029.html",
+          "sha256": "0b9d07c1ae22a8a6434b411505204f0a3b029bb81fefc412bb954439d73ff414",
+          "size": 12079,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-029.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-029.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-030.html",
+          "relativePath": "chapter-030.html",
+          "sha256": "06e32d58c54715485e47eaed61b5514d48a0c1107e659a698423c7a209b4d88b",
+          "size": 5838,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-030.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-030.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/chapter-031.html",
+          "relativePath": "chapter-031.html",
+          "sha256": "1e21e16224df96df47048bdbcb34db91e08bc0c4eb3a0380d5463875a57abd10",
+          "size": 2272,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-031.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/chapter-031.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/diagrams/founder-travel-routes.png",
+          "relativePath": "diagrams/founder-travel-routes.png",
+          "sha256": "d35d13b1b649b6c5b42d5c489c47c8624cca10f5196cbd00c5c2a5735b218bc6",
+          "size": 60006,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/founder-travel-routes.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/founder-travel-routes.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/diagrams/winds-currents-trade-routes.png",
+          "relativePath": "diagrams/winds-currents-trade-routes.png",
+          "sha256": "97ee9be65f00046b089930ff91974319bb81b033bcbd36985045d271cbb2157d",
+          "size": 136305,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/winds-currents-trade-routes.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/winds-currents-trade-routes.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/diagrams/world-pressure-1776-1797.png",
+          "relativePath": "diagrams/world-pressure-1776-1797.png",
+          "sha256": "4944182c5b8b8d4ab7e2f1c35a95e46b4a68922f2e7fbc087b2b0042f564c45b",
+          "size": 75202,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/world-pressure-1776-1797.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/diagrams/world-pressure-1776-1797.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/figures/arsenal-porta-magna.jpg",
+          "relativePath": "figures/arsenal-porta-magna.jpg",
+          "sha256": "2ee254d95a14bc6391add93227f62c29c1847b45e65048803c0b1ee96b1a1afc",
+          "size": 607566,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/arsenal-porta-magna.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/arsenal-porta-magna.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/figures/birch-philadelphia-second-street.jpg",
+          "relativePath": "figures/birch-philadelphia-second-street.jpg",
+          "sha256": "d6e32049d24a8b75f15ffc063e8374cc4d4164bb1c5ab271b4fc793a78d867da",
+          "size": 555483,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/birch-philadelphia-second-street.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/birch-philadelphia-second-street.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/figures/franklin-duplessis.jpg",
+          "relativePath": "figures/franklin-duplessis.jpg",
+          "sha256": "93053efa696ea0ebf14c2baee82393ca8316a3125caf3d68530c6ef50f3bd83b",
+          "size": 862872,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/franklin-duplessis.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/franklin-duplessis.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/figures/guardi-san-marco.jpg",
+          "relativePath": "figures/guardi-san-marco.jpg",
+          "sha256": "feea5799645a2ed56309f2b98137ade561f554713145f147e6ba9cd3545e2b6b",
+          "size": 648008,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/guardi-san-marco.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/guardi-san-marco.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/figures/new-york-1797-view.jpg",
+          "relativePath": "figures/new-york-1797-view.jpg",
+          "sha256": "61b6b59db58d9da443efb19d705e59d0b87b60a4f78a4f9345ab43c9b2999b3e",
+          "size": 581056,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/new-york-1797-view.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/new-york-1797-view.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/figures/venice-lagoon-map-1764.jpg",
+          "relativePath": "figures/venice-lagoon-map-1764.jpg",
+          "sha256": "71f95476fd1f3dc12eba84aa7b04170346bce23d513a91bbedfa9b74a3493fe2",
+          "size": 597994,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/venice-lagoon-map-1764.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/figures/venice-lagoon-map-1764.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "52127ed4f534a7e7b138de8e3554bdeb3a3c0c2ca3281f7086d619c445f1bb41",
+          "size": 6170,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/maps/abel-buell-united-states-1784.jpg",
+          "relativePath": "maps/abel-buell-united-states-1784.jpg",
+          "sha256": "28edf167877ba06b2593532f9f6a1173d33a247c3d5f32277409d3a0cac22c1e",
+          "size": 4044459,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/abel-buell-united-states-1784.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/abel-buell-united-states-1784.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/maps/republic-of-venice-1796.png",
+          "relativePath": "maps/republic-of-venice-1796.png",
+          "sha256": "27c37247e4bf6e676a2c1097d25775e5d10ee6d26d33fdbbe925d33f189a3e2a",
+          "size": 118114,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/republic-of-venice-1796.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/republic-of-venice-1796.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/maps/thomson-venetian-states-1814.jpg",
+          "relativePath": "maps/thomson-venetian-states-1814.jpg",
+          "sha256": "cf498dc4ea976740fa6c355f8be32109302c5dd4816c536d808287cfbed1200a",
+          "size": 1365957,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/thomson-venetian-states-1814.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/thomson-venetian-states-1814.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/maps/ughi-venice-1729.jpg",
+          "relativePath": "maps/ughi-venice-1729.jpg",
+          "sha256": "d9f61ea0b32c291f501123644acd2ae5807ea346c86d6eebe7fe80ac57c07707",
+          "size": 4961313,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/ughi-venice-1729.jpg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/ughi-venice-1729.jpg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/maps/venetian-colonies-stato-da-mar.png",
+          "relativePath": "maps/venetian-colonies-stato-da-mar.png",
+          "sha256": "387eaf3e1026fca89b9d13b1a6fc7f4e33be2ce57726936022af6b529e3590a1",
+          "size": 165372,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/venetian-colonies-stato-da-mar.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/maps/venetian-colonies-stato-da-mar.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "8829a8a096ee4e6e697290998d7c28bfbb867735a41020267a0c190eeb90739c",
+          "size": 5746,
+          "pathname": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/sitemap.json",
           "skipped": false
         }
       ]
