@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-19T07:02:04.382Z",
+  "updatedAt": "2026-10-19T07:06:57.667Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -2252,7 +2252,7 @@
       }
     },
     "lighthouse-republics": {
-      "updatedAt": "2026-10-19T07:02:04.382Z",
+      "updatedAt": "2026-10-19T07:06:57.666Z",
       "dryRun": false,
       "units": {
         "pdf": {
@@ -2262,7 +2262,7 @@
           "size": 17976452,
           "pathname": "books/lighthouse-republics/pdf/46ebfcfaa32a1b81-lighthouse-republics-preview.pdf",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/pdf/46ebfcfaa32a1b81-lighthouse-republics-preview.pdf",
-          "skipped": false
+          "skipped": true
         },
         "epub": {
           "kind": "epub",
@@ -2271,7 +2271,7 @@
           "size": 17022148,
           "pathname": "books/lighthouse-republics/epub/8327e38088734ed0-lighthouse-republics-preview.epub",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/epub/8327e38088734ed0-lighthouse-republics-preview.epub",
-          "skipped": false
+          "skipped": true
         },
         "html": {
           "kind": "html",
@@ -2280,7 +2280,7 @@
           "size": 19879831,
           "pathname": "books/lighthouse-republics/html/5c08f798cbf24b07-lighthouse-republics-preview.html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/html/5c08f798cbf24b07-lighthouse-republics-preview.html",
-          "skipped": false
+          "skipped": true
         },
         "cover": {
           "kind": "cover",
@@ -2298,7 +2298,7 @@
           "size": 22999157,
           "pathname": "books/lighthouse-republics/vault/3bcdbc92b36183c9-lighthouse-republics-preview-vault (4.2.0-631d089f).zip",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault/3bcdbc92b36183c9-lighthouse-republics-preview-vault%20%284.2.0-631d089f%29.zip",
-          "skipped": false
+          "skipped": true
         },
         "vaultGuide": {
           "kind": "vault-guide",
@@ -2307,7 +2307,7 @@
           "size": 12704,
           "pathname": "books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide (4.2.0-631d089f).html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide%20%284.2.0-631d089f%29.html",
-          "skipped": false
+          "skipped": true
         },
         "htmlChapters": {
           "kind": "htmlChapters",
@@ -2315,7 +2315,7 @@
           "sha256": "5ad5dc62b98d2a897cc160e8e2491da2633fc61191c5e0417a3f4a35def6762f",
           "pathnamePrefix": "books/lighthouse-republics/chapters/5ad5dc62b98d2a89",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/chapters/5ad5dc62b98d2a89/index.html",
-          "skipped": false,
+          "skipped": true,
           "files": [
             {
               "localPath": "book-uploads/staging/lighthouse-republics/lighthouse-republics-preview-chapters/book.css",
