@@ -69,14 +69,16 @@
         {
           "id": "ru",
           "label": "Русский",
-          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/1bd38e2db2a925eb-lighthouse-republics-ru-preview.pdf",
-          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/010b86d7b3b0b2ff-lighthouse-republics-ru-preview.epub",
+          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/16be1c37f973f946-lighthouse-republics-ru-preview.pdf",
+          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/73c00b72f3abb55c-lighthouse-republics-ru-preview.epub",
           "html": "/read/lighthouse-republics/ru/",
           "htmlChapters": "/read/lighthouse-republics/ru/chapters/",
-          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/00c5ca69a949119b-lighthouse-republics-ru-preview.html",
-          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/307cc0b10ee92625/index.html",
+          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/2982b6df6edff7b4-lighthouse-republics-ru-preview.html",
+          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/2d22c3e8de600d66/index.html",
           "lang": "ru",
-          "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault/c394e3a9adc837a2-lighthouse-republics-ru-preview-vault%20%284.1.0-4d9b3066%29.zip"
+          "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault/53cd77124ff99e6c-lighthouse-republics-ru-preview-vault%20%284.2.0-631d089f%29.zip",
+          "vaultGuide": "/read/lighthouse-republics/ru/guide/",
+          "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault-guide/c9c90b4e9df3f1f5-lighthouse-republics-ru-vault-guide%20%284.2.0-631d089f%29.html"
         }
       ],
       "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/vault-guide/e1d82bbc823f8ea3-lighthouse-republics-vault-guide%20%284.2.0-631d089f%29.html"

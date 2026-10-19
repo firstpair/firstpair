@@ -21,9 +21,9 @@ export const deliverableBooks = [
         "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/vault/d196f5c4338195a9-lighthouse-republics-it-preview-vault%20%284.2.0-631d089f%29.zip"
       },
       "ru": {
-        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/1bd38e2db2a925eb-lighthouse-republics-ru-preview.pdf",
-        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/010b86d7b3b0b2ff-lighthouse-republics-ru-preview.epub",
-        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault/c394e3a9adc837a2-lighthouse-republics-ru-preview-vault%20%284.1.0-4d9b3066%29.zip"
+        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/pdf/16be1c37f973f946-lighthouse-republics-ru-preview.pdf",
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/epub/73c00b72f3abb55c-lighthouse-republics-ru-preview.epub",
+        "vault": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault/53cd77124ff99e6c-lighthouse-republics-ru-preview-vault%20%284.2.0-631d089f%29.zip"
       }
     }
   },
