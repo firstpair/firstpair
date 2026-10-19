@@ -20,9 +20,9 @@ export const readerBooks = [
         "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/it/vault-guide/269b8649434ae74b-lighthouse-republics-it-vault-guide%20%284.2.0-631d089f%29.html"
       },
       "ru": {
-        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/2982b6df6edff7b4-lighthouse-republics-ru-preview.html",
-        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/2d22c3e8de600d66/index.html",
-        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/2d22c3e8de600d66",
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/html/f7a192199fb9f09a-lighthouse-republics-ru-preview.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/3104a91c5d0ee252/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/chapters/3104a91c5d0ee252",
         "vaultGuideSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lighthouse-republics/ru/vault-guide/c9c90b4e9df3f1f5-lighthouse-republics-ru-vault-guide%20%284.2.0-631d089f%29.html"
       }
     }
