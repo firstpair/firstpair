@@ -21,7 +21,9 @@
           "html": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview.html",
           "htmlChapters": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview-chapters",
           "label": "Italiano",
-          "vault": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview-vault (4.1.0-4d9b3066).zip"
+          "vault": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-preview-vault (4.2.0-631d089f).zip",
+          "vaultGuideMarkdown": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-vault-guide (4.2.0-631d089f).md",
+          "vaultGuideHtml": "book-uploads/staging/lighthouse-republics/it/lighthouse-republics-it-vault-guide (4.2.0-631d089f).html"
         },
         "ru": {
           "pdf": "book-uploads/staging/lighthouse-republics/ru/lighthouse-republics-ru-preview.pdf",
