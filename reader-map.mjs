@@ -77,9 +77,9 @@ export const readerBooks = [
     "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/chapters/e87de0301616dff1",
     "versions": {
       "ru": {
-        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/html/856d650aed842497-invented-enemy-preview.html",
-        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/4e2516128633f638/index.html",
-        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/4e2516128633f638"
+        "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/html/cba2db54747adc4a-invented-enemy-preview.html",
+        "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/0829d0394e8544a2/index.html",
+        "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/invented-enemy/ru/chapters/0829d0394e8544a2"
       }
     }
   },

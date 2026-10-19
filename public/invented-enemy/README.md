@@ -19,4 +19,4 @@ A public preview of the history of Russophobia and the anti-Slavic imagination â
 The source repository owns the manuscript, metadata, version manifest, build
 pipeline, and canonical generated artifacts:
 
-[https://github.com/firstpair/russophobia](https://github.com/firstpair/russophobia)
+[/Users/alexy/src/review/../invented](/Users/alexy/src/review/../invented)
