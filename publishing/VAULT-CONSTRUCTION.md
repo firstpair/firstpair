@@ -79,6 +79,39 @@ must extend this package through versioned data contracts or a documented
 extension interface. A title must not fork the core Reader to change labels,
 colors, target data, or layout preferences.
 
+## Editorial Triptych
+
+`publishing/vault/plugin/firstpair-triptych/` is the shared editorial plugin
+(id `firstpair-triptych`, formerly `lighthouse-triptych` in the Lighthouse
+Republics repository). Unlike the read-only standard Reader it writes one
+ledger, so it is a separate package rather than a fork of
+`firstpair-reader`:
+
+- a pinned Previous / Up / Back / Top / TOC / Next Reader over schema-4
+  `_data/triptych-reader.json` and schema-3 fenced `triptych` pages, found in
+  whichever top-level book folder holds `_data/triptych-reader.json`;
+- whole-pane, sentence, and word choices, proposed edits with variants, and
+  span notes (text and/or voice) recorded to
+  `Preferences/triptych-decisions.json` (`firstpair.triptych-decisions.v4`)
+  with a `.sha256` sidecar and an `EDITING-INSTRUCTIONS.md` digest;
+- voice recordings saved and verified byte for byte under
+  `Preferences/voice/` before the ledger names them, then transcribed by local
+  `mlx_whisper` or an OpenAI-compatible endpoint without replacing the audio;
+- a single-edition editing mode;
+- visible UI in English, Italian, and Russian, chosen by the canonical
+  edition's `lang` in `_data/editions.jsonl`.
+
+Author `main-source.js` and `review-state.js`, then run
+`python3 publishing/scripts/bundle-firstpair-triptych.py`; vaults install the
+single-file `main.js` with `manifest.json`, `styles.css`, and `README.md`
+(the local `package.json` only scopes CommonJS for tests). Book builders read
+the package from `$FIRSTPAIR_ROOT` (default `~/src/firstpair`); in Lighthouse
+Republics that is `scripts/obsidian_triptych_contract.py`, which also migrates
+an installed `lighthouse-triptych` (moving its `data.json` and renaming it in
+`community-plugins.json`). `review-state.js` is the shared editorial core; the
+Lighthouse mobile reader embeds it, and the Invented Enemy translation
+triptych still carries a diverged copy awaiting its own port.
+
 ## Differential QA
 
 Capture the working vault before generating a candidate:

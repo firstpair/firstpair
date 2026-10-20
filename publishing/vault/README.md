@@ -3,7 +3,9 @@
 This directory contains the shared, compatibility-first Obsidian vault
 toolchain. Book repositories own manuscripts, evidence maps, rights decisions,
 and title-specific assertions. FirstPair owns deterministic projection,
-packaging contracts, the standard Reader plugin, and differential QA.
+packaging contracts, the standard Reader plugin (`plugin/firstpair-reader`),
+the editorial triptych plugin (`plugin/firstpair-triptych`), and differential
+QA.
 
 The builder has two independent axes:
 
