@@ -4,6 +4,8 @@ import test from 'node:test'
 
 const root = new URL('../vault/plugin/firstpair-reader/', import.meta.url)
 const source = readFileSync(new URL('main.js', root), 'utf8')
+// The view itself, without the shared modules the bundle embeds.
+const view = readFileSync(new URL('main-source.js', root), 'utf8')
 const manifest = JSON.parse(readFileSync(new URL('manifest.json', root), 'utf8'))
 
 test('standard Reader package is stable and offline', () => {
@@ -24,7 +26,7 @@ test('standard Reader preserves navigation and bounded local history', () => {
     cursor = position
   }
   assert.match(source, /new ReaderHistory\(\)/)
-  assert.match(source, /limit = 64/)
+  assert.match(source, /HISTORY_LIMIT = 100/)
   assert.match(source, /rotate-ccw/)
   assert.match(source, /chevrons-left/)
   assert.match(source, /chevrons-right/)
@@ -37,9 +39,9 @@ test('standard Reader supports data-driven multilingual editions offline', () =>
   assert.match(source, /defaultVisible/)
   assert.match(source, /firstpair-reader__language-toggle/)
   assert.match(source, /openDictionary/)
-  assert.match(source, /loadDictionary/)
+  assert.match(source, /dictionaryLookup/)
   assert.match(source, /unit\.translations/)
-  assert.doesNotMatch(source, /Italian|English|Russian|Dante/)
+  assert.doesNotMatch(view, /Italian|English|Russian|Dante|Русский/)
 })
 
 test('standard Reader leads with the source text unless a title asks otherwise', () => {
@@ -49,12 +51,23 @@ test('standard Reader leads with the source text unless a title asks otherwise',
   assert.match(source, /async addColumn\(lang\)/)
   assert.match(source, /position === "right"/)
   assert.match(source, /firstpair-reader-dictionary-index-v1/)
-  assert.match(source, /async lookup\(path, word\)/)
+  assert.match(source, /return async function lookup\(path, surface, lang = ""\)/)
   assert.match(source, /firstpair:page:/)
   assert.match(source, /firstpair:reader/)
-  assert.match(source, /registerObsidianProtocolHandler\("firstpair-reader"/)
+  assert.match(source, /registerObsidianProtocolHandler\?\.\("firstpair-reader"/)
   assert.match(source, /orientation: portrait/)
   assert.match(source, /ResizeObserver/)
   assert.match(source, /firstpair-reader__page--stacked/)
   assert.match(source, /sizeDrawer\(\)/)
+})
+
+test('Reader 2 reads every FirstPair index format and stays read-only unless editing is on', () => {
+  for (const format of ['firstpair-reader.v2', 'parallel-reader.json', 'mobile-library.json', 'fragments.json', 'schema_version === 1']) {
+    assert.ok(source.includes(format), `${format} is understood`)
+  }
+  assert.match(view, /editing: false/)
+  assert.match(view, /if \(!this\.plugin\.settings\.editing\) return;/)
+  assert.doesNotMatch(view, /vault\.on\s*\(/)
+  assert.match(view, /detachLeavesOfType/)
+  assert.match(view, /HISTORY_LIMIT/)
 })

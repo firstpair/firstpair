@@ -1,0 +1,2133 @@
+/*
+ * FirstPair Reader 2 — the offline book reader for every FirstPair vault.
+ *
+ * One ItemView reads any FirstPair Reader index (contract.js): a plain book,
+ * a library of editions, aligned multilingual chapters with dictionaries, a
+ * code book with fragment cards.  It is read-only by default; the optional
+ * editing tools (settings) attach text and voice notes to selected spans in
+ * the shared decisions ledger, as FirstPair Triptych does.
+ *
+ * Navigation: one rail, Previous · [Previous word] · Up · Back · Top · TOC ·
+ * [Next word] · Next, at the bottom or top.  Up climbs page → part →
+ * contents → library; TOC shows the contents with the current page marked;
+ * Back restores the exact earlier location, scroll and focus; Top is
+ * reversible.  Every static fallback note opens the Reader at its place.
+ */
+
+const obsidian = require("obsidian");
+const { ItemView, MarkdownRenderer, Platform, Plugin, PluginSettingTab, Setting, setIcon } = obsidian;
+const Notice = obsidian.Notice || class { constructor(message) { console.log(message); } };
+const normalizePath = obsidian.normalizePath || ((value) => value);
+const requestUrl = obsidian.requestUrl;
+const Component = obsidian.Component || class {
+  load() {}
+  unload() {}
+  addChild(child) { return child; }
+  register() {}
+};
+
+const contract = require("./contract");
+const {
+  dictionaryLookup, exampleText, LruCache, mergeEntries, normalizeWord,
+} = require("./dictionary");
+const quotes = require("./quotes");
+const anchors = require("./anchors");
+const { readerText } = require("./strings");
+const reviewState = require("../firstpair-triptych/review-state");
+const metricsCore = require("../shared/metrics");
+
+let uiLang = "en";
+const t = (key, vars) => readerText(uiLang, key, vars);
+// A language's own display name in the interface language (no hard-coded list).
+const languageName = (code) => {
+  try {
+    return new Intl.DisplayNames([uiLang], { type: "language" }).of(code) || code;
+  } catch (_error) {
+    return code;
+  }
+};
+
+const { DecisionStore } = require("../shared/ledger-store")({
+  normalizePath,
+  notifyUnreadable: () => {},
+});
+const voiceCore = require("../shared/voice-core")({
+  Notice, Platform, normalizePath, requestUrl, t: (key, vars) => t(key, vars),
+});
+
+const VIEW_TYPE = "firstpair-reader";
+const TARGET_INDEX = "_data/targets.json";
+const HISTORY_LIMIT = 100;
+const STACK_BELOW = 700;
+const FRAGMENT_LANGUAGES = ["firstpair-fragment", "rgbdns-fragment", "sail-fragment"];
+const LAYOUTS = [
+  { id: "auto", label: "Auto", short: "Auto", icons: ["smartphone"] },
+  { id: "columns", label: "Columns", short: "Cols", icons: ["columns-2", "columns"] },
+  { id: "stacked", label: "Stacked", short: "Stack", icons: ["rows-3", "rows"] },
+];
+// Obsidian's bundled Lucide set renamed some icons; take the first it knows.
+const setAnyIcon = (element, names) => {
+  for (const name of names) {
+    setIcon(element, name);
+    if (element.querySelector("svg")) return;
+  }
+};
+
+const DEFAULT_SETTINGS = {
+  layout: "auto",
+  reserveDrawerColumn: true,
+  keepDrawerOpen: false,
+  dictionaryLanguages: "shown",
+  drawerPosition: "side",
+  drawerHeight: 0.33,
+  resume: true,
+  state: {},
+  railPosition: "bottom",
+  sourcesInNewTab: false,
+  hiddenColumns: {},
+  defaultColumn: {},
+  editing: false,
+  transcriptionEngine: "auto",
+  autoTranscribe: true,
+  voiceLanguage: "",
+  mlxWhisperPath: "",
+  mlxModel: voiceCore.DEFAULT_MLX_MODEL,
+  apiBaseUrl: "https://api.openai.com/v1",
+  apiKey: "",
+  apiModel: "whisper-1",
+};
+
+class ReaderHistory {
+  constructor(limit = HISTORY_LIMIT) {
+    this.limit = limit;
+    this.items = [];
+  }
+
+  push(value) {
+    this.items.push(value);
+    if (this.items.length > this.limit) this.items.shift();
+  }
+
+  pop() {
+    return this.items.pop() ?? null;
+  }
+
+  clear() {
+    this.items = [];
+  }
+}
+
+const reducedMotion = () => typeof window !== "undefined" && typeof window.matchMedia === "function"
+  && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+/* ------------------------------------------------------------------ view */
+
+class FirstPairReaderView extends ItemView {
+  constructor(leaf, plugin) {
+    super(leaf);
+    this.plugin = plugin;
+    this.book = null;
+    this.library = null;
+    this.editionId = null;
+    this.pages = [];
+    this.position = 0;
+    this.mode = "page";
+    this.partId = null;
+    this.notePath = null;
+    this.noteLines = null;
+    this.history = new ReaderHistory();
+    this.parallel = null;
+    this.enabled = new Set();
+    this.wordPosition = -1;
+    this.columns = [];
+    this.renderChild = null;
+    this.renderToken = 0;
+    this.pendingTarget = null;
+    this.activeCell = 0;
+  }
+
+  getViewType() { return VIEW_TYPE; }
+
+  getIcon() { return "book-open"; }
+
+  getDisplayText() {
+    const title = this.parallel?.title ?? this.book?.title ?? t("reader");
+    if (this.mode === "page" && this.pages[this.position] && !this.parallel) {
+      return `${title} — ${this.pages[this.position].title}`;
+    }
+    return title;
+  }
+
+  /* ---------------------------------------------------- aligned editions */
+
+  translationsOf(lang) { return this.parallel.translations.filter((item) => (item.lang ?? item.id) === lang); }
+
+  languages() {
+    if (!this.parallel) {
+      return Object.entries(this.book?.dictionaries || {}).map(([id, entry]) => ({ id, label: entry.label || id }));
+    }
+    if (this.parallel.languages) return this.parallel.languages;
+    const seen = new Map();
+    for (const item of this.parallel.translations) {
+      const lang = item.lang ?? item.id;
+      if (!seen.has(lang)) seen.set(lang, { id: lang, label: item.label });
+    }
+    return [...seen.values()];
+  }
+
+  translation(id) { return this.parallel.translations.find((item) => item.id === id); }
+
+  languageShort(language) {
+    return language.short ?? ({ en: "Eng", ru: "Рус", it: "Ita", la: "Lat" }[language.id] ?? language.label);
+  }
+
+  translationName(item) {
+    const name = item.title ?? item.translator ?? item.label ?? item.id;
+    return name.replace(/\s*\([^()]*\)\s*$/u, "").trim();
+  }
+
+  currentPart() {
+    const page = this.pages[this.position];
+    if (!page) return undefined;
+    return this.book.parts.find((part) => part.id === page.partId)?.title;
+  }
+
+  covers(item, part) { return !item.coverage || !part || item.coverage.includes(part); }
+
+  // The translation to show for a language: the remembered choice if it covers
+  // this page, else the language's default, else the first that covers.
+  choiceFor(lang, exclude = null) {
+    const part = this.currentPart();
+    const candidates = this.translationsOf(lang).filter((item) => item.id !== exclude);
+    const remembered = this.plugin.settings.choices?.[this.parallel.title]?.[lang];
+    const pick = candidates.find((item) => item.id === remembered && this.covers(item, part))
+      ?? candidates.find((item) => item.default && this.covers(item, part))
+      ?? candidates.find((item) => this.covers(item, part)) ?? candidates[0];
+    return pick?.id ?? null;
+  }
+
+  async remember(lang, id) {
+    const choices = { ...(this.plugin.settings.choices ?? {}) };
+    choices[this.parallel.title] = { ...(choices[this.parallel.title] ?? {}), [lang]: id };
+    await this.plugin.saveSettings({ choices });
+  }
+
+  async rotate(index) {
+    const column = this.columns[index];
+    const others = this.columns.filter((c, i) => i !== index && c.lang === column.lang).map((c) => c.id);
+    const part = this.currentPart();
+    const list = this.translationsOf(column.lang).filter((item) => !others.includes(item.id) && this.covers(item, part));
+    if (list.length < 2) return;
+    const at = list.findIndex((item) => item.id === column.id);
+    column.id = list[(at + 1) % list.length].id;
+    if (index === this.columns.findIndex((c) => c.lang === column.lang)) await this.remember(column.lang, column.id);
+    await this.renderPage(false);
+  }
+
+  async addColumn(lang) {
+    const first = this.columns.find((c) => c.lang === lang);
+    if (!first) return;
+    const id = this.choiceFor(lang, first.id);
+    if (!id || id === first.id) return;
+    const at = this.columns.lastIndexOf(first);
+    this.columns.splice(at + 1, 0, { lang, id, extra: true });
+    await this.renderPage(false);
+  }
+
+  async removeColumn(index) {
+    this.columns.splice(index, 1);
+    await this.renderPage(false);
+  }
+
+  syncColumns() {
+    const kept = this.columns.filter((c) => this.enabled.has(c.lang));
+    for (const lang of this.languages().map((l) => l.id)) {
+      if (this.enabled.has(lang) && !kept.some((c) => c.lang === lang)) kept.push({ lang, id: this.choiceFor(lang) });
+    }
+    const part = this.currentPart();
+    for (const column of kept.filter((c) => !c.extra)) {
+      const item = this.translation(column.id);
+      if (!item || !this.covers(item, part)) column.id = this.choiceFor(column.lang) ?? column.id;
+    }
+    for (const column of kept.filter((c) => c.extra)) {
+      const primary = kept.find((c) => !c.extra && c.lang === column.lang);
+      const item = this.translation(column.id);
+      if (!item || !this.covers(item, part) || column.id === primary?.id) {
+        column.id = this.choiceFor(column.lang, primary?.id ?? null) ?? column.id;
+      }
+    }
+    const order = this.languages().map((l) => l.id);
+    kept.sort((a, b) => order.indexOf(a.lang) - order.indexOf(b.lang) || (a.extra ? 1 : 0) - (b.extra ? 1 : 0));
+    this.columns = kept;
+  }
+
+  /* -------------------------------------------------------------- opening */
+
+  async readJson(path, optional = false) {
+    const text = await this.plugin.io.read(path);
+    if (text === null) {
+      if (optional) return null;
+      throw new Error(`Missing ${path}`);
+    }
+    return JSON.parse(text);
+  }
+
+  buildFrame() {
+    this.teardown();
+    this.containerEl.empty();
+    this.frame = this.containerEl.createDiv({ cls: "firstpair-reader__frame" });
+    this.root = this.frame.createDiv({ cls: "firstpair-reader" });
+    this.toolbar = this.root.createDiv({ cls: "firstpair-reader__toolbar" });
+    this.page = this.root.createDiv({ cls: "firstpair-reader__page" });
+    this.drawer = this.frame.createDiv({ cls: "firstpair-reader__drawer", attr: { hidden: "" } });
+    this.rail = this.root.createDiv({
+      cls: "firstpair-reader__rail",
+      attr: { role: "navigation", "aria-label": t("nav_aria") },
+    });
+    this.frame.toggleClass("firstpair-reader__frame--rail-top", this.plugin.settings.railPosition === "top");
+    this.keydown = (event) => {
+      if (event.key !== "Escape" || this.drawer.hasAttribute("hidden")) return;
+      this.closeDrawer();
+      if (this.lastWordButton && this.lastWordButton.isConnected) this.lastWordButton.focus();
+    };
+    this.frame.addEventListener("keydown", this.keydown);
+    this.frame.addEventListener("click", (event) => {
+      if (this.drawer.hasAttribute("hidden") || this.drawer.contains(event.target)) return;
+      if (event.target.closest?.(".firstpair-reader__word, .firstpair-reader__toolbar, .firstpair-reader__rail")) return;
+      this.closeDrawer();
+    });
+    this.root.addEventListener("scroll", () => this.saveStateSoon(), { passive: true });
+    // A horizontal swipe on tabbed columns moves to the neighbouring language.
+    let startX = null;
+    let startY = null;
+    this.page.addEventListener("touchstart", (event) => {
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    }, { passive: true });
+    this.page.addEventListener("touchend", (event) => {
+      if (startX === null || !this.page.hasClass("firstpair-reader__page--tabbed")) return;
+      const dx = event.changedTouches[0].clientX - startX;
+      const dy = event.changedTouches[0].clientY - startY;
+      startX = null;
+      if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy) * 1.5) return;
+      const count = this.page.querySelectorAll(".firstpair-reader__cell-tab").length;
+      this.activeCell = Math.max(0, Math.min(count - 1, this.activeCell + (dx < 0 ? 1 : -1)));
+      this.applyTabs();
+    }, { passive: true });
+  }
+
+  async onOpen() {
+    this.buildFrame();
+    try {
+      const model = await this.plugin.loadModel();
+      uiLang = model.uiLang || "en";
+      if (model.format === "library") {
+        this.library = model;
+        const saved = this.savedState();
+        await this.useEdition(saved?.editionId || model.editions[0].id, false);
+        if (!saved) this.mode = "library";
+      } else {
+        this.library = null;
+        await this.useBook(model);
+      }
+      this.restoreState();
+      this.makeToolbar();
+      this.makeRail();
+      this.watchLayout();
+      const target = this.pendingTarget;
+      this.pendingTarget = null;
+      if (target) await this.applyTarget(target, false);
+      else await this.render();
+      const saved = this.savedState();
+      if (!target && saved?.scrollTop) this.root.scrollTop = saved.scrollTop;
+      if (!target && saved?.word && this.mode === "page") {
+        const button = this.wordButtons().find((candidate) => candidate.textContent === saved.word);
+        if (button) await this.selectWord(button); else await this.openDictionary(saved.word);
+      }
+    } catch (error) {
+      this.showError(error);
+    }
+  }
+
+  async useBook(book) {
+    this.book = book;
+    this.pages = book.pages;
+    this.position = 0;
+    this.parallel = null;
+    this.enabled = new Set();
+    if (book.aligned) {
+      this.parallel = typeof book.aligned === "string" ? await this.readJson(book.aligned) : book.aligned;
+      for (const language of this.languages()) {
+        const items = this.translationsOf(language.id);
+        if (items.some((item) => item.defaultVisible !== false)) this.enabled.add(language.id);
+      }
+    } else {
+      for (const language of this.languages()) this.enabled.add(language.id);
+    }
+    if (book.startPage) {
+      const start = this.pages.findIndex((page) => page.id === book.startPage);
+      if (start >= 0) this.position = start;
+    }
+  }
+
+  async useEdition(editionId, render = true) {
+    const book = await contract.loadEdition(this.plugin.io, this.library, editionId);
+    this.editionId = this.library.editions.find((edition) => edition.id === editionId)?.id
+      ?? this.library.editions[0].id;
+    await this.useBook(book);
+    if (render) {
+      this.mode = "contents";
+      await this.render();
+    }
+  }
+
+  teardown() {
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = null;
+    if (this.orientation && this.applyLayout) this.orientation.removeEventListener("change", this.applyLayout);
+    this.orientation = null;
+    this.renderChild?.unload();
+    this.renderChild = null;
+    clearTimeout(this.saveTimer);
+  }
+
+  async onClose() {
+    await this.saveState();
+    this.teardown();
+  }
+
+  showError(error) {
+    console.error("FirstPair Reader", error);
+    this.page.empty();
+    const box = this.page.createDiv({ cls: "firstpair-reader__error" });
+    box.createEl("p", { text: t("error_open", { error: error?.message ?? error }) });
+    box.createEl("p", { text: t("error_sync") });
+    const retry = box.createEl("button", { text: t("retry") });
+    retry.addEventListener("click", () => {
+      this.plugin.model = null;
+      void this.onOpen();
+    });
+  }
+
+  /* --------------------------------------------------------------- resume */
+
+  stateKey() { return this.parallel?.title ?? this.library?.title ?? this.book?.title ?? "reader"; }
+
+  savedState() { return this.plugin.settings.resume ? this.plugin.settings.state?.[this.stateKey()] : null; }
+
+  restoreState() {
+    const saved = this.savedState();
+    if (!saved) return;
+    const position = this.pages.findIndex((page) => page.id === saved.pageId);
+    if (position >= 0) this.position = position;
+    if (["contents", "part", "library"].includes(saved.mode)) this.mode = saved.mode;
+    if (saved.partId) this.partId = saved.partId;
+    if (this.parallel) {
+      if (Array.isArray(saved.enabled)) {
+        this.enabled = new Set(saved.enabled.filter((lang) => this.languages().some((l) => l.id === lang)));
+      }
+      if (Array.isArray(saved.columns)) {
+        this.columns = saved.columns.filter((c) => this.translation(c.id))
+          .map((c) => ({ lang: c.lang, id: c.id, extra: Boolean(c.extra) }));
+      }
+    }
+  }
+
+  currentState() {
+    return {
+      mode: this.mode === "note" ? "page" : this.mode,
+      editionId: this.editionId,
+      partId: this.partId,
+      pageId: this.pages[this.position]?.id,
+      scrollTop: Math.round(this.root?.scrollTop ?? 0),
+      enabled: [...this.enabled],
+      columns: this.columns.map((c) => ({ lang: c.lang, id: c.id, extra: Boolean(c.extra) })),
+      word: this.drawer && !this.drawer.hasAttribute("hidden") ? this.lastWord ?? null : null,
+    };
+  }
+
+  saveStateSoon() {
+    if (!this.plugin.settings.resume || !this.pages.length) return;
+    clearTimeout(this.saveTimer);
+    this.saveTimer = setTimeout(() => void this.saveState(), 400);
+  }
+
+  async saveState() {
+    if (!this.plugin.settings.resume || !this.pages.length) return;
+    const state = { ...(this.plugin.settings.state ?? {}), [this.stateKey()]: this.currentState() };
+    await this.plugin.saveSettings({ state });
+  }
+
+  // Obsidian keeps the leaf's state across restarts and passes the targets
+  // of note takeover here.
+  getState() {
+    return {
+      mode: this.mode,
+      pageId: this.pages[this.position]?.id ?? null,
+      partId: this.partId,
+      editionId: this.editionId,
+    };
+  }
+
+  async setState(state, result) {
+    if (state && (state.pageId || state.mode)) {
+      if (!this.pages.length) this.pendingTarget = state;
+      else {
+        this.history.clear();
+        await this.applyTarget(state, false);
+      }
+    }
+    return super.setState?.(state, result);
+  }
+
+  async applyTarget(target, recordHistory = true) {
+    if (target.editionId && this.library && target.editionId !== this.editionId) {
+      await this.useEdition(target.editionId, false);
+    }
+    if (target.mode === "page" || (!target.mode && target.pageId)) {
+      const position = this.pages.findIndex((page) => page.id === target.pageId);
+      if (position >= 0) return this.go({ mode: "page", position }, recordHistory);
+    }
+    if (target.mode === "part") return this.go({ mode: "part", partId: target.partId }, recordHistory);
+    if (target.mode === "contents") return this.go({ mode: "contents" }, recordHistory);
+    if (target.mode === "library" && this.library) return this.go({ mode: "library" }, recordHistory);
+    if (target.mode === "note" && target.notePath) {
+      return this.go({ mode: "note", notePath: target.notePath, noteLines: target.noteLines || null }, recordHistory);
+    }
+    return this.render();
+  }
+
+  /* ----------------------------------------------------------- navigation */
+
+  snapshot() {
+    const focused = this.page.ownerDocument.activeElement;
+    const focus = focused && this.page.contains(focused) && focused.id ? `#${focused.id}` : null;
+    return {
+      mode: this.mode,
+      editionId: this.editionId,
+      position: this.position,
+      partId: this.partId,
+      notePath: this.notePath,
+      noteLines: this.noteLines,
+      scrollTop: this.root.scrollTop,
+      trackLeft: this.page.querySelector(".firstpair-reader__strip")?.scrollLeft ?? 0,
+      focus,
+    };
+  }
+
+  async go(next, recordHistory = true) {
+    if (recordHistory) this.history.push(this.snapshot());
+    this.mode = next.mode;
+    if (next.position !== undefined) this.position = next.position;
+    if (next.mode === "part") this.partId = next.partId;
+    if (next.mode === "page") this.partId = this.pages[this.position]?.partId ?? this.partId;
+    if (next.mode === "note") {
+      this.notePath = next.notePath;
+      this.noteLines = next.noteLines || null;
+    }
+    await this.render();
+    if (next.scrollTop !== undefined) this.root.scrollTop = next.scrollTop;
+  }
+
+  async jump(position) {
+    if (position < 0 || position >= this.pages.length) return;
+    if (position === this.position && this.mode === "page") return;
+    await this.go({ mode: "page", position });
+  }
+
+  async openPage(pageId) {
+    const position = this.pages.findIndex((page) => page.id === pageId);
+    if (position >= 0) await this.jump(position);
+  }
+
+  async goPrevious() {
+    if (this.mode === "page") await this.jump(this.position - 1);
+  }
+
+  async goNext() {
+    if (this.mode === "page") return this.jump(this.position + 1);
+    if (this.mode === "part") {
+      const part = this.book.parts.find((item) => item.id === this.partId);
+      const first = this.pages.findIndex((page) => page.id === part?.pageIds[0]);
+      return this.jump(first >= 0 ? first : this.position);
+    }
+    return this.jump(this.position);
+  }
+
+  async goUp() {
+    if (this.mode === "page") return this.go({ mode: "part", partId: this.pages[this.position].partId });
+    if (this.mode === "note") return this.go({ mode: "page", position: this.position });
+    if (this.mode === "part") return this.go({ mode: "contents" });
+    if (this.mode === "contents" && this.library) return this.go({ mode: "library" });
+    return undefined;
+  }
+
+  async showContents() {
+    if (this.mode !== "contents") await this.go({ mode: "contents" });
+  }
+
+  async restore() {
+    const state = this.history.pop();
+    if (!state) return;
+    if (state.editionId && this.library && state.editionId !== this.editionId) {
+      await this.useEdition(state.editionId, false);
+    }
+    await this.go({ ...state }, false);
+    this.root.scrollTop = state.scrollTop;
+    const strip = this.page.querySelector(".firstpair-reader__strip");
+    if (strip && state.trackLeft) strip.scrollLeft = state.trackLeft;
+    if (state.focus) {
+      const element = this.page.querySelector(state.focus);
+      if (element) {
+        element.scrollIntoView?.({ block: "center" });
+        element.focus?.({ preventScroll: true });
+        element.addClass?.("firstpair-reader__focus");
+      }
+    }
+  }
+
+  toTop() {
+    if (this.root.scrollTop > 0) this.history.push(this.snapshot());
+    if (typeof this.root.scrollTo === "function") {
+      this.root.scrollTo({ top: 0, behavior: reducedMotion() ? "auto" : "smooth" });
+    } else this.root.scrollTop = 0;
+    this.page.querySelector("h1")?.focus?.({ preventScroll: true });
+    this.updateRail();
+  }
+
+  /* ------------------------------------------------------------------ rail */
+
+  hasWords() {
+    if (this.parallel) return Boolean(this.parallel.dictionaries);
+    return Boolean(this.book?.dictionaries && this.book?.words);
+  }
+
+  makeButton(key, icon, action) {
+    const label = t(key);
+    const button = this.rail.createEl("button", {
+      cls: `firstpair-reader__control firstpair-reader__control--${key.replace("nav_", "").replace(/_/g, "-")}`,
+      attr: { "aria-label": label, title: label },
+    });
+    setIcon(button, icon);
+    button.createSpan({ text: label, cls: "firstpair-reader__button-label" });
+    button.addEventListener("click", action);
+    return button;
+  }
+
+  makeRail() {
+    this.rail.empty();
+    const words = this.hasWords();
+    this.previous = this.makeButton("nav_previous", "chevron-left", () => this.goPrevious());
+    this.previousDestination = this.previous.createSpan({ cls: "firstpair-reader__destination" });
+    if (words) this.previousWord = this.makeButton("nav_previous_word", "chevrons-left", () => this.stepWord(-1));
+    else this.previousWord = null;
+    this.up = this.makeButton("nav_up", "corner-left-up", () => this.goUp());
+    this.back = this.makeButton("nav_back", "rotate-ccw", () => this.restore());
+    this.top = this.makeButton("nav_top", "arrow-up-to-line", () => this.toTop());
+    this.toc = this.makeButton("nav_toc", "list", () => this.showContents());
+    if (words) this.nextWord = this.makeButton("nav_next_word", "chevrons-right", () => this.stepWord(1));
+    else this.nextWord = null;
+    this.next = this.makeButton("nav_next", "chevron-right", () => this.goNext());
+    this.nextDestination = this.next.createSpan({ cls: "firstpair-reader__destination" });
+    this.progress = this.rail.createDiv({ cls: "firstpair-reader__progress", attr: { role: "status", "aria-live": "polite" } });
+    this.rail.toggleClass("firstpair-reader__rail--words", words);
+  }
+
+  updateRail() {
+    if (!this.previous) return;
+    const inPage = this.mode === "page";
+    const previous = inPage ? this.pages[this.position - 1] : null;
+    const next = inPage ? this.pages[this.position + 1] : this.mode === "part"
+      ? this.pages.find((page) => page.partId === this.partId) : this.pages[this.position];
+    this.previous.disabled = !previous;
+    this.next.disabled = !next;
+    this.previous.title = previous?.title ?? t("start");
+    this.next.title = next?.title ?? t("end");
+    this.previousDestination.setText(previous?.title ?? "");
+    this.nextDestination.setText(next?.title ?? "");
+    this.up.disabled = this.mode === "library" || (this.mode === "contents" && !this.library);
+    this.toc.disabled = this.mode === "contents";
+    this.back.disabled = !this.history.items.length;
+    this.top.disabled = false;
+    this.updateWordNavigation();
+    const part = this.book?.parts.find((item) => item.id === (this.mode === "part" ? this.partId : this.pages[this.position]?.partId));
+    const text = this.mode === "library" ? t("library")
+      : this.mode === "contents" ? t("contents")
+      : this.mode === "part" ? part?.title ?? ""
+      : `${t("page_of", { n: this.position + 1, total: this.pages.length })}${part ? ` · ${part.title}` : ""}`;
+    this.progress.setText(text);
+  }
+
+  /* ------------------------------------------------------------ toolbar */
+
+  makeToolbar() {
+    this.toolbar.empty();
+    if (!this.parallel) {
+      this.toolbar.hidden = true;
+      return;
+    }
+    this.toolbar.hidden = false;
+    this.languageControls = this.toolbar.createDiv({
+      cls: "firstpair-reader__languages", attr: { role: "group", "aria-label": t("languages_aria") },
+    });
+    this.updateToolbar();
+    this.layoutButton = this.toolbar.createEl("button", { cls: "firstpair-reader__layout-toggle" });
+    this.layoutButton.addEventListener("click", async () => {
+      const index = LAYOUTS.findIndex((item) => item.id === this.plugin.settings.layout);
+      await this.plugin.saveSettings({ layout: LAYOUTS[(index + 1) % LAYOUTS.length].id });
+      this.applyLayout();
+    });
+    this.showLayoutChoice();
+  }
+
+  updateToolbar() {
+    if (!this.languageControls) return;
+    this.languageControls.empty();
+    const part = this.currentPart();
+    for (const language of this.languages()) {
+      const group = this.languageControls.createDiv({ cls: "firstpair-reader__language" });
+      const label = group.createEl("label", { cls: "firstpair-reader__language-toggle", attr: { title: language.label } });
+      const input = label.createEl("input", { type: "checkbox", attr: { "aria-label": language.label } });
+      input.checked = this.enabled.has(language.id);
+      input.addEventListener("change", async () => {
+        if (input.checked) this.enabled.add(language.id); else this.enabled.delete(language.id);
+        await this.renderPage(false);
+      });
+      label.createSpan({ text: this.languageShort(language), attr: { "aria-hidden": "true" } });
+      if (!this.enabled.has(language.id)) continue;
+      const available = this.translationsOf(language.id).filter((item) => this.covers(item, part));
+      if (available.length < 2) continue;
+      const columns = this.columns.map((column, index) => ({ ...column, index })).filter((column) => column.lang === language.id);
+      for (const column of columns) {
+        const others = columns.filter((other) => other.index !== column.index).map((other) => other.id);
+        const selected = this.translation(column.id);
+        const selectedTitle = selected?.title ?? selected?.translator ?? selected?.label ?? selected?.id ?? column.id;
+        const select = group.createEl("select", {
+          cls: "firstpair-reader__picker",
+          attr: { "aria-label": t("translation_picker", { language: language.label, title: selectedTitle }), title: selectedTitle },
+        });
+        for (const item of available.filter((candidate) => !others.includes(candidate.id))) {
+          const fullTitle = item.title ?? item.translator ?? item.label ?? item.id;
+          const option = select.createEl("option", { text: this.translationName(item), attr: { title: fullTitle, "aria-label": fullTitle } });
+          option.value = item.id;
+          if (item.id === column.id) option.selected = true;
+        }
+        select.addEventListener("change", async () => {
+          this.columns[column.index].id = select.value;
+          if (!column.extra) await this.remember(language.id, select.value);
+          await this.renderPage(false);
+        });
+        if (column.extra) {
+          const remove = group.createEl("button", {
+            cls: "firstpair-reader__column-control", text: "−",
+            attr: { "aria-label": t("remove_second"), title: t("remove_second") },
+          });
+          remove.addEventListener("click", () => this.removeColumn(column.index));
+        }
+      }
+      if (columns.length === 1 && available.length > 1) {
+        const add = group.createEl("button", {
+          cls: "firstpair-reader__column-control", text: "+",
+          attr: { "aria-label": t("second_column_aria"), title: t("second_column") },
+        });
+        add.addEventListener("click", () => this.addColumn(language.id));
+      }
+    }
+  }
+
+  showLayoutChoice() {
+    const choice = LAYOUTS.find((item) => item.id === this.plugin.settings.layout) ?? LAYOUTS[0];
+    this.layoutButton.empty();
+    setAnyIcon(this.layoutButton, choice.icons);
+    this.layoutButton.createSpan({ text: choice.label, cls: "firstpair-reader__button-label" });
+    this.layoutButton.createSpan({ text: choice.short, cls: "firstpair-reader__button-short" });
+    this.layoutButton.setAttribute("aria-label", t("layout_tap", { name: choice.label }));
+    this.layoutButton.title = t("layout", { name: choice.label });
+  }
+
+  // Width and orientation are both watched: an iPad in landscape has room
+  // for columns, a phone held upright does not, and a narrow desktop pane
+  // behaves like the phone.  Columns on a phone become tabs that follow taps
+  // and swipes, one language per screen.
+  watchLayout() {
+    this.applyLayout = () => {
+      if (!this.parallel) {
+        this.sizeDrawer();
+        return;
+      }
+      let layout = this.plugin.settings.layout;
+      const narrow = this.root.clientWidth < STACK_BELOW;
+      if (layout === "auto") {
+        const portrait = this.orientation?.matches ?? false;
+        layout = narrow || (Platform.isMobile && portrait) ? "stacked" : "columns";
+      }
+      this.page.toggleClass("firstpair-reader__page--stacked", layout === "stacked");
+      this.page.toggleClass("firstpair-reader__page--columns", layout === "columns");
+      this.page.toggleClass("firstpair-reader__page--tabbed", layout === "columns" && narrow && this.root.clientWidth > 0);
+      this.applyTabs();
+      this.root.style.setProperty("--firstpair-toolbar-height", `${this.toolbar.hidden ? 0 : this.toolbar.offsetHeight}px`);
+      if (this.layoutButton) this.showLayoutChoice();
+      this.sizeDrawer();
+    };
+    if (typeof window !== "undefined" && typeof window.matchMedia === "function") {
+      this.orientation = window.matchMedia("(orientation: portrait)");
+      this.orientation.addEventListener("change", this.applyLayout);
+    }
+    if (typeof ResizeObserver === "function") {
+      this.resizeObserver = new ResizeObserver(() => this.applyLayout());
+      this.resizeObserver.observe(this.root);
+    }
+  }
+
+  // Phone tabs over the aligned columns: tap a tab, or swipe the text, to
+  // move between languages; the chosen language opens first on every page.
+  applyTabs() {
+    const tabbed = this.page.hasClass("firstpair-reader__page--tabbed");
+    let tabs = this.page.querySelector(".firstpair-reader__cell-tabs");
+    if (!tabbed) {
+      tabs?.remove();
+      for (const cell of this.page.querySelectorAll(".firstpair-reader__cell")) cell.removeClass("is-hidden");
+      return;
+    }
+    const labels = Array.from(this.page.querySelectorAll(".firstpair-reader__column-label"));
+    if (!tabs) {
+      tabs = this.page.ownerDocument.createElement("div");
+      tabs.className = "firstpair-reader__cell-tabs";
+      tabs.setAttribute("role", "tablist");
+      tabs.setAttribute("data-reader-ui", "");
+      const anchor = this.page.querySelector(".firstpair-reader__column-labels");
+      if (anchor) anchor.after(tabs); else this.page.prepend(tabs);
+      const remembered = this.plugin.settings.defaultColumn?.[this.stateKey()];
+      const index = labels.findIndex((label) => label.dataset.cellKey === remembered);
+      this.activeCell = index >= 0 ? index : Math.min(this.activeCell, Math.max(0, labels.length - 1));
+      labels.forEach((label, index) => {
+        const tab = tabs.createEl("button", {
+          cls: "firstpair-reader__cell-tab",
+          text: label.dataset.short || label.textContent,
+          attr: { type: "button", role: "tab", title: t("language_tab_title") },
+        });
+        tab.addEventListener("click", async () => {
+          this.activeCell = index;
+          this.applyTabs();
+          await this.plugin.saveSettings({
+            defaultColumn: { ...(this.plugin.settings.defaultColumn || {}), [this.stateKey()]: label.dataset.cellKey },
+          });
+        });
+      });
+    }
+    tabs.querySelectorAll(".firstpair-reader__cell-tab").forEach((tab, index) => {
+      tab.toggleClass("is-active", index === this.activeCell);
+      tab.setAttribute("aria-selected", index === this.activeCell ? "true" : "false");
+    });
+    for (const strip of this.page.querySelectorAll(".firstpair-reader__strip")) {
+      Array.from(strip.querySelectorAll(".firstpair-reader__cell")).forEach((cell, index) => {
+        cell.toggleClass("is-hidden", index !== this.activeCell);
+      });
+    }
+  }
+
+  /* ---------------------------------------------------------------- drawer */
+
+  sizeDrawer() {
+    if (!this.drawer || this.drawer.hasAttribute("hidden")) return;
+    const style = this.drawer.style;
+    for (const property of ["left", "width", "top", "bottom", "height"]) style.removeProperty(property);
+    this.root.style.removeProperty("height");
+    this.drawer.removeClass("firstpair-reader__drawer--bottom");
+    const pane = this.frame.getBoundingClientRect();
+    if (!pane.width) return;
+    const strip = this.page.hasClass("firstpair-reader__page--columns") && !this.page.hasClass("firstpair-reader__page--tabbed")
+      ? this.page.querySelector(".firstpair-reader__strip") : null;
+    if (!strip && this.plugin.settings.drawerPosition === "bottom") {
+      const height = Math.round(pane.height * Math.min(0.85, Math.max(0.15, this.plugin.settings.drawerHeight)));
+      this.drawer.addClass("firstpair-reader__drawer--bottom");
+      this.ensureGrip();
+      style.left = "0px";
+      style.width = `${Math.round(pane.width)}px`;
+      style.top = "auto";
+      style.bottom = "0px";
+      style.height = `${height}px`;
+      if (this.plugin.settings.keepDrawerOpen) this.root.style.height = `calc(100% - ${height}px)`;
+      return;
+    }
+    style.top = `${this.toolbar.hidden ? 0 : this.toolbar.offsetHeight}px`;
+    style.bottom = `${this.rail.offsetHeight}px`;
+    const rem = parseFloat(getComputedStyle(document.documentElement).fontSize) || 16;
+    if (!strip) {
+      const width = Math.min(pane.width * 0.9, Math.max(30 * rem, pane.width * 0.4));
+      style.left = `${Math.round(pane.width - width)}px`;
+      style.width = `${Math.round(width)}px`;
+      return;
+    }
+    const grid = strip.getBoundingClientRect();
+    const tracks = Number(strip.style.getPropertyValue("--firstpair-columns")) || strip.children.length || 1;
+    const gap = parseFloat(getComputedStyle(strip).columnGap) || 0;
+    const track = (grid.width - gap * (tracks - 1)) / tracks;
+    const cells = strip.querySelectorAll(".firstpair-reader__cell");
+    const index = this.reservedTrack ? cells.length : Math.max(0, cells.length - 1);
+    const left = Math.max(0, grid.left - pane.left + index * (track + gap) - gap / 2);
+    const width = Math.min(pane.width, Math.max(15 * rem, pane.width - left));
+    style.left = `${Math.round(pane.width - width)}px`;
+    style.width = `${Math.round(width)}px`;
+  }
+
+  ensureGrip() {
+    if (this.grip && this.grip.parentElement === this.drawer && this.drawer.firstElementChild === this.grip) return;
+    this.grip?.remove();
+    this.grip = this.drawer.ownerDocument.createElement("div");
+    this.grip.className = "firstpair-reader__drawer-grip";
+    this.grip.setAttribute("role", "separator");
+    this.grip.setAttribute("aria-label", "Drag to resize the dictionary");
+    this.drawer.prepend(this.grip);
+    this.grip.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      this.grip.setPointerCapture?.(event.pointerId);
+      const pane = this.frame.getBoundingClientRect();
+      const move = (moveEvent) => {
+        const share = Math.min(0.85, Math.max(0.15, (pane.bottom - moveEvent.clientY) / pane.height));
+        this.plugin.settings.drawerHeight = share;
+        this.sizeDrawer();
+      };
+      const finish = async () => {
+        this.grip.removeEventListener("pointermove", move);
+        this.grip.removeEventListener("pointerup", finish);
+        this.grip.removeEventListener("pointercancel", finish);
+        await this.plugin.saveSettings({ drawerHeight: this.plugin.settings.drawerHeight });
+      };
+      this.grip.addEventListener("pointermove", move);
+      this.grip.addEventListener("pointerup", finish);
+      this.grip.addEventListener("pointercancel", finish);
+    });
+  }
+
+  closeDrawer() {
+    if (this.plugin.settings.keepDrawerOpen) return;
+    this.drawer.setAttribute("hidden", "");
+    this.root.style.removeProperty("height");
+    this.saveStateSoon();
+  }
+
+  showDrawer() {
+    this.drawer.removeAttribute("hidden");
+    this.sizeDrawer();
+    if (this.drawer.childElementCount <= (this.grip ? 1 : 0)) {
+      const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" });
+      head.createEl("strong", { text: t("dictionary") });
+      this.drawer.createEl("p", { text: t("dictionary_hint"), cls: "firstpair-reader__drawer-hint" });
+    }
+  }
+
+  /* ----------------------------------------------------------------- words */
+
+  wordButtons() { return Array.from(this.page.querySelectorAll(".firstpair-reader__word")); }
+
+  updateWordNavigation() {
+    if (!this.previousWord || !this.nextWord) return;
+    const words = this.wordButtons();
+    if (this.wordPosition >= words.length) this.wordPosition = -1;
+    for (const [index, word] of words.entries()) {
+      const active = index === this.wordPosition;
+      word.toggleClass("firstpair-reader__word--active", active);
+      if (active) word.setAttribute("aria-current", "true"); else word.removeAttribute("aria-current");
+    }
+    this.previousWord.disabled = !words.length || this.wordPosition <= 0;
+    this.nextWord.disabled = !words.length || this.wordPosition === words.length - 1;
+  }
+
+  async selectWord(button, scroll = false) {
+    const words = this.wordButtons();
+    const position = words.indexOf(button);
+    if (position < 0) return;
+    this.wordPosition = position;
+    this.updateWordNavigation();
+    if (scroll) button.scrollIntoView?.({ block: "center", behavior: reducedMotion() ? "auto" : "smooth" });
+    this.lastWordButton = button;
+    await this.openDictionary(button.textContent);
+  }
+
+  async stepWord(direction) {
+    const words = this.wordButtons();
+    if (!words.length) return;
+    const position = this.wordPosition < 0 ? (direction > 0 ? 0 : -1) : this.wordPosition + direction;
+    if (position < 0 || position >= words.length) return;
+    await this.selectWord(words[position], true);
+  }
+
+  makeWord(container, token) {
+    const word = container.ownerDocument.createElement("button");
+    word.className = "firstpair-reader__word";
+    word.textContent = token;
+    word.addEventListener("click", () => this.selectWord(word));
+    return word;
+  }
+
+  appendText(container, lines, clickable = false) {
+    for (const line of Array.isArray(lines) ? lines : [lines]) {
+      const row = container.createDiv({ cls: "firstpair-reader__verse" });
+      if (!clickable) {
+        row.setText(line);
+        continue;
+      }
+      for (const token of String(line).split(/([\p{L}\p{M}]+[’']?)/u)) {
+        if (/^[\p{L}\p{M}]/u.test(token)) row.appendChild(this.makeWord(row, token));
+        else row.appendText(token);
+      }
+    }
+  }
+
+  // Words of the source language inside rendered Markdown become dictionary
+  // buttons; the text nodes are split in place, so links, emphasis, and
+  // other markup around them survive.
+  wrapWords(container) {
+    const words = this.book?.words;
+    if (!words || !this.book.dictionaries) return;
+    if (words.notes && this.mode === "note" && !String(this.notePath || "").startsWith(words.notes)) return;
+    if (words.notes && this.mode === "page") return;
+    const selector = words.selector || `[lang="${words.lang}"]`;
+    for (const element of container.querySelectorAll(selector)) {
+      const walker = element.ownerDocument.createTreeWalker(element, 4);
+      const nodes = [];
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        if (node.parentElement?.closest("a, button, code, pre, mark, .firstpair-reader__word")) continue;
+        nodes.push(node);
+      }
+      for (const node of nodes) {
+        const parts = node.data.split(/([\p{L}\p{M}]+[’']?)/u);
+        if (parts.length < 2) continue;
+        const fragment = element.ownerDocument.createDocumentFragment();
+        for (const token of parts) {
+          if (!token) continue;
+          if (/^[\p{L}\p{M}]/u.test(token)) fragment.appendChild(this.makeWord(element, token));
+          else fragment.appendChild(element.ownerDocument.createTextNode(token));
+        }
+        node.replaceWith(fragment);
+      }
+    }
+  }
+
+  dictionaryLanguages() {
+    const languages = this.languages();
+    const shown = languages.filter((language) => this.enabled.has(language.id));
+    if (this.plugin.settings.dictionaryLanguages !== "all") return shown;
+    return [...shown, ...languages.filter((language) => !this.enabled.has(language.id))];
+  }
+
+  dictionaries() {
+    return this.parallel?.dictionaries ?? this.book?.dictionaries ?? {};
+  }
+
+  sourceLang() {
+    return this.parallel?.sourceLanguage?.lang ?? this.parallel?.sourceLanguage?.id
+      ?? this.book?.words?.lang ?? this.book?.lang ?? "";
+  }
+
+  async openDictionary(surface) {
+    this.lastWord = surface;
+    this.drawer.empty();
+    this.grip = null;
+    this.drawer.removeAttribute("hidden");
+    this.sizeDrawer();
+    const head = this.drawer.createDiv({ cls: "firstpair-reader__drawer-head" });
+    head.createEl("strong", { text: surface });
+    if (!this.plugin.settings.keepDrawerOpen) {
+      const close = head.createEl("button", {
+        text: t("dictionary_close"), cls: "firstpair-reader__drawer-close", attr: { "aria-label": t("dictionary_close_aria") },
+      });
+      close.addEventListener("click", (event) => {
+        event.stopPropagation();
+        this.closeDrawer();
+        if (this.lastWordButton?.isConnected) this.lastWordButton.focus();
+      });
+    }
+    let found = false;
+    const lang = this.sourceLang();
+    for (const language of this.dictionaryLanguages()) {
+      const dictionary = this.dictionaries()[language.id];
+      if (!dictionary) continue;
+      const section = this.drawer.createDiv({
+        cls: "firstpair-reader__definition",
+        attr: { lang: language.id, role: "group", "aria-label": t("dictionary_section", { label: language.label }) },
+      });
+      let entries;
+      try {
+        entries = await this.plugin.lookup(dictionary.path, surface, lang);
+      } catch (error) {
+        section.createEl("p", { text: t("dictionary_missing", { error: error.message }), cls: "firstpair-reader__warning" });
+        continue;
+      }
+      if (!entries.length) {
+        section.createEl("p", { text: t("dictionary_none"), cls: "firstpair-reader__none" });
+        continue;
+      }
+      found = true;
+      const merged = mergeEntries(entries);
+      const [first, ...rest] = merged;
+      const SENSES = 3;
+      const renderEntry = (entry, container, senses = entry.definitions) => {
+        const entryHead = container.createDiv({ cls: "firstpair-reader__entry-head" });
+        entryHead.createSpan({ text: [entry.headword, entry.partOfSpeech].filter(Boolean).join(" · "), cls: "firstpair-reader__headword" });
+        if (entry.grammar) entryHead.createSpan({ text: ` ${entry.grammar}`, cls: "firstpair-reader__grammar" });
+        container.createEl("p", { text: senses.join("; "), cls: "firstpair-reader__senses" });
+        for (const example of entry.examples ?? []) container.createEl("blockquote", { text: exampleText(example) });
+      };
+      renderEntry({ ...first, examples: first.examples.slice(0, 1) }, section, first.definitions.slice(0, SENSES));
+      const extraSenses = first.definitions.slice(SENSES);
+      const count = rest.length + (extraSenses.length ? 1 : 0);
+      if (count) {
+        const more = section.createEl("button", { cls: "firstpair-reader__more", text: t("more", { count }), attr: { "aria-expanded": "false" } });
+        const hidden = section.createDiv({ cls: "firstpair-reader__more-entries", attr: { hidden: "" } });
+        if (extraSenses.length) hidden.createEl("p", { text: t("also", { senses: extraSenses.join("; ") }), cls: "firstpair-reader__senses" });
+        for (const entry of rest) renderEntry(entry, hidden);
+        more.addEventListener("click", () => {
+          const open = hidden.hasAttribute("hidden");
+          if (open) hidden.removeAttribute("hidden"); else hidden.setAttribute("hidden", "");
+          more.setText(open ? t("less") : t("more", { count }));
+          more.setAttribute("aria-expanded", String(open));
+        });
+      }
+    }
+    if (!found) this.drawer.createEl("p", { text: t("dictionary_try") });
+    this.saveStateSoon();
+  }
+
+  /* --------------------------------------------------------------- render */
+
+  async render() {
+    if (this.mode === "page") return this.renderPage();
+    this.renderToken += 1;
+    this.page.empty();
+    this.page.removeClass("firstpair-reader__page--parallel");
+    this.renderChild?.unload();
+    this.renderChild = null;
+    this.toolbar.hidden = true;
+    try {
+      if (this.mode === "library") this.renderLibrary();
+      else if (this.mode === "contents") this.renderContents();
+      else if (this.mode === "part") this.renderPart();
+      else if (this.mode === "note") await this.renderNote(this.renderToken);
+    } catch (error) {
+      this.showError(error);
+      return;
+    }
+    this.root.scrollTop = 0;
+    this.updateRail();
+    this.saveStateSoon();
+  }
+
+  heading(text) {
+    return this.page.createEl("h1", { text, attr: { tabindex: "-1" } });
+  }
+
+  pageButton(container, page) {
+    const item = container.createEl("li");
+    const button = item.createEl("button", { cls: "firstpair-reader__toc-page", text: page.title, attr: { type: "button" } });
+    if (this.pages[this.position]?.id === page.id) {
+      button.addClass("is-current");
+      button.setAttribute("aria-current", "page");
+    }
+    button.addEventListener("click", () => this.openPage(page.id));
+  }
+
+  renderLibrary() {
+    this.heading(this.library.title);
+    const families = new Map();
+    for (const edition of this.library.editions) {
+      const family = edition.family || "";
+      if (!families.has(family)) families.set(family, []);
+      families.get(family).push(edition);
+    }
+    for (const [family, editions] of families) {
+      if (family) this.page.createEl("h2", { text: family });
+      const list = this.page.createEl("ul", { cls: "firstpair-reader__library" });
+      for (const edition of editions) {
+        const button = list.createEl("li").createEl("button", {
+          cls: "firstpair-reader__toc-page",
+          text: [edition.title, edition.version].filter(Boolean).join(" · "),
+          attr: { type: "button" },
+        });
+        if (edition.id === this.editionId) {
+          button.addClass("is-current");
+          button.setAttribute("aria-current", "true");
+        }
+        button.addEventListener("click", async () => {
+          this.history.push(this.snapshot());
+          await this.useEdition(edition.id, false);
+          await this.go({ mode: "contents" }, false);
+        });
+      }
+    }
+    const sources = this.library.sources;
+    if (sources && (sources.anthology || sources.notes.length)) {
+      this.page.createEl("h2", { text: t("sources") });
+      const list = this.page.createEl("ul", { cls: "firstpair-reader__library" });
+      const add = (title, note) => {
+        const button = list.createEl("li").createEl("button", { cls: "firstpair-reader__toc-page", text: title, attr: { type: "button" } });
+        button.addEventListener("click", () => this.go({ mode: "note", notePath: note }));
+      };
+      if (sources.anthology) add(t("anthology"), sources.anthology);
+      for (const note of sources.notes) add(note.title, note.note);
+    }
+  }
+
+  renderContents() {
+    this.heading(this.book.title);
+    if (this.book.cover && this.pages[this.position]?.id === (this.book.startPage ?? this.pages[0].id)) this.renderCover();
+    for (const part of this.book.parts) {
+      if (this.book.parts.length > 1 || part.title !== this.book.title) {
+        const heading = this.page.createEl("h2");
+        const button = heading.createEl("button", { cls: "firstpair-reader__toc-part", text: part.title, attr: { type: "button" } });
+        if (part.id === this.pages[this.position]?.partId) button.addClass("is-current");
+        button.addEventListener("click", () => this.go({ mode: "part", partId: part.id }));
+      }
+      const list = this.page.createEl("ol", { cls: "firstpair-reader__toc" });
+      for (const id of part.pageIds) this.pageButton(list, this.pages.find((page) => page.id === id));
+    }
+  }
+
+  renderPart() {
+    const part = this.book.parts.find((item) => item.id === this.partId) ?? this.book.parts[0];
+    this.partId = part.id;
+    const kicker = this.page.createEl("p", { cls: "firstpair-reader__kicker", text: this.book.title });
+    kicker.setAttribute("data-reader-ui", "");
+    this.heading(part.title);
+    const list = this.page.createEl("ol", { cls: "firstpair-reader__toc" });
+    for (const id of part.pageIds) this.pageButton(list, this.pages.find((page) => page.id === id));
+  }
+
+  renderCover() {
+    const file = this.app.vault.getAbstractFileByPath(this.book.cover);
+    if (!file || !this.app.vault.getResourcePath) return;
+    this.page.createEl("img", {
+      cls: "firstpair-reader__cover",
+      attr: { src: this.app.vault.getResourcePath(file), alt: this.book.title },
+    });
+  }
+
+  async pageMarkdown(page) {
+    if (page.markdown !== null && page.markdown !== undefined) return page.markdown;
+    const text = await this.plugin.io.read(page.file);
+    if (text === null) throw new Error(`Missing Reader page: ${page.file}`);
+    if (page.marker) {
+      const block = contract.extractMarked(text, page.marker);
+      if (block === null) throw new Error(`Reader page ${page.id} is missing its markers in ${page.file}`);
+      return block;
+    }
+    return text.replace(/^---\n[\s\S]*?\n---\n/, "");
+  }
+
+  async renderMarkdown(markdown, sourcePath) {
+    this.renderChild?.unload();
+    this.renderChild = new Component();
+    this.renderChild.load();
+    const body = this.page.createDiv({ cls: "firstpair-reader__markdown markdown-rendered" });
+    await MarkdownRenderer.render(this.app, markdown, body, sourcePath, this.renderChild);
+    return body;
+  }
+
+  async renderPage(resetScroll = true) {
+    this.mode = "page";
+    if (resetScroll) this.wordPosition = -1;
+    const token = ++this.renderToken;
+    const entry = this.pages[this.position];
+    this.page.empty();
+    this.page.removeClass("firstpair-reader__page--parallel");
+    this.toolbar.hidden = !this.parallel;
+    try {
+      if (this.parallel && entry.chapter) await this.renderParallel(entry);
+      else {
+        const markdown = await this.pageMarkdown(entry);
+        if (token !== this.renderToken) return;
+        this.renderMetrics(entry);
+        if (this.book.cover && entry.id === (this.book.startPage ?? this.pages[0].id)) this.renderCover();
+        const body = await this.renderMarkdown(markdown, entry.file || "");
+        if (token !== this.renderToken) return;
+        this.decorate(body, entry.file || "");
+        if (entry.anchor) this.scrollToAnchor(body, entry.anchor);
+      }
+    } catch (error) {
+      this.showError(error);
+      return;
+    }
+    if (token !== this.renderToken) return;
+    if (resetScroll && !entry.anchor) this.root.scrollTop = 0;
+    if (this.plugin.settings.keepDrawerOpen && this.hasWords()) this.showDrawer(); else this.sizeDrawer();
+    this.updateRail();
+    void this.paintNotes();
+    this.saveStateSoon();
+  }
+
+  async renderParallel(entry) {
+    const chapter = await this.readJson(entry.chapter);
+    this.page.addClass("firstpair-reader__page--parallel");
+    this.page.createEl("h1", { text: chapter.title, attr: { tabindex: "-1" } });
+    this.renderMetrics(entry);
+    this.syncColumns();
+    const source = {
+      source: true,
+      label: this.parallel.sourceLanguage.label,
+      lang: this.parallel.sourceLanguage.lang ?? this.parallel.sourceLanguage.id,
+    };
+    const shown = this.columns.map((column, index) => ({ ...column, index, item: this.translation(column.id) }));
+    const sourceLast = this.parallel.sourceLanguage.position === "right";
+    const cells = sourceLast ? [...shown, source] : [source, ...shown];
+    const tracks = Math.max(cells.length, this.plugin.settings.reserveDrawerColumn ? 1 + this.languages().length : 0);
+    this.reservedTrack = tracks > cells.length;
+    const labels = this.page.createDiv({ cls: "firstpair-reader__column-labels" });
+    labels.style.setProperty("--firstpair-columns", String(tracks));
+    for (const cell of cells) this.columnHeader(labels, cell);
+    for (const unit of chapter.units) {
+      const strip = this.page.createDiv({
+        cls: "firstpair-reader__strip",
+        attr: { "data-unit-id": unit.id, "data-translations": String(shown.length) },
+      });
+      strip.style.setProperty("--firstpair-columns", String(tracks));
+      for (const cell of cells) {
+        const isSource = Boolean(cell.source);
+        const element = strip.createDiv({
+          cls: `firstpair-reader__cell firstpair-reader__cell--${isSource ? "source" : "translation"}`,
+          attr: { lang: cell.lang, "data-label": isSource ? cell.label : this.columnTitle(cell) },
+        });
+        this.appendText(element, isSource ? unit.source : (unit.translations?.[cell.id] ?? []), isSource);
+      }
+    }
+    this.updateToolbar();
+    this.page.querySelector(".firstpair-reader__cell-tabs")?.remove();
+    this.applyLayout();
+  }
+
+  columnTitle(cell) {
+    const item = cell.item ?? this.translation(cell.id);
+    if (!item) return cell.label ?? cell.id;
+    const name = item.title ?? item.translator ?? item.label;
+    const approximate = item.alignment && item.alignment !== "line" ? " ≈" : "";
+    return `${item.label && name !== item.label ? `${item.label} · ` : ""}${name}${approximate}`;
+  }
+
+  columnHeader(labels, cell) {
+    const head = labels.createDiv({ cls: "firstpair-reader__column-label" });
+    head.dataset.cellKey = cell.source ? "source" : `${cell.lang}:${cell.extra ? "extra" : "main"}`;
+    head.dataset.short = cell.source ? cell.label : this.languageShort({ id: cell.lang, label: cell.item?.label ?? cell.lang });
+    if (cell.source) {
+      head.createSpan({ text: cell.label });
+      return;
+    }
+    const item = cell.item;
+    const part = this.currentPart();
+    const alternatives = this.translationsOf(cell.lang).filter((other) => this.covers(other, part)
+      && !this.columns.some((c) => c !== this.columns[cell.index] && c.lang === cell.lang && c.id === other.id));
+    const name = head.createEl("button", {
+      cls: "firstpair-reader__column-name", text: this.columnTitle(cell),
+      attr: { title: alternatives.length > 1 ? t("next_translation") : this.columnTitle(cell) },
+    });
+    if (item?.alignment && item.alignment !== "line") name.setAttribute("aria-description", t("approximate"));
+    if (alternatives.length > 1) {
+      name.addClass("firstpair-reader__column-name--rotates");
+      name.addEventListener("click", () => this.rotate(cell.index));
+    }
+    if (cell.extra) {
+      const remove = head.createEl("button", {
+        cls: "firstpair-reader__column-control", text: "−", attr: { "aria-label": t("remove_column"), title: t("remove_column") },
+      });
+      remove.addEventListener("click", () => this.removeColumn(cell.index));
+    } else if (alternatives.length > 1 && !this.columns.some((c) => c.extra && c.lang === cell.lang)) {
+      const add = head.createEl("button", {
+        cls: "firstpair-reader__column-control", text: "+", attr: { "aria-label": t("second_column_aria"), title: t("second_column") },
+      });
+      add.addEventListener("click", () => this.addColumn(cell.lang));
+    }
+  }
+
+  async renderNote(token) {
+    const path = contract.safePath(this.notePath, "note");
+    const file = /\.[A-Za-z0-9]+$/.test(path.split("/").pop()) ? path : `${path}.md`;
+    const text = await this.plugin.io.read(file);
+    if (text === null) throw new Error(`Missing note: ${file}`);
+    if (token !== this.renderToken) return;
+    const kicker = this.page.createEl("p", { cls: "firstpair-reader__kicker", text: this.book.title });
+    kicker.setAttribute("data-reader-ui", "");
+    const body = await this.renderMarkdown(text.replace(/^---\n[\s\S]*?\n---\n/, ""), file);
+    if (token !== this.renderToken) return;
+    this.decorate(body, file);
+    if (this.noteLines) this.highlightLines(body, this.noteLines);
+    void this.paintNotes();
+  }
+
+  // Everything a rendered page or note needs from the Reader.
+  decorate(body, sourcePath) {
+    this.bindLinks(body, sourcePath);
+    this.bindSourceRails(body);
+    this.bindColumnToggles(body);
+    this.wrapWords(body);
+    this.plugin.bindReaderLinks(body);
+    this.plugin.bindEvidenceTargets(body);
+    this.bindSelection(body);
+  }
+
+  renderMetrics(entry) {
+    const metrics = this.plugin.metrics;
+    if (!metrics || !metrics.metrics.length) return;
+    const byEdition = metrics.values[entry.id] || {};
+    const values = byEdition[this.editionId] || byEdition["*"] || Object.values(byEdition)[0] || {};
+    const shown = metricsCore.rankedMetrics(metrics.metrics).filter((metric) => Number.isFinite(values[metric.key]));
+    if (!shown.length) return;
+    const row = this.page.createDiv({ cls: "firstpair-reader__metrics", attr: { "data-reader-ui": "" } });
+    for (const metric of shown) {
+      const value = values[metric.key];
+      const severity = metricsCore.metricSeverity(metric, value);
+      row.createSpan({
+        cls: `firstpair-reader__metric${severity ? ` firstpair-reader__metric--${severity}` : ""}`,
+        text: `${metric.letter} ${metricsCore.formatMetric(metric, value)}`,
+        attr: { title: `${metricsCore.metricText(metric, "label", uiLang)} — ${metricsCore.metricText(metric, "description", uiLang)}` },
+      });
+    }
+  }
+
+  scrollToAnchor(body, anchor) {
+    const escaped = typeof CSS !== "undefined" && CSS.escape ? CSS.escape(anchor) : anchor.replace(/"/g, '\\"');
+    const target = body.querySelector(`[id="${escaped}"]`)
+      || body.querySelector(`a[name="${anchor}"]`);
+    if (target) target.scrollIntoView?.({ block: "start" });
+  }
+
+  /* ---------------------------------------------------------------- links */
+
+  // Links are bound in the capture phase: inside a dynamic ItemView on a
+  // phone, Obsidian's own delegation is unreliable.
+  bindLinks(body, sourcePath) {
+    body.addEventListener("click", (event) => {
+      const anchor = event.target.closest?.("a");
+      if (!anchor || !body.contains(anchor)) return;
+      const href = anchor.getAttribute("data-href") || anchor.getAttribute("href") || "";
+      if (!href || /^(https?|mailto|obsidian|firstpair):/i.test(href)) return;
+      event.preventDefault();
+      event.stopPropagation();
+      void this.followLink(href, sourcePath, anchor);
+    }, true);
+  }
+
+  async followLink(href, sourcePath, anchor) {
+    if (href.startsWith("#")) {
+      const id = decodeURIComponent(href.slice(1));
+      const target = this.page.querySelector(`[id="${id.replace(/"/g, '\\"')}"]`)
+        || Array.from(this.page.querySelectorAll("h1, h2, h3, h4, h5, h6")).find((heading) => heading.textContent.trim() === id);
+      if (!target) return;
+      if (!anchor.id) anchor.id = `fp-ref-${Math.random().toString(36).slice(2, 10)}`;
+      anchor.focus?.({ preventScroll: true });
+      this.history.push(this.snapshot());
+      target.scrollIntoView?.({ block: "center", behavior: reducedMotion() ? "auto" : "smooth" });
+      if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+      target.focus?.({ preventScroll: true });
+      target.addClass?.("firstpair-reader__focus");
+      this.updateRail();
+      return;
+    }
+    const [linkpath, subpath = ""] = href.split("#");
+    const dest = this.app.metadataCache?.getFirstLinkpathDest?.(linkpath, sourcePath);
+    const path = dest?.path ?? (linkpath.endsWith(".md") ? linkpath : `${linkpath}.md`);
+    const target = contract.targetForNote(this.book, path);
+    if (target && !subpath.startsWith("^")) {
+      if (target.mode === "page") return this.openPage(target.pageId);
+      return this.go(target);
+    }
+    if (subpath.startsWith("^") || this.plugin.settings.sourcesInNewTab || !path.endsWith(".md")) {
+      return this.app.workspace.openLinkText?.(href, sourcePath, this.plugin.settings.sourcesInNewTab ? "tab" : false);
+    }
+    return this.go({ mode: "note", notePath: path.replace(/\.md$/, "") });
+  }
+
+  // A quotation whose blockquote carries exactly one reviewed source link
+  // (note#^block) becomes a source rail: the whole block opens the source.
+  bindSourceRails(body) {
+    for (const quote of body.querySelectorAll("blockquote")) {
+      const links = Array.from(quote.querySelectorAll("a")).filter((link) => (link.getAttribute("data-href") || "").includes("#^"));
+      if (links.length !== 1) continue;
+      const href = links[0].getAttribute("data-href");
+      quote.addClass("firstpair-reader__source-rail");
+      quote.setAttribute("role", "link");
+      quote.setAttribute("tabindex", "0");
+      const open = () => void this.followLink(href, this.pages[this.position]?.file || "", links[0]);
+      quote.addEventListener("click", (event) => {
+        if (event.target.closest("a, button, mark")) return;
+        open();
+      });
+      quote.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          open();
+        }
+      });
+    }
+  }
+
+  // Tables whose header names languages get one toggle bar per note; at
+  // least one language always stays on, and the choice is remembered.
+  bindColumnToggles(body) {
+    const tables = Array.from(body.querySelectorAll("table")).filter((table) => {
+      const heads = Array.from(table.querySelectorAll("thead th, tr:first-child th"));
+      return heads.length >= 3;
+    });
+    if (!tables.length) return;
+    const names = Array.from(tables[0].querySelectorAll("thead th, tr:first-child th")).slice(1).map((cell) => cell.textContent.trim());
+    if (names.length < 2) return;
+    const hidden = new Set(this.plugin.settings.hiddenColumns?.[this.stateKey()] || []);
+    const bar = body.ownerDocument.createElement("div");
+    bar.className = "firstpair-reader__column-toggles";
+    bar.setAttribute("role", "group");
+    bar.setAttribute("data-reader-ui", "");
+    body.prepend(bar);
+    const apply = () => {
+      for (const table of tables) {
+        for (const row of table.querySelectorAll("tr")) {
+          Array.from(row.children).forEach((cell, index) => {
+            if (index === 0) return;
+            cell.toggleClass("is-hidden", hidden.has(names[index - 1]));
+          });
+        }
+      }
+    };
+    names.forEach((name) => {
+      const label = bar.createEl("label");
+      const box = label.createEl("input", { type: "checkbox" });
+      box.checked = !hidden.has(name);
+      label.appendText(` ${name}`);
+      box.addEventListener("change", async () => {
+        if (!box.checked && names.filter((other) => !hidden.has(other)).length <= 1) {
+          box.checked = true;
+          return;
+        }
+        if (box.checked) hidden.delete(name); else hidden.add(name);
+        apply();
+        await this.plugin.saveSettings({
+          hiddenColumns: { ...(this.plugin.settings.hiddenColumns || {}), [this.stateKey()]: [...hidden] },
+        });
+      });
+    });
+    apply();
+  }
+
+  // A highlight band over the given lines of the first code block.
+  highlightLines(body, lines) {
+    const pre = body.querySelector("pre");
+    if (!pre) return;
+    const style = getComputedStyle(pre);
+    const lineHeight = parseFloat(style.lineHeight) || (parseFloat(style.fontSize) || 14) * 1.5;
+    const paddingTop = parseFloat(style.paddingTop) || 0;
+    pre.style.position = "relative";
+    const band = pre.ownerDocument.createElement("div");
+    band.className = "firstpair-reader__line-band";
+    band.setAttribute("data-reader-ui", "");
+    band.style.top = `${paddingTop + (lines.start - 1) * lineHeight}px`;
+    band.style.height = `${(lines.end - lines.start + 1) * lineHeight}px`;
+    pre.appendChild(band);
+    band.scrollIntoView?.({ block: "center" });
+  }
+
+  /* -------------------------------------------------------- span notes */
+
+  noteFragmentKey() {
+    if (this.mode === "note") return `reader/note/${this.notePath}`;
+    const page = this.pages[this.position];
+    return page ? `reader/${this.editionId || "book"}/${page.id}` : null;
+  }
+
+  bindSelection(body) {
+    if (!this.plugin.settings.editing) return;
+    const handler = () => {
+      const selection = body.ownerDocument.getSelection?.();
+      if (!selection || selection.isCollapsed || !selection.rangeCount) return;
+      const range = selection.getRangeAt(0);
+      const selector = anchors.selectorFromRange(body, range);
+      if (selector) this.showSpanMenu(body, range, selector);
+    };
+    body.addEventListener("mouseup", () => setTimeout(handler, 0));
+    body.addEventListener("touchend", () => setTimeout(handler, 160));
+    body.addEventListener("keyup", (event) => { if (event.shiftKey) handler(); });
+  }
+
+  showSpanMenu(body, range, selector) {
+    const document = body.ownerDocument;
+    document.querySelectorAll(".firstpair-reader__span-menu").forEach((menu) => menu.remove());
+    const menu = document.createElement("div");
+    menu.className = "firstpair-reader__span-menu";
+    menu.setAttribute("role", "dialog");
+    for (const [key, autoRecord] of [["note", false], ["voice", true]]) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.textContent = t(key);
+      button.addEventListener("click", () => {
+        menu.remove();
+        void this.openSpanNote(body, selector, autoRecord);
+      });
+      menu.appendChild(button);
+    }
+    document.body.appendChild(menu);
+    const rect = range.getBoundingClientRect?.() || { left: 8, bottom: 8 };
+    const view = document.defaultView;
+    menu.style.left = `${Math.max(8, Math.min(rect.left, view.innerWidth - 180))}px`;
+    menu.style.top = `${Math.max(8, Math.min(rect.bottom + 6, view.innerHeight - 60))}px`;
+    const dismiss = (event) => {
+      if (!menu.contains(event.target)) {
+        menu.remove();
+        document.removeEventListener("pointerdown", dismiss, true);
+      }
+    };
+    document.addEventListener("pointerdown", dismiss, true);
+  }
+
+  spanDetails(selector) {
+    const fragmentKey = this.noteFragmentKey();
+    const page = this.pages[this.position];
+    const edition = this.editionId || "book";
+    return {
+      id: reviewState.spanNoteKey(fragmentKey, edition, fragmentKey, selector.start, selector.end, selector.exact),
+      fragment_key: fragmentKey,
+      set: "reader",
+      lineage: this.mode === "note" ? this.notePath : page?.id,
+      incipit: this.mode === "note" ? this.notePath : page?.title,
+      edition,
+      edition_title: this.library?.editions.find((item) => item.id === this.editionId)?.title || this.book.title,
+      unit: fragmentKey,
+      sentence_id: fragmentKey,
+      selector,
+      token_keys: [],
+    };
+  }
+
+  async openSpanNote(body, selector, autoRecord) {
+    let context;
+    try {
+      context = await this.plugin.voiceContext();
+      await this.plugin.store.load(context);
+    } catch (_error) {
+      new Notice(t("editing_ledger_other"));
+      return;
+    }
+    this.plugin.openSpanNoteDialog({
+      context,
+      details: this.spanDetails(selector),
+      selector,
+      root: body,
+      autoRecord,
+      setLedger: () => {},
+      refresh: () => void this.paintNotes(),
+    });
+  }
+
+  async paintNotes() {
+    if (!this.plugin.settings.editing) return;
+    const body = this.page.querySelector(".firstpair-reader__markdown");
+    const fragmentKey = this.noteFragmentKey();
+    if (!body || !fragmentKey) return;
+    let ledger;
+    try {
+      ledger = await this.plugin.store.load(await this.plugin.voiceContext());
+    } catch (_error) {
+      return;
+    }
+    body.querySelectorAll("mark.firstpair-reader__span").forEach((mark) => mark.replaceWith(...mark.childNodes));
+    this.page.querySelector(".firstpair-reader__unmatched")?.remove();
+    const notes = Object.values(ledger.span_notes || {}).filter((note) => note.fragment_key === fragmentKey);
+    const unmatched = [];
+    for (const note of notes) {
+      const marks = anchors.highlight(body, note, "firstpair-reader__span", () => void this.openSpanNote(body, note, false));
+      if (!marks.length) unmatched.push(note);
+    }
+    if (unmatched.length) {
+      const box = this.page.createDiv({ cls: "firstpair-reader__unmatched", attr: { "data-reader-ui": "" } });
+      box.createEl("h3", { text: t("unmatched_notes") });
+      for (const note of unmatched) {
+        const button = box.createEl("button", { text: `“${note.exact}”${note.text ? ` · ${note.text}` : ""}`, attr: { type: "button" } });
+        button.addEventListener("click", () => void this.openSpanNote(body, note, false));
+      }
+    }
+  }
+}
+
+/* -------------------------------------------------------------- settings */
+
+class FirstPairReaderSettingTab extends PluginSettingTab {
+  constructor(app, plugin) {
+    super(app, plugin);
+    this.plugin = plugin;
+  }
+
+  display() {
+    const { containerEl } = this;
+    containerEl.empty();
+    const settings = this.plugin.settings;
+    const save = async (patch, refresh = null) => {
+      await this.plugin.saveSettings(patch);
+      if (refresh !== null) this.plugin.refreshViews(refresh);
+    };
+    new Setting(containerEl).setName("Layout").setDesc("Auto follows the width of the Reader pane and the orientation of a phone; Columns and Stacked stay fixed. Columns on a phone become tabs you can swipe.")
+      .addDropdown((dropdown) => {
+        for (const item of LAYOUTS) dropdown.addOption(item.id, item.label);
+        dropdown.setValue(settings.layout).onChange((value) => save({ layout: value }, false));
+      });
+    new Setting(containerEl).setName("Reserve the last column for the dictionary")
+      .setDesc("With a translation switched off, keep the remaining columns in place on the left; the dictionary drawer opens over the empty column instead of covering a translation. Off: the visible columns spread across the full width.")
+      .addToggle((toggle) => toggle.setValue(settings.reserveDrawerColumn).onChange((value) => save({ reserveDrawerColumn: value }, true)));
+    new Setting(containerEl).setName("Keep the dictionary open")
+      .setDesc("The dictionary is a standing column that keeps the last entry while you read and turn pages, instead of a drawer that closes.")
+      .addToggle((toggle) => toggle.setValue(settings.keepDrawerOpen).onChange((value) => save({ keepDrawerOpen: value }, true)));
+    new Setting(containerEl).setName("Dictionary position in stacked layout")
+      .setDesc("Side: a panel on the right. Bottom: a band across the bottom of the screen; with the dictionary kept open, the text flows above it.")
+      .addDropdown((dropdown) => dropdown.addOption("side", "Side").addOption("bottom", "Bottom").setValue(settings.drawerPosition)
+        .onChange((value) => save({ drawerPosition: value }, false)));
+    new Setting(containerEl).setName("Bottom band height")
+      .setDesc("The share of the screen the bottom dictionary takes, as a percentage; dragging the band's top edge changes it too.")
+      .addSlider((slider) => slider.setLimits(15, 85, 5).setValue(Math.round(settings.drawerHeight * 100)).setDynamicTooltip()
+        .onChange((value) => save({ drawerHeight: value / 100 }, false)));
+    new Setting(containerEl).setName("Resume where you left off")
+      .setDesc("Reopen the Reader on the same page and scroll position, with the same languages, translations, and dictionary entry. Off: the Reader opens at the start.")
+      .addToggle((toggle) => toggle.setValue(settings.resume).onChange((value) => save({ resume: value, ...(value ? {} : { state: {} }) })));
+    new Setting(containerEl).setName("Dictionary languages")
+      .setDesc("Shown: answer only in the translations on screen. All: answer in every language of the edition, the shown ones first.")
+      .addDropdown((dropdown) => dropdown.addOption("shown", "Shown translations").addOption("all", "All, shown first").setValue(settings.dictionaryLanguages)
+        .onChange((value) => save({ dictionaryLanguages: value })));
+    new Setting(containerEl).setName(t("settings_rail")).setDesc(t("settings_rail_desc"))
+      .addDropdown((dropdown) => dropdown.addOption("bottom", t("rail_bottom")).addOption("top", t("rail_top")).setValue(settings.railPosition)
+        .onChange(async (value) => {
+          await save({ railPosition: value });
+          for (const leaf of this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE)) {
+            leaf.view?.frame?.toggleClass("firstpair-reader__frame--rail-top", value === "top");
+          }
+        }));
+    new Setting(containerEl).setName(t("settings_sources_tab")).setDesc(t("settings_sources_tab_desc"))
+      .addToggle((toggle) => toggle.setValue(settings.sourcesInNewTab).onChange((value) => save({ sourcesInNewTab: value })));
+    new Setting(containerEl).setName(t("settings_editing")).setDesc(t("settings_editing_desc"))
+      .addToggle((toggle) => toggle.setValue(settings.editing).onChange(async (value) => {
+        await save({ editing: value }, true);
+        this.display();
+      }));
+    if (!settings.editing) return;
+    const text = (name, key, placeholder) => {
+      new Setting(containerEl).setName(t(name)).addText?.((field) => field.setPlaceholder(placeholder)
+        .setValue(settings[key] || "").onChange((value) => save({ [key]: value.trim() })));
+    };
+    new Setting(containerEl).setName(t("settings_engine")).setDesc(t("settings_engine_desc"))
+      .addDropdown((dropdown) => dropdown
+        .addOption("auto", `${t("engine_local")} → ${t("engine_api")}`)
+        .addOption("local", t("engine_local"))
+        .addOption("api", t("engine_api"))
+        .addOption("off", t("engine_off"))
+        .setValue(settings.transcriptionEngine)
+        .onChange((value) => save({ transcriptionEngine: value })));
+    new Setting(containerEl).setName(t("settings_auto")).setDesc(t("settings_auto_desc"))
+      .addToggle((toggle) => toggle.setValue(settings.autoTranscribe).onChange((value) => save({ autoTranscribe: value })));
+    text("settings_language", "voiceLanguage", "auto · en · ru · it");
+    if (Platform.isDesktopApp) {
+      text("settings_mlx_path", "mlxWhisperPath", "~/.local/bin/mlx_whisper");
+      text("settings_mlx_model", "mlxModel", voiceCore.DEFAULT_MLX_MODEL);
+    }
+    text("settings_api_url", "apiBaseUrl", "https://api.openai.com/v1");
+    text("settings_api_key", "apiKey", "sk-…");
+    text("settings_api_model", "apiModel", "whisper-1");
+  }
+}
+
+/* ---------------------------------------------------------------- plugin */
+
+module.exports = class FirstPairReaderPlugin extends Plugin {
+  async onload() {
+    this.targets = null;
+    this.model = null;
+    this.modelIdentity = null;
+    this.metrics = null;
+    this.fragments = null;
+    this.quoteIndex = null;
+    this.readerTransition = false;
+    this.lookup = dictionaryLookup((path) => this.readDictionaryFile(path), new LruCache(8));
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    this.store = new DecisionStore(this.app);
+    this.transcribing = new Set();
+    this.voiceListeners = new Set();
+    this.pendingRun = null;
+    this.io = this.makeIo();
+    // Mobile keeps Backlinks/Outgoing-links leaves after their core plugins
+    // are switched off; a swipe would land on "Plugin no longer active".
+    for (const type of ["backlink", "outgoing-link"]) {
+      const core = this.app.internalPlugins?.getPluginById?.(type);
+      if (core && !core.enabled) this.app.workspace.detachLeavesOfType?.(type);
+    }
+    this.addSettingTab(new FirstPairReaderSettingTab(this.app, this));
+    this.registerView(VIEW_TYPE, (leaf) => new FirstPairReaderView(leaf, this));
+    this.addRibbonIcon("book-open", t("open_reader"), () => this.activate());
+    this.addCommand({ id: "open-reader", name: "Open Reader", callback: () => this.activate() });
+    const viewCommand = (id, name, action) => this.addCommand({
+      id,
+      name,
+      checkCallback: (checking) => {
+        const view = this.activeView();
+        if (!view) return false;
+        if (!checking) void action(view);
+        return true;
+      },
+    });
+    viewCommand("reader-previous", "Previous page", (view) => view.goPrevious());
+    viewCommand("reader-next", "Next page", (view) => view.goNext());
+    viewCommand("reader-back", "Back", (view) => view.restore());
+    viewCommand("reader-up", "Up", (view) => view.goUp());
+    viewCommand("reader-top", "Top", (view) => view.toTop());
+    viewCommand("reader-contents", "Contents", (view) => view.showContents());
+    this.addCommand({ id: "find-source", name: t("find_source"), callback: () => void this.findSource() });
+    this.addCommand({
+      id: "transcribe-voice-notes", name: t("cmd_transcribe"),
+      callback: () => void this.transcribePending({ includeFailed: true }),
+    });
+    this.registerMarkdownPostProcessor((element) => {
+      this.bindEvidenceTargets(element);
+      this.bindReaderLinks(element);
+    });
+    if (typeof this.registerMarkdownCodeBlockProcessor === "function") {
+      for (const language of FRAGMENT_LANGUAGES) {
+        this.registerMarkdownCodeBlockProcessor(language, (source, element) => void this.renderFragment(source, element));
+      }
+    }
+    this.registerObsidianProtocolHandler?.("firstpair-reader", (params) => this.activate(params.page));
+    if (this.app.workspace.on && this.registerEvent) {
+      this.registerEvent(this.app.workspace.on("file-open", (file) => void this.takeOver(file)));
+    }
+    this.app.workspace.onLayoutReady?.(() => {
+      if (this.settings.editing && this.settings.autoTranscribe) void this.transcribePending({ quiet: true });
+    });
+  }
+
+  makeIo() {
+    const vault = this.app.vault;
+    return {
+      read: async (path) => {
+        const file = vault.getAbstractFileByPath(path);
+        if (file && !file.children) return /\.md$/i.test(path) && vault.cachedRead ? vault.cachedRead(file) : vault.read(file);
+        const adapter = vault.adapter;
+        if (adapter && await adapter.exists?.(path)) return adapter.read(path);
+        return null;
+      },
+      list: async (path) => {
+        const adapter = vault.adapter;
+        if (!adapter?.list) return null;
+        try {
+          const listing = await adapter.list(path || "/");
+          return { files: listing.files || [], folders: listing.folders || [] };
+        } catch (_error) {
+          return null;
+        }
+      },
+    };
+  }
+
+  async saveSettings(patch) {
+    Object.assign(this.settings, patch);
+    await this.saveData(this.settings);
+  }
+
+  activeView() {
+    const view = this.app.workspace.getActiveViewOfType?.(FirstPairReaderView);
+    return view || this.app.workspace.getLeavesOfType(VIEW_TYPE)[0]?.view || null;
+  }
+
+  refreshViews(rerender = false) {
+    for (const leaf of this.app.workspace.getLeavesOfType(VIEW_TYPE)) {
+      const view = leaf.view;
+      if (!(view instanceof FirstPairReaderView) || !view.applyLayout) continue;
+      if (rerender) void view.render(); else view.applyLayout();
+    }
+  }
+
+  // The model, discovered once and kept while the index file is unchanged.
+  async loadModel(force = false) {
+    if (this.model && !force) return this.model;
+    const model = await contract.discover(this.io);
+    await this.enrichLegacy(model);
+    this.model = model;
+    this.modelIdentity = reviewState.sha256Id(JSON.stringify({
+      title: model.title, version: model.version, commit: model.sourceCommit, format: model.format,
+      pages: (model.pages || []).map((page) => [page.id, page.file, page.anchor]),
+      editions: (model.editions || []).map((edition) => [edition.id, edition.version]),
+    }));
+    this.metrics = null;
+    if (model.metrics) {
+      try {
+        this.metrics = metricsCore.parseMetrics(await this.io.read(model.metrics));
+      } catch (_error) {
+        this.metrics = null;
+      }
+    }
+    return model;
+  }
+
+  // Older vault formats carry some capabilities by convention: Cicero's
+  // dictionaries, quote index and cover; a code book's fragment ledger.
+  async enrichLegacy(model) {
+    const data = model.root ? `${model.root}/_data` : "_data";
+    if (!model.quotes) {
+      for (const name of quotes.DEFAULT_INDEX_NAMES) {
+        if ((await this.io.read(`${data}/${name}`)) !== null) {
+          model.quotes = `${data}/${name}`;
+          break;
+        }
+      }
+    }
+    if (model.format === "cicero") {
+      const dictionaries = {};
+      for (const target of ["en", "ru", "it"]) {
+        const path = `${data}/dictionaries/la-${target}.json`;
+        if ((await this.io.read(path)) !== null) dictionaries[target] = { path, label: languageName(target) };
+      }
+      if (Object.keys(dictionaries).length) {
+        model.dictionaries = dictionaries;
+        model.words = { selector: "td:first-child", lang: "la", notes: `${model.root}/Bilingual Sources/` };
+      }
+      for (const cover of ["Assets/cicero-on-himself-diagonal.png", "Illustrations/cicero-on-himself-diagonal.webp"]) {
+        const path = `${model.root}/${cover}`;
+        if (this.app.vault.getAbstractFileByPath(path)) {
+          model.cover = path;
+          break;
+        }
+      }
+    }
+  }
+
+  async readDictionaryFile(path) {
+    const text = await this.io.read(path);
+    if (text === null) throw new Error(`missing ${path}`);
+    return JSON.parse(text);
+  }
+
+  async voiceContext() {
+    const model = await this.loadModel();
+    const slug = String(model.title || "reader").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    return { projectId: `reader-${slug || "book"}`, sourceContentId: this.modelIdentity };
+  }
+
+  /* ---------------------------------------------------- note takeover */
+
+  async takeOver(file) {
+    if (!file || this.readerTransition || !/\.md$/i.test(file.path)) return;
+    let model;
+    try {
+      model = await this.loadModel();
+    } catch (_error) {
+      return;
+    }
+    const book = model.format === "library" ? null : model;
+    const target = book ? contract.targetForNote(book, file.path) : null;
+    if (!target) return;
+    const leaf = this.app.workspace.getLeavesOfType?.("markdown")?.find((candidate) => candidate.view?.file?.path === file.path);
+    if (!leaf) return;
+    this.readerTransition = true;
+    try {
+      await leaf.setViewState({ type: VIEW_TYPE, active: true, state: target });
+    } finally {
+      this.readerTransition = false;
+    }
+  }
+
+  /* ------------------------------------------------------ evidence links */
+
+  async loadTargets() {
+    if (this.targets) return this.targets;
+    const text = await this.io.read(TARGET_INDEX);
+    if (text === null) return new Map();
+    const rows = JSON.parse(text);
+    this.targets = new Map(rows.map((row) => [row.id, row]));
+    return this.targets;
+  }
+
+  bindEvidenceTargets(element) {
+    for (const anchor of element.querySelectorAll('a[href^="firstpair:target:"]')) {
+      anchor.addEventListener("click", async (event) => {
+        event.preventDefault();
+        const id = anchor.getAttribute("href").slice("firstpair:target:".length);
+        const target = (await this.loadTargets()).get(id);
+        if (!target) return;
+        const file = this.app.vault.getAbstractFileByPath(target.path);
+        if (!file) return;
+        if (file.children) {
+          new Notice(t("folder_target", { path: target.path }));
+          return;
+        }
+        await this.app.workspace.getLeaf(false).openFile(file);
+      });
+    }
+  }
+
+  // [Open the Reader](firstpair:reader) and [Canto 1](firstpair:page:<id>)
+  // become buttons, so a phone never tries to open the custom scheme.
+  bindReaderLinks(element) {
+    for (const anchor of Array.from(element.querySelectorAll('a[href="firstpair:reader"], a[href^="firstpair:page:"]'))) {
+      const href = anchor.getAttribute("href");
+      const button = anchor.ownerDocument.createElement("button");
+      button.className = "firstpair-reader__link";
+      button.textContent = anchor.textContent;
+      button.setAttribute("data-href", href);
+      button.addEventListener("click", async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        await this.activate(href.startsWith("firstpair:page:") ? href.slice("firstpair:page:".length) : undefined);
+      });
+      anchor.replaceWith(button);
+    }
+  }
+
+  async activate(pageId) {
+    let leaf = this.app.workspace.getLeavesOfType(VIEW_TYPE)[0];
+    if (!leaf) {
+      leaf = this.app.workspace.getLeaf("tab");
+      await leaf.setViewState({ type: VIEW_TYPE, active: true });
+    }
+    this.app.workspace.revealLeaf(leaf);
+    if (pageId && leaf.view instanceof FirstPairReaderView) await leaf.view.openPage(pageId);
+  }
+
+  /* -------------------------------------------------------- code fragments */
+
+  async fragmentRow(id) {
+    const model = await this.loadModel();
+    if (!model.fragments) return null;
+    if (!this.fragments) {
+      const text = await this.io.read(model.fragments);
+      const rows = text ? JSON.parse(text) : [];
+      this.fragments = new Map((Array.isArray(rows) ? rows : rows.fragments || []).map((row) => [row.id, row]));
+    }
+    return this.fragments.get(id) || null;
+  }
+
+  async renderFragment(source, element) {
+    let payload;
+    try {
+      payload = JSON.parse(source);
+    } catch (_error) {
+      element.createEl("pre", { text: source });
+      return;
+    }
+    let row = null;
+    try {
+      row = await this.fragmentRow(payload.id);
+    } catch (_error) {
+      row = null;
+    }
+    const fragment = {
+      id: payload.id,
+      symbol: row?.symbol || payload.symbol || payload.id,
+      path: row?.source_path || payload.sourcePath || "",
+      codeNote: row?.code_note || payload.codeNote || "",
+      start: Number(row?.start_line || payload.startLine || 1),
+      end: Number(row?.end_line || payload.endLine || row?.start_line || payload.startLine || 1),
+      summary: row?.summary || "",
+    };
+    const card = element.createDiv({ cls: "firstpair-reader__fragment" });
+    card.createEl("strong", { text: fragment.symbol });
+    card.createEl("code", { cls: "firstpair-reader__fragment-path", text: `${fragment.path}:${fragment.start}-${fragment.end}` });
+    if (fragment.summary) card.createEl("p", { text: fragment.summary });
+    const actions = card.createDiv({ cls: "firstpair-reader__fragment-actions" });
+    const show = actions.createEl("button", { text: t("show_code"), attr: { type: "button", "aria-expanded": "false" } });
+    const open = actions.createEl("button", { text: t("open_file"), attr: { type: "button" } });
+    const excerpt = card.createDiv({ cls: "firstpair-reader__fragment-code", attr: { hidden: "" } });
+    show.addEventListener("click", async () => {
+      const opening = excerpt.hasAttribute("hidden");
+      if (opening && !excerpt.childElementCount) await this.fillExcerpt(excerpt, fragment);
+      if (opening) excerpt.removeAttribute("hidden"); else excerpt.setAttribute("hidden", "");
+      show.setText(opening ? t("hide_code") : t("show_code"));
+      show.setAttribute("aria-expanded", String(opening));
+    });
+    open.addEventListener("click", async () => {
+      const note = fragment.codeNote.replace(/\.md$/, "");
+      const view = this.activeView();
+      if (view && view.book) await view.go({ mode: "note", notePath: note, noteLines: { start: fragment.start, end: fragment.end } });
+      else await this.app.workspace.openLinkText?.(note, "", false);
+    });
+  }
+
+  // The fragment's lines, numbered, read from the code note's source fence.
+  async fillExcerpt(container, fragment) {
+    const note = fragment.codeNote.endsWith(".md") ? fragment.codeNote : `${fragment.codeNote}.md`;
+    const text = await this.io.read(note);
+    if (text === null) {
+      container.createEl("p", { text: t("code_missing", { path: note }) });
+      return;
+    }
+    const full = text.indexOf("## Full Source");
+    const fence = /```[^\n]*\n([\s\S]*?)\n```/.exec(full >= 0 ? text.slice(full) : text);
+    const lines = (fence ? fence[1] : "").split("\n");
+    const pre = container.createEl("pre", { cls: "firstpair-reader__fragment-lines" });
+    for (let number = fragment.start; number <= Math.min(fragment.end, lines.length); number += 1) {
+      const row = pre.createDiv({ cls: "firstpair-reader__fragment-line" });
+      row.createSpan({ cls: "firstpair-reader__line-number", text: String(number) });
+      row.createSpan({ text: lines[number - 1] });
+    }
+    container.createEl("p", { cls: "firstpair-reader__fragment-range", text: t("code_lines", { start: fragment.start, end: fragment.end }) });
+  }
+
+  /* -------------------------------------------------------- source finder */
+
+  async findSource() {
+    const model = await this.loadModel();
+    if (!model.quotes) {
+      new Notice(t("no_source", { score: 0 }));
+      return;
+    }
+    if (!this.quoteIndex) {
+      const parsed = quotes.parseIndex(await this.io.read(model.quotes));
+      this.quoteIndex = quotes.buildSearchIndex(parsed.entries);
+    }
+    const host = typeof activeWindow !== "undefined" ? activeWindow : (typeof window !== "undefined" ? window : null);
+    const selection = host?.getSelection?.()?.toString?.().trim() || "";
+    const editor = this.app.workspace.activeEditor?.editor;
+    let query = selection || editor?.getSelection?.() || "";
+    if (!query && editor) {
+      const cursor = editor.getCursor();
+      query = quotes.extractCursorText(editor.getLine(cursor.line), cursor.ch);
+    }
+    if (!query) {
+      new Notice(t("no_quote"));
+      return;
+    }
+    const matches = quotes.matchEntries(query, this.quoteIndex, { limit: 8 });
+    const best = matches[0];
+    if (!best || best.score < 0.66) {
+      new Notice(t("no_source", { score: Math.round((best?.score || 0) * 100) }));
+      return;
+    }
+    const decisive = matches.length === 1 || (best.score >= 0.88 && best.score - (matches[1]?.score || 0) >= 0.055);
+    const openEntry = (entry) => this.app.workspace.openLinkText?.(
+      quotes.bilingualLinkTarget(entry), "", this.settings.sourcesInNewTab ? "tab" : false,
+    );
+    if (decisive) {
+      await openEntry(best.entry);
+      return;
+    }
+    const near = matches.filter((match) => best.score - match.score <= 0.14);
+    const SuggestModal = obsidian.SuggestModal;
+    if (!SuggestModal) {
+      await openEntry(best.entry);
+      return;
+    }
+    const plugin = this;
+    new (class extends SuggestModal {
+      getSuggestions(input) {
+        const needle = input.toLowerCase();
+        return near.filter((match) => !needle || [match.entry.work_title, match.entry.citation, match.matchedText]
+          .some((value) => String(value || "").toLowerCase().includes(needle)));
+      }
+
+      renderSuggestion(match, element) {
+        element.createEl("div", { text: [match.entry.work_title, match.entry.citation].filter(Boolean).join(" · ") });
+        element.createEl("small", { text: `${match.language} ${Math.round(match.score * 100)}% — ${match.matchedText.slice(0, 140)}` });
+      }
+
+      onChooseSuggestion(match) {
+        void openEntry.call(plugin, match.entry);
+      }
+    })(this.app).open();
+  }
+};
+
+voiceCore.install(module.exports);
+
+module.exports.__test = Object.freeze({
+  FirstPairReaderView,
+  ReaderHistory,
+  contract,
+  setUiLanguage: (lang) => { uiLang = lang; },
+});

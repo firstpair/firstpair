@@ -63,21 +63,33 @@ ceilings, installs the standard plugin disabled by default, and writes
 
 ## Standard Reader
 
-`publishing/vault/plugin/firstpair-reader/` is the common runtime. It is local,
-inspectable, dependency-free, and offline. Its first stable contract includes:
+`publishing/vault/plugin/firstpair-reader/` (2.0) is the common runtime for
+reading every FirstPair vault. It is local, inspectable, dependency-free, and
+offline, and it supersedes the title readers that grew beside it (Cicero's
+Bilingual Source Navigator, the Lighthouse Mobile Reader's reading half, the
+Invented Translation Triptych's Reader, `rgbdns-reader`,
+`sail-code-fragments`); `FEATURES.md` in the package maps every feature.
 
-- data-driven Reader order;
-- the shared Previous / Up / Back / Top / TOC / Next rail;
-- bounded Reader-local Back history;
-- desktop and phone-width layout;
-- a complete static Markdown fallback;
-- no vault create/modify subscriptions and no network access.
+- `contract.js` reads one validated book model from every index format:
+  `firstpair-reader.v2` (new builders), `parallel-reader.json`, 1.x page
+  arrays, Cicero schema 1, `firstpair.reader.v1`, the mobile edition library
+  (marker-delimited pages in Part notes), and code books. New builders should
+  write v2: `{schema, title, lang, ui_lang, version, source_commit, launcher,
+  contents, start_page, cover, parts[{id,title,note}], pages[{id,title,part,
+  path|note, marker{start,end}, anchor, markdown, chapter}], aligned,
+  dictionaries, words{selector,lang,notes}, fragments, quotes, metrics,
+  editions[{id,title,version,family,index}]}`.
+- One rail (Previous · [word] · Up · Back · Top · TOC · [word] · Next) at the
+  bottom or top; Up and TOC stay inside the Reader; Back restores location,
+  scroll, and focus; static notes open the Reader at their place.
+- Dictionaries (sharded, bounded cache), aligned columns with phone tabs,
+  source rails and the quote finder, fragment cards, metric chips.
+- No network and no writes, unless the reader switches on the optional
+  editing tools: span text and voice notes in the shared ledger, built on
+  `shared/ledger-store.js` and `shared/voice-core.js`.
 
-Profile capabilities are declared in the vault manifest and indexes. Future
-code-range, quotation-rail, anthology, bilingual, annotation, and triptych UI
-must extend this package through versioned data contracts or a documented
-extension interface. A title must not fork the core Reader to change labels,
-colors, target data, or layout preferences.
+Opt-in QA against vaults on this machine:
+`node publishing/tests/reader-real-vaults.mjs "<vault>" ...`.
 
 ## Editorial Triptych
 

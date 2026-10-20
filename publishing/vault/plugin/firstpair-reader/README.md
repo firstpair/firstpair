@@ -1,19 +1,68 @@
 # FirstPair Reader
 
-The standard Reader is data-driven by `_data/reader.json`, `_data/targets.json`,
-and `VAULT-MANIFEST.json`. It makes no network requests and does not modify the
-vault. The complete static Markdown Reader remains usable when the plugin is
-disabled.
+The offline reader for every FirstPair vault. It makes no network requests,
+and it writes nothing to the vault unless you switch on its editing tools.
+With the plugin disabled, the vault's Markdown notes remain a complete book.
 
-The navigation rail is ordered Previous page, Previous word, Up, Back, Top,
-TOC, Next word, Next page. The page controls own the outside edges; the nested
-double-chevron controls step through source words on the current page and open
-the dictionary. Back stores Reader-local continuation only; it never navigates
-to an unrelated note.
+## What it reads
 
-Aligned editions use one non-wrapping top bar. English and Russian are labelled
-`Eng` and `Рус`; each translation picker shows only the translator's compact
-name while its full edition title remains in the tooltip and accessibility
-label. The `Auto` layout control stays on the same line. Dictionary results
-follow the enabled-language order without visible language headings; each
-section retains its language and accessible label in the document structure.
+The Reader finds the vault's index on its own: `_data/reader.json` (schema
+`firstpair-reader.v2`), an aligned edition's `_data/parallel-reader.json`, a
+1.x page list, a Cicero-style `reader.json`, a `Reader/reader-index.json`, a
+mobile edition library, or a code book (`_data/fragments.json` beside a
+`Chapters/` folder). See `contract.js`; `FEATURES.md` maps every feature of the
+readers this one replaced.
+
+## Reading
+
+- **Rail** — Previous · Up · Back · Top · TOC · Next (plus Previous word and
+  Next word when the vault has dictionaries), at the bottom or the top.
+  Previous and Next name their destinations. Up climbs page → part →
+  contents → library; TOC shows the contents with your page marked; Back
+  returns to exactly where you were, including the footnote you came from;
+  Top can be undone with Back. Every control is also a command.
+- **Static notes open the Reader** at the same place: the launcher, contents,
+  part, and page notes.
+- **Libraries** list editions by family; pages are cut from the Part notes.
+- **Footnotes, headings, and book links** stay inside the Reader. Source
+  passages open in place or, with the setting, in a new tab. A quotation that
+  links one reviewed source passage becomes a rail: tap the whole block.
+- **Find the source of the selected quote** (command) matches a quotation
+  against the vault's reviewed quote index.
+- **Code books** show fragment cards; Show code lists the numbered lines,
+  Open file opens the code note with those lines marked.
+
+## Languages and dictionaries
+
+Aligned editions put the source text first. Switch translations on and off,
+rotate a language's translations from its header, or add a second column of
+the same language. Layout follows the screen (Auto), or stays in Columns or
+Stacked. On a phone, Columns become tabs: tap one or swipe the text, and the
+chosen language opens first on every page.
+
+Tap a source word, or step through words with the double chevrons, for its
+dictionary entries in every shown language. Multilingual source tables get one
+language bar per note; at least one language stays on.
+
+## Editing tools (optional)
+
+Settings → **Editing tools** lets you select text on a page and attach a note:
+typed, recorded with **🎙 Voice**, or both. A recording is saved and verified
+under `Preferences/voice/` before anything refers to it; transcription (local
+`mlx_whisper` on a Mac, or an OpenAI-compatible service) follows and never
+replaces it. Notes go to the shared `Preferences/triptych-decisions.json` with
+its `.sha256` check and `EDITING-INSTRUCTIONS.md` digest, the same files
+FirstPair Triptych uses. A note whose text has changed is listed below the
+page, never moved onto other words.
+
+## For builders
+
+Author `main-source.js` and its modules, then bundle the single release file:
+
+```sh
+python3 publishing/scripts/bundle-obsidian-plugin.py publishing/vault/plugin/firstpair-reader
+```
+
+The bundle embeds the shared modules (`../shared/*.js` and FirstPair
+Triptych's `review-state.js`). Vaults install `manifest.json`, `main.js`,
+`styles.css`, and this README, disabled by default.
