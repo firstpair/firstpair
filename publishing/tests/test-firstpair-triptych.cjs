@@ -1188,3 +1188,51 @@ test("span notes keep text and recordings, and transcripts never replace the aud
   ledger = clearSpanNote(ledger, id);
   assert.deepEqual(ledger.span_notes, {});
 });
+
+test("vault-declared metrics parse, grade, and rank worst first", () => {
+  const mainPath = path.resolve(__dirname, "../vault/plugin/firstpair-triptych/main.js");
+  const originalLoad = Module._load;
+  Module._load = function load(request, parent, isMain) {
+    if (request === "obsidian") {
+      return {
+        ItemView: class {}, Plugin: class {}, PluginSettingTab: class {}, Setting: class {},
+        Notice: class {}, normalizePath: (value) => value, setIcon: () => {},
+      };
+    }
+    return originalLoad.call(this, request, parent, isMain);
+  };
+  try {
+    delete require.cache[mainPath];
+    const hooks = require(mainPath).__test;
+    const parsed = hooks.parseMetrics({
+      schema: "firstpair.triptych-metrics.v1",
+      metrics: [
+        { key: "length_drift", letter: "L", better: "lower", format: "percent", warn: 25, bad: 50, rank: 2 },
+        { key: "fluency", letter: "F", better: "higher", format: "integer", warn: 60, bad: 40, rank: 1 },
+      ],
+      values: { "set/a": { ru: { length_drift: 55, fluency: 70 } } },
+    });
+    const [drift, fluency] = parsed.metrics;
+    assert.equal(hooks.metricSeverity(drift, 55), "bad");
+    assert.equal(hooks.metricSeverity(drift, 30), "warn");
+    assert.equal(hooks.metricSeverity(drift, 10), "");
+    assert.equal(hooks.metricSeverity(fluency, 35), "bad");
+    assert.equal(hooks.metricSeverity(fluency, 55), "warn");
+    assert.equal(hooks.metricSeverity(fluency, 80), "");
+    assert.equal(hooks.formatMetric(drift, 54.6), "55%");
+    assert.deepEqual(
+      [{ value: 10 }, { value: 70 }, { value: 40 }].sort(hooks.worstFirst(drift)).map((row) => row.value),
+      [70, 40, 10],
+    );
+    assert.deepEqual(
+      [{ value: 10 }, { value: 70 }, { value: 40 }].sort(hooks.worstFirst(fluency)).map((row) => row.value),
+      [10, 40, 70],
+    );
+    assert.throws(() => hooks.parseMetrics({ schema: "other", metrics: [] }), /unsupported/);
+    assert.throws(() => hooks.parseMetrics({
+      schema: "firstpair.triptych-metrics.v1", metrics: [{ key: "a" }, { key: "a" }],
+    }), /invalid metric key/);
+  } finally {
+    Module._load = originalLoad;
+  }
+});

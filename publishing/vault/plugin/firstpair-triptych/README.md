@@ -105,6 +105,25 @@ note** field. For finer review:
 editing, not comparing: no pane preference, no divergence rail or legend, the
 sentence and word controls open, and the ordinary readable line width.
 
+**On a phone.** Panes form a horizontal snap track with edition tabs that
+follow taps and swipes; the tapped edition becomes the first pane on every
+page. In **Words**, press a word and drag across its neighbours to select a
+phrase. Every saved phrase or note has its own **Change** and **Remove**.
+
+**Metrics.** A vault may declare ranked metrics in
+`<book>/_data/triptych-metrics.json` (see `publishing/VAULT-CONSTRUCTION.md`).
+Each pane shows them as graded chips in rank order; **Settings → Metrics**
+hides and reorders them, and **Review → Ranked pages** lists the worst pages
+for any metric and edition.
+
+**After the text changes.** Choices made on an earlier text are never applied
+to new sentences. Review then offers one scoped action: archive the whole
+decision file to `Preferences/archive/` and start a new review.
+
+**Edited copy.** Review → **Edited copy** applies the preferred version of
+every saved Edit to one edition and writes Markdown and JSON to
+`Preferences/Exports/`. Sources never change.
+
 **Any book.** The plugin finds its book folder on load: `Lighthouse
 Republics/` if present, else the first top-level folder holding
 `_data/triptych-reader.json` (for example `The Invented Enemy/` in a vault

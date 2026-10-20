@@ -112,6 +112,47 @@ an installed `lighthouse-triptych` (moving its `data.json` and renaming it in
 Lighthouse mobile reader embeds it, and the Invented Enemy translation
 triptych still carries a diverged copy awaiting its own port.
 
+### Ranked metrics
+
+Metrics on the editorial rail are declared by the vault, not built into the
+plugin. `<book>/_data/triptych-metrics.json` holds:
+
+```json
+{
+  "schema": "firstpair.triptych-metrics.v1",
+  "metrics": [
+    {"key": "length_drift", "letter": "L", "better": "lower",
+     "format": "percent", "warn": 35, "bad": 70, "rank": 1,
+     "label": {"en": "Length drift", "ru": "...", "it": "..."},
+     "description": {"en": "...", "ru": "...", "it": "..."}}
+  ],
+  "values": {"<page key>": {"<edition id>": {"length_drift": 82.4}}}
+}
+```
+
+`better` is `lower` or `higher`; `format` is `integer`, `decimal1`,
+`decimal2`, or `percent`; `warn` and `bad` are optional thresholds in the
+`better` direction. The plugin shows one chip per metric on every pane
+(single-edition pages included) in rank order, graded by the thresholds; the
+reader may hide and reorder metrics in settings, and Review ranks pages by any
+metric and edition, worst first. Values are numbers, never prose, so the file
+does not duplicate the text, and fragment payloads are unchanged. The
+Lighthouse bilingual builder writes built-in `length_drift`,
+`sentence_length`, and `paragraph_split` and merges per-sentence provider
+JSONL (`{"edition", "text_sha256", "metrics"}`) aggregated per page by `max`
+(or `min` when higher is better) or `mean`; any title or tool can produce the
+same file.
+
+### Ported from the Invented translation triptych (3.1)
+
+Phone edition tabs on the snap track (a tapped edition opens first on every
+page), drag selection across word chips, Change/Remove on every saved row,
+removal of Backlinks/Outgoing-links leaves whose core plugin is disabled, a
+scoped Review panel that archives a decision file made on an earlier text to
+`Preferences/archive/` and starts a new review, and an edited-copy export
+(Review → Edited copy) that applies each preferred Edit to one edition and
+writes Markdown and JSON to `Preferences/Exports/` without touching sources.
+
 ## Differential QA
 
 Capture the working vault before generating a candidate:

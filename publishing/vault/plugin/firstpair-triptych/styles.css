@@ -666,6 +666,7 @@
     flex: 0 0 82vw;
     max-width: 82vw;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
   }
 }
 
@@ -1197,3 +1198,83 @@
 .lt-solo .lt-sentence-choice-wrap { display: none; }
 .lt-solo-absent { align-items: center; display: flex; flex-wrap: wrap; gap: 0.5rem; }
 .lt-solo .lt-glossary { display: none; }
+
+/* Edition tabs for the phone snap track (shown only at phone width). */
+.lt-pane-tabs {
+  display: none;
+  gap: 0.35rem;
+  margin: 0 0 0.45rem;
+  overflow-x: auto;
+}
+.lt-pane-tab {
+  flex: 1 1 0;
+  min-height: 2.4rem;
+  white-space: nowrap;
+}
+.lt-pane-tab.is-active {
+  background: var(--interactive-accent);
+  color: var(--text-on-accent, #fff);
+}
+@media (max-width: 900px) {
+  .lt-pane-tabs {
+    display: flex;
+  }
+}
+
+/* Word chips take the drag gesture instead of scrolling the page. */
+.lt-word-token-select {
+  cursor: pointer;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.lt-saved-row {
+  align-items: stretch;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+.lt-saved-row .lt-saved-phrase {
+  flex: 1 1 12rem;
+}
+.lt-saved-row.lt-saved-good .lt-saved-phrase { border-left: 3px solid var(--color-green, #2f855a); }
+.lt-saved-row.lt-saved-bad .lt-saved-phrase { border-left: 3px solid var(--color-red, #c0392b); }
+.lt-saved-row.lt-saved-edit .lt-saved-phrase { border-left: 3px solid var(--color-blue, #2878b5); }
+.lt-saved-row.lt-saved-note .lt-saved-phrase { border-left: 3px solid var(--color-purple, #7c4dbc); }
+
+/* Ranked metrics: one compact chip per declared metric, in reader order. */
+.lt-metrics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0.3rem 0.55rem 0;
+}
+.lt-metric {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 4px;
+  font: 0.78rem var(--font-monospace);
+  padding: 0 0.3rem;
+  white-space: nowrap;
+}
+.lt-metric-warn {
+  background: color-mix(in srgb, var(--color-yellow, #d4a017) 22%, transparent);
+}
+.lt-metric-bad {
+  background: color-mix(in srgb, var(--color-red, #c0392b) 20%, transparent);
+}
+.lt-rank-list li { margin: 0.2rem 0; }
+.lt-rank-list .lt-metric { margin-right: 0.45rem; }
+.lt-export-actions { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.lt-archive-card {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: 0.6rem 0.8rem;
+}
+/* With tabs on a phone, the pane-visibility chips only repeat them. */
+@media (max-width: 900px) {
+  .lt-triptych:has(.lt-pane-tabs) .lt-chips-label,
+  .lt-triptych:has(.lt-pane-tabs) .lt-chip:not(.lt-review-chip):not(.lt-sentence-toggle) {
+    display: none;
+  }
+}

@@ -57,6 +57,7 @@ const {
   pickUiLanguage,
   preferredCorrectionVariant,
   renderDigest,
+  resolveAnnotation,
   reviewChoiceCount,
   selectedTokenRange,
   sentenceFingerprint,
@@ -776,7 +777,9 @@ class DecisionStore {
       ) throw new Error("triptych review sidecars exist without a ledger");
     } catch (error) {
       console.error("firstpair-triptych: unreadable ledger", error);
-      new Notice(t("ledger_unreadable"));
+      // A text change is a known state handled by Review, not a fault to
+      // announce on every page.
+      if (error.code !== "SOURCE_CONTENT_MISMATCH") new Notice(t("ledger_unreadable"));
       throw error;
     }
     return { ledger: emptyLedger(context), files: { json: null, digest: null, hash: null } };
@@ -821,6 +824,50 @@ class DecisionStore {
       );
       this.cache = ledger;
       return ledger;
+    });
+    this.queue = operation;
+    return operation;
+  }
+
+  // Move the whole decision file set aside when it was made on an earlier
+  // text, so a new review can start.  Scope is the complete file, never a
+  // page; recordings stay where they are and the archived ledger names them.
+  archiveMismatched() {
+    const operation = this.queue.catch(() => undefined).then(async () => {
+      const adapter = this.app.vault.adapter;
+      const jsonPath = normalizePath(LEDGER_PATH);
+      if (!(await adapter.exists(jsonPath))) return null;
+      const serialized = await adapter.read(jsonPath);
+      const parsed = JSON.parse(serialized);
+      const shortSource = String(parsed.source_content_id || "sha256:unbound")
+        .replace(/^sha256:/, "").slice(0, 12);
+      const archive = normalizePath("Preferences/archive");
+      if (!(await adapter.exists(archive))) await adapter.mkdir(archive);
+      let stem = `triptych-decisions-${shortSource}-r${Number(parsed.revision) || 0}`;
+      for (let suffix = 1; await adapter.exists(`${archive}/${stem}.json`); suffix += 1) {
+        stem = `triptych-decisions-${shortSource}-r${Number(parsed.revision) || 0}-${suffix}`;
+      }
+      const moves = [
+        [jsonPath, `${archive}/${stem}.json`],
+        [normalizePath(LEDGER_HASH_PATH), `${archive}/${stem}.sha256`],
+        [normalizePath(DIGEST_PATH), `${archive}/${stem}-EDITING-INSTRUCTIONS.md`],
+      ];
+      const moved = [];
+      try {
+        for (const [from, to] of moves) {
+          if (await adapter.exists(from)) {
+            await adapter.rename(from, to);
+            moved.push([from, to]);
+          }
+        }
+      } catch (error) {
+        for (const [from, to] of moved.reverse()) {
+          if (await adapter.exists(to) && !(await adapter.exists(from))) await adapter.rename(to, from);
+        }
+        throw error;
+      }
+      this.cache = null;
+      return `${archive}/${stem}.json`;
     });
     this.queue = operation;
     return operation;
@@ -1152,6 +1199,72 @@ function phraseSelector(sentenceText, start, end) {
       sentenceText, end, Math.min(codePointLength(sentenceText), end + 32)
     ),
   };
+}
+
+/* ----------------------------- ranked metrics ---------------------------- */
+
+// Vault-declared metrics: <book>/_data/triptych-metrics.json holds the
+// definitions and the numbers (page key -> edition -> metric key -> value).
+// Nothing here is prose, and the fragment payloads stay unchanged.
+const METRICS_SCHEMA = "firstpair.triptych-metrics.v1";
+const METRIC_FORMATS = new Set(["integer", "decimal1", "decimal2", "percent"]);
+
+function parseMetrics(input) {
+  const data = typeof input === "string" ? JSON.parse(input) : input;
+  if (!data || data.schema !== METRICS_SCHEMA || !Array.isArray(data.metrics)) {
+    throw new Error("unsupported triptych metrics file");
+  }
+  const seen = new Set();
+  const metrics = data.metrics.map((raw, index) => {
+    const key = String(raw.key || "");
+    if (!isSafeEditorialId(key) || seen.has(key)) throw new Error(`invalid metric key ${key}`);
+    seen.add(key);
+    return {
+      key,
+      letter: String(raw.letter || key[0]).slice(0, 3),
+      label: raw.label || {},
+      description: raw.description || {},
+      better: raw.better === "higher" ? "higher" : "lower",
+      format: METRIC_FORMATS.has(raw.format) ? raw.format : "decimal1",
+      warn: Number.isFinite(raw.warn) ? raw.warn : null,
+      bad: Number.isFinite(raw.bad) ? raw.bad : null,
+      rank: Number.isFinite(raw.rank) ? raw.rank : index + 1,
+    };
+  });
+  const values = data.values && typeof data.values === "object" ? data.values : {};
+  return { metrics, values };
+}
+
+function metricText(metric, field) {
+  const table = field === "label" ? metric.label : metric.description;
+  if (typeof table === "string") return table;
+  return table[uiLanguage] || table.en || (field === "label" ? metric.key : "");
+}
+
+function formatMetric(metric, value) {
+  if (!Number.isFinite(value)) return "—";
+  if (metric.format === "integer") return String(Math.round(value));
+  if (metric.format === "percent") return `${Math.round(value)}%`;
+  if (metric.format === "decimal2") return value.toFixed(2);
+  return value.toFixed(1);
+}
+
+// "bad", "warn", or "" for a value under the metric's thresholds.
+function metricSeverity(metric, value) {
+  if (!Number.isFinite(value)) return "";
+  const worse = (limit) => limit !== null && (
+    metric.better === "lower" ? value >= limit : value <= limit
+  );
+  if (worse(metric.bad)) return "bad";
+  if (worse(metric.warn)) return "warn";
+  return "";
+}
+
+// Worst first: the order in which an editor should look.
+function worstFirst(metric) {
+  return (left, right) => (
+    metric.better === "lower" ? right.value - left.value : left.value - right.value
+  );
 }
 
 /* ------------------------------ voice notes ------------------------------ */
@@ -1934,6 +2047,78 @@ class FirstPairTriptychReviewView extends ItemView {
         const list = content.createEl("ul");
         for (const key of unavailable) list.createEl("li", { text: key });
       }
+      const ranked = this.plugin.rankedMetrics();
+      if (ranked.length) {
+        content.createEl("h2", { text: t("rank_heading") });
+        content.createEl("p", { cls: "lt-review-explanation", text: t("rank_explain") });
+        const controls = content.createDiv({ cls: "lt-rank-controls" });
+        const select = controls.createEl("select", { cls: "dropdown", attr: { "aria-label": t("rank_by") } });
+        const editionIds = [...new Set(this.reader.sets.flatMap((set) => set.edition_ids))];
+        for (const metric of ranked) {
+          for (const editionId of editionIds) {
+            select.createEl("option", {
+              value: `${metric.key}\u001f${editionId}`,
+              text: `${metric.letter} · ${metricText(metric, "label")} · ${this.plugin.settings.knownEditions[editionId] || editionId}`,
+            });
+          }
+        }
+        const list = content.createEl("ol", { cls: "lt-rank-list" });
+        const renderRanking = () => {
+          list.empty();
+          const [key, editionId] = select.value.split("\u001f");
+          const metric = ranked.find((item) => item.key === key);
+          const rows = this.reader.sets.flatMap((set) => set.pages)
+            .map((page) => ({
+              page,
+              value: (((this.plugin.metrics.values[page.key] || {})[editionId]) || {})[key],
+            }))
+            .filter((row) => Number.isFinite(row.value))
+            .sort(worstFirst(metric))
+            .slice(0, 40);
+          if (!rows.length) {
+            list.createEl("li", { text: t("rank_none") });
+            return;
+          }
+          for (const row of rows) {
+            const item = list.createEl("li");
+            const severity = metricSeverity(metric, row.value);
+            item.createSpan({
+              cls: `lt-metric${severity ? ` lt-metric-${severity}` : ""}`,
+              text: `${metric.letter} ${formatMetric(metric, row.value)}`,
+            });
+            const link = item.createEl("button", {
+              cls: "lt-review-page-link", text: row.page.title, attr: { type: "button" },
+            });
+            link.addEventListener("click", () => void this.plugin.openReader({ mode: "fragment", key: row.page.key }));
+          }
+        };
+        select.addEventListener("change", renderRanking);
+        renderRanking();
+      }
+      content.createEl("h2", { text: t("edited_copy_heading") });
+      content.createEl("p", { cls: "lt-review-explanation", text: t("edited_copy_explain") });
+      const exports = content.createDiv({ cls: "lt-export-actions" });
+      for (const set of this.reader.sets) {
+        for (const editionId of set.edition_ids) {
+          const edition = this.plugin.settings.knownEditions[editionId] || editionId;
+          const button = exports.createEl("button", {
+            text: t("export_edition", { edition, set: set.title }),
+            attr: { type: "button" },
+          });
+          button.addEventListener("click", async () => {
+            button.disabled = true;
+            try {
+              const result = await this.plugin.exportEditedCopy(this.reader, set, editionId);
+              new Notice(t("export_done", result));
+            } catch (error) {
+              console.error("firstpair-triptych: export failed", error);
+              new Notice(t("export_failed", { error: error.message || error }));
+            } finally {
+              button.disabled = false;
+            }
+          });
+        }
+      }
       content.createEl("h2", { text: t("digest_heading") });
       content.createEl("pre", {
         cls: "lt-review-digest",
@@ -1948,6 +2133,26 @@ class FirstPairTriptychReviewView extends ItemView {
           ? t("source_mismatch")
           : t("review_could_not_open", { error: error.message || error }),
       });
+      if (error.code === "SOURCE_CONTENT_MISMATCH") {
+        const card = this.contentEl.createDiv({ cls: "lt-archive-card" });
+        card.createEl("p", { text: t("archive_scope") });
+        const button = card.createEl("button", {
+          cls: "mod-cta",
+          text: t("archive_button", { count: error.reviewChoiceCount || 0 }),
+          attr: { type: "button" },
+        });
+        button.addEventListener("click", async () => {
+          button.disabled = true;
+          try {
+            const archived = await this.plugin.store.archiveMismatched();
+            new Notice(t("archived_notice", { path: archived || "—" }));
+            await this.renderReview();
+          } catch (archiveError) {
+            button.disabled = false;
+            new Notice(t("review_could_not_open", { error: archiveError.message || archiveError }));
+          }
+        });
+      }
     }
   }
 }
@@ -1956,6 +2161,9 @@ const DEFAULT_SETTINGS = {
   editionVisibility: {},
   knownEditions: {},
   soloEdition: "",
+  defaultPane: "",
+  metricOrder: [],
+  metricHidden: {},
   transcriptionEngine: "auto",
   autoTranscribe: true,
   voiceLanguage: "",
@@ -1977,11 +2185,21 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     uiLanguage = await detectUiLanguage(this.app.vault.adapter);
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
     this.store = new DecisionStore(this.app);
+    this.metrics = await this.loadMetrics();
     this.transcribing = new Set();
     this.voiceListeners = new Set();
     this.pendingRun = null;
     this.readerCache = null;
     this.readerTransition = false;
+    // Obsidian mobile keeps Backlinks and Outgoing-links leaves after their
+    // core plugins are switched off; a horizontal tab swipe then lands on
+    // "Plugin no longer active".  Detach only those orphaned leaves.
+    for (const [viewType, coreId] of [["backlink", "backlink"], ["outgoing-link", "outgoing-link"]]) {
+      const core = this.app.internalPlugins && this.app.internalPlugins.getPluginById
+        ? this.app.internalPlugins.getPluginById(coreId)
+        : null;
+      if (core && !core.enabled) this.app.workspace.detachLeavesOfType(viewType);
+    }
     this.registerView(
       READER_VIEW_TYPE,
       (leaf) => new FirstPairTriptychReaderView(leaf, this)
@@ -2608,7 +2826,17 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
   async renderTriptych(payload, el) {
     payload = validateTriptychPayload(payload);
     const context = this.store.contextFromPayload(payload);
-    let ledger = await this.store.load(context);
+    let ledger;
+    try {
+      ledger = await this.store.load(context);
+    } catch (error) {
+      if (error.code !== "SOURCE_CONTENT_MISMATCH") throw error;
+      const notice = el.createDiv({ cls: "lt-empty lt-mismatch" });
+      notice.createSpan({ text: `${t("source_mismatch")} ` });
+      const open = notice.createEl("button", { text: t("review"), attr: { type: "button" } });
+      open.addEventListener("click", () => void this.openReview());
+      return;
+    }
     const existing = ledger.decisions[payload.key] || {};
     const review = payload.review || null;
 
@@ -2729,13 +2957,20 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
       banner.setText(label);
     }
 
+    // On a phone the panes form a horizontal snap track; these tabs follow
+    // taps and swipes, and the tapped edition opens first on every page.
+    const paneTabs = visiblePanes.length > 1
+      ? root.createDiv({ cls: "lt-pane-tabs", attr: { role: "tablist", "aria-label": t("panes_label") } })
+      : null;
     const paneRow = root.createDiv({ cls: "lt-panes" });
     paneRow.style.setProperty("--lt-panes", String(visiblePanes.length));
+    const paneEls = [];
 
     const checkboxes = new Map();
     for (const pane of visiblePanes) {
       const paneReview = review && review.panes ? review.panes[pane.edition] : null;
       const paneEl = paneRow.createDiv({ cls: "lt-pane" });
+      paneEls.push(paneEl);
       if (!pane.text) paneEl.addClass("lt-absent");
       if (paneReview && paneReview.structural && !isSolo) paneEl.addClass("lt-structural");
       if (paneReview && paneReview.outlier && !isSolo) paneEl.addClass("lt-outlier");
@@ -2807,6 +3042,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         }
       }
 
+      this.renderMetricRow(paneEl, payload.key, pane.edition);
       const body = paneEl.createDiv({ cls: "lt-pane-body" });
       this.renderEditorialPaneBody(
         payload,
@@ -2829,6 +3065,8 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         });
       }
     }
+
+    if (paneTabs) this.wirePaneTabs(paneTabs, paneRow, paneEls, visiblePanes);
 
     const noteRow = root.createDiv({ cls: "lt-note-row" });
     noteRow.createSpan({ cls: "lt-note-label", text: t("editing_note") });
@@ -2872,6 +3110,98 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         text: `${t("bar_legend")} — ${t("feature_legend")}`,
       });
     }
+  }
+
+  async loadMetrics() {
+    const path = normalizePath(`${BOOK_ROOT}/_data/triptych-metrics.json`);
+    try {
+      if (!(await this.app.vault.adapter.exists(path))) return { metrics: [], values: {} };
+      return parseMetrics(await this.app.vault.adapter.read(path));
+    } catch (error) {
+      console.warn("firstpair-triptych: metrics ignored", error);
+      return { metrics: [], values: {} };
+    }
+  }
+
+  // Declared metrics in the reader's chosen order (settings), then by rank.
+  rankedMetrics({ includeHidden = false } = {}) {
+    const order = this.settings.metricOrder || [];
+    const position = (metric) => {
+      const index = order.indexOf(metric.key);
+      return index < 0 ? order.length + metric.rank : index;
+    };
+    return [...this.metrics.metrics]
+      .sort((left, right) => position(left) - position(right) || left.rank - right.rank)
+      .filter((metric) => includeHidden || !(this.settings.metricHidden || {})[metric.key]);
+  }
+
+  renderMetricRow(container, pageKey, edition) {
+    const values = ((this.metrics.values[pageKey] || {})[edition]) || {};
+    const shown = this.rankedMetrics().filter((metric) => Number.isFinite(values[metric.key]));
+    if (!shown.length) return;
+    const row = container.createDiv({ cls: "lt-metrics" });
+    for (const metric of shown) {
+      const value = values[metric.key];
+      const severity = metricSeverity(metric, value);
+      row.createSpan({
+        cls: `lt-metric${severity ? ` lt-metric-${severity}` : ""}`,
+        text: `${metric.letter} ${formatMetric(metric, value)}`,
+        attr: { title: `${metricText(metric, "label")}: ${formatMetric(metric, value)} — ${metricText(metric, "description")}` },
+      });
+    }
+  }
+
+  wirePaneTabs(tabRow, track, paneEls, panes) {
+    const view = track.ownerDocument.defaultView;
+    const tabs = panes.map((pane, index) => {
+      const tab = tabRow.createEl("button", {
+        cls: "lt-pane-tab",
+        text: pane.title || pane.edition,
+        attr: { type: "button", role: "tab", title: t("pane_tab_title") },
+      });
+      tab.addEventListener("click", () => {
+        this.settings.defaultPane = pane.edition;
+        void this.saveSettings();
+        setActive(index);
+        scrollToPane(index, "smooth");
+      });
+      return tab;
+    });
+    const setActive = (active) => tabs.forEach((tab, index) => {
+      tab.toggleClass("is-active", index === active);
+      tab.setAttribute("aria-selected", index === active ? "true" : "false");
+    });
+    const scrollToPane = (index, behavior) => {
+      const pane = paneEls[index];
+      if (!pane) return;
+      const left = pane.getBoundingClientRect().left - track.getBoundingClientRect().left + track.scrollLeft;
+      if (typeof track.scrollTo === "function") track.scrollTo({ left, behavior });
+      else track.scrollLeft = left;
+    };
+    const preferred = Math.max(0, panes.findIndex((pane) => pane.edition === this.settings.defaultPane));
+    setActive(preferred);
+    view.requestAnimationFrame(() => {
+      // Only a scrollable (phone-width) track moves; wide columns stay put.
+      if (track.scrollWidth > track.clientWidth + 1) scrollToPane(preferred, "auto");
+    });
+    let frame = 0;
+    track.addEventListener("scroll", () => {
+      if (frame) return;
+      frame = view.requestAnimationFrame(() => {
+        frame = 0;
+        const origin = track.getBoundingClientRect().left;
+        let best = 0;
+        let distance = Infinity;
+        paneEls.forEach((pane, index) => {
+          const gap = Math.abs(pane.getBoundingClientRect().left - origin);
+          if (gap < distance) {
+            distance = gap;
+            best = index;
+          }
+        });
+        setActive(best);
+      });
+    }, { passive: true });
   }
 
   renderPaneBody(payload, pane, body, root, getLedger, setLedger) {
@@ -3617,6 +3947,102 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     else view.setTimeout(() => field.focus(), 0);
   }
 
+  /* --------------------------- edited copy ------------------------------ */
+
+  // Apply the preferred edit of every saved Edit to one edition's text and
+  // export it for reading and replay.  Sources and generated notes are never
+  // touched; overlapping or no-longer-locatable edits are listed as skipped.
+  async exportEditedCopy(reader, set, editionId) {
+    const context = { projectId: reader.project_id, sourceContentId: reader.source_content_id };
+    const ledger = await this.store.load(context);
+    const edits = Object.values(ledger.phrase_annotations)
+      .filter((record) => record.action === "edit" && record.edition === editionId);
+    const byPage = new Map();
+    for (const record of edits) {
+      if (!byPage.has(record.fragment_key)) byPage.set(record.fragment_key, []);
+      byPage.get(record.fragment_key).push(record);
+    }
+    const applied = [];
+    const skipped = [];
+    const lines = [];
+    let currentPart = null;
+    for (const page of set.pages) {
+      const file = this.app.vault.getAbstractFileByPath(normalizePath(`${page.note}.md`));
+      if (!file) continue;
+      const payload = validateIndexedTriptychPayload(
+        extractTriptychPayload(await this.app.vault.cachedRead(file)), `${page.note}.md`, reader,
+      );
+      const pane = payload.panes.find((item) => item.edition === editionId);
+      if (!pane || !pane.text) continue;
+      const located = [];
+      for (const record of byPage.get(page.key) || []) {
+        const variant = preferredCorrectionVariant(record);
+        const span = pane.sentence_spans.find((item) => item.id === record.sentence_id);
+        const resolved = span && resolveAnnotation(
+          sliceCodePoints(pane.text, span.start, span.end), record,
+        );
+        const entry = {
+          fragment_key: page.key, sentence_id: record.sentence_id, exact: record.exact,
+          replacement: variant ? variant.text : "", variant_id: variant ? variant.id : null,
+        };
+        if (!variant || !resolved) {
+          skipped.push({ ...entry, reason: variant ? "text no longer matches" : "no preferred variant" });
+          continue;
+        }
+        located.push({ ...entry, start: span.start + resolved.start, end: span.start + resolved.end });
+      }
+      located.sort((left, right) => left.start - right.start || left.end - right.end);
+      const chosen = [];
+      for (const entry of located) {
+        if (chosen.length && entry.start < chosen[chosen.length - 1].end) {
+          skipped.push({ ...entry, reason: "overlaps an earlier edit" });
+        } else chosen.push(entry);
+      }
+      const points = Array.from(pane.text);
+      for (const entry of [...chosen].reverse()) {
+        points.splice(entry.start, entry.end - entry.start, ...Array.from(entry.replacement));
+      }
+      applied.push(...chosen.map(({ start, end, ...entry }) => entry));
+      const part = set.partById.get(page.part_id);
+      if (part && part !== currentPart) {
+        lines.push(`# ${part.title}`, "");
+        currentPart = part;
+      }
+      points.join("").split(/\n{2,}/).forEach((unit, index) => {
+        lines.push((pane.unit_kinds[index] === "heading" ? `## ${unit}` : unit), "");
+      });
+    }
+    const edition = reader.editions.find((item) => item.id === editionId) || {};
+    const stem = `${set.id}-${editionId}-edited`.replace(/[^A-Za-z0-9._-]+/g, "-");
+    const folder = "Preferences/Exports";
+    await ensureFolder(this.app.vault.adapter, folder);
+    const header = [
+      "---",
+      `edition: ${JSON.stringify(editionId)}`,
+      `version: ${JSON.stringify(edition.version || "")}`,
+      `source_commit: ${JSON.stringify(edition.source_commit || "")}`,
+      `source_content_id: ${JSON.stringify(reader.source_content_id)}`,
+      `review_revision: ${ledger.revision || 0}`,
+      `applied_edits: ${applied.length}`,
+      `skipped_edits: ${skipped.length}`,
+      "---",
+      "",
+    ];
+    await this.app.vault.adapter.write(`${folder}/${stem}.md`, `${[...header, ...lines].join("\n").trimEnd()}\n`);
+    await this.app.vault.adapter.write(`${folder}/${stem}.json`, `${JSON.stringify({
+      schema: "firstpair.triptych-edited-copy.v1",
+      set: set.id,
+      edition: editionId,
+      version: edition.version || "",
+      source_commit: edition.source_commit || "",
+      source_content_id: reader.source_content_id,
+      review_revision: ledger.revision || 0,
+      applied,
+      skipped,
+    }, null, 2)}\n`);
+    return { path: `${folder}/${stem}.md`, applied: applied.length, skipped: skipped.length };
+  }
+
   /* --------------------------- transcription ---------------------------- */
 
   localWhisperCommand() {
@@ -4151,47 +4577,76 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     view.saved.hidden = records.length + notes.length === 0;
     if (!records.length && !notes.length) return;
     view.saved.createSpan({ cls: "lt-saved-heading", text: t("saved_phrases") });
+    // Every saved record gets its own Change and Remove, so overlapping marks
+    // never have to be untangled by tapping the text.
+    const row = (cls, text, open, remove, removeConfirm = false) => {
+      const item = view.saved.createDiv({ cls: `lt-saved-row ${cls}` });
+      const label = item.createEl("button", {
+        cls: "lt-saved-phrase", text, attr: { type: "button" },
+      });
+      label.addEventListener("click", open);
+      const change = item.createEl("button", {
+        cls: "lt-saved-change", text: t("change"), attr: { type: "button" },
+      });
+      change.addEventListener("click", open);
+      const removeButton = item.createEl("button", {
+        cls: "lt-saved-remove mod-warning", text: t("remove"), attr: { type: "button" },
+      });
+      let armed = false;
+      removeButton.addEventListener("click", async () => {
+        if (removeConfirm && !armed) {
+          armed = true;
+          removeButton.setText(t("confirm_delete_clip"));
+          root.ownerDocument.defaultView.setTimeout(() => {
+            armed = false;
+            removeButton.setText(t("remove"));
+          }, 4000);
+          return;
+        }
+        removeButton.disabled = true;
+        try {
+          await remove();
+        } catch (error) {
+          removeButton.disabled = false;
+          new Notice(t("phrase_choice_failed", { error: error.message || error }));
+        }
+      });
+    };
     for (const record of records) {
       const preferred = preferredCorrectionVariant(record);
       const label = record.action === "edit" && preferred
         ? `${actionLabel("edit")} → ${preferred.text}`
         : actionLabel(record.action);
-      const button = view.saved.createEl("button", {
-        cls: `lt-saved-phrase lt-saved-${record.action}`,
-        text: `“${record.exact}” · ${label}`,
-        attr: { type: "button" },
-      });
-      button.addEventListener("click", () => this.showEditorialPhraseMenu({
-        payload,
-        pane,
-        span,
-        sentenceText,
-        selector: makeSelector(sentenceText, record.start, record.end, record.token_keys),
-        existing: record,
-        anchor: button,
-        root,
-        setLedger,
-        refresh: view.refresh,
-      }));
+      const selector = makeSelector(sentenceText, record.start, record.end, record.token_keys);
+      row(`lt-saved-${record.action}`, `“${record.exact}” · ${label}`,
+        () => this.showEditorialPhraseMenu({
+          payload, pane, span, sentenceText, selector, existing: record,
+          anchor: view.saved, root, setLedger, refresh: view.refresh,
+        }),
+        async () => {
+          setLedger(await this.persistPhraseAction(
+            payload, pane, span, sentenceText, selector, "clear", record,
+          ));
+          view.refresh();
+        });
     }
     for (const note of notes) {
       const bits = [actionLabel("note")];
       if (note.voice.length) bits.push(`🎙 ${note.voice.length}`);
       if (note.text) bits.push(note.text);
-      const button = view.saved.createEl("button", {
-        cls: "lt-saved-phrase lt-saved-note",
-        text: `“${note.exact}” · ${bits.join(" · ")}`,
-        attr: { type: "button" },
-      });
-      button.addEventListener("click", () => this.openSpanNoteDialog({
-        payload,
-        pane,
-        span,
-        selector: makeSelector(sentenceText, note.start, note.end, note.token_keys),
-        root,
-        setLedger,
-        refresh: view.refresh,
-      }));
+      const selector = makeSelector(sentenceText, note.start, note.end, note.token_keys);
+      row("lt-saved-note", `“${note.exact}” · ${bits.join(" · ")}`,
+        () => this.openSpanNoteDialog({
+          payload, pane, span, selector, root, setLedger, refresh: view.refresh,
+        }),
+        async () => {
+          // Removing a note retires its recordings to the Obsidian trash.
+          const context = this.store.contextFromPayload(payload);
+          setLedger(await this.store.update(context, (current) => clearSpanNote(current, note.id)));
+          for (const clip of note.voice) await this.trashVaultPath(clip.path);
+          view.refresh();
+        },
+        note.voice.length > 0);
     }
   }
 
@@ -4334,11 +4789,69 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
             if (actionButton) actionButton.focus();
           }
         };
-        for (const token of tokens) {
+        // Press a word and drag across its neighbours to select the phrase in
+        // one gesture (the natural way on a phone); a plain tap still toggles.
+        let drag = null;
+        const applyDrag = (index) => {
+          if (!drag) return;
+          const first = Math.min(drag.start, index);
+          const last = Math.max(drag.start, index);
+          tokens.forEach((token, position) => {
+            tokenChecks.get(token.key).checked = position >= first && position <= last
+              ? drag.selecting
+              : drag.original[position];
+          });
+          drag.moved = drag.moved || index !== drag.start;
+          updateSelection();
+          updateClear();
+        };
+        tokenList.addEventListener("pointermove", (event) => {
+          if (!drag || event.pointerId !== drag.pointerId) return;
+          event.preventDefault();
+          const hit = root.ownerDocument.elementFromPoint(event.clientX, event.clientY);
+          const target = hit && hit.closest ? hit.closest(".lt-word-token-select[data-token-index]") : null;
+          if (target && tokenList.contains(target)) applyDrag(Number(target.dataset.tokenIndex));
+        });
+        const endDrag = (event) => {
+          if (!drag || event.pointerId !== drag.pointerId) return;
+          if (tokenList.hasPointerCapture && tokenList.hasPointerCapture(event.pointerId)) {
+            tokenList.releasePointerCapture(event.pointerId);
+          }
+          drag = null;
+        };
+        tokenList.addEventListener("pointerup", endDrag);
+        tokenList.addEventListener("pointercancel", endDrag);
+        for (const [tokenIndex, token] of tokens.entries()) {
           const tokenControl = tokenList.createSpan({ cls: "lt-word-token" });
-          const label = tokenControl.createEl("label");
+          const label = tokenControl.createEl("label", {
+            cls: "lt-word-token-select",
+            attr: { "data-token-index": String(tokenIndex) },
+          });
           const checkbox = label.createEl("input", { type: "checkbox" });
           label.createSpan({ text: token.text });
+          label.addEventListener("pointerdown", (event) => {
+            if (event.button !== undefined && event.button !== 0) return;
+            event.preventDefault();
+            drag = {
+              start: tokenIndex,
+              pointerId: event.pointerId,
+              selecting: !checkbox.checked,
+              original: tokens.map((item) => tokenChecks.get(item.key).checked),
+              moved: false,
+            };
+            if (tokenList.setPointerCapture) tokenList.setPointerCapture(event.pointerId);
+            applyDrag(tokenIndex);
+          });
+          // The pointer gesture already toggled; stop the label's own click
+          // from toggling back.  Keyboard activation (detail 0) still works.
+          label.addEventListener("click", (event) => {
+            event.preventDefault();
+            if (event.detail === 0) {
+              checkbox.checked = !checkbox.checked;
+              updateSelection();
+              updateClear();
+            }
+          });
           const only = tokenControl.createEl("button", {
             cls: "lt-word-only",
             text: t("only"),
@@ -4504,6 +5017,44 @@ class TriptychSettingTab extends PluginSettingTab {
         });
       });
 
+    const metrics = this.plugin.rankedMetrics({ includeHidden: true });
+    if (metrics.length) {
+      containerEl.createEl("h3", { text: t("metrics_heading") });
+      containerEl.createEl("p", { text: t("metrics_desc") });
+      const saveOrder = async (ordered) => {
+        this.plugin.settings.metricOrder = ordered.map((metric) => metric.key);
+        await this.plugin.saveSettings();
+        this.display();
+      };
+      metrics.forEach((metric, index) => {
+        new Setting(containerEl)
+          .setName(`${metric.letter} · ${metricText(metric, "label")}`)
+          .setDesc(metricText(metric, "description"))
+          .addExtraButton((button) => button.setIcon("arrow-up").setTooltip(t("move_up"))
+            .setDisabled(index === 0)
+            .onClick(() => {
+              const next = [...metrics];
+              [next[index - 1], next[index]] = [next[index], next[index - 1]];
+              void saveOrder(next);
+            }))
+          .addExtraButton((button) => button.setIcon("arrow-down").setTooltip(t("move_down"))
+            .setDisabled(index === metrics.length - 1)
+            .onClick(() => {
+              const next = [...metrics];
+              [next[index + 1], next[index]] = [next[index], next[index + 1]];
+              void saveOrder(next);
+            }))
+          .addToggle((toggle) => toggle
+            .setValue(!(this.plugin.settings.metricHidden || {})[metric.key])
+            .onChange(async (value) => {
+              this.plugin.settings.metricHidden = { ...(this.plugin.settings.metricHidden || {}) };
+              if (value) delete this.plugin.settings.metricHidden[metric.key];
+              else this.plugin.settings.metricHidden[metric.key] = true;
+              await this.plugin.saveSettings();
+            }));
+      });
+    }
+
     containerEl.createEl("h3", { text: t("settings_voice") });
     const text = (name, key, placeholder, desc = "") => {
       const setting = new Setting(containerEl).setName(t(name));
@@ -4576,6 +5127,10 @@ class TriptychSettingTab extends PluginSettingTab {
 module.exports.__test = Object.freeze({
   detectBookRoot,
   detectUiLanguage,
+  parseMetrics,
+  metricSeverity,
+  formatMetric,
+  worstFirst,
   setUiLanguage: (lang) => { uiLanguage = lang; },
   uiLanguage: () => uiLanguage,
   FirstPairTriptychReaderView,
