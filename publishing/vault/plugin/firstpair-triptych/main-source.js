@@ -34,6 +34,9 @@ const {
 } = require("obsidian");
 const {
   LEDGER_SCHEMA,
+  MAX_SPAN_OVERLAP,
+  overlapDepth,
+  spanColors,
   addVoiceClip,
   clearSpanNote,
   formatDuration,
@@ -921,6 +924,27 @@ function phraseSelector(sentenceText, start, end) {
 const metricsCore = require("../shared/metrics");
 const { formatMetric, metricSeverity, parseMetrics, worstFirst } = metricsCore;
 const metricText = (metric, field) => metricsCore.metricText(metric, field, uiLanguage);
+
+// Touch screens (iPhone, iPad, Android) select whole words by tap and drag.
+function isTouchDevice() {
+  if (Platform && Platform.isMobile) return true;
+  try {
+    return typeof window !== "undefined" && Boolean(window.matchMedia)
+      && window.matchMedia("(pointer: coarse)").matches;
+  } catch (_error) {
+    return false;
+  }
+}
+
+// A saved span's colour, or the stripes of the two or three spans that
+// cover the same words.
+function spanFill(colors) {
+  const palette = colors.map((color) => `var(--lt-span-${color})`);
+  if (palette.length === 1) return palette[0];
+  const band = 7;
+  const stops = palette.map((value, index) => `${value} ${index * band}px ${(index + 1) * band}px`);
+  return `repeating-linear-gradient(135deg, ${stops.join(", ")})`;
+}
 
 // Shared with the FirstPair Reader: the transactional ledger and voice notes.
 const { DecisionStore } = require("../shared/ledger-store")({
@@ -2410,6 +2434,8 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     const review = payload.review || null;
 
     const root = el.createDiv({ cls: "lt-triptych" });
+    // Touch screens select whole words; checkboxes are for a mouse.
+    if (isTouchDevice()) root.addClass("lt-touch");
     const solo = this.settings.soloEdition || "";
     const rerender = async () => {
       el.empty();
@@ -2694,6 +2720,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
 
   // Declared metrics in the reader's chosen order (settings), then by rank.
   rankedMetrics({ includeHidden = false } = {}) {
+    if (!this.metrics) return [];
     const order = this.settings.metricOrder || [];
     const position = (metric) => {
       const index = order.indexOf(metric.key);
@@ -2705,6 +2732,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
   }
 
   renderMetricRow(container, pageKey, edition) {
+    if (!this.metrics) return;
     const values = ((this.metrics.values[pageKey] || {})[edition]) || {};
     const shown = this.rankedMetrics().filter((metric) => Number.isFinite(values[metric.key]));
     if (!shown.length) return;
@@ -3412,7 +3440,9 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     menu.setAttribute("aria-label", t("review_quote_aria", { quote: selector.exact }));
     const row = document.createElement("div");
     row.className = "lt-selection-actions";
+    const ledgerRecords = () => this.sentenceRecords(() => this.store.cache || { phrase_annotations: {}, span_notes: {} }, payload, pane, span);
     const save = async (action, correction = null, mode = "create") => {
+      if (!existing && action !== "clear" && !this.overlapAllowed(ledgerRecords(), sentenceText, selector)) return;
       try {
         const next = await this.persistPhraseAction(
           payload, pane, span, sentenceText, selector, action, existing,
@@ -3454,6 +3484,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
       button.textContent = t(`action_${kind}`);
       button.className = `lt-selection-action lt-action-${kind}`;
       button.addEventListener("click", () => {
+        if (!this.overlapAllowed(ledgerRecords(), sentenceText, selector)) return;
         menu.remove();
         this.openSpanNoteDialog({
           payload, pane, span, selector, root, setLedger, refresh, autoRecord,
@@ -3512,15 +3543,87 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     document.addEventListener("pointerdown", dismiss, true);
   }
 
-  renderEditorialSentenceText(
-    payload, pane, span, sentenceText, copy, view, root, getLedger, setLedger,
-  ) {
-    copy.empty();
-    const records = [
+  // Every saved span of one sentence: Good/Bad/Edit phrases and notes.
+  sentenceRecords(getLedger, payload, pane, span) {
+    return [
       ...annotationsForSentence(getLedger(), payload.key, pane.edition, span.id),
       ...spanNotesForSentence(getLedger(), payload.key, pane.edition, span.id)
         .map((note) => ({ ...note, action: "note" })),
     ];
+  }
+
+  // Up to three saved spans may cover one word; a fourth is refused.  An
+  // edit of an existing span (same words) is always allowed.
+  overlapAllowed(records, sentenceText, selector) {
+    const others = records.filter((record) => !(
+      Number(record.start) === selector.start && Number(record.end) === selector.end
+    ));
+    if (overlapDepth(sentenceText, others, selector.start, selector.end) < MAX_SPAN_OVERLAP) return true;
+    new Notice(t("overlap_limit"));
+    return false;
+  }
+
+  openSpanRecord(record, context) {
+    const { payload, pane, span, sentenceText, root, setLedger, refresh, anchor } = context;
+    const selector = makeSelector(sentenceText, record.start, record.end, record.token_keys);
+    if (record.action === "note") {
+      this.openSpanNoteDialog({ payload, pane, span, selector, root, setLedger, refresh });
+      return;
+    }
+    this.showEditorialPhraseMenu({
+      payload, pane, span, sentenceText, selector, existing: record, anchor, root, setLedger, refresh,
+    });
+  }
+
+  // Several spans under one tap: name each (its words, action, colour) and
+  // open the one chosen.
+  chooseSpan(records, colors, context) {
+    const document = context.root.ownerDocument;
+    for (const prior of document.querySelectorAll(".lt-selection-menu")) prior.remove();
+    const menu = document.createElement("div");
+    menu.className = "lt-selection-menu lt-span-chooser";
+    menu.setAttribute("role", "dialog");
+    menu.setAttribute("aria-label", t("spans_choose"));
+    const heading = document.createElement("div");
+    heading.className = "lt-variant-heading";
+    heading.textContent = t("spans_choose");
+    menu.appendChild(heading);
+    for (const record of records) {
+      const button = document.createElement("button");
+      button.type = "button";
+      button.className = "lt-span-choice";
+      const swatch = document.createElement("span");
+      swatch.className = "lt-span-swatch";
+      swatch.style.background = spanFill([colors.get(record.id) || 0]);
+      button.append(swatch, document.createTextNode(`“${record.exact}” · ${actionLabel(record.action)}`));
+      button.addEventListener("click", () => {
+        menu.remove();
+        this.openSpanRecord(record, context);
+      });
+      menu.appendChild(button);
+    }
+    document.body.appendChild(menu);
+    const rect = context.anchor.getBoundingClientRect();
+    const view = document.defaultView;
+    const menuRect = menu.getBoundingClientRect();
+    menu.style.left = `${Math.max(8, Math.min(rect.left, view.innerWidth - menuRect.width - 8))}px`;
+    menu.style.top = `${Math.max(8, Math.min(rect.bottom + 6, view.innerHeight - menuRect.height - 8))}px`;
+    const dismiss = (event) => {
+      if (!menu.contains(event.target)) {
+        menu.remove();
+        document.removeEventListener("pointerdown", dismiss, true);
+      }
+    };
+    document.addEventListener("pointerdown", dismiss, true);
+  }
+
+  renderEditorialSentenceText(
+    payload, pane, span, sentenceText, copy, view, root, getLedger, setLedger,
+  ) {
+    copy.empty();
+    const records = this.sentenceRecords(getLedger, payload, pane, span);
+    const colors = spanColors(sentenceText, records);
+    const context = { payload, pane, span, sentenceText, root, setLedger, refresh: view.refresh };
     for (const segment of annotationSegments(sentenceText, records)) {
       if (!segment.records.length) {
         copy.appendText(segment.text);
@@ -3536,44 +3639,36 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         text: segment.text,
         attr: { role: "button", tabindex: "0" },
       });
+      mark.style.background = spanFill(segment.records.map((record) => colors.get(record.id) || 0));
       const activate = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        if (segment.records.length === 1 && segment.records[0].action === "note") {
-          const record = segment.records[0];
-          this.openSpanNoteDialog({
-            payload,
-            pane,
-            span,
-            selector: makeSelector(sentenceText, record.start, record.end, record.token_keys),
-            root,
-            setLedger,
-            refresh: view.refresh,
-          });
-        } else if (segment.records.length === 1) {
-          const record = segment.records[0];
-          this.showEditorialPhraseMenu({
-            payload,
-            pane,
-            span,
-            sentenceText,
-            selector: makeSelector(sentenceText, record.start, record.end, record.token_keys),
-            existing: record,
-            anchor: mark,
-            root,
-            setLedger,
-            refresh: view.refresh,
-          });
-        } else {
-          view.wrapper.addClass("is-editing-words");
-          view.wordsButton.setAttribute("aria-pressed", "true");
-          view.saved.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }
+        const anchored = { ...context, anchor: mark };
+        if (segment.records.length === 1) this.openSpanRecord(segment.records[0], anchored);
+        else this.chooseSpan(segment.records, colors, anchored);
       };
       mark.addEventListener("click", activate);
       mark.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") activate(event);
       });
+    }
+    this.paintTokenChips(view, sentenceText, records, colors);
+  }
+
+  // The word chips carry the same colours, so a word already in a span shows
+  // it before a new selection starts.
+  paintTokenChips(view, sentenceText, records, colors) {
+    if (!view.tokens || !view.tokenChecks) return;
+    const spans = records.map((record) => ({ record, at: resolveAnnotation(sentenceText, record) }))
+      .filter((entry) => entry.at);
+    for (const token of view.tokens) {
+      const label = view.tokenChecks.get(token.key)?.closest("label");
+      if (!label) continue;
+      const covering = spans.filter((entry) => entry.at.start < token.end && token.start < entry.at.end);
+      label.toggleClass("lt-token-in-span", covering.length > 0);
+      label.style.background = covering.length
+        ? spanFill(covering.map((entry) => colors.get(entry.record.id) || 0))
+        : "";
     }
   }
 
@@ -3718,7 +3813,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         selectAllLabel.createSpan({ text: t("whole_sentence") });
         editor.createSpan({
           cls: "lt-word-help",
-          text: t("words_hint"),
+          text: t(isTouchDevice() ? "words_hint_touch" : "words_hint"),
         });
         const tokenList = editor.createSpan({ cls: "lt-word-token-list" });
         const tokenChecks = new Map();
@@ -3739,6 +3834,10 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
             .map(([key]) => key);
           selectAll.checked = Boolean(tokens.length && selected.length === tokens.length);
           selectAll.indeterminate = Boolean(selected.length && selected.length < tokens.length);
+          for (const [key, checkbox] of tokenChecks) {
+            checkbox.closest("label")?.toggleClass("is-selected", checkbox.checked);
+          }
+          selectAllLabel.toggleClass("is-selected", selectAll.checked);
           try {
             view.selector = selected.length
               ? selectedTokenRange(sentenceText, tokens, selected)
@@ -3775,6 +3874,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
           );
           const prior = getLedger().phrase_annotations[annotationId];
           const current = prior ? { id: annotationId, ...prior } : null;
+          if (!this.overlapAllowed(this.sentenceRecords(getLedger, payload, pane, span), sentenceText, selector)) return;
           let correction = null;
           let mode = "create";
           if (action === "edit") {
@@ -3912,6 +4012,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
           button.addEventListener("click", () => {
             const selector = view.selector && { ...view.selector };
             if (!selector) return;
+            if (!this.overlapAllowed(this.sentenceRecords(getLedger, payload, pane, span), sentenceText, selector)) return;
             this.openSpanNoteDialog({
               payload, pane, span, selector, root, setLedger, autoRecord,
               refresh: view.refresh,

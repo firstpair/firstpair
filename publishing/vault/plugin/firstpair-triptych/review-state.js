@@ -848,6 +848,50 @@ function annotationSegments(sentenceText, records) {
   return segments;
 }
 
+/* --------------------------- span colours ------------------------------ */
+
+// At most this many saved spans may cover one word.
+const MAX_SPAN_OVERLAP = 3;
+
+// Resolved [start, end) positions of saved spans in one sentence (records
+// whose quote no longer resolves are left out).
+function resolvedSpans(sentenceText, records) {
+  return (records || []).map((record) => ({ record, at: resolveAnnotation(sentenceText, record) }))
+    .filter((entry) => entry.at);
+}
+
+// One of three colours per span: only spans that overlap get different
+// colours (greedy interval colouring; three overlaps need at most three).
+function spanColors(sentenceText, records) {
+  const spans = resolvedSpans(sentenceText, records)
+    .sort((left, right) => left.at.start - right.at.start || left.at.end - right.at.end
+      || String(left.record.id).localeCompare(String(right.record.id)));
+  const colors = new Map();
+  const placed = [];
+  for (const entry of spans) {
+    const taken = new Set(placed
+      .filter((other) => other.at.start < entry.at.end && entry.at.start < other.at.end)
+      .map((other) => colors.get(other.record.id)));
+    let color = 0;
+    while (taken.has(color)) color += 1;
+    colors.set(entry.record.id, color % MAX_SPAN_OVERLAP);
+    placed.push(entry);
+  }
+  return colors;
+}
+
+// The most saved spans that already cover any code point of [start, end).
+function overlapDepth(sentenceText, records, start, end) {
+  const spans = resolvedSpans(sentenceText, records)
+    .filter((entry) => entry.at.start < end && start < entry.at.end);
+  let deepest = 0;
+  for (let point = start; point < end; point += 1) {
+    const depth = spans.filter((entry) => entry.at.start <= point && point < entry.at.end).length;
+    if (depth > deepest) deepest = depth;
+  }
+  return deepest;
+}
+
 function reviewChoiceCount(ledger) {
   return reviewChoiceCountRaw(ledger);
 }
@@ -1126,7 +1170,8 @@ const UI_STRINGS = Object.freeze({
     prefer: "Prefer",
     words: "Words",
     whole_sentence: "Whole sentence",
-    words_hint: "Check adjacent words; saved phrases may overlap.",
+    words_hint: "Check adjacent words; up to three saved spans may overlap.",
+    words_hint_touch: "Tap a word, or drag across words; up to three saved spans may overlap.",
     select_hint: "Select adjacent words to review a phrase.",
     one_phrase_hint: "Choose adjacent words for one phrase.",
     only: "Only",
@@ -1194,6 +1239,8 @@ const UI_STRINGS = Object.freeze({
     settings_api_key_desc: "Stored in this plugin's data.json inside the vault's .obsidian folder; it travels with Sync and vault copies.",
     settings_api_model: "API model",
     settings_language: "Spoken language (blank = detect)",
+    overlap_limit: "Up to three saved spans may overlap; this selection would be a fourth.",
+    spans_choose: "Open which span?",
     pane_tab_title: "Show this edition; it opens first on every page",
     change: "Change",
     remove: "Remove",
@@ -1348,7 +1395,8 @@ const UI_STRINGS = Object.freeze({
     prefer: "Preferisci",
     words: "Parole",
     whole_sentence: "Frase intera",
-    words_hint: "Spuntate parole contigue; i passi salvati possono sovrapporsi.",
+    words_hint: "Spuntate parole contigue; al massimo tre passi salvati possono sovrapporsi.",
+    words_hint_touch: "Toccate una parola o trascinate su più parole; al massimo tre passi salvati possono sovrapporsi.",
     select_hint: "Scegliete parole contigue per rivedere un passo.",
     one_phrase_hint: "Scegliete parole contigue di un solo passo.",
     only: "Solo",
@@ -1416,6 +1464,8 @@ const UI_STRINGS = Object.freeze({
     settings_api_key_desc: "Salvata nel data.json del plugin dentro la cartella .obsidian del vault: viaggia con Sync e con le copie del vault.",
     settings_api_model: "Modello API",
     settings_language: "Lingua parlata (vuoto = rileva)",
+    overlap_limit: "Al massimo tre passi salvati possono sovrapporsi: questa scelta sarebbe il quarto.",
+    spans_choose: "Quale passo aprire?",
     pane_tab_title: "Mostra questa edizione: si aprirà per prima su ogni pagina",
     change: "Modifica",
     remove: "Rimuovi",
@@ -1569,7 +1619,8 @@ const UI_STRINGS = Object.freeze({
     prefer: "Предпочесть",
     words: "Слова",
     whole_sentence: "Всё предложение",
-    words_hint: "Отметьте соседние слова; сохранённые отрывки могут пересекаться.",
+    words_hint: "Отметьте соседние слова; пересекаться могут не больше трёх сохранённых отрывков.",
+    words_hint_touch: "Нажмите на слово или проведите по нескольким; пересекаться могут не больше трёх сохранённых отрывков.",
     select_hint: "Выберите соседние слова, чтобы оценить отрывок.",
     one_phrase_hint: "Выберите соседние слова одного отрывка.",
     only: "Только",
@@ -1637,6 +1688,8 @@ const UI_STRINGS = Object.freeze({
     settings_api_key_desc: "Хранится в data.json плагина в папке .obsidian хранилища и уходит вместе с Sync и копиями хранилища.",
     settings_api_model: "Модель API",
     settings_language: "Язык речи (пусто — определить)",
+    overlap_limit: "Пересекаться могут не больше трёх сохранённых отрывков; этот был бы четвёртым.",
+    spans_choose: "Какой отрывок открыть?",
     pane_tab_title: "Показать это издание; оно будет открываться первым на каждой странице",
     change: "Изменить",
     remove: "Убрать",
@@ -1741,6 +1794,9 @@ function pickUiLanguage(editionsJsonl) {
 }
 
 module.exports = {
+  MAX_SPAN_OVERLAP,
+  overlapDepth,
+  spanColors,
   LEDGER_SCHEMA,
   LEDGER_VERSION,
   LEGACY_LEDGER_SCHEMA,

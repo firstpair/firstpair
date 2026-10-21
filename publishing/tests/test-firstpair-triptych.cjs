@@ -1236,3 +1236,21 @@ test("vault-declared metrics parse, grade, and rank worst first", () => {
     Module._load = originalLoad;
   }
 });
+
+test("span colours: only overlapping spans differ, and three may overlap at most", () => {
+  const { spanColors, overlapDepth, MAX_SPAN_OVERLAP } = require(path.resolve(__dirname, "../vault/plugin/firstpair-triptych/review-state.js"));
+  const text = "the quick brown fox jumps";
+  const span = (id, start, end) => ({ id, start, end, exact: text.slice(start, end) });
+  const records = [span("a", 0, 9), span("b", 4, 15), span("c", 16, 19), span("d", 10, 19), span("e", 20, 25)];
+  const colors = spanColors(text, records);
+  assert.notEqual(colors.get("a"), colors.get("b"), "overlapping spans differ");
+  assert.notEqual(colors.get("b"), colors.get("d"));
+  assert.notEqual(colors.get("c"), colors.get("d"));
+  assert.equal(colors.get("e"), 0, "a span overlapping nothing takes the first colour");
+  assert.equal(colors.get("a"), colors.get("d"), "non-overlapping spans may share a colour");
+  for (const value of colors.values()) assert.ok(value >= 0 && value < MAX_SPAN_OVERLAP);
+  assert.equal(MAX_SPAN_OVERLAP, 3);
+  assert.equal(overlapDepth(text, records, 4, 9), 2);
+  assert.equal(overlapDepth(text, [...records, span("f", 5, 8)], 6, 7), 3, "a fourth span here would exceed the limit");
+  assert.equal(overlapDepth(text, records, 19, 20), 0);
+});
