@@ -145,7 +145,18 @@ def _write_projection(root: Path, projection: Projection, config, source_revisio
     )
     (obsidian / "workspace-first-open.json").write_bytes(first_open_bytes())
     if config.plugin:
-        shutil.copytree(PLUGIN_ROOT, obsidian / "plugins" / "firstpair-reader")
+        # Only the release files: the package folder also holds the Reader's
+        # sources and a package.json that scopes CommonJS for tests.
+        destination = obsidian / "plugins" / "firstpair-reader"
+        destination.mkdir(parents=True)
+        for name in READER_RELEASE_FILES:
+            source = PLUGIN_ROOT / name
+            if not source.is_file():
+                raise FileNotFoundError(f"FirstPair Reader release file is missing: {source}")
+            shutil.copy2(source, destination / name)
+
+
+READER_RELEASE_FILES = ("README.md", "main.js", "manifest.json", "styles.css")
 
 
 def _manifest(root: Path, config, projection: Projection, source_revision: str) -> dict[str, object]:

@@ -253,5 +253,26 @@ class VaultComparisonTests(unittest.TestCase):
             self.assertEqual((), inventory(root).critical_broken_links)
 
 
+    def test_inventory_treats_reader_routes_as_plugin_links(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            (root / "Home.md").write_text(
+                "[Open the Reader](firstpair:reader) · [Canto 1](firstpair:page:inferno-01)"
+                " · [Evidence](firstpair:target:src-1)\n",
+                encoding="utf-8",
+            )
+            self.assertEqual((), inventory(root).broken_links)
+
+    def test_builder_installs_only_the_reader_release_files(self) -> None:
+        from firstpair_vault import builder
+
+        self.assertEqual(
+            ("README.md", "main.js", "manifest.json", "styles.css"), builder.READER_RELEASE_FILES,
+        )
+        for name in builder.READER_RELEASE_FILES:
+            self.assertTrue((builder.PLUGIN_ROOT / name).is_file(), name)
+        self.assertTrue((builder.PLUGIN_ROOT / "main-source.js").is_file(),
+                        "the package folder holds sources the builder must not ship")
+
 if __name__ == "__main__":
     unittest.main()

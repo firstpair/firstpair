@@ -8,7 +8,9 @@ from urllib.parse import unquote
 
 
 WIKI_LINK = re.compile(r"\[\[([^\]|#]+)(?:#[^\]|]+)?(?:\|[^\]]+)?\]\]")
-MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\((?!https?://|mailto:|obsidian:)([^)#]+)(?:#[^)]+)?\)")
+# Reader routes (firstpair:reader, firstpair:page:<id>, firstpair:target:<id>)
+# are plugin links, not files.
+MARKDOWN_LINK = re.compile(r"\[[^\]]*\]\((?!https?://|mailto:|obsidian:|firstpair:)([^)#]+)(?:#[^)]+)?\)")
 INLINE_CODE = re.compile(r"`[^`\n]*`")
 FENCE = re.compile(r"^\s*(`{3,}|~{3,})")
 
