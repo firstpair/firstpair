@@ -195,6 +195,15 @@ if (marker.epub_file && present(join(distDir, marker.epub_file))) {
       ]) {
         if (!pattern.test(opf)) failures.push(`EPUB metadata/package is missing ${label}`)
       }
+      // Language editions must be distinguishable by file name, not only by
+      // package title: the stem feeds the versioned file names and the Kindle
+      // name, so a non-English edition carries its language as a stem segment
+      // (lighthouse-republics-ru, invented-enemy-ru-preview).
+      const language = /<dc:language\b[^>]*>\s*([A-Za-z]+)/i.exec(opf)?.[1]?.toLowerCase()
+      if (language && language !== 'en' && marker.title_stem
+          && !new RegExp(`(^|-)${language}(-|$)`).test(marker.title_stem)) {
+        failures.push(`title_stem ${marker.title_stem} must carry the language segment -${language} for a ${language} edition`)
+      }
     }
     const entrySet = new Set(entries)
     const contentEntries = entries.filter((entry) => /\.(xhtml|html)$/i.test(entry))

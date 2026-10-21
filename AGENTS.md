@@ -55,6 +55,17 @@ shared rules.
   [Git-Versioned Blog Textpacks](#git-versioned-blog-textpacks)). Use dry-runs when the target is unclear,
   and require explicit user confirmation before replacing a public preview with
   a full book.
+- Name every non-English edition with its language in the file stem, as
+  *Lighthouse Republics* does: `lighthouse-republics-ru`,
+  `lighthouse-republics-it-preview`, `the-invented-enemy-ru`. The stem makes
+  the versioned PDF/EPUB names and the Kindle name (`<stem> (<stamp>)`), so
+  English and translated copies never share a name in `~/icloud/books`, on a
+  Kindle, or in Calibre. The EPUB `dc:title` must also name the language or
+  be in it, and carry the version stamp, because Kindle and Calibre key on the
+  package title as well as the file name. English editions keep the bare stem.
+  `publishing/scripts/verify-library-book.mjs` fails a build whose
+  `dc:language` is not English and whose `title_stem` lacks the `-<lang>`
+  segment.
 - Preserve unrelated user or generated worktree changes. Stage, commit, and push
   only the files that belong to the requested change.
 - Start blog writing and book-publication work only from repositories whose
