@@ -164,7 +164,7 @@ every reader at its next bundle. The module owns the word picker (checkboxes
 on desktop; on touch devices whole words are tapped or dragged, with no
 checkboxes and no **Only**), the colouring of saved spans (one of three
 colours, different only where spans overlap, striped where a word lies in
-several), the chooser opened by tapping a word in more than one span, the
+several; notes with a recording use a separate voice palette), the chooser opened by tapping a word in more than one span, the
 three-span overlap limit, and the saved-row list with **Change** and
 **Remove**. The interval logic it relies on (`spanColors`, `overlapDepth`,
 `MAX_SPAN_OVERLAP`) lives in `review-state.js`. A plugin's stylesheet is

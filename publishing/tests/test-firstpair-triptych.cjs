@@ -1254,3 +1254,17 @@ test("span colours: only overlapping spans differ, and three may overlap at most
   assert.equal(overlapDepth(text, [...records, span("f", 5, 8)], 6, 7), 3, "a fourth span here would exceed the limit");
   assert.equal(overlapDepth(text, records, 19, 20), 0);
 });
+
+test("voice-note spans take their own palette, overlap colours kept", () => {
+  const editor = require("../vault/plugin/shared/span-editor")({
+    Notice: class {}, Platform: {}, t: (key) => key,
+  });
+  const colors = new Map([["a", 0], ["b", 1]]);
+  const text = { id: "a", action: "note", voice: [] };
+  const voice = { id: "b", action: "note", voice: [{ id: "c1" }] };
+  assert.equal(editor.fillToken(text, colors), "span-0");
+  assert.equal(editor.fillToken(voice, colors), "voice-1");
+  assert.equal(editor.spanFill(["voice-1"]), "var(--lt-voice-1)");
+  assert.equal(editor.spanFill([0]), "var(--lt-span-0)", "bare indices still mean the text palette");
+  assert.match(editor.spanFill(["span-0", "voice-1"]), /--lt-span-0.*--lt-voice-1/);
+});

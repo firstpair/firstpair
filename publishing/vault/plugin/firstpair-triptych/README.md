@@ -113,7 +113,9 @@ its own **Change** and **Remove**.
 
 **Saved spans are coloured.** Up to three spans may overlap. Spans that
 overlap get different colours, and a word inside several is striped; spans
-that do not touch share a colour. Tap a coloured word to reopen its span, or
+that do not touch share a colour. A note with a recording is a voice span and takes its
+own palette (green, pink, yellow, with a green underline), so voice notes
+stand apart from text notes and phrase marks. Tap a coloured word to reopen its span, or
 choose among the spans when it lies in more than one. The word picker, the
 colours, and the overlap limit come from `shared/span-editor.js`, the same
 module FirstPair Reader uses.
