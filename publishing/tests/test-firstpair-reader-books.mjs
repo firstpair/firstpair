@@ -14,7 +14,6 @@ import { test } from 'node:test'
 const require = createRequire(import.meta.url)
 const mock = require('./obsidian-mock.cjs')
 const { marked } = require('marked')
-const anchors = require('../vault/plugin/firstpair-reader/anchors.js')
 const originalResolve = Module._resolveFilename
 Module._resolveFilename = function (request, ...rest) {
   if (request === 'obsidian') return require.resolve('./obsidian-mock.cjs')
@@ -272,22 +271,46 @@ test('editing is off by default; on, a selected span takes a text note in the sh
   } finally { off.done() }
   const { el, view, root, done } = await open(BOOK, { settings: { editing: true } })
   try {
-    const body = el.querySelector('.firstpair-reader__markdown')
-    const textNode = Array.from(body.querySelectorAll('p')).find((p) => p.textContent.startsWith('A claim')).firstChild
-    const range = body.ownerDocument.createRange(); range.setStart(textNode, 2); range.setEnd(textNode, 7)
-    const selector = anchors.selectorFromRange(body, range)
-    assert.equal(selector.exact, 'claim')
-    await view.openSpanNote(body, selector, false); await settle()
-    const dialog = el.ownerDocument.querySelector('.lt-note-dialog')
-    assert.ok(dialog, 'the shared span-note dialog opens')
-    dialog.querySelector('textarea').value = 'Cite the source here.'
-    dialog.querySelector('.mod-cta').click(); await settle(12)
+    const win = globalThis.window
+    const click = (node, detail = 0) => node.dispatchEvent(new win.MouseEvent('click', { bubbles: true, cancelable: true, detail }))
+    // The shared span editor: page toggle, then Words on a paragraph.
+    el.querySelector('.firstpair-reader__edit-bar .lt-sentence-toggle').click(); await settle()
+    const paragraph = Array.from(el.querySelectorAll('.firstpair-reader__markdown p')).find((p) => p.textContent.includes('A claim'))
+    paragraph.querySelector('.firstpair-reader__words-toggle').click(); await settle()
+    const editorEl = paragraph.nextElementSibling
+    assert.ok(editorEl.classList.contains('lt-word-editor'), 'the shared word picker opens under the paragraph')
+    const chip = (word) => Array.from(editorEl.querySelectorAll('.lt-word-token-select')).find((label) => label.textContent.trim() === word)
+    const saveNote = async (words, text) => {
+      editorEl.querySelector('.lt-clear-word-selection')?.click()
+      for (const word of words) click(chip(word))
+      await settle()
+      editorEl.querySelector('.lt-action-note').click(); await settle()
+      const dialog = el.ownerDocument.querySelector('.lt-note-dialog')
+      if (!dialog) return false
+      dialog.querySelector('textarea').value = text
+      dialog.querySelector('.mod-cta').click(); await settle(12)
+      return true
+    }
+    assert.equal(await saveNote(['link'], 'Cite the source here.'), true)
     const ledger = JSON.parse(readFileSync(join(root, 'Preferences/triptych-decisions.json'), 'utf8'))
     const note = Object.values(ledger.span_notes)[0]
-    assert.equal(note.exact, 'claim'); assert.equal(note.text, 'Cite the source here.'); assert.equal(note.fragment_key, 'reader/book/p1')
+    assert.equal(note.exact, 'link'); assert.equal(note.text, 'Cite the source here.'); assert.equal(note.fragment_key, 'reader/book/p1')
+    assert.match(note.sentence_id, /^reader\/book\/p1:B\d{4}:[0-9a-f]{8}$/)
     assert.ok(existsSync(join(root, 'Preferences/triptych-decisions.sha256')), 'the integrity sidecar is written')
-    assert.match(readFileSync(join(root, 'Preferences/EDITING-INSTRUCTIONS.md'), 'utf8'), /\*\*NOTE\*\*.*claim.*Cite the source here/)
+    assert.match(readFileSync(join(root, 'Preferences/EDITING-INSTRUCTIONS.md'), 'utf8'), /\*\*NOTE\*\*.*link.*Cite the source here/)
     await view.paintNotes(); await settle()
-    assert.equal(el.querySelector('mark.firstpair-reader__span').textContent, 'claim')
+    const mark = paragraph.querySelector('mark.lt-phrase-mark')
+    assert.equal(mark.textContent, 'link'); assert.equal(mark.style.background, 'var(--lt-span-0)', 'saved spans are coloured')
+    assert.ok(chip('link').classList.contains('lt-token-in-span'), 'the chip shows the span too')
+    assert.equal(editorEl.querySelectorAll('.lt-saved-row').length, 1)
+    // Overlaps: up to three; a fourth is refused.
+    assert.equal(await saveNote(['a', 'link'], 'two'), true)
+    assert.equal(await saveNote(['link', 'to'], 'three'), true)
+    assert.equal(await saveNote(['link', 'to', 'the'], 'four'), false, 'a fourth overlapping span is refused')
+    assert.ok(globalThis.__notices.some((notice) => /Up to three/.test(notice)))
+    // The same words again open the existing span instead of counting as a fourth.
+    assert.equal(await saveNote(['link'], 'edited'), true)
+    await view.paintNotes(); await settle()
+    assert.ok(paragraph.querySelector('mark.lt-phrase-overlap').style.background.includes('repeating-linear-gradient'), 'overlaps are striped')
   } finally { done() }
 })

@@ -107,8 +107,16 @@ sentence and word controls open, and the ordinary readable line width.
 
 **On a phone.** Panes form a horizontal snap track with edition tabs that
 follow taps and swipes; the tapped edition becomes the first pane on every
-page. In **Words**, press a word and drag across its neighbours to select a
-phrase. Every saved phrase or note has its own **Change** and **Remove**.
+page. In **Words** there are no checkboxes: tap whole words, or press one and
+drag across its neighbours, to select a phrase. Every saved phrase or note has
+its own **Change** and **Remove**.
+
+**Saved spans are coloured.** Up to three spans may overlap. Spans that
+overlap get different colours, and a word inside several is striped; spans
+that do not touch share a colour. Tap a coloured word to reopen its span, or
+choose among the spans when it lies in more than one. The word picker, the
+colours, and the overlap limit come from `shared/span-editor.js`, the same
+module FirstPair Reader uses.
 
 **Metrics.** A vault may declare ranked metrics in
 `<book>/_data/triptych-metrics.json` (see `publishing/VAULT-CONSTRUCTION.md`).
@@ -161,9 +169,11 @@ uv run --no-dev python scripts/build-obsidian-triptychs.py
 Distributed vaults intentionally leave community plugins disabled. Enable
 **FirstPair Triptych** under Settings → Community plugins after reviewing the
 local release.
-`main-source.js` and `review-state.js` are the readable sources. The standard-
-library bundler deterministically embeds both in the single release
-`main.js`, as required for reliable Obsidian mobile loading. The triptych
+`main-source.js` and `review-state.js` are the readable sources, with the
+shared modules in `../shared/` (ledger store, voice notes, metrics, span
+editor). The standard-library bundler deterministically embeds them all in
+the single release `main.js` and expands `styles-source.css` (which imports
+`../shared/span-editor.css`) into `styles.css`, as required for reliable Obsidian mobile loading. The triptych
 builder refreshes only `manifest.json`, bundled `main.js`, `styles.css`, and
 this README in the full vault, preserving plugin `data.json`.
 

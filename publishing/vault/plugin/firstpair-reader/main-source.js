@@ -31,7 +31,6 @@ const {
   dictionaryLookup, exampleText, LruCache, mergeEntries, normalizeWord,
 } = require("./dictionary");
 const quotes = require("./quotes");
-const anchors = require("./anchors");
 const { readerText } = require("./strings");
 const reviewState = require("../firstpair-triptych/review-state");
 const metricsCore = require("../shared/metrics");
@@ -54,6 +53,14 @@ const { DecisionStore } = require("../shared/ledger-store")({
 const voiceCore = require("../shared/voice-core")({
   Notice, Platform, normalizePath, requestUrl, t: (key, vars) => t(key, vars),
 });
+// The span editor every FirstPair reader shares (word picker, coloured and
+// striped spans, chooser, overlap limit, saved rows).
+const editor = require("../shared/span-editor")({
+  Notice, Platform, t: (key, vars) => t(key, vars),
+  actionLabel: (action) => readerText(uiLang, action === "voice" ? "voice" : `action_${action}`),
+});
+// Blocks a span note may sit in: paragraphs, list items, and headings.
+const EDITABLE_BLOCKS = "p, li, h2, h3, h4, h5, h6";
 
 const VIEW_TYPE = "firstpair-reader";
 const TARGET_INDEX = "_data/targets.json";
@@ -1551,56 +1558,98 @@ class FirstPairReaderView extends ItemView {
     return page ? `reader/${this.editionId || "book"}/${page.id}` : null;
   }
 
+  // Editing (off by default) uses the shared span editor: a page toggle shows
+  // Words beside each paragraph; Words opens the word picker with Note and
+  // Voice; saved spans are coloured on the paragraph itself.
   bindSelection(body) {
     if (!this.plugin.settings.editing) return;
-    const handler = () => {
-      const selection = body.ownerDocument.getSelection?.();
-      if (!selection || selection.isCollapsed || !selection.rangeCount) return;
-      const range = selection.getRangeAt(0);
-      const selector = anchors.selectorFromRange(body, range);
-      if (selector) this.showSpanMenu(body, range, selector);
-    };
-    body.addEventListener("mouseup", () => setTimeout(handler, 0));
-    body.addEventListener("touchend", () => setTimeout(handler, 160));
-    body.addEventListener("keyup", (event) => { if (event.shiftKey) handler(); });
+    const bar = body.ownerDocument.createElement("div");
+    bar.className = "firstpair-reader__edit-bar";
+    bar.setAttribute("data-reader-ui", "");
+    const toggle = bar.createEl("button", {
+      cls: "lt-chip lt-sentence-toggle", text: t("sentence_words"),
+      attr: { type: "button", "aria-pressed": "false" },
+    });
+    toggle.addEventListener("click", () => {
+      const showing = !body.hasClass("firstpair-reader__editing");
+      body.toggleClass("firstpair-reader__editing", showing);
+      toggle.setAttribute("aria-pressed", showing ? "true" : "false");
+      toggle.toggleClass("lt-chip-on", showing);
+    });
+    body.prepend(bar);
+    this.editBlocks = [];
+    const fragmentKey = this.noteFragmentKey();
+    Array.from(body.querySelectorAll(EDITABLE_BLOCKS)).forEach((block) => {
+      if (block.closest("[data-reader-ui]") || block.querySelector(EDITABLE_BLOCKS)) return;
+      const text = editor.textNodes(block).text;
+      if (!text.trim()) return;
+      const index = this.editBlocks.length;
+      const sentenceId = `${fragmentKey}:B${String(index + 1).padStart(4, "0")}:${reviewState.sentenceFingerprint(text)}`;
+      const words = block.ownerDocument.createElement("button");
+      words.type = "button";
+      words.className = "lt-words-toggle firstpair-reader__words-toggle";
+      words.textContent = t("words");
+      words.setAttribute("data-reader-ui", "");
+      words.setAttribute("aria-pressed", "false");
+      block.prepend(words);
+      const entry = { block, text, sentenceId, words, editorEl: null, picker: null, saved: null };
+      words.addEventListener("click", () => this.toggleBlockEditor(entry));
+      this.editBlocks.push(entry);
+    });
   }
 
-  showSpanMenu(body, range, selector) {
-    const document = body.ownerDocument;
-    document.querySelectorAll(".firstpair-reader__span-menu").forEach((menu) => menu.remove());
-    const menu = document.createElement("div");
-    menu.className = "firstpair-reader__span-menu";
-    menu.setAttribute("role", "dialog");
-    for (const [key, autoRecord] of [["note", false], ["voice", true]]) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.textContent = t(key);
-      button.addEventListener("click", () => {
-        menu.remove();
-        void this.openSpanNote(body, selector, autoRecord);
-      });
-      menu.appendChild(button);
+  blockRecords(ledger, entry) {
+    const fragmentKey = this.noteFragmentKey();
+    return Object.values(ledger.span_notes || {})
+      .filter((note) => note.fragment_key === fragmentKey && note.sentence_id === entry.sentenceId)
+      .map((note) => ({ ...note, action: "note" }));
+  }
+
+  toggleBlockEditor(entry) {
+    if (entry.editorEl) {
+      const open = !entry.editorEl.hasClass("is-open");
+      entry.editorEl.toggleClass("is-open", open);
+      entry.words.setAttribute("aria-pressed", open ? "true" : "false");
+      return;
     }
-    document.body.appendChild(menu);
-    const rect = range.getBoundingClientRect?.() || { left: 8, bottom: 8 };
-    const view = document.defaultView;
-    menu.style.left = `${Math.max(8, Math.min(rect.left, view.innerWidth - 180))}px`;
-    menu.style.top = `${Math.max(8, Math.min(rect.bottom + 6, view.innerHeight - 60))}px`;
-    const dismiss = (event) => {
-      if (!menu.contains(event.target)) {
-        menu.remove();
-        document.removeEventListener("pointerdown", dismiss, true);
-      }
+    const editorEl = entry.block.ownerDocument.createElement("div");
+    editorEl.className = "lt-word-editor firstpair-reader__words-editor is-open";
+    editorEl.setAttribute("data-reader-ui", "");
+    entry.block.after(editorEl);
+    entry.editorEl = editorEl;
+    entry.words.setAttribute("aria-pressed", "true");
+    const tokens = reviewState.wordTokens(entry.text, entry.sentenceId);
+    const open = async (selector, autoRecord) => {
+      const ledger = await this.loadLedger();
+      if (!ledger) return;
+      if (!editor.overlapAllowed(this.blockRecords(ledger, entry), entry.text, selector)) return;
+      await this.openSpanNote(entry, selector, autoRecord);
     };
-    document.addEventListener("pointerdown", dismiss, true);
+    entry.picker = editor.createWordPicker(editorEl, entry.text, tokens, {
+      actions: [
+        { key: "note", label: t("note"), onSelect: (selector) => open(selector, false) },
+        { key: "voice", label: t("voice"), onSelect: (selector) => open(selector, true) },
+      ],
+    });
+    entry.saved = editorEl.createDiv({ cls: "lt-saved-phrases" });
+    void this.paintNotes();
   }
 
-  spanDetails(selector) {
+  async loadLedger() {
+    try {
+      return await this.plugin.store.load(await this.plugin.voiceContext());
+    } catch (_error) {
+      new Notice(t("editing_ledger_other"));
+      return null;
+    }
+  }
+
+  spanDetails(entry, selector) {
     const fragmentKey = this.noteFragmentKey();
     const page = this.pages[this.position];
     const edition = this.editionId || "book";
     return {
-      id: reviewState.spanNoteKey(fragmentKey, edition, fragmentKey, selector.start, selector.end, selector.exact),
+      id: reviewState.spanNoteKey(fragmentKey, edition, entry.sentenceId, selector.start, selector.end, selector.exact),
       fragment_key: fragmentKey,
       set: "reader",
       lineage: this.mode === "note" ? this.notePath : page?.id,
@@ -1608,13 +1657,14 @@ class FirstPairReaderView extends ItemView {
       edition,
       edition_title: this.library?.editions.find((item) => item.id === this.editionId)?.title || this.book.title,
       unit: fragmentKey,
-      sentence_id: fragmentKey,
+      sentence_id: entry.sentenceId,
+      sentence_fingerprint: reviewState.sentenceFingerprint(entry.text),
       selector,
-      token_keys: [],
+      token_keys: selector.token_keys || [],
     };
   }
 
-  async openSpanNote(body, selector, autoRecord) {
+  async openSpanNote(entry, selector, autoRecord) {
     let context;
     try {
       context = await this.plugin.voiceContext();
@@ -1625,43 +1675,67 @@ class FirstPairReaderView extends ItemView {
     }
     this.plugin.openSpanNoteDialog({
       context,
-      details: this.spanDetails(selector),
+      details: this.spanDetails(entry, selector),
       selector,
-      root: body,
+      root: entry.block,
       autoRecord,
       setLedger: () => {},
       refresh: () => void this.paintNotes(),
+      onClose: () => entry.picker?.clear(),
     });
   }
 
+  // Colour every saved span on its paragraph; list notes whose paragraph or
+  // words changed, never moving them onto other words.
   async paintNotes() {
-    if (!this.plugin.settings.editing) return;
-    const body = this.page.querySelector(".firstpair-reader__markdown");
-    const fragmentKey = this.noteFragmentKey();
-    if (!body || !fragmentKey) return;
+    if (!this.plugin.settings.editing || !this.editBlocks?.length) return;
     let ledger;
     try {
       ledger = await this.plugin.store.load(await this.plugin.voiceContext());
     } catch (_error) {
       return;
     }
-    body.querySelectorAll("mark.firstpair-reader__span").forEach((mark) => mark.replaceWith(...mark.childNodes));
     this.page.querySelector(".firstpair-reader__unmatched")?.remove();
-    const notes = Object.values(ledger.span_notes || {}).filter((note) => note.fragment_key === fragmentKey);
+    const fragmentKey = this.noteFragmentKey();
+    const placed = new Set();
     const unmatched = [];
-    for (const note of notes) {
-      const marks = anchors.highlight(body, note, "firstpair-reader__span", () => void this.openSpanNote(body, note, false));
-      if (!marks.length) unmatched.push(note);
+    for (const entry of this.editBlocks) {
+      const records = this.blockRecords(ledger, entry);
+      for (const record of records) placed.add(record.id);
+      const painted = editor.paintSpans(entry.block, records, {
+        onOpen: (record) => void this.openSpanNote(entry, makeSelectorFor(entry.text, record), false),
+      });
+      unmatched.push(...painted.unmatched);
+      entry.picker?.paint(records);
+      if (entry.saved) {
+        editor.renderSavedRows(entry.saved, records, {
+          label: (record) => `“${record.exact}” · ${[t("note"), record.voice.length ? `🎙 ${record.voice.length}` : "", record.text].filter(Boolean).join(" · ")}`,
+          onOpen: (record) => void this.openSpanNote(entry, makeSelectorFor(entry.text, record), false),
+          confirmRemove: (record) => record.voice.length > 0,
+          onRemove: async (record) => {
+            await this.plugin.store.update(await this.plugin.voiceContext(),
+              (current) => reviewState.clearSpanNote(current, record.id));
+            for (const clip of record.voice) await this.plugin.trashVaultPath(clip.path);
+            await this.paintNotes();
+          },
+        });
+      }
+    }
+    for (const note of Object.values(ledger.span_notes || {})) {
+      if (note.fragment_key === fragmentKey && !placed.has(note.id)) unmatched.push(note);
     }
     if (unmatched.length) {
       const box = this.page.createDiv({ cls: "firstpair-reader__unmatched", attr: { "data-reader-ui": "" } });
       box.createEl("h3", { text: t("unmatched_notes") });
       for (const note of unmatched) {
-        const button = box.createEl("button", { text: `“${note.exact}”${note.text ? ` · ${note.text}` : ""}`, attr: { type: "button" } });
-        button.addEventListener("click", () => void this.openSpanNote(body, note, false));
+        box.createEl("p", { text: `“${note.exact}”${note.text ? ` · ${note.text}` : ""}` });
       }
     }
   }
+}
+
+function makeSelectorFor(text, record) {
+  return reviewState.makeSelector(text, Number(record.start), Number(record.end), record.token_keys || []);
 }
 
 /* -------------------------------------------------------------- settings */

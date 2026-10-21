@@ -80,7 +80,8 @@ here · **—** deliberately left out (with the reason).
 
 | Feature | From | Reader 2 |
 | --- | --- | --- |
-| Select text, attach a text note | Triptych | **new** for plain books: W3C-style quote selectors re-anchor on the exact text; notes whose text changed are listed, never misplaced |
+| Select words, attach a text note | Triptych | **=** the same shared editor (`shared/span-editor.js`): per-paragraph word picker, tap/drag on touch with no checkboxes, quote selectors re-anchor on the exact text; notes whose text changed are listed, never misplaced |
+| Coloured spans, up to three overlapping, striped shared words, tap to reopen | Triptych 3.2 | **=** the same shared editor |
 | Voice notes: verified recording, then transcription (local mlx-whisper or API) | Triptych | **=** the same shared module (`shared/voice-core.js`) and dialog |
 | Shared ledger with `.sha256` sidecar and digest | Triptych, mobile (sidecar missing) | **=** the same shared store (`shared/ledger-store.js`) |
 

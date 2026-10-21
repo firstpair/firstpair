@@ -11,6 +11,7 @@
  */
 
 const {
+  LEDGER_SCHEMA,
   digestLine,
   emptyLedger,
   normalizeLedger,

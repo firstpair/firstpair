@@ -155,6 +155,25 @@ JSONL (`{"edition", "text_sha256", "metrics"}`) aggregated per page by `max`
 (or `min` when higher is better) or `mean`; any title or tool can produce the
 same file.
 
+### Shared span editor (Triptych 3.3, Reader 2.1)
+
+Span selection and display are one module, `shared/span-editor.js` with
+`shared/span-editor.css`, used by FirstPair Triptych and by Reader 2's
+optional editing. An improvement to editing is made there once and reaches
+every reader at its next bundle. The module owns the word picker (checkboxes
+on desktop; on touch devices whole words are tapped or dragged, with no
+checkboxes and no **Only**), the colouring of saved spans (one of three
+colours, different only where spans overlap, striped where a word lies in
+several), the chooser opened by tapping a word in more than one span, the
+three-span overlap limit, and the saved-row list with **Change** and
+**Remove**. The interval logic it relies on (`spanColors`, `overlapDepth`,
+`MAX_SPAN_OVERLAP`) lives in `review-state.js`. A plugin's stylesheet is
+generated: `styles-source.css` names shared sheets with
+`@import "../shared/<name>.css";` and `bundle-obsidian-plugin.py` inlines
+them into `styles.css`, so Obsidian still loads one file. Run the bundler
+for both plugins after any change under `shared/` (`--check` fails on a stale
+`main.js` or `styles.css`).
+
 ### Ported from the Invented translation triptych (3.1)
 
 Phone edition tabs on the snap track (a tapped edition opens first on every

@@ -1,7 +1,7 @@
 {
   "id": "firstpair-triptych",
   "name": "FirstPair Triptych",
-  "version": "3.2.0",
+  "version": "3.3.0",
   "minAppVersion": "1.4.0",
   "description": "Editorial Reader for aligned editions and translations: pinned navigation, sentence and word choices, proposed edits, span voice notes with retained audio and later transcription, single-edition editing, and durable source-bound decisions.",
   "author": "First Pair",
