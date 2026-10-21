@@ -190,10 +190,8 @@ module.exports = function voiceCore(deps) {
       dialog.setAttribute("role", "dialog");
       dialog.setAttribute("aria-modal", "true");
       const title = document.createElement("h2");
-      title.textContent = t("note_dialog_title");
-      const quote = document.createElement("p");
-      quote.className = "lt-correction-quote";
-      quote.textContent = t("selected_quote", { quote: selector.exact });
+      title.className = "lt-note-title";
+      title.textContent = t("note_dialog_title", { quote: selector.exact });
       const field = document.createElement("textarea");
       field.rows = 3;
       field.placeholder = t("note_text_placeholder");
@@ -232,9 +230,24 @@ module.exports = function voiceCore(deps) {
       save.className = "mod-cta";
       save.textContent = t("save_note");
       actions.append(deleteNote, cancel, save);
-      dialog.append(title, quote, field, recorderRow, clipsHeading, clipList, error, actions);
+      // Save sits right under the text so the iOS keyboard never covers it.
+      dialog.append(title, field, error, actions, recorderRow, clipsHeading, clipList);
       overlay.appendChild(dialog);
       document.body.appendChild(overlay);
+      // Fit the overlay to the visible viewport: when the on-screen keyboard
+      // opens, the dialog shrinks and scrolls above it instead of under it.
+      const viewport = view.visualViewport;
+      const fitViewport = () => {
+        if (!viewport) return;
+        overlay.style.top = `${viewport.offsetTop}px`;
+        overlay.style.height = `${viewport.height}px`;
+        overlay.style.bottom = "auto";
+      };
+      if (viewport) {
+        viewport.addEventListener("resize", fitViewport);
+        viewport.addEventListener("scroll", fitViewport);
+        fitViewport();
+      }
 
       const recorder = new VoiceRecorder();
       let ticker = null;
@@ -387,6 +400,10 @@ module.exports = function voiceCore(deps) {
         closed = true;
         this.voiceListeners.delete(listener);
         document.removeEventListener("keydown", keydown, true);
+        if (viewport) {
+          viewport.removeEventListener("resize", fitViewport);
+          viewport.removeEventListener("scroll", fitViewport);
+        }
         overlay.remove();
         if (onClose) onClose();
       };

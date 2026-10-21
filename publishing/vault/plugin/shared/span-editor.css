@@ -267,10 +267,24 @@ body {
   text-underline-offset: 0.2em;
 }
 .lt-saved-note { border-left: 3px solid var(--color-purple, #7c4dbc); }
-.lt-note-dialog {
-  max-height: calc(100vh - 2rem);
-  overflow-y: auto;
+.lt-note-overlay {
+  align-items: flex-start;
+  overflow: hidden;
 }
+.lt-note-dialog {
+  max-height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+.lt-note-title {
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  display: -webkit-box;
+  font-size: var(--h3-size, 1.15em);
+  margin: 0 0 0.6rem;
+  overflow: hidden;
+}
+.lt-note-dialog .lt-correction-error:empty { min-height: 0; margin: 0.2rem 0; }
 .lt-recorder {
   align-items: center;
   display: flex;
