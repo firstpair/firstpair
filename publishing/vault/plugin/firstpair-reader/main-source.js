@@ -120,6 +120,27 @@ class ReaderHistory {
 const reducedMotion = () => typeof window !== "undefined" && typeof window.matchMedia === "function"
   && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+// The first fenced code block's lines, by CommonMark's rule: it closes only
+// at a fence of the same character at least as long as the opening one, so
+// a source file's own ``` blocks inside a longer ```` fence stay inside.
+function fencedLines(text) {
+  const lines = String(text || "").split("\n");
+  let open = -1;
+  let marker = "";
+  for (let index = 0; index < lines.length; index += 1) {
+    const match = /^ {0,3}(`{3,}|~{3,})/.exec(lines[index]);
+    if (!match) continue;
+    if (open < 0) {
+      open = index;
+      marker = match[1];
+      continue;
+    }
+    const run = /^ {0,3}(`+|~+)\s*$/.exec(lines[index]);
+    if (run && run[1][0] === marker[0] && run[1].length >= marker.length) return lines.slice(open + 1, index);
+  }
+  return open < 0 ? [] : lines.slice(open + 1);
+}
+
 /* ------------------------------------------------------------------ view */
 
 class FirstPairReaderView extends ItemView {
@@ -2048,8 +2069,7 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
       return;
     }
     const full = text.indexOf("## Full Source");
-    const fence = /```[^\n]*\n([\s\S]*?)\n```/.exec(full >= 0 ? text.slice(full) : text);
-    const lines = (fence ? fence[1] : "").split("\n");
+    const lines = fencedLines(full >= 0 ? text.slice(full) : text);
     const pre = container.createEl("pre", { cls: "firstpair-reader__fragment-lines" });
     for (let number = fragment.start; number <= Math.min(fragment.end, lines.length); number += 1) {
       const row = pre.createDiv({ cls: "firstpair-reader__fragment-line" });
@@ -2129,5 +2149,6 @@ module.exports.__test = Object.freeze({
   FirstPairReaderView,
   ReaderHistory,
   contract,
+  fencedLines,
   setUiLanguage: (lang) => { uiLang = lang; },
 });

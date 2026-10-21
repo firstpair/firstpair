@@ -231,13 +231,16 @@ test('a code book: fragment cards show numbered lines from the code note', async
     'DNS/Chapters/01-Intro.md': '# Intro\n\n```rgbdns-fragment\n{"id":"f1","codeNote":"DNS/Code/src/lib.rs.source","startLine":2,"endLine":3}\n```\n',
     'DNS/Code/src/lib.rs.source.md': '# lib.rs\n\n## Full Source\n\n```rust\nuse std;\nfn resolve() {\n  todo!()\n}\n```\n',
   }
-  const { el, done } = await open(files)
+  const { el, view, done } = await open(files)
   try {
     const card = el.querySelector('.firstpair-reader__fragment')
     assert.match(card.textContent, /resolve/); assert.match(card.textContent, /src\/lib\.rs:2-3/)
     card.querySelector('button').click(); await settle(8)
     const lines = Array.from(card.querySelectorAll('.firstpair-reader__fragment-line')).map((line) => line.textContent)
     assert.deepEqual(lines, ['2fn resolve() {', '3  todo!()'])
+    // A source's own ``` blocks inside a longer ```` fence stay inside it.
+    const fenced = view.plugin.constructor.__test.fencedLines('## Full Source\n\n````md\n# Doc\n```sh\nrun\n```\nafter\n````\ntrailing')
+    assert.deepEqual(fenced, ['# Doc', '```sh', 'run', '```', 'after'])
   } finally { done() }
 })
 
