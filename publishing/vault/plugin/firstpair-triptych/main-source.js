@@ -1513,6 +1513,8 @@ class FirstPairTriptychReviewView extends ItemView {
     super(leaf);
     this.plugin = plugin;
     this.reader = null;
+    this.returnTo = null;
+    this.renderSeq = 0;
   }
 
   getViewType() {
@@ -1531,6 +1533,34 @@ class FirstPairTriptychReviewView extends ItemView {
 
   async onOpen() {
     await this.renderReview();
+  }
+
+  getState() {
+    return this.returnTo ? { returnTo: this.returnTo } : {};
+  }
+
+  async setState(next, result) {
+    if (typeof super.setState === "function") await super.setState(next, result);
+    const returnTo = next && next.returnTo ? next.returnTo : null;
+    if (JSON.stringify(returnTo) !== JSON.stringify(this.returnTo || null)) {
+      this.returnTo = returnTo;
+      await this.renderReview();
+    }
+  }
+
+  // Back to the page Review was opened from, at its scroll position.
+  async goBack() {
+    const target = this.returnTo;
+    if (target && target.type === "file") {
+      const file = this.app.vault.getAbstractFileByPath(target.path);
+      if (file) {
+        await this.leaf.openFile(file);
+        return;
+      }
+    }
+    await this.plugin.openReader(target && target.type === "reader" ? target.state : null, this.leaf);
+    const view = this.leaf.view;
+    if (target && target.scrollTop && view && view.scrollEl) view.scrollEl.scrollTop = target.scrollTop;
   }
 
   pageChoices(ledger, key) {
@@ -1631,6 +1661,8 @@ class FirstPairTriptychReviewView extends ItemView {
   }
 
   async renderReview() {
+    // onOpen and setState both render; only the latest render may draw.
+    const seq = ++this.renderSeq;
     this.contentEl.empty();
     this.contentEl.addClass("lt-review-view");
     try {
@@ -1639,12 +1671,22 @@ class FirstPairTriptychReviewView extends ItemView {
         projectId: this.reader.project_id,
         sourceContentId: this.reader.source_content_id,
       };
-      const ledger = await this.plugin.store.load(context);
+      let ledger = await this.plugin.store.load(context);
+      if (seq !== this.renderSeq) return;
+      this.contentEl.empty();
       const shell = this.contentEl.createDiv({ cls: "lt-review-shell" });
       const bar = shell.createDiv({
         cls: "lt-review-bar",
         attr: { role: "navigation", "aria-label": t("review_nav_aria") },
       });
+      if (this.returnTo) {
+        const back = bar.createEl("button", {
+          cls: "lt-review-back mod-cta",
+          text: `← ${t("nav_Back")}`,
+          attr: { type: "button", title: t("review_back_title") },
+        });
+        back.addEventListener("click", () => void this.goBack());
+      }
       const readerButton = bar.createEl("button", {
         text: t("reader_button"),
         attr: { type: "button" },
@@ -2144,10 +2186,19 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     try {
       await this.loadReaderIndex();
       const leaf = selectedLeaf || this.app.workspace.getLeaf(false);
+      // Review replaces the pane it opens in; remember what was there so its
+      // Back button returns to the same page and scroll position.
+      const view = leaf.view;
+      let returnTo = null;
+      if (view && typeof view.getViewType === "function" && view.getViewType() === READER_VIEW_TYPE) {
+        returnTo = { type: "reader", state: view.getState(), scrollTop: view.scrollEl ? view.scrollEl.scrollTop : 0 };
+      } else if (view && view.file && view.file.path) {
+        returnTo = { type: "file", path: view.file.path };
+      }
       await leaf.setViewState({
         type: REVIEW_VIEW_TYPE,
         active: true,
-        state: {},
+        state: returnTo ? { returnTo } : {},
       });
       if (typeof this.app.workspace.revealLeaf === "function") {
         await this.app.workspace.revealLeaf(leaf);
@@ -4104,6 +4155,7 @@ class TriptychSettingTab extends PluginSettingTab {
 }
 
 module.exports.__test = Object.freeze({
+  ReviewView: FirstPairTriptychReviewView,
   diffView,
   detectBookRoot,
   detectUiLanguage,

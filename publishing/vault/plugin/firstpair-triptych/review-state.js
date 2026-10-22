@@ -1127,6 +1127,7 @@ const UI_STRINGS = Object.freeze({
     note_prefix: "Note: {note}",
     review_nav_aria: "Rosetta Review navigation",
     reader_button: "Reader",
+    review_back_title: "Back to the page you came from",
     refresh: "Refresh",
     review_explanation:
       "This workspace lists touched Reader pages and the deterministic decision digest. "
@@ -1390,6 +1391,7 @@ const UI_STRINGS = Object.freeze({
     note_prefix: "Nota: {note}",
     review_nav_aria: "Navigazione della revisione",
     reader_button: "Lettore",
+    review_back_title: "Torna alla pagina da cui siete venuti",
     refresh: "Aggiorna",
     review_explanation:
       "Qui sono elencate le pagine del Lettore che portano scelte e il riepilogo "
@@ -1654,6 +1656,7 @@ const UI_STRINGS = Object.freeze({
     note_prefix: "Заметка: {note}",
     review_nav_aria: "Навигация обзора",
     reader_button: "Окно чтения",
+    review_back_title: "Вернуться на страницу, с которой пришли",
     refresh: "Обновить",
     review_explanation:
       "Здесь перечислены страницы окна чтения, на которых приняты решения, и точная "

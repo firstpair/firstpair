@@ -140,6 +140,9 @@ rules**: one-word substitutions that recur across the book, each with
 **Accept** (apply everywhere) or **Reject** (keep the earlier word), flagged
 when the edit also runs the other way. Rule decisions go to the digest.
 
+**Review and back.** **Review** opens in the same pane; its **← Back** button
+returns to the page you came from, at the same scroll position.
+
 **Keyboard.** On a Mac (or an iPad with a keyboard), ← and → turn to the
 previous and next page while the Reader is the active pane. Text fields,
 menus, dialogs, and key chords with ⌘, ⌥, ⌃ or ⇧ keep their usual arrows.
