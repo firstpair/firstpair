@@ -940,6 +940,8 @@ const editor = require("../shared/span-editor")({
   Notice, Platform, t: (key, vars) => t(key, vars), actionLabel: (action) => actionLabel(action),
 });
 const { isTouchDevice } = editor;
+// Precomputed edition diffs every FirstPair reader shares (shared/diff-view.js).
+const diffView = require("../shared/diff-view");
 
 class FirstPairTriptychReaderView extends ItemView {
   constructor(leaf, plugin) {
@@ -1739,6 +1741,7 @@ const DEFAULT_SETTINGS = {
   editionVisibility: {},
   knownEditions: {},
   soloEdition: "",
+  showDiff: false,
   defaultPane: "",
   metricOrder: [],
   metricHidden: {},
@@ -1764,6 +1767,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
     this.store = new DecisionStore(this.app);
     this.metrics = await this.loadMetrics();
+    this.diffs = await this.loadDiffs();
     this.transcribing = new Set();
     this.voiceListeners = new Set();
     this.pendingRun = null;
@@ -2462,6 +2466,18 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         await rerender();
       });
     }
+    if (this.diffs && !solo) {
+      const diffChip = chipRow.createEl("button", {
+        cls: "lt-chip lt-diff-chip" + (this.settings.showDiff ? " lt-chip-on" : ""),
+        text: t("diff"),
+        attr: { type: "button", title: t("diff_title"), "aria-pressed": this.settings.showDiff ? "true" : "false" },
+      });
+      diffChip.addEventListener("click", async () => {
+        this.settings.showDiff = !this.settings.showDiff;
+        await this.saveSettings();
+        await rerender();
+      });
+    }
     const reviewButton = chipRow.createEl("button", {
       cls: "lt-chip lt-review-chip",
       text: t("review"),
@@ -2519,6 +2535,9 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         toggle.setAttribute("aria-pressed", "true");
       }
     }
+
+    const diffs = this.diffs && this.settings.showDiff && !isSolo
+      ? this.renderDiffLegend(root, payload, visiblePanes) : null;
 
     const byNorm = new Map();
     for (const pane of visiblePanes) {
@@ -2630,7 +2649,8 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         body,
         root,
         () => ledger,
-        (nextLedger) => { ledger = nextLedger; }
+        (nextLedger) => { ledger = nextLedger; },
+        diffs ? diffs.get(pane.edition) : null,
       );
 
       if (pane.notes && pane.notes.length) {
@@ -2690,6 +2710,60 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         text: `${t("bar_legend")} — ${t("feature_legend")}`,
       });
     }
+  }
+
+  async loadDiffs() {
+    const path = normalizePath(`${BOOK_ROOT}/_data/triptych-diffs.json`);
+    try {
+      if (!(await this.app.vault.adapter.exists(path))) return null;
+      return diffView.parseDiffs(await this.app.vault.adapter.read(path));
+    } catch (error) {
+      console.warn("firstpair-triptych: edition diffs ignored", error);
+      return null;
+    }
+  }
+
+  // The legend under the chips, and the ranges each shown pane paints: the
+  // pair when two panes show, the whole set when three do.
+  renderDiffLegend(root, payload, visiblePanes) {
+    const diff = diffView.diffFor(this.diffs, payload.key, visiblePanes.map((pane) => pane.edition));
+    const legend = root.createDiv({ cls: "fp-diff-legend" });
+    if (!diff) {
+      legend.setText(t("diff_need_two"));
+      return null;
+    }
+    if (diff.same) {
+      legend.setText(t("diff_same"));
+      return null;
+    }
+    const name = (edition) => {
+      const pane = payload.panes.find((item) => item.edition === edition);
+      return (pane && pane.title) || edition;
+    };
+    if (diff.mode === "pair") {
+      legend.setText(t("diff_legend_pair", { older: name(diff.editions[0]), newer: name(diff.editions[1]) }));
+    } else {
+      legend.createSpan({ text: `${t("diff_legend_all", { count: diff.editions.length })} ` });
+      for (const edition of diff.editions) {
+        const index = this.diffs.editions.indexOf(edition) % 3;
+        legend.createSpan({ cls: `fp-diff-swatch fp-diff-ed-${index}` });
+        legend.createSpan({ text: `${name(edition)} ` });
+      }
+    }
+    const titleFor = (kind) => {
+      if (kind === "del") return t("diff_del", { name: name(diff.editions[1]) });
+      if (kind === "ins") return t("diff_ins", { name: name(diff.editions[0]) });
+      if (kind.startsWith("share:")) return t("diff_share", { name: name(kind.slice(6)) });
+      return t("diff_uniq");
+    };
+    const result = new Map();
+    for (const edition of diff.editions) {
+      result.set(edition, {
+        ranges: diff.ranges[edition] || [],
+        options: { editions: this.diffs.editions, titleFor },
+      });
+    }
+    return result;
   }
 
   async loadMetrics() {
@@ -3553,6 +3627,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
       onOpen: (record, mark) => this.openSpanRecord(record, { ...context, anchor: mark }),
     });
     view.picker?.paint(records);
+    if (view.diff) diffView.paint(copy, view.diff.ranges, span.start, view.diff.options);
   }
 
   renderEditorialSavedPhrases(
@@ -3589,7 +3664,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     });
   }
 
-  renderEditorialPaneBody(payload, pane, body, root, getLedger, setLedger) {
+  renderEditorialPaneBody(payload, pane, body, root, getLedger, setLedger, diff = null) {
     const blocks = paneBlocks(pane.text);
     if (!blocks.length) {
       body.createEl("p", { cls: "lt-empty", text: t("absent") });
@@ -3606,12 +3681,16 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
       )).sort((left, right) => left.start - right.start);
       if (!blockSpans.length) {
         paragraph.setText(block.text);
+        paragraph.setAttribute("data-fp-offset", String(block.start));
         continue;
       }
       let cursor = block.start;
       for (const span of blockSpans) {
         if (span.start > cursor) {
-          paragraph.createSpan({ text: sliceCodePoints(pane.text, cursor, span.start) });
+          paragraph.createSpan({
+            text: sliceCodePoints(pane.text, cursor, span.start),
+            attr: { "data-fp-offset": String(cursor) },
+          });
         }
         const sentenceText = sliceCodePoints(pane.text, span.start, span.end);
         const wrapper = paragraph.createSpan({
@@ -3639,10 +3718,13 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
           text: t("words"),
           attr: { type: "button", "aria-pressed": "false" },
         });
-        const copy = wrapper.createSpan({ cls: "lt-sentence-text lt-editorial-copy" });
+        const copy = wrapper.createSpan({
+          cls: "lt-sentence-text lt-editorial-copy",
+          attr: { "data-fp-offset": String(span.start) },
+        });
         const editorEl = wrapper.createSpan({ cls: "lt-word-editor" });
         const tokens = span.tokens || wordTokens(sentenceText, span.id);
-        const view = { wrapper, wordsButton, copy, editor: editorEl, saved: null, refresh: null, picker: null };
+        const view = { wrapper, wordsButton, copy, editor: editorEl, saved: null, refresh: null, picker: null, diff };
         const records = () => this.sentenceRecords(getLedger, payload, pane, span);
         const savePhrase = async (action, selector, actionButton) => {
           const annotationId = phraseAnnotationKey(
@@ -3732,7 +3814,10 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         cursor = span.end;
       }
       if (cursor < block.end) {
-        paragraph.createSpan({ text: sliceCodePoints(pane.text, cursor, block.end) });
+        paragraph.createSpan({
+          text: sliceCodePoints(pane.text, cursor, block.end),
+          attr: { "data-fp-offset": String(cursor) },
+        });
       }
     }
   }
@@ -3902,6 +3987,7 @@ class TriptychSettingTab extends PluginSettingTab {
 }
 
 module.exports.__test = Object.freeze({
+  diffView,
   detectBookRoot,
   detectUiLanguage,
   parseMetrics,

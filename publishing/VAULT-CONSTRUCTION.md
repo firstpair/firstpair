@@ -174,6 +174,30 @@ them into `styles.css`, so Obsidian still loads one file. Run the bundler
 for both plugins after any change under `shared/` (`--check` fails on a stale
 `main.js` or `styles.css`).
 
+### Edition diffs (Triptych 3.4)
+
+A vault comparing editions of one text in one language may ship precomputed
+word diffs in `<book>/_data/triptych-diffs.json`
+(`firstpair.edition-diffs.v1`). Nothing is diffed on a device. For every
+page the builder stores each pair of editions and the whole set, as
+`[start, end, kind]` ranges in code points of the pane text:
+
+- `"A|B"` (editions in reading order): the earlier pane marks `del`, the
+  later `ins`;
+- `"A|B|C"`: each pane marks `uniq` (in no other edition) and
+  `share:<edition>` (shared with exactly one other edition).
+
+Pages where the editions agree carry no entry. The precompute is
+`publishing/vault/edition_diffs.py` (stdlib only: `page_diffs`,
+`diffs_file`); the reader side is `plugin/shared/diff-view.js` with
+`shared/diff-view.css` (`parseDiffs`, `diffFor`, `paint`, `paintPane`), a
+reader module like the span editor. A reader picks the entry for the panes
+it shows: the pair when two show, the set when three do. It paints any
+element that declares where its text starts with `data-fp-offset`, walking
+text nodes only, so span-note marks underneath survive. FirstPair Triptych
+shows a **Diff** chip when the file exists, with a legend for the current
+mode; Reader 2 can take the same module for its aligned editions.
+
 ### Ported from the Invented translation triptych (3.1)
 
 Phone edition tabs on the snap track (a tapped edition opens first on every

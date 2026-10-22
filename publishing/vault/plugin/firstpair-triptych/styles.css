@@ -383,6 +383,58 @@ body {
 }
 .lt-touch-picker .lt-select-all-words.is-selected { box-shadow: inset 0 0 0 2px var(--interactive-accent); }
 /* ---- end shared/span-editor.css ---- */
+/* ---- shared/diff-view.css (sha256 744c8455103ea37a43048ffcceba55f00f1013121c515eb5f4b860dc4b62f8eb) ---- */
+/*
+ * Edition diffs shared by every FirstPair reader (shared/diff-view.js).
+ * Diffs use text colour and underlines, never full backgrounds, so they
+ * read through the coloured span notes of the span editor.
+ */
+body {
+  --fp-diff-del: var(--color-red, #c0392b);
+  --fp-diff-ins: var(--color-green, #23864a);
+  --fp-diff-uniq: color-mix(in srgb, var(--color-yellow, #e0b300) 45%, transparent);
+  --fp-diff-ed-0: var(--color-blue, #2f6fd0);
+  --fp-diff-ed-1: var(--color-pink, #c2367a);
+  --fp-diff-ed-2: var(--color-cyan, #138a9a);
+}
+.fp-diff-del {
+  color: var(--fp-diff-del);
+  text-decoration: line-through 1px;
+}
+.fp-diff-ins {
+  color: var(--fp-diff-ins);
+  text-decoration: underline 2px;
+  text-underline-offset: 0.15em;
+}
+.fp-diff-uniq,
+.fp-diff-part {
+  box-shadow: inset 0 -0.5em 0 var(--fp-diff-uniq);
+}
+.fp-diff-share {
+  text-decoration: underline 2px;
+  text-underline-offset: 0.18em;
+}
+.fp-diff-share.fp-diff-ed-0 { text-decoration-color: var(--fp-diff-ed-0); }
+.fp-diff-share.fp-diff-ed-1 { text-decoration-color: var(--fp-diff-ed-1); }
+.fp-diff-share.fp-diff-ed-2 { text-decoration-color: var(--fp-diff-ed-2); }
+.fp-diff-legend {
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller, 0.85em);
+  line-height: 1.5;
+  margin: 0.2rem 0 0.4rem;
+}
+.fp-diff-legend .fp-diff { padding: 0 0.15em; }
+.fp-diff-swatch {
+  border-radius: 50%;
+  display: inline-block;
+  height: 0.6em;
+  margin-right: 0.3em;
+  width: 0.6em;
+}
+.fp-diff-swatch.fp-diff-ed-0 { background: var(--fp-diff-ed-0); }
+.fp-diff-swatch.fp-diff-ed-1 { background: var(--fp-diff-ed-1); }
+.fp-diff-swatch.fp-diff-ed-2 { background: var(--fp-diff-ed-2); }
+/* ---- end shared/diff-view.css ---- */
 /* Dedicated Triptych Reader. The bar is a fixed flex sibling of the only
    scrolling element, so it remains pinned without depending on sticky
    positioning inside Obsidian's nested workspace containers. */
@@ -833,6 +885,9 @@ body {
   margin-left: auto;
   text-decoration: none;
 }
+/* Only pane chips strike through when off; action chips never do. */
+.lt-review-chip,
+.lt-diff-chip { text-decoration: none; }
 
 .lt-equal-banner {
   font-size: 0.85em;

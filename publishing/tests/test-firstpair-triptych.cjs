@@ -1268,3 +1268,27 @@ test("voice-note spans take their own palette, overlap colours kept", () => {
   assert.equal(editor.spanFill([0]), "var(--lt-span-0)", "bare indices still mean the text palette");
   assert.match(editor.spanFill(["span-0", "voice-1"]), /--lt-span-0.*--lt-voice-1/);
 });
+
+test("precomputed edition diffs: pair for two shown panes, set for three", () => {
+  const diffView = require("../vault/plugin/shared/diff-view");
+  const diffs = diffView.parseDiffs({
+    schema: "firstpair.edition-diffs.v1",
+    editions: ["a", "b", "c"],
+    pages: { p: {
+      "a|b": { a: [[0, 3, "del"]], b: [[0, 4, "ins"]] },
+      "a|c": { a: [[0, 3, "del"]], c: [] },
+      "b|c": { b: [], c: [] },
+      "a|b|c": { a: [[0, 3, "uniq"]], b: [[0, 4, "share:c"]], c: [] },
+    } },
+  });
+  // Pane order on screen does not matter; the file's edition order does.
+  assert.deepEqual(diffView.diffFor(diffs, "p", ["b", "a"]).ranges.a, [[0, 3, "del"]]);
+  assert.equal(diffView.diffFor(diffs, "p", ["a", "b"]).mode, "pair");
+  const all = diffView.diffFor(diffs, "p", ["a", "b", "c"]);
+  assert.equal(all.mode, "all");
+  assert.deepEqual(all.ranges.b, [[0, 4, "share:c"]]);
+  assert.equal(diffView.diffFor(diffs, "p", ["a"]), null, "one pane has nothing to compare");
+  assert.equal(diffView.diffFor(diffs, "missing", ["a", "b"]).same, true);
+  assert.deepEqual(diffView.kindClasses("share:c", diffs.editions), ["fp-diff", "fp-diff-share", "fp-diff-ed-2"]);
+  assert.throws(() => diffView.parseDiffs({ schema: "other" }));
+});

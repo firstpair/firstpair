@@ -120,6 +120,15 @@ choose among the spans when it lies in more than one. The word picker, the
 colours, and the overlap limit come from `shared/span-editor.js`, the same
 module FirstPair Reader uses.
 
+**Diff.** When the vault ships precomputed edition diffs
+(`_data/triptych-diffs.json`), a **Diff** chip marks what differs between
+the editions shown. With two panes the comparison is the pair: struck
+through in the earlier edition is what was removed, underlined in the later
+is what was added. With three it is the set: highlighted is in that edition
+only, underlined in an edition's colour is shared with that edition only.
+Hide a pane with its chip to switch from the set to a pair. Tap or hover a
+mark for its meaning.
+
 **Metrics.** A vault may declare ranked metrics in
 `<book>/_data/triptych-metrics.json` (see `publishing/VAULT-CONSTRUCTION.md`).
 Each pane shows them as graded chips in rank order; **Settings → Metrics**

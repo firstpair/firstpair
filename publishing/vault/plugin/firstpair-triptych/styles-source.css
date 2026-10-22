@@ -1,4 +1,5 @@
 @import "../shared/span-editor.css";
+@import "../shared/diff-view.css";
 
 /* Dedicated Triptych Reader. The bar is a fixed flex sibling of the only
    scrolling element, so it remains pinned without depending on sticky
@@ -450,6 +451,9 @@
   margin-left: auto;
   text-decoration: none;
 }
+/* Only pane chips strike through when off; action chips never do. */
+.lt-review-chip,
+.lt-diff-chip { text-decoration: none; }
 
 .lt-equal-banner {
   font-size: 0.85em;
