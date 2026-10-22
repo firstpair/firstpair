@@ -2651,11 +2651,13 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
       const head = paneEl.createDiv({ cls: "lt-pane-head" });
       head.createSpan({ cls: "lt-pane-title", text: pane.title || pane.edition });
 
-      const label = head.createEl("label", { cls: "lt-prefer" });
+      // A bare checkbox: preferring is its only meaning; the word stays in
+      // the tooltip and for screen readers.
+      const preferName = t("prefer_this_pane").trim();
+      const label = head.createEl("label", { cls: "lt-prefer", attr: { title: preferName } });
       if (isSolo) label.style.display = "none";
-      const box = label.createEl("input", { type: "checkbox" });
+      const box = label.createEl("input", { type: "checkbox", attr: { "aria-label": preferName } });
       box.checked = existing.preferred === pane.edition;
-      label.createSpan({ text: t("prefer_this_pane") });
       checkboxes.set(pane.edition, box);
       box.addEventListener("change", async () => {
         const preferred = box.checked ? pane.edition : null;
@@ -3823,9 +3825,11 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
           cls: "lt-sentence-choice-wrap",
           attr: { title: t("prefer_sentence_title", { name: pane.title || pane.edition }) },
         });
-        const prefer = preferLabel.createEl("input", { type: "checkbox" });
+        const prefer = preferLabel.createEl("input", {
+          type: "checkbox",
+          attr: { "aria-label": t("prefer_sentence_title", { name: pane.title || pane.edition }) },
+        });
         prefer.checked = Boolean(getLedger().sentence_preferences[preferenceKey]);
-        preferLabel.createSpan({ text: t("prefer") });
         const wordsButton = controls.createEl("button", {
           cls: "lt-words-toggle",
           text: t("words"),
