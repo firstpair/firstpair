@@ -36,6 +36,7 @@ function makeWindow() {
 
 class ItemView {
   constructor(leaf) { this.leaf = leaf; this.app = leaf.app; this.containerEl = leaf.containerEl; }
+  registerDomEvent(target, type, handler) { target.addEventListener(type, handler); }
 }
 class Plugin {
   constructor(app) { this.app = app; this.views = {}; this.commands = []; this.postProcessors = []; this.protocolHandlers = {}; this.data = null; }

@@ -135,6 +135,21 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     assert.equal(previousWord.disabled, true, 'word navigation resets at a page boundary')
     assert.equal(nextWord.disabled, false)
 
+    // Left/Right arrows turn pages while the Reader is the active leaf, and
+    // leave text fields alone.
+    const arrow = (key, target = window.document.body) => target.dispatchEvent(new window.KeyboardEvent('keydown', { key, bubbles: true }))
+    arrow('ArrowLeft'); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 2/, 'an inactive Reader ignores the keys')
+    app.workspace.activeLeaf = view.leaf
+    arrow('ArrowLeft'); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 1/)
+    arrow('ArrowRight'); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 2/)
+    const field = window.document.body.createEl('input')
+    arrow('ArrowLeft', field); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 2/, 'arrows in a text field stay there')
+    field.remove()
+
     // Home links become buttons that open the Reader on a page.
     const home = window.document.body.createDiv()
     home.innerHTML = '<p><a href="firstpair:reader">Open the Reader</a> <a href="firstpair:page:c-01">Canto 1</a> <a href="https://example.org">web</a></p>'

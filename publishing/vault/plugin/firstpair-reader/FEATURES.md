@@ -27,6 +27,7 @@ here · **—** deliberately left out (with the reason).
 | History cleared on an external launch | Cicero, Invented, mobile | **+** 1.7 pushed onto the old stack |
 | Progress line (page n of N · part) | Cicero, Invented, mobile | **=** `role=status` |
 | Commands for every control | Cicero, Invented, mobile | **+** previous, next, back, up, top, contents |
+| ← / → turn pages on a hardware keyboard | — | **new** shared with FirstPair Triptych (`shared/page-keys.js`); only in the active Reader, never in text fields, menus, dialogs, or with modifiers |
 | Static fallback notes open the Reader at their place (note takeover) | Cicero, Invented, mobile | **+** launcher, contents, part, and page notes of any index format |
 | `obsidian://firstpair-reader?page=`; `firstpair:reader` / `firstpair:page:` links as buttons | 1.7 | **=** |
 | `firstpair:target:` evidence links | 1.7 | **+** a folder target now explains itself instead of failing silently |

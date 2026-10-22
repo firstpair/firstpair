@@ -1321,3 +1321,39 @@ test("diff v2: category filters, history lens, rule decisions in the digest", ()
   const cleared = state.normalizeLedger(state.setRuleDecision(accepted, rule, "ru-4.2.3|ru-4.3.0", null));
   assert.equal("rule_decisions" in cleared, false, "an empty rule map leaves no trace in the ledger");
 });
+
+test("arrow keys turn pages unless something else wants them", () => {
+  const { bindPageKeys } = require("../vault/plugin/shared/page-keys");
+  let open = null;
+  const document = { querySelector: () => open };
+  const handlers = [];
+  const turns = [];
+  let active = true;
+  const view = {
+    containerEl: { ownerDocument: document, isConnected: true },
+    registerDomEvent: (target, type, handler) => handlers.push([target, type, handler]),
+  };
+  bindPageKeys(view, { previous: () => turns.push("prev"), next: () => turns.push("next"), isActive: () => active });
+  bindPageKeys(view, { previous: () => turns.push("again"), next: () => turns.push("again"), isActive: () => true });
+  assert.equal(handlers.length, 1, "bound once per view");
+  const [[target, type, handler]] = handlers;
+  assert.equal(target, document);
+  assert.equal(type, "keydown");
+  const key = (keyName, extra = {}) => {
+    const event = { key: keyName, target: { tagName: "DIV", closest: () => null }, preventDefault() { this.prevented = true; }, ...extra };
+    handler(event);
+    return event;
+  };
+  assert.equal(key("ArrowRight").prevented, true);
+  key("ArrowLeft");
+  key("ArrowDown");
+  key("ArrowRight", { metaKey: true });
+  key("ArrowRight", { target: { tagName: "TEXTAREA", closest: () => null } });
+  key("ArrowRight", { target: { tagName: "SPAN", isContentEditable: true, closest: () => null } });
+  open = {};
+  key("ArrowRight");
+  open = null;
+  active = false;
+  key("ArrowLeft");
+  assert.deepEqual(turns, ["next", "prev"]);
+});

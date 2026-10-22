@@ -198,6 +198,13 @@ text nodes only, so span-note marks underneath survive. FirstPair Triptych
 shows a **Diff** chip when the file exists, with a legend for the current
 mode; Reader 2 can take the same module for its aligned editions.
 
+### Page keys (Triptych 3.6, Reader 2.2)
+
+`shared/page-keys.js` binds ← and → to the previous and next page in any
+FirstPair reader view on a hardware keyboard, while that view's leaf is
+active. Text fields, open menus and dialogs, modifier chords, and elements
+marked `data-keep-arrows` keep the arrows.
+
 ### Edit patterns (diffs v2, Triptych 3.5)
 
 `firstpair.edition-diffs.v2` (`edition_diffs.build_diffs`) adds what an

@@ -55,6 +55,8 @@ const voiceCore = require("../shared/voice-core")({
 });
 // The span editor every FirstPair reader shares (word picker, coloured and
 // striped spans, chooser, overlap limit, saved rows).
+// Left/Right arrows turn pages on a hardware keyboard (shared/page-keys.js).
+const { bindPageKeys } = require("../shared/page-keys");
 const editor = require("../shared/span-editor")({
   Notice, Platform, t: (key, vars) => t(key, vars),
   actionLabel: (action) => readerText(uiLang, action === "voice" ? "voice" : `action_${action}`),
@@ -346,6 +348,11 @@ class FirstPairReaderView extends ItemView {
 
   async onOpen() {
     this.buildFrame();
+    bindPageKeys(this, {
+      previous: () => this.goPrevious(),
+      next: () => this.goNext(),
+      isActive: () => this.app.workspace.activeLeaf === this.leaf && (this.mode === "page" || this.mode === "part"),
+    });
     try {
       const model = await this.plugin.loadModel();
       uiLang = model.uiLang || "en";

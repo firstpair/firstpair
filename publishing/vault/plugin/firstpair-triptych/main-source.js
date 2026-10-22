@@ -944,6 +944,8 @@ const editor = require("../shared/span-editor")({
 const { isTouchDevice } = editor;
 // Precomputed edition diffs every FirstPair reader shares (shared/diff-view.js).
 const diffView = require("../shared/diff-view");
+// Left/Right arrows turn pages on a hardware keyboard (shared/page-keys.js).
+const { bindPageKeys } = require("../shared/page-keys");
 
 class FirstPairTriptychReaderView extends ItemView {
   constructor(leaf, plugin) {
@@ -1001,6 +1003,11 @@ class FirstPairTriptychReaderView extends ItemView {
   }
 
   async onOpen() {
+    bindPageKeys(this, {
+      previous: () => this.goPrevious(),
+      next: () => this.goNext(),
+      isActive: () => this.app.workspace.activeLeaf === this.leaf && Boolean(this.reader),
+    });
     try {
       this.reader = await this.plugin.loadReaderIndex();
       this.state = this.plugin.normalizeReaderState(this.state, this.reader);
