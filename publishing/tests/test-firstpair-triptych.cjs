@@ -1292,3 +1292,32 @@ test("precomputed edition diffs: pair for two shown panes, set for three", () =>
   assert.deepEqual(diffView.kindClasses("share:c", diffs.editions), ["fp-diff", "fp-diff-share", "fp-diff-ed-2"]);
   assert.throws(() => diffView.parseDiffs({ schema: "other" }));
 });
+
+test("diff v2: category filters, history lens, rule decisions in the digest", () => {
+  const diffView = require("../vault/plugin/shared/diff-view");
+  const ranges = [[0, 3, "del", "punct"], [4, 9, "del", "lexical"], [10, 20, "del", "moved", "p9"]];
+  assert.deepEqual(
+    diffView.visibleRanges(ranges, { hiddenCategories: { punct: true } }).map((r) => r[3]),
+    ["lexical", "moved"],
+  );
+  const eds = ["a", "b", "c"];
+  // Settled text the latest rewrote: what a and b share, and c's own words.
+  assert.equal(diffView.lensAccepts("rewritten", eds, "b", "share:a"), true);
+  assert.equal(diffView.lensAccepts("rewritten", eds, "b", "share:c"), false);
+  assert.equal(diffView.lensAccepts("rewritten", eds, "c", "uniq"), true);
+  // Reverts: the latest shares with the earliest only.
+  assert.equal(diffView.lensAccepts("reverts", eds, "c", "share:a"), true);
+  assert.equal(diffView.lensAccepts("reverts", eds, "c", "uniq"), false);
+  assert.equal(diffView.lensAccepts("new", eds, "a", "uniq"), false);
+  assert.equal(diffView.parseDiffs({ schema: "firstpair.edition-diffs.v1", editions: ["a"], pages: {} }).categories.length, 0);
+
+  const state = require("../vault/plugin/firstpair-triptych/review-state");
+  const ledger = state.emptyLedger({ projectId: "p", sourceContentId: `sha256:${"a".repeat(64)}` });
+  const rule = { id: "R0123456789ab", from: "нежели", to: "чем", count: 15, pages: 15 };
+  const accepted = state.normalizeLedger(state.setRuleDecision(ledger, rule, "ru-4.2.3|ru-4.3.0", "reject"));
+  assert.deepEqual(state.ruleDecisionMap(accepted), { R0123456789ab: "reject" });
+  assert.equal(state.reviewChoiceCount(accepted), 1);
+  assert.match(state.renderDigest(accepted), /## Book-wide edit rules[\s\S]*\*\*REJECT\*\* “нежели” → “чем”: keep “нежели” \(ru-4\.2\.3 → ru-4\.3\.0, 15 places on 15 pages\)/);
+  const cleared = state.normalizeLedger(state.setRuleDecision(accepted, rule, "ru-4.2.3|ru-4.3.0", null));
+  assert.equal("rule_decisions" in cleared, false, "an empty rule map leaves no trace in the ledger");
+});

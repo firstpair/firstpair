@@ -198,6 +198,30 @@ text nodes only, so span-note marks underneath survive. FirstPair Triptych
 shows a **Diff** chip when the file exists, with a legend for the current
 mode; Reader 2 can take the same module for its aligned editions.
 
+### Edit patterns (diffs v2, Triptych 3.5)
+
+`firstpair.edition-diffs.v2` (`edition_diffs.build_diffs`) adds what an
+editor needs beyond marks. Each pairwise range carries its **category**,
+ordered by risk: `punct`, `inflect` (same lemmas, other endings), `function`
+(the language's small words, supplied by the builder), `lexical` (one or two
+words swapped), `restructure` (clause reworked around kept words), `rewrite`,
+`content` (more than three words added or dropped) and `moved` (dropped text
+whose content-word lemmas reappear among the additions on the same or a
+neighbouring page; the fifth element names that page). A builder passes a
+lemmatizer (Lighthouse Republics uses pymorphy3 for Russian); without one,
+words compare case-folded. `rules` lists, per pair, one-word substitutions
+recurring on three or more pages with every occurrence and the opposite rule
+when the edit also runs the other way; `summary` counts changed words per
+pair, Part and category.
+
+The reader module filters pairs by category and narrows the three-way set
+with a history lens: settled text the latest rewrote, reverts of the latest
+to the earliest, or what is new in the latest. Review shows a heat map of
+edits per Part and the rules with **Accept** / **Reject**; decisions are
+`rule_decisions` in the shared ledger (omitted when empty, so older ledgers
+are unchanged) and open the digest as "Book-wide edit rules". v1 files still
+load.
+
 ### Ported from the Invented translation triptych (3.1)
 
 Phone edition tabs on the snap track (a tapped edition opens first on every

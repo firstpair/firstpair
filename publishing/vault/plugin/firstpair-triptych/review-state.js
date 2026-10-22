@@ -303,7 +303,8 @@ function reviewChoiceCountRaw(ledger) {
   return Object.keys(objectMap(ledger.decisions)).length
     + Object.keys(objectMap(ledger.sentence_preferences)).length
     + Object.keys(objectMap(ledger.phrase_annotations)).length
-    + Object.keys(objectMap(ledger.span_notes)).length;
+    + Object.keys(objectMap(ledger.span_notes)).length
+    + Object.keys(objectMap(ledger.rule_decisions)).length;
 }
 
 function emptyLedger(context = {}) {
@@ -397,6 +398,11 @@ function normalizeLedger(value, context = {}) {
     const note = normalizeSpanNote(id, record);
     if (note) spanNotes[id] = note;
   }
+  const rules = {};
+  for (const [id, record] of Object.entries(objectMap(source.rule_decisions))) {
+    const rule = normalizeRuleDecision(id, record);
+    if (rule) rules[id] = rule;
+  }
   const normalized = {
     ...source,
     schema: LEDGER_SCHEMA,
@@ -409,7 +415,9 @@ function normalizeLedger(value, context = {}) {
     sentence_preferences: objectMap(source.sentence_preferences),
     phrase_annotations: phrases,
     span_notes: spanNotes,
+    ...(Object.keys(rules).length ? { rule_decisions: rules } : {}),
   };
+  if (!Object.keys(rules).length) delete normalized.rule_decisions;
   if (!projectId || !SOURCE_ID_RE.test(sourceContentId)) {
     if (isLegacy && !requestedProjectId && !requestedSourceId) return normalized;
     throw new Error("review choices have invalid source identity");
@@ -430,6 +438,49 @@ function normalizeLedger(value, context = {}) {
     }
   }
   return normalized;
+}
+
+/* ----------------------------- edit rules -------------------------------- */
+
+// A book-wide decision on a recurring substitution between two editions
+// (firstpair.edition-diffs.v2 "rules"): accept applies `from -> to`
+// everywhere, reject keeps `from` everywhere.
+const RULE_DECISIONS = new Set(["accept", "reject"]);
+
+function normalizeRuleDecision(id, record) {
+  const value = objectMap(record);
+  if (!/^R[0-9a-f]{12}$/.test(String(id)) || !RULE_DECISIONS.has(value.decision)) return null;
+  return {
+    pair: String(value.pair || ""),
+    from: String(value.from || ""),
+    to: String(value.to || ""),
+    decision: value.decision,
+    count: Number.isFinite(value.count) ? value.count : 0,
+    pages: Number.isFinite(value.pages) ? value.pages : 0,
+    updated_at: String(value.updated_at || ""),
+  };
+}
+
+function setRuleDecision(ledger, rule, pair, decision) {
+  const candidate = clone(ledger);
+  candidate.rule_decisions = objectMap(candidate.rule_decisions);
+  if (!decision) {
+    delete candidate.rule_decisions[rule.id];
+  } else {
+    if (!RULE_DECISIONS.has(decision)) throw new Error(`unknown rule decision ${decision}`);
+    candidate.rule_decisions[rule.id] = {
+      pair, from: rule.from, to: rule.to, decision,
+      count: rule.count, pages: rule.pages, updated_at: new Date().toISOString(),
+    };
+  }
+  if (!Object.keys(candidate.rule_decisions).length) delete candidate.rule_decisions;
+  return candidate;
+}
+
+function ruleDecisionMap(ledger) {
+  return Object.fromEntries(
+    Object.entries(objectMap(ledger.rule_decisions)).map(([id, record]) => [id, record.decision]),
+  );
 }
 
 function nextLedger(ledger) {
@@ -1011,6 +1062,19 @@ function renderDigest(input) {
     "accepted choices in a separate editorial pass and revalidate the result.",
     "",
   ].filter((line, index, values) => line || index > 1 || values[index - 1] !== "");
+  const rules = Object.entries(objectMap(ledger.rule_decisions))
+    .sort((a, b) => a[1].pair.localeCompare(b[1].pair) || a[1].from.localeCompare(b[1].from));
+  if (rules.length) {
+    lines.push("## Book-wide edit rules", "");
+    for (const [id, rule] of rules) {
+      const [earlier, later] = rule.pair.split("|");
+      const where = `${markdownText(earlier)} → ${markdownText(later)}, ${rule.count} places on ${rule.pages} pages`;
+      lines.push(rule.decision === "accept"
+        ? `- \`${id}\` **ACCEPT** “${markdownText(rule.from)}” → “${markdownText(rule.to)}” everywhere (${where})`
+        : `- \`${id}\` **REJECT** “${markdownText(rule.from)}” → “${markdownText(rule.to)}”: keep “${markdownText(rule.from)}” (${where})`);
+    }
+    lines.push("");
+  }
   for (const set of [...groups.keys()].sort()) {
     lines.push(`## ${markdownText(set)}`, "");
     for (const [, entryLines] of groups.get(set).sort((a, b) => a[0].localeCompare(b[0]))) {
@@ -1018,7 +1082,7 @@ function renderDigest(input) {
     }
     lines.push("");
   }
-  if (!groups.size) lines.push("_No review choices recorded yet._", "");
+  if (!groups.size && !rules.length) lines.push("_No review choices recorded yet._", "");
   return `${lines.join("\n").trimEnd()}\n`;
 }
 
@@ -1202,6 +1266,35 @@ const UI_STRINGS = Object.freeze({
     diff_ins: "New since {name}",
     diff_uniq: "In this edition only",
     diff_share: "Shared with {name} only",
+    diff_filters: "Show",
+    diff_cat_punct: "Punctuation",
+    diff_cat_inflect: "Endings",
+    diff_cat_function: "Small words",
+    diff_cat_lexical: "Word choice",
+    diff_cat_restructure: "Restructured",
+    diff_cat_rewrite: "Rewritten",
+    diff_cat_content: "Added or dropped",
+    diff_cat_moved: "Moved",
+    diff_moved_to: "Moved: see {page}",
+    diff_lens: "History",
+    diff_lens_all: "All differences",
+    diff_lens_rewritten: "Settled text the latest rewrote",
+    diff_lens_reverts: "The latest went back to the first",
+    diff_lens_new: "New in the latest only",
+    rules_heading: "Edit rules",
+    rules_explain: "One-word substitutions that recur on several pages. Accept applies one everywhere; Reject keeps the earlier word everywhere. A substitution that also runs the other way is flagged.",
+    rules_pair: "Compare",
+    rules_none: "No substitution recurs on three or more pages.",
+    rules_count: "{count}× on {pages} pages",
+    rules_conflict: "⇄ also {from} → {to} {count}×",
+    rules_conflict_title: "The edit runs both ways: likely taste, not a rule",
+    rules_accept: "Accept",
+    rules_reject: "Reject",
+    rules_places: "Places",
+    rules_saved: "Rule saved",
+    rules_save_failed: "Could not save the rule: {error}",
+    heat_heading: "Where the edits are",
+    heat_explain: "Words changed in each Part, by kind of change, for the editions compared.",
     note_text_aria: "Text note",
     note_text_placeholder: "Type a note, record one, or both.",
     record: "Record",
@@ -1437,6 +1530,35 @@ const UI_STRINGS = Object.freeze({
     diff_ins: "Nuovo rispetto a {name}",
     diff_uniq: "Solo in questa edizione",
     diff_share: "In comune solo con {name}",
+    diff_filters: "Mostra",
+    diff_cat_punct: "Punteggiatura",
+    diff_cat_inflect: "Desinenze",
+    diff_cat_function: "Parole brevi",
+    diff_cat_lexical: "Scelta lessicale",
+    diff_cat_restructure: "Ristrutturato",
+    diff_cat_rewrite: "Riscritto",
+    diff_cat_content: "Aggiunto o tolto",
+    diff_cat_moved: "Spostato",
+    diff_moved_to: "Spostato: vedi {page}",
+    diff_lens: "Storia",
+    diff_lens_all: "Tutte le differenze",
+    diff_lens_rewritten: "Testo stabile riscritto dall'ultima",
+    diff_lens_reverts: "L'ultima è tornata alla prima",
+    diff_lens_new: "Nuovo solo nell'ultima",
+    rules_heading: "Regole di revisione",
+    rules_explain: "Sostituzioni di una parola che ricorrono in più pagine. Accetta la applica ovunque; Rifiuta conserva ovunque la parola precedente. Una sostituzione che va anche nel senso opposto è segnalata.",
+    rules_pair: "Confronta",
+    rules_none: "Nessuna sostituzione ricorre in tre o più pagine.",
+    rules_count: "{count}× in {pages} pagine",
+    rules_conflict: "⇄ anche {from} → {to} {count}×",
+    rules_conflict_title: "La modifica va in entrambi i sensi: gusto, più che regola",
+    rules_accept: "Accetta",
+    rules_reject: "Rifiuta",
+    rules_places: "Luoghi",
+    rules_saved: "Regola salvata",
+    rules_save_failed: "Impossibile salvare la regola: {error}",
+    heat_heading: "Dove sono le modifiche",
+    heat_explain: "Parole cambiate in ogni parte, per tipo di modifica, tra le edizioni confrontate.",
     note_text_aria: "Nota scritta",
     note_text_placeholder: "Scrivete una nota, registratela, o entrambe le cose.",
     record: "Registra",
@@ -1671,6 +1793,35 @@ const UI_STRINGS = Object.freeze({
     diff_ins: "Новое по сравнению с {name}",
     diff_uniq: "Только в этом издании",
     diff_share: "Общее только с {name}",
+    diff_filters: "Показать",
+    diff_cat_punct: "Пунктуация",
+    diff_cat_inflect: "Окончания",
+    diff_cat_function: "Служебные слова",
+    diff_cat_lexical: "Выбор слова",
+    diff_cat_restructure: "Перестройка",
+    diff_cat_rewrite: "Переписано",
+    diff_cat_content: "Добавлено или убрано",
+    diff_cat_moved: "Перенесено",
+    diff_moved_to: "Перенесено: см. {page}",
+    diff_lens: "История",
+    diff_lens_all: "Все расхождения",
+    diff_lens_rewritten: "Устоявшийся текст, переписанный последним",
+    diff_lens_reverts: "Последнее вернулось к первому",
+    diff_lens_new: "Только в последнем",
+    rules_heading: "Правила правки",
+    rules_explain: "Замены одного слова, повторяющиеся на нескольких страницах. «Принять» применяет замену везде, «Отклонить» везде оставляет прежнее слово. Замена, идущая и в обратную сторону, отмечена.",
+    rules_pair: "Сравнить",
+    rules_none: "Ни одна замена не повторяется на трёх и более страницах.",
+    rules_count: "{count}× на {pages} стр.",
+    rules_conflict: "⇄ и {from} → {to} {count}×",
+    rules_conflict_title: "Правка идёт в обе стороны: скорее вкус, чем правило",
+    rules_accept: "Принять",
+    rules_reject: "Отклонить",
+    rules_places: "Где",
+    rules_saved: "Правило сохранено",
+    rules_save_failed: "Не удалось сохранить правило: {error}",
+    heat_heading: "Где правки",
+    heat_explain: "Сколько слов изменено в каждой части, по видам правки, между сравниваемыми изданиями.",
     note_text_aria: "Текст заметки",
     note_text_placeholder: "Напишите заметку, запишите голосом — или то и другое.",
     record: "Записать",
@@ -1847,6 +1998,8 @@ module.exports = {
   voiceClipId,
   voiceClipPath,
   annotationOverlaps,
+  ruleDecisionMap,
+  setRuleDecision,
   annotationSegments,
   annotationsForSentence,
   clearPhraseAnnotation,

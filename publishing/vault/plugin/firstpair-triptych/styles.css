@@ -383,7 +383,7 @@ body {
 }
 .lt-touch-picker .lt-select-all-words.is-selected { box-shadow: inset 0 0 0 2px var(--interactive-accent); }
 /* ---- end shared/span-editor.css ---- */
-/* ---- shared/diff-view.css (sha256 744c8455103ea37a43048ffcceba55f00f1013121c515eb5f4b860dc4b62f8eb) ---- */
+/* ---- shared/diff-view.css (sha256 774eb9e6bd10176cc7d2c8a97b808955cf4d83b97b775765cb344198eb801b2b) ---- */
 /*
  * Edition diffs shared by every FirstPair reader (shared/diff-view.js).
  * Diffs use text colour and underlines, never full backgrounds, so they
@@ -434,6 +434,73 @@ body {
 .fp-diff-swatch.fp-diff-ed-0 { background: var(--fp-diff-ed-0); }
 .fp-diff-swatch.fp-diff-ed-1 { background: var(--fp-diff-ed-1); }
 .fp-diff-swatch.fp-diff-ed-2 { background: var(--fp-diff-ed-2); }
+
+/* Categories (v2): moved text reads as a cross-reference, punctuation gets
+ * a visible box because a lone mark is easy to miss. */
+.fp-diff-cat-moved {
+  color: var(--fp-diff-ed-0);
+  text-decoration-style: dashed;
+}
+.fp-diff-cat-punct {
+  box-shadow: 0 0 0 1px currentColor;
+  border-radius: 2px;
+  padding: 0 0.1em;
+}
+.fp-diff-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  margin: 0.2rem 0 0.3rem;
+}
+.fp-diff-filters .lt-chip { text-decoration: none; }
+.fp-diff-filters .lt-chip:not(.lt-chip-on) { opacity: 0.55; }
+
+/* Rules ledger. */
+.fp-rules { display: flex; flex-direction: column; gap: 0.35rem; }
+.fp-rule {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m, 6px);
+  padding: 0.4rem 0.6rem;
+}
+.fp-rule-accept { border-color: var(--fp-diff-ins); }
+.fp-rule-reject { border-color: var(--fp-diff-del); }
+.fp-rule-head { font-size: 1.02em; }
+.fp-rule-from { color: var(--fp-diff-del); }
+.fp-rule-to { color: var(--fp-diff-ins); }
+.fp-rule-count { color: var(--text-muted); font-size: 0.85em; }
+.fp-rule-conflict {
+  background: color-mix(in srgb, var(--color-orange, #d9822b) 22%, transparent);
+  border-radius: 999px;
+  font-size: 0.8em;
+  margin-left: 0.5em;
+  padding: 0.05em 0.5em;
+}
+.fp-rule-actions { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.3rem; }
+.fp-rule-actions button { min-height: 2.1rem; }
+.fp-rule-accept-button.is-active { background: var(--fp-diff-ins); color: #fff; }
+.fp-rule-reject-button.is-active { background: var(--fp-diff-del); color: #fff; }
+.fp-rule-places { display: flex; flex-wrap: wrap; gap: 0.25rem; margin-top: 0.3rem; }
+.fp-rule-place { font-size: 0.85em; }
+
+/* Heat map of edits per Part. */
+.fp-heat { display: flex; flex-direction: column; gap: 0.25rem; }
+.fp-heat-legend { display: flex; flex-wrap: wrap; gap: 0.6rem; font-size: 0.8em; color: var(--text-muted); }
+.fp-heat-key { display: inline-flex; align-items: center; gap: 0.25rem; }
+.fp-heat-swatch { width: 0.8em; height: 0.8em; border-radius: 2px; display: inline-block; }
+.fp-heat-row { display: grid; grid-template-columns: minmax(6rem, 14rem) 1fr auto; gap: 0.5rem; align-items: center; }
+.fp-heat-label { font-size: 0.85em; text-align: left; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.fp-heat-bar { display: flex; height: 0.9rem; border-radius: 3px; overflow: hidden; min-width: 4px; }
+.fp-heat-cell { display: block; min-width: 1px; }
+.fp-heat-total { font-size: 0.8em; color: var(--text-muted); font-variant-numeric: tabular-nums; }
+.fp-heat-punct { background: #b8b8b8; }
+.fp-heat-inflect { background: #8fb3d9; }
+.fp-heat-function { background: #6c9bd2; }
+.fp-heat-lexical { background: #e0b300; }
+.fp-heat-restructure { background: #e07b00; }
+.fp-heat-rewrite { background: #c2367a; }
+.fp-heat-content { background: #c0392b; }
+.fp-heat-moved { background: #2f6fd0; }
 /* ---- end shared/diff-view.css ---- */
 /* Dedicated Triptych Reader. The bar is a fixed flex sibling of the only
    scrolling element, so it remains pinned without depending on sticky

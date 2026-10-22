@@ -129,6 +129,17 @@ only, underlined in an edition's colour is shared with that edition only.
 Hide a pane with its chip to switch from the set to a pair. Tap or hover a
 mark for its meaning.
 
+**Kinds of change, history, and rules.** With a version-2 diff file the
+pair view adds a row of chips for the kind of change: punctuation, endings,
+small words, word choice, restructured, rewritten, added or dropped, and
+moved (moved text names the page it went to). The three-pane view adds a
+**History** menu: all differences, settled text the latest edition rewrote,
+places where the latest went back to the first, or what is new in the
+latest. **Review** shows where the edits are, Part by Part, and the **edit
+rules**: one-word substitutions that recur across the book, each with
+**Accept** (apply everywhere) or **Reject** (keep the earlier word), flagged
+when the edit also runs the other way. Rule decisions go to the digest.
+
 **Metrics.** A vault may declare ranked metrics in
 `<book>/_data/triptych-metrics.json` (see `publishing/VAULT-CONSTRUCTION.md`).
 Each pane shows them as graded chips in rank order; **Settings → Metrics**

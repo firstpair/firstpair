@@ -74,6 +74,8 @@ const {
   uiText,
   upsertPhraseAnnotation,
   wordTokens,
+  ruleDecisionMap,
+  setRuleDecision,
 } = require("./review-state");
 
 // Visible UI text follows the vault language (editions.jsonl); see
@@ -1562,6 +1564,65 @@ class FirstPairTriptychReviewView extends ItemView {
     }
   }
 
+  // Book-wide rules and the per-Part heat map for one pair of editions,
+  // drawn by the shared diff module; rule decisions go to the ledger.
+  renderEditRules(content, context, ledger) {
+    const diffs = this.plugin.diffs;
+    const pairs = diffView.pairKeys(diffs);
+    const editions = diffs.editions;
+    const latest = editions.length > 1 ? `${editions[editions.length - 2]}|${editions[editions.length - 1]}` : pairs[0];
+    let pair = pairs.includes(this.plugin.settings.rulesPair) ? this.plugin.settings.rulesPair : latest;
+    const editionName = (id) => this.plugin.settings.knownEditions[id] || id;
+    const pairName = (key) => key.split("|").map(editionName).join(" → ");
+    const section = content.createDiv({ cls: "fp-rules-section" });
+    const controls = section.createDiv({ cls: "lt-rank-controls" });
+    controls.createSpan({ cls: "lt-chips-label", text: t("rules_pair") });
+    const select = controls.createEl("select", { cls: "dropdown", attr: { "aria-label": t("rules_pair") } });
+    for (const key of pairs) select.createEl("option", { value: key, text: pairName(key) });
+    select.value = pair;
+    const body = section.createDiv();
+    const parts = this.reader.sets[0] ? this.reader.sets[0].parts : [];
+    const firstPageOfPart = (part) => this.reader.sets.flatMap((set) => set.pages)
+      .find((page) => page.part_id === part.id);
+    const draw = () => {
+      body.empty();
+      body.createEl("h2", { text: t("heat_heading") });
+      body.createEl("p", { cls: "lt-review-explanation", text: t("heat_explain") });
+      diffView.renderSummary(body, diffs, pair, {
+        t, parts,
+        onOpenPart: (part) => {
+          const page = firstPageOfPart(part);
+          if (page) void this.plugin.openReader({ mode: "fragment", key: page.key });
+        },
+      });
+      body.createEl("h2", { text: t("rules_heading") });
+      body.createEl("p", { cls: "lt-review-explanation", text: t("rules_explain") });
+      diffView.renderRules(body, diffs, pair, {
+        t,
+        decisions: ruleDecisionMap(ledger),
+        pageTitle: (key) => (this.reader.pageByKey.get(key) || {}).title || key,
+        onOpen: (key) => void this.plugin.openReader({ mode: "fragment", key }),
+        onDecide: async (rule, decision) => {
+          try {
+            ledger = await this.plugin.store.update(context, (current) => setRuleDecision(current, rule, pair, decision));
+            new Notice(t("rules_saved"));
+            draw();
+          } catch (error) {
+            console.error("firstpair-triptych: rule save failed", error);
+            new Notice(t("rules_save_failed", { error: error.message || error }));
+          }
+        },
+      });
+    };
+    select.addEventListener("change", async () => {
+      pair = select.value;
+      this.plugin.settings.rulesPair = pair;
+      await this.plugin.saveSettings();
+      draw();
+    });
+    draw();
+  }
+
   async renderReview() {
     this.contentEl.empty();
     this.contentEl.addClass("lt-review-view");
@@ -1675,6 +1736,9 @@ class FirstPairTriptychReviewView extends ItemView {
         select.addEventListener("change", renderRanking);
         renderRanking();
       }
+      if (this.plugin.diffs && Object.keys(this.plugin.diffs.rules).length + Object.keys(this.plugin.diffs.summary).length) {
+        this.renderEditRules(content, context, ledger);
+      }
       content.createEl("h2", { text: t("edited_copy_heading") });
       content.createEl("p", { cls: "lt-review-explanation", text: t("edited_copy_explain") });
       const exports = content.createDiv({ cls: "lt-export-actions" });
@@ -1742,6 +1806,9 @@ const DEFAULT_SETTINGS = {
   knownEditions: {},
   soloEdition: "",
   showDiff: false,
+  diffHidden: {},
+  diffLens: "all",
+  rulesPair: "",
   defaultPane: "",
   metricOrder: [],
   metricHidden: {},
@@ -2537,7 +2604,7 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     }
 
     const diffs = this.diffs && this.settings.showDiff && !isSolo
-      ? this.renderDiffLegend(root, payload, visiblePanes) : null;
+      ? this.renderDiffLegend(root, payload, visiblePanes, rerender) : null;
 
     const byNorm = new Map();
     for (const pane of visiblePanes) {
@@ -2723,9 +2790,10 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     }
   }
 
-  // The legend under the chips, and the ranges each shown pane paints: the
-  // pair when two panes show, the whole set when three do.
-  renderDiffLegend(root, payload, visiblePanes) {
+  // The legend and filters under the chips, and the ranges each shown pane
+  // paints: the pair when two panes show (filtered by kind of change), the
+  // whole set when three do (narrowed by the history lens).
+  renderDiffLegend(root, payload, visiblePanes, rerender) {
     const diff = diffView.diffFor(this.diffs, payload.key, visiblePanes.map((pane) => pane.edition));
     const legend = root.createDiv({ cls: "fp-diff-legend" });
     if (!diff) {
@@ -2750,17 +2818,55 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         legend.createSpan({ text: `${name(edition)} ` });
       }
     }
-    const titleFor = (kind) => {
-      if (kind === "del") return t("diff_del", { name: name(diff.editions[1]) });
-      if (kind === "ins") return t("diff_ins", { name: name(diff.editions[0]) });
-      if (kind.startsWith("share:")) return t("diff_share", { name: name(kind.slice(6)) });
-      return t("diff_uniq");
+    const hidden = this.settings.diffHidden || {};
+    const lens = diff.mode === "all" ? (this.settings.diffLens || "all") : null;
+    const filters = root.createDiv({ cls: "fp-diff-filters" });
+    if (diff.mode === "pair" && this.diffs.categories.length) {
+      filters.createSpan({ cls: "lt-chips-label", text: t("diff_filters") });
+      for (const category of diffView.CATEGORIES) {
+        const chip = filters.createEl("button", {
+          cls: "lt-chip" + (hidden[category] ? "" : " lt-chip-on"),
+          text: t(`diff_cat_${category}`),
+          attr: { type: "button", "aria-pressed": hidden[category] ? "false" : "true" },
+        });
+        chip.addEventListener("click", async () => {
+          this.settings.diffHidden = { ...hidden, [category]: !hidden[category] };
+          await this.saveSettings();
+          await rerender();
+        });
+      }
+    } else if (diff.mode === "all") {
+      filters.createSpan({ cls: "lt-chips-label", text: t("diff_lens") });
+      const select = filters.createEl("select", { cls: "dropdown", attr: { "aria-label": t("diff_lens") } });
+      for (const value of diffView.LENSES) select.createEl("option", { value, text: t(`diff_lens_${value}`) });
+      select.value = lens;
+      select.addEventListener("change", async () => {
+        this.settings.diffLens = select.value;
+        await this.saveSettings();
+        await rerender();
+      });
+    }
+    const pageTitle = (key) => {
+      const page = this.readerCache && this.readerCache.pageByKey ? this.readerCache.pageByKey.get(key) : null;
+      return page ? page.title : key;
+    };
+    const titleFor = ([, , kind, category, target]) => {
+      let base;
+      if (kind === "del") base = t("diff_del", { name: name(diff.editions[1]) });
+      else if (kind === "ins") base = t("diff_ins", { name: name(diff.editions[0]) });
+      else if (kind.startsWith("share:")) base = t("diff_share", { name: name(kind.slice(6)) });
+      else base = t("diff_uniq");
+      if (category === "moved" && target) return `${base} · ${t("diff_moved_to", { page: pageTitle(target) })}`;
+      return category ? `${base} · ${t(`diff_cat_${category}`)}` : base;
     };
     const result = new Map();
     for (const edition of diff.editions) {
       result.set(edition, {
         ranges: diff.ranges[edition] || [],
-        options: { editions: this.diffs.editions, titleFor },
+        options: {
+          editions: this.diffs.editions, titleFor, hiddenCategories: hidden,
+          lens, lensEditions: diff.editions, edition,
+        },
       });
     }
     return result;
