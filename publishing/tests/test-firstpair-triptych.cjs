@@ -1005,16 +1005,23 @@ test("UI language follows the vault's canonical edition and defaults to English"
   assert.equal(uiCount("en", 1, "saved_choice"), "1 saved review choice");
 });
 
-test("the plugin reads the vault language from editions.jsonl before registering UI", async () => {
+test("the plugin reads the vault language before drawing UI; views register first", async () => {
   const mainPath = path.resolve(
     __dirname,
     "../vault/plugin/firstpair-triptych/main.js"
   );
   const source = fs.readFileSync(mainPath, "utf8");
+  // Views register before any await (iOS restores tabs during onload); the
+  // language is read next, and views draw only once `ready` resolves.
   assert.match(
     source,
-    /async onload\(\) \{\s*setBookRoot\(await detectBookRoot\(this\.app\.vault\.adapter\)\);\s*uiLanguage = await detectUiLanguage\(this\.app\.vault\.adapter\);/
+    /async onload\(\) \{[^]*?this\.ready = new Promise[^]*?registerView\([^]*?registerView\([^]*?setBookRoot\(await detectBookRoot\(this\.app\.vault\.adapter\)\);\s*uiLanguage = await detectUiLanguage\(this\.app\.vault\.adapter\);/
   );
+  assert.ok(
+    source.indexOf("this.registerView(") < source.indexOf("await detectBookRoot(this.app.vault.adapter)"),
+    "views register before the first await",
+  );
+  assert.equal((source.match(/if \(this\.plugin\.ready\) await this\.plugin\.ready;/g) || []).length, 4);
   const originalLoad = Module._load;
   Module._load = function load(request, parent, isMain) {
     if (request === "obsidian") {
@@ -1045,6 +1052,16 @@ test("the plugin reads the vault language from editions.jsonl before registering
       "ru"
     );
     assert.equal(await hooks.detectUiLanguage(adapter({})), "en");
+    // Obsidian Sync may not carry .jsonl to a phone: editions.json stands in.
+    assert.equal(
+      await hooks.detectUiLanguage(adapter({
+        "Lighthouse Republics/_data/editions.json": JSON.stringify([
+          { id: "ru-4.1.0", lang: "ru", canonical: false },
+          { id: "ru-4.3.0", lang: "ru", canonical: true },
+        ]),
+      })),
+      "ru"
+    );
     const listed = (files, folders) => ({ ...adapter(files), list: async () => ({ folders, files: [] }) });
     assert.equal(
       await hooks.detectBookRoot(listed({ "Lighthouse Republics/_data/triptych-reader.json": "{}" }, [])),

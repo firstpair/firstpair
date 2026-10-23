@@ -126,11 +126,19 @@ function actionLabel(action) {
     return value ? value[0].toUpperCase() + value.slice(1) : value;
   }
 }
+// editions.jsonl first; editions.json (the same rows as one JSON array) as
+// a fallback, because Obsidian Sync does not reliably carry .jsonl files to
+// phones, which then showed the interface in English.
 async function detectUiLanguage(adapter) {
   try {
-    const path = normalizePath(EDITIONS_LEDGER_PATH);
-    if (!(await adapter.exists(path))) return "en";
-    return pickUiLanguage(await adapter.read(path));
+    const jsonl = normalizePath(EDITIONS_LEDGER_PATH);
+    if (await adapter.exists(jsonl)) return pickUiLanguage(await adapter.read(jsonl));
+    const json = normalizePath(EDITIONS_LEDGER_PATH.replace(/\.jsonl$/, ".json"));
+    if (await adapter.exists(json)) {
+      const rows = JSON.parse(await adapter.read(json));
+      if (Array.isArray(rows)) return pickUiLanguage(rows.map((row) => JSON.stringify(row)).join("\n"));
+    }
+    return "en";
   } catch (_error) {
     return "en";
   }
@@ -1000,6 +1008,7 @@ class FirstPairTriptychReaderView extends ItemView {
 
   async setState(next, result) {
     if (typeof super.setState === "function") await super.setState(next, result);
+    if (this.plugin.ready) await this.plugin.ready;
     // Whoever opened this state recorded where the pane was; the pane's
     // history survives the switch, so Back returns there.
     this.updateBackControl();
@@ -1008,6 +1017,7 @@ class FirstPairTriptychReaderView extends ItemView {
   }
 
   async onOpen() {
+    if (this.plugin.ready) await this.plugin.ready;
     bindPageKeys(this, {
       previous: () => this.goPrevious(),
       next: () => this.goNext(),
@@ -1579,6 +1589,7 @@ class FirstPairTriptychReviewView extends ItemView {
   }
 
   async onOpen() {
+    if (this.plugin.ready) await this.plugin.ready;
     await this.renderReview();
   }
 
@@ -1588,6 +1599,7 @@ class FirstPairTriptychReviewView extends ItemView {
 
   async setState(next, result) {
     if (typeof super.setState === "function") await super.setState(next, result);
+    if (this.plugin.ready) await this.plugin.ready;
     const review = next && next.review ? next.review : null;
     const scrollTop = next && Number(next.scrollTop) || 0;
     if (review || scrollTop) {
@@ -1981,12 +1993,27 @@ const DEFAULT_SETTINGS = {
 
 module.exports = class FirstPairTriptychPlugin extends Plugin {
   async onload() {
+    // Views first: Obsidian on iOS restores open tabs while onload is still
+    // reading files, and a Reader or Review tab whose view type is not yet
+    // registered is left as "the plugin has gone away".  The views wait for
+    // `ready` before drawing.
+    let markReady;
+    this.ready = new Promise((resolve) => { markReady = resolve; });
+    this.registerView(
+      READER_VIEW_TYPE,
+      (leaf) => new FirstPairTriptychReaderView(leaf, this)
+    );
+    this.registerView(
+      REVIEW_VIEW_TYPE,
+      (leaf) => new FirstPairTriptychReviewView(leaf, this)
+    );
     setBookRoot(await detectBookRoot(this.app.vault.adapter));
     uiLanguage = await detectUiLanguage(this.app.vault.adapter);
     this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
     this.store = new DecisionStore(this.app);
     this.metrics = await this.loadMetrics();
     this.diffs = await this.loadDiffs();
+    markReady();
     this.transcribing = new Set();
     this.voiceListeners = new Set();
     this.pendingRun = null;
@@ -2001,14 +2028,6 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
         : null;
       if (core && !core.enabled) this.app.workspace.detachLeavesOfType(viewType);
     }
-    this.registerView(
-      READER_VIEW_TYPE,
-      (leaf) => new FirstPairTriptychReaderView(leaf, this)
-    );
-    this.registerView(
-      REVIEW_VIEW_TYPE,
-      (leaf) => new FirstPairTriptychReviewView(leaf, this)
-    );
     this.addSettingTab(new TriptychSettingTab(this.app, this));
     this.previewQueue = [];
     this.previewActive = 0;
