@@ -18,7 +18,7 @@ test('standard Reader package is stable and offline', () => {
 })
 
 test('standard Reader preserves navigation and bounded local history', () => {
-  const controls = ['Previous', 'Previous word', 'Up', 'Back', 'Top', 'TOC', 'Next word', 'Next']
+  const controls = ['Previous', 'Previous word', 'Up', 'Back', 'Forward', 'Top', 'TOC', 'Next word', 'Next']
   let cursor = -1
   for (const control of controls) {
     const position = source.indexOf(`"${control}"`)

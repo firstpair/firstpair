@@ -198,6 +198,17 @@ text nodes only, so span-note marks underneath survive. FirstPair Triptych
 shows a **Diff** chip when the file exists, with a legend for the current
 mode; Reader 2 can take the same module for its aligned editions.
 
+### Back and Forward (Triptych 3.7, Reader 2.3)
+
+`shared/nav-history.js` is the history of every FirstPair reader: plain-data
+entries, bounded Back and Forward stacks, a new step clears Forward. FirstPair
+Triptych keeps one history per workspace pane, shared by the Reader, Review,
+and notes opened there: opening Review or a page from it records where the
+pane was (a Reader place with scroll, Review with its compared pair, open
+rules and scroll, or a note), and a static Reader note handing over to the
+Reader is not recorded. The rail is Previous · Up · Back · Forward · Top ·
+TOC · Next in both readers.
+
 ### Page keys (Triptych 3.6, Reader 2.2)
 
 `shared/page-keys.js` binds ← and → to the previous and next page in any

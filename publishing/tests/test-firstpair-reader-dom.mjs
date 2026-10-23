@@ -92,8 +92,8 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     assert.ok(root.querySelector('.firstpair-reader__page--columns'), 'wide pane uses columns')
 
     const rail = Array.from(root.querySelectorAll('.firstpair-reader__rail button'))
-    assert.deepEqual(rail.map((button) => button.getAttribute('aria-label')), ['Previous', 'Previous word', 'Up', 'Back', 'Top', 'TOC', 'Next word', 'Next'])
-    const previousWord = rail[1]; const nextWord = rail[6]
+    assert.deepEqual(rail.map((button) => button.getAttribute('aria-label')), ['Previous', 'Previous word', 'Up', 'Back', 'Forward', 'Top', 'TOC', 'Next word', 'Next'])
+    const previousWord = rail[1]; const nextWord = rail[7]
     assert.equal(previousWord.disabled, true)
     assert.equal(nextWord.disabled, false)
     nextWord.click(); await settle(); await settle()
@@ -149,6 +149,18 @@ test('renders an aligned chapter with the source first and a sharded dictionary'
     arrow('ArrowLeft', field); await settle(); await settle()
     assert.match(root.querySelector('h1').textContent, /Canto 2/, 'arrows in a text field stay there')
     field.remove()
+
+    // Back retraces, Forward returns; a new step clears Forward.
+    const control = (label) => Array.from(root.querySelectorAll('.firstpair-reader__rail button')).find((button) => button.getAttribute('aria-label') === label)
+    assert.equal(control('Forward').disabled, true)
+    control('Back').click(); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 1/)
+    assert.equal(control('Forward').disabled, false)
+    control('Forward').click(); await settle(); await settle()
+    assert.match(root.querySelector('h1').textContent, /Canto 2/)
+    control('Back').click(); await settle(); await settle()
+    control('Next').click(); await settle(); await settle()
+    assert.equal(control('Forward').disabled, true, 'a new step clears Forward')
 
     // Home links become buttons that open the Reader on a page.
     const home = window.document.body.createDiv()

@@ -459,12 +459,12 @@ test("release main is self-contained and loadable with only the Obsidian API", a
       source.indexOf("renderBar(container)"),
       source.indexOf("addSetButton(container", source.indexOf("renderBar(container)"))
     );
-    const controls = ["Previous", "Up", "Back", "Top", "TOC", "Next"].map(
+    const controls = ["Previous", "Up", "Back", "Forward", "Top", "TOC", "Next"].map(
       (label) => barSource.indexOf(`"${label}"`)
     );
     assert.ok(controls.every((position) => position >= 0));
     assert.deepEqual(controls, [...controls].sort((a, b) => a - b));
-    assert.equal((barSource.match(/this\.addControl\(/g) || []).length, 6);
+    assert.equal((barSource.match(/this\.addControl\(/g) || []).length, 7);
     assert.equal((source.match(/this\.renderBar\(shell\);/g) || []).length, 1);
     assert.doesNotMatch(source, /this\.renderBar\([^)]*bottom/);
     assert.match(source, /registerView\(\s*READER_VIEW_TYPE/);
@@ -476,8 +476,8 @@ test("release main is self-contained and loadable with only the Obsidian API", a
       source,
       /const leaf = selectedLeaf \|\| this\.app\.workspace\.getLeaf\(false\)/
     );
-    assert.match(source, /await this\.openReader\(target, leaf\)/);
-    assert.match(source, /this\.history\.length > READER_HISTORY_LIMIT/);
+    assert.match(source, /await this\.openReader\(target, leaf, \{ record: false \}\)/);
+    assert.match(source, /historyRegistry\(READER_HISTORY_LIMIT\)/);
     assert.match(
       source,
       /captureLocation\(\)[\s\S]*scrollTop:[\s\S]*this\.scrollEl\.scrollTop/
@@ -492,9 +492,8 @@ test("release main is self-contained and loadable with only the Obsidian API", a
     );
     assert.match(
       source,
-      /goBack\(\)[\s\S]*renderReader\(\{ scrollTop: prior\.scrollTop, focus: false \}\)/
+      /showLocation\(location\)[\s\S]*renderReader\(\{ scrollTop: location\.scrollTop, focus: false \}\)/
     );
-    assert.match(source, /this\.history = \[\];[\s\S]*normalizeReaderState/);
     assert.match(source, /"aria-current": "page"/);
     assert.doesNotMatch(source, /this\.state\.partTitle|page\.part_title/);
 
@@ -538,7 +537,6 @@ test("release main is self-contained and loadable with only the Obsidian API", a
       false
     );
     assert.equal(spans[0].icon, "rotate-ccw");
-    view.history = [];
     view.backControl = null;
     view.state = {
       mode: "fragment",
@@ -565,37 +563,39 @@ test("release main is self-contained and loadable with only the Obsidian API", a
         scrollTop: index,
       });
     }
-    assert.equal(view.history.length, PluginClass.__test.READER_HISTORY_LIMIT);
-    view.history = [];
+    assert.equal(view.navHistory().backStack.length, PluginClass.__test.READER_HISTORY_LIMIT);
+    view.navHistory().clear();
     view.goTop();
     assert.equal(view.scrollEl.scrollTop, 0);
-    assert.equal(view.history[0].scrollTop, 80);
+    assert.equal(view.navHistory().backStack[0].scrollTop, 80);
     await view.goBack();
     assert.equal(view.lastRender.scrollTop, 80);
-    view.history = [
-      {
-        state: { ...view.state, key: "set-a/L-first" },
-        scrollTop: 11,
-      },
-      {
-        state: { ...view.state, key: "set-a/L-second" },
-        scrollTop: 22,
-      },
-    ];
+    view.navHistory().clear();
+    view.pushHistory({ view: "reader", state: { ...view.state, key: "set-a/L-first" }, scrollTop: 11 });
+    view.pushHistory({ view: "reader", state: { ...view.state, key: "set-a/L-second" }, scrollTop: 22 });
     await view.goBack();
     assert.equal(view.state.key, "set-a/L-second");
     assert.equal(view.lastRender.scrollTop, 22);
     await view.goBack();
     assert.equal(view.state.key, "set-a/L-first");
     assert.equal(view.lastRender.scrollTop, 11);
+    // Forward retraces the steps Back undid, scroll included.
+    await view.goForward();
+    assert.equal(view.state.key, "set-a/L-second");
+    assert.equal(view.navHistory().canForward(), true);
+    // Going somewhere new clears Forward, as in a browser.
+    view.pushHistory();
+    assert.equal(view.navHistory().canForward(), false);
 
-    view.history = [{ state: { ...view.state }, scrollTop: 12 }];
+    // Opening a state from elsewhere (Review, a note) keeps the history, so
+    // Back returns to where the pane was.
     view.renderReader = async () => {};
+    const depth = view.navHistory().backStack.length;
     await view.setState(
       { mode: "contents", setId: "", partId: "", key: "" },
       {}
     );
-    assert.deepEqual(view.history, []);
+    assert.equal(view.navHistory().backStack.length, depth);
 
     const context = {
       projectId: "lighthouse-republics",

@@ -12,7 +12,7 @@ const rail = async (page) => page.evaluate(() => {
 })
 const checkRail = async (page) => {
   const value = await rail(page)
-  const expected = ['Previous', 'Previous word', 'Up', 'Back', 'Top', 'TOC', 'Next word', 'Next']
+  const expected = ['Previous', 'Previous word', 'Up', 'Back', 'Forward', 'Top', 'TOC', 'Next word', 'Next']
   if (JSON.stringify(value.labels) !== JSON.stringify(expected)) throw new Error(`Reader rail order: ${value.labels.join(' | ')}`)
   if (value.width[1] > value.width[0] + 1) throw new Error(`Reader rail overflows: ${value.width.join('/')}`)
   if (value.edges[0][0] < -1 || value.edges.at(-1)[1] > value.width[0] + 1) throw new Error(`Reader rail edges escape: ${JSON.stringify(value.edges)}`)

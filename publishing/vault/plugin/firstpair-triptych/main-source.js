@@ -176,6 +176,7 @@ const READER_ICONS = Object.freeze({
   Previous: "arrow-left",
   Up: "arrow-up",
   Back: "rotate-ccw",
+  Forward: "rotate-cw",
   Top: "arrow-up-to-line",
   TOC: "list",
   Next: "arrow-right",
@@ -946,6 +947,9 @@ const { isTouchDevice } = editor;
 const diffView = require("../shared/diff-view");
 // Left/Right arrows turn pages on a hardware keyboard (shared/page-keys.js).
 const { bindPageKeys } = require("../shared/page-keys");
+// One Back/Forward history per pane, across Reader, Review, and notes
+// (shared/nav-history.js).
+const { NavHistory, historyRegistry } = require("../shared/nav-history");
 
 class FirstPairTriptychReaderView extends ItemView {
   constructor(leaf, plugin) {
@@ -958,9 +962,9 @@ class FirstPairTriptychReaderView extends ItemView {
       partId: "",
       key: "",
     };
-    this.history = [];
     this.scrollEl = null;
     this.backControl = null;
+    this.forwardControl = null;
     this.renderToken = 0;
   }
 
@@ -996,7 +1000,8 @@ class FirstPairTriptychReaderView extends ItemView {
 
   async setState(next, result) {
     if (typeof super.setState === "function") await super.setState(next, result);
-    this.history = [];
+    // Whoever opened this state recorded where the pane was; the pane's
+    // history survives the switch, so Back returns there.
     this.updateBackControl();
     this.state = this.plugin.normalizeReaderState(next, this.reader);
     if (this.reader) await this.renderReader({ scrollTop: 0, focus: false });
@@ -1026,6 +1031,22 @@ class FirstPairTriptychReaderView extends ItemView {
 
   async onClose() {
     this.renderToken += 1;
+    if (this.unsubscribeHistory) this.unsubscribeHistory();
+  }
+
+  // The pane's shared history (a private one when no plugin supplies it).
+  navHistory() {
+    if (this.plugin && typeof this.plugin.historyFor === "function" && this.leaf) {
+      const history = this.plugin.historyFor(this.leaf);
+      if (this.subscribedHistory !== history) {
+        if (this.unsubscribeHistory) this.unsubscribeHistory();
+        this.unsubscribeHistory = history.subscribe(() => this.updateBackControl());
+        this.subscribedHistory = history;
+      }
+      return history;
+    }
+    if (!this.localHistory) this.localHistory = new NavHistory(READER_HISTORY_LIMIT);
+    return this.localHistory;
   }
 
   saveLayout() {
@@ -1036,19 +1057,21 @@ class FirstPairTriptychReaderView extends ItemView {
 
   captureLocation() {
     return {
+      view: "reader",
       state: { ...this.state },
       scrollTop: Number(this.scrollEl && this.scrollEl.scrollTop) || 0,
     };
   }
 
   pushHistory(location = this.captureLocation()) {
-    this.history.push(location);
-    if (this.history.length > READER_HISTORY_LIMIT) this.history.shift();
+    this.navHistory().visit(location);
     this.updateBackControl();
   }
 
   updateBackControl() {
-    if (this.backControl) this.backControl.disabled = !this.history.length;
+    const history = this.navHistory();
+    if (this.backControl) this.backControl.disabled = !history.canBack();
+    if (this.forwardControl) this.forwardControl.disabled = !history.canForward();
   }
 
   restoreScroll(scrollTop) {
@@ -1081,10 +1104,24 @@ class FirstPairTriptychReaderView extends ItemView {
   }
 
   async goBack() {
-    const prior = this.history.pop();
-    if (!prior) return;
-    this.state = this.plugin.normalizeReaderState(prior.state, this.reader);
-    await this.renderReader({ scrollTop: prior.scrollTop, focus: false });
+    const prior = this.navHistory().back(this.captureLocation());
+    if (prior) await this.showLocation(prior);
+  }
+
+  async goForward() {
+    const next = this.navHistory().forward(this.captureLocation());
+    if (next) await this.showLocation(next);
+  }
+
+  // A history entry: a Reader place here, anything else through the plugin
+  // (Review, a note), in this same pane.
+  async showLocation(location) {
+    if (location.view && location.view !== "reader") {
+      await this.plugin.showLocation(this.leaf, location);
+      return;
+    }
+    this.state = this.plugin.normalizeReaderState(location.state, this.reader);
+    await this.renderReader({ scrollTop: location.scrollTop, focus: false });
     this.saveLayout();
   }
 
@@ -1276,11 +1313,18 @@ class FirstPairTriptychReaderView extends ItemView {
       () => this.goUp(),
       this.state.mode === "contents"
     );
+    const history = this.navHistory();
     this.backControl = this.addControl(
       controls,
       "Back",
       () => this.goBack(),
-      !this.history.length
+      !history.canBack()
+    );
+    this.forwardControl = this.addControl(
+      controls,
+      "Forward",
+      () => this.goForward(),
+      !history.canForward()
     );
     this.addControl(controls, "Top", () => this.goTop(), false);
     this.addControl(
@@ -1477,6 +1521,7 @@ class FirstPairTriptychReaderView extends ItemView {
     const token = ++this.renderToken;
     const scrollTop = Math.max(0, Number(options.scrollTop) || 0);
     this.backControl = null;
+    this.forwardControl = null;
     this.contentEl.empty();
     this.contentEl.addClass("lt-reader-view");
     const shell = this.contentEl.createDiv({ cls: "lt-reader-shell" });
@@ -1513,7 +1558,9 @@ class FirstPairTriptychReviewView extends ItemView {
     super(leaf);
     this.plugin = plugin;
     this.reader = null;
-    this.returnTo = null;
+    // Review's own place: the compared pair and which rules show their pages.
+    this.reviewState = { pair: "", expanded: [] };
+    this.pendingScroll = 0;
     this.renderSeq = 0;
   }
 
@@ -1536,31 +1583,66 @@ class FirstPairTriptychReviewView extends ItemView {
   }
 
   getState() {
-    return this.returnTo ? { returnTo: this.returnTo } : {};
+    return { review: { ...this.reviewState } };
   }
 
   async setState(next, result) {
     if (typeof super.setState === "function") await super.setState(next, result);
-    const returnTo = next && next.returnTo ? next.returnTo : null;
-    if (JSON.stringify(returnTo) !== JSON.stringify(this.returnTo || null)) {
-      this.returnTo = returnTo;
+    const review = next && next.review ? next.review : null;
+    const scrollTop = next && Number(next.scrollTop) || 0;
+    if (review || scrollTop) {
+      if (review) {
+        this.reviewState = {
+          pair: String(review.pair || ""),
+          expanded: Array.isArray(review.expanded) ? review.expanded.map(String) : [],
+        };
+      }
+      this.pendingScroll = scrollTop;
       await this.renderReview();
     }
   }
 
-  // Back to the page Review was opened from, at its scroll position.
-  async goBack() {
-    const target = this.returnTo;
-    if (target && target.type === "file") {
-      const file = this.app.vault.getAbstractFileByPath(target.path);
-      if (file) {
-        await this.leaf.openFile(file);
-        return;
-      }
+  async onClose() {
+    if (this.unsubscribeHistory) this.unsubscribeHistory();
+  }
+
+  scroller() {
+    return this.contentEl.querySelector(".lt-review-content");
+  }
+
+  captureLocation() {
+    const scroller = this.scroller();
+    return {
+      view: "review",
+      state: { pair: this.reviewState.pair, expanded: [...this.reviewState.expanded] },
+      scrollTop: Number(scroller && scroller.scrollTop) || 0,
+    };
+  }
+
+  navHistory() {
+    const history = this.plugin.historyFor(this.leaf);
+    if (this.subscribedHistory !== history) {
+      if (this.unsubscribeHistory) this.unsubscribeHistory();
+      this.unsubscribeHistory = history.subscribe(() => this.updateNavButtons());
+      this.subscribedHistory = history;
     }
-    await this.plugin.openReader(target && target.type === "reader" ? target.state : null, this.leaf);
-    const view = this.leaf.view;
-    if (target && target.scrollTop && view && view.scrollEl) view.scrollEl.scrollTop = target.scrollTop;
+    return history;
+  }
+
+  updateNavButtons() {
+    const history = this.navHistory();
+    if (this.backButton) this.backButton.disabled = !history.canBack();
+    if (this.forwardButton) this.forwardButton.disabled = !history.canForward();
+  }
+
+  async goBack() {
+    const prior = this.navHistory().back(this.captureLocation());
+    if (prior) await this.plugin.showLocation(this.leaf, prior);
+  }
+
+  async goForward() {
+    const next = this.navHistory().forward(this.captureLocation());
+    if (next) await this.plugin.showLocation(this.leaf, next);
   }
 
   pageChoices(ledger, key) {
@@ -1608,7 +1690,9 @@ class FirstPairTriptychReviewView extends ItemView {
     const pairs = diffView.pairKeys(diffs);
     const editions = diffs.editions;
     const latest = editions.length > 1 ? `${editions[editions.length - 2]}|${editions[editions.length - 1]}` : pairs[0];
-    let pair = pairs.includes(this.plugin.settings.rulesPair) ? this.plugin.settings.rulesPair : latest;
+    let pair = [this.reviewState.pair, this.plugin.settings.rulesPair, latest]
+      .find((key) => pairs.includes(key)) || latest;
+    this.reviewState.pair = pair;
     const editionName = (id) => this.plugin.settings.knownEditions[id] || id;
     const pairName = (key) => key.split("|").map(editionName).join(" → ");
     const section = content.createDiv({ cls: "fp-rules-section" });
@@ -1629,16 +1713,23 @@ class FirstPairTriptychReviewView extends ItemView {
         t, parts,
         onOpenPart: (part) => {
           const page = firstPageOfPart(part);
-          if (page) void this.plugin.openReader({ mode: "fragment", key: page.key });
+          if (page) void this.plugin.openReader({ mode: "fragment", key: page.key }, this.leaf);
         },
       });
       body.createEl("h2", { text: t("rules_heading") });
       body.createEl("p", { cls: "lt-review-explanation", text: t("rules_explain") });
       diffView.renderRules(body, diffs, pair, {
         t,
+        expanded: new Set(this.reviewState.expanded),
+        onToggle: (ruleId, open) => {
+          const expanded = new Set(this.reviewState.expanded);
+          if (open) expanded.add(ruleId);
+          else expanded.delete(ruleId);
+          this.reviewState.expanded = [...expanded];
+        },
         decisions: ruleDecisionMap(ledger),
         pageTitle: (key) => (this.reader.pageByKey.get(key) || {}).title || key,
-        onOpen: (key) => void this.plugin.openReader({ mode: "fragment", key }),
+        onOpen: (key) => void this.plugin.openReader({ mode: "fragment", key }, this.leaf),
         onDecide: async (rule, decision) => {
           try {
             ledger = await this.plugin.store.update(context, (current) => setRuleDecision(current, rule, pair, decision));
@@ -1653,6 +1744,7 @@ class FirstPairTriptychReviewView extends ItemView {
     };
     select.addEventListener("change", async () => {
       pair = select.value;
+      this.reviewState = { pair, expanded: [] };
       this.plugin.settings.rulesPair = pair;
       await this.plugin.saveSettings();
       draw();
@@ -1679,14 +1771,19 @@ class FirstPairTriptychReviewView extends ItemView {
         cls: "lt-review-bar",
         attr: { role: "navigation", "aria-label": t("review_nav_aria") },
       });
-      if (this.returnTo) {
-        const back = bar.createEl("button", {
-          cls: "lt-review-back mod-cta",
-          text: `← ${t("nav_Back")}`,
-          attr: { type: "button", title: t("review_back_title") },
-        });
-        back.addEventListener("click", () => void this.goBack());
-      }
+      this.backButton = bar.createEl("button", {
+        cls: "lt-review-back",
+        text: `← ${t("nav_Back")}`,
+        attr: { type: "button", title: t("review_back_title") },
+      });
+      this.backButton.addEventListener("click", () => void this.goBack());
+      this.forwardButton = bar.createEl("button", {
+        cls: "lt-review-forward",
+        text: `${t("nav_Forward")} →`,
+        attr: { type: "button" },
+      });
+      this.forwardButton.addEventListener("click", () => void this.goForward());
+      this.updateNavButtons();
       const readerButton = bar.createEl("button", {
         text: t("reader_button"),
         attr: { type: "button" },
@@ -1725,7 +1822,7 @@ class FirstPairTriptychReviewView extends ItemView {
           heading.addEventListener("click", () => void this.plugin.openReader({
             mode: "fragment",
             key: page.key,
-          }));
+          }, this.leaf));
           card.createEl("code", { text: page.key });
           this.renderChoiceSummary(card, this.pageChoices(ledger, page.key));
         }
@@ -1779,7 +1876,7 @@ class FirstPairTriptychReviewView extends ItemView {
             const link = item.createEl("button", {
               cls: "lt-review-page-link", text: row.page.title, attr: { type: "button" },
             });
-            link.addEventListener("click", () => void this.plugin.openReader({ mode: "fragment", key: row.page.key }));
+            link.addEventListener("click", () => void this.plugin.openReader({ mode: "fragment", key: row.page.key }, this.leaf));
           }
         };
         select.addEventListener("change", renderRanking);
@@ -1817,6 +1914,12 @@ class FirstPairTriptychReviewView extends ItemView {
         cls: "lt-review-digest",
         text: renderDigest(ledger),
       });
+      // A return through Back/Forward lands where Review was left.
+      if (this.pendingScroll) {
+        const scroller = this.scroller();
+        if (scroller) scroller.scrollTop = this.pendingScroll;
+        this.pendingScroll = 0;
+      }
     } catch (error) {
       console.error("firstpair-triptych: Review open failed", error);
       this.contentEl.createEl("h1", { text: t("review_heading") });
@@ -1972,8 +2075,16 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
       id: "reader-back",
       name: t("cmd_back"),
       callback: () => {
-        const view = this.activeReaderView();
+        const view = this.activeReaderView() || this.activeReviewView();
         if (view) void view.goBack();
+      },
+    });
+    this.addCommand({
+      id: "reader-forward",
+      name: t("cmd_forward"),
+      callback: () => {
+        const view = this.activeReaderView() || this.activeReviewView();
+        if (view) void view.goForward();
       },
     });
     this.addCommand({
@@ -2164,10 +2275,46 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     return null;
   }
 
-  async openReader(target = null, selectedLeaf = null) {
+  historyFor(leaf) {
+    if (!this.histories) this.histories = historyRegistry(READER_HISTORY_LIMIT);
+    return this.histories(leaf);
+  }
+
+  // Where a pane is now, as a history entry: a Reader or Review place, or a
+  // note; null for anything else.
+  locationOf(leaf) {
+    const view = leaf && leaf.view;
+    if (!view) return null;
+    if (typeof view.captureLocation === "function") return view.captureLocation();
+    if (view.file && view.file.path) return { view: "file", path: view.file.path };
+    return null;
+  }
+
+  // Show a history entry in a pane without recording it again.
+  async showLocation(leaf, location) {
+    if (location.view === "file") {
+      const file = this.app.vault.getAbstractFileByPath(location.path);
+      if (file) await leaf.openFile(file);
+      return;
+    }
+    if (location.view === "review") {
+      await this.openReview(leaf, { record: false, review: location.state, scrollTop: location.scrollTop });
+      return;
+    }
+    const view = leaf.view;
+    if (view instanceof FirstPairTriptychReaderView) {
+      await view.showLocation({ ...location, view: "reader" });
+      return;
+    }
+    await this.openReader(location.state, leaf, { record: false });
+    if (leaf.view instanceof FirstPairTriptychReaderView) leaf.view.restoreScroll(location.scrollTop);
+  }
+
+  async openReader(target = null, selectedLeaf = null, { record = true } = {}) {
     try {
       const reader = await this.loadReaderIndex();
       const leaf = selectedLeaf || this.app.workspace.getLeaf(false);
+      if (record) this.historyFor(leaf).visit(this.locationOf(leaf));
       await leaf.setViewState({
         type: READER_VIEW_TYPE,
         active: true,
@@ -2182,23 +2329,17 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     }
   }
 
-  async openReview(selectedLeaf = null) {
+  async openReview(selectedLeaf = null, { record = true, review = null, scrollTop = 0 } = {}) {
     try {
       await this.loadReaderIndex();
       const leaf = selectedLeaf || this.app.workspace.getLeaf(false);
-      // Review replaces the pane it opens in; remember what was there so its
-      // Back button returns to the same page and scroll position.
-      const view = leaf.view;
-      let returnTo = null;
-      if (view && typeof view.getViewType === "function" && view.getViewType() === READER_VIEW_TYPE) {
-        returnTo = { type: "reader", state: view.getState(), scrollTop: view.scrollEl ? view.scrollEl.scrollTop : 0 };
-      } else if (view && view.file && view.file.path) {
-        returnTo = { type: "file", path: view.file.path };
-      }
+      // Review replaces the pane it opens in; the pane's history keeps what
+      // was there, so Back returns to the same page and scroll position.
+      if (record) this.historyFor(leaf).visit(this.locationOf(leaf));
       await leaf.setViewState({
         type: REVIEW_VIEW_TYPE,
         active: true,
-        state: returnTo ? { returnTo } : {},
+        state: { review: review || { pair: "", expanded: [] }, scrollTop },
       });
       if (typeof this.app.workspace.revealLeaf === "function") {
         await this.app.workspace.revealLeaf(leaf);
@@ -2230,8 +2371,10 @@ module.exports = class FirstPairTriptychPlugin extends Plugin {
     if (leaf.view && leaf.view.file && leaf.view.file.path !== file.path) return;
     this.readerTransition = true;
     try {
-      if (target.mode === "review") await this.openReview(leaf);
-      else await this.openReader(target, leaf);
+      // The static note hands over to the Reader in place; it is not a stop
+      // in the pane's history (Back would only hand over again).
+      if (target.mode === "review") await this.openReview(leaf, { record: false });
+      else await this.openReader(target, leaf, { record: false });
     } finally {
       this.readerTransition = false;
     }

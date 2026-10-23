@@ -241,7 +241,7 @@ function renderRules(container, diffs, pair, options) {
     });
     const placeList = row.createDiv({ cls: "fp-rule-places" });
     placeList.hidden = true;
-    places.addEventListener("click", () => {
+    const fillPlaces = () => {
       if (!placeList.childElementCount) {
         const seen = new Set();
         for (const [key] of rule.occurrences) {
@@ -253,8 +253,17 @@ function renderRules(container, diffs, pair, options) {
           link.addEventListener("click", () => onOpen(key));
         }
       }
-      placeList.hidden = !placeList.hidden;
-      places.setAttribute("aria-expanded", placeList.hidden ? "false" : "true");
+    };
+    const setOpen = (open) => {
+      if (open) fillPlaces();
+      placeList.hidden = !open;
+      places.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    // A rule opened before (options.expanded) shows its pages again.
+    if (options.expanded && options.expanded.has(rule.id)) setOpen(true);
+    places.addEventListener("click", () => {
+      setOpen(placeList.hidden);
+      if (options.onToggle) options.onToggle(rule.id, !placeList.hidden);
     });
   }
   return list;

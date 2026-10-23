@@ -185,7 +185,7 @@
   gap: 0.22rem;
   grid-template-columns:
     minmax(8rem, 1fr)
-    repeat(4, minmax(2.75rem, auto))
+    repeat(5, minmax(2.75rem, auto))
     minmax(8rem, 1fr);
   min-width: 0;
   width: min(58rem, 100%);
@@ -483,7 +483,7 @@
   .lt-reader-controls {
     grid-template-columns:
       minmax(0, 1fr)
-      repeat(4, minmax(2.6rem, auto))
+      repeat(5, minmax(2.6rem, auto))
       minmax(0, 1fr);
     width: 100%;
   }
@@ -525,12 +525,13 @@
   .lt-reader-controls {
     grid-template-columns:
       minmax(0, 1fr)
-      repeat(4, 2.45rem)
+      repeat(5, 2.45rem)
       minmax(0, 1fr);
   }
 
   .lt-reader-control-up .lt-reader-control-copy,
   .lt-reader-control-back .lt-reader-control-copy,
+  .lt-reader-control-forward .lt-reader-control-copy,
   .lt-reader-control-top .lt-reader-control-copy,
   .lt-reader-control-toc .lt-reader-control-copy {
     display: none;

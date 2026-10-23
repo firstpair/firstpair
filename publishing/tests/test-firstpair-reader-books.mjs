@@ -139,7 +139,7 @@ const BOOK = {
 test('a plain book: six controls, Up and TOC inside the Reader, footnotes and Back, links to pages', async () => {
   const { el, view, done } = await open(BOOK)
   try {
-    assert.deepEqual(Object.keys(rail(el)), ['Previous', 'Up', 'Back', 'Top', 'TOC', 'Next'])
+    assert.deepEqual(Object.keys(rail(el)), ['Previous', 'Up', 'Back', 'Forward', 'Top', 'TOC', 'Next'])
     assert.match(el.querySelector('.firstpair-reader__markdown h1').textContent, /One/)
     assert.equal(rail(el).Next.querySelector('.firstpair-reader__destination').textContent, 'Two')
     // The footnote jumps inside the Reader; Back returns to the reference.

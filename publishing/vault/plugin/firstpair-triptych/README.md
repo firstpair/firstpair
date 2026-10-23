@@ -140,8 +140,12 @@ rules**: one-word substitutions that recur across the book, each with
 **Accept** (apply everywhere) or **Reject** (keep the earlier word), flagged
 when the edit also runs the other way. Rule decisions go to the digest.
 
-**Review and back.** **Review** opens in the same pane; its **← Back** button
-returns to the page you came from, at the same scroll position.
+**Back and Forward everywhere.** The Reader, **Review**, and any note opened
+in the same pane share one history. **Back** returns to the previous place,
+scroll position included (a page, Review with the rules you had opened, a
+note); **Forward** retraces what Back undid; going somewhere new clears
+Forward. The rail reads Previous · Up · Back · Forward · Top · TOC · Next, and
+Review has the same Back and Forward at the top.
 
 **Keyboard.** On a Mac (or an iPad with a keyboard), ← and → turn to the
 previous and next page while the Reader is the active pane. Text fields,

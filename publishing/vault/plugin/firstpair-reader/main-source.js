@@ -55,6 +55,8 @@ const voiceCore = require("../shared/voice-core")({
 });
 // The span editor every FirstPair reader shares (word picker, coloured and
 // striped spans, chooser, overlap limit, saved rows).
+// One Back/Forward history per view (shared/nav-history.js).
+const { NavHistory } = require("../shared/nav-history");
 // Left/Right arrows turn pages on a hardware keyboard (shared/page-keys.js).
 const { bindPageKeys } = require("../shared/page-keys");
 const editor = require("../shared/span-editor")({
@@ -106,23 +108,19 @@ const DEFAULT_SETTINGS = {
   apiModel: "whisper-1",
 };
 
-class ReaderHistory {
+// Back and Forward: the shared FirstPair history (shared/nav-history.js);
+// push records the place being left and clears Forward.
+class ReaderHistory extends NavHistory {
   constructor(limit = HISTORY_LIMIT) {
-    this.limit = limit;
-    this.items = [];
+    super(limit);
   }
 
   push(value) {
-    this.items.push(value);
-    if (this.items.length > this.limit) this.items.shift();
+    this.visit(value);
   }
 
-  pop() {
-    return this.items.pop() ?? null;
-  }
-
-  clear() {
-    this.items = [];
+  get items() {
+    return this.backStack;
   }
 }
 
@@ -602,8 +600,16 @@ class FirstPairReaderView extends ItemView {
   }
 
   async restore() {
-    const state = this.history.pop();
-    if (!state) return;
+    const state = this.history.back(this.snapshot());
+    if (state) await this.showSnapshot(state);
+  }
+
+  async goForward() {
+    const state = this.history.forward(this.snapshot());
+    if (state) await this.showSnapshot(state);
+  }
+
+  async showSnapshot(state) {
     if (state.editionId && this.library && state.editionId !== this.editionId) {
       await this.useEdition(state.editionId, false);
     }
@@ -658,6 +664,7 @@ class FirstPairReaderView extends ItemView {
     else this.previousWord = null;
     this.up = this.makeButton("nav_up", "corner-left-up", () => this.goUp());
     this.back = this.makeButton("nav_back", "rotate-ccw", () => this.restore());
+    this.forward = this.makeButton("nav_forward", "rotate-cw", () => this.goForward());
     this.top = this.makeButton("nav_top", "arrow-up-to-line", () => this.toTop());
     this.toc = this.makeButton("nav_toc", "list", () => this.showContents());
     if (words) this.nextWord = this.makeButton("nav_next_word", "chevrons-right", () => this.stepWord(1));
@@ -682,7 +689,8 @@ class FirstPairReaderView extends ItemView {
     this.nextDestination.setText(next?.title ?? "");
     this.up.disabled = this.mode === "library" || (this.mode === "contents" && !this.library);
     this.toc.disabled = this.mode === "contents";
-    this.back.disabled = !this.history.items.length;
+    this.back.disabled = !this.history.canBack();
+    this.forward.disabled = !this.history.canForward();
     this.top.disabled = false;
     this.updateWordNavigation();
     const part = this.book?.parts.find((item) => item.id === (this.mode === "part" ? this.partId : this.pages[this.position]?.partId));
@@ -1869,6 +1877,7 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     viewCommand("reader-previous", "Previous page", (view) => view.goPrevious());
     viewCommand("reader-next", "Next page", (view) => view.goNext());
     viewCommand("reader-back", "Back", (view) => view.restore());
+    viewCommand("reader-forward", "Forward", (view) => view.goForward());
     viewCommand("reader-up", "Up", (view) => view.goUp());
     viewCommand("reader-top", "Top", (view) => view.toTop());
     viewCommand("reader-contents", "Contents", (view) => view.showContents());

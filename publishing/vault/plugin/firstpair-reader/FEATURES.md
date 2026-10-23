@@ -17,12 +17,13 @@ here · **—** deliberately left out (with the reason).
 
 | Feature | From | Reader 2 |
 | --- | --- | --- |
-| Rail Previous · Up · Back · Top · TOC · Next | all | **=** one rail; Previous/Next word added when the vault has dictionaries (1.7) |
+| Rail Previous · Up · Back · Forward · Top · TOC · Next | all | **+** one rail, Forward added; Previous/Next word added when the vault has dictionaries (1.7) |
 | Rail at the top or the bottom | Cicero | **+** setting for every vault |
 | Previous/Next show the destination title | Cicero, Invented, Triptych, mobile | **+** visible label, ellipsized on phones; aria-label stays the action |
 | Up climbs page → part → contents → library | Cicero, Invented, mobile | **+** 1.7's Up/TOC opened `Home.md` and could replace the Reader; both now stay inside |
 | TOC shows the contents with the current page marked | Cicero, Invented, mobile | **+** `aria-current`, current part marked too |
 | Back: bounded, plain-data history with scroll | all | **+** 100 entries (1.7: 64, Cicero/Invented: 50); restores horizontal track scroll (mobile) and refocuses the exact footnote reference (Cicero) |
+| Forward | — | **new** retraces what Back undid; a new step clears it, as in a browser (`shared/nav-history.js`, shared with FirstPair Triptych) |
 | Top records history only when scrolled; reduced motion | Cicero, Invented, mobile | **=** |
 | History cleared on an external launch | Cicero, Invented, mobile | **+** 1.7 pushed onto the old stack |
 | Progress line (page n of N · part) | Cicero, Invented, mobile | **=** `role=status` |
