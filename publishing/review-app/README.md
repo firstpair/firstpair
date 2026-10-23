@@ -63,13 +63,31 @@ starts the app. During development the Vite server saves decisions under
 `REVIEW_DECISIONS/Preferences/` through `/api/fs`, which cannot leave that
 folder.
 
-## Deploying to Vercel (later)
+## Deploying to Vercel
 
-`vercel.json` builds the static app into `dist/`. Deployed, decisions are
-saved into a folder you pick in Chrome, Edge, or Arc (File System Access
-API); Safari cannot save into a folder.
+Two independent locks:
 
-The book's data is copied into a build only when asked:
-`REVIEW_DATA=… REVIEW_INCLUDE_DATA=1 npm run build`. That puts every
-edition's full text on the site, which is publishing it. Do it only with
-the author's explicit go-ahead, behind Vercel's deployment protection.
+1. **Vercel Authentication on every deployment**, production included: only
+   members of the Vercel team, signed in, can load any URL of the project.
+   `scripts/deploy-vercel.mjs` turns it on before uploading and stops if
+   Vercel does not confirm it, then checks that anonymous requests are
+   refused.
+2. **Encrypted data.** A build includes the book's data only encrypted:
+   each file is raw-DEFLATE-compressed and sealed with AES-256-GCM under a
+   key derived from a passphrase (PBKDF2-SHA-256, 600,000 iterations); the
+   app asks for the passphrase and decrypts in the browser. The build
+   refuses unencrypted data unless `REVIEW_ALLOW_PLAINTEXT=1`. "Remember on
+   this device" keeps the derived, non-extractable key in IndexedDB; Lock
+   forgets it.
+
+Headers add `noindex`, a strict Content-Security-Policy, no framing and no
+referrer.
+
+```sh
+REVIEW_DATA=/path/to/book/dist-review/data REVIEW_INCLUDE_DATA=1 \
+REVIEW_PASSPHRASE="$(cat ~/.config/firstpair/review-passphrase)" npm run build
+npm run deploy          # token: VERCEL_TOKEN or ~/.config/firstpair/vercel-token
+```
+
+The deployed app saves decisions into a folder you pick in Chrome, Edge, or
+Arc; Safari and phones can read but not save.

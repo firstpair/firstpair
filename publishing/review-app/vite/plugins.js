@@ -63,9 +63,21 @@ export function reviewData(dir, { includeInBuild = false } = {}) {
         fs.createReadStream(file).pipe(res)
       })
     },
-    closeBundle() {
+    // A deployed build carries the data encrypted (REVIEW_PASSPHRASE); plain
+    // data ships only when REVIEW_ALLOW_PLAINTEXT=1 says so explicitly.
+    async closeBundle() {
       if (!root || !includeInBuild) return
-      fs.cpSync(root, path.join(outDir, 'data'), { recursive: true })
+      const target = path.join(outDir, 'data')
+      if (process.env.REVIEW_PASSPHRASE) {
+        const { encryptFolder } = await import('../scripts/encrypt-data.mjs')
+        const result = await encryptFolder(root, target, process.env.REVIEW_PASSPHRASE)
+        this.info?.(`encrypted ${result.files} data files (${(result.bytes / 1e6).toFixed(1)} MB)`)
+        return
+      }
+      if (process.env.REVIEW_ALLOW_PLAINTEXT !== '1') {
+        throw new Error('refusing to put unencrypted book data in a build: set REVIEW_PASSPHRASE')
+      }
+      fs.cpSync(root, target, { recursive: true })
     },
   }
 }

@@ -4,12 +4,15 @@
 // the first time any view needs one of its paragraphs.  Paragraphs are
 // referred to by their index in graph.units everywhere in the app.
 
+import { encrypted, fetchJson } from './vault-crypto.js'
+
 const BASE = `${import.meta.env.BASE_URL}data/`
 const cache = new Map()
 
+// Plain JSON in development; decrypted per file in an encrypted deployment.
 function json(path) {
   if (!cache.has(path)) {
-    cache.set(path, fetch(BASE + path).then((response) => {
+    cache.set(path, encrypted() ? fetchJson(path) : fetch(BASE + path).then((response) => {
       if (!response.ok) throw new Error(`${path}: ${response.status}`)
       return response.json()
     }))

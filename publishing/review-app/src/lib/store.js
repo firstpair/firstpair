@@ -6,6 +6,7 @@ import { markRaw, reactive, readonly } from 'vue'
 import { loadBook } from './data.js'
 import { DecisionStore, NavHistory, notify, reviewState } from './shared.js'
 import { devStorage, grant, pickFolder, rememberedFolder } from './storage.js'
+import { encryptionInfo, forget, rememberedKey, unlock } from './vault-crypto.js'
 
 const state = reactive({
   book: null,
@@ -14,6 +15,8 @@ const state = reactive({
   canBack: false,
   canForward: false,
   storage: null,
+  locked: null, // encryption.json of an encrypted deployment, until unlocked
+  encrypted: false,
   ledger: null,
   ledgerError: '',
   notices: [],
@@ -142,6 +145,29 @@ export async function boot() {
     state.notices.push(event.detail)
     setTimeout(() => state.notices.shift(), 5000)
   })
+  const info = await encryptionInfo()
+  state.encrypted = Boolean(info)
+  if (info && !(await rememberedKey(info))) {
+    state.locked = info
+    return
+  }
+  await start()
+}
+
+// Unlock an encrypted deployment, then start.  False on a wrong passphrase.
+export async function unlockWith(passphrase, remember) {
+  if (!state.locked || !(await unlock(state.locked, passphrase, remember))) return false
+  state.locked = null
+  await start()
+  return true
+}
+
+export async function lockAgain() {
+  await forget()
+  location.reload()
+}
+
+async function start() {
   try {
     state.book = markRaw(await loadBook())
   } catch (error) {

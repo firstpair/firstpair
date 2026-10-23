@@ -150,3 +150,6 @@ button.x { border: none; padding: 0 0.3rem; }
 .dialog .actions { display: flex; gap: 0.4rem; margin-top: 0.6rem; }
 .picker { margin-bottom: 0.6rem; }
 .digest { background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius-m); padding: 0.8rem; white-space: pre-wrap; }
+
+.unlock { display: flex; flex-direction: column; gap: 0.6rem; margin: 4rem auto; max-width: 26rem; }
+.unlock input[type=password] { border: 1px solid var(--line); border-radius: var(--radius-m); font-size: 1rem; padding: 0.5rem; }
