@@ -536,3 +536,18 @@ body {
 .firstpair-reader__editing .firstpair-reader__words-toggle { display: inline-flex; }
 .firstpair-reader__words-editor.is-open { display: none; }
 .firstpair-reader__editing .firstpair-reader__words-editor.is-open { display: block; }
+
+/* Interlinear study layer of an optional source column (Chinese: reading
+   above, characters, gloss below). Words wrap as whole stacks. */
+.firstpair-reader__interlinear { align-items: flex-end; display: flex; flex-wrap: wrap; gap: var(--size-4-2) 0.15em; line-height: 1.3; }
+.firstpair-reader__iword { align-items: center; display: inline-flex; flex-direction: column; padding-inline: 0.1em; }
+.firstpair-reader__iword--plain { align-self: flex-end; font-size: 1.25em; padding-block-end: 1.45em; }
+.firstpair-reader__interlinear--pinyin .firstpair-reader__iword--plain { padding-block-end: 0; }
+.firstpair-reader__ireading { color: var(--text-muted); font-size: 0.72em; white-space: nowrap; }
+.firstpair-reader__itext { font-size: 1.25em; }
+.firstpair-reader__igloss { color: var(--text-faint); font-size: 0.68em; max-width: 9em; min-height: 1.3em; overflow-wrap: anywhere; text-align: center; }
+.firstpair-reader__interlinear-toggle { font-size: var(--font-ui-smaller); margin-inline-start: var(--size-4-1); min-height: 32px; }
+.firstpair-reader__strip--heading .firstpair-reader__cell { font-size: 1.3em; font-weight: 600; }
+.firstpair-reader__strip--cover .firstpair-reader__cell { text-align: center; }
+.firstpair-reader__strip--footnote .firstpair-reader__cell { font-size: 0.88em; }
+.firstpair-reader__strip--quote .firstpair-reader__cell { border-inline-start: 3px solid var(--background-modifier-border); padding-inline-start: var(--size-4-3); }

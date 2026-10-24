@@ -365,3 +365,45 @@ function fixtureVaultRepair(root) {
   rmSync(fresh, { recursive: true, force: true })
   return root
 }
+
+test('an optional source column: the translation alone, then the source with interlinear word layers', async () => {
+  const window = mock.makeWindow(); globalThis.window = window; globalThis.document = window.document; globalThis.getComputedStyle = window.getComputedStyle.bind(window); globalThis.ResizeObserver = window.ResizeObserver
+  const vaultRoot = mkdtempSync(join(tmpdir(), 'firstpair-reader-interlinear-'))
+  const write = (path, value) => { mkdirSync(join(vaultRoot, path, '..'), { recursive: true }); writeFileSync(join(vaultRoot, path), JSON.stringify(value)) }
+  write('_data/parallel-reader.json', {
+    schema: 'firstpair-parallel-reader-v1', title: 'Study', unit: 'paragraph', interlinear: { layers: ['pinyin', 'gloss'] },
+    sourceLanguage: { id: 'zh', lang: 'zh', label: '中文', position: 'left', optional: true, defaultVisible: false },
+    translations: [{ id: 'en', lang: 'en', label: 'English', defaultVisible: true }],
+    pages: [{ id: 'p1', title: 'Page 1', path: '_data/pages/p1.json' }],
+  })
+  write('_data/pages/p1.json', { schema: 'firstpair-aligned-chapter-v1', id: 'p1', title: 'Page 1', units: [
+    { id: 'b1', kind: 'heading', source: ['医生'], translations: { en: ['The Doctor'] }, words: [['医生', 'yī shēng', 'doctor']] },
+    { id: 'b2', source: ['他来了。'], translations: { en: ['He came.'] }, words: [['他', 'tā', 'he'], ['来', 'lái', 'come'], ['了', 'le', '(completed)'], ['。', '', '']] },
+  ] })
+  try {
+    const { root } = await openReader(vaultRoot, window)
+    const langs = () => Array.from(root.querySelectorAll('.firstpair-reader__strip')[1].querySelectorAll('.firstpair-reader__cell')).map((cell) => cell.getAttribute('lang'))
+    assert.deepEqual(langs(), ['en'], 'the translation alone by default')
+    assert.equal(root.querySelector('.firstpair-reader__column-labels').hidden, true, 'one column has no header')
+    assert.ok(root.querySelector('.firstpair-reader__strip--heading'))
+    const english = root.querySelectorAll('.firstpair-reader__language-toggle input')[1]
+    english.checked = false; english.dispatchEvent(new window.Event('change')); await settle(); await settle()
+    assert.deepEqual(langs(), ['en'], 'the last column cannot be switched off')
+
+    const source = root.querySelector('.firstpair-reader__language--source input')
+    source.checked = true; source.dispatchEvent(new window.Event('change')); await settle(); await settle()
+    assert.deepEqual(langs(), ['zh', 'en'])
+    const words = root.querySelectorAll('.firstpair-reader__strip')[1].querySelectorAll('.firstpair-reader__iword')
+    assert.equal(words.length, 4)
+    assert.equal(words[0].querySelector('.firstpair-reader__ireading').textContent, 'tā')
+    assert.equal(words[0].querySelector('.firstpair-reader__igloss').textContent, 'he')
+    assert.ok(words[3].classList.contains('firstpair-reader__iword--plain'), 'punctuation runs inline')
+
+    root.querySelector('.firstpair-reader__interlinear-toggle').click(); await settle(); await settle()
+    assert.equal(root.querySelectorAll('.firstpair-reader__igloss').length, 0, 'text, then reading, then gloss: wraps to text')
+    assert.equal(root.querySelectorAll('.firstpair-reader__iword').length, 0)
+    root.querySelector('.firstpair-reader__interlinear-toggle').click(); await settle(); await settle()
+    assert.equal(root.querySelectorAll('.firstpair-reader__ireading').length, 4)
+    assert.equal(root.querySelectorAll('.firstpair-reader__igloss').length, 0, 'reading only')
+  } finally { rmSync(vaultRoot, { recursive: true, force: true }) }
+})

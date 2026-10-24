@@ -71,6 +71,7 @@ const TARGET_INDEX = "_data/targets.json";
 const HISTORY_LIMIT = 100;
 const STACK_BELOW = 700;
 const FRAGMENT_LANGUAGES = ["firstpair-fragment", "rgbdns-fragment", "sail-fragment"];
+const INTERLINEAR = ["text", "pinyin", "gloss"];
 const LAYOUTS = [
   { id: "auto", label: "Auto", short: "Auto", icons: ["smartphone"] },
   { id: "columns", label: "Columns", short: "Cols", icons: ["columns-2", "columns"] },
@@ -166,6 +167,11 @@ class FirstPairReaderView extends ItemView {
     this.history = new ReaderHistory();
     this.parallel = null;
     this.enabled = new Set();
+    // An aligned edition whose source column is optional (a translation read
+    // on its own, the source a study layer) and the interlinear word layer
+    // shown with it: "text", "pinyin" (reading above), or "gloss" (both).
+    this.sourceShown = true;
+    this.interlinear = "gloss";
     this.wordPosition = -1;
     this.columns = [];
     this.renderChild = null;
@@ -205,8 +211,12 @@ class FirstPairReaderView extends ItemView {
 
   translation(id) { return this.parallel.translations.find((item) => item.id === id); }
 
+  sourceOptional() { return Boolean(this.parallel?.sourceLanguage?.optional); }
+
+  hasInterlinear() { return Boolean(this.parallel?.interlinear); }
+
   languageShort(language) {
-    return language.short ?? ({ en: "Eng", ru: "Рус", it: "Ita", la: "Lat" }[language.id] ?? language.label);
+    return language.short ?? ({ en: "Eng", ru: "Рус", it: "Ita", la: "Lat", zh: "中文" }[language.id] ?? language.label);
   }
 
   translationName(item) {
@@ -390,6 +400,8 @@ class FirstPairReaderView extends ItemView {
     this.enabled = new Set();
     if (book.aligned) {
       this.parallel = typeof book.aligned === "string" ? await this.readJson(book.aligned) : book.aligned;
+      const source = this.parallel.sourceLanguage || {};
+      this.sourceShown = !(source.optional && source.defaultVisible === false);
       for (const language of this.languages()) {
         const items = this.translationsOf(language.id);
         if (items.some((item) => item.defaultVisible !== false)) this.enabled.add(language.id);
@@ -459,6 +471,8 @@ class FirstPairReaderView extends ItemView {
       if (Array.isArray(saved.enabled)) {
         this.enabled = new Set(saved.enabled.filter((lang) => this.languages().some((l) => l.id === lang)));
       }
+      if (this.sourceOptional() && typeof saved.source === "boolean") this.sourceShown = saved.source;
+      if (INTERLINEAR.includes(saved.interlinear)) this.interlinear = saved.interlinear;
       if (Array.isArray(saved.columns)) {
         this.columns = saved.columns.filter((c) => this.translation(c.id))
           .map((c) => ({ lang: c.lang, id: c.id, extra: Boolean(c.extra) }));
@@ -474,6 +488,8 @@ class FirstPairReaderView extends ItemView {
       pageId: this.pages[this.position]?.id,
       scrollTop: Math.round(this.root?.scrollTop ?? 0),
       enabled: [...this.enabled],
+      source: this.sourceShown,
+      interlinear: this.interlinear,
       columns: this.columns.map((c) => ({ lang: c.lang, id: c.id, extra: Boolean(c.extra) })),
       word: this.drawer && !this.drawer.hasAttribute("hidden") ? this.lastWord ?? null : null,
     };
@@ -727,12 +743,38 @@ class FirstPairReaderView extends ItemView {
     if (!this.languageControls) return;
     this.languageControls.empty();
     const part = this.currentPart();
+    if (this.sourceOptional()) {
+      const source = this.parallel.sourceLanguage;
+      const group = this.languageControls.createDiv({ cls: "firstpair-reader__language firstpair-reader__language--source" });
+      const label = group.createEl("label", { cls: "firstpair-reader__language-toggle", attr: { title: source.label } });
+      const input = label.createEl("input", { type: "checkbox", attr: { "aria-label": source.label } });
+      input.checked = this.sourceShown;
+      input.addEventListener("change", async () => {
+        // A page with nothing on it is never shown: the last column stays.
+        if (!input.checked && !this.columns.length) { input.checked = true; return; }
+        this.sourceShown = input.checked;
+        await this.renderPage(false);
+      });
+      label.createSpan({ text: this.languageShort({ id: source.lang ?? source.id, label: source.label, short: source.short }), attr: { "aria-hidden": "true" } });
+      if (this.sourceShown && this.hasInterlinear()) {
+        const layers = group.createEl("button", {
+          cls: "firstpair-reader__interlinear-toggle",
+          text: t(`interlinear_${this.interlinear}`),
+          attr: { "aria-label": `${t("interlinear_aria")}: ${t(`interlinear_${this.interlinear}`)}` },
+        });
+        layers.addEventListener("click", async () => {
+          this.interlinear = INTERLINEAR[(INTERLINEAR.indexOf(this.interlinear) + 1) % INTERLINEAR.length];
+          await this.renderPage(false);
+        });
+      }
+    }
     for (const language of this.languages()) {
       const group = this.languageControls.createDiv({ cls: "firstpair-reader__language" });
       const label = group.createEl("label", { cls: "firstpair-reader__language-toggle", attr: { title: language.label } });
       const input = label.createEl("input", { type: "checkbox", attr: { "aria-label": language.label } });
       input.checked = this.enabled.has(language.id);
       input.addEventListener("change", async () => {
+        if (!input.checked && !this.sourceShown && this.enabled.size === 1) { input.checked = true; return; }
         if (input.checked) this.enabled.add(language.id); else this.enabled.delete(language.id);
         await this.renderPage(false);
       });
@@ -1015,6 +1057,23 @@ class FirstPairReaderView extends ItemView {
         if (/^[\p{L}\p{M}]/u.test(token)) row.appendChild(this.makeWord(row, token));
         else row.appendText(token);
       }
+    }
+  }
+
+  // Interlinear words: each [text, reading, gloss] a stack with the reading
+  // above and (in "gloss") the gloss below; a word without a reading
+  // (punctuation, digits) runs inline.
+  appendInterlinear(container, words) {
+    const row = container.createDiv({ cls: `firstpair-reader__interlinear firstpair-reader__interlinear--${this.interlinear}` });
+    for (const [text, reading, gloss] of words) {
+      if (!reading) {
+        row.createSpan({ cls: "firstpair-reader__iword firstpair-reader__iword--plain", text });
+        continue;
+      }
+      const word = row.createSpan({ cls: "firstpair-reader__iword" });
+      word.createSpan({ cls: "firstpair-reader__ireading", text: reading });
+      word.createSpan({ cls: "firstpair-reader__itext", text });
+      if (this.interlinear === "gloss") word.createSpan({ cls: "firstpair-reader__igloss", text: gloss || "" });
     }
   }
 
@@ -1312,15 +1371,18 @@ class FirstPairReaderView extends ItemView {
     };
     const shown = this.columns.map((column, index) => ({ ...column, index, item: this.translation(column.id) }));
     const sourceLast = this.parallel.sourceLanguage.position === "right";
-    const cells = sourceLast ? [...shown, source] : [source, ...shown];
+    const sources = this.sourceShown ? [source] : [];
+    const cells = sourceLast ? [...shown, ...sources] : [...sources, ...shown];
     const tracks = Math.max(cells.length, this.plugin.settings.reserveDrawerColumn ? 1 + this.languages().length : 0);
     this.reservedTrack = tracks > cells.length;
     const labels = this.page.createDiv({ cls: "firstpair-reader__column-labels" });
     labels.style.setProperty("--firstpair-columns", String(tracks));
     for (const cell of cells) this.columnHeader(labels, cell);
+    // One column is a plain book: no header naming it.
+    if (cells.length === 1) labels.hidden = true;
     for (const unit of chapter.units) {
       const strip = this.page.createDiv({
-        cls: "firstpair-reader__strip",
+        cls: `firstpair-reader__strip${unit.kind ? ` firstpair-reader__strip--${unit.kind}` : ""}`,
         attr: { "data-unit-id": unit.id, "data-translations": String(shown.length) },
       });
       strip.style.setProperty("--firstpair-columns", String(tracks));
@@ -1330,7 +1392,11 @@ class FirstPairReaderView extends ItemView {
           cls: `firstpair-reader__cell firstpair-reader__cell--${isSource ? "source" : "translation"}`,
           attr: { lang: cell.lang, "data-label": isSource ? cell.label : this.columnTitle(cell) },
         });
-        this.appendText(element, isSource ? unit.source : (unit.translations?.[cell.id] ?? []), isSource);
+        if (isSource && Array.isArray(unit.words) && this.hasInterlinear() && this.interlinear !== "text") {
+          this.appendInterlinear(element, unit.words);
+        } else {
+          this.appendText(element, isSource ? unit.source : (unit.translations?.[cell.id] ?? []), isSource);
+        }
       }
     }
     this.updateToolbar();

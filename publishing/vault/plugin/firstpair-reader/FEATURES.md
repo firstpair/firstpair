@@ -61,6 +61,8 @@ here · **—** deliberately left out (with the reason).
 | Auto / Columns / Stacked layouts following width and orientation | 1.7 | **=** |
 | Columns on a phone | 1.7 (per-row snap), Triptych, mobile | **+** language tabs that follow taps and swipes; the chosen language opens first on every page |
 | Language toggles never reach zero | Cicero | **+** for multilingual source tables: one bar per note (Cicero added one per passage) |
+| Optional source column: the translation read alone, the source a toggle | — | **new** `sourceLanguage.optional`; the last shown column cannot be switched off |
+| Interlinear word layers (reading above, gloss below) | — | **new** unit `words`, cycled Text / + Reading / + Gloss, remembered with the page |
 | Prefix-sharded dictionaries, longest-prefix lookup, sync warnings | 1.7 | **=** |
 | Dictionary on plain Markdown pages | Cicero | **+** words are split inside text nodes, so links and emphasis survive (Cicero replaced the cell) |
 | Grammar shown with each entry | 1.7 | **=** (Cicero stored it and never showed it) |

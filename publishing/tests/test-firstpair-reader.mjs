@@ -45,7 +45,7 @@ test('standard Reader supports data-driven multilingual editions offline', () =>
 })
 
 test('standard Reader leads with the source text unless a title asks otherwise', () => {
-  assert.match(source, /\[source, \.\.\.shown\]/)
+  assert.match(source, /\[\.\.\.sources, \.\.\.shown\]/)
   assert.match(source, /translationsOf\(lang\)/)
   assert.match(source, /async rotate\(index\)/)
   assert.match(source, /async addColumn\(lang\)/)

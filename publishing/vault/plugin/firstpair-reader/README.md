@@ -40,6 +40,14 @@ the same language. Layout follows the screen (Auto), or stays in Columns or
 Stacked. On a phone, Columns become tabs: tap one or swipe the text, and the
 chosen language opens first on every page.
 
+An edition may make its source optional (`sourceLanguage.optional`, hidden by
+default with `defaultVisible: false`): it then reads as the translation
+alone, and the source's toggle adds it as a study column. Units that carry
+`words` (`[text, reading, gloss]` per word) show them interlinear when the
+edition declares `interlinear`: one button cycles Text, + Reading (pinyin
+above each word), and + Gloss (the word's meaning below it). Units may carry a
+`kind` (`heading`, `quote`, `footnote`, `cover`) for their styling.
+
 Tap a source word, or step through words with the double chevrons, for its
 dictionary entries in every shown language. Multilingual source tables get one
 language bar per note; at least one language stays on.
