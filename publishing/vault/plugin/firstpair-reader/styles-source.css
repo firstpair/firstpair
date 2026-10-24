@@ -47,7 +47,6 @@
 .firstpair-reader__more-entries[hidden] { display: none; }
 .firstpair-reader__drawer blockquote { margin: var(--size-4-1) 0 var(--size-4-1) var(--size-4-3); }
 .firstpair-reader__layout-toggle { align-items: center; display: inline-flex; gap: var(--size-4-1); margin-inline-start: auto; min-height: 44px; min-width: 44px; }
-.firstpair-reader__button-short { display: none; }
 .firstpair-reader__drawer-close { min-height: 44px; min-width: 44px; padding-inline: var(--size-4-3); }
 .firstpair-reader__warning { color: var(--text-warning); }
 /* Stacked layout: the source stanza left-flushed, each translation under it, indented. */
@@ -58,8 +57,7 @@
 .firstpair-reader__page--stacked .firstpair-reader__cell--translation::before { content: attr(data-label); display: block; font-size: var(--font-ui-smaller); margin-block-end: 2px; opacity: 0.8; text-transform: uppercase; }
 @media (max-width: 700px) {
   .firstpair-reader { padding: var(--size-4-2) var(--size-4-2) 0; }
-  .firstpair-reader__toolbar-title, .firstpair-reader__column-labels, .firstpair-reader__button-label { display: none; }
-  .firstpair-reader__layout-toggle .firstpair-reader__button-short { display: inline; }
+  .firstpair-reader__toolbar-title, .firstpair-reader__column-labels { display: none; }
   .firstpair-reader__toolbar { gap: 2px; }
   .firstpair-reader__languages { gap: var(--size-4-1); }
   .firstpair-reader__language { flex: 1 1 0; gap: 2px; }
@@ -67,7 +65,6 @@
   .firstpair-reader__language-toggle input { height: 14px; margin: 0; width: 14px; }
   .firstpair-reader__language-toggle, .firstpair-reader__layout-toggle { min-height: 36px; }
   .firstpair-reader__layout-toggle { gap: 2px; margin-inline-start: 0; min-width: 32px; padding-inline: 3px; }
-  .firstpair-reader__layout-toggle svg { display: none; }
   .firstpair-reader__picker { flex: 1 1 auto; font-size: var(--font-ui-smaller); max-width: 7.25rem; min-height: 30px; padding-inline: 3px; width: 100%; }
   .firstpair-reader__column-control { min-height: 28px; min-width: 28px; padding-inline: 3px; }
   .firstpair-reader__page--stacked .firstpair-reader__cell--translation { padding-inline-start: var(--size-4-4); }
@@ -91,9 +88,12 @@
 
 /* ---------------------------------------------------------- Reader 2 */
 .firstpair-reader__control { align-items: center; display: inline-flex; gap: var(--size-4-1); max-width: 100%; min-width: 0; overflow: hidden; }
-.firstpair-reader__destination { color: var(--text-muted); font-size: var(--font-ui-smaller); max-width: 14rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* Previous and Next: the icon, with the destination's title compact under
+   it when the rail has room. */
+.firstpair-reader__control--previous, .firstpair-reader__control--next { flex-direction: column; gap: 0; height: auto; line-height: 1.1; padding-block: 2px; }
+.firstpair-reader__control--previous .firstpair-reader__destination { order: 0; }
+.firstpair-reader__destination { color: var(--text-muted); font-size: 0.7em; max-width: 14rem; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .firstpair-reader__destination:empty { display: none; }
-.firstpair-reader__control--previous .firstpair-reader__destination { order: 2; }
 .firstpair-reader__progress { color: var(--text-muted); font-size: var(--font-ui-smaller); grid-column: 1 / -1; min-width: 0; overflow: hidden; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
 .firstpair-reader__frame--rail-top .firstpair-reader { display: flex; flex-direction: column; }
 .firstpair-reader__frame--rail-top .firstpair-reader__rail { border-block-end: 1px solid var(--background-modifier-border); border-top: 0; bottom: auto; order: -2; top: 0; }

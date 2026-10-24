@@ -18,8 +18,9 @@ here · **—** deliberately left out (with the reason).
 | Feature | From | Reader 2 |
 | --- | --- | --- |
 | Rail Previous · Up · Back · Forward · Top · TOC · Next | all | **+** one rail, Forward added; Previous/Next word added when the vault has dictionaries (1.7) |
-| Rail at the top or the bottom | Cicero | **+** setting for every vault |
-| Previous/Next show the destination title | Cicero, Invented, Triptych, mobile | **+** visible label, ellipsized on phones; aria-label stays the action |
+| Rail at the top or the bottom | Cicero | **+** setting for every vault; top by default since 2.4.1, because Obsidian's bottom bar hides a bottom rail |
+| Previous/Next show the destination title | Cicero, Invented, Triptych, mobile | **+** compact under the icon, ellipsized; aria-label stays the action |
+| Icons only, no words naming controls | — | **new** 2.4.1: the rail, layout and word-layer buttons carry their names only as accessible labels and tooltips |
 | Up climbs page → part → contents → library | Cicero, Invented, mobile | **+** 1.7's Up/TOC opened `Home.md` and could replace the Reader; both now stay inside |
 | TOC shows the contents with the current page marked | Cicero, Invented, mobile | **+** `aria-current`, current part marked too |
 | Back: bounded, plain-data history with scroll | all | **+** 100 entries (1.7: 64, Cicero/Invented: 50); restores horizontal track scroll (mobile) and refocuses the exact footnote reference (Cicero) |

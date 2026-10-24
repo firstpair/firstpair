@@ -16,8 +16,10 @@ readers this one replaced.
 ## Reading
 
 - **Rail** — Previous · Up · Back · Top · TOC · Next (plus Previous word and
-  Next word when the vault has dictionaries), at the bottom or the top.
-  Previous and Next name their destinations. Up climbs page → part →
+  Next word when the vault has dictionaries), at the top by default (Obsidian's
+  own bottom bar covers a bottom rail) or, by setting, at the bottom.
+  Controls are icons; their names are tooltips and accessible labels.
+  Previous and Next show their destinations' titles small under the icon. Up climbs page → part →
   contents → library; TOC shows the contents with your page marked; Back
   returns to exactly where you were, including the footnote you came from;
   Top can be undone with Back. Every control is also a command.

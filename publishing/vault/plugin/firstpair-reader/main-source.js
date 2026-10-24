@@ -72,6 +72,7 @@ const HISTORY_LIMIT = 100;
 const STACK_BELOW = 700;
 const FRAGMENT_LANGUAGES = ["firstpair-fragment", "rgbdns-fragment", "sail-fragment"];
 const INTERLINEAR = ["text", "pinyin", "gloss"];
+const INTERLINEAR_ICONS = { text: ["type"], pinyin: ["a-large-small", "case-sensitive"], gloss: ["book-a", "book-open"] };
 const LAYOUTS = [
   { id: "auto", label: "Auto", short: "Auto", icons: ["smartphone"] },
   { id: "columns", label: "Columns", short: "Cols", icons: ["columns-2", "columns"] },
@@ -94,7 +95,9 @@ const DEFAULT_SETTINGS = {
   drawerHeight: 0.33,
   resume: true,
   state: {},
-  railPosition: "bottom",
+  // Top: Obsidian's own bottom bar (mobile toolbar, status bar) covers a
+  // bottom rail.
+  railPosition: "top",
   sourcesInNewTab: false,
   hiddenColumns: {},
   defaultColumn: {},
@@ -665,8 +668,8 @@ class FirstPairReaderView extends ItemView {
       cls: `firstpair-reader__control firstpair-reader__control--${key.replace("nav_", "").replace(/_/g, "-")}`,
       attr: { "aria-label": label, title: label },
     });
+    // Icons only: the name is the button's accessible label and tooltip.
     setIcon(button, icon);
-    button.createSpan({ text: label, cls: "firstpair-reader__button-label" });
     button.addEventListener("click", action);
     return button;
   }
@@ -757,11 +760,11 @@ class FirstPairReaderView extends ItemView {
       });
       label.createSpan({ text: this.languageShort({ id: source.lang ?? source.id, label: source.label, short: source.short }), attr: { "aria-hidden": "true" } });
       if (this.sourceShown && this.hasInterlinear()) {
+        const name = `${t("interlinear_aria")}: ${t(`interlinear_${this.interlinear}`)}`;
         const layers = group.createEl("button", {
-          cls: "firstpair-reader__interlinear-toggle",
-          text: t(`interlinear_${this.interlinear}`),
-          attr: { "aria-label": `${t("interlinear_aria")}: ${t(`interlinear_${this.interlinear}`)}` },
+          cls: "firstpair-reader__interlinear-toggle", attr: { "aria-label": name, title: name },
         });
+        setAnyIcon(layers, INTERLINEAR_ICONS[this.interlinear]);
         layers.addEventListener("click", async () => {
           this.interlinear = INTERLINEAR[(INTERLINEAR.indexOf(this.interlinear) + 1) % INTERLINEAR.length];
           await this.renderPage(false);
@@ -824,8 +827,6 @@ class FirstPairReaderView extends ItemView {
     const choice = LAYOUTS.find((item) => item.id === this.plugin.settings.layout) ?? LAYOUTS[0];
     this.layoutButton.empty();
     setAnyIcon(this.layoutButton, choice.icons);
-    this.layoutButton.createSpan({ text: choice.label, cls: "firstpair-reader__button-label" });
-    this.layoutButton.createSpan({ text: choice.short, cls: "firstpair-reader__button-short" });
     this.layoutButton.setAttribute("aria-label", t("layout_tap", { name: choice.label }));
     this.layoutButton.title = t("layout", { name: choice.label });
   }
