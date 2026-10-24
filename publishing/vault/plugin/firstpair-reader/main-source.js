@@ -1865,7 +1865,7 @@ class FirstPairReaderSettingTab extends PluginSettingTab {
     new Setting(containerEl).setName(t("settings_rail")).setDesc(t("settings_rail_desc"))
       .addDropdown((dropdown) => dropdown.addOption("bottom", t("rail_bottom")).addOption("top", t("rail_top")).setValue(settings.railPosition)
         .onChange(async (value) => {
-          await save({ railPosition: value });
+          await save({ railPosition: value, railPositionChosen: true });
           for (const leaf of this.plugin.app.workspace.getLeavesOfType(VIEW_TYPE)) {
             leaf.view?.frame?.toggleClass("firstpair-reader__frame--rail-top", value === "top");
           }
@@ -1915,7 +1915,12 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     this.quoteIndex = null;
     this.readerTransition = false;
     this.lookup = dictionaryLookup((path) => this.readDictionaryFile(path), new LruCache(8));
-    this.settings = Object.assign({}, DEFAULT_SETTINGS, await this.loadData());
+    const saved = await this.loadData();
+    // Before 2.4.1 every save wrote the whole settings object, so a bottom
+    // rail nobody chose was stored as if chosen; only an explicit choice
+    // (railPositionChosen) keeps it.
+    if (saved && saved.railPosition === "bottom" && !saved.railPositionChosen) delete saved.railPosition;
+    this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
     this.store = new DecisionStore(this.app);
     this.transcribing = new Set();
     this.voiceListeners = new Set();

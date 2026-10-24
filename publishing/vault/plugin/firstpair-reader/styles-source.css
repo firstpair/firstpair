@@ -96,7 +96,14 @@
 .firstpair-reader__destination:empty { display: none; }
 .firstpair-reader__progress { color: var(--text-muted); font-size: var(--font-ui-smaller); grid-column: 1 / -1; min-width: 0; overflow: hidden; text-align: center; text-overflow: ellipsis; white-space: nowrap; }
 .firstpair-reader__frame--rail-top .firstpair-reader { display: flex; flex-direction: column; }
-.firstpair-reader__frame--rail-top .firstpair-reader__rail { border-block-end: 1px solid var(--background-modifier-border); border-top: 0; bottom: auto; order: -2; top: 0; }
+.firstpair-reader__frame--rail-top .firstpair-reader__rail { border-block-end: 1px solid var(--background-modifier-border); border-top: 0; bottom: auto; order: -2; padding: max(var(--size-4-2), env(safe-area-inset-top)) 0 var(--size-4-2); top: 0; }
+/* The rail on top takes the status-bar inset; the toolbar under it does not. */
+.firstpair-reader__frame--rail-top .firstpair-reader__toolbar { padding-block-start: var(--size-4-1); }
+/* A flex column squeezes overflow-hidden children to their min-height,
+   cutting the toolbar's buttons in half: the bars never shrink. */
+.firstpair-reader__toolbar, .firstpair-reader__rail { flex-shrink: 0; }
+/* Obsidian's floating mobile toolbar covers the end of the page. */
+.is-mobile .firstpair-reader__page { padding-block-end: calc(var(--size-4-4) + 72px + env(safe-area-inset-bottom)); }
 .firstpair-reader__frame--rail-top .firstpair-reader__toolbar { order: -1; position: static; }
 .firstpair-reader__kicker { color: var(--text-muted); font-size: var(--font-ui-small); margin-block-end: 0; }
 .firstpair-reader__toc, .firstpair-reader__library { padding-inline-start: var(--size-4-6); }
