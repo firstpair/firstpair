@@ -25,8 +25,8 @@ html, body { margin: 0; height: 100%; font-family: Georgia, serif; }
   proto.removeClass = function (...c) { this.classList.remove(...c); };
   proto.toggleClass = function (c, v) { for (const x of [].concat(c)) this.classList.toggle(x, v); };
   proto.hasClass = function (c) { return this.classList.contains(c); };
-  class ItemView { constructor(leaf) { this.leaf = leaf; this.app = leaf.app; this.containerEl = leaf.containerEl; } }
-  class Plugin { constructor(app) { this.app = app; this.views = {}; this.postProcessors = []; this.data = JSON.parse(localStorage.getItem("fp-data") || "null"); } registerView(t, f) { this.views[t] = f; } addRibbonIcon() {} addCommand() {} registerMarkdownPostProcessor(f) { this.postProcessors.push(f); } registerObsidianProtocolHandler() {} addSettingTab(t) { this.settingTab = t; } async loadData() { return this.data; } async saveData(v) { this.data = v; localStorage.setItem("fp-data", JSON.stringify(v)); } }
+  class ItemView { constructor(leaf) { this.leaf = leaf; this.app = leaf.app; this.containerEl = leaf.containerEl; } registerDomEvent(el, type, fn, opts) { el.addEventListener(type, fn, opts); } registerEvent() {} register() {} }
+  class Plugin { constructor(app) { this.app = app; this.views = {}; this.postProcessors = []; this.data = JSON.parse(localStorage.getItem("fp-data") || "null"); } registerView(t, f) { this.views[t] = f; } registerDomEvent(el, type, fn, opts) { el.addEventListener(type, fn, opts); } registerEvent() {} register() {} addRibbonIcon() {} addCommand() {} registerMarkdownPostProcessor(f) { this.postProcessors.push(f); } registerObsidianProtocolHandler() {} addSettingTab(t) { this.settingTab = t; } async loadData() { return this.data; } async saveData(v) { this.data = v; localStorage.setItem("fp-data", JSON.stringify(v)); } }
   class PluginSettingTab { constructor(app, plugin) { this.app = app; this.plugin = plugin; this.containerEl = document.getElementById("sidebar"); } }
   class Setting { constructor(c) { this.el = c.createDiv({ cls: "setting-item" }); this.el.style.padding = "8px"; } setName(n) { this.el.createDiv({ text: n }).style.fontWeight = "bold"; return this; } setDesc(d) { const e = this.el.createDiv({ text: d }); e.style.fontSize = "11px"; return this; } addDropdown(f) { const s = this.el.createEl("select"); const api = { addOption(v, l) { const o = s.createEl("option", { text: l }); o.value = v; return api; }, setValue(v) { s.value = v; return api; }, onChange(h) { s.addEventListener("change", () => h(s.value)); return api; } }; f(api); return this; } addSlider(fn) { const i = this.el.createEl("input", { type: "range" }); const api = { setLimits(a, b, c) { i.min = a; i.max = b; i.step = c; return api; }, setValue(v) { i.value = v; return api; }, setDynamicTooltip() { return api; }, onChange(h) { i.addEventListener("change", () => h(Number(i.value))); return api; } }; fn(api); return this; } addToggle(f) { const i = this.el.createEl("input", { type: "checkbox" }); const api = { setValue(v) { i.checked = v; return api; }, onChange(h) { i.addEventListener("change", () => h(i.checked)); return api; } }; f(api); return this; } }
   const MarkdownRenderer = { async render(app, md, el) { el.textContent = md; } };
@@ -42,7 +42,7 @@ html, body { margin: 0; height: 100%; font-family: Georgia, serif; }
   const vaultBase = new URLSearchParams(location.search).get("vault") || "/Dante-Multilingual-Vault";
   const cache = new Map();
   const vault = {
-    getAbstractFileByPath(path) { return { path }; },
+    getAbstractFileByPath(path) { const x = new XMLHttpRequest(); x.open("HEAD", vaultBase + "/" + path, false); x.send(); return x.status < 400 ? { path } : null; },
     async read(file) { const r = await fetch(vaultBase + "/" + file.path); if (!r.ok) throw new Error("missing " + file.path); return r.text(); },
   };
   const leaves = [];
