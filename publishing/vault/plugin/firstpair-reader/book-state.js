@@ -13,6 +13,7 @@
  *                        source, interlinear, columns, word },
  *       choices:       { <lang>: <translation id> },
  *       defaultColumn: "<cell key>",        // the phone tab opened first
+ *       glossLang:     "<lang>" | null,     // interlinear glosses (2.6.0); null: Auto
  *       hiddenColumns: ["<column name>"]    // source-table language bar
  *     }
  *   },

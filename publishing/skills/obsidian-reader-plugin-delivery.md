@@ -177,8 +177,8 @@ first and the enabled translations after it.
    state per book in `settings.books[<root folder>]` (since 2.5.0; `""` for
    a book at the vault root): `state` (page id, scroll offset, enabled
    languages, source column, interlinear layer, columns, open dictionary
-   word), `choices`, `defaultColumn`, `hiddenColumns`, plus `lastBook`. It
-   is saved on every page turn, toggle, lookup, scroll (debounced), book
+   word), `choices`, `defaultColumn`, `hiddenColumns`, `glossLang`
+   (2.6.0), plus `lastBook`. It is saved on every page turn, toggle, lookup, scroll (debounced), book
    switch, and on close, and restored in `onOpen`; `resume` in settings
    turns it off. The 2.4.x title-keyed maps are read once to seed a book
    that has no record yet and are otherwise left alone. The Emacs reader does the
@@ -220,7 +220,18 @@ first and the enabled translations after it.
    control on that same row. Dictionary sections follow the enabled-language
    order without visible language headings; preserve `lang` and an accessible
    language label on each section.
-6. The source-owned validator must check the index schema, every shard's size,
+6. Interlinear glosses in several languages (since 2.6.0): a unit's
+   `words` are `[text, reading, gloss]`, the gloss in the primary gloss
+   language `interlinear.glossLang` (absent: the first translation's
+   language); `glosses: {"<lang>": [...]}` adds other languages, one string
+   per word and exactly as many as `words` (a shorter array is ignored). The
+   Reader shows the gloss of the first shown translation column in display
+   order, else the next shown language the unit has, else `words[i][2]`;
+   with only the source shown, the book's `ui_lang`; on phone tabs the
+   translation tab chosen last leads. An explicit choice is kept per book in
+   `settings.books[<root folder>].glossLang` (`null`: Auto). Single-gloss
+   books render as before.
+7. The source-owned validator must check the index schema, every shard's size,
    and the total entry count, and a public edition must refuse any language it
    does not license (Dante's rejects Cyrillic in a public chapter).
 

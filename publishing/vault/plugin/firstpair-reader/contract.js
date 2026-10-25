@@ -536,6 +536,58 @@ function shelfEntry(model) {
   };
 }
 
+// Interlinear glosses in several languages (since 2.6.0).  A unit's
+// `words[i][2]` is the gloss in the edition's primary gloss language,
+// `aligned.interlinear.glossLang`, else the first translation's language;
+// `glosses.<lang>` is an optional array parallel to `words` (same length)
+// for any other language.
+function primaryGlossLang(aligned) {
+  const declared = aligned && aligned.interlinear && aligned.interlinear.glossLang;
+  if (typeof declared === "string" && declared) return declared;
+  const first = ((aligned && aligned.translations) || [])[0];
+  return first ? (first.lang || first.id || null) : null;
+}
+
+// The gloss languages a set of units offers: the primary one first, then
+// every `glosses` key in the order `preferred` lists languages, then the rest.
+function glossLanguages(aligned, units = [], preferred = []) {
+  const found = new Set();
+  for (const unit of units) {
+    if (!unit || !Array.isArray(unit.words)) continue;
+    for (const [lang, list] of Object.entries(unit.glosses || {})) {
+      if (Array.isArray(list) && list.length === unit.words.length) found.add(lang);
+    }
+  }
+  const primary = primaryGlossLang(aligned);
+  const ordered = [primary, ...preferred.filter((lang) => found.has(lang)), ...found].filter(Boolean);
+  return [...new Set(ordered)];
+}
+
+// The languages to try for glosses, best first: an explicit choice, then the
+// shown translation columns in display order; with only the source shown,
+// the interface language.  The primary gloss is the last resort of
+// unitGlosses, so it need not be listed.
+function glossOrder({ explicit = null, shown = [], uiLang = null } = {}) {
+  const order = [explicit, ...shown];
+  if (!shown.length) order.push(uiLang);
+  return [...new Set(order.filter(Boolean))];
+}
+
+// A unit's glosses in the first language of `order` it has, else the
+// primary glosses (`words[i][2]`): { lang, glosses } with one string a word.
+function unitGlosses(unit, order, primary) {
+  const words = Array.isArray(unit && unit.words) ? unit.words : [];
+  const own = () => words.map((word) => (Array.isArray(word) && word[2]) || "");
+  for (const lang of order || []) {
+    if (lang === primary) return { lang, glosses: own() };
+    const list = unit.glosses && unit.glosses[lang];
+    if (Array.isArray(list) && list.length === words.length) {
+      return { lang, glosses: list.map((gloss) => (typeof gloss === "string" ? gloss : "")) };
+    }
+  }
+  return { lang: primary, glosses: own() };
+}
+
 // Text between two literal markers, or null when either is missing.
 function extractMarked(text, marker) {
   const source = String(text || "");
@@ -555,10 +607,14 @@ module.exports = {
   discover,
   discoverAll,
   extractMarked,
+  glossLanguages,
+  glossOrder,
   loadEdition,
   noteOf,
+  primaryGlossLang,
   safePath,
   shelfEntry,
   targetForNote,
+  unitGlosses,
   validate,
 };

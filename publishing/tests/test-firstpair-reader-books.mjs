@@ -545,3 +545,122 @@ test('a 2.4.2 data.json is kept: its book opens where it was left, the other boo
     assert.deepEqual(languagesOf(view), { enabled: ['ru'], source: false, interlinear: 'gloss' })
   } finally { done() }
 })
+
+// 1Q84 as the study builder writes it: Chinese source, Russian and English
+// translations, words[i][2] in Russian (glossLang), glosses.en beside them on
+// one unit and missing on the other.
+const Q84 = '1Q84'
+function q84Book() {
+  const at = (rest) => `${Q84}/${rest}`
+  return {
+    [at('_data/reader.json')]: {
+      schema: 'firstpair-reader.v2', title: Q84, ui_lang: 'en',
+      launcher: at('Home.md'), contents: at('Contents'),
+      parts: [{ id: 'P1', title: 'Part 1', note: at('Book/Part 1') }],
+      pages: [{ id: 'p001', title: 'Page 1', part: 'P1', chapter: at('_data/pages/p001.json') }],
+      aligned: {
+        schema: 'firstpair-parallel-reader-v1', title: Q84,
+        sourceLanguage: { id: 'zh', lang: 'zh', label: '中文', position: 'left', optional: true, defaultVisible: false },
+        translations: [
+          { id: 'ru', lang: 'ru', label: 'Русский', defaultVisible: true },
+          { id: 'en', lang: 'en', label: 'English', defaultVisible: true },
+        ],
+        interlinear: { layers: ['pinyin', 'gloss'], glossLang: 'ru' },
+      },
+    },
+    [at('_data/pages/p001.json')]: { schema: 'firstpair-aligned-chapter-v1', id: 'p001', title: 'Page 1', units: [
+      { id: 'b0007', source: ['出租车的收音机。'], translations: { ru: ['Радио в такси.'], en: ['The taxi radio.'] },
+        words: [['出租车', 'chū zū chē', 'такси'], ['的', 'de', '(притяж.)'], ['收音机', 'shōu yīn jī', 'радио'], ['。', '', '']],
+        glosses: { en: ['taxi', '(possessive)', 'radio', ''] } },
+      { id: 'b0008', source: ['走。'], translations: { ru: ['Иди.'], en: ['Go.'] }, words: [['走', 'zǒu', 'идти'], ['。', '', '']] },
+    ] },
+    [at('Home.md')]: '# Home\n\n[Open the Reader](firstpair:reader)\n',
+    [at('Contents.md')]: '# Contents\n',
+    [at('Book/Part 1.md')]: '# Part 1\n',
+  }
+}
+const firstGloss = (el, unit) => el.querySelector(`[data-unit-id="${unit}"] .firstpair-reader__igloss`)
+const glossOf = (el, unit) => ({ lang: firstGloss(el, unit).getAttribute('lang'), text: firstGloss(el, unit).textContent })
+const toggleLanguage = async (el, window, label) => {
+  const input = el.querySelector(`.firstpair-reader__languages input[aria-label="${label}"]`)
+  input.checked = !input.checked; input.dispatchEvent(new window.Event('change')); await settle()
+}
+
+test('glosses follow the shown translations: ru, en, ru+en, source only, with a fallback per unit', async () => {
+  const { window, el, view, done } = await open(q84Book())
+  try {
+    await toggleSource(el, window)
+    assert.deepEqual(cellLangs(el), ['zh', 'ru', 'en'])
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'ru', text: 'такси' }, 'ru + en: the first column, Russian')
+    assert.equal(el.querySelector('[data-unit-id="b0007"] .firstpair-reader__interlinear').getAttribute('data-gloss-lang'), 'ru')
+
+    await toggleLanguage(el, window, 'Русский')
+    assert.deepEqual(cellLangs(el), ['zh', 'en'])
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'en', text: 'taxi' }, 'en only: English')
+    assert.equal(el.querySelectorAll('[data-unit-id="b0007"] .firstpair-reader__igloss')[1].textContent, '(possessive)')
+    assert.deepEqual(glossOf(el, 'b0008'), { lang: 'ru', text: 'идти' }, 'no glosses.en: words[i][2]')
+
+    await toggleLanguage(el, window, 'Русский')
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'ru', text: 'такси' }, 'ru back first')
+
+    // Only the source: the book's ui_lang (en) has glosses.
+    await toggleLanguage(el, window, 'Русский')
+    await toggleLanguage(el, window, 'English')
+    assert.deepEqual(cellLangs(el), ['zh'])
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'en', text: 'taxi' })
+    assert.deepEqual(glossOf(el, 'b0008'), { lang: 'ru', text: 'идти' })
+    assert.equal(view.glossChoice(), null)
+  } finally { done() }
+})
+
+test('an explicit gloss language per book overrides Auto; the other book keeps its single glosses', async () => {
+  const files = { ...q84Book(), ...studyBook('1911', { title: '1911', lang: 'en', label: 'English', uiLang: 'en', text: ['He came.', 'Go.', 'he', 'come'] }), 'Home.md': '# Books\n' }
+  const { window, el, view, plugin, done } = await open(files)
+  try {
+    shelfBooks(el).find((b) => b.getAttribute('data-book') === Q84).click(); await settle()
+    await toggleSource(el, window)
+    const picker = () => el.querySelector('.firstpair-reader__gloss-picker')
+    assert.deepEqual(Array.from(picker().options).map((o) => o.value), ['', 'ru', 'en'])
+    assert.equal(picker().value, '')
+    picker().value = 'en'; picker().dispatchEvent(new window.Event('change')); await settle()
+    assert.equal(plugin.data.books[Q84].glossLang, 'en')
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'en', text: 'taxi' }, 'English although Russian is the first column')
+    assert.deepEqual(glossOf(el, 'b0008'), { lang: 'ru', text: 'идти' }, 'still falls back per unit')
+
+    // 1911: one gloss language, no picker, glosses exactly as before.
+    await view.showShelf(); await settle()
+    shelfBooks(el).find((b) => b.getAttribute('data-book') === '1911').click(); await settle()
+    await toggleSource(el, window)
+    assert.equal(picker(), null)
+    assert.deepEqual(glossOf(el, 'b1'), { lang: 'en', text: 'he' })
+    assert.equal(view.glossChoice(), null)
+
+    // Back in 1Q84 the choice holds; the command cycles en → Auto.
+    await view.showShelf(); await settle()
+    shelfBooks(el).find((b) => b.getAttribute('data-book') === Q84).click(); await settle()
+    assert.equal(picker().value, 'en')
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'en', text: 'taxi' })
+    await plugin.commands.find((c) => c.id === 'reader-gloss-language').checkCallback(false); await settle()
+    assert.equal(plugin.data.books[Q84].glossLang, null)
+    assert.equal(picker().value, '')
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'ru', text: 'такси' })
+  } finally { done() }
+})
+
+test('phone tabs: the translation tab chosen last gives the glosses their language', async () => {
+  const { window, el, view, done } = await open(q84Book(), { width: 400, settings: { layout: 'columns' } })
+  try {
+    await toggleSource(el, window)
+    const tabs = () => Array.from(el.querySelectorAll('.firstpair-reader__cell-tab'))
+    assert.deepEqual(tabs().map((tab) => tab.textContent), ['中文', 'Рус', 'Eng'])
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'ru', text: 'такси' })
+    tabs()[2].click(); await settle()
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'en', text: 'taxi' }, 'English tab')
+    tabs()[0].click(); await settle()
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'en', text: 'taxi' }, 'the source tab keeps the last translation')
+    assert.ok(!el.querySelector('[data-unit-id="b0007"] .firstpair-reader__cell--source').classList.contains('is-hidden'))
+    tabs()[1].click(); await settle()
+    assert.deepEqual(glossOf(el, 'b0007'), { lang: 'ru', text: 'такси' })
+    assert.equal(view.glossChoice(), null)
+  } finally { done() }
+})

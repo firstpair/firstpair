@@ -65,6 +65,7 @@ here · **—** deliberately left out (with the reason).
 | Language toggles never reach zero | Cicero | **+** for multilingual source tables: one bar per note (Cicero added one per passage) |
 | Optional source column: the translation read alone, the source a toggle | — | **new** `sourceLanguage.optional`; the last shown column cannot be switched off |
 | Interlinear word layers (reading above, gloss below) | — | **new** unit `words`, cycled Text / + Reading / + Gloss, remembered with the page |
+| Glosses in several languages | — | **new** 2.6.0: `words[i][2]` in `interlinear.glossLang`, other languages in the unit's `glosses.<lang>`; the gloss follows the first shown translation (the last translation tab on a phone), falls back per unit, and with the source alone uses `ui_lang`; a picker and the command **Next gloss language** fix one per book, Auto restores |
 | Prefix-sharded dictionaries, longest-prefix lookup, sync warnings | 1.7 | **=** |
 | Dictionary on plain Markdown pages | Cicero | **+** words are split inside text nodes, so links and emphasis survive (Cicero replaced the cell) |
 | Grammar shown with each entry | 1.7 | **=** (Cicero stored it and never showed it) |

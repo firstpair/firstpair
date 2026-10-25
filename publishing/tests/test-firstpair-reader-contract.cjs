@@ -298,3 +298,33 @@ test("per-book state: records by root folder, migrated from a 2.4.2 data.json", 
   assert.equal(off["1911"].state, undefined);
   assert.deepEqual(off["1911"].choices, { en: "en" });
 });
+
+test("interlinear glosses in several languages: primary language, order, and fallback", () => {
+  const aligned = {
+    translations: [{ id: "ru", lang: "ru" }, { id: "en", lang: "en" }],
+    interlinear: { layers: ["pinyin", "gloss"], glossLang: "ru" },
+  };
+  assert.equal(contract.primaryGlossLang(aligned), "ru");
+  assert.equal(contract.primaryGlossLang({ translations: [{ id: "en-1", lang: "en" }], interlinear: {} }), "en", "absent: the first translation's language");
+  assert.equal(contract.primaryGlossLang({ translations: [{ id: "en" }] }), "en");
+
+  // First shown column leads; only the source shown: the interface language.
+  assert.deepEqual(contract.glossOrder({ shown: ["ru", "en"], uiLang: "en" }), ["ru", "en"]);
+  assert.deepEqual(contract.glossOrder({ shown: ["en"], uiLang: "ru" }), ["en"]);
+  assert.deepEqual(contract.glossOrder({ shown: [], uiLang: "en" }), ["en"]);
+  assert.deepEqual(contract.glossOrder({ explicit: "en", shown: ["ru", "en"] }), ["en", "ru"], "an explicit choice overrides");
+
+  const both = { words: [["出租车", "chū zū chē", "такси"], ["。", "", ""]], glosses: { en: ["taxi", ""] } };
+  const ruOnly = { words: [["走", "zǒu", "идти"]] };
+  const short = { words: [["走", "zǒu", "идти"], ["了", "le", "(сов.)"]], glosses: { en: ["go"] } };
+  assert.deepEqual(contract.unitGlosses(both, ["ru", "en"], "ru"), { lang: "ru", glosses: ["такси", ""] });
+  assert.deepEqual(contract.unitGlosses(both, ["en", "ru"], "ru"), { lang: "en", glosses: ["taxi", ""] });
+  assert.deepEqual(contract.unitGlosses(ruOnly, ["en"], "ru"), { lang: "ru", glosses: ["идти"] }, "no glosses.en: words[i][2]");
+  assert.deepEqual(contract.unitGlosses(short, ["en"], "ru").lang, "ru", "a gloss array of the wrong length is ignored");
+  assert.deepEqual(contract.unitGlosses(both, ["it", "en"], "ru").lang, "en", "the next shown language that has glosses");
+  assert.deepEqual(contract.unitGlosses(both, [], "ru"), { lang: "ru", glosses: ["такси", ""] });
+  // An existing book: one gloss language, nothing else offered.
+  assert.deepEqual(contract.unitGlosses({ words: [["他", "tā", "he"]] }, ["en"], "en"), { lang: "en", glosses: ["he"] });
+  assert.deepEqual(contract.glossLanguages({ translations: [{ id: "en", lang: "en" }] }, [{ words: [["他", "tā", "he"]] }]), ["en"]);
+  assert.deepEqual(contract.glossLanguages(aligned, [ruOnly, both, short], ["ru", "en"]), ["ru", "en"]);
+});

@@ -199,6 +199,11 @@ class FirstPairReaderView extends ItemView {
     // shown with it: "text", "pinyin" (reading above), or "gloss" (both).
     this.sourceShown = true;
     this.interlinear = "gloss";
+    // The page's units by id (to redraw glosses in place), the gloss
+    // languages they were drawn with, and the translation tab chosen last.
+    this.chapterUnits = null;
+    this.glossKey = null;
+    this.tabLang = null;
     this.wordPosition = -1;
     this.columns = [];
     this.renderChild = null;
@@ -242,6 +247,70 @@ class FirstPairReaderView extends ItemView {
   sourceOptional() { return Boolean(this.parallel?.sourceLanguage?.optional); }
 
   hasInterlinear() { return Boolean(this.parallel?.interlinear); }
+
+  /* ------------------------------------------------- interlinear glosses */
+
+  // The language of words[i][2]: aligned.interlinear.glossLang, else the
+  // first translation's.
+  primaryGlossLang() { return contract.primaryGlossLang(this.parallel); }
+
+  // The gloss language picked for this book (data.json books[<root>]
+  // .glossLang), or null for Auto.
+  glossChoice() { return this.bookData().glossLang ?? null; }
+
+  // Languages to try, best first: the explicit choice, then the shown
+  // translation columns in display order (on phone tabs the translation tab
+  // chosen last leads), else the book's interface language.
+  glossOrder() {
+    let shown = [...new Set(this.columns.map((column) => column.lang))];
+    if (this.page?.hasClass("firstpair-reader__page--tabbed") && shown.includes(this.tabLang)) {
+      shown = [this.tabLang, ...shown.filter((lang) => lang !== this.tabLang)];
+    }
+    return contract.glossOrder({ explicit: this.glossChoice(), shown, uiLang: this.entry?.uiLang ?? null });
+  }
+
+  // The gloss languages this page offers (the primary one, then the others
+  // in column order), plus the book's explicit choice.
+  glossChoices() {
+    const units = this.chapterUnits ? [...this.chapterUnits.values()] : [];
+    const choices = contract.glossLanguages(this.parallel, units, this.languages().map((language) => language.id));
+    const explicit = this.glossChoice();
+    return explicit && !choices.includes(explicit) ? [...choices, explicit] : choices;
+  }
+
+  glossLabel(lang) {
+    const language = this.languages().find((item) => item.id === lang);
+    return { short: this.languageShort({ id: lang, label: language?.label ?? languageName(lang) }), name: language?.label ?? languageName(lang) };
+  }
+
+  async setGlossChoice(lang) {
+    await this.saveBookData({ glossLang: lang || null });
+    if (this.mode === "page" && this.parallel) await this.renderPage(false);
+  }
+
+  // Auto → each offered language → Auto (the command).
+  async cycleGlossLanguage() {
+    if (!this.parallel || !this.hasInterlinear()) return;
+    const cycle = [null, ...this.glossChoices()];
+    const at = cycle.indexOf(this.glossChoice());
+    const next = cycle[(at + 1) % cycle.length];
+    await this.setGlossChoice(next);
+    new Notice(`${t("gloss_lang_aria")}: ${next ? this.glossLabel(next).name : t("gloss_auto")}`);
+  }
+
+  // Glosses redrawn in place when their language changes without a render
+  // (a phone tab chosen).
+  refreshGlosses() {
+    if (!this.chapterUnits || this.interlinear !== "gloss") return;
+    if (this.glossOrder().join("|") === this.glossKey) return;
+    for (const row of Array.from(this.page.querySelectorAll(".firstpair-reader__interlinear"))) {
+      const unit = this.chapterUnits.get(row.closest(".firstpair-reader__strip")?.getAttribute("data-unit-id"));
+      const cell = row.parentElement;
+      if (!unit || !cell) continue;
+      row.remove();
+      this.appendInterlinear(cell, unit);
+    }
+  }
 
   languageShort(language) {
     return language.short ?? ({ en: "Eng", ru: "Рус", it: "Ita", la: "Lat", zh: "中文" }[language.id] ?? language.label);
@@ -467,6 +536,9 @@ class FirstPairReaderView extends ItemView {
     this.wordPosition = -1;
     this.activeCell = 0;
     this.lastWord = null;
+    this.chapterUnits = null;
+    this.glossKey = null;
+    this.tabLang = null;
     this.drawer?.setAttribute("hidden", "");
     if (model.format === "library") {
       this.library = model;
@@ -932,6 +1004,23 @@ class FirstPairReaderView extends ItemView {
           this.interlinear = INTERLINEAR[(INTERLINEAR.indexOf(this.interlinear) + 1) % INTERLINEAR.length];
           await this.renderPage(false);
         });
+        // Glosses in several languages: Auto follows the shown columns.
+        const choices = this.interlinear === "gloss" ? this.glossChoices() : [];
+        if (choices.length > 1) {
+          const chosen = this.glossChoice();
+          const title = `${t("gloss_lang_aria")}: ${chosen ? this.glossLabel(chosen).name : t("gloss_auto")}`;
+          const select = group.createEl("select", {
+            cls: "firstpair-reader__picker firstpair-reader__gloss-picker", attr: { "aria-label": title, title },
+          });
+          const auto = select.createEl("option", { text: t("gloss_auto") });
+          auto.value = "";
+          for (const lang of choices) {
+            const option = select.createEl("option", { text: this.glossLabel(lang).short, attr: { title: this.glossLabel(lang).name, lang } });
+            option.value = lang;
+          }
+          select.value = chosen ?? "";
+          select.addEventListener("change", () => this.setGlossChoice(select.value || null));
+        }
       }
     }
     for (const language of this.languages()) {
@@ -1036,6 +1125,7 @@ class FirstPairReaderView extends ItemView {
     if (!tabbed) {
       tabs?.remove();
       for (const cell of this.page.querySelectorAll(".firstpair-reader__cell")) cell.removeClass("is-hidden");
+      this.refreshGlosses();
       return;
     }
     const labels = Array.from(this.page.querySelectorAll(".firstpair-reader__column-label"));
@@ -1049,6 +1139,7 @@ class FirstPairReaderView extends ItemView {
       const remembered = this.bookData().defaultColumn;
       const index = labels.findIndex((label) => label.dataset.cellKey === remembered);
       this.activeCell = index >= 0 ? index : Math.min(this.activeCell, Math.max(0, labels.length - 1));
+      if (this.tabLang === null && remembered && remembered !== "source") this.tabLang = remembered.split(":")[0];
       labels.forEach((label, index) => {
         const tab = tabs.createEl("button", {
           cls: "firstpair-reader__cell-tab",
@@ -1071,6 +1162,10 @@ class FirstPairReaderView extends ItemView {
         cell.toggleClass("is-hidden", index !== this.activeCell);
       });
     }
+    // The translation tab chosen last gives the source's glosses their language.
+    const key = labels[this.activeCell]?.dataset.cellKey;
+    if (key && key !== "source") this.tabLang = key.split(":")[0];
+    this.refreshGlosses();
   }
 
   /* ---------------------------------------------------------------- drawer */
@@ -1224,10 +1319,21 @@ class FirstPairReaderView extends ItemView {
 
   // Interlinear words: each [text, reading, gloss] a stack with the reading
   // above and (in "gloss") the gloss below; a word without a reading
-  // (punctuation, digits) runs inline.
-  appendInterlinear(container, words) {
+  // (punctuation, digits) runs inline.  The gloss is in the language the
+  // shown translations call for (glossOrder), from the unit's `glosses`, or
+  // words[i][2].
+  appendInterlinear(container, unit) {
+    const words = unit.words;
     const row = container.createDiv({ cls: `firstpair-reader__interlinear firstpair-reader__interlinear--${this.interlinear}` });
-    for (const [text, reading, gloss] of words) {
+    let glossLang = null;
+    let glosses = [];
+    if (this.interlinear === "gloss") {
+      const order = this.glossOrder();
+      this.glossKey = order.join("|");
+      ({ lang: glossLang, glosses } = contract.unitGlosses(unit, order, this.primaryGlossLang()));
+      if (glossLang) row.setAttribute("data-gloss-lang", glossLang);
+    }
+    for (const [index, [text, reading]] of words.entries()) {
       if (!reading) {
         row.createSpan({ cls: "firstpair-reader__iword firstpair-reader__iword--plain", text });
         continue;
@@ -1235,7 +1341,9 @@ class FirstPairReaderView extends ItemView {
       const word = row.createSpan({ cls: "firstpair-reader__iword" });
       word.createSpan({ cls: "firstpair-reader__ireading", text: reading });
       word.createSpan({ cls: "firstpair-reader__itext", text });
-      if (this.interlinear === "gloss") word.createSpan({ cls: "firstpair-reader__igloss", text: gloss || "" });
+      if (this.interlinear === "gloss") {
+        word.createSpan({ cls: "firstpair-reader__igloss", text: glosses[index] || "", attr: glossLang ? { lang: glossLang } : {} });
+      }
     }
   }
 
@@ -1532,6 +1640,7 @@ class FirstPairReaderView extends ItemView {
     this.page.empty();
     this.page.removeClass("firstpair-reader__page--parallel");
     this.toolbar.hidden = !this.parallel;
+    this.chapterUnits = null;
     try {
       if (this.parallel && entry.chapter) await this.renderParallel(entry);
       else {
@@ -1558,6 +1667,7 @@ class FirstPairReaderView extends ItemView {
 
   async renderParallel(entry) {
     const chapter = await this.readJson(entry.chapter);
+    this.chapterUnits = new Map(chapter.units.map((unit) => [unit.id, unit]));
     this.page.addClass("firstpair-reader__page--parallel");
     this.page.createEl("h1", { text: chapter.title, attr: { tabindex: "-1" } });
     this.renderMetrics(entry);
@@ -1591,7 +1701,7 @@ class FirstPairReaderView extends ItemView {
           attr: { lang: cell.lang, "data-label": isSource ? cell.label : this.columnTitle(cell) },
         });
         if (isSource && Array.isArray(unit.words) && this.hasInterlinear() && this.interlinear !== "text") {
-          this.appendInterlinear(element, unit.words);
+          this.appendInterlinear(element, unit);
         } else {
           this.appendText(element, isSource ? unit.source : (unit.translations?.[cell.id] ?? []), isSource);
         }
@@ -2172,6 +2282,7 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     viewCommand("reader-up", "Up", (view) => view.goUp());
     viewCommand("reader-top", "Top", (view) => view.toTop());
     viewCommand("reader-contents", "Contents", (view) => view.showContents());
+    viewCommand("reader-gloss-language", "Next gloss language", (view) => view.cycleGlossLanguage());
     this.addCommand({ id: "find-source", name: t("find_source"), callback: () => void this.findSource() });
     this.addCommand({
       id: "transcribe-voice-notes", name: t("cmd_transcribe"),

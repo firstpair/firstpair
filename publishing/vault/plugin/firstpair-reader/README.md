@@ -59,6 +59,16 @@ edition declares `interlinear`: one button cycles Text, + Reading (pinyin
 above each word), and + Gloss (the word's meaning below it). Units may carry a
 `kind` (`heading`, `quote`, `footnote`, `cover`) for their styling.
 
+Glosses can come in several languages. `words[i][2]` is in the edition's
+primary gloss language, `interlinear.glossLang` (else the first
+translation's); a unit may add `glosses: {"<lang>": [...]}`, one string per
+word, for others. The glosses follow the translations on screen: the first
+shown column's language, else the next shown one this unit has, else
+`words[i][2]`; with only the source shown, the book's `ui_lang`. On a phone
+the translation tab chosen last leads. When a page offers more than one gloss
+language, a picker beside the word-layer button (and the command **Next gloss
+language**) fixes one for the book; **Auto** follows the columns again.
+
 Tap a source word, or step through words with the double chevrons, for its
 dictionary entries in every shown language. Multilingual source tables get one
 language bar per note; at least one language stays on.
