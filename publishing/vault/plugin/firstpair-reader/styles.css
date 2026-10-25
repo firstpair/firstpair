@@ -495,6 +495,14 @@ body {
 .firstpair-reader__toc-page, .firstpair-reader__toc-part { background: none; border: 0; box-shadow: none; color: var(--link-color); cursor: pointer; font: inherit; height: auto; min-height: 36px; padding: 2px 0; text-align: start; white-space: normal; }
 .firstpair-reader__toc-part { color: inherit; font-weight: 600; }
 .firstpair-reader__toc-page.is-current, .firstpair-reader__toc-part.is-current { font-weight: 600; text-decoration: underline; }
+/* The shelf: one card per book of the vault. */
+.firstpair-reader__shelf { display: grid; gap: var(--size-4-2); list-style: none; margin: 0; padding: 0; }
+.firstpair-reader__shelf-book { align-items: flex-start; background: var(--background-secondary); border: 1px solid var(--background-modifier-border); border-radius: var(--radius-m, 8px); box-shadow: none; color: inherit; cursor: pointer; display: flex; flex-direction: column; font: inherit; gap: 2px; height: auto; min-height: 44px; padding: var(--size-4-2) var(--size-4-3); text-align: start; white-space: normal; width: 100%; }
+.firstpair-reader__shelf-book:hover, .firstpair-reader__shelf-book:focus-visible { border-color: var(--interactive-accent); }
+.firstpair-reader__shelf-book.is-current { border-inline-start: 3px solid var(--interactive-accent); }
+.firstpair-reader__shelf-title { font-size: 1.15em; font-weight: 600; }
+.firstpair-reader__shelf-subtitle { font-style: italic; }
+.firstpair-reader__shelf-author, .firstpair-reader__shelf-languages, .firstpair-reader__shelf-place { color: var(--text-muted); font-size: var(--font-ui-small); }
 .firstpair-reader__cover { display: block; margin: 0 auto var(--size-4-4); max-height: 60vh; max-width: min(100%, 28rem); }
 .firstpair-reader__focus { background: var(--text-highlight-bg); outline: 2px solid var(--interactive-accent); outline-offset: 2px; }
 .firstpair-reader__metrics { display: flex; flex-wrap: wrap; gap: var(--size-4-1); margin-block: var(--size-4-1) var(--size-4-2); }

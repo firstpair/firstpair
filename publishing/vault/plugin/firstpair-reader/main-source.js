@@ -12,6 +12,11 @@
  * contents → library; TOC shows the contents with the current page marked;
  * Back restores the exact earlier location, scroll and focus; Top is
  * reversible.  Every static fallback note opens the Reader at its place.
+ *
+ * Several books: a vault whose root and top-level folders hold more than one
+ * Reader index gets a shelf.  Each book keeps its own position, Back history,
+ * languages, and interface language; Up from a book's contents returns to
+ * the shelf.
  */
 
 const obsidian = require("obsidian");
@@ -31,6 +36,7 @@ const {
   dictionaryLookup, exampleText, LruCache, mergeEntries, normalizeWord,
 } = require("./dictionary");
 const quotes = require("./quotes");
+const bookState = require("./book-state");
 const { readerText } = require("./strings");
 const reviewState = require("../firstpair-triptych/review-state");
 const metricsCore = require("../shared/metrics");
@@ -70,14 +76,17 @@ const VIEW_TYPE = "firstpair-reader";
 const TARGET_INDEX = "_data/targets.json";
 const HISTORY_LIMIT = 100;
 const STACK_BELOW = 700;
+// The shelf is not a book: its interface stays in the vault default.
+const SHELF_LANG = "en";
 const FRAGMENT_LANGUAGES = ["firstpair-fragment", "rgbdns-fragment", "sail-fragment"];
 const INTERLINEAR = ["text", "pinyin", "gloss"];
 const INTERLINEAR_ICONS = { text: ["type"], pinyin: ["a-large-small", "case-sensitive"], gloss: ["book-a", "book-open"] };
 const LAYOUTS = [
-  { id: "auto", label: "Auto", short: "Auto", icons: ["smartphone"] },
-  { id: "columns", label: "Columns", short: "Cols", icons: ["columns-2", "columns"] },
-  { id: "stacked", label: "Stacked", short: "Stack", icons: ["rows-3", "rows"] },
+  { id: "auto", icons: ["smartphone"] },
+  { id: "columns", icons: ["columns-2", "columns"] },
+  { id: "stacked", icons: ["rows-3", "rows"] },
 ];
+const layoutName = (layout) => t(`layout_${layout.id}`);
 // Obsidian's bundled Lucide set renamed some icons; take the first it knows.
 const setAnyIcon = (element, names) => {
   for (const name of names) {
@@ -94,6 +103,11 @@ const DEFAULT_SETTINGS = {
   drawerPosition: "side",
   drawerHeight: 0.33,
   resume: true,
+  // Per book, keyed by its root folder (book-state.js); `state`, `choices`,
+  // `hiddenColumns` and `defaultColumn` below are the 2.4.x maps keyed by
+  // title, read once to migrate a book that has no record yet.
+  books: {},
+  lastBook: null,
   state: {},
   // Top: Obsidian's own bottom bar (mobile toolbar, status bar) covers a
   // bottom rail.
@@ -168,6 +182,16 @@ class FirstPairReaderView extends ItemView {
     this.notePath = null;
     this.noteLines = null;
     this.history = new ReaderHistory();
+    // Every book of the vault (one: no shelf), the one shown (kept while the
+    // shelf is up), and each book's Back history and unsaved session state.
+    this.books = [];
+    this.broken = [];
+    this.entry = null;
+    this.bookKey = null;
+    this.histories = new Map();
+    this.sessions = new Map();
+    this.opened = false;
+    this.uiSignature = null;
     this.parallel = null;
     this.enabled = new Set();
     // An aligned edition whose source column is optional (a translation read
@@ -188,6 +212,7 @@ class FirstPairReaderView extends ItemView {
   getIcon() { return "book-open"; }
 
   getDisplayText() {
+    if (this.mode === "shelf") return t("shelf");
     const title = this.parallel?.title ?? this.book?.title ?? t("reader");
     if (this.mode === "page" && this.pages[this.position] && !this.parallel) {
       return `${title} — ${this.pages[this.position].title}`;
@@ -240,7 +265,7 @@ class FirstPairReaderView extends ItemView {
   choiceFor(lang, exclude = null) {
     const part = this.currentPart();
     const candidates = this.translationsOf(lang).filter((item) => item.id !== exclude);
-    const remembered = this.plugin.settings.choices?.[this.parallel.title]?.[lang];
+    const remembered = this.bookData().choices?.[lang];
     const pick = candidates.find((item) => item.id === remembered && this.covers(item, part))
       ?? candidates.find((item) => item.default && this.covers(item, part))
       ?? candidates.find((item) => this.covers(item, part)) ?? candidates[0];
@@ -248,9 +273,7 @@ class FirstPairReaderView extends ItemView {
   }
 
   async remember(lang, id) {
-    const choices = { ...(this.plugin.settings.choices ?? {}) };
-    choices[this.parallel.title] = { ...(choices[this.parallel.title] ?? {}), [lang]: id };
-    await this.plugin.saveSettings({ choices });
+    await this.saveBookData({ choices: { ...(this.bookData().choices ?? {}), [lang]: id } });
   }
 
   async rotate(index) {
@@ -315,6 +338,8 @@ class FirstPairReaderView extends ItemView {
 
   buildFrame() {
     this.teardown();
+    this.uiSignature = null;
+    this.previous = null;
     this.containerEl.empty();
     this.frame = this.containerEl.createDiv({ cls: "firstpair-reader__frame" });
     this.root = this.frame.createDiv({ cls: "firstpair-reader" });
@@ -365,27 +390,26 @@ class FirstPairReaderView extends ItemView {
       isActive: () => this.app.workspace.activeLeaf === this.leaf && (this.mode === "page" || this.mode === "part"),
     });
     try {
-      const model = await this.plugin.loadModel();
-      uiLang = model.uiLang || "en";
-      if (model.format === "library") {
-        this.library = model;
-        const saved = this.savedState();
-        await this.useEdition(saved?.editionId || model.editions[0].id, false);
-        if (!saved) this.mode = "library";
-      } else {
-        this.library = null;
-        await this.useBook(model);
-      }
-      this.restoreState();
-      this.makeToolbar();
-      this.makeRail();
-      this.watchLayout();
-      const target = this.pendingTarget;
+      const { books, broken } = await this.plugin.loadBooks();
+      this.books = books;
+      this.broken = broken;
+      let target = this.pendingTarget;
       this.pendingTarget = null;
+      const initial = this.initialBook(target);
+      if (initial) {
+        await this.enterBook(initial);
+        if (target?.mode === "shelf") this.mode = "shelf";
+      } else this.mode = "shelf";
+      this.ensureUi();
+      this.watchLayout();
+      // A target that arrived while the book was loading wins.
+      if (this.pendingTarget) target = this.pendingTarget;
+      this.pendingTarget = null;
+      this.opened = true;
       if (target) await this.applyTarget(target, false);
       else await this.render();
-      const saved = this.savedState();
-      if (!target && saved?.scrollTop) this.root.scrollTop = saved.scrollTop;
+      const saved = this.book ? this.savedState() : null;
+      if (!target && saved?.scrollTop && this.mode !== "shelf") this.root.scrollTop = saved.scrollTop;
       if (!target && saved?.word && this.mode === "page") {
         const button = this.wordButtons().find((candidate) => candidate.textContent === saved.word);
         if (button) await this.selectWord(button); else await this.openDictionary(saved.word);
@@ -393,6 +417,115 @@ class FirstPairReaderView extends ItemView {
     } catch (error) {
       this.showError(error);
     }
+  }
+
+  /* ---------------------------------------------------------------- books */
+
+  hasShelf() { return this.books.length > 1; }
+
+  bookByKey(key) {
+    if (typeof key !== "string") return null;
+    const wanted = key.normalize("NFC");
+    return this.books.find((book) => contract.bookKey(book) === wanted) ?? null;
+  }
+
+  // One book opens as before; several open the book a target names, else the
+  // book read last, else the shelf.
+  initialBook(target) {
+    if (this.books.length === 1) return this.books[0];
+    const named = this.bookByKey(target?.bookKey);
+    if (named) return named;
+    if (target?.pageId && !target.bookKey) {
+      const holder = this.books.find((book) => book.pages?.some((page) => page.id === target.pageId));
+      const last = this.bookByKey(this.plugin.settings.lastBook);
+      if (last?.pages?.some((page) => page.id === target.pageId)) return last;
+      if (holder) return holder;
+    }
+    return this.bookByKey(this.plugin.settings.lastBook);
+  }
+
+  // Back and Forward are per book; the first book takes the view's own.
+  historyFor(key) {
+    if (!this.histories.has(key)) this.histories.set(key, this.histories.size ? new ReaderHistory() : this.history);
+    return this.histories.get(key);
+  }
+
+  // Shows a book: its own index defaults, then (restore) its own saved
+  // languages and place.  Nothing of the previous book carries over.
+  async enterBook(model, restore = true) {
+    await this.leaveBook();
+    this.entry = model;
+    this.bookKey = contract.bookKey(model);
+    this.history = this.historyFor(this.bookKey);
+    await this.plugin.useModel(model);
+    this.mode = "page";
+    this.partId = null;
+    this.editionId = null;
+    this.columns = [];
+    this.interlinear = "gloss";
+    this.sourceShown = true;
+    this.wordPosition = -1;
+    this.activeCell = 0;
+    this.lastWord = null;
+    this.drawer?.setAttribute("hidden", "");
+    if (model.format === "library") {
+      this.library = model;
+      const saved = this.savedState();
+      await this.useEdition(saved?.editionId || model.editions[0].id, false);
+      if (!saved) this.mode = "library";
+    } else {
+      this.library = null;
+      await this.useBook(model);
+    }
+    if (restore) this.restoreState();
+    this.plugin.settings.lastBook = this.bookKey;
+  }
+
+  // Before another book or the shelf: the book's state is kept for this
+  // session and, with Resume on, saved.
+  async leaveBook() {
+    if (!this.book || this.bookKey === null || this.mode === "shelf") return;
+    clearTimeout(this.saveTimer);
+    this.sessions.set(this.bookKey, this.currentState());
+    await this.saveState();
+  }
+
+  // A book picked on the shelf (or named by a link) opens at its remembered
+  // page, else its start; a library without a saved place at its editions.
+  async openBook(model) {
+    await this.enterBook(model);
+    const saved = this.savedState();
+    if (this.library && !saved) this.mode = "library";
+    else if (saved?.pageId || !this.library) this.mode = "page";
+    return saved;
+  }
+
+  async openFromShelf(key) {
+    const model = this.bookByKey(key);
+    if (!model) return;
+    const saved = await this.openBook(model);
+    // Back from the book's first place returns to the shelf.
+    this.history.push({ mode: "shelf", bookKey: this.bookKey, position: this.position, partId: this.partId, scrollTop: 0 });
+    await this.render();
+    if (saved?.scrollTop && saved.pageId === this.pages[this.position]?.id) this.root.scrollTop = saved.scrollTop;
+  }
+
+  async showShelf() {
+    if (this.hasShelf() && this.mode !== "shelf") await this.go({ mode: "shelf" });
+  }
+
+  // The interface language follows the book on screen (its ui_lang); the
+  // shelf keeps the vault default.  Rail and toolbar are rebuilt when either
+  // the language or the book changes.
+  ensureUi() {
+    const lang = this.mode === "shelf" || !this.entry ? SHELF_LANG : (this.entry.uiLang || "en");
+    const signature = `${lang}|${this.bookKey}|${this.mode === "shelf"}`;
+    uiLang = lang;
+    if (signature === this.uiSignature && this.previous) return;
+    this.uiSignature = signature;
+    this.rail.setAttribute("aria-label", t("nav_aria"));
+    this.makeToolbar();
+    this.makeRail();
   }
 
   async useBook(book) {
@@ -453,22 +586,32 @@ class FirstPairReaderView extends ItemView {
     const retry = box.createEl("button", { text: t("retry") });
     retry.addEventListener("click", () => {
       this.plugin.model = null;
+      this.plugin.shelf = null;
+      this.opened = false;
       void this.onOpen();
     });
   }
 
   /* --------------------------------------------------------------- resume */
 
-  stateKey() { return this.parallel?.title ?? this.library?.title ?? this.book?.title ?? "reader"; }
+  // The 2.4.x settings key of this book (its title), for migration only.
+  legacyKey() { return this.parallel?.title ?? this.library?.title ?? this.book?.title ?? "reader"; }
 
-  savedState() { return this.plugin.settings.resume ? this.plugin.settings.state?.[this.stateKey()] : null; }
+  bookData() { return this.plugin.bookRecord(this.bookKey ?? "", this.legacyKey()); }
+
+  async saveBookData(patch) { await this.plugin.saveBook(this.bookKey ?? "", this.legacyKey(), patch); }
+
+  savedState() {
+    if (!this.plugin.settings.resume) return this.sessions.get(this.bookKey) ?? null;
+    return this.bookData().state ?? null;
+  }
 
   restoreState() {
     const saved = this.savedState();
     if (!saved) return;
     const position = this.pages.findIndex((page) => page.id === saved.pageId);
     if (position >= 0) this.position = position;
-    if (["contents", "part", "library"].includes(saved.mode)) this.mode = saved.mode;
+    if (["contents", "part"].includes(saved.mode) || (saved.mode === "library" && this.library)) this.mode = saved.mode;
     if (saved.partId) this.partId = saved.partId;
     if (this.parallel) {
       if (Array.isArray(saved.enabled)) {
@@ -499,15 +642,14 @@ class FirstPairReaderView extends ItemView {
   }
 
   saveStateSoon() {
-    if (!this.plugin.settings.resume || !this.pages.length) return;
+    if (!this.plugin.settings.resume || !this.pages.length || this.mode === "shelf") return;
     clearTimeout(this.saveTimer);
     this.saveTimer = setTimeout(() => void this.saveState(), 400);
   }
 
   async saveState() {
-    if (!this.plugin.settings.resume || !this.pages.length) return;
-    const state = { ...(this.plugin.settings.state ?? {}), [this.stateKey()]: this.currentState() };
-    await this.plugin.saveSettings({ state });
+    if (!this.plugin.settings.resume || !this.pages.length || this.mode === "shelf" || this.bookKey === null) return;
+    await this.plugin.saveBook(this.bookKey, this.legacyKey(), { state: this.currentState() }, { lastBook: this.bookKey });
   }
 
   // Obsidian keeps the leaf's state across restarts and passes the targets
@@ -518,21 +660,33 @@ class FirstPairReaderView extends ItemView {
       pageId: this.pages[this.position]?.id ?? null,
       partId: this.partId,
       editionId: this.editionId,
+      bookKey: this.bookKey,
     };
   }
 
   async setState(state, result) {
-    if (state && (state.pageId || state.mode)) {
-      if (!this.pages.length) this.pendingTarget = state;
-      else {
-        this.history.clear();
-        await this.applyTarget(state, false);
-      }
+    if (state && (state.pageId || state.mode || typeof state.bookKey === "string")) {
+      if (!this.opened) this.pendingTarget = state;
+      else await this.applyTarget(state, false, true);
     }
     return super.setState?.(state, result);
   }
 
-  async applyTarget(target, recordHistory = true) {
+  // A target may name its book (bookKey): a different book, or any book
+  // while the shelf is up, is opened first at its own remembered place.
+  async applyTarget(target, recordHistory = true, newSession = false) {
+    if (target.mode === "shelf") {
+      if (newSession) this.history.clear();
+      if (this.hasShelf()) return this.go({ mode: "shelf" }, recordHistory);
+      return this.render();
+    }
+    const named = this.hasShelf() ? this.bookByKey(target.bookKey) : null;
+    if (named && (named !== this.entry || this.mode === "shelf")) {
+      await this.openBook(named);
+      recordHistory = false;
+    }
+    if (newSession) this.history.clear();
+    if (!this.book) return this.render();
     if (target.editionId && this.library && target.editionId !== this.editionId) {
       await this.useEdition(target.editionId, false);
     }
@@ -556,6 +710,7 @@ class FirstPairReaderView extends ItemView {
     const focus = focused && this.page.contains(focused) && focused.id ? `#${focused.id}` : null;
     return {
       mode: this.mode,
+      bookKey: this.bookKey,
       editionId: this.editionId,
       position: this.position,
       partId: this.partId,
@@ -569,6 +724,7 @@ class FirstPairReaderView extends ItemView {
 
   async go(next, recordHistory = true) {
     if (recordHistory) this.history.push(this.snapshot());
+    if (next.mode === "shelf") await this.leaveBook();
     this.mode = next.mode;
     if (next.position !== undefined) this.position = next.position;
     if (next.mode === "part") this.partId = next.partId;
@@ -611,11 +767,12 @@ class FirstPairReaderView extends ItemView {
     if (this.mode === "note") return this.go({ mode: "page", position: this.position });
     if (this.mode === "part") return this.go({ mode: "contents" });
     if (this.mode === "contents" && this.library) return this.go({ mode: "library" });
+    if ((this.mode === "contents" || this.mode === "library") && this.hasShelf()) return this.go({ mode: "shelf" });
     return undefined;
   }
 
   async showContents() {
-    if (this.mode !== "contents") await this.go({ mode: "contents" });
+    if (this.mode !== "contents" && this.book) await this.go({ mode: "contents" });
   }
 
   async restore() {
@@ -629,6 +786,9 @@ class FirstPairReaderView extends ItemView {
   }
 
   async showSnapshot(state) {
+    const other = state.mode !== "shelf" && typeof state.bookKey === "string" && state.bookKey !== this.bookKey
+      ? this.bookByKey(state.bookKey) : null;
+    if (other) await this.enterBook(other, false);
     if (state.editionId && this.library && state.editionId !== this.editionId) {
       await this.useEdition(state.editionId, false);
     }
@@ -697,8 +857,9 @@ class FirstPairReaderView extends ItemView {
   updateRail() {
     if (!this.previous) return;
     const inPage = this.mode === "page";
+    const shelf = this.mode === "shelf";
     const previous = inPage ? this.pages[this.position - 1] : null;
-    const next = inPage ? this.pages[this.position + 1] : this.mode === "part"
+    const next = shelf ? null : inPage ? this.pages[this.position + 1] : this.mode === "part"
       ? this.pages.find((page) => page.partId === this.partId) : this.pages[this.position];
     this.previous.disabled = !previous;
     this.next.disabled = !next;
@@ -706,14 +867,16 @@ class FirstPairReaderView extends ItemView {
     this.next.title = next?.title ?? t("end");
     this.previousDestination.setText(previous?.title ?? "");
     this.nextDestination.setText(next?.title ?? "");
-    this.up.disabled = this.mode === "library" || (this.mode === "contents" && !this.library);
-    this.toc.disabled = this.mode === "contents";
+    this.up.disabled = shelf || (this.mode === "library" && !this.hasShelf())
+      || (this.mode === "contents" && !this.library && !this.hasShelf());
+    this.toc.disabled = this.mode === "contents" || shelf;
     this.back.disabled = !this.history.canBack();
     this.forward.disabled = !this.history.canForward();
     this.top.disabled = false;
     this.updateWordNavigation();
     const part = this.book?.parts.find((item) => item.id === (this.mode === "part" ? this.partId : this.pages[this.position]?.partId));
-    const text = this.mode === "library" ? t("library")
+    const text = shelf ? t("shelf")
+      : this.mode === "library" ? t("library")
       : this.mode === "contents" ? t("contents")
       : this.mode === "part" ? part?.title ?? ""
       : `${t("page_of", { n: this.position + 1, total: this.pages.length })}${part ? ` · ${part.title}` : ""}`;
@@ -827,8 +990,8 @@ class FirstPairReaderView extends ItemView {
     const choice = LAYOUTS.find((item) => item.id === this.plugin.settings.layout) ?? LAYOUTS[0];
     this.layoutButton.empty();
     setAnyIcon(this.layoutButton, choice.icons);
-    this.layoutButton.setAttribute("aria-label", t("layout_tap", { name: choice.label }));
-    this.layoutButton.title = t("layout", { name: choice.label });
+    this.layoutButton.setAttribute("aria-label", t("layout_tap", { name: layoutName(choice) }));
+    this.layoutButton.title = t("layout", { name: layoutName(choice) });
   }
 
   // Width and orientation are both watched: an iPad in landscape has room
@@ -883,7 +1046,7 @@ class FirstPairReaderView extends ItemView {
       tabs.setAttribute("data-reader-ui", "");
       const anchor = this.page.querySelector(".firstpair-reader__column-labels");
       if (anchor) anchor.after(tabs); else this.page.prepend(tabs);
-      const remembered = this.plugin.settings.defaultColumn?.[this.stateKey()];
+      const remembered = this.bookData().defaultColumn;
       const index = labels.findIndex((label) => label.dataset.cellKey === remembered);
       this.activeCell = index >= 0 ? index : Math.min(this.activeCell, Math.max(0, labels.length - 1));
       labels.forEach((label, index) => {
@@ -895,9 +1058,7 @@ class FirstPairReaderView extends ItemView {
         tab.addEventListener("click", async () => {
           this.activeCell = index;
           this.applyTabs();
-          await this.plugin.saveSettings({
-            defaultColumn: { ...(this.plugin.settings.defaultColumn || {}), [this.stateKey()]: label.dataset.cellKey },
-          });
+          await this.saveBookData({ defaultColumn: label.dataset.cellKey });
         });
       });
     }
@@ -963,7 +1124,7 @@ class FirstPairReaderView extends ItemView {
     this.grip = this.drawer.ownerDocument.createElement("div");
     this.grip.className = "firstpair-reader__drawer-grip";
     this.grip.setAttribute("role", "separator");
-    this.grip.setAttribute("aria-label", "Drag to resize the dictionary");
+    this.grip.setAttribute("aria-label", t("dictionary_grip"));
     this.drawer.prepend(this.grip);
     this.grip.addEventListener("pointerdown", (event) => {
       event.preventDefault();
@@ -1196,7 +1357,9 @@ class FirstPairReaderView extends ItemView {
   /* --------------------------------------------------------------- render */
 
   async render() {
-    if (this.mode === "page") return this.renderPage();
+    if (this.mode === "page" && this.book) return this.renderPage();
+    if (!this.book) this.mode = "shelf";
+    this.ensureUi();
     this.renderToken += 1;
     this.page.empty();
     this.page.removeClass("firstpair-reader__page--parallel");
@@ -1204,7 +1367,8 @@ class FirstPairReaderView extends ItemView {
     this.renderChild = null;
     this.toolbar.hidden = true;
     try {
-      if (this.mode === "library") this.renderLibrary();
+      if (this.mode === "shelf") this.renderShelf();
+      else if (this.mode === "library") this.renderLibrary();
       else if (this.mode === "contents") this.renderContents();
       else if (this.mode === "part") this.renderPart();
       else if (this.mode === "note") await this.renderNote(this.renderToken);
@@ -1229,6 +1393,38 @@ class FirstPairReaderView extends ItemView {
       button.setAttribute("aria-current", "page");
     }
     button.addEventListener("click", () => this.openPage(page.id));
+  }
+
+  // Every book of the vault: title, author and subtitle when the index has
+  // them, the language pair, and the page it was left on.
+  renderShelf() {
+    this.heading(t("shelf"));
+    const list = this.page.createEl("ul", { cls: "firstpair-reader__shelf" });
+    for (const model of this.books) {
+      const entry = contract.shelfEntry(model);
+      const button = list.createEl("li").createEl("button", {
+        cls: "firstpair-reader__shelf-book", attr: { type: "button", "data-book": entry.key },
+      });
+      button.createSpan({ cls: "firstpair-reader__shelf-title", text: entry.title, attr: model.lang ? { lang: model.lang } : {} });
+      if (entry.subtitle) button.createSpan({ cls: "firstpair-reader__shelf-subtitle", text: entry.subtitle });
+      if (entry.author) button.createSpan({ cls: "firstpair-reader__shelf-author", text: entry.author });
+      if (entry.languages) button.createSpan({ cls: "firstpair-reader__shelf-languages", text: entry.languages });
+      const record = this.plugin.bookRecord(entry.key, legacyKeyOf(model));
+      const saved = this.plugin.settings.resume ? record.state : this.sessions.get(entry.key);
+      const page = saved?.pageId && model.pages?.find((item) => item.id === saved.pageId);
+      if (page) button.createSpan({ cls: "firstpair-reader__shelf-place", text: t("shelf_continue", { page: page.title }) });
+      if (entry.key === this.bookKey) {
+        button.addClass("is-current");
+        button.setAttribute("aria-current", "true");
+      }
+      button.addEventListener("click", () => this.openFromShelf(entry.key));
+    }
+    for (const item of this.broken) {
+      list.createEl("li").createEl("p", {
+        cls: "firstpair-reader__warning",
+        text: t("shelf_unreadable", { folder: item.root || "/", error: item.error?.message ?? item.error }),
+      });
+    }
   }
 
   renderLibrary() {
@@ -1329,6 +1525,7 @@ class FirstPairReaderView extends ItemView {
 
   async renderPage(resetScroll = true) {
     this.mode = "page";
+    this.ensureUi();
     if (resetScroll) this.wordPosition = -1;
     const token = ++this.renderToken;
     const entry = this.pages[this.position];
@@ -1468,7 +1665,7 @@ class FirstPairReaderView extends ItemView {
     this.bindSourceRails(body);
     this.bindColumnToggles(body);
     this.wrapWords(body);
-    this.plugin.bindReaderLinks(body);
+    this.plugin.bindReaderLinks(body, { bookKey: this.bookKey });
     this.plugin.bindEvidenceTargets(body);
     this.bindSelection(body);
   }
@@ -1531,9 +1728,17 @@ class FirstPairReaderView extends ItemView {
       this.updateRail();
       return;
     }
-    const [linkpath, subpath = ""] = href.split("#");
+    const [rawLinkpath, subpath = ""] = href.split("#");
+    // Markdown links arrive percent-encoded ("Жизнь%20и%20судьба/…").
+    const linkpath = decodePath(rawLinkpath);
     const dest = this.app.metadataCache?.getFirstLinkpathDest?.(linkpath, sourcePath);
     const path = dest?.path ?? (linkpath.endsWith(".md") ? linkpath : `${linkpath}.md`);
+    // A note of another book on the shelf opens that book there.
+    const holder = this.hasShelf() ? contract.bookForNote(this.books, path) : null;
+    if (holder && holder !== this.entry && holder.format !== "library" && !subpath.startsWith("^")) {
+      const elsewhere = contract.targetForNote(holder, path);
+      if (elsewhere) return this.applyTarget({ ...elsewhere, bookKey: contract.bookKey(holder) });
+    }
     const target = contract.targetForNote(this.book, path);
     if (target && !subpath.startsWith("^")) {
       if (target.mode === "page") return this.openPage(target.pageId);
@@ -1579,7 +1784,7 @@ class FirstPairReaderView extends ItemView {
     if (!tables.length) return;
     const names = Array.from(tables[0].querySelectorAll("thead th, tr:first-child th")).slice(1).map((cell) => cell.textContent.trim());
     if (names.length < 2) return;
-    const hidden = new Set(this.plugin.settings.hiddenColumns?.[this.stateKey()] || []);
+    const hidden = new Set(this.bookData().hiddenColumns || []);
     const bar = body.ownerDocument.createElement("div");
     bar.className = "firstpair-reader__column-toggles";
     bar.setAttribute("role", "group");
@@ -1607,9 +1812,7 @@ class FirstPairReaderView extends ItemView {
         }
         if (box.checked) hidden.delete(name); else hidden.add(name);
         apply();
-        await this.plugin.saveSettings({
-          hiddenColumns: { ...(this.plugin.settings.hiddenColumns || {}), [this.stateKey()]: [...hidden] },
-        });
+        await this.saveBookData({ hiddenColumns: [...hidden] });
       });
     });
     apply();
@@ -1816,6 +2019,20 @@ class FirstPairReaderView extends ItemView {
   }
 }
 
+// A book's 2.4.x settings key before its aligned index is read.
+function legacyKeyOf(model) {
+  const aligned = model.aligned && typeof model.aligned === "object" ? model.aligned : null;
+  return (model.format === "library" ? model.title : aligned?.title) ?? model.title;
+}
+
+function decodePath(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch (_error) {
+    return value;
+  }
+}
+
 function makeSelectorFor(text, record) {
   return reviewState.makeSelector(text, Number(record.start), Number(record.end), record.token_keys || []);
 }
@@ -1836,31 +2053,27 @@ class FirstPairReaderSettingTab extends PluginSettingTab {
       await this.plugin.saveSettings(patch);
       if (refresh !== null) this.plugin.refreshViews(refresh);
     };
-    new Setting(containerEl).setName("Layout").setDesc("Auto follows the width of the Reader pane and the orientation of a phone; Columns and Stacked stay fixed. Columns on a phone become tabs you can swipe.")
+    new Setting(containerEl).setName(t("settings_layout")).setDesc(t("settings_layout_desc"))
       .addDropdown((dropdown) => {
-        for (const item of LAYOUTS) dropdown.addOption(item.id, item.label);
+        for (const item of LAYOUTS) dropdown.addOption(item.id, layoutName(item));
         dropdown.setValue(settings.layout).onChange((value) => save({ layout: value }, false));
       });
-    new Setting(containerEl).setName("Reserve the last column for the dictionary")
-      .setDesc("With a translation switched off, keep the remaining columns in place on the left; the dictionary drawer opens over the empty column instead of covering a translation. Off: the visible columns spread across the full width.")
+    new Setting(containerEl).setName(t("settings_reserve")).setDesc(t("settings_reserve_desc"))
       .addToggle((toggle) => toggle.setValue(settings.reserveDrawerColumn).onChange((value) => save({ reserveDrawerColumn: value }, true)));
-    new Setting(containerEl).setName("Keep the dictionary open")
-      .setDesc("The dictionary is a standing column that keeps the last entry while you read and turn pages, instead of a drawer that closes.")
+    new Setting(containerEl).setName(t("settings_keep_open")).setDesc(t("settings_keep_open_desc"))
       .addToggle((toggle) => toggle.setValue(settings.keepDrawerOpen).onChange((value) => save({ keepDrawerOpen: value }, true)));
-    new Setting(containerEl).setName("Dictionary position in stacked layout")
-      .setDesc("Side: a panel on the right. Bottom: a band across the bottom of the screen; with the dictionary kept open, the text flows above it.")
-      .addDropdown((dropdown) => dropdown.addOption("side", "Side").addOption("bottom", "Bottom").setValue(settings.drawerPosition)
+    new Setting(containerEl).setName(t("settings_drawer_position")).setDesc(t("settings_drawer_position_desc"))
+      .addDropdown((dropdown) => dropdown.addOption("side", t("drawer_side")).addOption("bottom", t("drawer_bottom")).setValue(settings.drawerPosition)
         .onChange((value) => save({ drawerPosition: value }, false)));
-    new Setting(containerEl).setName("Bottom band height")
-      .setDesc("The share of the screen the bottom dictionary takes, as a percentage; dragging the band's top edge changes it too.")
+    new Setting(containerEl).setName(t("settings_band_height")).setDesc(t("settings_band_height_desc"))
       .addSlider((slider) => slider.setLimits(15, 85, 5).setValue(Math.round(settings.drawerHeight * 100)).setDynamicTooltip()
         .onChange((value) => save({ drawerHeight: value / 100 }, false)));
-    new Setting(containerEl).setName("Resume where you left off")
-      .setDesc("Reopen the Reader on the same page and scroll position, with the same languages, translations, and dictionary entry. Off: the Reader opens at the start.")
-      .addToggle((toggle) => toggle.setValue(settings.resume).onChange((value) => save({ resume: value, ...(value ? {} : { state: {} }) })));
-    new Setting(containerEl).setName("Dictionary languages")
-      .setDesc("Shown: answer only in the translations on screen. All: answer in every language of the edition, the shown ones first.")
-      .addDropdown((dropdown) => dropdown.addOption("shown", "Shown translations").addOption("all", "All, shown first").setValue(settings.dictionaryLanguages)
+    new Setting(containerEl).setName(t("settings_resume")).setDesc(t("settings_resume_desc"))
+      .addToggle((toggle) => toggle.setValue(settings.resume).onChange((value) => save({
+        resume: value, ...(value ? {} : { state: {}, books: bookState.withoutStates(settings) }),
+      })));
+    new Setting(containerEl).setName(t("settings_dictionary_languages")).setDesc(t("settings_dictionary_languages_desc"))
+      .addDropdown((dropdown) => dropdown.addOption("shown", t("dictionary_shown")).addOption("all", t("dictionary_all")).setValue(settings.dictionaryLanguages)
         .onChange((value) => save({ dictionaryLanguages: value })));
     new Setting(containerEl).setName(t("settings_rail")).setDesc(t("settings_rail_desc"))
       .addDropdown((dropdown) => dropdown.addOption("bottom", t("rail_bottom")).addOption("top", t("rail_top")).setValue(settings.railPosition)
@@ -1921,6 +2134,11 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     // (railPositionChosen) keeps it.
     if (saved && saved.railPosition === "bottom" && !saved.railPositionChosen) delete saved.railPosition;
     this.settings = Object.assign({}, DEFAULT_SETTINGS, saved);
+    // 2.5.0 keeps state per book (book-state.js); the 2.4.x title-keyed maps
+    // stay as they were and seed each book's record when it is first opened.
+    this.settings.books = { ...(saved?.books && typeof saved.books === "object" ? saved.books : {}) };
+    this.shelf = null;
+    this.currentBook = null;
     this.store = new DecisionStore(this.app);
     this.transcribing = new Set();
     this.voiceListeners = new Set();
@@ -1936,6 +2154,7 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     this.registerView(VIEW_TYPE, (leaf) => new FirstPairReaderView(leaf, this));
     this.addRibbonIcon("book-open", t("open_reader"), () => this.activate());
     this.addCommand({ id: "open-reader", name: "Open Reader", callback: () => this.activate() });
+    this.addCommand({ id: "open-shelf", name: t("open_shelf"), callback: () => this.activate(undefined, { shelf: true }) });
     const viewCommand = (id, name, action) => this.addCommand({
       id,
       name,
@@ -1958,16 +2177,19 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
       id: "transcribe-voice-notes", name: t("cmd_transcribe"),
       callback: () => void this.transcribePending({ includeFailed: true }),
     });
-    this.registerMarkdownPostProcessor((element) => {
+    this.registerMarkdownPostProcessor((element, context) => {
       this.bindEvidenceTargets(element);
-      this.bindReaderLinks(element);
+      this.bindReaderLinks(element, { sourcePath: context?.sourcePath });
     });
     if (typeof this.registerMarkdownCodeBlockProcessor === "function") {
       for (const language of FRAGMENT_LANGUAGES) {
         this.registerMarkdownCodeBlockProcessor(language, (source, element) => void this.renderFragment(source, element));
       }
     }
-    this.registerObsidianProtocolHandler?.("firstpair-reader", (params) => this.activate(params.page));
+    this.registerObsidianProtocolHandler?.("firstpair-reader", (params) => this.activate(params.page, {
+      bookKey: typeof params.book === "string" ? params.book : undefined,
+      shelf: params.shelf !== undefined,
+    }));
     if (this.app.workspace.on && this.registerEvent) {
       this.registerEvent(this.app.workspace.on("file-open", (file) => void this.takeOver(file)));
     }
@@ -2004,6 +2226,16 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     await this.saveData(this.settings);
   }
 
+  // A book's record: its own, else migrated from the 2.4.x maps (not saved
+  // until the book saves something).
+  bookRecord(key, legacyKey) {
+    return bookState.bookRecord(this.settings, key, legacyKey).record;
+  }
+
+  async saveBook(key, legacyKey, patch, extra = {}) {
+    await this.saveSettings({ books: bookState.patchBook(this.settings, key, patch, legacyKey), ...extra });
+  }
+
   activeView() {
     const view = this.app.workspace.getActiveViewOfType?.(FirstPairReaderView);
     return view || this.app.workspace.getLeavesOfType(VIEW_TYPE)[0]?.view || null;
@@ -2017,12 +2249,42 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
     }
   }
 
-  // The model, discovered once and kept while the index file is unchanged.
+  // Every book of the vault, discovered once (contract.discoverAll).
+  async loadBooks(force = false) {
+    if (this.shelf && !force) return this.shelf;
+    const { books, broken } = await contract.discoverAll(this.io);
+    for (const book of books) await this.enrichLegacy(book);
+    this.shelf = { books, broken };
+    // Settings from 2.4.x name no book: the one their saved place belongs to
+    // is the book read last.
+    if (this.settings.lastBook === null || this.settings.lastBook === undefined) {
+      const resumed = books.find((book) => bookState.legacyRecord(this.settings, legacyKeyOf(book))?.state);
+      if (resumed) this.settings.lastBook = contract.bookKey(resumed);
+    }
+    if (!this.currentBook || !books.includes(this.currentBook)) {
+      this.currentBook = null;
+      this.model = null;
+      const last = books.find((book) => contract.bookKey(book) === this.settings.lastBook);
+      await this.useModel(last ?? books[0]);
+    }
+    return this.shelf;
+  }
+
+  // The book on screen (or read last): its model, identity, metrics, and
+  // the caches that belong to it.
   async loadModel(force = false) {
     if (this.model && !force) return this.model;
-    const model = await contract.discover(this.io);
-    await this.enrichLegacy(model);
+    await this.loadBooks(force);
+    return this.model;
+  }
+
+  async useModel(model) {
+    if (!model || (this.currentBook === model && this.model === model)) return;
+    this.currentBook = model;
     this.model = model;
+    this.fragments = null;
+    this.quoteIndex = null;
+    this.targets = null;
     this.modelIdentity = reviewState.sha256Id(JSON.stringify({
       title: model.title, version: model.version, commit: model.sourceCommit, format: model.format,
       pages: (model.pages || []).map((page) => [page.id, page.file, page.anchor]),
@@ -2087,15 +2349,18 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
 
   async takeOver(file) {
     if (!file || this.readerTransition || !/\.md$/i.test(file.path)) return;
-    let model;
+    let books;
     try {
-      model = await this.loadModel();
+      ({ books } = await this.loadBooks());
     } catch (_error) {
       return;
     }
-    const book = model.format === "library" ? null : model;
-    const target = book ? contract.targetForNote(book, file.path) : null;
-    if (!target) return;
+    // The book whose folder holds the note (one book: that book).
+    const holder = contract.bookForNote(books, file.path);
+    const book = holder && holder.format !== "library" ? holder : null;
+    const found = book ? contract.targetForNote(book, file.path) : null;
+    if (!found) return;
+    const target = { ...found, bookKey: contract.bookKey(book) };
     const leaf = this.app.workspace.getLeavesOfType?.("markdown")?.find((candidate) => candidate.view?.file?.path === file.path);
     if (!leaf) return;
     this.readerTransition = true;
@@ -2110,7 +2375,9 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
 
   async loadTargets() {
     if (this.targets) return this.targets;
-    const text = await this.io.read(TARGET_INDEX);
+    // A book in a folder keeps its own index; the vault's is the fallback.
+    const root = this.currentBook?.root;
+    const text = (root ? await this.io.read(`${root}/${TARGET_INDEX}`) : null) ?? await this.io.read(TARGET_INDEX);
     if (text === null) return new Map();
     const rows = JSON.parse(text);
     this.targets = new Map(rows.map((row) => [row.id, row]));
@@ -2137,7 +2404,10 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
 
   // [Open the Reader](firstpair:reader) and [Canto 1](firstpair:page:<id>)
   // become buttons, so a phone never tries to open the custom scheme.
-  bindReaderLinks(element) {
+  // The context names the book a link belongs to: the Reader's own book, or
+  // the note it sits in (a book's Home opens that book; the vault's shelf
+  // Home, belonging to none, opens the book read last or the shelf).
+  bindReaderLinks(element, context = {}) {
     for (const anchor of Array.from(element.querySelectorAll('a[href="firstpair:reader"], a[href^="firstpair:page:"]'))) {
       const href = anchor.getAttribute("href");
       const button = anchor.ownerDocument.createElement("button");
@@ -2147,20 +2417,47 @@ module.exports = class FirstPairReaderPlugin extends Plugin {
       button.addEventListener("click", async (event) => {
         event.preventDefault();
         event.stopPropagation();
-        await this.activate(href.startsWith("firstpair:page:") ? href.slice("firstpair:page:".length) : undefined);
+        await this.activate(href.startsWith("firstpair:page:") ? href.slice("firstpair:page:".length) : undefined, context);
       });
       anchor.replaceWith(button);
     }
   }
 
-  async activate(pageId) {
+  async activate(pageId, { bookKey, sourcePath, shelf = false } = {}) {
+    let key = typeof bookKey === "string" ? bookKey : undefined;
+    if (key === undefined && sourcePath) {
+      try {
+        const holder = contract.bookForNote((await this.loadBooks()).books, sourcePath);
+        if (holder) key = contract.bookKey(holder);
+      } catch (_error) {
+        key = undefined;
+      }
+    }
     let leaf = this.app.workspace.getLeavesOfType(VIEW_TYPE)[0];
     if (!leaf) {
       leaf = this.app.workspace.getLeaf("tab");
       await leaf.setViewState({ type: VIEW_TYPE, active: true });
     }
     this.app.workspace.revealLeaf(leaf);
-    if (pageId && leaf.view instanceof FirstPairReaderView) await leaf.view.openPage(pageId);
+    const view = leaf.view;
+    if (!(view instanceof FirstPairReaderView)) return;
+    if (shelf) {
+      await view.showShelf();
+      return;
+    }
+    if (view.hasShelf()) {
+      if (key === undefined && pageId && !view.pages.some((page) => page.id === pageId)) {
+        const holder = view.books.find((book) => book.pages?.some((page) => page.id === pageId));
+        if (holder) key = contract.bookKey(holder);
+      }
+      // No context while the shelf is up: the book read last.
+      if (key === undefined && view.mode === "shelf" && view.entry) key = view.bookKey;
+      if (key !== undefined && (key !== view.bookKey || view.mode === "shelf")) {
+        await view.applyTarget({ bookKey: key, ...(pageId ? { mode: "page", pageId } : {}) });
+        return;
+      }
+    }
+    if (pageId) await view.openPage(pageId);
   }
 
   /* -------------------------------------------------------- code fragments */

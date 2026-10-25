@@ -258,7 +258,7 @@ test('several translations per language: rotate, second column, coverage', async
     assert.deepEqual(headers().slice(1, 2), ['English · Cary (1814) ≈']); assert.equal(cellsText()[1], 'In the midway')
     rotate(); await settle(); await settle()
     assert.equal(cellsText()[1], 'In middle of')
-    assert.equal(view.plugin.settings.choices.Multi.en, 'en-sibbald')
+    assert.equal(view.plugin.settings.books[''].choices.en, 'en-sibbald')
     // A second English column: the next translation not already shown.
     root.querySelector('.firstpair-reader__column-control').click(); await settle(); await settle()
     assert.deepEqual(headers(), ['Italiano', 'English · Sibbald (1884)', 'English · Longfellow (1867)', 'Русский · Мин (1855)'])
@@ -296,7 +296,7 @@ test('the Reader resumes where it was left: page, scroll, languages, columns, wo
     const word = Array.from(first.root.querySelectorAll('.firstpair-reader__word')).find((button) => button.textContent === 'correr')
     word.click(); await settle(); await settle()
     await first.view.saveState()
-    const saved = first.view.plugin.data.state.Multi
+    const saved = first.view.plugin.data.books[''].state
     assert.equal(saved.pageId, 'c-02'); assert.deepEqual(saved.enabled, ['ru']); assert.equal(saved.word, 'correr')
     // A fresh plugin with the same data opens at the same place.
     const second = await (async () => { const { app, plugin } = makeApp(vaultRoot, window); plugin.data = first.view.plugin.data; await plugin.onload(); await plugin.activate(); const leaf = app.workspace.getLeavesOfType('firstpair-reader')[0]; return { view: leaf.view, root: leaf.containerEl } })()

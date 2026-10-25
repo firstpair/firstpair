@@ -6,7 +6,9 @@ With the plugin disabled, the vault's Markdown notes remain a complete book.
 
 ## What it reads
 
-The Reader finds the vault's index on its own: `_data/reader.json` (schema
+The Reader finds the vault's indexes on its own, at the root and in each
+top-level folder (one book per folder; paths in an index are vault-relative
+and include the folder): `_data/reader.json` (schema
 `firstpair-reader.v2`), an aligned edition's `_data/parallel-reader.json`, a
 1.x page list, a Cicero-style `reader.json`, a `Reader/reader-index.json`, a
 mobile edition library, or a code book (`_data/fragments.json` beside a
@@ -25,6 +27,13 @@ readers this one replaced.
   Top can be undone with Back. Every control is also a command.
 - **Static notes open the Reader** at the same place: the launcher, contents,
   part, and page notes.
+- **Shelf** — a vault with several books (the root index and each top-level
+  folder holding its own `_data/reader.json` or other index) opens on a shelf
+  listing them with their title, `author`, `subtitle`, and language pair. Tap a
+  book to resume it; Up from its contents, or **Open the shelf**, returns.
+  Each book keeps its own page, Back history, languages, and interface
+  language (its `ui_lang`); a book's notes and links open that book, and the
+  vault's own Home opens the book read last. One book: no shelf.
 - **Libraries** list editions by family; pages are cut from the Part notes.
 - **Footnotes, headings, and book links** stay inside the Reader. Source
   passages open in place or, with the setting, in a new tab. A quotation that

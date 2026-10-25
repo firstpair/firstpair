@@ -33,7 +33,7 @@ here · **—** deliberately left out (with the reason).
 | Static fallback notes open the Reader at their place (note takeover) | Cicero, Invented, mobile | **+** launcher, contents, part, and page notes of any index format |
 | `obsidian://firstpair-reader?page=`; `firstpair:reader` / `firstpair:page:` links as buttons | 1.7 | **=** |
 | `firstpair:target:` evidence links | 1.7 | **+** a folder target now explains itself instead of failing silently |
-| Resume page, scroll, languages, columns, open word | 1.7 | **+** also mode, part, and edition |
+| Resume page, scroll, languages, columns, open word | 1.7 | **+** also mode, part, and edition; since 2.5.0 kept per book (`books.<root folder>` in `data.json`), 2.4.x state migrated onto its book |
 | Error view with Retry, never blank | 1.7 | **+** listeners no longer pile up on Retry |
 | Stale Backlinks/Outgoing-links leaves removed | Invented, Triptych | **+** only when their core plugin is off |
 
@@ -43,6 +43,7 @@ here · **—** deliberately left out (with the reason).
 | --- | --- | --- |
 | Strict, validated index (contiguous order, part partition, unique ids, safe paths) | Cicero, Invented | **+** applied to every format; 1.7 validated nothing |
 | Index formats | each its own | **new** one contract reads v2, `parallel-reader.json`, 1.x page arrays, Cicero schema 1, `firstpair.reader.v1`, the mobile library, and code books |
+| Shelf: several books in one vault | — | **new** 2.5.0: the root index and every top-level folder with its own index are books; with two or more, a shelf lists them (title, `author`, `subtitle`, language pair) and Up from a book's contents returns to it. Each book has its own place, Back history, languages, and interface language (`ui_lang`); notes and `firstpair:` links open the book whose folder holds them; the vault's own Home and **Open the Reader** open the book read last, else the shelf; command **Open the shelf** |
 | Library of editions grouped by family | mobile | **+** families come from the data (mobile hard-coded Main/South/East/West) |
 | One prose copy: pages cut from Part notes by markers | mobile | **=** `marker` in v2; `lmr-page` markers in the mobile library |
 | Inline page Markdown | Cicero | **=** |

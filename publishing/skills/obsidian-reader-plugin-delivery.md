@@ -83,6 +83,21 @@ unreadable in Restricted mode.
     Do the same for source-specific IDs such as `{#anthology-a03}`. Preserve
     braces that are ordinary prose rather than recognized heading attributes.
 
+## Several Books In One Vault
+
+Since Reader 2.5.0 a vault may hold several books as peer top-level folders,
+each with its own index (`<folder>/_data/reader.json`), whose paths are
+vault-relative and include the folder. A root index is a book too. One book
+behaves exactly as before; two or more open on a shelf (title, optional
+`author` and `subtitle` from the index, language pair from `aligned`). Up
+from a book's contents returns to the shelf. Position, Back history,
+languages, and the interface language (`ui_lang`) are per book; the shelf
+stays in the vault default. Static notes and `firstpair:` links open the book
+whose folder holds them; the vault's root `Home.md` should be a plain shelf
+note belonging to no book, and its **Open the Reader** opens the book read
+last, else the shelf. Folder names may be any Unicode with spaces; discovery
+normalizes them to NFC.
+
 ## Source Navigation Contract
 
 1. Generate a local, versioned quote index with exact note and block targets,
@@ -159,10 +174,14 @@ first and the enabled translations after it.
    module (`publishing/tests/obsidian-mock.cjs`,
    `test-firstpair-reader-dom.mjs`): open, render, tap a word, switch layout,
    follow Home links, half-synced vault, resume. The Reader persists its
-   state per edition title in `settings.state` (page id, scroll offset,
-   enabled languages, columns, open dictionary word), saved on every page
-   turn, toggle, lookup, scroll (debounced), and on close, and restored in
-   `onOpen`; `resume` in settings turns it off. The Emacs reader does the
+   state per book in `settings.books[<root folder>]` (since 2.5.0; `""` for
+   a book at the vault root): `state` (page id, scroll offset, enabled
+   languages, source column, interlinear layer, columns, open dictionary
+   word), `choices`, `defaultColumn`, `hiddenColumns`, plus `lastBook`. It
+   is saved on every page turn, toggle, lookup, scroll (debounced), book
+   switch, and on close, and restored in `onOpen`; `resume` in settings
+   turns it off. The 2.4.x title-keyed maps are read once to seed a book
+   that has no record yet and are otherwise left alone. The Emacs reader does the
    same in `firstpair-reader-state-file` keyed by the bundle's true
    directory, with saves suppressed while `firstpair-read` opens the Top
    nodes so setup never overwrites the remembered place.
@@ -191,7 +210,7 @@ first and the enabled translations after it.
    header naming the translation and rotating through the language's
    translations that cover the current page on click; **+** adds a second
    column of the same language, **−** removes it; the choice is remembered
-   per edition title in `settings.choices`. Dictionaries stay keyed by
+   per book in `settings.books[<root folder>].choices`. Dictionaries stay keyed by
    language. The Emacs builder reads the same index through
    `emacs.aligned.index`, renders every translation as a region, ships
    `data/translations.json`, and rotates with `C-c C-v` / `C-c C-b`.

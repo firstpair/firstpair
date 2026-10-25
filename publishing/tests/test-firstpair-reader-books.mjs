@@ -259,7 +259,7 @@ test('aligned columns on a phone become tabs that remember the chosen language',
     assert.deepEqual(visible(), ['Nel mezzo'])
     tabs[2].click(); await settle()
     assert.deepEqual(visible(), ['Земную'])
-    assert.equal(view.plugin.settings.defaultColumn.Tabs, 'ru:main')
+    assert.equal(view.plugin.settings.books[''].defaultColumn, 'ru:main', 'kept per book (root folder "")')
   } finally { done() }
 })
 
@@ -312,5 +312,236 @@ test('editing is off by default; on, a selected span takes a text note in the sh
     assert.equal(await saveNote(['link'], 'edited'), true)
     await view.paintNotes(); await settle()
     assert.ok(paragraph.querySelector('mark.lt-phrase-overlap').style.background.includes('repeating-linear-gradient'), 'overlaps are striped')
+  } finally { done() }
+})
+
+/* ------------------------------------------------------- several books */
+
+const RU = 'Жизнь и судьба'
+
+// Two study books as peer folders of one vault, as the 1911 builder writes
+// them: firstpair-reader.v2 with an aligned block, an optional hidden Chinese
+// source with interlinear pinyin and glosses, and a plain shelf Home.md.
+function studyBook(root, { title, lang, label, uiLang, author, subtitle, text }) {
+  const at = (rest) => `${root}/${rest}`
+  return {
+    [at('_data/reader.json')]: {
+      schema: 'firstpair-reader.v2', title, ui_lang: uiLang, author, subtitle,
+      launcher: at('Home.md'), contents: at('Contents'),
+      parts: [{ id: 'P1', title: 'Part 1', note: at('Book/Part 1') }],
+      pages: [
+        { id: 'p003', title: 'Page 3', part: 'P1', chapter: at('_data/pages/p003.json') },
+        { id: 'p004', title: 'Page 4', part: 'P1', chapter: at('_data/pages/p004.json') },
+      ],
+      aligned: {
+        schema: 'firstpair-parallel-reader-v1', title,
+        sourceLanguage: { id: 'zh', lang: 'zh', label: '中文', position: 'left', optional: true, defaultVisible: false },
+        translations: [{ id: lang, lang, label, defaultVisible: true }],
+        interlinear: { layers: ['pinyin', 'gloss'] },
+      },
+    },
+    [at('_data/pages/p003.json')]: { schema: 'firstpair-aligned-chapter-v1', id: 'p003', title: 'Page 3', units: [
+      { id: 'b1', source: ['他来了。'], translations: { [lang]: [text[0]] }, words: [['他', 'tā', text[2]], ['来', 'lái', text[3]], ['了', 'le', '(done)'], ['。', '', '']] },
+    ] },
+    [at('_data/pages/p004.json')]: { schema: 'firstpair-aligned-chapter-v1', id: 'p004', title: 'Page 4', units: [
+      { id: 'b2', source: ['走。'], translations: { [lang]: [text[1]] }, words: [['走', 'zǒu', 'go'], ['。', '', '']] },
+    ] },
+    [at('Home.md')]: '# Home\n\n[Open the Reader](firstpair:reader)\n',
+    [at('Contents.md')]: '# Contents\n',
+    [at('Book/Part 1.md')]: '# Part 1\n',
+  }
+}
+
+const SHELF = {
+  ...studyBook('1911', { title: '1911', lang: 'en', label: 'English', uiLang: 'en', text: ['He came.', 'Go.', 'he', 'come'] }),
+  ...studyBook(RU, { title: RU, lang: 'ru', label: 'Русский', uiLang: 'ru', author: 'Василий Гроссман', subtitle: 'Роман', text: ['Он пришёл.', 'Иди.', 'он', 'прийти'] }),
+  'Home.md': '# Books\n\n[Open the Reader](firstpair:reader)\n',
+}
+
+const shelfBooks = (el) => Array.from(el.querySelectorAll('.firstpair-reader__shelf-book'))
+const cellLangs = (el) => Array.from(el.querySelector('.firstpair-reader__strip').querySelectorAll('.firstpair-reader__cell')).map((cell) => cell.getAttribute('lang'))
+const toggleSource = async (el, window) => {
+  const source = el.querySelector('.firstpair-reader__language--source input')
+  source.checked = !source.checked; source.dispatchEvent(new window.Event('change')); await settle()
+}
+const languagesOf = (view) => ({ enabled: [...view.enabled], source: view.sourceShown, interlinear: view.interlinear })
+
+test('one book in a folder opens as before: no shelf, Up stops at its contents', async () => {
+  const { el, view, done } = await open(studyBook('1911', { title: '1911', lang: 'en', label: 'English', uiLang: 'en', text: ['He came.', 'Go.', 'he', 'come'] }))
+  try {
+    assert.equal(view.hasShelf(), false)
+    assert.equal(view.mode, 'page')
+    assert.deepEqual(cellLangs(el), ['en'])
+    rail(el).Up.click(); await settle(); rail(el).Up.click(); await settle()
+    assert.equal(view.mode, 'contents'); assert.equal(rail(el).Up.disabled, true)
+  } finally { done() }
+})
+
+test('several books: a shelf, each book in its own interface language, Up returns to the shelf', async () => {
+  const { window, el, view, plugin, done } = await open(SHELF)
+  try {
+    // No book read yet: the shelf, in English.
+    assert.equal(view.mode, 'shelf')
+    assert.equal(el.querySelector('h1').textContent, 'Shelf')
+    assert.deepEqual(shelfBooks(el).map((b) => b.getAttribute('data-book')), ['1911', RU])
+    assert.equal(shelfBooks(el)[1].querySelector('.firstpair-reader__shelf-author').textContent, 'Василий Гроссман')
+    assert.equal(shelfBooks(el)[1].querySelector('.firstpair-reader__shelf-subtitle').textContent, 'Роман')
+    assert.equal(shelfBooks(el)[0].querySelector('.firstpair-reader__shelf-languages').textContent, '中文 → English')
+    assert.equal(shelfBooks(el)[1].querySelector('.firstpair-reader__shelf-languages').textContent, '中文 → Русский')
+    assert.equal(rail(el).Up.disabled, true); assert.equal(rail(el).Next.disabled, true)
+    assert.equal(el.querySelector('.firstpair-reader__toolbar').hidden, true)
+
+    // The Russian book: its units, a Russian interface, its own pinyin and glosses.
+    shelfBooks(el)[1].click(); await settle()
+    assert.equal(view.bookKey, RU); assert.equal(view.mode, 'page')
+    assert.deepEqual(cellLangs(el), ['ru'])
+    assert.match(el.querySelector('.firstpair-reader__strip').textContent, /Он пришёл/)
+    assert.deepEqual(Object.keys(rail(el)), ['Назад', 'Предыдущее слово', 'Вверх', 'Возврат', 'Вперёд', 'В начало', 'Оглавление', 'Следующее слово', 'Дальше'].filter((label) => Object.keys(rail(el)).includes(label)))
+    assert.ok(rail(el)['Вверх'] && rail(el)['Оглавление'], 'rail tooltips in Russian')
+    assert.equal(el.querySelector('.firstpair-reader__languages').getAttribute('aria-label'), 'Языки')
+    await toggleSource(el, window)
+    assert.deepEqual(cellLangs(el), ['zh', 'ru'])
+    const words = el.querySelectorAll('.firstpair-reader__iword')
+    assert.equal(words[0].querySelector('.firstpair-reader__ireading').textContent, 'tā')
+    assert.equal(words[0].querySelector('.firstpair-reader__igloss').textContent, 'он')
+    assert.match(el.querySelector('.firstpair-reader__interlinear-toggle').getAttribute('aria-label'), /Слои слов/)
+    assert.match(el.querySelector('.firstpair-reader__layout-toggle').getAttribute('aria-label'), /Раскладка: Авто/)
+
+    // Up: page → part → contents → shelf, which is in English again.
+    rail(el)['Вверх'].click(); await settle()
+    assert.equal(view.mode, 'part')
+    rail(el)['Вверх'].click(); await settle()
+    assert.equal(view.mode, 'contents'); assert.equal(rail(el)['Вверх'].disabled, false)
+    rail(el)['Вверх'].click(); await settle()
+    assert.equal(view.mode, 'shelf')
+    assert.ok(rail(el).Up, 'the shelf rail is in English')
+    // Back returns into the book it came from.
+    rail(el).Back.click(); await settle()
+    assert.equal(view.mode, 'contents'); assert.equal(view.bookKey, RU)
+    assert.ok(rail(el)['Вверх'])
+    rail(el)['Вверх'].click(); await settle()
+
+    // Each book is saved under its root folder.
+    assert.equal(plugin.data.lastBook, RU)
+    assert.equal(plugin.data.books[RU].state.pageId, 'p003')
+    assert.deepEqual(plugin.data.books[RU].state.enabled, ['ru'])
+    assert.equal(plugin.data.books[RU].state.source, true)
+    assert.equal(shelfBooks(el)[1].querySelector('.firstpair-reader__shelf-place').textContent, 'Continue: Page 3')
+  } finally { done() }
+})
+
+test('switching books restores each book its own languages: 1911 → Жизнь и судьба → 1911', async () => {
+  const { window, el, view, plugin, done } = await open(SHELF)
+  try {
+    // 1911: source on, interlinear Reading only (gloss → text → pinyin), page 4.
+    shelfBooks(el)[0].click(); await settle()
+    assert.deepEqual(languagesOf(view), { enabled: ['en'], source: false, interlinear: 'gloss' }, 'index defaults')
+    await toggleSource(el, window)
+    el.querySelector('.firstpair-reader__interlinear-toggle').click(); await settle()
+    el.querySelector('.firstpair-reader__interlinear-toggle').click(); await settle()
+    rail(el).Next.click(); await settle()
+    assert.deepEqual(languagesOf(view), { enabled: ['en'], source: true, interlinear: 'pinyin' })
+    assert.equal(view.pages[view.position].id, 'p004')
+    const english = { ...languagesOf(view) }
+
+    // To the Russian book through the shelf: its own defaults, nothing of 1911.
+    view.showShelf(); await settle()
+    shelfBooks(el)[1].click(); await settle()
+    assert.deepEqual(languagesOf(view), { enabled: ['ru'], source: false, interlinear: 'gloss' }, 'no "en", no source, no pinyin carried over')
+    assert.deepEqual(cellLangs(el), ['ru'])
+    assert.equal(view.pages[view.position].id, 'p003', 'a book never read opens at its start')
+    await toggleSource(el, window)
+    assert.equal(el.querySelectorAll('.firstpair-reader__igloss').length > 0, true)
+    const russian = { ...languagesOf(view) }
+
+    // Back to 1911 through a link in its own Home note: page 4, its choices.
+    const home = window.document.body.createDiv()
+    home.innerHTML = '<p><a href="firstpair:reader">Open the Reader</a></p>'
+    for (const processor of plugin.postProcessors) processor(home, { sourcePath: '1911/Home.md' })
+    home.querySelector('button').click(); await settle()
+    assert.equal(view.bookKey, '1911')
+    assert.deepEqual(languagesOf(view), english)
+    assert.equal(view.pages[view.position].id, 'p004')
+    assert.deepEqual(cellLangs(el), ['zh', 'en'])
+    assert.equal(el.querySelectorAll('.firstpair-reader__ireading').length > 0, true)
+    assert.equal(el.querySelectorAll('.firstpair-reader__igloss').length, 0, 'Reading only, as left')
+    assert.ok(rail(el).Up, 'English interface again')
+
+    // And the Russian book again: its own choices, not 1911's.
+    const ruHome = window.document.body.createDiv()
+    ruHome.innerHTML = '<p><a href="firstpair:reader">Открыть</a></p>'
+    for (const processor of plugin.postProcessors) processor(ruHome, { sourcePath: `${RU}/Home.md` })
+    ruHome.querySelector('button').click(); await settle()
+    assert.equal(view.bookKey, RU)
+    assert.deepEqual(languagesOf(view), russian)
+    assert.deepEqual(cellLangs(el), ['zh', 'ru'])
+    assert.deepEqual(plugin.data.books['1911'].state.enabled, ['en'])
+    assert.deepEqual(plugin.data.books[RU].state.enabled, ['ru'])
+    assert.equal(plugin.data.books['1911'].state.interlinear, 'pinyin')
+    assert.equal(plugin.data.books[RU].state.interlinear, 'gloss')
+
+    // Back history is per book: in the Russian book, Back does not reach 1911.
+    const back = () => rail(el)['Возврат'] ?? rail(el).Back
+    for (let step = 0; step < 20 && !back().disabled; step += 1) {
+      back().click(); await settle()
+      assert.ok(view.mode === 'shelf' || view.bookKey === RU, `step ${step}: ${view.mode} ${view.bookKey}`)
+    }
+    assert.equal(back().disabled, true)
+  } finally { done() }
+})
+
+test('notes and links open the book whose folder holds them; the shelf note opens the book read last', async () => {
+  const { window, app, el, view, plugin, done } = await open(SHELF, { settings: { lastBook: '1911' } })
+  try {
+    assert.equal(view.mode, 'page'); assert.equal(view.bookKey, '1911', 'the book read last')
+    // A part note inside the Cyrillic folder takes over its leaf in that book.
+    const leaf = app.workspace.getLeaf(); leaf.type = 'markdown'; leaf.view = { file: { path: `${RU}/Book/Part 1.md` } }
+    await plugin.takeOver({ path: `${RU}/Book/Part 1.md` }); await settle()
+    assert.equal(leaf.type, 'firstpair-reader')
+    assert.equal(leaf.view.bookKey, RU); assert.equal(leaf.view.mode, 'part')
+    // The vault's own Home belongs to no book: it is never taken over.
+    const plain = app.workspace.getLeaf(); plain.type = 'markdown'; plain.view = { file: { path: 'Home.md' } }
+    await plugin.takeOver({ path: 'Home.md' }); await settle()
+    assert.equal(plain.type, 'markdown')
+    // Its Open the Reader link, with the shelf up, opens the book read last.
+    await view.showShelf(); await settle()
+    assert.equal(view.mode, 'shelf')
+    const home = window.document.body.createDiv()
+    home.innerHTML = '<p><a href="firstpair:reader">Open the Reader</a></p>'
+    for (const processor of plugin.postProcessors) processor(home, { sourcePath: 'Home.md' })
+    home.querySelector('button').click(); await settle()
+    assert.equal(view.mode, 'page'); assert.equal(view.bookKey, '1911')
+    // The shelf command.
+    const command = plugin.commands.find((item) => item.id === 'open-shelf')
+    assert.equal(command.name, 'Open the shelf')
+    await command.callback(); await settle()
+    assert.equal(view.mode, 'shelf')
+    // A percent-encoded link to a note of the Russian book opens it there.
+    await view.openFromShelf('1911'); await settle()
+    await view.followLink(`${encodeURI(RU)}/Book/Part%201`, '1911/Home.md', el)
+    assert.equal(view.bookKey, RU); assert.equal(view.mode, 'part')
+  } finally { done() }
+})
+
+test('a 2.4.2 data.json is kept: its book opens where it was left, the other book from its defaults', async () => {
+  const legacy = {
+    layout: 'auto', railPosition: 'top', railPositionChosen: true, resume: true,
+    state: { 1911: { mode: 'page', editionId: null, partId: 'P1', pageId: 'p004', scrollTop: 0, enabled: ['en'], source: true, interlinear: 'pinyin', columns: [{ lang: 'en', id: 'en', extra: false }], word: null } },
+    choices: {}, hiddenColumns: {}, defaultColumn: { 1911: 'source' },
+  }
+  const { el, view, plugin, done } = await open(SHELF, { settings: legacy })
+  try {
+    assert.equal(view.bookKey, '1911', 'the 2.4.2 place names its book')
+    assert.equal(view.pages[view.position].id, 'p004')
+    assert.deepEqual(languagesOf(view), { enabled: ['en'], source: true, interlinear: 'pinyin' })
+    assert.equal(view.bookData().defaultColumn, 'source')
+    await view.saveState()
+    assert.equal(plugin.data.books['1911'].state.pageId, 'p004')
+    assert.equal(plugin.data.books['1911'].defaultColumn, 'source', 'migrated fields survive the first save')
+    assert.equal(plugin.data.state['1911'].pageId, 'p004', 'the 2.4.x map is left as it was')
+    assert.equal(plugin.data.railPosition, 'top')
+    await view.showShelf(); await settle()
+    shelfBooks(el)[1].click(); await settle()
+    assert.deepEqual(languagesOf(view), { enabled: ['ru'], source: false, interlinear: 'gloss' })
   } finally { done() }
 })

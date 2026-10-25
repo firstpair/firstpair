@@ -159,3 +159,142 @@ test("dictionary keys, merging, and the shard cache", async () => {
   assert.equal(cache.items.size, 2, "the cache stays bounded");
   await assert.rejects(lookup("d/missing.json", "x"), /missing/);
 });
+
+/* ------------------------------------------------------- several books */
+
+const bookState = require(path.resolve(__dirname, "../vault/plugin/firstpair-reader/book-state.js"));
+const RU = "Жизнь и судьба";
+
+function alignedBook(root, { title, lang, label, uiLang, author, subtitle }) {
+  const at = (rest) => `${root}/${rest}`;
+  return {
+    [at("_data/reader.json")]: {
+      schema: "firstpair-reader.v2", title, ui_lang: uiLang, author, subtitle,
+      launcher: at("Home.md"), contents: at("Contents"),
+      parts: [{ id: "P1", title: "One", note: at("Book/Part 1") }],
+      pages: [
+        { id: "p003", title: "3", part: "P1", chapter: at("_data/pages/p003.json") },
+        { id: "p004", title: "4", part: "P1", chapter: at("_data/pages/p004.json") },
+      ],
+      aligned: {
+        schema: "firstpair-parallel-reader-v1", title,
+        sourceLanguage: { id: "zh", lang: "zh", label: "中文", position: "left", optional: true, defaultVisible: false },
+        translations: [{ id: lang, lang, label, defaultVisible: true }],
+        interlinear: { layers: ["pinyin", "gloss"] },
+      },
+    },
+  };
+}
+
+test("discovery: one book stays one book; two or more make a shelf", async () => {
+  const one = await contract.discoverAll(io({ ...alignedBook("1911", { title: "1911", lang: "en", label: "English", uiLang: "en" }), "Home.md": "shelf" }));
+  assert.deepEqual(one.books.map(contract.bookKey), ["1911"]);
+  assert.equal((await contract.discover(io(alignedBook("1911", { title: "1911", lang: "en", label: "English" })))).root, "1911");
+
+  const files = {
+    ...alignedBook("1911", { title: "1911", lang: "en", label: "English", uiLang: "en" }),
+    ...alignedBook(RU, { title: RU, lang: "ru", label: "Русский", uiLang: "ru", author: "Василий Гроссман", subtitle: "Роман" }),
+    "Home.md": "a plain shelf note",
+    "Notes/a.md": "not a book",
+    ".obsidian/plugins/firstpair-reader/manifest.json": "{}",
+  };
+  const { books, broken } = await contract.discoverAll(io(files));
+  assert.deepEqual(books.map(contract.bookKey), ["1911", RU]);
+  assert.deepEqual(broken, []);
+  assert.equal(books[1].uiLang, "ru");
+  assert.equal(books[1].pages[0].chapter, `${RU}/_data/pages/p003.json`, "Cyrillic folder with spaces is a safe path");
+  assert.equal(contract.safePath(`${RU}/Book/Part 1.md`, "note"), `${RU}/Book/Part 1.md`);
+
+  // A root index is a book too, listed first.
+  const withRoot = await contract.discoverAll(io({
+    ...files,
+    "_data/reader.json": { schema: "firstpair-reader.v2", title: "Root", pages: [{ id: "r1", title: "R", path: "Root.md" }] },
+  }));
+  assert.deepEqual(withRoot.books.map(contract.bookKey), ["", "1911", RU]);
+
+  // A half-synced book is reported, not fatal, while another book reads.
+  const half = await contract.discoverAll(io({ ...files, [`${RU}/_data/reader.json`]: "{ truncated" }));
+  assert.deepEqual(half.books.map(contract.bookKey), ["1911"]);
+  assert.equal(half.broken[0].root, RU);
+  assert.match(half.broken[0].error.message, /not valid JSON/);
+  await assert.rejects(contract.discoverAll(io({ "_data/reader.json": "{ truncated" })), /not valid JSON/);
+  await assert.rejects(contract.discoverAll(io({ "Notes/a.md": "x" })), /no FirstPair Reader index/);
+});
+
+test("a folder listed in decomposed Unicode still matches its notes", async () => {
+  const name = "Ёлка и йод";
+  const files = alignedBook(name, { title: "Ёлка", lang: "ru", label: "Русский" });
+  const base = io(files);
+  const decomposed = {
+    read: base.read,
+    list: async (folder) => {
+      const listing = await base.list(folder);
+      return { ...listing, folders: listing.folders.map((item) => item.normalize("NFD")) };
+    },
+  };
+  assert.notEqual(name.normalize("NFD"), name);
+  const { books } = await contract.discoverAll(decomposed);
+  assert.equal(contract.bookKey(books[0]), name);
+  assert.equal(contract.bookForNote(books, `${name}/Home.md`.normalize("NFD")), books[0]);
+});
+
+test("notes route to the book whose folder holds them", async () => {
+  const { books } = await contract.discoverAll(io({
+    ...alignedBook("1911", { title: "1911", lang: "en", label: "English" }),
+    ...alignedBook(RU, { title: RU, lang: "ru", label: "Русский" }),
+  }));
+  const [en, ru] = books;
+  assert.equal(contract.bookForNote(books, `${RU}/Home.md`), ru);
+  assert.deepEqual(contract.targetForNote(ru, `${RU}/Home.md`), { mode: "contents" });
+  assert.deepEqual(contract.targetForNote(ru, `${RU}/Book/Part 1.md`), { mode: "part", partId: "P1" });
+  assert.equal(contract.bookForNote(books, `${RU}/Book/Part 1.md`), ru);
+  assert.equal(contract.bookForNote(books, `${RU}/Notes/free note.md`), ru, "any note inside the folder");
+  assert.equal(contract.bookForNote(books, "1911/Contents.md"), en);
+  assert.equal(contract.bookForNote(books, "Home.md"), null, "the vault's shelf note belongs to no book");
+  assert.equal(contract.bookForNote(books, `${RU} 2/Home.md`), null, "a prefix is not a folder");
+});
+
+test("shelf entries: title, optional author and subtitle, language pair", async () => {
+  const { books } = await contract.discoverAll(io({
+    ...alignedBook("1911", { title: "1911", lang: "en", label: "English" }),
+    ...alignedBook(RU, { title: RU, lang: "ru", label: "Русский", author: "Василий Гроссман", subtitle: "Роман" }),
+  }));
+  assert.deepEqual(books.map(contract.shelfEntry), [
+    { key: "1911", title: "1911", author: null, subtitle: null, source: { id: "zh", label: "中文" }, targets: [{ id: "en", label: "English" }], languages: "中文 → English" },
+    { key: RU, title: RU, author: "Василий Гроссман", subtitle: "Роман", source: { id: "zh", label: "中文" }, targets: [{ id: "ru", label: "Русский" }], languages: "中文 → Русский" },
+  ]);
+});
+
+test("per-book state: records by root folder, migrated from a 2.4.2 data.json", () => {
+  // data.json as Reader 2.4.2 wrote it for the 1911 book at the vault root.
+  const saved = {
+    layout: "auto", railPosition: "top", railPositionChosen: true, resume: true,
+    state: { 1911: { mode: "page", pageId: "p004", scrollTop: 120, enabled: ["en"], source: true, interlinear: "pinyin", columns: [{ lang: "en", id: "en", extra: false }], word: null } },
+    choices: { 1911: { en: "en" } },
+    defaultColumn: { 1911: "source" },
+    hiddenColumns: {},
+  };
+  const migrated = bookState.bookRecord(saved, "1911", "1911");
+  assert.equal(migrated.migrated, true);
+  assert.equal(migrated.record.state.pageId, "p004");
+  assert.equal(migrated.record.state.interlinear, "pinyin");
+  assert.deepEqual(migrated.record.choices, { en: "en" });
+  assert.equal(migrated.record.defaultColumn, "source");
+  assert.equal(bookState.bookRecord(saved, RU, RU).migrated, false, "another book starts empty");
+  assert.deepEqual(bookState.bookRecord(saved, RU, RU).record, {});
+
+  // The first save keeps the migrated fields; the 2.4.x maps stay untouched.
+  const books = bookState.patchBook(saved, "1911", { state: { ...migrated.record.state, pageId: "p005" } }, "1911");
+  assert.equal(books["1911"].state.pageId, "p005");
+  assert.deepEqual(books["1911"].choices, { en: "en" });
+  assert.equal(saved.state[1911].pageId, "p004");
+  const next = { ...saved, books };
+  assert.equal(bookState.bookRecord(next, "1911", "1911").migrated, false, "a record, once saved, is the book's own");
+  const both = { ...next, books: bookState.patchBook(next, RU, { state: { pageId: "p003", enabled: ["ru"] } }, RU) };
+  assert.deepEqual(Object.keys(both.books), ["1911", RU]);
+  assert.deepEqual(both.books[RU].state.enabled, ["ru"]);
+  assert.deepEqual(both.books["1911"].state.enabled, ["en"], "one book's languages never reach another");
+  const off = bookState.withoutStates(both);
+  assert.equal(off["1911"].state, undefined);
+  assert.deepEqual(off["1911"].choices, { en: "en" });
+});

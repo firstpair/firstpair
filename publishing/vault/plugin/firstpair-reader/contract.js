@@ -21,7 +21,7 @@
  *   code      <Book>/_data/fragments.json beside a <Book>/Chapters/ folder
  *
  * Model:
- *   { format, root, title, lang, version, sourceCommit, launcher, contents,
+ *   { format, root, title, author, subtitle, lang, uiLang, version, sourceCommit, launcher, contents,
  *     startPage, cover, parts[{id,title,note,pageIds}],
  *     pages[{id,order,title,partId,file,note,anchor,marker,markdown,chapter}],
  *     aligned, dictionaries, words, fragments, quotes, metrics, editions,
@@ -60,6 +60,10 @@ function noteOf(path) {
 
 function fileOf(note) {
   return note && !/\.[A-Za-z0-9]+$/.test(note.split("/").pop()) ? `${note}.md` : note;
+}
+
+function nfc(value) {
+  return String(value ?? "").normalize("NFC");
 }
 
 function join(root, path) {
@@ -132,6 +136,9 @@ function baseModel(format, root, source = {}) {
     format,
     root,
     title: String(source.title || root || "Reader"),
+    // Optional shelf metadata a builder may declare in its index.
+    author: source.author ? String(source.author) : null,
+    subtitle: source.subtitle ? String(source.subtitle) : null,
     // lang: the text's language; uiLang: the Reader's interface language.
     lang: source.lang || null,
     uiLang: source.ui_lang || null,
@@ -396,19 +403,50 @@ async function discoverIn(io, root) {
   return null;
 }
 
+// Top-level folders that may hold a book: visible, one segment, in NFC so a
+// folder listed in decomposed form (macOS, iCloud) matches the index's paths.
+async function topFolders(io) {
+  const listing = await io.list("");
+  return ((listing && listing.folders) || [])
+    .map((name) => nfc(name).replace(/^\/+|\/+$/g, ""))
+    .filter((name) => name && !name.startsWith(".") && !name.includes("/"))
+    .sort();
+}
+
+// The first book in the vault: the root index, else the first folder's.
 async function discover(io) {
   const atRoot = await discoverIn(io, "");
   if (atRoot) return finish(atRoot, io);
-  const listing = await io.list("");
-  const folders = ((listing && listing.folders) || [])
-    .map((name) => name.replace(/^\/+|\/+$/g, ""))
-    .filter((name) => name && !name.startsWith(".") && !name.includes("/"))
-    .sort();
-  for (const folder of folders) {
+  for (const folder of await topFolders(io)) {
     const model = await discoverIn(io, folder);
     if (model) return finish(model, io);
   }
   fail("no FirstPair Reader index in this vault");
+}
+
+// Every book in the vault: the root index (if any), then each top-level
+// folder whose own index reads, in folder order.  A book that cannot be read
+// (a half-synced index) is reported in `broken` instead of hiding the others;
+// with no readable book at all the first such error is thrown, as discover()
+// does.
+async function discoverAll(io) {
+  const books = [];
+  const broken = [];
+  const attempt = async (root) => {
+    try {
+      const model = await discoverIn(io, root);
+      if (model) books.push(await finish(model, io));
+    } catch (error) {
+      broken.push({ root, error });
+    }
+  };
+  await attempt("");
+  for (const folder of await topFolders(io)) await attempt(folder);
+  if (!books.length) {
+    if (broken.length) throw broken[0].error;
+    fail("no FirstPair Reader index in this vault");
+  }
+  return { books, broken };
 }
 
 async function finish(model, io) {
@@ -428,18 +466,74 @@ async function loadEdition(io, library, editionId) {
 // Which Reader location a note stands for: the static fallback notes open
 // the Reader at the same place.
 function targetForNote(model, notePath) {
-  const note = noteOf(String(notePath || ""));
+  const note = noteOf(nfc(notePath));
   if (!note) return null;
-  if (model.launcher && note === noteOf(model.launcher)) {
+  const same = (path) => Boolean(path) && noteOf(nfc(path)) === note;
+  if (same(model.launcher)) {
     return model.startPage ? { mode: "page", pageId: model.startPage } : { mode: "contents" };
   }
-  if (model.contents && note === noteOf(model.contents)) return { mode: "contents" };
-  const pages = model.pages.filter((page) => page.note === note);
+  if (same(model.contents)) return { mode: "contents" };
+  const pages = model.pages.filter((page) => same(page.note));
   if (pages.length === 1) return { mode: "page", pageId: pages[0].id };
-  const part = model.parts.find((item) => item.note && noteOf(item.note) === note);
+  const part = model.parts.find((item) => same(item.note));
   if (part) return { mode: "part", partId: part.id };
   if (pages.length > 1) return { mode: "part", partId: pages[0].partId };
   return null;
+}
+
+/* --------------------------------------------------------------- shelf */
+
+// A book's key: its root folder ("" for a book at the vault root), in NFC.
+function bookKey(model) {
+  return nfc(model && model.root);
+}
+
+// The book a note belongs to: one whose Reader notes include it, else the
+// book whose folder contains it (the longest root wins), else the root book.
+function bookForNote(books, notePath) {
+  const path = nfc(notePath).replace(/^\/+/, "");
+  if (!path || !books || !books.length) return null;
+  const exact = books.find((book) => book.format !== "library" && targetForNote(book, path));
+  if (exact) return exact;
+  const inside = books
+    .filter((book) => bookKey(book) && path.startsWith(`${bookKey(book)}/`))
+    .sort((left, right) => bookKey(right).length - bookKey(left).length);
+  if (inside.length) return inside[0];
+  return books.find((book) => !bookKey(book)) || null;
+}
+
+// What the shelf shows for a book: title, optional author and subtitle (from
+// the index), and the language pair of an aligned edition (source first,
+// translations in order) or the text's own language.
+function shelfEntry(model) {
+  const aligned = model.aligned && typeof model.aligned === "object" ? model.aligned : null;
+  let source = null;
+  const targets = [];
+  if (aligned) {
+    const declared = aligned.sourceLanguage || {};
+    const id = declared.lang || declared.id || model.lang;
+    if (id) source = { id, label: declared.label || id };
+    const seen = new Set();
+    for (const item of aligned.translations || []) {
+      const lang = item.lang || item.id;
+      if (!lang || seen.has(lang)) continue;
+      seen.add(lang);
+      const named = (aligned.languages || []).find((language) => language.id === lang);
+      targets.push({ id: lang, label: (named && named.label) || item.label || lang });
+    }
+  } else if (model.lang) {
+    source = { id: model.lang, label: model.lang };
+  }
+  return {
+    key: bookKey(model),
+    title: model.title,
+    author: model.author || null,
+    subtitle: model.subtitle || null,
+    source,
+    targets,
+    languages: [source && source.label, targets.map((item) => item.label).join(", ")]
+      .filter(Boolean).join(" → "),
+  };
 }
 
 // Text between two literal markers, or null when either is missing.
@@ -456,11 +550,15 @@ module.exports = {
   ContractError,
   PARALLEL_SCHEMA,
   V2_SCHEMA,
+  bookForNote,
+  bookKey,
   discover,
+  discoverAll,
   extractMarked,
   loadEdition,
   noteOf,
   safePath,
+  shelfEntry,
   targetForNote,
   validate,
 };
