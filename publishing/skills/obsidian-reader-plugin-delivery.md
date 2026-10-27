@@ -1,7 +1,12 @@
 # Skill: Obsidian Reader, Setup, and Plugin Delivery
 
-New and migrated books use the standard package at
-`publishing/vault/plugin/firstpair-reader/`. Title-specific behavior should be
+New and migrated books use the standard package `plugins/firstpair-reader/`
+in the `firstpair-reader` repository (github.com/firstpair/firstpair-reader,
+checked out at `$FIRSTPAIR_READER_ROOT`, default `~/src/firstpair-reader`).
+Develop, bundle, test, and version the Reader and Triptych there, following
+that repository's `README.md` and `AGENTS.md`; vault builders install the
+release files as committed at `$FIRSTPAIR_READER_REF` (default `HEAD`, read
+with `git show`, see `publishing/VAULT-CONSTRUCTION.md`). Title-specific behavior should be
 expressed through versioned indexes, manifest capabilities, styles, or a
 documented extension contract. Do not fork the core Reader for ordinary labels,
 colors, source maps, code maps, or target data. Existing plugins remain the
@@ -171,8 +176,8 @@ first and the enabled translations after it.
    panel in stacked layout — never from the viewport edge, so it is exact in
    any pane. Never leave a blank view: an error while opening is shown
    with a Retry button. Test the plugin in jsdom against a mocked `obsidian`
-   module (`publishing/tests/obsidian-mock.cjs`,
-   `test-firstpair-reader-dom.mjs`): open, render, tap a word, switch layout,
+   module (`tests/obsidian-mock.cjs` and `tests/test-firstpair-reader-dom.mjs`
+   in `firstpair-reader`): open, render, tap a word, switch layout,
    follow Home links, half-synced vault, resume. The Reader persists its
    state per book in `settings.books[<root folder>]` (since 2.5.0; `""` for
    a book at the vault root): `state` (page id, scroll offset, enabled
@@ -326,7 +331,9 @@ method, not those title-specific counts.
 
 ## Build And Test
 
-For a source plugin with generated `main.js`, the minimum checks are:
+For the standard Reader and Triptych, run `npm test` in `firstpair-reader`
+(`npm run test:reader-plugins` here does the same). For a title's own source
+plugin with generated `main.js`, the minimum checks are:
 
 ```sh
 node build-main.js --check

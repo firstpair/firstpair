@@ -84,8 +84,9 @@ replacement approval.
 12. Generate quotation links only from reviewed aliases. Standalone quotations
     should retain exact local source links in static Markdown; the plugin may
     expand the clickable target to the colored rail and citation marker.
-13. Bundle the optional Reader plugin as an inspectable local package, but ship
-    it disabled by default. The complete book, source notes, and quotation links
+13. Bundle the optional Reader plugin as an inspectable local package (the
+    release files as committed in `firstpair-reader`, see
+    `obsidian-reader-plugin-delivery.md`), but ship it disabled by default. The complete book, source notes, and quotation links
     must remain usable with core Obsidian alone and without network access.
 14. Emit machine-readable ledgers plus a vault manifest that binds edition,
     version, source commit, ordered Reader pages, source and claim counts,

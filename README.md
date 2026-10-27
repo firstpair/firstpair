@@ -77,7 +77,10 @@ The shared Reader, source-navigation, first-open, Sync setup, and runtime update
 contract lives in
 [`publishing/skills/obsidian-reader-plugin-delivery.md`](publishing/skills/obsidian-reader-plugin-delivery.md),
 including version/hash binding, watched narrow refreshes, Sync activity checks,
-and full quit/relaunch verification.
+and full quit/relaunch verification. The Reader and Triptych plugins themselves
+are developed in their own repository,
+[`firstpair-reader`](https://github.com/firstpair/firstpair-reader)
+(`$FIRSTPAIR_READER_ROOT`, default `~/src/firstpair-reader`).
 
 Emacs Info editions — a book manual, a references manual that opens below
 the text, and an offline Latin lexicon — are built by

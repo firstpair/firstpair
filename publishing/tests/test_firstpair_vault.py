@@ -264,15 +264,54 @@ class VaultComparisonTests(unittest.TestCase):
             self.assertEqual((), inventory(root).broken_links)
 
     def test_builder_installs_only_the_reader_release_files(self) -> None:
-        from firstpair_vault import builder
+        from firstpair_vault import builder, reader_plugin
 
         self.assertEqual(
             ("README.md", "main.js", "manifest.json", "styles.css"), builder.READER_RELEASE_FILES,
         )
-        for name in builder.READER_RELEASE_FILES:
-            self.assertTrue((builder.PLUGIN_ROOT / name).is_file(), name)
-        self.assertTrue((builder.PLUGIN_ROOT / "main-source.js").is_file(),
-                        "the package folder holds sources the builder must not ship")
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary) / "firstpair-reader"
+            package = root / "plugins" / "firstpair-reader"
+            package.mkdir(parents=True)
+            for name in (*builder.READER_RELEASE_FILES, "main-source.js"):
+                (package / name).write_text(f"committed {name}\n", encoding="utf-8")
+            (package / "manifest.json").write_text('{"version": "9.9.9"}\n', encoding="utf-8")
+            git = ["git", "-C", str(root), "-c", "user.name=t", "-c", "user.email=t@example.invalid"]
+            subprocess.run([*git, "init", "-q"], check=True)
+            subprocess.run([*git, "add", "."], check=True)
+            subprocess.run([*git, "commit", "-q", "-m", "release"], check=True)
+            # A half-made working tree must never reach a vault.
+            (package / "main.js").write_text("half made\n", encoding="utf-8")
+
+            destination = Path(temporary) / "vault" / ".obsidian" / "plugins" / "firstpair-reader"
+            reader_plugin.install(reader_plugin.READER, destination, root=root)
+            self.assertEqual(sorted(builder.READER_RELEASE_FILES), sorted(p.name for p in destination.iterdir()))
+            self.assertEqual("committed main.js\n", (destination / "main.js").read_text(encoding="utf-8"))
+            self.assertEqual("9.9.9", reader_plugin.release_version(reader_plugin.READER, root=root))
+            with self.assertRaises(FileNotFoundError):
+                reader_plugin.release_file(reader_plugin.READER, "main.js", root=Path(temporary) / "missing")
+
+    def test_reader_root_comes_from_the_environment(self) -> None:
+        import os
+        from unittest import mock
+        from firstpair_vault import reader_plugin
+
+        with mock.patch.dict(os.environ, {"FIRSTPAIR_READER_ROOT": "~/elsewhere/reader"}):
+            self.assertEqual(Path.home() / "elsewhere" / "reader", reader_plugin.reader_root())
+        with mock.patch.dict(os.environ, {}, clear=True):
+            self.assertEqual(Path.home() / "src" / "firstpair-reader", reader_plugin.reader_root())
+            self.assertEqual("HEAD", reader_plugin.reader_ref())
+
+    def test_committed_reader_release_is_installable(self) -> None:
+        from firstpair_vault import reader_plugin
+
+        root = reader_plugin.reader_root()
+        if not (root / ".git").exists():
+            self.skipTest(f"firstpair-reader is not checked out at {root}")
+        for plugin in (reader_plugin.READER, reader_plugin.TRIPTYCH):
+            for name in reader_plugin.RELEASE_FILES:
+                self.assertTrue(reader_plugin.release_file(plugin, name), f"{plugin}/{name}")
+            self.assertRegex(reader_plugin.release_version(plugin), r"^\d+\.\d+\.\d+$")
 
 if __name__ == "__main__":
     unittest.main()

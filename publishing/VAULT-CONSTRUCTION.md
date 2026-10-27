@@ -61,9 +61,28 @@ path traversal and symlinked inputs, enforces rights metadata and product
 ceilings, installs the standard plugin disabled by default, and writes
 `VAULT-MANIFEST.json`. It also refuses while Obsidian is running.
 
+## Where the plugins live
+
+FirstPair Reader and FirstPair Triptych, with the shared modules under
+`plugins/shared/`, their bundler, and their tests, live in their own
+repository, `firstpair-reader` (github.com/firstpair/firstpair-reader, checked
+out at `$FIRSTPAIR_READER_ROOT`, default `~/src/firstpair-reader`). Plugin
+development, bundling, tests (`npm test` there), and releases are documented
+in that repository's `README.md` and `AGENTS.md`; this repository only
+installs them.
+
+Builders install a plugin's release files,
+`plugins/<plugin>/{manifest.json,main.js,styles.css}` plus its `README.md`,
+as committed at `$FIRSTPAIR_READER_REF` (default `HEAD`) with
+`git show <ref>:<path>`, never from the working tree, where a release may be
+half made. In this repository that is
+`publishing/vault/firstpair_vault/reader_plugin.py`; book builders in other
+repositories should resolve the same two variables the same way.
+`npm run test:reader-plugins` runs the plugin repository's own tests.
+
 ## Standard Reader
 
-`publishing/vault/plugin/firstpair-reader/` (2.0) is the common runtime for
+`plugins/firstpair-reader/` in `firstpair-reader` (2.x) is the common runtime for
 reading every FirstPair vault. It is local, inspectable, dependency-free, and
 offline, and it supersedes the title readers that grew beside it (Cicero's
 Bilingual Source Navigator, the Lighthouse Mobile Reader's reading half, the
@@ -88,12 +107,12 @@ Invented Translation Triptych's Reader, `rgbdns-reader`,
   editing tools: span text and voice notes in the shared ledger, built on
   `shared/ledger-store.js` and `shared/voice-core.js`.
 
-Opt-in QA against vaults on this machine:
-`node publishing/tests/reader-real-vaults.mjs "<vault>" ...`.
+Opt-in QA against vaults on this machine is `npm run qa:vaults` in
+`firstpair-reader`.
 
 ## Editorial Triptych
 
-`publishing/vault/plugin/firstpair-triptych/` is the shared editorial plugin
+`plugins/firstpair-triptych/` in `firstpair-reader` is the shared editorial plugin
 (id `firstpair-triptych`, formerly `lighthouse-triptych` in the Lighthouse
 Republics repository). Unlike the read-only standard Reader it writes one
 ledger, so it is a separate package rather than a fork of
@@ -113,14 +132,15 @@ ledger, so it is a separate package rather than a fork of
 - visible UI in English, Italian, and Russian, chosen by the canonical
   edition's `lang` in `_data/editions.jsonl`.
 
-Author `main-source.js` and `review-state.js`, then run
-`python3 publishing/scripts/bundle-firstpair-triptych.py`; vaults install the
-single-file `main.js` with `manifest.json`, `styles.css`, and `README.md`
-(the local `package.json` only scopes CommonJS for tests). Book builders read
-the package from `$FIRSTPAIR_ROOT` (default `~/src/firstpair`); in Lighthouse
+Vaults install the single-file `main.js` with `manifest.json`, `styles.css`,
+and `README.md` (see above; authoring and bundling are documented in
+`firstpair-reader`). Book builders read the package from
+`$FIRSTPAIR_READER_ROOT` (default `~/src/firstpair-reader`). In Lighthouse
 Republics that is `scripts/obsidian_triptych_contract.py`, which also migrates
 an installed `lighthouse-triptych` (moving its `data.json` and renaming it in
-`community-plugins.json`). `review-state.js` is the shared editorial core; the
+`community-plugins.json`); it was written against the old
+`$FIRSTPAIR_ROOT/publishing/vault/plugin/firstpair-triptych` location and must
+move to the new one before its next build. `review-state.js` is the shared editorial core; the
 Lighthouse mobile reader embeds it, and the Invented Enemy translation
 triptych still carries a diverged copy awaiting its own port.
 
@@ -167,12 +187,10 @@ colours, different only where spans overlap, striped where a word lies in
 several; notes with a recording use a separate voice palette), the chooser opened by tapping a word in more than one span, the
 three-span overlap limit, and the saved-row list with **Change** and
 **Remove**. The interval logic it relies on (`spanColors`, `overlapDepth`,
-`MAX_SPAN_OVERLAP`) lives in `review-state.js`. A plugin's stylesheet is
-generated: `styles-source.css` names shared sheets with
-`@import "../shared/<name>.css";` and `bundle-obsidian-plugin.py` inlines
-them into `styles.css`, so Obsidian still loads one file. Run the bundler
-for both plugins after any change under `shared/` (`--check` fails on a stale
-`main.js` or `styles.css`).
+`MAX_SPAN_OVERLAP`) lives in `review-state.js`. Both plugins bundle the
+shared modules into their single `main.js` and `styles.css`; how to rebuild
+them after a change under `plugins/shared/` is documented in
+`firstpair-reader`.
 
 ### Edition diffs (Triptych 3.4)
 
@@ -189,7 +207,7 @@ page the builder stores each pair of editions and the whole set, as
 
 Pages where the editions agree carry no entry. The precompute is
 `publishing/vault/edition_diffs.py` (stdlib only: `page_diffs`,
-`diffs_file`); the reader side is `plugin/shared/diff-view.js` with
+`diffs_file`); the reader side is `plugins/shared/diff-view.js` in `firstpair-reader` with
 `shared/diff-view.css` (`parseDiffs`, `diffFor`, `paint`, `paintPane`), a
 reader module like the span editor. A reader picks the entry for the panes
 it shows: the pair when two show, the set when three do. It paints any

@@ -616,6 +616,12 @@ manifest, file and byte ceilings, exact cited sources, compact illustrations,
 and static Markdown fallback. The source repository owns its builder,
 validator, Reader sequence, quote map, and plugin bundle.
 
+The FirstPair Reader and Triptych plugins, their shared modules, bundler, and
+tests live in their own repository, `firstpair-reader`
+(`$FIRSTPAIR_READER_ROOT`, default `~/src/firstpair-reader`); develop and test
+them there under its `AGENTS.md`. Vault builders here install their release
+files as committed at `$FIRSTPAIR_READER_REF` (default `HEAD`) through
+`publishing/vault/firstpair_vault/reader_plugin.py`, never from a working tree.
 For Reader runtime changes, follow
 `publishing/skills/obsidian-reader-plugin-delivery.md`. The sole open-vault
 write exception is a source-owned plugin-only refresh command whose documented

@@ -40,7 +40,8 @@ function words are the caller's to supply.
     data = build_diffs(pages, ["ru-4.1", "ru-4.2.3", "ru-4.3.0"],
                        part_of=part_by_page, lemmatize=lemma, function_words=FUNC)
 
-The JavaScript side is ``plugin/shared/diff-view.js``.
+The JavaScript side is ``plugins/shared/diff-view.js`` in the
+firstpair-reader repository.
 """
 
 from __future__ import annotations

@@ -1,7 +1,8 @@
 // Vite plugins for the FirstPair review app.
 //
-// firstpairShared  serves the shared reader modules under
-//                  publishing/vault/plugin as ES modules.  They are CommonJS
+// firstpairShared  serves the shared reader modules under plugins/ of the
+//                  firstpair-reader repository ($FIRSTPAIR_READER_ROOT,
+//                  default ~/src/firstpair-reader) as ES modules.  They are CommonJS
 //                  (the Obsidian plugins bundle them that way); relative
 //                  require() calls become imports and module.exports the
 //                  default export, so both worlds run the same files.

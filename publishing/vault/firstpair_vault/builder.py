@@ -15,13 +15,10 @@ from .inventory import inventory
 from .model import Projection
 from .native import build_native_candidate
 from .profiles import validate_collection_kinds, validate_evidence
+from . import reader_plugin
 from .projection import project
 from .revisions import require_clean_worktree, resolve_source_commit
 from .workspace import first_open_bytes
-
-
-PACKAGE_ROOT = Path(__file__).resolve().parents[1]
-PLUGIN_ROOT = PACKAGE_ROOT / "plugin" / "firstpair-reader"
 
 
 def _safe_name(value: str) -> str:
@@ -145,18 +142,13 @@ def _write_projection(root: Path, projection: Projection, config, source_revisio
     )
     (obsidian / "workspace-first-open.json").write_bytes(first_open_bytes())
     if config.plugin:
-        # Only the release files: the package folder also holds the Reader's
-        # sources and a package.json that scopes CommonJS for tests.
-        destination = obsidian / "plugins" / "firstpair-reader"
-        destination.mkdir(parents=True)
-        for name in READER_RELEASE_FILES:
-            source = PLUGIN_ROOT / name
-            if not source.is_file():
-                raise FileNotFoundError(f"FirstPair Reader release file is missing: {source}")
-            shutil.copy2(source, destination / name)
+        # Only the release files, as committed in firstpair-reader (see
+        # reader_plugin): the package folder also holds the Reader's sources
+        # and a package.json that scopes CommonJS for tests.
+        reader_plugin.install(reader_plugin.READER, obsidian / "plugins" / reader_plugin.READER)
 
 
-READER_RELEASE_FILES = ("README.md", "main.js", "manifest.json", "styles.css")
+READER_RELEASE_FILES = reader_plugin.RELEASE_FILES
 
 
 def _manifest(root: Path, config, projection: Projection, source_revision: str) -> dict[str, object]:

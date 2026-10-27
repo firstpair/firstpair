@@ -45,7 +45,9 @@ The decisions ledger and digest (`firstpair-triptych/review-state.js`,
 `shared/ledger-store.js`), the word picker and span colours
 (`shared/span-editor.js`), diff classes and lenses (`shared/diff-view.js`),
 the rules and heat-map renderers, and the Back/Forward history
-(`shared/nav-history.js`) are the files the Obsidian plugins bundle. A Vite
+(`shared/nav-history.js`) are the files the Obsidian plugins bundle; they live
+under `plugins/` in the `firstpair-reader` repository
+(`$FIRSTPAIR_READER_ROOT`, default `~/src/firstpair-reader`). A Vite
 plugin (`vite/plugins.js`) loads them as ES modules unchanged, so an
 improvement there reaches the app and every vault.
 
