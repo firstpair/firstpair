@@ -1025,7 +1025,7 @@ plugins, kept in their own public repository:
 
 | Plugin | Id | Version | Role |
 |---|---|---|---|
-| FirstPair Triptych | `firstpair-triptych` | 3.7.1 | Editorial comparison of two or more editions, decisions, notes, metrics, diffs |
+| FirstPair Triptych | `firstpair-triptych` | 3.7.2 | Editorial comparison of two or more editions, decisions, notes, metrics, diffs |
 | FirstPair Reader | `firstpair-reader` | 2.6.0 | Offline reading of every FirstPair vault layout, including aligned and interlinear editions |
 
 Source, tests, and public-domain sample vaults:
@@ -1059,7 +1059,8 @@ edited-copy export to `Preferences/Exports/` that never touches a source.
   (`firstpair.triptych-decisions.v4`) with its `.sha256` sidecar and
   `Preferences/EDITING-INSTRUCTIONS.md` digest. A source mismatch fails closed.
 - Navigation keeps one bounded history per pane across Reader, Review, and
-  notes. The rail is `Previous | Up | Back | Forward | Top | TOC | Next`, and
+  notes. (3.7.2 renamed Review's own button refresh, which collided with
+  Obsidian 1.14's `View.updateNavButtons` and kept Review from opening.) The rail is `Previous | Up | Back | Forward | Top | TOC | Next`, and
   the arrow keys turn pages outside text fields.
 
 *Lighthouse Republics* retired its in-repo plugin on 2026-10-20.
