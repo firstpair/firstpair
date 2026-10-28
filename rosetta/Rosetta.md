@@ -10,7 +10,18 @@ shared Rosetta model and then gives two concrete profiles:
 
 - the Russian translation Rosetta for *The Invented Enemy*;
 - the edition-and-voice Rosetta for *Lighthouse Republics*, also called the
-  Venice Rosetta.
+  Venice Rosetta, with its trilingual English–Russian–Italian Kindle lane
+  (§16.4).
+
+Since October 2026 both projects read and review in two shared Obsidian
+plugins, FirstPair Reader and FirstPair Triptych, published under the MIT
+license at
+[github.com/firstpair/firstpair-reader](https://github.com/firstpair/firstpair-reader)
+and introduced in
+[*Reading across languages in Obsidian*](https://firstpair.press/firstpair-reader/).
+Section 16 describes them, the vault-declared ranked metrics, precomputed
+edition diffs, and the Reader's interlinear layers for Chinese with pinyin and
+glosses.
 
 Rails, feature vectors, alignment rules, and post-processing are
 profile-specific. A score of 80 in one profile must never be compared with 80
@@ -27,7 +38,7 @@ current Venice vault implementation is owned by
 with the style-branch workspace at `~/src/venezia/usavenice-codex-hemingway`.
 
 Last verified against the local artifacts and source implementation:
-2026-07-31.
+2026-07-31 (§1–15) and 2026-10-27 (§16).
 
 ## 1. Core model and project profiles
 
@@ -1005,3 +1016,207 @@ after a later build.
 - mean `Δ`: F 37.34, R 48.08, C 39.80;
 - exact equality: `F=R=C` 63, `F=C` 83, `F=R` 57, `R=C` 8, and no exact
   equality in 2,422 chunks.
+
+## 16. Shared plugins, ranked metrics, edition diffs, and interlinear reading
+
+Sections 1–15 describe the per-project plugins of July 2026. In October 2026
+the reading and reviewing surfaces were consolidated into two shared Obsidian
+plugins, kept in their own public repository:
+
+| Plugin | Id | Version | Role |
+|---|---|---|---|
+| FirstPair Triptych | `firstpair-triptych` | 3.7.1 | Editorial comparison of two or more editions, decisions, notes, metrics, diffs |
+| FirstPair Reader | `firstpair-reader` | 2.6.0 | Offline reading of every FirstPair vault layout, including aligned and interlinear editions |
+
+Source, tests, and public-domain sample vaults:
+[github.com/firstpair/firstpair-reader](https://github.com/firstpair/firstpair-reader)
+(MIT). Vault builders install the release files as committed at
+`$FIRSTPAIR_READER_REF` (default `HEAD`, read with `git show`) from
+`$FIRSTPAIR_READER_ROOT` (default `~/src/firstpair-reader`), never from a
+working tree. The announcement is
+[*Reading across languages in Obsidian: FirstPair Reader and Triptych*](https://firstpair.press/firstpair-reader/).
+
+### 16.1 One Triptych for every profile
+
+FirstPair Triptych began as Lighthouse Triptych 2.1 and took over the
+strengths of the Enemy translation plugin: phone edition tabs on a snap track
+with a remembered first pane, drag selection across words, Change and Remove
+on every saved row, a scoped Review that archives decisions made against an
+earlier text under `Preferences/archive/` before starting a new review, and an
+edited-copy export to `Preferences/Exports/` that never touches a source.
+
+- Its interface speaks the vault's language (English, Italian, or Russian),
+  taken from the canonical edition's `lang` in `_data/editions.jsonl`, or
+  `_data/editions.json` where a sync service does not carry `.jsonl` files.
+- One span editor is shared with the Reader. On touch screens whole words are
+  tapped or dragged; desktop keeps word checkboxes. Up to three spans may
+  overlap, each in its own colour; a word inside several is striped.
+- A span can carry a written note or a voice note. Audio is stored under
+  `Preferences/voice/`, read back and verified byte for byte before the ledger
+  records its size, duration, and SHA-256. A transcription is stored beside the
+  clip and never replaces it.
+- The ledger is still `Preferences/triptych-decisions.json`
+  (`firstpair.triptych-decisions.v4`) with its `.sha256` sidecar and
+  `Preferences/EDITING-INSTRUCTIONS.md` digest. A source mismatch fails closed.
+- Navigation keeps one bounded history per pane across Reader, Review, and
+  notes. The rail is `Previous | Up | Back | Forward | Top | TOC | Next`, and
+  the arrow keys turn pages outside text fields.
+
+*Lighthouse Republics* retired its in-repo plugin on 2026-10-20.
+`scripts/obsidian_triptych_contract.py` in `~/src/two-republics` is its one
+pointer to the shared plugin and migrates an installed `lighthouse-triptych`
+in place (settings move to the new id; the enabled entry in
+`community-plugins.json` is renamed). Its builder
+`scripts/build-bilingual-vault.py` also makes bilingual editorial vaults:
+*Lighthouse Republics* English 4.2.3 beside Russian 4.3.0, and *The Invented
+Enemy* English v1.4.1 beside Russian v1.8.4, the latter built in
+`~/src/russophobia`. Bilingual alignment is structural, never a translation
+claim: headings pair by anchor or by level and order, and prose pairs by a
+length dynamic programme in which one paragraph may become up to four.
+
+The F/R/C translation Rosetta of §§7–14 still installs its own
+`invented-translation-triptych`, a diverged copy awaiting its port.
+
+### 16.2 Ranked metrics declared by the vault
+
+The rails of §§4–5 are fixed per profile. The shared Triptych instead reads
+whatever metrics a vault declares in `<book>/_data/triptych-metrics.json`,
+schema `firstpair.triptych-metrics.v1`:
+
+- each definition has a `key`, a one-letter `letter`, a `label` and
+  `description` in English, Russian, and Italian, a direction (`better`:
+  `lower` or `higher`), a `format` (`integer`, `decimal1`, `decimal2`,
+  `percent`), optional `warn` and `bad` thresholds, and a `rank`;
+- values are plain numbers keyed page → edition → metric;
+- builders may merge per-sentence values from any external provider, keyed by
+  the sentence's SHA-256 and aggregated per page.
+
+Each pane shows one graded chip per metric. A value at or beyond a threshold in
+the worse direction is `warn` or `bad`. **Settings → Metrics** hides and
+reorders the chips; **Review → Ranked pages** lists the forty worst pages for
+a chosen metric and edition.
+
+The *Lighthouse Republics* bilingual vaults declare:
+
+| Letter | Key | Definition | Thresholds |
+|---|---|---|---|
+| `L` | `length_drift` | `abs(ln(ratio / usual)) × 100`, where `ratio` is the translation's characters over the lead edition's on this page and `usual` is the same ratio over the whole book; computed when the lead text has at least 80 characters | warn 35, bad 70 |
+| `W` | `sentence_length` | Mean words per sentence in the pane | warn 35, bad 50 |
+| `P` | `paragraph_split` | Paragraphs beyond the lead edition's count; stylistic, not an error | none |
+
+The public triptych sample declares `Δ` (share of words changed since the
+previous draft; warn 15, bad 35), `L` (mean words per sentence; warn 20, bad
+26), and `W` (words on the page). As with §5, a metric is a threshold for
+attention, not a grade, and a definition travels with the vault that uses it.
+
+### 16.3 Precomputed edition diffs and edit patterns
+
+`<book>/_data/triptych-diffs.json` (`firstpair.edition-diffs.v2`) is computed
+at build time by `publishing/vault/edition_diffs.py` in `~/src/firstpair`;
+nothing is diffed on a device. Ranges are Unicode code-point spans over word
+and single-punctuation tokens.
+
+- **Pairs** (`"A|B"`, oldest first): the earlier pane marks deletions, the
+  later pane insertions.
+- **Sets** (`"A|B|C"`): text found in no other edition is highlighted; text
+  shared with exactly one other edition is underlined in that edition's
+  colour.
+- Two visible panes use the pair and three use the set; hiding a pane switches
+  between them. The **Diff** chip appears only when the file exists.
+- Painting uses text colour and underlines only, so span-note marks stay
+  visible beneath it.
+
+Version 2 classifies every pairwise change into eight categories, ordered by
+risk: punctuation; inflection (same lemmas, other endings); function words;
+lexical (two or fewer words swapped with no shared lemma, or a small addition
+or omission); restructure (replaced, sharing lemmas); rewrite; content (more
+than three words added or dropped); and moved (at least six content lemmas with
+a bag overlap of at least 0.5, found on the same page or up to two pages away).
+The builder supplies the lemmatizer and function words; without a lemmatizer,
+words compare case-folded.
+
+One-word substitutions that recur on at least three pages become **rules**,
+with forward and reverse counts. Review lists them for Accept or Reject; the
+decisions enter the ledger as `rule_decisions` and the digest under
+**Book-wide edit rules**. Review also draws a Part heat map, one stacked bar of
+changed words per category for each Part, and three-pane pages offer a
+**History** lens (all, rewritten, reverts, new).
+
+The first book-scale use is the *Республики-маяки 4.1–4.3 Vault*: Russian
+4.1.0, 4.2.3, and 4.3.0 side by side, cut where every pairwise alignment
+agrees, with pymorphy3 lemmas and Russian function words. Between 4.2.3 and
+4.3.0 it finds 77 recurring substitution rules, 35 of which also occur in
+reverse; between 4.1.0 and 4.2.3 it finds none.
+
+### 16.4 Lighthouse trilingual Kindle Rosetta
+
+`scripts/build_trilingual_rosetta.py` in `~/src/two-republics` aligns the
+current English, Russian, and Italian peers of *Lighthouse Republics* into a
+three-row Kindle Rosetta, using the table markup of §6.
+
+- Heading anchors must agree in all three languages or the build stops. Within
+  each anchored section, block kinds align English→Russian and
+  English→Italian; a block that fails to align becomes a marked fallback unit.
+- Sentence groups are whole sentences, partitioned by dynamic programming to
+  minimise the largest group's weight, where a sentence weighs the maximum of
+  its length over the device capacity in each language.
+- One unit occupies one screen. If a unit does not fit, the builder steps the
+  type density down (1.0, 0.9, 0.81, 0.73 em) and only then splits a sentence,
+  at a semicolon or colon before a comma or dash. Headings that do not fit with
+  their unit get their own three-row page.
+- Device profiles (`--device oasis|scribe`) carry measured capacities. An
+  exact-viewport renderer, calibrated against photographs of a Kindle Oasis,
+  showed why the first sample lost its rails on that device: its tables were
+  1.2–1.7 screens tall, so Kindle flowed the cells as plain paragraphs. The
+  Enemy EPUB, sized for the Scribe, fits 599 of 599 sampled pages there and
+  overflows 419 of them on the Oasis.
+
+Its rail reads `F A / K D / L`. F, A, and K are 0–9 scores within each
+language, z-scored over prose units of eight or more words and clipped to ±3:
+
+| Code | Name | Definition |
+|---|---|---|
+| `F` | Fluency | `4.5 − 2.2 × mean(z(words per sentence), z(clause marks per sentence), z(character-trigram cross-entropy))` |
+| `A` | Archaicity | `1.5 ×` weighted period markers per 100 words (strong 1.0, mild 0.5; per-language lists), denominator at least 40 words, clipped to 0–9 |
+| `K` | Academicity | `4.5 + 2.2 × mean(z(nominalising-suffix share), z(long-word share))` |
+| `D` | Divergence from English | `6 × (1 − Jaccard) × min(1, anchors / 3) + 6 × min(1, sentence-count difference / English count)`; anchors are numerals, italic spans, and source markers |
+| `L` | Length | `100 × (r / r₀ − 1)`, where `r` is the row's characters over English and `r₀` the language's book median |
+
+Marks: `|||` for a fallback unit, `D` ≥ 7, or `|L|` ≥ 60; `||` for `|L|` ≥ 35
+or anchor Jaccard below 0.5 with three or more anchors; `|` for `|L|` from 20
+to 34, an A score three or more points from English, or an F or K score four or
+more; a dotted rule
+for a structural difference without pressure. As in §5, these scores locate
+attention and do not compare across profiles.
+
+The lane currently builds a ten-page sample of 4.1.0
+(`lighthouse-republics-trilingual-rosetta-sample-<device>`, stamp suffix
+`tr2`), delivered privately; no full trilingual build exists yet.
+
+### 16.5 FirstPair Reader: aligned and interlinear editions
+
+FirstPair Reader 2 replaces the per-project readers of §7 for reading. It finds
+every book index at the vault root and in each top-level folder and opens on a
+shelf when there are several; each book keeps its own place, history, and
+language choices.
+
+An aligned edition (`firstpair-reader.v2` with an `aligned` block, or
+`firstpair-parallel-reader-v1` with `firstpair-aligned-chapter-v1` pages) holds
+units of a source text and one or more translations by language. The source
+column is optional; the translations sit side by side on a wide screen, stack on
+a narrow one, and become tabs on a phone.
+
+A unit may also carry `words`, each `[text, reading, gloss]`, and `glosses` in
+further languages. The source column then cycles through three layers: text
+alone; text with the reading above each word; text with the reading above and
+the gloss below. For Chinese the reading is pinyin. Glosses follow the first
+shown translation column, so a book with Russian and English translations
+glosses in either; a picker can fix the gloss language for a book.
+
+The interlinear layer extends Rosetta's alignment one level down, from the
+sense unit to the word, without changing the rule that generated evidence and
+source text stay apart. The public samples segment Chinese with jieba and read
+it with pypinyin; glosses, chosen for the word's meaning in its sentence, and
+translations are written separately. A builder may let the first translation
+pass correct the word split and readings and later passes gloss the same words
+in their languages.
