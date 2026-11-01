@@ -1014,6 +1014,31 @@
       "source": "https://github.com/querygraph/semantic-unison",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/cover/25486f49e3388b58-semantic-unison-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/headboard/cb1bbe44e1f440e5-semantic-unison-headboard.png"
+    },
+    {
+      "slug": "packdir",
+      "title": "packdir",
+      "author": "Alexy Khrabrov, with Claude as co-author",
+      "kicker": "Small files. One SQLite archive. GNU coreutils on .sqlar",
+      "description": "Keep directories of small files as SQLite archives you can still list, read, copy and remove like plain files, with SQLite or Turso, from Rust, OCaml and OxCaml.",
+      "accent": "#6b5b95",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/pdf/dd9acdd17e7b0916-packdir.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/epub/7c67eca08215c389-packdir.epub",
+      "html": "/read/packdir/",
+      "htmlChapters": "/read/packdir/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/html/60a2bfe3c3635f76-packdir.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/chapters/b20be07b61ce4662/index.html",
+      "tags": [
+        "sqlite",
+        "turso",
+        "rust",
+        "ocaml",
+        "oxcaml"
+      ],
+      "shelf": "unix",
+      "source": "https://github.com/querygraph/packdir",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/cover/4a2ce17fa1c97dcb-packdir-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/headboard/c312d7529571f3cc-packdir-headboard.png"
     }
   ]
 }

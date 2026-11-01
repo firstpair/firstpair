@@ -358,6 +358,14 @@
       "htmlChapters": "book-uploads/staging/semantic-unison/semantic-unison-chapters",
       "cover": "book-uploads/staging/semantic-unison/semantic-unison-cover.png",
       "headboard": "book-uploads/staging/semantic-unison/semantic-unison-headboard.png"
+    },
+    "packdir": {
+      "pdf": "book-uploads/staging/packdir/packdir.pdf",
+      "epub": "book-uploads/staging/packdir/packdir.epub",
+      "html": "book-uploads/staging/packdir/packdir.html",
+      "htmlChapters": "book-uploads/staging/packdir/packdir-chapters",
+      "cover": "book-uploads/staging/packdir/packdir-cover.png",
+      "headboard": "book-uploads/staging/packdir/packdir-headboard.png"
     }
   }
 }
