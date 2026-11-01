@@ -989,6 +989,31 @@
         "photography",
         "unix"
       ]
+    },
+    {
+      "slug": "semantic-unison",
+      "title": "Semantic Unison",
+      "author": "Alexy Khrabrov, with Claude as co-author",
+      "kicker": "A file synchronizer that knows what changed",
+      "description": "An LLM-friendly fork of Unison: semantic diff for DNG photographs, packed roots that keep millions of small files in SQLite containers, and why the fork was necessary.",
+      "accent": "#52734d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/pdf/2e4956c85f4dc853-semantic-unison.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/epub/bb7a0b074aadf3d5-semantic-unison.epub",
+      "html": "/read/semantic-unison/",
+      "htmlChapters": "/read/semantic-unison/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/html/8effec845cfbb9ef-semantic-unison.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/4c369b2e103fe5f5/index.html",
+      "tags": [
+        "unison",
+        "synchronization",
+        "ocaml",
+        "sqlite",
+        "photography"
+      ],
+      "shelf": "unix",
+      "source": "https://github.com/querygraph/semantic-unison",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/cover/25486f49e3388b58-semantic-unison-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/headboard/cb1bbe44e1f440e5-semantic-unison-headboard.png"
     }
   ]
 }

@@ -350,6 +350,14 @@
       "htmlChapters": "book-uploads/staging/dng-compare/dng-compare-chapters",
       "cover": "book-uploads/staging/dng-compare/dng-compare-cover.png",
       "headboard": "book-uploads/staging/dng-compare/dng-compare-headboard.png"
+    },
+    "semantic-unison": {
+      "pdf": "book-uploads/staging/semantic-unison/semantic-unison.pdf",
+      "epub": "book-uploads/staging/semantic-unison/semantic-unison.epub",
+      "html": "book-uploads/staging/semantic-unison/semantic-unison.html",
+      "htmlChapters": "book-uploads/staging/semantic-unison/semantic-unison-chapters",
+      "cover": "book-uploads/staging/semantic-unison/semantic-unison-cover.png",
+      "headboard": "book-uploads/staging/semantic-unison/semantic-unison-headboard.png"
     }
   }
 }
