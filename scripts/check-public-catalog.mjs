@@ -75,7 +75,9 @@ const validPostOrigins = new Set([
   'https://eigentimes.com',
   'https://firstpair.org',
 ])
-const validShelves = new Set(['history', 'literature', 'music', 'howto', 'technology', 'publishing', 'querygraph', 'eigentimes', 'math', 'other'])
+const validShelves = new Set(['history', 'literature', 'music', 'howto', 'technology', 'unix',
+  'photography',
+  'publishing', 'querygraph', 'eigentimes', 'math', 'other'])
 const invalidShelves = []
 const staleDeliverableMap = []
 
@@ -94,6 +96,15 @@ for (const book of catalog.books) {
 
   if (book.shelf && !validShelves.has(book.shelf)) {
     invalidShelves.push({ slug: book.slug, shelf: book.shelf })
+  }
+
+  // `shelves` lists every shelf of a book; its first is the book's `shelf`.
+  if (book.shelves !== undefined) {
+    const shelves = Array.isArray(book.shelves) ? book.shelves : []
+    if (!shelves.length || shelves[0] !== book.shelf || new Set(shelves).size !== shelves.length ||
+        shelves.some((shelf) => !validShelves.has(shelf))) {
+      invalidShelves.push({ slug: book.slug, shelves: book.shelves })
+    }
   }
 
   if ((book.homepage || book.tags?.includes('preview')) && book.source) {

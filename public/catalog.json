@@ -450,7 +450,7 @@
       "tags": [
         "finished"
       ],
-      "shelf": "technology",
+      "shelf": "unix",
       "source": "https://github.com/querygraph/rgbdns",
       "post": "https://querygraph.ai/announcing-rgbdns/",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/rgbdns/cover/9f5717490bc39df2-rgbdns-cover.png",
@@ -480,10 +480,14 @@
         "tmux",
         "ghostty"
       ],
-      "shelf": "technology",
+      "shelf": "howto",
       "source": "https://github.com/alexy/moshpit",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/cover/818c7a47fcd21634-moshpit-guide-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/moshpit-guide/headboard/a1974efbf9d6334d-moshpit-guide-headboard.png",
+      "shelves": [
+        "howto",
+        "unix"
+      ]
     },
     {
       "slug": "rosetta",
@@ -977,10 +981,14 @@
         "rust",
         "ocaml"
       ],
-      "shelf": "howto",
+      "shelf": "photography",
       "source": "https://github.com/firstpair/dng-compare",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/cover/71c328c81eeb6f41-dng-compare-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/cover/71c328c81eeb6f41-dng-compare-cover.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/cover/71c328c81eeb6f41-dng-compare-cover.png",
+      "shelves": [
+        "photography",
+        "unix"
+      ]
     }
   ]
 }

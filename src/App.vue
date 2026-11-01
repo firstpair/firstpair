@@ -63,6 +63,16 @@ const libraryShelfConfig = [
     deck: 'Books about software, startups, and technical culture.',
   },
   {
+    id: 'unix',
+    label: 'Unix',
+    deck: 'Tools, protocols and systems for working on Unix.',
+  },
+  {
+    id: 'photography',
+    label: 'Photography',
+    deck: 'Keeping, comparing and repairing photographs.',
+  },
+  {
     id: 'publishing',
     label: 'Publishing',
     deck: 'First Pair Press tooling and field guides.',
@@ -84,6 +94,7 @@ type Book = {
   description: string
   accent: string
   shelf?: LibraryShelfId
+  shelves?: LibraryShelfId[]
   source?: string
   homepage?: string
   pdf: string
@@ -169,8 +180,13 @@ const bookHeroImage = (book: Book): string => book.headboard ?? ''
 
 const knownLibraryShelfIds = new Set<string>(libraryShelfConfig.map((shelf) => shelf.id))
 
-const bookShelf = (book: Book): LibraryShelfId =>
-  book.shelf && knownLibraryShelfIds.has(book.shelf) ? book.shelf : 'other'
+// A book sits on every shelf in `shelves`; `shelf` alone means one shelf.
+const bookShelves = (book: Book): LibraryShelfId[] => {
+  const known = (book.shelves ?? (book.shelf ? [book.shelf] : [])).filter((shelf) =>
+    knownLibraryShelfIds.has(shelf),
+  )
+  return known.length ? known : ['other']
+}
 
 const filteredBooks = computed(() => {
   switch (activeFilter.value) {
@@ -189,13 +205,13 @@ const libraryShelves = computed(() =>
   libraryShelfConfig
     .map((shelf) => ({
       ...shelf,
-      books: filteredBooks.value.filter((book) => bookShelf(book) === shelf.id),
+      books: filteredBooks.value.filter((book) => bookShelves(book).includes(shelf.id)),
     }))
     .filter((shelf) => shelf.books.length > 0),
 )
 
 const shelfLinks = computed(() =>
-  libraryShelfConfig.filter((shelf) => books.value.some((book) => bookShelf(book) === shelf.id)),
+  libraryShelfConfig.filter((shelf) => books.value.some((book) => bookShelves(book).includes(shelf.id))),
 )
 
 const isShelfOpen = (shelfId: LibraryShelfId): boolean =>

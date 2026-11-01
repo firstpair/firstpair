@@ -227,7 +227,11 @@ Every catalog book now converges on one source-repository entrypoint:
 The source repository checks in both `FIRSTPAIR.md` and `book.build.json`.
 `FIRSTPAIR.md` is the required library deployment contract: its key-value
 header owns the catalog `slug` and `shelf`, while the rest of the file tells
-source-repository agents how to build and hand the result to FirstPair.
+source-repository agents how to build and hand the result to FirstPair. A book
+on several shelves lists them comma-separated, as in `shelf: photography, unix`:
+the first is the catalog `shelf`, all of them its `shelves`, and the library
+shows the book on each. Because `FIRSTPAIR.md` wins over the catalog, change it
+there as well as in `public/catalog.json`.
 `book.build.json` is validated against
 `publishing/book.build.schema.json` and remains the only canonical build
 configuration surface. Command-line flags select or override an edition;

@@ -94,7 +94,7 @@ Options:
   --full                    Select/authorize the full edition. Required to
                             replace a book's existing preview listing.
   --slug <slug>             Catalog slug. Defaults to FIRSTPAIR.md, then build metadata.
-  --shelf <shelf>           Catalog shelf. Defaults to FIRSTPAIR.md.
+  --shelf <shelf[,shelf]>   Catalog shelf or shelves. Defaults to FIRSTPAIR.md.
   --title <title>           Catalog title. Defaults to metadata/VERSION.
   --description <text>      Catalog description for new or updated entry.
   --source <url>            Source repository URL.
@@ -330,9 +330,11 @@ async function firstPairContract(inputDir, options) {
       }
     }
 
-    for (const key of ['slug', 'shelf']) {
-      if (slugify(contract[key]) !== contract[key]) {
-        throw new Error(`FIRSTPAIR.md ${key} must be a lowercase URL-safe slug`)
+    // `shelf:` names one shelf or several, comma-separated; the first is the
+    // catalog `shelf`, and all of them its `shelves`.
+    for (const value of [contract.slug, ...shelfList(contract.shelf)]) {
+      if (slugify(value) !== value) {
+        throw new Error(`FIRSTPAIR.md value ${value} must be a lowercase URL-safe slug`)
       }
     }
   }
@@ -497,6 +499,9 @@ function titleFromSlug(slug) {
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(' ')
 }
+
+const shelfList = (value) =>
+  String(value ?? '').split(',').map((shelf) => shelf.trim()).filter(Boolean)
 
 function firstValue(...values) {
   return values.find((value) => typeof value === 'string' && value.trim())
@@ -902,7 +907,14 @@ function catalogEntryFromPlan(plan, existing = {}) {
   }
 
   if (plan.shelf) {
-    entry.shelf = plan.explicit.shelf ? plan.shelf : (existing.shelf ?? plan.shelf)
+    // An explicit --shelf or FIRSTPAIR.md value wins; otherwise a republish
+    // keeps the shelves the catalog already has.
+    const shelves = plan.explicit.shelf
+      ? shelfList(plan.shelf)
+      : (existing.shelves ?? (existing.shelf ? [existing.shelf] : shelfList(plan.shelf)))
+    entry.shelf = shelves[0]
+    if (shelves.length > 1) entry.shelves = shelves
+    else delete entry.shelves
   }
 
   // check:catalog forbids a `source` field on preview entries (those with a
@@ -2372,7 +2384,8 @@ function printablePlan(
 ) {
   return {
     slug: plan.slug,
-    shelf: plan.shelf,
+    shelf: shelfList(plan.shelf)[0],
+    shelves: shelfList(plan.shelf),
     title: plan.title,
     author: plan.author,
     distDir: plan.distDir,

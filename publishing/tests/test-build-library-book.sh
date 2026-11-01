@@ -82,6 +82,15 @@ grep -q '"source": ".*/resolution-book/book/tutorial.html"' "$work/book-plan.jso
 grep -q 'book-uploads/staging/firstpair-build-fixture/tutorial.html' "$work/book-plan.json"
 grep -q '/resolution-config/nested/sail/book"' "$work/config-plan.json"
 grep -q '"shelf": "testing"' "$work/config-plan.json"
+# Several shelves: the first is the catalog shelf, and all are listed.
+sed -i.bak 's/^shelf: testing$/shelf: testing, unix/' "$work/resolution-config/FIRSTPAIR.md"
+node "$firstpair_root/scripts/publish-book-to-library.mjs" \
+  "$work/resolution-config" \
+  --dry-run --no-build --no-smoke --no-deploy --no-icloud \
+  > "$work/shelves-plan.json"
+grep -q '"shelf": "testing"' "$work/shelves-plan.json"
+node -e 'const p = JSON.parse(require("fs").readFileSync(process.argv[1])); const find = (o) => o && typeof o === "object" ? (o.shelves ?? Object.values(o).map(find).find(Boolean)) : undefined; const s = find(p); if (JSON.stringify(s) !== JSON.stringify(["testing", "unix"])) { console.error(s); process.exit(1) }' "$work/shelves-plan.json"
+sed -i.bak 's/^shelf: testing, unix$/shelf: testing/' "$work/resolution-config/FIRSTPAIR.md"
 grep -q '/docs/books/firstpair-build-fixture/dist"' "$work/multi-plan.json"
 
 if node "$firstpair_root/scripts/publish-book-to-library.mjs" \
