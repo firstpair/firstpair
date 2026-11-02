@@ -1071,14 +1071,14 @@
       "title": "phidentify",
       "author": "Alexy Khrabrov",
       "kicker": "Fingerprints for photos",
-      "description": "Separate, named identities for photo files: whole-file SHA-256, DNG encoded raw blocks, the Lightroom Classic original fingerprint, a metadata record and the preserved complement digest, from Rust, C, OCaml and OxCaml.",
+      "description": "Separate, named identities for photo files: whole-file SHA-256, DNG encoded raw blocks, the image data of other camera raws, TIFFs and JPEGs, the Lightroom Classic original fingerprint, a metadata record and the preserved complement digest, from Rust, C, OCaml and OxCaml.",
       "accent": "#476a7c",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/2f9194f50706ba0b-phidentify.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/1583d8b2bdc9cfc9-phidentify.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/9220a71322f1ed23-phidentify.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/9dafa27fa9279cbc-phidentify.epub",
       "html": "/read/phidentify/",
       "htmlChapters": "/read/phidentify/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/5436d5eaa5a389dc-phidentify.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/d78d71078875c939/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/8f28dac3dbc38d0d-phidentify.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/f6e64818fc5526ab/index.html",
       "tags": [
         "photography",
         "dng",
@@ -1093,7 +1093,8 @@
       "shelves": [
         "photography",
         "unix"
-      ]
+      ],
+      "source": "https://github.com/firstpair/phidentify"
     },
     {
       "slug": "phindex",

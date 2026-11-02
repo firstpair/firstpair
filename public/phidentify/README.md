@@ -1,6 +1,6 @@
 # phidentify
 
-Separate, named identities for photo files: whole-file SHA-256, DNG encoded raw blocks, the Lightroom Classic original fingerprint, a metadata record and the preserved complement digest, from Rust, C, OCaml and OxCaml.
+Separate, named identities for photo files: whole-file SHA-256, DNG encoded raw blocks, the image data of other camera raws, TIFFs and JPEGs, the Lightroom Classic original fingerprint, a metadata record and the preserved complement digest, from Rust, C, OCaml and OxCaml.
 
 ## Current Public Editions
 
