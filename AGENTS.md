@@ -872,9 +872,16 @@ and chapter blobs, and its four manifest files sat uncommitted for three days
 until the 0.23.0 release publish was blocked by them. The blobs were live the
 whole time; only the record was missing.
 
-So: after any `library:publish` that uploads, commit those four files in the
-same working session, with a message naming the book and the version stamp, and
-push. If you find them already dirty from an earlier run, do not revert them
+`library:publish` now does this itself: right after the upload, before checks
+and deploy, it commits exactly the files it rewrote (those four, plus
+`book-uploads/book-package-sources.json`, `publishing/toolchain.lock.json` and
+`public/<slug>/` when they changed) as `Publish <title> <version stamp>
+(<edition>)`, and pushes. Other changes in the tree are left alone and listed. If
+the push is rejected because another session pushed first, it rebases once,
+without stashing anyone's work, and retries; if that can't be done, it stops
+saying the commit is local and how to push it. `--no-commit` opts out, and then
+you commit those files yourself in the same working session, with a message
+naming the book and the version stamp, and push. If you find them already dirty from an earlier run, do not revert them
 blind — the blobs they name have been uploaded, and reverting points the catalog
 back at objects an earlier publish replaced. Commit them for what they are,
 saying in the message which publish produced them and that it is being recorded

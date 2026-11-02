@@ -42,6 +42,7 @@ const booleanFlags = new Set([
   'no-build',
   'no-smoke',
   'no-deploy',
+  'no-commit',
   'smoke',
   'full',
   'vault',
@@ -147,6 +148,10 @@ Options:
   --no-build                Skip npm run prod:build.
   --no-smoke                Skip local preview smoke test after build.
   --no-deploy               Skip Vercel production deploy and live check.
+  --no-commit               Do not commit and push the manifests this publish
+                            rewrote. By default they are committed right after
+                            the upload, before checks and deploy, as
+                            "Publish <title> <version stamp> (<edition>)".
   --smoke                   Run smoke test even if --no-build is set.
   --dry-run                 Show the resolved plan without writing or uploading.
                             Dry-runs do not require a clean, pushed Git state;
@@ -852,6 +857,63 @@ async function requireCleanPushedPublishingRepos(inputDir) {
     onStdout: (chunk) => process.stderr.write(chunk),
     onStderr: (chunk) => process.stderr.write(chunk),
   })
+}
+
+// The files a publish rewrites. The preflight made FirstPair clean before the
+// upload, so their changes are this publish's; anything else that changed
+// meanwhile belongs to someone else and is left alone.
+function publishedManifestPaths(plan) {
+  return [
+    'book-uploads/blob-manifest.json',
+    'book-uploads/book-package-sources.json',
+    'public/catalog.json',
+    'deliverable-map.mjs',
+    'reader-map.mjs',
+    'publishing/toolchain.lock.json',
+    repoRelative(plan.publicDir),
+  ]
+}
+
+// Commit and push the manifests naming the uploaded blobs (AGENTS.md: a publish
+// is not finished until its manifests are committed and pushed).
+async function commitPublishedManifests(plan) {
+  const present = await Promise.all(
+    publishedManifestPaths(plan).map(async (path) => ((await stat(join(root, path)).catch(() => null)) ? path : null)),
+  )
+  const paths = present.filter(Boolean)
+  const changed = await commandOutput('git', ['status', '--porcelain', '--untracked-files=all', '--', ...paths])
+
+  if (!changed) {
+    console.error('No manifest changed; nothing to commit.')
+    return
+  }
+
+  const stamp = firstValue(plan.version?.version_stamp, plan.version?.version) ?? 'current'
+  const label = plan.versionId ? `${plan.title} ${plan.versionId}` : plan.title
+  const message = `Publish ${label} ${stamp} (${plan.edition})`
+  await runChecked('git', ['add', '--', ...paths])
+  await runChecked('git', ['commit', '-m', message, '--', ...paths])
+
+  const others = await commandOutput('git', ['status', '--porcelain'])
+  if (others) {
+    console.error(`Left uncommitted, not this publish's:\n${others}`)
+  }
+
+  try {
+    await runChecked('git', ['push'])
+  } catch {
+    // Another session pushed meanwhile: replay this commit on top and retry once.
+    // Never stash someone else's uncommitted work to do it.
+    try {
+      await runChecked('git', ['pull', '--rebase', '--no-autostash'])
+      await runChecked('git', ['push'])
+    } catch {
+      throw new Error(
+        `"${message}" is committed but not pushed. Once the other changes in FirstPair ` +
+          'are committed, run: git pull --rebase && git push',
+      )
+    }
+  }
 }
 
 function upsertCatalogEntry(catalog, entry) {
@@ -2361,6 +2423,7 @@ async function buildPlan(inputDir, options) {
     runBuild: !options['no-build'],
     runSmoke: options.smoke || (!options['no-smoke'] && !options['no-build']),
     runDeploy: !options['no-deploy'],
+    runCommit: !options['no-commit'],
     explicit: {
       title: Boolean(options.title),
       description: Boolean(options.description),
@@ -2565,6 +2628,10 @@ async function main() {
   await writePublicReadme(plan, dryRun)
   const icloudCopies = await copyIcloud(plan, dryRun)
   const vaultCopies = await copyCompanionsToIcloud(plan, dryRun)
+
+  if (plan.runCommit) {
+    await commitPublishedManifests(plan)
+  }
 
   if (plan.runCheck) {
     await runChecked('npm', ['run', 'check:catalog'])
