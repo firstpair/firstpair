@@ -1039,6 +1039,31 @@
       "source": "https://github.com/querygraph/packdir",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/cover/4a2ce17fa1c97dcb-packdir-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/headboard/c312d7529571f3cc-packdir-headboard.png"
+    },
+    {
+      "slug": "tiffgraph",
+      "title": "tiffgraph",
+      "author": "Alexy Khrabrov, with Claude as co-author",
+      "kicker": "Find the XMP packet. Protect everything else",
+      "description": "Find a DNG's XMP packet under a fixed grammar, prove no other part of the file lies inside it, and map every region of the file, from OCaml and OxCaml.",
+      "accent": "#755a7f",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/pdf/91dadb84249d9e1d-tiffgraph.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/epub/31e959aed7ff876c-tiffgraph.epub",
+      "html": "/read/tiffgraph/",
+      "htmlChapters": "/read/tiffgraph/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/html/a1faa1d3f6b64078-tiffgraph.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/7c3bb987879847d9/index.html",
+      "tags": [
+        "photography",
+        "dng",
+        "tiff",
+        "ocaml",
+        "oxcaml"
+      ],
+      "shelf": "photography",
+      "source": "https://github.com/firstpair/tiffgraph",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/cover/85820f6b7479c3ab-tiffgraph-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/headboard/e483e3cf824011a4-tiffgraph-headboard.png"
     }
   ]
 }

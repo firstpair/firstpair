@@ -366,6 +366,14 @@
       "htmlChapters": "book-uploads/staging/packdir/packdir-chapters",
       "cover": "book-uploads/staging/packdir/packdir-cover.png",
       "headboard": "book-uploads/staging/packdir/packdir-headboard.png"
+    },
+    "tiffgraph": {
+      "pdf": "book-uploads/staging/tiffgraph/tiffgraph.pdf",
+      "epub": "book-uploads/staging/tiffgraph/tiffgraph.epub",
+      "html": "book-uploads/staging/tiffgraph/tiffgraph.html",
+      "htmlChapters": "book-uploads/staging/tiffgraph/tiffgraph-chapters",
+      "cover": "book-uploads/staging/tiffgraph/tiffgraph-cover.png",
+      "headboard": "book-uploads/staging/tiffgraph/tiffgraph-headboard.png"
     }
   }
 }
