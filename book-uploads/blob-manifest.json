@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-02T10:16:45.314Z",
+  "updatedAt": "2026-11-02T10:32:28.395Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -15341,25 +15341,25 @@
       }
     },
     "phidentify": {
-      "updatedAt": "2026-11-02T10:16:45.313Z",
+      "updatedAt": "2026-11-02T10:32:28.395Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/phidentify/phidentify.pdf",
-          "sha256": "d40b5a23eb8c506983f758cb90e2b85a964f103222dbffc5d9c2fd909c1e56a6",
-          "size": 3564999,
-          "pathname": "books/phidentify/pdf/d40b5a23eb8c5069-phidentify.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/d40b5a23eb8c5069-phidentify.pdf",
+          "sha256": "2f9194f50706ba0b885eeaad2f35cc6b2f12f1267d7dcd898521faa65f0923b4",
+          "size": 3565760,
+          "pathname": "books/phidentify/pdf/2f9194f50706ba0b-phidentify.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/2f9194f50706ba0b-phidentify.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/phidentify/phidentify.epub",
-          "sha256": "02b9e2f97167c7528b83c524c971f8cd998a4003c7ef3ee9182267e5e9bf0204",
-          "size": 5394891,
-          "pathname": "books/phidentify/epub/02b9e2f97167c752-phidentify.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/02b9e2f97167c752-phidentify.epub",
+          "sha256": "1583d8b2bdc9cfc98795676f8f41f3c50d7c318023d907eea42169023e33ec99",
+          "size": 5394893,
+          "pathname": "books/phidentify/epub/1583d8b2bdc9cfc9-phidentify.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/1583d8b2bdc9cfc9-phidentify.epub",
           "skipped": false
         },
         "html": {
@@ -15369,7 +15369,7 @@
           "size": 3764982,
           "pathname": "books/phidentify/html/5436d5eaa5a389dc-phidentify.html",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/5436d5eaa5a389dc-phidentify.html",
-          "skipped": false
+          "skipped": true
         },
         "cover": {
           "kind": "cover",
@@ -15395,7 +15395,7 @@
           "sha256": "d78d71078875c93954dadeb8af97c6acc795b27fe1f41768ae46ae20cdf79589",
           "pathnamePrefix": "books/phidentify/chapters/d78d71078875c939",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/d78d71078875c939/index.html",
-          "skipped": false,
+          "skipped": true,
           "files": [
             {
               "localPath": "book-uploads/staging/phidentify/phidentify-chapters/book.css",
@@ -18466,6 +18466,16 @@
       "pathname": "books/phidentify/html/5436d5eaa5a389dc-phidentify.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/5436d5eaa5a389dc-phidentify.html",
       "size": 3764982
+    },
+    "2f9194f50706ba0b885eeaad2f35cc6b2f12f1267d7dcd898521faa65f0923b4:3565760": {
+      "pathname": "books/phidentify/pdf/2f9194f50706ba0b-phidentify.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/2f9194f50706ba0b-phidentify.pdf",
+      "size": 3565760
+    },
+    "1583d8b2bdc9cfc98795676f8f41f3c50d7c318023d907eea42169023e33ec99:5394893": {
+      "pathname": "books/phidentify/epub/1583d8b2bdc9cfc9-phidentify.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/1583d8b2bdc9cfc9-phidentify.epub",
+      "size": 5394893
     }
   },
   "chapterPackages": {
