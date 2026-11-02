@@ -176,6 +176,38 @@ for (const pdfFile of pdfFiles) {
   if (result.status !== 0) failures.push(`PDF layout check failed: ${pdfFile}`)
 }
 
+// The information page after the cover must name the publisher, the exact
+// version stamp and the full source commit (AGENTS.md, Public Book Delivery).
+// It is looked for in the first pages of the published PDF, with whitespace
+// collapsed so a wrapped line still matches.
+function verifyPdfInformationPage(pdfFile) {
+  const path = join(distDir, pdfFile)
+  let text
+  try {
+    text = command('pdftotext', ['-f', '1', '-l', '4', '-layout', path, '-']).replace(/\s+/g, ' ')
+  } catch (error) {
+    failures.push(`PDF information page unreadable (${pdfFile}): ${error.message}`)
+    return
+  }
+  const compact = text.replace(/\s+/g, '')
+  if (!/firstpair\.press/i.test(text)) {
+    failures.push(`PDF information page does not show firstpair.press: ${pdfFile}`)
+  }
+  if (marker.version_stamp && !compact.includes(marker.version_stamp.replace(/\s+/g, ''))) {
+    failures.push(`PDF information page does not show version ${marker.version_stamp}: ${pdfFile}`)
+  }
+  const commit = marker.source_commit ?? ''
+  if (/^[0-9a-f]{7,40}$/.test(commit)) {
+    if (!new RegExp(`${commit}[0-9a-f]{${40 - commit.length}}`).test(compact)) {
+      failures.push(`PDF information page does not show the full source commit ${commit}…: ${pdfFile}`)
+    }
+  } else if (commit && !compact.includes(commit)) {
+    failures.push(`PDF information page does not show source ${commit}: ${pdfFile}`)
+  }
+}
+
+if (marker.pdf_file && present(join(distDir, marker.pdf_file))) verifyPdfInformationPage(marker.pdf_file)
+
 if (marker.epub_file && present(join(distDir, marker.epub_file))) {
   const epubPath = join(distDir, marker.epub_file)
   try {

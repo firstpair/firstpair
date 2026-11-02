@@ -14,6 +14,10 @@ printf '%s  \n%s\n' \
   '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20">' \
   '<text x="2" y="14">fixture</text></svg>' > "$work/fixture.svg"
 printf '\n![Fixture diagram](fixture.svg)\n' >> "$work/manuscript.md"
+# A committed fixture, so editions carry a real source commit.
+git -C "$work" init -q
+git -C "$work" add -A
+git -C "$work" -c user.name=fixture -c user.email=fixture@example.invalid commit -q -m fixture
 
 "$builder" --repo-root "$work" --config single.book.build.json
 "$builder" --repo-root "$work" --config dual.book.build.json
@@ -112,6 +116,22 @@ if "$firstpair_root/publishing/scripts/verify-library-book.sh" \
   exit 1
 fi
 grep -q 'links to source Markdown: missing.md' "$work/bad-link.log"
+
+# The PDF information page names the publisher, version stamp and full commit.
+pdftotext -f 1 -l 4 "$work/dist-single/firstpair-build-fixture.pdf" - | tr -s '[:space:]' ' ' > "$work/info-page.txt"
+grep -q 'firstpair.press' "$work/info-page.txt"
+grep -q "$(sed -n 's/^version_stamp: //p' "$work/dist-single/VERSION.md")" "$work/info-page.txt"
+grep -q "Source commit $(git -C "$work" rev-parse HEAD)" "$work/info-page.txt"
+cp -R "$work/dist-single" "$work/dist-no-imprint"
+printf '#set page(width: 6in, height: 9in)\nA book without an information page.\n' > "$work/no-imprint.typ"
+typst compile "$work/no-imprint.typ" "$work/dist-no-imprint/firstpair-build-fixture.pdf"
+if "$firstpair_root/publishing/scripts/verify-library-book.sh" \
+  "$work/dist-no-imprint" > "$work/no-imprint.log" 2>&1; then
+  echo "PDF without an information page unexpectedly passed verification" >&2
+  exit 1
+fi
+grep -q 'PDF information page does not show firstpair.press' "$work/no-imprint.log"
+grep -q 'does not show the full source commit' "$work/no-imprint.log"
 
 typst compile "$work/narrow-column.typ" "$work/narrow-column.pdf"
 if "$firstpair_root/publishing/scripts/check-pdf-layout.mjs" \

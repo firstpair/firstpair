@@ -241,6 +241,17 @@ function sourceCommit(config, context) {
   return `content-${hash.digest('hex').slice(0, 12)}`
 }
 
+// The full commit for reader-facing information pages; the short form names
+// files. Trees without Git keep their deterministic content stamp.
+function fullSourceCommit(context) {
+  if (!/^[0-9a-f]+$/.test(context.sourceCommit)) return context.sourceCommit
+  try {
+    return commandOutput('git', ['rev-parse', 'HEAD'], context.repoRoot) || context.sourceCommit
+  } catch {
+    return context.sourceCommit
+  }
+}
+
 function pandocBaseArgs(config, context) {
   const args = []
   const pandoc = config.pandoc ?? {}
@@ -316,6 +327,66 @@ function mergePdfPages(inputs, output, context) {
   )
 }
 
+// The publisher named on every edition's information page. The EPUB imprint
+// and the PDF information page share it, so both formats say the same thing.
+function publisherOf(config) {
+  const imprint = typeof config.epub?.imprint === 'object' ? config.epub.imprint : {}
+  return {
+    name: imprint.publisher ?? 'First Pair Press',
+    url: imprint.publisherUrl ?? 'https://firstpair.press',
+  }
+}
+
+// Typst string literal (JSON escapes are a subset of Typst's).
+function typstString(value) {
+  return JSON.stringify(String(value))
+}
+
+// The PDF information page: the version stamp, the full source commit and the
+// publisher, under the title block on the page after the cover. Every typst
+// variant gets the same values as pandoc metadata (firstpair-version,
+// firstpair-commit, firstpair-publisher, firstpair-publisher-url), so a
+// project with its own typst template can render them itself. By default
+// the builder injects the page with --include-before-body; a variant whose
+// arguments pass a custom --template is assumed to render it from that
+// metadata (pdf.imprint "template"), and pdf.imprint "page" forces injection.
+// verify-library-book checks the result either way.
+function typstImprintArgs(variant, config, context) {
+  const publisher = publisherOf(config)
+  const host = new URL(publisher.url).host
+  const args = [
+    '--metadata', `firstpair-version=${context.versionStamp}`,
+    '--metadata', `firstpair-commit=${context.sourceCommitFull}`,
+    '--metadata', `firstpair-publisher=${publisher.name}`,
+    '--metadata', `firstpair-publisher-url=${publisher.url}`,
+  ]
+  const pdfConfig = config.pdf ?? {}
+  const customTemplate = [...(pdfConfig.args ?? []), ...(variant.args ?? [])]
+    .some((arg) => String(arg).startsWith('--template'))
+  const mode = pdfConfig.imprint ?? (customTemplate ? 'template' : 'page')
+  if (mode === 'page') {
+    const page = join(context.tmpDir, `${variant.name}.imprint.typ`)
+    writeFileSync(page, [
+      '#align(center)[',
+      '  #v(2.5em)',
+      '  #line(length: 35%, stroke: 0.5pt + luma(140))',
+      '  #v(1em)',
+      `  #text(size: 10pt, "Version " + ${typstString(context.versionStamp)})`,
+      '  #linebreak()',
+      `  #text(size: 8pt, "Source commit " + ${typstString(context.sourceCommitFull)})`,
+      '  #v(1.6em)',
+      `  #text(size: 10pt, ${typstString(publisher.name)})`,
+      '  #linebreak()',
+      `  #link(${typstString(publisher.url)})[#text(size: 10pt, ${typstString(host)})]`,
+      ']',
+      '#pagebreak(weak: true)',
+      '',
+    ].join('\n'))
+    args.push('--include-before-body', page)
+  }
+  return args
+}
+
 function buildTypstPdf(variant, config, context) {
   const output = join(context.distDir, `${variant.stem}.pdf`)
   const body = join(context.tmpDir, `${variant.name}.body.pdf`)
@@ -332,6 +403,7 @@ function buildTypstPdf(variant, config, context) {
     '-o', body,
     '--pdf-engine=typst',
     ...pandocBaseArgs(config, context),
+    ...typstImprintArgs(variant, config, context),
     ...(pdfConfig.includeInHeader ?? []).flatMap((path) => ['--include-in-header', resolvePath(path, context)]),
     ...Object.entries(pdfConfig.variables ?? {}).flatMap(([key, value]) => ['-V', `${key}=${expand(String(value), context)}`]),
     ...(pdfConfig.args ?? []).map((arg) => expand(String(arg), context)),
@@ -638,6 +710,7 @@ function buildEdition(config, baseContext, distOverride) {
     if (!preliminary.title || !preliminary.stem) throw new Error('metadata/config must define title and title_stem/stem')
     preliminary.version = detectVersion(config, preliminary)
     preliminary.sourceCommit = sourceCommit(config, preliminary)
+    preliminary.sourceCommitFull = fullSourceCommit(preliminary)
     preliminary.versionStamp = expand(
       config.versionStamp ?? '${version}-${sourceCommit}',
       preliminary,

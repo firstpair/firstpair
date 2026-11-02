@@ -187,6 +187,13 @@ commit hash. When refreshing artwork on an existing edition, identify the
 separate cover revision explicitly; do not imply that unchanged book content
 was rebuilt from the cover revision. Validate the page order and version text
 in both formats before publishing.
+`build-library-book` writes the typst PDF's information page under the title
+block from the same build values as the EPUB imprint (version stamp, full
+source commit, publisher); a project with its own typst `--template` renders
+the `firstpair-version`, `firstpair-commit`, `firstpair-publisher` and
+`firstpair-publisher-url` metadata itself (`pdf.imprint`). The verifier fails a
+published PDF whose first pages lack firstpair.press, the version stamp or the
+full commit.
 
 Public books have one lightweight metadata directory under `public/`. Use the
 book's stable stem for the directory name:

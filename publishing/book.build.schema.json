@@ -71,7 +71,11 @@
         "includeInHeader": { "type": "array", "items": { "type": "string" } },
         "variables": { "type": "object" },
         "args": { "type": "array", "items": { "type": "string" } },
-        "coverArgs": { "type": "array", "items": { "type": "string" } }
+        "coverArgs": { "type": "array", "items": { "type": "string" } },
+        "imprint": {
+          "description": "How the typst PDF shows its information page (version stamp, full source commit, publisher) after the cover. \"page\" (the default) injects it under the title block; \"template\" (the default when a custom --template is passed) leaves it to the project's template, which receives firstpair-version, firstpair-commit, firstpair-publisher and firstpair-publisher-url as metadata. verify-library-book checks the PDF either way.",
+          "enum": ["page", "template"]
+        }
       },
       "additionalProperties": false
     },
