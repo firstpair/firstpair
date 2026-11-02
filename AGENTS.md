@@ -193,7 +193,8 @@ source commit, publisher); a project with its own typst `--template` renders
 the `firstpair-version`, `firstpair-commit`, `firstpair-publisher` and
 `firstpair-publisher-url` metadata itself (`pdf.imprint`). The verifier fails a
 published PDF whose first pages lack firstpair.press, the version stamp or the
-full commit.
+full commit, and an EPUB whose shared imprint (`epub.imprint`) lacks the version
+stamp or the full commit.
 
 Public books have one lightweight metadata directory under `public/`. Use the
 book's stable stem for the directory name:
