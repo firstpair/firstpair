@@ -1047,12 +1047,12 @@
       "kicker": "Find the XMP packet. Protect everything else",
       "description": "Find a DNG's XMP packet under a fixed grammar, prove no other part of the file lies inside it, and map every region of the file, from OCaml, OxCaml and Rust.",
       "accent": "#755a7f",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/pdf/5331371d590a2ea7-tiffgraph.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/epub/671543bce7f58339-tiffgraph.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/pdf/24952d10361d27a4-tiffgraph.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/epub/1e278401b8f67376-tiffgraph.epub",
       "html": "/read/tiffgraph/",
       "htmlChapters": "/read/tiffgraph/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/html/f0139fd40ffaed3b-tiffgraph.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/42c8610d3317c002/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/html/ee2aeeadaacbc6ad-tiffgraph.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/4b53f879bac3f0c4/index.html",
       "tags": [
         "photography",
         "dng",
@@ -1063,7 +1063,7 @@
       ],
       "shelf": "photography",
       "source": "https://github.com/firstpair/tiffgraph",
-      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/cover/85820f6b7479c3ab-tiffgraph-cover.png",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/cover/7a77181aa0cffcd2-tiffgraph-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/headboard/e483e3cf824011a4-tiffgraph-headboard.png"
     },
     {
