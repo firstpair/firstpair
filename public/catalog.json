@@ -1068,16 +1068,16 @@
     {
       "slug": "phidentify",
       "title": "phidentify",
-      "author": "Alexy Khrabrov, with Claude as co-author",
+      "author": "Alexy Khrabrov",
       "kicker": "Fingerprints for photos",
       "description": "Separate, named identities for photo files: whole-file SHA-256, DNG encoded raw blocks, the Lightroom Classic original fingerprint, a metadata record and the preserved complement digest, from Rust, C, OCaml and OxCaml.",
       "accent": "#476a7c",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/5f520a5d97e09e8c-phidentify.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/31aa48451ffa0f9e-phidentify.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/d40b5a23eb8c5069-phidentify.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/02b9e2f97167c752-phidentify.epub",
       "html": "/read/phidentify/",
       "htmlChapters": "/read/phidentify/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/f0a72439f9fa18bf-phidentify.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/248ba8188a219605/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/5436d5eaa5a389dc-phidentify.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/d78d71078875c939/index.html",
       "tags": [
         "photography",
         "dng",
@@ -1088,7 +1088,11 @@
       ],
       "shelf": "photography",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/cover/9f213b531a07c994-phidentify-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/headboard/6211a2f05c51faf6-phidentify-headboard.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/headboard/6211a2f05c51faf6-phidentify-headboard.png",
+      "shelves": [
+        "photography",
+        "unix"
+      ]
     }
   ]
 }
