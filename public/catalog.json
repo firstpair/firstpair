@@ -1064,6 +1064,31 @@
       "source": "https://github.com/firstpair/tiffgraph",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/cover/85820f6b7479c3ab-tiffgraph-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/headboard/e483e3cf824011a4-tiffgraph-headboard.png"
+    },
+    {
+      "slug": "phidentify",
+      "title": "phidentify",
+      "author": "Alexy Khrabrov, with Claude as co-author",
+      "kicker": "Fingerprints for photos",
+      "description": "Separate, named identities for photo files: whole-file SHA-256, DNG encoded raw blocks, the Lightroom Classic original fingerprint, a metadata record and the preserved complement digest, from Rust, C, OCaml and OxCaml.",
+      "accent": "#476a7c",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/5f520a5d97e09e8c-phidentify.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/31aa48451ffa0f9e-phidentify.epub",
+      "html": "/read/phidentify/",
+      "htmlChapters": "/read/phidentify/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/f0a72439f9fa18bf-phidentify.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/248ba8188a219605/index.html",
+      "tags": [
+        "photography",
+        "dng",
+        "lightroom",
+        "rust",
+        "ocaml",
+        "oxcaml"
+      ],
+      "shelf": "photography",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/cover/9f213b531a07c994-phidentify-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/headboard/6211a2f05c51faf6-phidentify-headboard.png"
     }
   ]
 }

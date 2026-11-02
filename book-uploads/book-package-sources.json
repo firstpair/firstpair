@@ -374,6 +374,14 @@
       "htmlChapters": "book-uploads/staging/tiffgraph/tiffgraph-chapters",
       "cover": "book-uploads/staging/tiffgraph/tiffgraph-cover.png",
       "headboard": "book-uploads/staging/tiffgraph/tiffgraph-headboard.png"
+    },
+    "phidentify": {
+      "pdf": "book-uploads/staging/phidentify/phidentify.pdf",
+      "epub": "book-uploads/staging/phidentify/phidentify.epub",
+      "html": "book-uploads/staging/phidentify/phidentify.html",
+      "htmlChapters": "book-uploads/staging/phidentify/phidentify-chapters",
+      "cover": "book-uploads/staging/phidentify/phidentify-cover.png",
+      "headboard": "book-uploads/staging/phidentify/phidentify-headboard.png"
     }
   }
 }
