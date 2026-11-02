@@ -1,6 +1,6 @@
 # tiffgraph
 
-Find a DNG's XMP packet under a fixed grammar, prove no other part of the file lies inside it, and map every region of the file, from OCaml and OxCaml.
+Find a DNG's XMP packet under a fixed grammar, prove no other part of the file lies inside it, and map every region of the file, from OCaml, OxCaml and Rust.
 
 ## Current Public Editions
 
