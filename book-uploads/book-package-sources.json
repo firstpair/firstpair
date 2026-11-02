@@ -382,6 +382,14 @@
       "htmlChapters": "book-uploads/staging/phidentify/phidentify-chapters",
       "cover": "book-uploads/staging/phidentify/phidentify-cover.png",
       "headboard": "book-uploads/staging/phidentify/phidentify-headboard.png"
+    },
+    "phindex": {
+      "pdf": "book-uploads/staging/phindex/phindex.pdf",
+      "epub": "book-uploads/staging/phindex/phindex.epub",
+      "html": "book-uploads/staging/phindex/phindex.html",
+      "htmlChapters": "book-uploads/staging/phindex/phindex-chapters",
+      "cover": "book-uploads/staging/phindex/phindex-cover.png",
+      "headboard": "book-uploads/staging/phindex/phindex-headboard.png"
     }
   }
 }
