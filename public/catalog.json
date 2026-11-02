@@ -1101,14 +1101,14 @@
       "title": "phindex",
       "author": "Alexy Khrabrov",
       "kicker": "An archive index that is cheap to rerun",
-      "description": "A resumable SQLite index of a directory tree with every phidentify identity from one read per file: reruns read only what changed, directory mtimes skip unchanged folders, and moves keep their identities. A Rust binary and an OCaml/OxCaml counterpart write the same index.",
+      "description": "A resumable SQLite index of a directory tree with every phidentify identity from one read per file: reruns read only what changed, directory mtimes skip unchanged folders, moves keep their identities, and phindex align accounts for one archive in another by identity. A Rust binary and an OCaml/OxCaml counterpart write the same index.",
       "accent": "#755a7f",
-      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/84a9eca9b4e2441b-phindex.pdf",
-      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/58bb29ee9933a902-phindex.epub",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/b56b7fdce20abb42-phindex.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/3191800f1adcad0e-phindex.epub",
       "html": "/read/phindex/",
       "htmlChapters": "/read/phindex/chapters/",
-      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/561a226f70129d1e-phindex.html",
-      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/d49bfa41338e1ecc/index.html",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/ca1d74ed76c285b6-phindex.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/3b81adde5a1e9e45/index.html",
       "tags": [
         "photography",
         "dng",
@@ -1124,7 +1124,8 @@
         "unix"
       ],
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/cover/6b4377b9119f0228-phindex-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/headboard/53d152768cb0f772-phindex-headboard.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/headboard/53d152768cb0f772-phindex-headboard.png",
+      "source": "https://github.com/firstpair/phindex"
     }
   ]
 }

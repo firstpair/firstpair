@@ -1,6 +1,6 @@
 # phindex
 
-A resumable SQLite index of a directory tree with every phidentify identity from one read per file: reruns read only what changed, directory mtimes skip unchanged folders, and moves keep their identities. A Rust binary and an OCaml/OxCaml counterpart write the same index.
+A resumable SQLite index of a directory tree with every phidentify identity from one read per file: reruns read only what changed, directory mtimes skip unchanged folders, moves keep their identities, and phindex align accounts for one archive in another by identity. A Rust binary and an OCaml/OxCaml counterpart write the same index.
 
 ## Current Public Editions
 
