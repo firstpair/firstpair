@@ -256,6 +256,23 @@ if (marker.epub_file && present(join(distDir, marker.epub_file))) {
       }
     }
     if (wordCount < 30) failures.push('EPUB contains too little readable text')
+    // The publication-information page after the cover shows the full source
+    // commit beside the version stamp, as the PDF information page does.
+    const imprintEntry = entries.find((entry) => /(^|\/)firstpair-imprint\.xhtml$/.test(entry))
+    const imprintText = imprintEntry
+      ? stripMarkup(command('unzip', ['-p', epubPath, imprintEntry])).replace(/\s+/g, ' ')
+      : ''
+    // EPUBs without the shared imprint (epub.imprint unset) are not checked here.
+    if (imprintEntry) {
+      if (marker.version_stamp && !imprintText.includes(`Version ${marker.version_stamp}`)) {
+        failures.push(`EPUB information page does not show version ${marker.version_stamp}`)
+      }
+      const commit = marker.source_commit ?? ''
+      if (/^[0-9a-f]{7,40}$/.test(commit)
+          && !new RegExp(`Source commit ${commit}[0-9a-f]{${40 - commit.length}}\\b`).test(imprintText)) {
+        failures.push(`EPUB information page does not show the full source commit ${commit}…`)
+      }
+    }
   } catch (error) {
     failures.push(`EPUB verification failed: ${error.message}`)
   }

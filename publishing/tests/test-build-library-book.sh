@@ -133,6 +133,39 @@ fi
 grep -q 'PDF information page does not show firstpair.press' "$work/no-imprint.log"
 grep -q 'does not show the full source commit' "$work/no-imprint.log"
 
+# The EPUB imprint shows the same full commit; without it the verifier fails.
+python3 - "$work" <<'PY'
+import base64, json, pathlib, sys
+work = pathlib.Path(sys.argv[1])
+(work / 'cover.png').write_bytes(base64.b64decode(
+    'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII='))
+config = json.loads((work / 'single.book.build.json').read_text())
+config.update(dist='dist-imprint', buildDir='build-imprint', epub={'coverImage': 'cover.png', 'imprint': True})
+config.pop('tutorial', None)
+(work / 'imprint.book.build.json').write_text(json.dumps(config, indent=2))
+PY
+"$builder" --repo-root "$work" --config imprint.book.build.json
+unzip -p "$work/dist-imprint/firstpair-build-fixture.epub" EPUB/text/firstpair-imprint.xhtml \
+  | grep -q "Source commit $(git -C "$work" rev-parse HEAD)"
+cp -R "$work/dist-imprint" "$work/dist-no-epub-commit"
+python3 - "$work/dist-no-epub-commit/firstpair-build-fixture.epub" <<'PY'
+import re, sys, zipfile
+path = sys.argv[1]
+with zipfile.ZipFile(path) as source:
+    entries = [(info, source.read(info.filename)) for info in source.infolist()]
+with zipfile.ZipFile(path, 'w') as target:
+    for info, data in entries:
+        if info.filename.endswith('firstpair-imprint.xhtml'):
+            data = re.sub(rb'<p class="commit">.*?</p>', b'', data)
+        target.writestr(info, data)
+PY
+if "$firstpair_root/publishing/scripts/verify-library-book.sh" \
+  "$work/dist-no-epub-commit" > "$work/no-epub-commit.log" 2>&1; then
+  echo "EPUB without its source commit unexpectedly passed verification" >&2
+  exit 1
+fi
+grep -q 'EPUB information page does not show the full source commit' "$work/no-epub-commit.log"
+
 typst compile "$work/narrow-column.typ" "$work/narrow-column.pdf"
 if "$firstpair_root/publishing/scripts/check-pdf-layout.mjs" \
   "$work/narrow-column.pdf" > "$work/narrow-column.log" 2>&1; then

@@ -25,6 +25,7 @@ EPUB = 'http://www.idpf.org/2007/ops'
 NS = {'opf': OPF, 'dc': DC, 'h': XHTML, 'epub': EPUB}
 IMPRINT_ID = 'firstpair-imprint'
 IMPRINT_HREF = 'text/firstpair-imprint.xhtml'
+COMMIT = re.compile(r'^[0-9a-f]{40}$')
 STAMP = re.compile(r'^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?-[0-9a-f]{7,40}$')
 
 
@@ -98,6 +99,7 @@ def imprint_document(args, language: str) -> bytes:
     published = date.fromisoformat(args.date)
     display_date = f'{published.day} {published.strftime("%B")} {published.year}'
     subtitle = f'<p class="subtitle">{escaped["subtitle"]}</p>' if args.subtitle else ''
+    commit = f'<p class="commit">Source commit {escaped["commit"]}</p>' if getattr(args, 'commit', None) else ''
     website = urlsplit(args.publisher_url).netloc + urlsplit(args.publisher_url).path.rstrip('/')
     return f'''<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
@@ -112,6 +114,7 @@ h1 {{ font-size: 1.65em; line-height: 1.2; margin: 0 0 0.65em; font-weight: norm
 .edition {{ border-top: 1px solid #a2a2a2; padding-top: 1.5em; }}
 .edition p {{ margin: 0.5em 0; }}
 .version {{ overflow-wrap: anywhere; word-wrap: break-word; }}
+.commit {{ font-size: 0.8em; overflow-wrap: anywhere; word-wrap: break-word; }}
 .publisher {{ margin-top: 2.2em; }}
 .publisher p {{ margin: 0.4em 0; }}
 .publisher-site, .publisher-site code {{ font-family: "Courier New", Courier, monospace; font-size: 1em; color: #17212a; background: transparent; }}
@@ -121,7 +124,7 @@ a.publisher-site {{ text-decoration: none; }}
 <h1>{escaped['title']}</h1>{subtitle}
 <p class="author">{escaped['author']}</p>
 <div class="edition"><p><time datetime="{escaped['date']}">{display_date}</time></p>
-<p class="version">Version {escaped['version']}</p></div>
+<p class="version">Version {escaped['version']}</p>{commit}</div>
 <div class="publisher"><p>{escaped['publisher']}</p>
 <p><a class="publisher-site" href="{escaped['publisher_url']}"><code>{html.escape(website)}</code></a></p></div>
 </main></body></html>
@@ -132,6 +135,7 @@ def add_imprint(args):
     if not STAMP.fullmatch(args.version):
         raise ValueError('version must contain semantic version and a 7–40 character Git hash')
     date.fromisoformat(args.date)
+    check_commit(args.version, args.commit)
     parsed_url = urlsplit(args.publisher_url)
     if parsed_url.scheme != 'https' or not parsed_url.netloc or parsed_url.query or parsed_url.fragment:
         raise ValueError('publisher URL must be an absolute HTTPS URL without query or fragment')
@@ -258,14 +262,25 @@ img {{ display: block; max-width: 100%; max-height: 100vh; margin: 0 auto; objec
                     target.writestr(entry, replacements.pop(entry.filename, source.read(entry.filename)))
                 for name, content in replacements.items():
                     target.writestr(name, content, compress_type=ZIP_DEFLATED)
-            verify_imprint(temporary_path, args.version, args.date)
+            verify_imprint(temporary_path, args.version, args.date, args.commit)
             temporary_path.replace(path)
         finally:
             temporary_path.unlink(missing_ok=True)
-    return verify_imprint(path, args.version, args.date)
+    return verify_imprint(path, args.version, args.date, args.commit)
 
 
-def verify_imprint(path: Path, version: str | None = None, published_date: str | None = None):
+def check_commit(version: str, commit: str | None):
+    """A displayed source commit is the full hash the version stamp abbreviates."""
+    if commit is None:
+        return
+    if not COMMIT.fullmatch(commit):
+        raise ValueError('source commit must be a full 40-character Git hash')
+    if not commit.startswith(version.rsplit('-', 1)[-1]):
+        raise ValueError('source commit does not extend the version stamp hash')
+
+
+def verify_imprint(path: Path, version: str | None = None, published_date: str | None = None,
+                   commit: str | None = None):
     with ZipFile(path) as archive:
         opf_name, package, metadata, manifest, spine, items = read_package(archive)
         cover_id = image_cover_id(archive, opf_name, spine, items)
@@ -295,13 +310,20 @@ def verify_imprint(path: Path, version: str | None = None, published_date: str |
                 raise ValueError(f'EPUB imprint differs from {field} metadata')
         if f'Version {expected_version}' not in content:
             raise ValueError('EPUB imprint does not display its full semantic-Git version')
+        shown = re.search(r'Source commit ([0-9a-f]+)', content)
+        if commit is not None:
+            check_commit(expected_version, commit)
+            if not shown or shown.group(1) != commit:
+                raise ValueError('EPUB imprint does not display its full source commit')
+        elif shown:
+            check_commit(expected_version, shown.group(1))
         if document.find(f'.//h:time[@datetime="{date_text}"]', NS) is None:
             raise ValueError('EPUB imprint does not display its publication date')
         site = document.find('.//h:a[@class="publisher-site"]/h:code', NS)
         if site is None or not site.text or 'monospace' not in raw:
             raise ValueError('EPUB imprint publisher website must use machine-font code markup and CSS')
         return {'passed': True, 'cover': archive_path(opf_name, items[cover_id].get('href')), 'imprint': imprint_name,
-                'version': expected_version, 'date': date_text, 'identifier': identifier.text,
+                'version': expected_version, 'commit': shown.group(1) if shown else None, 'date': date_text, 'identifier': identifier.text,
                 'spineDocuments': len(ordered)}
 
 
@@ -313,6 +335,7 @@ def main():
     for key in ('title', 'author', 'date', 'version', 'stem'):
         add.add_argument(f'--{key}', required=True)
     add.add_argument('--subtitle', default='')
+    add.add_argument('--commit', help='Full 40-character source commit to display beside the version')
     add.add_argument('--cover-image', help='Source-owned PNG/JPEG to install as the cover')
     add.add_argument('--publisher', default='First Pair Press')
     add.add_argument('--publisher-url', default='https://firstpair.press')
@@ -320,9 +343,10 @@ def main():
     verify.add_argument('epub')
     verify.add_argument('--version')
     verify.add_argument('--date')
+    verify.add_argument('--commit')
     args = parser.parse_args()
     try:
-        result = add_imprint(args) if args.command == 'add' else verify_imprint(Path(args.epub), args.version, args.date)
+        result = add_imprint(args) if args.command == 'add' else verify_imprint(Path(args.epub), args.version, args.date, args.commit)
     except (ValueError, KeyError, OSError, ET.ParseError) as error:
         parser.exit(1, f'EPUB frontmatter check failed: {error}\n')
     print(json.dumps(result, indent=2))

@@ -542,6 +542,7 @@ function imprintEpub(config, context, epubPath) {
     '--date', context.builtDate, '--version', context.versionStamp, '--stem', context.stem,
     '--publisher', imprint.publisher ?? 'First Pair Press',
     '--publisher-url', imprint.publisherUrl ?? 'https://firstpair.press']
+  if (/^[0-9a-f]{40}$/.test(context.sourceCommitFull ?? '')) args.push('--commit', context.sourceCommitFull)
   if (config.epub.coverImage) args.push('--cover-image', resolvePath(config.epub.coverImage, context))
   return JSON.parse(commandOutput(python, args, context.repoRoot))
 }

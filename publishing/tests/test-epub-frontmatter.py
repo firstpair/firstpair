@@ -61,6 +61,33 @@ class ImprintTest(unittest.TestCase):
         self.assertEqual(second.returncode, 0, second.stderr)
         self.assertEqual(json.loads(second.stdout)['spineDocuments'], receipt['spineDocuments'])
 
+    def test_full_commit_beside_version(self):
+        commit = 'abcdef12' + '0123456789abcdef' * 2
+        result = self.add(commit=commit)
+        self.assertEqual(result.returncode, 0, result.stderr)
+        receipt = json.loads(result.stdout)
+        self.assertEqual(receipt['commit'], commit)
+        with ZipFile(self.epub) as archive:
+            text = ' '.join(ET.fromstring(archive.read(receipt['imprint'])).itertext())
+        self.assertIn(f'Source commit {commit}', ' '.join(text.split()))
+        verify = subprocess.run([PYTHON, str(SCRIPT), 'verify', str(self.epub), '--commit', commit],
+                                capture_output=True, text=True)
+        self.assertEqual(verify.returncode, 0, verify.stderr)
+        # Negative control: another commit, or none shown when one is required.
+        other = 'abcdef12' + 'f' * 32
+        verify = subprocess.run([PYTHON, str(SCRIPT), 'verify', str(self.epub), '--commit', other], capture_output=True)
+        self.assertNotEqual(verify.returncode, 0)
+        self.assertEqual(self.add().returncode, 0)
+        verify = subprocess.run([PYTHON, str(SCRIPT), 'verify', str(self.epub), '--commit', commit], capture_output=True)
+        self.assertNotEqual(verify.returncode, 0)
+
+    def test_commit_must_extend_the_version_hash(self):
+        original = self.epub.read_bytes()
+        for commit in ('abcdef12', '12345678' + '0' * 32):
+            result = self.add(commit=commit)
+            self.assertNotEqual(result.returncode, 0)
+            self.assertEqual(self.epub.read_bytes(), original)
+
     def test_bad_version_does_not_modify_artifact(self):
         original = self.epub.read_bytes()
         result = self.add(version='1.2.4')
