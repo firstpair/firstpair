@@ -1,6 +1,6 @@
 # Semantic Unison
 
-An LLM-friendly fork of Unison: semantic diff for DNG photographs, packed roots that keep millions of small files in SQLite containers, and why the fork was necessary.
+An LLM-friendly fork of Unison: semantic diff for DNG photographs, packed roots that keep millions of small files in SQLite containers, APFS clones kept as clones, and why the fork was necessary.
 
 ## Current Public Editions
 

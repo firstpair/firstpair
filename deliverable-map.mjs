@@ -300,8 +300,8 @@ export const deliverableBooks = [
   {
     "slug": "semantic-unison",
     "title": "Semantic Unison",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/pdf/2e4956c85f4dc853-semantic-unison.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/epub/bb7a0b074aadf3d5-semantic-unison.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/pdf/7483df582acca042-semantic-unison.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/epub/d4d4e7efcf157858-semantic-unison.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/cover/25486f49e3388b58-semantic-unison-cover.png"
   },
   {

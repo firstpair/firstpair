@@ -265,9 +265,9 @@ export const readerBooks = [
   },
   {
     "slug": "semantic-unison",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/html/8effec845cfbb9ef-semantic-unison.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/4c369b2e103fe5f5/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/4c369b2e103fe5f5"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/html/d7a41da83c667dbf-semantic-unison.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/0c05a330c3f19876/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/0c05a330c3f19876"
   },
   {
     "slug": "packdir",
