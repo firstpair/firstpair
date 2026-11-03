@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-03T06:14:03.391Z",
+  "updatedAt": "2026-11-03T17:59:45.477Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -16249,6 +16249,247 @@
           ]
         }
       }
+    },
+    "diskproxy-manual": {
+      "updatedAt": "2026-11-03T17:59:45.476Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual.pdf",
+          "sha256": "b97524a7eeffb426af288d4e60c207ec36a00083f71f9936a4329e2d12ec2e32",
+          "size": 3896678,
+          "pathname": "books/diskproxy-manual/pdf/b97524a7eeffb426-diskproxy-manual.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/pdf/b97524a7eeffb426-diskproxy-manual.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual.epub",
+          "sha256": "06e88f7b6d9f14a1536be70e332856b11a6fb0903d2eb758778d8ae08016d987",
+          "size": 5633328,
+          "pathname": "books/diskproxy-manual/epub/06e88f7b6d9f14a1-diskproxy-manual.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/epub/06e88f7b6d9f14a1-diskproxy-manual.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual.html",
+          "sha256": "788e220c8b7e3b5ef0d81c4ff08d7f11a519a2f0409b073dc3db55a4c9bb8ead",
+          "size": 3854419,
+          "pathname": "books/diskproxy-manual/html/788e220c8b7e3b5e-diskproxy-manual.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/html/788e220c8b7e3b5e-diskproxy-manual.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-cover.png",
+          "sha256": "74571cfae35d3c56d5998ec0b7b9a059cd0a3a05b8af371578e0a97b92af1b89",
+          "size": 2837465,
+          "pathname": "books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-headboard.png",
+          "sha256": "74571cfae35d3c56d5998ec0b7b9a059cd0a3a05b8af371578e0a97b92af1b89",
+          "size": 2837465,
+          "pathname": "books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+          "skipped": true
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters",
+          "sha256": "e266aad9edc834a8d5744045da4fb8665ca6d1e0fd656bab54df9180cc2d28f0",
+          "pathnamePrefix": "books/diskproxy-manual/chapters/e266aad9edc834a8",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "a6efef22e66280a60216b5a37840c39275c264bbd992524e9187523aceb1fb70",
+              "size": 1008,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "56b2a7f8b8520cc48c533997232a12ee14ac0713043878f03a7bc82510874dec",
+              "size": 2565,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "6670de0d471a7b82a296e864ee61831c9b7cd26c9e88f110c247b303ef838a12",
+              "size": 3522,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "24e74d85957ac0d111338ed9c9ed5903eca16fc8c560c81a88db36a16955703d",
+              "size": 5057,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "8812deb5d991798ab489f163c4554dee233fa867a12b0c1162478def308b8b14",
+              "size": 7686,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "5819c3ba276fef6a2efae1233f21f67c20e0e33de9c87243e992f43e839189a0",
+              "size": 9944,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "4d339ffd8335b90fe80911a075c6a2fab1b76ced67c60ede23f0812c70507b75",
+              "size": 10601,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "4c0e464d522ee9741aaf318b55817818616c8d28844b2238c3d52c444f792e2b",
+              "size": 9373,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "73f97880844bce8da881180cc6d9b68edf442e63e12876ed6952822b061a4345",
+              "size": 9743,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "25c45cff022d553976c5270d53bc1918bda1fbc97bba06d2d0bfd47477108fea",
+              "size": 10439,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "a29da1413f314e89a1f1352c679bd5b10489c685e22debd848186342b17c6726",
+              "size": 17158,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "21251daeba9491a41a3370090d62a42d250d720eff248178da2d59b1d946dfb1",
+              "size": 15651,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "4dd50c6f300ab519bc81495ac0176d6783cc2e4d30b77c45497fab90d3045ddc",
+              "size": 6247,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "04d8b6355faf43bd7eb945fa78b7e388bd233ed039d3a9dbb63639d939b23e1c",
+              "size": 3405,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "949503ab0c2354424b106005b2744881d1b3090930869caef401e0112a8603c9",
+              "size": 5729,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-015.html",
+              "relativePath": "chapter-015.html",
+              "sha256": "036c04f78c925201d50694462cdadf6c32ef27c57a9ac57708ef9960bb8485ec",
+              "size": 8121,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "0f93b5941e0ceea1e759dc98e965bbe59b81043ab1d0cdce6d51c37695b2dac0",
+              "size": 5180,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-016.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/cover/diskproxy-cover.png",
+              "relativePath": "cover/diskproxy-cover.png",
+              "sha256": "74571cfae35d3c56d5998ec0b7b9a059cd0a3a05b8af371578e0a97b92af1b89",
+              "size": 2837465,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/cover/diskproxy-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/cover/diskproxy-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "3555bce5236e5ebceda8badc9b731ad7532485ce23d0070e5ca75c0d5e806669",
+              "size": 4600,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "f1cff5e4a07f790f80f3a4f16ec03e40db1273188cdaa8a5acc817883cf2a5fc",
+              "size": 7685,
+              "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -19311,6 +19552,26 @@
       "pathname": "books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
       "size": 317045
+    },
+    "b97524a7eeffb426af288d4e60c207ec36a00083f71f9936a4329e2d12ec2e32:3896678": {
+      "pathname": "books/diskproxy-manual/pdf/b97524a7eeffb426-diskproxy-manual.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/pdf/b97524a7eeffb426-diskproxy-manual.pdf",
+      "size": 3896678
+    },
+    "06e88f7b6d9f14a1536be70e332856b11a6fb0903d2eb758778d8ae08016d987:5633328": {
+      "pathname": "books/diskproxy-manual/epub/06e88f7b6d9f14a1-diskproxy-manual.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/epub/06e88f7b6d9f14a1-diskproxy-manual.epub",
+      "size": 5633328
+    },
+    "788e220c8b7e3b5ef0d81c4ff08d7f11a519a2f0409b073dc3db55a4c9bb8ead:3854419": {
+      "pathname": "books/diskproxy-manual/html/788e220c8b7e3b5e-diskproxy-manual.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/html/788e220c8b7e3b5e-diskproxy-manual.html",
+      "size": 3854419
+    },
+    "74571cfae35d3c56d5998ec0b7b9a059cd0a3a05b8af371578e0a97b92af1b89:2837465": {
+      "pathname": "books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+      "size": 2837465
     }
   },
   "chapterPackages": {
@@ -58529,6 +58790,192 @@
           "size": 7501,
           "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "e266aad9edc834a8d5744045da4fb8665ca6d1e0fd656bab54df9180cc2d28f0": {
+      "pathnamePrefix": "books/diskproxy-manual/chapters/e266aad9edc834a8",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "a6efef22e66280a60216b5a37840c39275c264bbd992524e9187523aceb1fb70",
+          "size": 1008,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "56b2a7f8b8520cc48c533997232a12ee14ac0713043878f03a7bc82510874dec",
+          "size": 2565,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "6670de0d471a7b82a296e864ee61831c9b7cd26c9e88f110c247b303ef838a12",
+          "size": 3522,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "24e74d85957ac0d111338ed9c9ed5903eca16fc8c560c81a88db36a16955703d",
+          "size": 5057,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "8812deb5d991798ab489f163c4554dee233fa867a12b0c1162478def308b8b14",
+          "size": 7686,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "5819c3ba276fef6a2efae1233f21f67c20e0e33de9c87243e992f43e839189a0",
+          "size": 9944,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "4d339ffd8335b90fe80911a075c6a2fab1b76ced67c60ede23f0812c70507b75",
+          "size": 10601,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "4c0e464d522ee9741aaf318b55817818616c8d28844b2238c3d52c444f792e2b",
+          "size": 9373,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "73f97880844bce8da881180cc6d9b68edf442e63e12876ed6952822b061a4345",
+          "size": 9743,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "25c45cff022d553976c5270d53bc1918bda1fbc97bba06d2d0bfd47477108fea",
+          "size": 10439,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "a29da1413f314e89a1f1352c679bd5b10489c685e22debd848186342b17c6726",
+          "size": 17158,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "21251daeba9491a41a3370090d62a42d250d720eff248178da2d59b1d946dfb1",
+          "size": 15651,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "4dd50c6f300ab519bc81495ac0176d6783cc2e4d30b77c45497fab90d3045ddc",
+          "size": 6247,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "04d8b6355faf43bd7eb945fa78b7e388bd233ed039d3a9dbb63639d939b23e1c",
+          "size": 3405,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "949503ab0c2354424b106005b2744881d1b3090930869caef401e0112a8603c9",
+          "size": 5729,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "036c04f78c925201d50694462cdadf6c32ef27c57a9ac57708ef9960bb8485ec",
+          "size": 8121,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "0f93b5941e0ceea1e759dc98e965bbe59b81043ab1d0cdce6d51c37695b2dac0",
+          "size": 5180,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/cover/diskproxy-cover.png",
+          "relativePath": "cover/diskproxy-cover.png",
+          "sha256": "74571cfae35d3c56d5998ec0b7b9a059cd0a3a05b8af371578e0a97b92af1b89",
+          "size": 2837465,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/cover/diskproxy-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/cover/diskproxy-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "3555bce5236e5ebceda8badc9b731ad7532485ce23d0070e5ca75c0d5e806669",
+          "size": 4600,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/diskproxy-manual/diskproxy-manual-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "f1cff5e4a07f790f80f3a4f16ec03e40db1273188cdaa8a5acc817883cf2a5fc",
+          "size": 7685,
+          "pathname": "books/diskproxy-manual/chapters/e266aad9edc834a8/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/sitemap.json",
           "skipped": false
         }
       ]

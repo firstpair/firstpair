@@ -305,5 +305,11 @@ export const readerBooks = [
         "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8"
       }
     }
+  },
+  {
+    "slug": "diskproxy-manual",
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/html/788e220c8b7e3b5e-diskproxy-manual.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8"
   }
 ]

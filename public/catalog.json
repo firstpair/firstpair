@@ -1164,6 +1164,34 @@
           "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html"
         }
       ]
+    },
+    {
+      "slug": "diskproxy-manual",
+      "title": "The diskproxy Manual",
+      "author": "FirstPair contributors",
+      "kicker": "A complete user and developer guide",
+      "description": "Virtual disks, NFS and WebDAV views that never write to the source: commands, configuration, writable views, camera-card ingest, preview libraries and plugins.",
+      "accent": "#52734d",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/pdf/b97524a7eeffb426-diskproxy-manual.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/epub/06e88f7b6d9f14a1-diskproxy-manual.epub",
+      "html": "/read/diskproxy-manual/",
+      "htmlChapters": "/read/diskproxy-manual/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/html/788e220c8b7e3b5e-diskproxy-manual.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/chapters/e266aad9edc834a8/index.html",
+      "tags": [
+        "macos",
+        "photography",
+        "filesystems",
+        "rust"
+      ],
+      "shelf": "technology",
+      "shelves": [
+        "technology",
+        "photography"
+      ],
+      "source": "https://github.com/firstpair/diskproxy",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png"
     }
   ]
 }

@@ -344,5 +344,12 @@ export const deliverableBooks = [
         "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub"
       }
     }
+  },
+  {
+    "slug": "diskproxy-manual",
+    "title": "The diskproxy Manual",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/pdf/b97524a7eeffb426-diskproxy-manual.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/epub/06e88f7b6d9f14a1-diskproxy-manual.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png"
   }
 ]
