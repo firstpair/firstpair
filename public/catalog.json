@@ -1151,7 +1151,19 @@
       "shelf": "querygraph",
       "source": "https://github.com/querygraph/sail",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/cover/0fff6e963023ad63-sail-declarative-pipelines-cover.png",
-      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/headboard/df89111aa0bd1eaf-sail-declarative-pipelines-headboard.png"
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/headboard/df89111aa0bd1eaf-sail-declarative-pipelines-headboard.png",
+      "versions": [
+        {
+          "id": "report",
+          "label": "Technical report",
+          "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/pdf/e2fba7cdd2324d5e-sail-declarative-pipelines-report.pdf",
+          "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub",
+          "html": "/read/sail-declarative-pipelines/report/",
+          "htmlChapters": "/read/sail-declarative-pipelines/report/chapters/",
+          "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
+          "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html"
+        }
+      ]
     }
   ]
 }

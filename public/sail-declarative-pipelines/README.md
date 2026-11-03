@@ -10,6 +10,11 @@ Spark Declarative Pipelines on Sail, the manual: pipeline projects in Python and
 - [Chapter reader](/read/sail-declarative-pipelines/chapters/)
 
 
+## Versions
+
+- Default edition: the links above
+- Technical report: [PDF](/sail-declarative-pipelines/report/pdf/) · [EPUB](/sail-declarative-pipelines/report/epub/) · [Read online](/read/sail-declarative-pipelines/report/) · [Chapter reader](/read/sail-declarative-pipelines/report/chapters/)
+
 
 The source repository owns the manuscript, metadata, version manifest, build
 pipeline, and canonical generated artifacts:

@@ -397,7 +397,16 @@
       "html": "book-uploads/staging/sail-declarative-pipelines/sail-declarative-pipelines.html",
       "htmlChapters": "book-uploads/staging/sail-declarative-pipelines/sail-declarative-pipelines-chapters",
       "cover": "book-uploads/staging/sail-declarative-pipelines/sail-declarative-pipelines-cover.png",
-      "headboard": "book-uploads/staging/sail-declarative-pipelines/sail-declarative-pipelines-headboard.png"
+      "headboard": "book-uploads/staging/sail-declarative-pipelines/sail-declarative-pipelines-headboard.png",
+      "versions": {
+        "report": {
+          "pdf": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report.pdf",
+          "epub": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report.epub",
+          "html": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report.html",
+          "htmlChapters": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters",
+          "label": "Technical report"
+        }
+      }
     }
   }
 }

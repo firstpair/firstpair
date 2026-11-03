@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-03T06:05:06.884Z",
+  "updatedAt": "2026-11-03T06:14:03.391Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -16089,6 +16089,166 @@
           ]
         }
       }
+    },
+    "sail-declarative-pipelines/report": {
+      "updatedAt": "2026-11-03T06:14:03.390Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report.pdf",
+          "sha256": "e2fba7cdd2324d5ebd32db6ffb8843e2a5ac21d30c0843e109744a414435edb1",
+          "size": 352997,
+          "pathname": "books/sail-declarative-pipelines/report/pdf/e2fba7cdd2324d5e-sail-declarative-pipelines-report.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/pdf/e2fba7cdd2324d5e-sail-declarative-pipelines-report.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report.epub",
+          "sha256": "4e4793dd91469996a863e377444d3e795e90b8933ac381b5c8566e17ab6b8958",
+          "size": 335981,
+          "pathname": "books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report.html",
+          "sha256": "ea11fffebddb18c9468360a461658a56afb08dff6308e779e10717ed64184e70",
+          "size": 317045,
+          "pathname": "books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters",
+          "sha256": "c20bdcf928a282a89794a330ea2d96c53a45c66b4445b12b281f01544383b27a",
+          "pathnamePrefix": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "a6efef22e66280a60216b5a37840c39275c264bbd992524e9187523aceb1fb70",
+              "size": 1008,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "03e6c797a300b2c17272d8ebb0982ad013dd404351f21ce9cc12db317c421bcc",
+              "size": 2791,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "06dcdc9d94263410d1c469c81f31fbae81a82a059f6c1c75d389a8bc5b576489",
+              "size": 6761,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "497750b84a6ccc1ce5f7c3b65d9d56de6e5bd79344f5fae0da68306c6393b553",
+              "size": 6781,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "d108127bbf971e1706a7ec8e8b37a20778762f1a67be7fa5828cfd03e43ba749",
+              "size": 10762,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "3fcd86efabe16566a388133bccd786a135f709cffb6b8aee20d442f4e660cc03",
+              "size": 52521,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "7ccb4f980ce12b20ed699de429ceec48a62bcf8c3184677a07697350500a2590",
+              "size": 11030,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "d559221a688e4a4d4e2440640ab63b55bdf7804fed5f37bae796b9fb8da65b2e",
+              "size": 5490,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "54dd9ae8cab1839be8eb484332cab2a50991de0670352815286de5ff5c150187",
+              "size": 6510,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "137c1f519d2e406ca30688277a63bce80ce7b3440a10ace17e7a3d92980c0260",
+              "size": 10518,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+              "relativePath": "docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+              "sha256": "f065b2add6c0cd3a692dc3857d8e1b8dbb66e142b6e3e32f9d4d0fdbcba77580",
+              "size": 162732,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "adfe2c2caf5c552812cbe234b7a74ae240c323ac33c6cc6928819840899f6e89",
+              "size": 9461,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "a02a1feb58e66f892bf972b613269d71acb8fea3a3b17d9a5344e218f0245482",
+              "size": 7501,
+              "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -19136,6 +19296,21 @@
       "pathname": "books/sail-declarative-pipelines/headboard/df89111aa0bd1eaf-sail-declarative-pipelines-headboard.png",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/headboard/df89111aa0bd1eaf-sail-declarative-pipelines-headboard.png",
       "size": 2751502
+    },
+    "e2fba7cdd2324d5ebd32db6ffb8843e2a5ac21d30c0843e109744a414435edb1:352997": {
+      "pathname": "books/sail-declarative-pipelines/report/pdf/e2fba7cdd2324d5e-sail-declarative-pipelines-report.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/pdf/e2fba7cdd2324d5e-sail-declarative-pipelines-report.pdf",
+      "size": 352997
+    },
+    "4e4793dd91469996a863e377444d3e795e90b8933ac381b5c8566e17ab6b8958:335981": {
+      "pathname": "books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub",
+      "size": 335981
+    },
+    "ea11fffebddb18c9468360a461658a56afb08dff6308e779e10717ed64184e70:317045": {
+      "pathname": "books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/html/ea11fffebddb18c9-sail-declarative-pipelines-report.html",
+      "size": 317045
     }
   },
   "chapterPackages": {
@@ -58231,6 +58406,129 @@
           "size": 18790,
           "pathname": "books/sail-declarative-pipelines/chapters/e5fb6494cf511370/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/chapters/e5fb6494cf511370/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "c20bdcf928a282a89794a330ea2d96c53a45c66b4445b12b281f01544383b27a": {
+      "pathnamePrefix": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "a6efef22e66280a60216b5a37840c39275c264bbd992524e9187523aceb1fb70",
+          "size": 1008,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "03e6c797a300b2c17272d8ebb0982ad013dd404351f21ce9cc12db317c421bcc",
+          "size": 2791,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "06dcdc9d94263410d1c469c81f31fbae81a82a059f6c1c75d389a8bc5b576489",
+          "size": 6761,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "497750b84a6ccc1ce5f7c3b65d9d56de6e5bd79344f5fae0da68306c6393b553",
+          "size": 6781,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "d108127bbf971e1706a7ec8e8b37a20778762f1a67be7fa5828cfd03e43ba749",
+          "size": 10762,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "3fcd86efabe16566a388133bccd786a135f709cffb6b8aee20d442f4e660cc03",
+          "size": 52521,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "7ccb4f980ce12b20ed699de429ceec48a62bcf8c3184677a07697350500a2590",
+          "size": 11030,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "d559221a688e4a4d4e2440640ab63b55bdf7804fed5f37bae796b9fb8da65b2e",
+          "size": 5490,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "54dd9ae8cab1839be8eb484332cab2a50991de0670352815286de5ff5c150187",
+          "size": 6510,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "137c1f519d2e406ca30688277a63bce80ce7b3440a10ace17e7a3d92980c0260",
+          "size": 10518,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+          "relativePath": "docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+          "sha256": "f065b2add6c0cd3a692dc3857d8e1b8dbb66e142b6e3e32f9d4d0fdbcba77580",
+          "size": 162732,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/docs/books/sail-declarative-pipelines/cover/sail-declarative-pipelines-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "adfe2c2caf5c552812cbe234b7a74ae240c323ac33c6cc6928819840899f6e89",
+          "size": 9461,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/sail-declarative-pipelines/report/sail-declarative-pipelines-report-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "a02a1feb58e66f892bf972b613269d71acb8fea3a3b17d9a5344e218f0245482",
+          "size": 7501,
+          "pathname": "books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/chapters/c20bdcf928a282a8/sitemap.json",
           "skipped": false
         }
       ]

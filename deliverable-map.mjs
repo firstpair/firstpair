@@ -337,6 +337,12 @@ export const deliverableBooks = [
     "title": "Sail Declarative Pipelines",
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/pdf/920dd370f3c86329-sail-declarative-pipelines.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/epub/e711bc10dc6bc11a-sail-declarative-pipelines.epub",
-    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/cover/0fff6e963023ad63-sail-declarative-pipelines-cover.png"
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/cover/0fff6e963023ad63-sail-declarative-pipelines-cover.png",
+    "versions": {
+      "report": {
+        "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/pdf/e2fba7cdd2324d5e-sail-declarative-pipelines-report.pdf",
+        "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/report/epub/4e4793dd91469996-sail-declarative-pipelines-report.epub"
+      }
+    }
   }
 ]
