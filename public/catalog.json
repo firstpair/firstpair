@@ -1126,6 +1126,32 @@
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/cover/6b4377b9119f0228-phindex-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/headboard/53d152768cb0f772-phindex-headboard.png",
       "source": "https://github.com/firstpair/phindex"
+    },
+    {
+      "slug": "sail-declarative-pipelines",
+      "title": "Sail Declarative Pipelines",
+      "author": "Alexy Khrabrov and Sail Contributors",
+      "kicker": "Manual, milestone 1",
+      "description": "Spark Declarative Pipelines on Sail, the manual: pipeline projects in Python and SQL, materialized views and streaming tables, AutoCDC into Delta, Iceberg, Hive and Unity, Apache Iggy as a source, ORC, and the catalogs, for the unchanged Spark 4.2.1 client and spark-pipelines CLI.",
+      "accent": "#755a7f",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/pdf/920dd370f3c86329-sail-declarative-pipelines.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/epub/e711bc10dc6bc11a-sail-declarative-pipelines.epub",
+      "html": "/read/sail-declarative-pipelines/",
+      "htmlChapters": "/read/sail-declarative-pipelines/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/html/ef835ef111d0fe63-sail-declarative-pipelines.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/chapters/e5fb6494cf511370/index.html",
+      "tags": [
+        "sail",
+        "spark",
+        "pipelines",
+        "streaming",
+        "cdc",
+        "querygraph"
+      ],
+      "shelf": "querygraph",
+      "source": "https://github.com/querygraph/sail",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/cover/0fff6e963023ad63-sail-declarative-pipelines-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/sail-declarative-pipelines/headboard/df89111aa0bd1eaf-sail-declarative-pipelines-headboard.png"
     }
   ]
 }
