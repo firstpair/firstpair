@@ -1,0 +1,118 @@
+{
+  "schema": 2,
+  "generator": "@querygraph/verdun/scripts/public/traffic-defense",
+  "sourceRevision": "d322092a6258a73667beba421d53b3f154bd6bad",
+  "managedRules": {
+    "ai-bots": {
+      "ai-crawlers": "deny",
+      "ai-assistants": "allow"
+    }
+  },
+  "crawlerUserAgents": [
+    "GPTBot",
+    "ClaudeBot",
+    "Reflectionbot",
+    "meta-externalagent",
+    "Amazonbot",
+    "CCBot",
+    "Bytespider",
+    "Diffbot",
+    "cohere-ai",
+    "cohere-training-data-crawler",
+    "ElevenlabsCrawler",
+    "MJ12bot",
+    "AhrefsBot",
+    "SemrushBot",
+    "DotBot",
+    "BLEXBot",
+    "DataForSeoBot",
+    "PetalBot",
+    "QlyzeBot"
+  ],
+  "rules": [
+    {
+      "name": "Block repeated bulk crawler requests",
+      "active": true,
+      "conditionGroup": [
+        {
+          "conditions": [
+            {
+              "type": "user_agent",
+              "op": "re",
+              "value": "(^|[^a-z0-9_-])(GPTBot|ClaudeBot|Reflectionbot|meta-externalagent|Amazonbot|CCBot|Bytespider|Diffbot|cohere-ai|cohere-training-data-crawler|ElevenlabsCrawler|MJ12bot|AhrefsBot|SemrushBot|DotBot|BLEXBot|DataForSeoBot|PetalBot|QlyzeBot)([^a-z0-9_-]|$)"
+            }
+          ]
+        }
+      ],
+      "action": {
+        "mitigate": {
+          "action": "rate_limit",
+          "actionDuration": "1h",
+          "rateLimit": {
+            "algo": "fixed_window",
+            "limit": 10,
+            "window": 60,
+            "keys": [
+              "ip"
+            ],
+            "action": "deny"
+          }
+        }
+      }
+    },
+    {
+      "name": "Block bulk AI and SEO crawlers",
+      "active": true,
+      "conditionGroup": [
+        {
+          "conditions": [
+            {
+              "type": "user_agent",
+              "op": "re",
+              "value": "(^|[^a-z0-9_-])(GPTBot|ClaudeBot|Reflectionbot|meta-externalagent|Amazonbot|CCBot|Bytespider|Diffbot|cohere-ai|cohere-training-data-crawler|ElevenlabsCrawler|MJ12bot|AhrefsBot|SemrushBot|DotBot|BLEXBot|DataForSeoBot|PetalBot|QlyzeBot)([^a-z0-9_-]|$)"
+            }
+          ]
+        }
+      ],
+      "action": {
+        "mitigate": {
+          "action": "deny"
+        }
+      }
+    },
+    {
+      "action": {
+        "mitigate": {
+          "action": "rate_limit",
+          "rateLimit": {
+            "action": "rate_limit",
+            "algo": "fixed_window",
+            "keys": [
+              "ip"
+            ],
+            "limit": 120,
+            "window": 60
+          }
+        }
+      },
+      "active": true,
+      "conditionGroup": [
+        {
+          "conditions": [
+            {
+              "op": "pre",
+              "type": "path",
+              "value": "/api/"
+            },
+            {
+              "op": "eq",
+              "type": "method",
+              "value": "GET"
+            }
+          ]
+        }
+      ],
+      "name": "Limit excessive API reads"
+    }
+  ]
+}
