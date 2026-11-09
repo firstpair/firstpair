@@ -259,9 +259,9 @@ export const readerBooks = [
   },
   {
     "slug": "dng-compare",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/75ad54c98778bfd2-dng-compare.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/a573d5d7b1ea1b41/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/a573d5d7b1ea1b41"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/d1ec0502e2724f77-dng-compare.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/b7542ffb1d9ff736/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/b7542ffb1d9ff736"
   },
   {
     "slug": "semantic-unison",
