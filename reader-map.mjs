@@ -277,9 +277,9 @@ export const readerBooks = [
   },
   {
     "slug": "tiffgraph",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/html/ee2aeeadaacbc6ad-tiffgraph.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/4b53f879bac3f0c4/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/4b53f879bac3f0c4"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/html/088a356a62c5d966-tiffgraph.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/e6e4e496287a324f/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/chapters/e6e4e496287a324f"
   },
   {
     "slug": "phidentify",
