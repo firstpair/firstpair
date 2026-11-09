@@ -1217,6 +1217,30 @@
       "source": "https://github.com/querygraph/tursolite",
       "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png",
       "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/headboard/a348c680afaaffc0-tursolite-headboard.png"
+    },
+    {
+      "slug": "photostack",
+      "title": "The FirstPair Photo Stack",
+      "author": "Alexy Khrabrov, with Claude as co-author",
+      "kicker": "One map for the photo tools",
+      "description": "How the FirstPair photo tools fit together: identity, indexing, comparison and preservation, sync, storage and serving, and the dngc archive format, end to end.",
+      "accent": "#6b5b95",
+      "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/pdf/eba63ebb7683a481-photostack.pdf",
+      "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/epub/f3caee5c19f9a998-photostack.epub",
+      "html": "/read/photostack/",
+      "htmlChapters": "/read/photostack/chapters/",
+      "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/html/8d2bde7a506790f5-photostack.html",
+      "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/chapters/73f96dc2011b5aff/index.html",
+      "tags": [
+        "photography",
+        "dng",
+        "archive",
+        "lightroom"
+      ],
+      "shelf": "photography",
+      "source": "https://github.com/firstpair/photostack",
+      "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/cover/759d347ff46bd2c6-photostack-cover.png",
+      "headboard": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/headboard/4af6db7a3e8ebb6c-photostack-headboard.png"
     }
   ]
 }

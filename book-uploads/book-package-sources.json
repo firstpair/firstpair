@@ -423,6 +423,14 @@
       "htmlChapters": "book-uploads/staging/tursolite/tursolite-chapters",
       "cover": "book-uploads/staging/tursolite/tursolite-cover.png",
       "headboard": "book-uploads/staging/tursolite/tursolite-headboard.png"
+    },
+    "photostack": {
+      "pdf": "book-uploads/staging/photostack/photostack.pdf",
+      "epub": "book-uploads/staging/photostack/photostack.epub",
+      "html": "book-uploads/staging/photostack/photostack.html",
+      "htmlChapters": "book-uploads/staging/photostack/photostack-chapters",
+      "cover": "book-uploads/staging/photostack/photostack-cover.png",
+      "headboard": "book-uploads/staging/photostack/photostack-headboard.png"
     }
   }
 }

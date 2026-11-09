@@ -358,5 +358,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png"
+  },
+  {
+    "slug": "photostack",
+    "title": "The FirstPair Photo Stack",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/pdf/eba63ebb7683a481-photostack.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/epub/f3caee5c19f9a998-photostack.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/cover/759d347ff46bd2c6-photostack-cover.png"
   }
 ]
