@@ -415,6 +415,14 @@
       "htmlChapters": "book-uploads/staging/diskproxy/diskproxy-manual-chapters",
       "cover": "book-uploads/staging/diskproxy/diskproxy-cover.png",
       "headboard": "book-uploads/staging/diskproxy/diskproxy-headboard.png"
+    },
+    "tursolite": {
+      "pdf": "book-uploads/staging/tursolite/tursolite.pdf",
+      "epub": "book-uploads/staging/tursolite/tursolite.epub",
+      "html": "book-uploads/staging/tursolite/tursolite.html",
+      "htmlChapters": "book-uploads/staging/tursolite/tursolite-chapters",
+      "cover": "book-uploads/staging/tursolite/tursolite-cover.png",
+      "headboard": "book-uploads/staging/tursolite/tursolite-headboard.png"
     }
   }
 }

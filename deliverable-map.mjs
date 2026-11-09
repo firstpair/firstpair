@@ -351,5 +351,12 @@ export const deliverableBooks = [
     "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/pdf/52c9e1c0e70ca3ea-diskproxy-manual.pdf",
     "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/epub/14849502b1c6f6f2-diskproxy-manual.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png"
+  },
+  {
+    "slug": "tursolite",
+    "title": "Tursolite",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
+    "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png"
   }
 ]

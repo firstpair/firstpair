@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-09T21:48:04.235Z",
+  "updatedAt": "2026-11-09T21:53:01.030Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -16749,6 +16749,229 @@
           ]
         }
       }
+    },
+    "tursolite": {
+      "updatedAt": "2026-11-09T21:53:01.029Z",
+      "dryRun": false,
+      "units": {
+        "pdf": {
+          "kind": "pdf",
+          "localPath": "book-uploads/staging/tursolite/tursolite.pdf",
+          "sha256": "4cd81f6cffd424b6839f1c61ed436b62bc497d0089b53822d36a7363644b1ae6",
+          "size": 4057738,
+          "pathname": "books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
+          "skipped": false
+        },
+        "epub": {
+          "kind": "epub",
+          "localPath": "book-uploads/staging/tursolite/tursolite.epub",
+          "sha256": "1f5f7d38a9b04598fc11026cbc1d429301977640204a23e3a8d536d17a0c8e84",
+          "size": 5293966,
+          "pathname": "books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
+          "skipped": false
+        },
+        "html": {
+          "kind": "html",
+          "localPath": "book-uploads/staging/tursolite/tursolite.html",
+          "sha256": "3d398a1e396864bccbbe74a7c50bfef0bbf2e2ca204bb08757e3971f2fdba892",
+          "size": 3630949,
+          "pathname": "books/tursolite/html/3d398a1e396864bc-tursolite.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/html/3d398a1e396864bc-tursolite.html",
+          "skipped": false
+        },
+        "cover": {
+          "kind": "cover",
+          "localPath": "book-uploads/staging/tursolite/tursolite-cover.png",
+          "sha256": "6c2cbac910a511e95b2662837ffba99821b43e21613aa62ff9af588466b93f47",
+          "size": 2686539,
+          "pathname": "books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png",
+          "skipped": false
+        },
+        "headboard": {
+          "kind": "headboard",
+          "localPath": "book-uploads/staging/tursolite/tursolite-headboard.png",
+          "sha256": "a348c680afaaffc07655e18242a0059cee894e2d007dfa9addbc82f17d20125c",
+          "size": 2587496,
+          "pathname": "books/tursolite/headboard/a348c680afaaffc0-tursolite-headboard.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/headboard/a348c680afaaffc0-tursolite-headboard.png",
+          "skipped": false
+        },
+        "htmlChapters": {
+          "kind": "htmlChapters",
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters",
+          "sha256": "51432411bf920c6729772e8227a9d7366f3a7449ccbf5c06d1d336f627db98cc",
+          "pathnamePrefix": "books/tursolite/chapters/51432411bf920c67",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/index.html",
+          "skipped": false,
+          "files": [
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/book.css",
+              "relativePath": "book.css",
+              "sha256": "6f1f6408a2c9fb52d0409000225dbd38fe894c2abfde637624572099dc9d60b7",
+              "size": 1190,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/book.css",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-001.html",
+              "relativePath": "chapter-001.html",
+              "sha256": "f354970fb04a035bc89efdd18b980856b8e7a2d5e852e8353ecd165f92ce9f33",
+              "size": 2451,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-001.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-002.html",
+              "relativePath": "chapter-002.html",
+              "sha256": "ee5f285d639cab10a0c121fc9161c2fcb57e1223615bae40e91a76fda8c23bb8",
+              "size": 3110,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-002.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-003.html",
+              "relativePath": "chapter-003.html",
+              "sha256": "f41a620cd65ecd0ecabed3133e93c6c356cc3aa264d231203a1653d47c0a9ad0",
+              "size": 8128,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-003.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-004.html",
+              "relativePath": "chapter-004.html",
+              "sha256": "2be5a8ed4f25648d2069d70db953ec998a62f38564e68faeb0e52c9f2020fc99",
+              "size": 13399,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-004.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-005.html",
+              "relativePath": "chapter-005.html",
+              "sha256": "35ded15d2e74678d1e8ca0bc91d7d48a19b9e68db1703ffa085984a9fd2ab156",
+              "size": 4825,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-005.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-006.html",
+              "relativePath": "chapter-006.html",
+              "sha256": "aa9729fd5feabaf4c809880cc845120abfe1ebc42286b92c25ff7cb1fc8da938",
+              "size": 5610,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-006.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-007.html",
+              "relativePath": "chapter-007.html",
+              "sha256": "52d474848669f4a35e0e5ba2c2fb3a9b0dafab6d03a4b79dfe52c37a11dc40b6",
+              "size": 6234,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-007.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-008.html",
+              "relativePath": "chapter-008.html",
+              "sha256": "95c9219faa04c3a1e5c2747cf258758c6e917ffef34c3b498f29dc15ad184a4f",
+              "size": 3740,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-008.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-009.html",
+              "relativePath": "chapter-009.html",
+              "sha256": "406f3c31fefb8bda73859cbc3d544d86823c2f2b0a03e7dacb770313e0a68b52",
+              "size": 3468,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-009.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-010.html",
+              "relativePath": "chapter-010.html",
+              "sha256": "7086f4202ffeb4d982745730990fdec344192f01fcbcfd8914e9322ab99c7e4d",
+              "size": 3128,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-010.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-011.html",
+              "relativePath": "chapter-011.html",
+              "sha256": "7d454974fa26cb6266a56c278549c75a02f3eaa1578d7d6d5251f85c9d8feb69",
+              "size": 7414,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-011.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-012.html",
+              "relativePath": "chapter-012.html",
+              "sha256": "d201a08b2738328f3ae1fc73a7865c9880806b13fd7934299511a6c9b113079f",
+              "size": 2973,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-012.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-013.html",
+              "relativePath": "chapter-013.html",
+              "sha256": "98d193a374643cd4797a560ada01f6bfff38ee24543c4eb17667a7bab0982d9d",
+              "size": 3183,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-013.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-014.html",
+              "relativePath": "chapter-014.html",
+              "sha256": "aca63258c94278a08e131627266b9bc07f285870bbc9761ae16e5dd2723f66ed",
+              "size": 14581,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-014.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/cover/tursolite-cover.png",
+              "relativePath": "cover/tursolite-cover.png",
+              "sha256": "6c2cbac910a511e95b2662837ffba99821b43e21613aa62ff9af588466b93f47",
+              "size": 2686539,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/cover/tursolite-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/cover/tursolite-cover.png",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/index.html",
+              "relativePath": "index.html",
+              "sha256": "0826c32fd011000b3efc447230ef4efd3ad642e2c9d33094532e31a7f369bd5b",
+              "size": 6439,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/index.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/tursolite/tursolite-chapters/sitemap.json",
+              "relativePath": "sitemap.json",
+              "sha256": "2b0e4e3f1a9148a78707c77e13a628f2bbe35a272f8a3256d5843a43f9f1f2aa",
+              "size": 4548,
+              "pathname": "books/tursolite/chapters/51432411bf920c67/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/sitemap.json",
+              "skipped": false
+            }
+          ]
+        }
+      }
     }
   },
   "objects": {
@@ -19861,6 +20084,31 @@
       "pathname": "books/diskproxy/html/4f4bdaeebaa1f5f0-diskproxy-manual.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/html/4f4bdaeebaa1f5f0-diskproxy-manual.html",
       "size": 3867223
+    },
+    "4cd81f6cffd424b6839f1c61ed436b62bc497d0089b53822d36a7363644b1ae6:4057738": {
+      "pathname": "books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
+      "size": 4057738
+    },
+    "1f5f7d38a9b04598fc11026cbc1d429301977640204a23e3a8d536d17a0c8e84:5293966": {
+      "pathname": "books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
+      "size": 5293966
+    },
+    "3d398a1e396864bccbbe74a7c50bfef0bbf2e2ca204bb08757e3971f2fdba892:3630949": {
+      "pathname": "books/tursolite/html/3d398a1e396864bc-tursolite.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/html/3d398a1e396864bc-tursolite.html",
+      "size": 3630949
+    },
+    "6c2cbac910a511e95b2662837ffba99821b43e21613aa62ff9af588466b93f47:2686539": {
+      "pathname": "books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png",
+      "size": 2686539
+    },
+    "a348c680afaaffc07655e18242a0059cee894e2d007dfa9addbc82f17d20125c:2587496": {
+      "pathname": "books/tursolite/headboard/a348c680afaaffc0-tursolite-headboard.png",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/headboard/a348c680afaaffc0-tursolite-headboard.png",
+      "size": 2587496
     }
   },
   "chapterPackages": {
@@ -59655,6 +59903,174 @@
           "size": 8182,
           "pathname": "books/diskproxy/chapters/e56eb18ff12edd66/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/chapters/e56eb18ff12edd66/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "51432411bf920c6729772e8227a9d7366f3a7449ccbf5c06d1d336f627db98cc": {
+      "pathnamePrefix": "books/tursolite/chapters/51432411bf920c67",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "6f1f6408a2c9fb52d0409000225dbd38fe894c2abfde637624572099dc9d60b7",
+          "size": 1190,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "f354970fb04a035bc89efdd18b980856b8e7a2d5e852e8353ecd165f92ce9f33",
+          "size": 2451,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "ee5f285d639cab10a0c121fc9161c2fcb57e1223615bae40e91a76fda8c23bb8",
+          "size": 3110,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "f41a620cd65ecd0ecabed3133e93c6c356cc3aa264d231203a1653d47c0a9ad0",
+          "size": 8128,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "2be5a8ed4f25648d2069d70db953ec998a62f38564e68faeb0e52c9f2020fc99",
+          "size": 13399,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "35ded15d2e74678d1e8ca0bc91d7d48a19b9e68db1703ffa085984a9fd2ab156",
+          "size": 4825,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "aa9729fd5feabaf4c809880cc845120abfe1ebc42286b92c25ff7cb1fc8da938",
+          "size": 5610,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "52d474848669f4a35e0e5ba2c2fb3a9b0dafab6d03a4b79dfe52c37a11dc40b6",
+          "size": 6234,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "95c9219faa04c3a1e5c2747cf258758c6e917ffef34c3b498f29dc15ad184a4f",
+          "size": 3740,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "406f3c31fefb8bda73859cbc3d544d86823c2f2b0a03e7dacb770313e0a68b52",
+          "size": 3468,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "7086f4202ffeb4d982745730990fdec344192f01fcbcfd8914e9322ab99c7e4d",
+          "size": 3128,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "7d454974fa26cb6266a56c278549c75a02f3eaa1578d7d6d5251f85c9d8feb69",
+          "size": 7414,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "d201a08b2738328f3ae1fc73a7865c9880806b13fd7934299511a6c9b113079f",
+          "size": 2973,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "98d193a374643cd4797a560ada01f6bfff38ee24543c4eb17667a7bab0982d9d",
+          "size": 3183,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "aca63258c94278a08e131627266b9bc07f285870bbc9761ae16e5dd2723f66ed",
+          "size": 14581,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/cover/tursolite-cover.png",
+          "relativePath": "cover/tursolite-cover.png",
+          "sha256": "6c2cbac910a511e95b2662837ffba99821b43e21613aa62ff9af588466b93f47",
+          "size": 2686539,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/cover/tursolite-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/cover/tursolite-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "0826c32fd011000b3efc447230ef4efd3ad642e2c9d33094532e31a7f369bd5b",
+          "size": 6439,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/tursolite/tursolite-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "2b0e4e3f1a9148a78707c77e13a628f2bbe35a272f8a3256d5843a43f9f1f2aa",
+          "size": 4548,
+          "pathname": "books/tursolite/chapters/51432411bf920c67/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/sitemap.json",
           "skipped": false
         }
       ]
