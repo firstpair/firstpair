@@ -407,6 +407,14 @@
           "label": "Technical report"
         }
       }
+    },
+    "diskproxy": {
+      "pdf": "book-uploads/staging/diskproxy/diskproxy-manual.pdf",
+      "epub": "book-uploads/staging/diskproxy/diskproxy-manual.epub",
+      "html": "book-uploads/staging/diskproxy/diskproxy-manual.html",
+      "htmlChapters": "book-uploads/staging/diskproxy/diskproxy-manual-chapters",
+      "cover": "book-uploads/staging/diskproxy/diskproxy-cover.png",
+      "headboard": "book-uploads/staging/diskproxy/diskproxy-headboard.png"
     }
   }
 }
