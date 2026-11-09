@@ -321,8 +321,8 @@ export const deliverableBooks = [
   {
     "slug": "phidentify",
     "title": "phidentify",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/9220a71322f1ed23-phidentify.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/9dafa27fa9279cbc-phidentify.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/pdf/4256ff29831aecbd-phidentify.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/epub/3878dc80f001f45c-phidentify.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/cover/9f213b531a07c994-phidentify-cover.png"
   },
   {
