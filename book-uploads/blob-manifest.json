@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-10T18:48:57.266Z",
+  "updatedAt": "2026-11-10T19:22:04.077Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -15095,34 +15095,34 @@
       }
     },
     "semantic-unison": {
-      "updatedAt": "2026-11-10T18:42:49.278Z",
+      "updatedAt": "2026-11-10T19:22:04.077Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/semantic-unison/semantic-unison.pdf",
-          "sha256": "bae73a7b224165fdeb51b14477796a93374b48ec03dfc6aa07a23b6059b54081",
-          "size": 4181739,
-          "pathname": "books/semantic-unison/pdf/bae73a7b224165fd-semantic-unison.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/pdf/bae73a7b224165fd-semantic-unison.pdf",
+          "sha256": "36529260eebaad470a48945c42a804b6777daea2840607c81a18699fc922c09e",
+          "size": 4189961,
+          "pathname": "books/semantic-unison/pdf/36529260eebaad47-semantic-unison.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/pdf/36529260eebaad47-semantic-unison.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/semantic-unison/semantic-unison.epub",
-          "sha256": "898f2f1055e60b8010e6410b3b2a609455395f3f7622ea85dc622af12633ca14",
-          "size": 5542832,
-          "pathname": "books/semantic-unison/epub/898f2f1055e60b80-semantic-unison.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/epub/898f2f1055e60b80-semantic-unison.epub",
+          "sha256": "8940ed96638c37063163f80cac01acbcb5aab18818cf2bd69f59581e5685c82e",
+          "size": 5544305,
+          "pathname": "books/semantic-unison/epub/8940ed96638c3706-semantic-unison.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/epub/8940ed96638c3706-semantic-unison.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/semantic-unison/semantic-unison.html",
-          "sha256": "d97ccdb2a6a5119d8652ec7868085680edc543a12a9778436753ed3a0d01c568",
-          "size": 3921215,
-          "pathname": "books/semantic-unison/html/d97ccdb2a6a5119d-semantic-unison.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/html/d97ccdb2a6a5119d-semantic-unison.html",
+          "sha256": "b690102543c06d234c59b8cb19a0cf71dd5ddb01d3612b06555a6cd3ca60c0fa",
+          "size": 3926707,
+          "pathname": "books/semantic-unison/html/b690102543c06d23-semantic-unison.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/html/b690102543c06d23-semantic-unison.html",
           "skipped": false
         },
         "cover": {
@@ -15146,9 +15146,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters",
-          "sha256": "7ddb36a23f4964e00d22e82fb63537b9c1e0d8186b6526c95b0254ef65e5ee89",
-          "pathnamePrefix": "books/semantic-unison/chapters/7ddb36a23f4964e0",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/index.html",
+          "sha256": "ba177a32dcc0a2138c6ffe65e8a358a8c70e346141544109d342bb832bdf814a",
+          "pathnamePrefix": "books/semantic-unison/chapters/ba177a32dcc0a213",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/index.html",
           "skipped": false,
           "files": [
             {
@@ -15156,8 +15156,8 @@
               "relativePath": "book.css",
               "sha256": "6f1f6408a2c9fb52d0409000225dbd38fe894c2abfde637624572099dc9d60b7",
               "size": 1190,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book.css",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book.css",
               "skipped": false
             },
             {
@@ -15165,8 +15165,8 @@
               "relativePath": "book/diagrams/packed-tree.svg",
               "sha256": "7ae42ac937a9969d0c429d301516ce091f036c3562e1dcf006d518a32dcb3ad6",
               "size": 4067,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/packed-tree.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/packed-tree.svg",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/packed-tree.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/packed-tree.svg",
               "skipped": false
             },
             {
@@ -15174,8 +15174,8 @@
               "relativePath": "book/diagrams/pair-status-tree.svg",
               "sha256": "3523d1986d18608e308e3b40f45a9a22a8ebffe4d63ec12f00e64ada1e403b44",
               "size": 4504,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/pair-status-tree.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/pair-status-tree.svg",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/pair-status-tree.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/pair-status-tree.svg",
               "skipped": false
             },
             {
@@ -15183,8 +15183,8 @@
               "relativePath": "book/diagrams/review-placement.svg",
               "sha256": "08f03ebd1547d7b7432506f0ec45c7489c1e235bbb5866d3d703dc19c4790b65",
               "size": 3098,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/review-placement.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/review-placement.svg",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/review-placement.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/review-placement.svg",
               "skipped": false
             },
             {
@@ -15192,8 +15192,8 @@
               "relativePath": "book/diagrams/semantic-diff-layers.svg",
               "sha256": "1fd5706e3a867fc06845358b861bdc0b6fe6b03282d8d35fbc1fbfe2b79d87df",
               "size": 3719,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/semantic-diff-layers.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/semantic-diff-layers.svg",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/semantic-diff-layers.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/semantic-diff-layers.svg",
               "skipped": false
             },
             {
@@ -15201,8 +15201,8 @@
               "relativePath": "book/diagrams/shuttle-flow.svg",
               "sha256": "27320f8844f9b64415a11090832b904062ef0aa7387e728b6f7b3c45df234ede",
               "size": 3665,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/shuttle-flow.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/shuttle-flow.svg",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/shuttle-flow.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/shuttle-flow.svg",
               "skipped": false
             },
             {
@@ -15210,8 +15210,8 @@
               "relativePath": "book/diagrams/writer-barrier.svg",
               "sha256": "4191dc2b283546f86d633c1e3df53c47fb819f7ed251ac16beff4f3aa73818b9",
               "size": 5595,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/writer-barrier.svg",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/book/diagrams/writer-barrier.svg",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/writer-barrier.svg",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/writer-barrier.svg",
               "skipped": false
             },
             {
@@ -15219,17 +15219,17 @@
               "relativePath": "chapter-001.html",
               "sha256": "5baf018995adcab18ec85499504cad4898629f859e6223a9e9d82a90f6d58b30",
               "size": 2497,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-001.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "2009c05ca5c0e9ca5c0263ca2723697c2d5701853021080dbbb6e28ed49aec3f",
-              "size": 7462,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-002.html",
+              "sha256": "7483959846c2f44380e016fde94b9569063c48237dfc825b4315a9d21100c4c6",
+              "size": 7600,
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-002.html",
               "skipped": false
             },
             {
@@ -15237,8 +15237,8 @@
               "relativePath": "chapter-003.html",
               "sha256": "be5a021eae6b2a99e8368ae51e643ef47e35fc78578bea06997c36efeaa61233",
               "size": 4705,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-003.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-003.html",
               "skipped": false
             },
             {
@@ -15246,8 +15246,8 @@
               "relativePath": "chapter-004.html",
               "sha256": "0d26e95fc95ddb064184262cc5a81320b00fa650dcc4fd0ce6e74194ce5d2023",
               "size": 17197,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-004.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-004.html",
               "skipped": false
             },
             {
@@ -15255,17 +15255,17 @@
               "relativePath": "chapter-005.html",
               "sha256": "9c1b555b8cb8c9b9c353fdd1ae7ed876414b82bc1e97ee86ee402717fc404ecf",
               "size": 10472,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-005.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "3268a20c8b282a68dce0830b3995bdb0e8679ae3ffe40de7c86571d540ee0473",
+              "sha256": "3a32bb152cfb5251ea726e75e91dbc3af7394f11918633389d57a412b4b70be2",
               "size": 11119,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-006.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-006.html",
               "skipped": false
             },
             {
@@ -15273,17 +15273,17 @@
               "relativePath": "chapter-007.html",
               "sha256": "30a017237459b2b2f90451650f433d36d2117d0dc9f3e9d6bae4468dd38808c9",
               "size": 11331,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-007.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "ec9d6598c9b1ee1dc9259b4332317fbbf1a0fff4ad42d0235f75ff71dd7784d1",
-              "size": 22344,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-008.html",
+              "sha256": "52a861b725fef29507a9ea89a1915aa889b98cf97232b571698f910c25b452ee",
+              "size": 26700,
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-008.html",
               "skipped": false
             },
             {
@@ -15291,8 +15291,8 @@
               "relativePath": "chapter-009.html",
               "sha256": "57f075b8288e49b8ed9655a733414eb1986955483cd16be895353f895f949ede",
               "size": 22479,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-009.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-009.html",
               "skipped": false
             },
             {
@@ -15300,8 +15300,8 @@
               "relativePath": "chapter-010.html",
               "sha256": "b24a5113c7e965052a2ae52d2ab519c42f3bf33f7381b0cdd748c54d5b561687",
               "size": 10814,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-010.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-010.html",
               "skipped": false
             },
             {
@@ -15309,8 +15309,8 @@
               "relativePath": "chapter-011.html",
               "sha256": "d98106ba246de86caa92ae0f341ea6f78a2bc6716f4135ef4efb7c467d42218c",
               "size": 9468,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-011.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-011.html",
               "skipped": false
             },
             {
@@ -15318,8 +15318,8 @@
               "relativePath": "chapter-012.html",
               "sha256": "99fdbe873e7edce1e26f34c31477e30172baee46a7338f85c113212b9b9d8b65",
               "size": 13802,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-012.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-012.html",
               "skipped": false
             },
             {
@@ -15327,17 +15327,17 @@
               "relativePath": "chapter-013.html",
               "sha256": "097b8136fd048dc785dbb9a65a3ae90212ade23747cb7954423e7b2576939374",
               "size": 21948,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-013.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "92b21e406a6d9288dfb8fb9a6dafffe5b849c8cff5458928bd092b1604bed2ab",
-              "size": 40270,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-014.html",
+              "sha256": "5992685c88084a48ab979253ce5ee414349445cc486aec56e50942a433b58b64",
+              "size": 40964,
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-014.html",
               "skipped": false
             },
             {
@@ -15345,8 +15345,8 @@
               "relativePath": "chapter-015.html",
               "sha256": "93a51d5c34aad4a194efa29ea53899fba60603541f7277665645909685de3e2b",
               "size": 10802,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-015.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-015.html",
               "skipped": false
             },
             {
@@ -15354,17 +15354,17 @@
               "relativePath": "chapter-016.html",
               "sha256": "4deb75d2767672f9a4d6734bda25453ed84468bb12d787dd93a046fc1ab21888",
               "size": 11728,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-016.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-016.html",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-016.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-017.html",
               "relativePath": "chapter-017.html",
-              "sha256": "a568c8df16ad0515591ff39deddfc02814460ffbbbf567a52fd8bc1be03d1674",
-              "size": 9135,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-017.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/chapter-017.html",
+              "sha256": "2516079e6373b97e9f0833d7d20c00717cd24e2746b568c49bab543d71a7d28d",
+              "size": 9299,
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-017.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-017.html",
               "skipped": false
             },
             {
@@ -15372,26 +15372,26 @@
               "relativePath": "cover/semantic-unison-cover.png",
               "sha256": "25486f49e3388b58eaad412cddce6e2a09349ad1c838a4dc4fcf10053ec9bb1b",
               "size": 2765883,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/cover/semantic-unison-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/cover/semantic-unison-cover.png",
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/cover/semantic-unison-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/cover/semantic-unison-cover.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "50001bcf8457e696af56072a854994cd54130def72757bc267caaafa17df331f",
-              "size": 18365,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/index.html",
+              "sha256": "5503e07a5bcc7167cbba7e69a1a0d3993126ce11118c30d191d21a603afe22ec",
+              "size": 18521,
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/index.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "673742da3cff7a6d3823f2bd653a7e424016f199ba44c24c34773bb6e8d558e6",
-              "size": 16795,
-              "pathname": "books/semantic-unison/chapters/7ddb36a23f4964e0/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/7ddb36a23f4964e0/sitemap.json",
+              "sha256": "299d1e949565816322ff95314886ba0d2c267c34ce57474de1dad327c70f9a10",
+              "size": 16959,
+              "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/sitemap.json",
               "skipped": false
             }
           ]
@@ -21215,6 +21215,21 @@
       "pathname": "books/dng-compare/html/fb5fad4c686cf72d-dng-compare.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/html/fb5fad4c686cf72d-dng-compare.html",
       "size": 4226674
+    },
+    "36529260eebaad470a48945c42a804b6777daea2840607c81a18699fc922c09e:4189961": {
+      "pathname": "books/semantic-unison/pdf/36529260eebaad47-semantic-unison.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/pdf/36529260eebaad47-semantic-unison.pdf",
+      "size": 4189961
+    },
+    "8940ed96638c37063163f80cac01acbcb5aab18818cf2bd69f59581e5685c82e:5544305": {
+      "pathname": "books/semantic-unison/epub/8940ed96638c3706-semantic-unison.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/epub/8940ed96638c3706-semantic-unison.epub",
+      "size": 5544305
+    },
+    "b690102543c06d234c59b8cb19a0cf71dd5ddb01d3612b06555a6cd3ca60c0fa:3926707": {
+      "pathname": "books/semantic-unison/html/b690102543c06d23-semantic-unison.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/html/b690102543c06d23-semantic-unison.html",
+      "size": 3926707
     }
   },
   "chapterPackages": {
@@ -68134,6 +68149,255 @@
           "size": 13722,
           "pathname": "books/dng-compare/chapters/6fc538ba3fab783f/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/chapters/6fc538ba3fab783f/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "ba177a32dcc0a2138c6ffe65e8a358a8c70e346141544109d342bb832bdf814a": {
+      "pathnamePrefix": "books/semantic-unison/chapters/ba177a32dcc0a213",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "6f1f6408a2c9fb52d0409000225dbd38fe894c2abfde637624572099dc9d60b7",
+          "size": 1190,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book/diagrams/packed-tree.svg",
+          "relativePath": "book/diagrams/packed-tree.svg",
+          "sha256": "7ae42ac937a9969d0c429d301516ce091f036c3562e1dcf006d518a32dcb3ad6",
+          "size": 4067,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/packed-tree.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/packed-tree.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book/diagrams/pair-status-tree.svg",
+          "relativePath": "book/diagrams/pair-status-tree.svg",
+          "sha256": "3523d1986d18608e308e3b40f45a9a22a8ebffe4d63ec12f00e64ada1e403b44",
+          "size": 4504,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/pair-status-tree.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/pair-status-tree.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book/diagrams/review-placement.svg",
+          "relativePath": "book/diagrams/review-placement.svg",
+          "sha256": "08f03ebd1547d7b7432506f0ec45c7489c1e235bbb5866d3d703dc19c4790b65",
+          "size": 3098,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/review-placement.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/review-placement.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book/diagrams/semantic-diff-layers.svg",
+          "relativePath": "book/diagrams/semantic-diff-layers.svg",
+          "sha256": "1fd5706e3a867fc06845358b861bdc0b6fe6b03282d8d35fbc1fbfe2b79d87df",
+          "size": 3719,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/semantic-diff-layers.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/semantic-diff-layers.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book/diagrams/shuttle-flow.svg",
+          "relativePath": "book/diagrams/shuttle-flow.svg",
+          "sha256": "27320f8844f9b64415a11090832b904062ef0aa7387e728b6f7b3c45df234ede",
+          "size": 3665,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/shuttle-flow.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/shuttle-flow.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/book/diagrams/writer-barrier.svg",
+          "relativePath": "book/diagrams/writer-barrier.svg",
+          "sha256": "4191dc2b283546f86d633c1e3df53c47fb819f7ed251ac16beff4f3aa73818b9",
+          "size": 5595,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/writer-barrier.svg",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/book/diagrams/writer-barrier.svg",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "5baf018995adcab18ec85499504cad4898629f859e6223a9e9d82a90f6d58b30",
+          "size": 2497,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "7483959846c2f44380e016fde94b9569063c48237dfc825b4315a9d21100c4c6",
+          "size": 7600,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "be5a021eae6b2a99e8368ae51e643ef47e35fc78578bea06997c36efeaa61233",
+          "size": 4705,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "0d26e95fc95ddb064184262cc5a81320b00fa650dcc4fd0ce6e74194ce5d2023",
+          "size": 17197,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "9c1b555b8cb8c9b9c353fdd1ae7ed876414b82bc1e97ee86ee402717fc404ecf",
+          "size": 10472,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "3a32bb152cfb5251ea726e75e91dbc3af7394f11918633389d57a412b4b70be2",
+          "size": 11119,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "30a017237459b2b2f90451650f433d36d2117d0dc9f3e9d6bae4468dd38808c9",
+          "size": 11331,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "52a861b725fef29507a9ea89a1915aa889b98cf97232b571698f910c25b452ee",
+          "size": 26700,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "57f075b8288e49b8ed9655a733414eb1986955483cd16be895353f895f949ede",
+          "size": 22479,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "b24a5113c7e965052a2ae52d2ab519c42f3bf33f7381b0cdd748c54d5b561687",
+          "size": 10814,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "d98106ba246de86caa92ae0f341ea6f78a2bc6716f4135ef4efb7c467d42218c",
+          "size": 9468,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "99fdbe873e7edce1e26f34c31477e30172baee46a7338f85c113212b9b9d8b65",
+          "size": 13802,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "097b8136fd048dc785dbb9a65a3ae90212ade23747cb7954423e7b2576939374",
+          "size": 21948,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "5992685c88084a48ab979253ce5ee414349445cc486aec56e50942a433b58b64",
+          "size": 40964,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "93a51d5c34aad4a194efa29ea53899fba60603541f7277665645909685de3e2b",
+          "size": 10802,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "4deb75d2767672f9a4d6734bda25453ed84468bb12d787dd93a046fc1ab21888",
+          "size": 11728,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/chapter-017.html",
+          "relativePath": "chapter-017.html",
+          "sha256": "2516079e6373b97e9f0833d7d20c00717cd24e2746b568c49bab543d71a7d28d",
+          "size": 9299,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/chapter-017.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/chapter-017.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/cover/semantic-unison-cover.png",
+          "relativePath": "cover/semantic-unison-cover.png",
+          "sha256": "25486f49e3388b58eaad412cddce6e2a09349ad1c838a4dc4fcf10053ec9bb1b",
+          "size": 2765883,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/cover/semantic-unison-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/cover/semantic-unison-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "5503e07a5bcc7167cbba7e69a1a0d3993126ce11118c30d191d21a603afe22ec",
+          "size": 18521,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/semantic-unison/semantic-unison-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "299d1e949565816322ff95314886ba0d2c267c34ce57474de1dad327c70f9a10",
+          "size": 16959,
+          "pathname": "books/semantic-unison/chapters/ba177a32dcc0a213/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/semantic-unison/chapters/ba177a32dcc0a213/sitemap.json",
           "skipped": false
         }
       ]
