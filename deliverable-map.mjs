@@ -314,8 +314,8 @@ export const deliverableBooks = [
   {
     "slug": "tiffgraph",
     "title": "tiffgraph",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/pdf/a994940568d6cfc2-tiffgraph.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/epub/5e1d9cd7e0b3217c-tiffgraph.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/pdf/b0628cd59bbad727-tiffgraph.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/epub/3d965b38edeb1dbc-tiffgraph.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tiffgraph/cover/7a77181aa0cffcd2-tiffgraph-cover.png"
   },
   {
