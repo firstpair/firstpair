@@ -320,8 +320,8 @@ export const readerBooks = [
   },
   {
     "slug": "photostack",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/html/618d398b287271e7-photostack.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/chapters/16d552eed988ccde/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/chapters/16d552eed988ccde"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/html/1583d6c693ff1c88-photostack.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/chapters/e349e7d30f32f259/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/chapters/e349e7d30f32f259"
   }
 ]

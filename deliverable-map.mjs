@@ -362,8 +362,8 @@ export const deliverableBooks = [
   {
     "slug": "photostack",
     "title": "The FirstPair Photo Stack",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/pdf/141cef5ccdb26335-photostack.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/epub/cdf06a450bd816bf-photostack.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/pdf/4bdceb5592dd0990-photostack.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/epub/be58b26a83e7fba4-photostack.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/photostack/cover/759d347ff46bd2c6-photostack-cover.png"
   }
 ]
