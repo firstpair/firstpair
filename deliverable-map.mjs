@@ -286,8 +286,8 @@ export const deliverableBooks = [
   {
     "slug": "lightroom-repair",
     "title": "FirstPair Lightroom Repair",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/pdf/1645d76bb0dbf610-lightroom-repair.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/epub/7fce5da09a225a2f-lightroom-repair.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/pdf/aaf6944c29726e17-lightroom-repair.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/epub/7a753e86e734258f-lightroom-repair.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/cover/0189f72c3b5edbd0-lightroom-repair-cover.png"
   },
   {

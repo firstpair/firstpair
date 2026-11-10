@@ -253,9 +253,9 @@ export const readerBooks = [
   },
   {
     "slug": "lightroom-repair",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/html/37549ca6e3fe5570-lightroom-repair.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/98e93c26912313c2/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/98e93c26912313c2"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/html/2aa98636fcf08b76-lightroom-repair.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/47a927f4880b9bc8/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/lightroom-repair/chapters/47a927f4880b9bc8"
   },
   {
     "slug": "dng-compare",
