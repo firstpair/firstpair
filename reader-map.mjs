@@ -308,9 +308,9 @@ export const readerBooks = [
   },
   {
     "slug": "diskproxy",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/html/4f4bdaeebaa1f5f0-diskproxy-manual.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/chapters/e56eb18ff12edd66/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/chapters/e56eb18ff12edd66"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/html/da982e12b9fd766f-diskproxy-manual.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/chapters/9de3ec481b5e121a/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/chapters/9de3ec481b5e121a"
   },
   {
     "slug": "tursolite",

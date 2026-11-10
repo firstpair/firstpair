@@ -348,8 +348,8 @@ export const deliverableBooks = [
   {
     "slug": "diskproxy",
     "title": "The diskproxy Manual",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/pdf/52c9e1c0e70ca3ea-diskproxy-manual.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/epub/14849502b1c6f6f2-diskproxy-manual.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/pdf/8a522604f7e619a3-diskproxy-manual.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy/epub/d6b6b01df887fe0d-diskproxy-manual.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/diskproxy-manual/cover/74571cfae35d3c56-diskproxy-manual-cover.png"
   },
   {
