@@ -293,8 +293,8 @@ export const deliverableBooks = [
   {
     "slug": "dng-compare",
     "title": "DNG Compare",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/pdf/a8084fe8f8d63e2f-dng-compare.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/epub/097df4fa4ea27f10-dng-compare.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/pdf/d5441575aa686d87-dng-compare.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/epub/39e019e9222c05c8-dng-compare.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/dng-compare/cover/71c328c81eeb6f41-dng-compare-cover.png"
   },
   {
