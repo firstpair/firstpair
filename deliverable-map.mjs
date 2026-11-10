@@ -355,8 +355,8 @@ export const deliverableBooks = [
   {
     "slug": "tursolite",
     "title": "Tursolite",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/pdf/4cd81f6cffd424b6-tursolite.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/epub/1f5f7d38a9b04598-tursolite.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/pdf/f57104e28a0f8580-tursolite.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/epub/d3c276ddda7f0216-tursolite.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/cover/6c2cbac910a511e9-tursolite-cover.png"
   },
   {

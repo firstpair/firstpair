@@ -314,9 +314,9 @@ export const readerBooks = [
   },
   {
     "slug": "tursolite",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/html/3d398a1e396864bc-tursolite.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/51432411bf920c67"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/html/56baabeb8460a27b-tursolite.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/4a64e954d9cf6c65/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/tursolite/chapters/4a64e954d9cf6c65"
   },
   {
     "slug": "photostack",
