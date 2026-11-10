@@ -896,10 +896,14 @@ records. Verify versions before quoting them; this section was written on
 - OCaml. `ocamlopt` on `PATH` is Homebrew OCaml 5.5.1 with no dune or
   ocamlfind; it builds the plain `ocamlopt` workers (dng-compare's
   `make build-oxcaml`) only. Dune lives in the opam switches: `default`
-  (stock OCaml 5.2.0, dune 3.16) and `5.2.0+ox` (OxCaml, dune 3.22, with
-  `stdlib_stable`, `parallel`, `core`). Use `opam exec --switch <name> -- dune …`
-  and say which compiler a claim is about: stock OCaml and OxCaml are not
-  interchangeable.
+  (stock OCaml 5.2.0, dune 3.16) and `5.4.0+ox` (OxCaml 5.4.0, dune 3.22, with
+  `stdlib_stable`, `parallel`, `core`), which is the OxCaml standard since
+  2026-11-10: build, test and install OxCaml programs with it, as the
+  installed Semantic Unison is. The earlier OxCaml switch `5.2.0+ox` is still
+  present and still carries the same pins; use it only to reproduce an older
+  result. Use `opam exec --switch <name> -- dune …` and say which compiler,
+  and for OxCaml which switch, a claim is about: stock OCaml and OxCaml are
+  not interchangeable.
 - OxCaml parallelism. `Domain.spawn` is alerted; use `Domain.Safe.spawn`,
   whose closures must be portable: capture immutable data (`string iarray`
   from `Stdlib_stable.Iarray`, lists), `Atomic` counters, and externals
@@ -935,14 +939,14 @@ records. Verify versions before quoting them; this section was written on
   module `Dng_exiftool_rs`, worker `metadata-extract-exiftool-rs-oxcaml`).
   `make build-exiftool-rs` in dng-compare builds both; `make build-rust`
   afterwards drops the feature from `metadata-extract` again.
-- Using the wrapper from another repo. It is pinned and installed in both
-  switches (`default` and `5.2.0+ox`) from the local checkout, together with
+- Using the wrapper from another repo. It is pinned and installed in the
+  switches (`default`, `5.4.0+ox` and `5.2.0+ox`) from the local checkout, together with
   `libdng_exiftool_ffi.a`, so a dune project only needs
   `(libraries dng-exiftool-rs)` and builds with
   `opam exec --switch <switch> -- dune build`. Linking prints a harmless
   `ld: warning: search path 'lib' not found`. To redo the pin in a switch:
-  `DNG_EXIFTOOL_FFI_LIBDIR=$HOME/src/dng-compare/rust-scanner/target/release opam pin add -y --with-test --switch 5.2.0+ox dng-exiftool-rs ~/src/dng-compare/ocaml-exiftool-rs`
-  (same for `default`). After rebuilding the Rust engine run
+  `DNG_EXIFTOOL_FFI_LIBDIR=$HOME/src/dng-compare/rust-scanner/target/release opam pin add -y --with-test --switch 5.4.0+ox dng-exiftool-rs ~/src/dng-compare/ocaml-exiftool-rs`
+  (same for `default` and `5.2.0+ox`). After rebuilding the Rust engine run
   `opam reinstall --switch <switch> dng-exiftool-rs` with the same variable,
   then rebuild consumers: the archive is copied at install time and baked in
   at link time, and `opam upgrade` skips it when no OCaml source changed.
