@@ -58,9 +58,9 @@ const libraryShelfConfig = [
     deck: 'Practical manuals for installing tools, repairing systems, and checking results.',
   },
   {
-    id: 'technology',
-    label: 'Technology',
-    deck: 'Books about software, startups, and technical culture.',
+    id: 'business',
+    label: 'Business',
+    deck: 'Books about startups and the business of technology.',
   },
   {
     id: 'unix',

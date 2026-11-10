@@ -75,7 +75,7 @@ const validPostOrigins = new Set([
   'https://eigentimes.com',
   'https://firstpair.org',
 ])
-const validShelves = new Set(['history', 'literature', 'music', 'howto', 'technology', 'unix',
+const validShelves = new Set(['history', 'literature', 'music', 'howto', 'business', 'unix',
   'photography',
   'publishing', 'querygraph', 'eigentimes', 'math', 'other'])
 const invalidShelves = []

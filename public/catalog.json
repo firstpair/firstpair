@@ -290,7 +290,7 @@
       "kicker": "Finished book",
       "description": "An anti-history of Silicon Valley — the deliberate opposite of Zero to One. The spectacular crashes, the fateful decisions that ripped failure from the jaws of victory, the infighting, the giant egos, and the venture capitalists who financed all of it and then wrote the eulogies as if they had been mere bystanders. Braided in six movements: Genesis, Ascension, Apotheosis, Fissures, Gravity, Ashes.",
       "accent": "#8a6d3b",
-      "shelf": "technology",
+      "shelf": "business",
       "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/from-1-to-0/pdf/6dc215e6fa1cdd1e-from-1-to-0.pdf",
       "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/from-1-to-0/epub/60e4d06ea521ef8a-from-1-to-0.epub",
       "html": "/read/from-1-to-0/",
@@ -1184,9 +1184,9 @@
         "filesystems",
         "rust"
       ],
-      "shelf": "technology",
+      "shelf": "unix",
       "shelves": [
-        "technology",
+        "unix",
         "photography"
       ],
       "source": "https://github.com/firstpair/diskproxy",
