@@ -271,9 +271,9 @@ export const readerBooks = [
   },
   {
     "slug": "packdir",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/html/d4f17aca561d91e0-packdir.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/chapters/d98060af28b34fc6/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/chapters/d98060af28b34fc6"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/html/98cac91efafb83ea-packdir.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/chapters/8154f931a132a202/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/chapters/8154f931a132a202"
   },
   {
     "slug": "tiffgraph",

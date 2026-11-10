@@ -307,8 +307,8 @@ export const deliverableBooks = [
   {
     "slug": "packdir",
     "title": "packdir",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/pdf/7f7ac7a97d2d759d-packdir.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/epub/094c04043add35a9-packdir.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/pdf/a83edac02937b7c4-packdir.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/epub/bf950beb922cc170-packdir.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/packdir/cover/4a2ce17fa1c97dcb-packdir-cover.png"
   },
   {
