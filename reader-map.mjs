@@ -283,9 +283,9 @@ export const readerBooks = [
   },
   {
     "slug": "phidentify",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/230e8efcd6d38ba6-phidentify.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/ebdcf99701cf77fb/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/ebdcf99701cf77fb"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/html/d8a48d7ae5c453ef-phidentify.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/6fe90c9ad25820c7/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phidentify/chapters/6fe90c9ad25820c7"
   },
   {
     "slug": "phindex",
