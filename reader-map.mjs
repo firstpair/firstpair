@@ -289,9 +289,9 @@ export const readerBooks = [
   },
   {
     "slug": "phindex",
-    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/f20f6c82cc1ff334-phindex.html",
-    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/9963b0347f4c599b/index.html",
-    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/9963b0347f4c599b"
+    "htmlSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/ca9a1c42d1bd8f98-phindex.html",
+    "htmlChaptersSource": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/index.html",
+    "htmlChaptersBase": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f"
   },
   {
     "slug": "sail-declarative-pipelines",
