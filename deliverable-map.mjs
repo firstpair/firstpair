@@ -328,8 +328,8 @@ export const deliverableBooks = [
   {
     "slug": "phindex",
     "title": "phindex",
-    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/18b827ff62b8fddb-phindex.pdf",
-    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/bb6408e0c4f693a9-phindex.epub",
+    "pdf": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/977cc670daf68090-phindex.pdf",
+    "epub": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/d4ae6816282b8cfa-phindex.epub",
     "cover": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/cover/6b4377b9119f0228-phindex-cover.png"
   },
   {
