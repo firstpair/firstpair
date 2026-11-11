@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-11-10T22:28:09.793Z",
+  "updatedAt": "2026-11-11T00:10:30.030Z",
   "books": {
     "typesec": {
       "updatedAt": "2026-07-15T08:19:45.316Z",
@@ -16149,34 +16149,34 @@
       }
     },
     "phindex": {
-      "updatedAt": "2026-11-10T22:28:09.792Z",
+      "updatedAt": "2026-11-11T00:10:30.029Z",
       "dryRun": false,
       "units": {
         "pdf": {
           "kind": "pdf",
           "localPath": "book-uploads/staging/phindex/phindex.pdf",
-          "sha256": "f6a4e075fb169686ce480147297be1a4e2168beb704919e93bf11ab8ac65e4ee",
-          "size": 3976482,
-          "pathname": "books/phindex/pdf/f6a4e075fb169686-phindex.pdf",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/f6a4e075fb169686-phindex.pdf",
+          "sha256": "18b827ff62b8fddb25963c704f5b7b16ce6a82a6065f52aaff9cc410ef0ee133",
+          "size": 3994358,
+          "pathname": "books/phindex/pdf/18b827ff62b8fddb-phindex.pdf",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/18b827ff62b8fddb-phindex.pdf",
           "skipped": false
         },
         "epub": {
           "kind": "epub",
           "localPath": "book-uploads/staging/phindex/phindex.epub",
-          "sha256": "7fe005bab58400a7ae6cde91605b950e3cb1b41e70145ba03b63cdf50a571edc",
-          "size": 5870072,
-          "pathname": "books/phindex/epub/7fe005bab58400a7-phindex.epub",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/7fe005bab58400a7-phindex.epub",
+          "sha256": "bb6408e0c4f693a9d7a27c6de84392f7c0ba111aa77e2670fb21c7776c409e83",
+          "size": 5874891,
+          "pathname": "books/phindex/epub/bb6408e0c4f693a9-phindex.epub",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/bb6408e0c4f693a9-phindex.epub",
           "skipped": false
         },
         "html": {
           "kind": "html",
           "localPath": "book-uploads/staging/phindex/phindex.html",
-          "sha256": "ca9a1c42d1bd8f9825cc0a65bdefa96e3c76925761b81c08ecfcfb502a2450d4",
-          "size": 4137976,
-          "pathname": "books/phindex/html/ca9a1c42d1bd8f98-phindex.html",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/ca9a1c42d1bd8f98-phindex.html",
+          "sha256": "42420514788ea83303a6bfe8ed2c6c9af189f7c648e6d7b7231a171a4f830ead",
+          "size": 4148709,
+          "pathname": "books/phindex/html/42420514788ea833-phindex.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/42420514788ea833-phindex.html",
           "skipped": false
         },
         "cover": {
@@ -16200,9 +16200,9 @@
         "htmlChapters": {
           "kind": "htmlChapters",
           "localPath": "book-uploads/staging/phindex/phindex-chapters",
-          "sha256": "c67599e123c0a22f674a8e110618cc37e38184d3037ba3e2cd3aa77189134767",
-          "pathnamePrefix": "books/phindex/chapters/c67599e123c0a22f",
-          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/index.html",
+          "sha256": "53e422fb3d46e69626eaba2295b2e88be9203b261a470d3a2ff4a731923c23fc",
+          "pathnamePrefix": "books/phindex/chapters/53e422fb3d46e696",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/index.html",
           "skipped": false,
           "files": [
             {
@@ -16210,143 +16210,152 @@
               "relativePath": "book.css",
               "sha256": "6f1f6408a2c9fb52d0409000225dbd38fe894c2abfde637624572099dc9d60b7",
               "size": 1190,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/book.css",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/book.css",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/book.css",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/book.css",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-001.html",
               "relativePath": "chapter-001.html",
-              "sha256": "6b84ca9b52b96a873a9c782cddb2f8d654f2110b4b8fb687313c655613289e67",
+              "sha256": "5f71b47b7add4ade8d24106f2bad9230403b963317c92c65944ef0c395df90cc",
               "size": 2519,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-001.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-001.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-001.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-001.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-002.html",
               "relativePath": "chapter-002.html",
-              "sha256": "d966afd4d859211dfa8d3ffddfc4f0d6be09f25bf902a97914f413cf32cbbb43",
-              "size": 4532,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-002.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-002.html",
+              "sha256": "0262a9e3c3b9f329d96472e3cc4be90de88bf528d1f1e1d578f2ae07058ead46",
+              "size": 4866,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-002.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-002.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-003.html",
               "relativePath": "chapter-003.html",
-              "sha256": "323ac1017cd86d6664a1821f7805174b0de15ed15ed6cb303d6b2f894dc882ed",
-              "size": 25420,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-003.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-003.html",
+              "sha256": "e2c7de14e68c112f88dcb59e710cbdff23411f26caf76ad315102414fde8af51",
+              "size": 25448,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-003.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-003.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-004.html",
               "relativePath": "chapter-004.html",
-              "sha256": "7f3def2802eb6872fd75739fad73e5ac4e45eab215de8b7d47bf25028ad4eb18",
+              "sha256": "430309231f90447da69c7ca630636a9e1a5345d52c11d8454c721070bab5183d",
               "size": 20108,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-004.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-004.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-004.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-004.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-005.html",
               "relativePath": "chapter-005.html",
-              "sha256": "a3e5a94d4442871077e1d3dc95c36b0c155e6548e5faa3aa38e43a90acac26b4",
+              "sha256": "584fb821cedca45009ab9582f7aac4b552f70259462ac8e01dd37895c4f4eb78",
               "size": 13832,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-005.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-005.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-005.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-005.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-006.html",
               "relativePath": "chapter-006.html",
-              "sha256": "1e56563689a42b9ff0aa22f2a1131ed59b0fc8cff88722f71ca0afbd19e951e6",
+              "sha256": "497877d38c9e795af1c7a1aad369db01905ab881e0ef3e5802a350f39ac6212b",
               "size": 21742,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-006.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-006.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-006.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-006.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-007.html",
               "relativePath": "chapter-007.html",
-              "sha256": "64eac38f6bd35184046f5db08b786bbcc7614697e3a4ddb209f66926c6499d61",
+              "sha256": "21b1866a9050ae1b69d27d9816332cd451c141c5b870cf836c245bdf41a77682",
               "size": 9803,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-007.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-007.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-007.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-007.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-008.html",
               "relativePath": "chapter-008.html",
-              "sha256": "281132ef98f668137e33cafbcb0056824a89f93290bda74b26566fa114a83fa7",
+              "sha256": "1e03f6c431d05455133084db40ccbf67fcccf114ad3dfd0a35f385007bb8ca54",
               "size": 11914,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-008.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-008.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-008.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-008.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-009.html",
               "relativePath": "chapter-009.html",
-              "sha256": "414a6af5bb4d77bb4d4eb99d3e2eb2deea305291513d70278bf16d271e2e5ea0",
+              "sha256": "099435c2c2e433539e3e2bca6d1b8a681218bc00bc827c49a1e4c807e2511f53",
               "size": 21706,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-009.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-009.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-009.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-009.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-010.html",
               "relativePath": "chapter-010.html",
-              "sha256": "9695814ff507ad63027b3664dfda62feeb58ec1c2d4ee21f6bf84a70e2015cc5",
+              "sha256": "e2d99e76112a5202b69b08c5e4e82beae21a1b3d33a68962719817fc3dbd4028",
               "size": 23011,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-010.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-010.html",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-010.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-010.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-011.html",
               "relativePath": "chapter-011.html",
-              "sha256": "4ab1888d621ad5dc46b060c8fbcdd171320940a9b962e4821c6f0b3ffca965a8",
-              "size": 12917,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-011.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-011.html",
+              "sha256": "0bd9e33e101478a77440475c97c1c11fe7711b4f2619280ebb8b00629d556488",
+              "size": 13600,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-011.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-011.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-012.html",
               "relativePath": "chapter-012.html",
-              "sha256": "bfaf11bc4ecc0fd3dc2f88e5bbe962825b598cbdf7d17121ba9e8c33e795a253",
-              "size": 10948,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-012.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-012.html",
+              "sha256": "cd6cfa4b91e9cbadb899deb6104e0e648ef59a17397b1c7f2677186f094b1d74",
+              "size": 13095,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-012.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-012.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-013.html",
               "relativePath": "chapter-013.html",
-              "sha256": "d88edc8c918d28284ed58f21f9383fc0ef11c5f1cf13a7d2846b396fe488fa77",
-              "size": 10830,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-013.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-013.html",
+              "sha256": "708115ad7535691b05962291cd459f8c5551e27a5b94b5030077c3c6f098018a",
+              "size": 10953,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-013.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-013.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-014.html",
               "relativePath": "chapter-014.html",
-              "sha256": "d5ecbe8c1c199b7732a30f9a04dc136b3c8590113fed9ea49edcc23e7378ba45",
-              "size": 3028,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-014.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-014.html",
+              "sha256": "73305dfc613020806a2dbd2ceb9aa7a559f94a9f0769fde3051d0be48c99d735",
+              "size": 11874,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-014.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-014.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-015.html",
               "relativePath": "chapter-015.html",
-              "sha256": "0cf7f8f0b4144e2e3444b8908c17d0ff01cd3fa041372995e0bab650b66c1238",
-              "size": 6271,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/chapter-015.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/chapter-015.html",
+              "sha256": "91fb46a2631f55543e9c843292c1fdbf831de38ee5e2381f0968721e64963904",
+              "size": 3055,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-015.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-015.html",
+              "skipped": false
+            },
+            {
+              "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-016.html",
+              "relativePath": "chapter-016.html",
+              "sha256": "85fa4e78d35576feaeceb35a873fb7a330d4160492bc5d761199d67d51850bfb",
+              "size": 6983,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-016.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-016.html",
               "skipped": false
             },
             {
@@ -16354,26 +16363,26 @@
               "relativePath": "cover/phindex-cover.png",
               "sha256": "6b4377b9119f02289e1e32fbb60d54592be87f5578e6c156f9a660ca48770699",
               "size": 2992426,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/cover/phindex-cover.png",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/cover/phindex-cover.png",
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/cover/phindex-cover.png",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/cover/phindex-cover.png",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/index.html",
               "relativePath": "index.html",
-              "sha256": "ae2f77a2c0839a4750aeff143b5344a9104fcd9b60e0c4496c0c420da2d8b1c5",
-              "size": 13897,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/index.html",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/index.html",
+              "sha256": "57ce0e3e5e8b9e996cb85eaae9df5eee8460fb35745dda885e1c09ff558aae77",
+              "size": 14589,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/index.html",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/index.html",
               "skipped": false
             },
             {
               "localPath": "book-uploads/staging/phindex/phindex-chapters/sitemap.json",
               "relativePath": "sitemap.json",
-              "sha256": "9dda179a4e73ecb2ef32797b20f00bf3439dbf02af9d5fb081984157eff84896",
-              "size": 12111,
-              "pathname": "books/phindex/chapters/c67599e123c0a22f/sitemap.json",
-              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/sitemap.json",
+              "sha256": "b7031f03daf69776e9e23b1fdb65d432eb45f0d7cc78c1f06b995c7e54074bba",
+              "size": 12810,
+              "pathname": "books/phindex/chapters/53e422fb3d46e696/sitemap.json",
+              "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/sitemap.json",
               "skipped": false
             }
           ]
@@ -21284,6 +21293,21 @@
       "pathname": "books/phindex/html/ca9a1c42d1bd8f98-phindex.html",
       "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/ca9a1c42d1bd8f98-phindex.html",
       "size": 4137976
+    },
+    "18b827ff62b8fddb25963c704f5b7b16ce6a82a6065f52aaff9cc410ef0ee133:3994358": {
+      "pathname": "books/phindex/pdf/18b827ff62b8fddb-phindex.pdf",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/pdf/18b827ff62b8fddb-phindex.pdf",
+      "size": 3994358
+    },
+    "bb6408e0c4f693a9d7a27c6de84392f7c0ba111aa77e2670fb21c7776c409e83:5874891": {
+      "pathname": "books/phindex/epub/bb6408e0c4f693a9-phindex.epub",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/epub/bb6408e0c4f693a9-phindex.epub",
+      "size": 5874891
+    },
+    "42420514788ea83303a6bfe8ed2c6c9af189f7c648e6d7b7231a171a4f830ead:4148709": {
+      "pathname": "books/phindex/html/42420514788ea833-phindex.html",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/html/42420514788ea833-phindex.html",
+      "size": 4148709
     }
   },
   "chapterPackages": {
@@ -68938,6 +68962,192 @@
           "size": 12111,
           "pathname": "books/phindex/chapters/c67599e123c0a22f/sitemap.json",
           "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/c67599e123c0a22f/sitemap.json",
+          "skipped": false
+        }
+      ]
+    },
+    "53e422fb3d46e69626eaba2295b2e88be9203b261a470d3a2ff4a731923c23fc": {
+      "pathnamePrefix": "books/phindex/chapters/53e422fb3d46e696",
+      "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/index.html",
+      "files": [
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/book.css",
+          "relativePath": "book.css",
+          "sha256": "6f1f6408a2c9fb52d0409000225dbd38fe894c2abfde637624572099dc9d60b7",
+          "size": 1190,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/book.css",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/book.css",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-001.html",
+          "relativePath": "chapter-001.html",
+          "sha256": "5f71b47b7add4ade8d24106f2bad9230403b963317c92c65944ef0c395df90cc",
+          "size": 2519,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-001.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-001.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-002.html",
+          "relativePath": "chapter-002.html",
+          "sha256": "0262a9e3c3b9f329d96472e3cc4be90de88bf528d1f1e1d578f2ae07058ead46",
+          "size": 4866,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-002.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-002.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-003.html",
+          "relativePath": "chapter-003.html",
+          "sha256": "e2c7de14e68c112f88dcb59e710cbdff23411f26caf76ad315102414fde8af51",
+          "size": 25448,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-003.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-003.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-004.html",
+          "relativePath": "chapter-004.html",
+          "sha256": "430309231f90447da69c7ca630636a9e1a5345d52c11d8454c721070bab5183d",
+          "size": 20108,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-004.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-004.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-005.html",
+          "relativePath": "chapter-005.html",
+          "sha256": "584fb821cedca45009ab9582f7aac4b552f70259462ac8e01dd37895c4f4eb78",
+          "size": 13832,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-005.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-005.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-006.html",
+          "relativePath": "chapter-006.html",
+          "sha256": "497877d38c9e795af1c7a1aad369db01905ab881e0ef3e5802a350f39ac6212b",
+          "size": 21742,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-006.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-006.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-007.html",
+          "relativePath": "chapter-007.html",
+          "sha256": "21b1866a9050ae1b69d27d9816332cd451c141c5b870cf836c245bdf41a77682",
+          "size": 9803,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-007.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-007.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-008.html",
+          "relativePath": "chapter-008.html",
+          "sha256": "1e03f6c431d05455133084db40ccbf67fcccf114ad3dfd0a35f385007bb8ca54",
+          "size": 11914,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-008.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-008.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-009.html",
+          "relativePath": "chapter-009.html",
+          "sha256": "099435c2c2e433539e3e2bca6d1b8a681218bc00bc827c49a1e4c807e2511f53",
+          "size": 21706,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-009.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-009.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-010.html",
+          "relativePath": "chapter-010.html",
+          "sha256": "e2d99e76112a5202b69b08c5e4e82beae21a1b3d33a68962719817fc3dbd4028",
+          "size": 23011,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-010.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-010.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-011.html",
+          "relativePath": "chapter-011.html",
+          "sha256": "0bd9e33e101478a77440475c97c1c11fe7711b4f2619280ebb8b00629d556488",
+          "size": 13600,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-011.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-011.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-012.html",
+          "relativePath": "chapter-012.html",
+          "sha256": "cd6cfa4b91e9cbadb899deb6104e0e648ef59a17397b1c7f2677186f094b1d74",
+          "size": 13095,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-012.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-012.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-013.html",
+          "relativePath": "chapter-013.html",
+          "sha256": "708115ad7535691b05962291cd459f8c5551e27a5b94b5030077c3c6f098018a",
+          "size": 10953,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-013.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-013.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-014.html",
+          "relativePath": "chapter-014.html",
+          "sha256": "73305dfc613020806a2dbd2ceb9aa7a559f94a9f0769fde3051d0be48c99d735",
+          "size": 11874,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-014.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-014.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-015.html",
+          "relativePath": "chapter-015.html",
+          "sha256": "91fb46a2631f55543e9c843292c1fdbf831de38ee5e2381f0968721e64963904",
+          "size": 3055,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-015.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-015.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/chapter-016.html",
+          "relativePath": "chapter-016.html",
+          "sha256": "85fa4e78d35576feaeceb35a873fb7a330d4160492bc5d761199d67d51850bfb",
+          "size": 6983,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/chapter-016.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/chapter-016.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/cover/phindex-cover.png",
+          "relativePath": "cover/phindex-cover.png",
+          "sha256": "6b4377b9119f02289e1e32fbb60d54592be87f5578e6c156f9a660ca48770699",
+          "size": 2992426,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/cover/phindex-cover.png",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/cover/phindex-cover.png",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/index.html",
+          "relativePath": "index.html",
+          "sha256": "57ce0e3e5e8b9e996cb85eaae9df5eee8460fb35745dda885e1c09ff558aae77",
+          "size": 14589,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/index.html",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/index.html",
+          "skipped": false
+        },
+        {
+          "localPath": "book-uploads/staging/phindex/phindex-chapters/sitemap.json",
+          "relativePath": "sitemap.json",
+          "sha256": "b7031f03daf69776e9e23b1fdb65d432eb45f0d7cc78c1f06b995c7e54074bba",
+          "size": 12810,
+          "pathname": "books/phindex/chapters/53e422fb3d46e696/sitemap.json",
+          "url": "https://fl6nu3o2c1oqqnum.public.blob.vercel-storage.com/books/phindex/chapters/53e422fb3d46e696/sitemap.json",
           "skipped": false
         }
       ]
